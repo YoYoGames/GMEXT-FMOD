@@ -1,7 +1,3 @@
-# Template-Extensions
-Template repo for GM Extensions
-
-
 # GMEXT-FMOD
 Repository for GameMaker's FMOD Extension
 
