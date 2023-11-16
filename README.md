@@ -5,9 +5,12 @@ This repository was created with the intent of presenting users with the latest 
 
 This extension will work on Desktop, Mobile and Consoles.
 
-VISUAL STUDIO SOURCE: `source/fmod_vs/`
-
-XCODE SOURCE: `source/fmod_xcode/`
+Windows: `source/fmod_vs/`
+XCode: `source/fmod_xcode/`
+Switch: `source/fmod_switch/`
+Android: `source/fmod_android/`
+Playstation: `source/fmod_playstation/`
+Xbox: `source/fmod_gdk/`
 
 After compilation the exported dll/dylib/so file is automatically copied into the extension folder inside the included GameMaker project folder.
 
