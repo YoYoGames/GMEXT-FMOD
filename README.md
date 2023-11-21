@@ -18,7 +18,8 @@ After compilation the exported dll/dylib/so file is automatically copied into th
 
 ## Requirements
 
-In order to compile for Windows/macOS/Linux/Android/iOS and consoles you are required to [download the FMOD SDK v2.02](https://www.fmod.com/download) and place it inside `source/fmod_sdk/` following the given folder structure:
+In order to use this extension you will require to [download the FMOD SDK v2.02](https://www.fmod.com/download) and install it on your local machine. 
+If you are compiling this extension locally you will need to place the SDKs inside `source/fmod_sdk/` following the given folder structure:
 
 * Windows: `FMOD Studio API Windows/`
 * MacOS: `FMOD Studio API macOS/`
