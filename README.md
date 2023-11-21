@@ -18,19 +18,19 @@ After compilation the exported dll/dylib/so file is automatically copied into th
 
 ## Requirements
 
-In order to compile for Windows/macOS/Linux you are required to [download the FMOD SDK v2.02](https://www.fmod.com/download) and place it inside `source/fmod_sdk/` following the given format structure:
+In order to compile for Windows/macOS/Linux you are required to [download the FMOD SDK v2.02](https://www.fmod.com/download) and place it inside `source/fmod_sdk/` following the given folder structure:
 
-* Windows: `fmod_sdk/FMOD Studio API Windows/`
-* MacOS: `fmod_sdk/FMOD Studio API macOS/`
-* Linux: `fmod_sdk/FMOD Studio API Linux/`
+* Windows: `FMOD Studio API Windows/`
+* MacOS: `FMOD Studio API macOS/`
+* Linux: `FMOD Studio API Linux/`
 
-* Android: `fmod_sdk/FMOD Studio API Android/`
-* iOS: `fmod_sdk/FMOD Studio API iOS/`
+* Android: `FMOD Studio API Android/`
+* iOS: `FMOD Studio API iOS/`
 
-* GDK: `fmod_sdk/FMOD Studio API Game Core/`
-* Switch: `fmod_sdk/FMOD Studio API Switch/`
-* Playstation 4: `fmod_sdk/FMOD Studio API PS4/`
-* Playstation 5: `fmod_sdk/FMOD Studio API PS5/`
+* GDK: `FMOD Studio API Game Core/`
+* Switch: `FMOD Studio API Switch/`
+* Playstation 4: `FMOD Studio API PS4/`
+* Playstation 5: `FMOD Studio API PS5/`
 
 <br>
 
