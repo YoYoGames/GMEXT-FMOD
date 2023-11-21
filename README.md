@@ -23,10 +23,8 @@ In order to compile for Windows/macOS/Linux you are required to [download the FM
 * Windows: `FMOD Studio API Windows/`
 * MacOS: `FMOD Studio API macOS/`
 * Linux: `FMOD Studio API Linux/`
-
 * Android: `FMOD Studio API Android/`
 * iOS: `FMOD Studio API iOS/`
-
 * GDK: `FMOD Studio API Game Core/`
 * Switch: `FMOD Studio API Switch/`
 * Playstation 4: `FMOD Studio API PS4/`
