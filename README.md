@@ -15,7 +15,8 @@ This extension will work on Desktop, Mobile and Consoles.
 
 After compilation the exported dll/dylib/so files is automatically copied into the extension folder inside the included GameMaker project folder.
 
-> **NOTE** The console exports don't include pre-compiled binaries so they will be compiled during GameMaker project's build time automatically.
+> > [!NOTE]
+> The console exports don't include pre-compiled binaries so they will be compiled during GameMaker project's build time automatically.
 
 <br>
 
