@@ -8,11 +8,11 @@ This extension will work on Desktop, Mobile and Consoles.
 * Windows: `source/fmod_gml/extensions/FMOD/fmod_windows/`
 * MacOS: `source/fmod_gml/extensions/FMOD/fmod_macos/`
 * Linux: `source/fmod_gml/extensions/FMOD/fmod_linux/`
-* Switch: `source/fmod_gml/extensions/FMOD/fmod_switch/`
 * Android: `source/fmod_gml/extensions/FMOD/fmod_android/`
 * iOS: `source/fmod_gml/extensions/FMOD/fmod_ios/`
+* Switch: `source/fmod_gml/extensions/FMOD/fmod_switch/`
 * Playstation: `source/fmod_gml/extensions/FMOD/fmod_playstation/`
-* Xbox: `source/fmod_gml/extensions/FMOD/fmod_gdk/`
+* XboxOne & SeriesX|S: `source/fmod_gml/extensions/FMOD/fmod_gdk/`
 
 After compilation the exported dll/dylib/so files is automatically copied into the extension folder inside the included GameMaker project folder.
 
