@@ -6,7 +6,8 @@ This repository was created with the intent of presenting users with the latest 
 This extension will work on Desktop, Mobile and Consoles.
 
 * Windows: `source/fmod_gml/extensions/FMOD/fmod_windows/`
-* macOS: `source/fmod_gml/extensions/FMOD/fmod_macos/`
+* MacOS: `source/fmod_gml/extensions/FMOD/fmod_macos/`
+* Linux: `source/fmod_gml/extensions/FMOD/fmod_linux/`
 * Switch: `source/fmod_gml/extensions/FMOD/fmod_switch/`
 * Android: `source/fmod_gml/extensions/FMOD/fmod_android/`
 * iOS: `source/fmod_gml/extensions/FMOD/fmod_ios/`
