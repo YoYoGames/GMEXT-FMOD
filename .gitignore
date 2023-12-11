@@ -9,7 +9,6 @@
 **/*.pdb
 **/*.exp
 **/*.exe
-**/*.user
 
 # FMOD SDKs
 source/fmod_sdk/
@@ -36,8 +35,9 @@ source/fmod_gml/extensions/FMOD/fmod_playstation/**/Prospero/
 source/fmod_gml/extensions/FMOD/fmod_switch/**/NX64/
 source/fmod_gml/extensions/FMOD/fmod_windows/**/x64/
 
-# XCode userdata
-**/*.xcodeproj/xcuserdata/
+# XCode and VS userdata
+**/*.user
+**/xcuserdata/
 
 # Allow macOS dylib placeholders 
 !source/fmod_gml/extensions/FMOD/libfmodL.dylib
