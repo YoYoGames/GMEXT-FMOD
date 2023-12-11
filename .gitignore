@@ -36,8 +36,8 @@ source/fmod_gml/extensions/FMOD/fmod_switch/**/NX64/
 source/fmod_gml/extensions/FMOD/fmod_windows/**/x64/
 
 # XCode and VS userdata
-**/*.user
-**/xcuserdata/
+*.user
+xcuserdata/
 
 # Allow macOS dylib placeholders 
 !source/fmod_gml/extensions/FMOD/libfmodL.dylib
