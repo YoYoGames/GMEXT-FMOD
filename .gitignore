@@ -1,0 +1,44 @@
+# VS and VSC folders
+**/.vs/
+**/.vsc/
+
+# Common extensions
+**/*.exp
+**/*.ilk
+**/*.lib
+**/*.pdb
+**/*.exp
+**/*.exe
+**/*.user
+
+# FMOD SDKs
+source/fmod_sdk/
+
+# FMOD DEMO options
+source/fmod_gml/options/
+
+# YYFMOD pre-compiled console binaries
+source/fmod_gml/extensions/FMOD/YYFMOD_xbox*.dll
+source/fmod_gml/extensions/FMOD/*.prx
+source/fmod_gml/extensions/FMOD/*.nro
+source/fmod_gml/extensions/FMOD/*.nrr
+
+# FMOD SDK dependencies
+source/fmod_gml/extensions/FMOD/**/fmod.jar
+source/fmod_gml/extensions/FMOD/**/*fmodL*.*
+source/fmod_gml/extensions/FMOD/**/*fmodstudioL*.*
+
+# YYFMOD build solutions (temp & output)
+source/fmod_gml/extensions/FMOD/fmod_android/out/
+source/fmod_gml/extensions/FMOD/fmod_gdk/**/Gaming.Xbox.*.x64/
+source/fmod_gml/extensions/FMOD/fmod_playstation/**/ORBIS/
+source/fmod_gml/extensions/FMOD/fmod_playstation/**/Prospero/
+source/fmod_gml/extensions/FMOD/fmod_switch/**/NX64/
+source/fmod_gml/extensions/FMOD/fmod_windows/**/x64/
+
+# XCode userdata
+**/*.xcodeproj/xcuserdata/
+
+# Allow macOS dylib placeholders 
+!source/fmod_gml/extensions/FMOD/libfmodL.dylib
+!source/fmod_gml/extensions/FMOD/libfmodstudioL.dylib
