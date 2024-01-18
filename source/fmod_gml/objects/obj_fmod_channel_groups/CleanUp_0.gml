@@ -1,0 +1,13 @@
+
+fmod_sound_release(sound_index_A_1)
+fmod_sound_release(sound_index_A_2)
+fmod_sound_release(sound_index_A_3)
+
+fmod_sound_release(sound_index_B_1)
+fmod_sound_release(sound_index_B_2)
+fmod_sound_release(sound_index_B_3)
+
+fmod_channel_group_release(channel_group_A_index);
+fmod_channel_group_release(channel_group_B_index);
+
+fmod_channel_control_set_mute(channel_group_C_index, false);

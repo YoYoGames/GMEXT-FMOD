@@ -1,0 +1,2 @@
+
+text = "Core Menu";

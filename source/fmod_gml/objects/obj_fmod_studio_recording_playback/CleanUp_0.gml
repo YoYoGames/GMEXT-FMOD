@@ -1,0 +1,8 @@
+
+fmod_studio_event_description_release_all_instances(vehicle_guid)
+fmod_studio_event_description_release_all_instances(weapon_event)
+
+fmod_studio_bank_unload(master_bank_index)
+fmod_studio_bank_unload(master_strings_bank_index)
+fmod_studio_bank_unload(sfx_bank_index)
+fmod_studio_bank_unload(vehicles_bank_index)
