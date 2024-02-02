@@ -23,7 +23,7 @@ function fmod_path_user(_file) {
 }
 
 /// @param {enum.FMOD_RESULT} error_code
-function fmod_error_string(_error_code = fmod_last_error())
+function fmod_error_string(_error_code = fmod_last_result())
 {
     switch (_error_code)
     {
@@ -1261,7 +1261,7 @@ function fmod_dsp_get_output_channel_format(_dsp_ref, _channel_mask_in, _num_cha
 }
 
 function FmodDSPMeteringInfo() constructor {
-	nums_amples = 0;
+	num_samples = 0;
 	peak_level = [];
 	rms_level = [];
 	num_channels = 0;
@@ -2831,4 +2831,3 @@ function fmod_studio_event_description_get_parameter_description_by_name(_event_
 }
 
 #endregion
-

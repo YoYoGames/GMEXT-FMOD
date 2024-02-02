@@ -15,7 +15,7 @@
   "author": "",
   "classname": "Fmod_iOS",
   "copyToTargets": 3035426170322551022,
-  "date": "2022-01-07T11:03:31.8292074-08:00",
+  "date": "2022-01-07T19:03:31.8292074+00:00",
   "description": "",
   "exportToGame": true,
   "extensionVersion": "0.0.1",
@@ -258,7 +258,7 @@
             2,
             2,
           ],"documentation":"/// @desc\n\r/// @param {real} channel_control_ref \n\r/// @param {real} gain \n\r/// @returns {real}\n\r","externalName":"fmod_channel_control_set_low_pass_gain","help":"fmod_channel_control_set_low_pass_gain(channel_control_ref, gain)","hidden":false,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_channel_control_get_low_Pass_gain","argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_channel_control_get_low_pass_gain","argCount":0,"args":[
             2,
           ],"documentation":"/// @desc\n\r/// @param {real} channel_control_ref \n\r/// @returns {real}\n\r","externalName":"fmod_channel_control_get_low_Pass_gain","help":"fmod_channel_control_get_low_Pass_gain(channel_control_ref)","hidden":false,"kind":1,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_channel_control_add_dsp","argCount":0,"args":[
@@ -588,7 +588,7 @@
             2,
             1,
           ],"documentation":"/// @desc\r\n/// @param {real} geometry_ref \r\n/// @param {real} polygon_index \r\n/// @param {Pointer} buff_return \r\n/// @returns {real}\r\n/// @ignore\r\n","externalName":"fmod_geometry_get_polygon_attributes_multiplatform","help":"fmod_geometry_get_polygon_attributes_multiplatform(geometry_ref, polygon_index, buff_return)","hidden":true,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_geometry_get_polygon_mum_vertices","argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_geometry_get_polygon_num_vertices","argCount":0,"args":[
             2,
             2,
           ],"documentation":"/// @desc\n\r/// @param {real} geometry_ref \n\r/// @param {real} polygon_index \n\r/// @returns {real}\n\r","externalName":"fmod_geometry_get_polygon_mum_vertices","help":"fmod_geometry_get_polygon_mum_vertices(geometry_ref, polygon_index)","hidden":false,"kind":1,"returnType":2,},
@@ -1387,7 +1387,7 @@
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_studio_event_instance_get_user_data","argCount":0,"args":[
             2,
           ],"documentation":"/// @desc\n\r/// @param {real} event_instance_ref \n\r/// @returns {real}\n\r","externalName":"fmod_studio_event_instance_get_user_data","help":"fmod_studio_event_instance_get_user_data(event_instance_ref)","hidden":false,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_studio_event_intance_get_description","argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_studio_event_instance_get_description","argCount":0,"args":[
             2,
           ],"documentation":"/// @desc\n\r/// @param {real} event_instance_ref \n\r/// @returns {real}\n\r","externalName":"fmod_studio_event_intance_get_description","help":"fmod_studio_event_intance_get_description(event_instance_ref)","hidden":false,"kind":1,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_studio_event_instance_release","argCount":0,"args":[
@@ -1797,7 +1797,7 @@
             1,
             2,
           ],"documentation":"/// @desc\n\r/// @param {Pointer} buffer \n\r/// @param {real} length \n\r/// @returns {real}\n\r","externalName":"fmod_fetch_callbacks","help":"fmod_internal_callback_get(buffer, length)","hidden":true,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_last_error","argCount":0,"args":[],"documentation":"/// @desc\r\n/// @returns {enum.FMOD_RESULT}\r\n","externalName":"fmod_last_error","help":"fmod_last_error()","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"fmod_last_result","argCount":0,"args":[],"documentation":"/// @desc\r\n/// @returns {enum.FMOD_RESULT}\r\n","externalName":"fmod_last_error","help":"fmod_last_error()","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"fmod_channel_set_frequency","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_get_frequency","path":"extensions/FMOD/FMOD.yy",},
@@ -1857,7 +1857,7 @@
         {"name":"fmod_channel_control_set_reverb_properties","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_control_get_reverb_properties","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_control_set_low_pass_gain","path":"extensions/FMOD/FMOD.yy",},
-        {"name":"fmod_channel_control_get_low_Pass_gain","path":"extensions/FMOD/FMOD.yy",},
+        {"name":"fmod_channel_control_get_low_pass_gain","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_control_add_dsp","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_control_remove_dsp","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_control_get_num_dsps","path":"extensions/FMOD/FMOD.yy",},
@@ -1928,7 +1928,7 @@
         {"name":"fmod_dsp_connection_get_type","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_geometry_set_polygon_attributes","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_geometry_get_polygon_attributes_multiplatform","path":"extensions/FMOD/FMOD.yy",},
-        {"name":"fmod_geometry_get_polygon_mum_vertices","path":"extensions/FMOD/FMOD.yy",},
+        {"name":"fmod_geometry_get_polygon_num_vertices","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_geometry_set_polygon_vertex_multiplatform","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_geometry_get_polygon_vertex_multiplatform","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_geometry_set_position_multiplatform","path":"extensions/FMOD/FMOD.yy",},
@@ -2111,7 +2111,7 @@
         {"name":"fmod_studio_event_instance_get_cpu_usage_multiplatform","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_studio_event_instance_get_memory_usage_multiplatform","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_studio_event_instance_set_callback","path":"extensions/FMOD/FMOD.yy",},
-        {"name":"fmod_studio_event_intance_get_description","path":"extensions/FMOD/FMOD.yy",},
+        {"name":"fmod_studio_event_instance_get_description","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_studio_event_instance_release","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_studio_event_instance_is_valid","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_studio_system_create","path":"extensions/FMOD/FMOD.yy",},
@@ -2245,7 +2245,7 @@
         {"name":"fmod_system_unlock_dsp","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_system_set_callback","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_fetch_callbacks","path":"extensions/FMOD/FMOD.yy",},
-        {"name":"fmod_last_error","path":"extensions/FMOD/FMOD.yy",},
+        {"name":"fmod_last_result","path":"extensions/FMOD/FMOD.yy",},
       ],"origname":"","ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"YYFMOD.so","TargetMask":7,},
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libYYFMOD.dylib","TargetMask":1,},

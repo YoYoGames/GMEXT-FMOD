@@ -289,7 +289,6 @@ enum FMOD_THREAD_TYPE
     CONVOLUTION2,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_RESULT
@@ -376,8 +375,6 @@ enum FMOD_RESULT
     ERR_NOT_LOCKED,
     ERR_RECORD_DISCONNECTED,
     ERR_TOOMANYSAMPLES,
-
-    RESULT_FORCEINT = 65536
 };
 
 enum FMOD_CHANNELCONTROL_TYPE
@@ -386,7 +383,6 @@ enum FMOD_CHANNELCONTROL_TYPE
     CHANNELGROUP,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_OUTPUTTYPE
@@ -414,7 +410,6 @@ enum FMOD_OUTPUTTYPE
     PHASE,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_DEBUG_MODE
@@ -422,8 +417,6 @@ enum FMOD_DEBUG_MODE
     TTY,
     FILE,
     CALLBACK,
-
-    FORCEINT = 65536
 };
 
 enum FMOD_SPEAKERMODE
@@ -439,7 +432,6 @@ enum FMOD_SPEAKERMODE
     _7POINT1POINT4,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_SPEAKER
@@ -459,7 +451,6 @@ enum FMOD_SPEAKER
     TOP_BACK_RIGHT,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_CHANNELORDER
@@ -472,7 +463,6 @@ enum FMOD_CHANNELORDER
     ALSA,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_PLUGINTYPE
@@ -482,7 +472,6 @@ enum FMOD_PLUGINTYPE
     DSP,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_SOUND_TYPE
@@ -514,7 +503,6 @@ enum FMOD_SOUND_TYPE
     OPUS,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_SOUND_FORMAT
@@ -528,7 +516,6 @@ enum FMOD_SOUND_FORMAT
     BITSTREAM,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_OPENSTATE
@@ -543,7 +530,6 @@ enum FMOD_OPENSTATE
     SETPOSITION,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_SOUNDGROUP_BEHAVIOR
@@ -553,7 +539,6 @@ enum FMOD_SOUNDGROUP_BEHAVIOR
     STEALLOWEST,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_CHANNELCONTROL_CALLBACK_TYPE
@@ -564,7 +549,6 @@ enum FMOD_CHANNELCONTROL_CALLBACK_TYPE
     OCCLUSION,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_CHANNELCONTROL_DSP_INDEX
@@ -573,7 +557,6 @@ enum FMOD_CHANNELCONTROL_DSP_INDEX
     FADER    = -2,
     TAIL     = -3,
 
-    FORCEINT = 65536
 };
 
 enum FMOD_ERRORCALLBACK_INSTANCETYPE
@@ -597,8 +580,6 @@ enum FMOD_ERRORCALLBACK_INSTANCETYPE
     STUDIO_VCA,
     STUDIO_BANK,
     STUDIO_COMMANDREPLAY,
-
-    FORCEINT = 65536
 };
 
 enum FMOD_DSP_RESAMPLER
@@ -610,7 +591,6 @@ enum FMOD_DSP_RESAMPLER
     SPLINE,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_DSP_CALLBACK_TYPE
@@ -618,7 +598,6 @@ enum FMOD_DSP_CALLBACK_TYPE
     DATAPARAMETERRELEASE,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_DSPCONNECTION_TYPE
@@ -629,7 +608,6 @@ enum FMOD_DSPCONNECTION_TYPE
     SEND_SIDECHAIN,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_TAGTYPE
@@ -647,7 +625,6 @@ enum FMOD_TAGTYPE
     USER,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_TAGDATATYPE
@@ -661,7 +638,6 @@ enum FMOD_TAGDATATYPE
     STRING_UTF8,
 
     MAX,
-    FORCEINT = 65536
 };
 
 enum FMOD_PORT_TYPE
@@ -675,7 +651,6 @@ enum FMOD_PORT_TYPE
     AUX,
 
     MAX,
-    FORCEINT = 65536
 };
 
 /* Codec constants */
@@ -735,7 +710,6 @@ enum FMOD_DSP_TYPE
     MULTIBAND_EQ,
 
     MAX,
-    FORCEINT = 65536    /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_DSP_OSCILLATOR
@@ -1296,16 +1270,12 @@ enum FMOD_STUDIO_LOADING_STATE
     LOADING,
     LOADED,
     ERROR,
-
-    FORCEINT = 65536  /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_LOAD_MEMORY_MODE
 {
     MEMORY,
     MEMORY_POINT,
-
-    MEMORY_FORCEINT = 65536    /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_PARAMETER_TYPE
@@ -1322,7 +1292,6 @@ enum FMOD_STUDIO_PARAMETER_TYPE
     AUTOMATIC_DISTANCE_NORMALIZED,
 
     MAX,
-    FORCEINT = 65536                  /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_USER_PROPERTY_TYPE
@@ -1331,8 +1300,6 @@ enum FMOD_STUDIO_USER_PROPERTY_TYPE
     BOOLEAN,
     FLOAT,
     STRING,
-
-    FORCEINT = 65536 /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_EVENT_PROPERTY
@@ -1344,8 +1311,6 @@ enum FMOD_STUDIO_EVENT_PROPERTY
     MAXIMUM_DISTANCE,
     COOLDOWN,
     MAX,
-
-    FORCEINT = 65536     /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_PLAYBACK_STATE
@@ -1355,16 +1320,12 @@ enum FMOD_STUDIO_PLAYBACK_STATE
     STOPPED,
     STARTING,
     STOPPING,
-
-    FORCEINT = 65536
 };
 
 enum FMOD_STUDIO_STOP_MODE
 {
     ALLOWFADEOUT,
     IMMEDIATE,
-
-    FORCEINT = 65536           /* Makes sure this enum is signed 32bit. */
 };
 
 enum FMOD_STUDIO_INSTANCETYPE
@@ -1378,8 +1339,6 @@ enum FMOD_STUDIO_INSTANCETYPE
     VCA,
     BANK,
     COMMANDREPLAY,
-
-    FORCEINT = 65536    /* Makes sure this enum is signed 32bit. */
 };
 
 #endregion
