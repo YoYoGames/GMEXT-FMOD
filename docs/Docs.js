@@ -111,15 +111,14 @@ function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, 
 
 
 /**
- * @func fmod_channel_get_loop_points_multiplatform
+ * @func fmod_channel_get_loop_points
  * @desc 
- * @param {real} channel_ref
- * @param {real} loop_start_type
- * @param {real} loop_end_type
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real}_channel_ref
+ * @param {enum.FMOD_TIMEUNIT} loop_start_type
+ * @param {enum.FMOD_TIMEUNIT} loop_end_type
+ * @returns {struct.FmodLoopPoints}
  */
-function fmod_channel_get_loop_points_multiplatform(channel_ref, loop_start_type, loop_end_type, buff_return) {} // FIXME 
+function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_type, buff_return) {}
 
 
 /**
@@ -300,43 +299,40 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
 
 
 /**
- * @func fmod_channel_control_set_3d_attributes_multiplatform
+ * @func fmod_channel_control_set_3d_attributes
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {struct.FmodVector} pos
+ * @param {struct.FmodVector} vel
  */
-function fmod_channel_control_set_3d_attributes_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_3d_attributes(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_3d_attributes_multiplatform
+ * @func fmod_channel_control_get_3d_attributes
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControl3DAttributes}
  */
-function fmod_channel_control_get_3d_attributes_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_attributes(channel_control_ref, buff_return) {}
 
 
 /**
- * @func fmod_channel_control_set_3d_cone_orientation_multiplatform
+ * @func fmod_channel_control_set_3d_cone_orientation
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {struct.FmodVector} orientation
  */
-function fmod_channel_control_set_3d_cone_orientation_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_3d_cone_orientation(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_3d_cone_orientation_multiplatform
+ * @func fmod_channel_control_get_3d_cone_orientation
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodVector}
  */
-function fmod_channel_control_get_3d_cone_orientation_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_cone_orientation(channel_control_ref, buff_return) {}
 
 
 /**
@@ -352,33 +348,30 @@ function fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_c
 
 
 /**
- * @func fmod_channel_control_get_3d_cone_settings_multiplatform
+ * @func fmod_channel_control_get_3d_cone_settings
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.Fmod3DConeSettings}
  */
-function fmod_channel_control_get_3d_cone_settings_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_cone_settings(channel_control_ref, buff_return) {}
 
 
 /**
- * @func fmod_channel_control_set_3d_custom_rolloff_multiplatform
+ * @func fmod_channel_control_set_3d_custom_rolloff
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {array[struct.FmodVector]} points
  */
-function fmod_channel_control_set_3d_custom_rolloff_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_3d_custom_rolloff_multiplatform
+ * @func fmod_channel_control_get_3d_custom_rolloff
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {array[struct.FmodVector]}
  */
-function fmod_channel_control_get_3d_custom_rolloff_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref, buff_return) {}
 
 
 /**
@@ -394,13 +387,12 @@ function fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom
 
 
 /**
- * @func fmod_channel_control_get_3d_distance_filter_multiplatform
+ * @func fmod_channel_control_get_3d_distance_filter
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControl3DDistanceFilter}
  */
-function fmod_channel_control_get_3d_distance_filter_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_distance_filter(channel_control_ref, buff_return) {}
 
 
 /**
@@ -453,13 +445,12 @@ function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, 
 
 
 /**
- * @func fmod_channel_control_get_3d_min_max_distance_multiplatform
+ * @func fmod_channel_control_get_3d_min_max_distance
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControl3DMinMaxDistance}
  */
-function fmod_channel_control_get_3d_min_max_distance_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_min_max_distance(channel_control_ref, buff_return) {}
 
 
 /**
@@ -474,13 +465,12 @@ function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlu
 
 
 /**
- * @func fmod_channel_control_get_3d_occlusion_multiplatform
+ * @func fmod_channel_control_get_3d_occlusion
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControl3DOcclusion}
  */
-function fmod_channel_control_get_3d_occlusion_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_3d_occlusion(channel_control_ref, buff_return) {}
 
 
 /**
@@ -513,13 +503,12 @@ function fmod_channel_control_set_pan(channel_control_ref, pan) {}
 
 
 /**
- * @func fmod_channel_control_set_mix_levels_input_multiplatform
+ * @func fmod_channel_control_set_mix_levels_input
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {array<real>} levels
  */
-function fmod_channel_control_set_mix_levels_input_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_mix_levels_input(channel_control_ref, buff_args) {}
 
 
 /**
@@ -540,24 +529,24 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
 
 
 /**
- * @func fmod_channel_control_set_mix_matrix_multiplatform
+ * @func fmod_channel_control_set_mix_matrix
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {array<real>} matrix
+ * @param {real} out_channels
+ * @param {real} in_channels
+ * @param {real} in_channel_hop
  */
-function fmod_channel_control_set_mix_matrix_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_mix_matrix(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_mix_matrix_multiplatform
+ * @func fmod_channel_control_get_mix_matrix
  * @desc 
- * @param {real} channel_control_ref
- * @param {real} in_channel_hop
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControlMixMatrix}
  */
-function fmod_channel_control_get_mix_matrix_multiplatform(channel_control_ref, in_channel_hop, buff_return) {} // FIXME 
+function fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop, buff_return) {}
 
 
 /**
@@ -592,12 +581,12 @@ function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
 
 
 /**
- * @func fmod_channel_control_get_low_Pass_gain
+ * @func fmod_channel_control_get_low_pass_gain
  * @desc 
  * @param {real} channel_control_ref
  * @returns {real}
  */
-function fmod_channel_control_get_low_Pass_gain(channel_control_ref) {}
+function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
 
 
 /**
@@ -662,73 +651,71 @@ function fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref) {}
 
 
 /**
- * @func fmod_channel_control_get_dsp_clock_multiplatform
+ * @func fmod_channel_control_get_dsp_clock
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControlDSPClock}
  */
-function fmod_channel_control_get_dsp_clock_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_dsp_clock(channel_control_ref, buff_return) {}
 
 
 /**
- * @func fmod_channel_control_set_delay_multiplatform
+ * @func fmod_channel_control_set_delay
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {real} dsp_clock_start
+ * @param {real} dsp_clock_end
+ * @param {bool} stop_channels
  */
-function fmod_channel_control_set_delay_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_delay(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_delay_multiplatform
+ * @func fmod_channel_control_get_delay
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControlDelay}
  */
-function fmod_channel_control_get_delay_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_delay(channel_control_ref, buff_return) {}
 
 
 /**
- * @func fmod_channel_control_add_fade_point_multiplatform
+ * @func fmod_channel_control_add_fade_point
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {real} dsp_clock
+ * @param {real} volume
  */
-function fmod_channel_control_add_fade_point_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_add_fade_point(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_set_fade_point_ramp_multiplatform
+ * @func fmod_channel_control_set_fade_point_ramp
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {real} dsp_clock
+ * @param {real} volume
  */
-function fmod_channel_control_set_fade_point_ramp_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_set_fade_point_ramp(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_remove_fade_points_multiplatform
+ * @func fmod_channel_control_remove_fade_points
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} control_ref
+ * @param {real} dsp_clock_start
+ * @param {real} dsp_clock_end
  */
-function fmod_channel_control_remove_fade_points_multiplatform(channel_control_ref, buff_args) {} // FIXME 
+function fmod_channel_control_remove_fade_points(channel_control_ref, buff_args) {}
 
 
 /**
- * @func fmod_channel_control_get_fade_points_multiplatform
+ * @func fmod_channel_control_get_fade_points
  * @desc 
- * @param {real} channel_control_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} control_ref
+ * @returns {struct.FmodControlFadePoints}
  */
-function fmod_channel_control_get_fade_points_multiplatform(channel_control_ref, buff_return) {} // FIXME 
+function fmod_channel_control_get_fade_points(channel_control_ref, buff_return) {}
 
 
 /**
@@ -788,14 +775,14 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
 
 
 /**
- * @func fmod_channel_group_add_group_multiplatform
+ * @func fmod_channel_group_add_group
  * @desc 
  * @param {real} channel_group_ref
  * @param {real} child_channel_group_ref
  * @param {real} propagate_dsp_clock
  * @returns {real}
  */
-function fmod_channel_group_add_group_multiplatform(channel_group_ref, child_channel_group_ref, propagate_dsp_clock) {}
+function fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref, propagate_dsp_clock) {}
 
 
 /**
@@ -871,24 +858,22 @@ function fmod_file_set_disk_busy(busy) {}
 
 
 /**
- * @func fmod_memory_get_stats_multiplatform
+ * @func fmod_memory_get_stats
  * @desc 
- * @param {real} blocking
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodMemoryStats}
  */
-function fmod_memory_get_stats_multiplatform(blocking, buff_return) {} // FIXME 
+function fmod_memory_get_stats(blocking, buff_return) {}
 
 
 /**
- * @func fmod_debug_initialize_multiplatform
+ * @func fmod_debug_initialize
  * @desc 
  * @param {real} flags
  * @param {real} mode
  * @param {string} filename
  * @returns {real}
  */
-function fmod_debug_initialize_multiplatform(flags, mode, filename) {}
+function fmod_debug_initialize(flags, mode, filename) {}
 
 
 /**
@@ -904,36 +889,32 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
 
 
 /**
- * @func fmod_dsp_add_input_multiplatform
+ * @func fmod_dsp_add_input
  * @desc 
  * @param {real} dsp_ref
  * @param {real} dsp_input_ref
  * @param {real} dsp_connection_type
  * @returns {real}
  */
-function fmod_dsp_add_input_multiplatform(dsp_ref, dsp_input_ref, dsp_connection_type) {}
+function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
 
 
 /**
- * @func fmod_dsp_get_input_multiplatform
+ * @func fmod_dsp_get_input
  * @desc 
  * @param {real} dsp_ref
- * @param {real} dsp_input_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPConnectionData}
  */
-function fmod_dsp_get_input_multiplatform(dsp_ref, dsp_input_index, buff_return) {} // FIXME 
+function fmod_dsp_get_input(dsp_ref, dsp_input_index, buff_return) {}
 
 
 /**
- * @func fmod_dsp_get_output_multiplatform
+ * @func fmod_dsp_get_output
  * @desc 
  * @param {real} dsp_ref
- * @param {real} dsp_output_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPConnectionData}
  */
-function fmod_dsp_get_output_multiplatform(dsp_ref, dsp_output_index, buff_return) {} // FIXME 
+function fmod_dsp_get_output(dsp_ref, dsp_output_index, buff_return) {}
 
 
 /**
@@ -966,14 +947,14 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
 
 
 /**
- * @func fmod_dsp_disconnect_from_mutliplatform
+ * @func fmod_dsp_disconnect_from
  * @desc 
  * @param {real} dsp_ref
  * @param {real} dsp_other_ref
  * @param {real} dsp_connection_ref
  * @returns {real}
  */
-function fmod_dsp_disconnect_from_mutliplatform(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
+function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
 
 
 /**
@@ -1017,27 +998,25 @@ function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
 
 
 /**
- * @func fmod_dsp_set_parameter_data_multiplatform
+ * @func fmod_dsp_set_parameter_data
  * @desc 
  * @param {real} dsp_ref
  * @param {real} parameter_index
- * @param {Id.Buffer} buff
+ * @param {Id.Buffer} buffer
  * @param {real} length
- * @returns {real}
  */
-function fmod_dsp_set_parameter_data_multiplatform(dsp_ref, parameter_index, buff, length) {} // FIXME 
+function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
 
 /**
- * @func fmod_dsp_get_parameter_data_multiplatform
+ * @func fmod_dsp_get_parameter_data
  * @desc 
  * @param {real} dsp_ref
  * @param {real} parameter_index
- * @param {Id.Buffer} buff
+ * @param {Id.Buffer} buffer
  * @param {real} length
- * @returns {real}
  */
-function fmod_dsp_get_parameter_data_multiplatform(dsp_ref, parameter_index, buff, length) {} // FIXME 
+function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
 
 /**
@@ -1083,14 +1062,12 @@ function fmod_dsp_get_parameter_int(dsp_ref, parameter_index) {}
 
 
 /**
- * @func fmod_dsp_get_parameter_info_multiplatform
+ * @func fmod_dsp_get_parameter_info
  * @desc 
  * @param {real} dsp_ref
- * @param {real} parameter_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct}
  */
-function fmod_dsp_get_parameter_info_multiplatform(dsp_ref, parameter_index, buff_return) {} // FIXME 
+function fmod_dsp_get_parameter_info(dsp_ref, parameter_index, buff_return) {}
 
 
 /**
@@ -1106,34 +1083,32 @@ function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speake
 
 
 /**
- * @func fmod_dsp_get_channel_format_multiplatform
+ * @func fmod_dsp_get_channel_format
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPChannelFormat}
  */
-function fmod_dsp_get_channel_format_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_channel_format(dsp_ref, buff_return) {}
 
 
 /**
- * @func fmod_dsp_get_output_channel_format_multiplatform
- * @desc 
+ * @func fmod_dsp_get_output_channel_format
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {enum.FMOD_CHANNELMASK} channel_mask_in
+ * @param {real} num_channels_in
+ * @param {enum.FMOD_SPEAKERMODE} speaker_mode_in
+ * @returns {struct.FmodDSPChannelFormat}
  */
-function fmod_dsp_get_output_channel_format_multiplatform(dsp_ref, buff_args, buff_return) {} // FIXME 
+function fmod_dsp_get_output_channel_format(dsp_ref, buff_args, buff_return) {}
 
 
 /**
- * @func fmod_dsp_get_metering_info_multiplatform
+ * @func fmod_dsp_get_metering_info
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPInOutMeteringInfo}
  */
-function fmod_dsp_get_metering_info_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_metering_info(dsp_ref, buff_return) {}
 
 
 /**
@@ -1148,13 +1123,12 @@ function fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out) {}
 
 
 /**
- * @func fmod_dsp_get_metering_enabled_multiplatform
+ * @func fmod_dsp_get_metering_enabled
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPMeteringEnableInfo}
  */
-function fmod_dsp_get_metering_enabled_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_metering_enabled(dsp_ref, buff_return) {}
 
 
 /**
@@ -1208,13 +1182,12 @@ function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
 
 
 /**
- * @func fmod_dsp_get_wet_dry_mix_multiplatform
+ * @func fmod_dsp_get_wet_dry_mix
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPWetDryMixInfo}
  */
-function fmod_dsp_get_wet_dry_mix_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_wet_dry_mix(dsp_ref, buff_return) {}
 
 
 /**
@@ -1254,23 +1227,21 @@ function fmod_dsp_get_type(dsp_ref) {}
 
 
 /**
- * @func fmod_dsp_get_info_multiplatform
+ * @func fmod_dsp_get_info
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodDSPInfo}
  */
-function fmod_dsp_get_info_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_info(dsp_ref, buff_return) {}
 
 
 /**
- * @func fmod_dsp_get_cpu_usage_multiplatform
+ * @func fmod_dsp_get_cpu_usage
  * @desc 
  * @param {real} dsp_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCPUTimeUsage}
  */
-function fmod_dsp_get_cpu_usage_multiplatform(dsp_ref, buff_return) {} // FIXME 
+function fmod_dsp_get_cpu_usage(dsp_ref, buff_return) {}
 
 
 /**
@@ -1330,24 +1301,26 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
 
 
 /**
- * @func fmod_dsp_connection_set_mix_matrix_multiplatform
+ * @func fmod_dsp_connection_set_mix_matrix
  * @desc 
  * @param {real} dsp_connection_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {array<real>} matrix
+ * @param {real} out_channels
+ * @param {real} in_channels
+ * @param {real} in_channel_hop
  */
-function fmod_dsp_connection_set_mix_matrix_multiplatform(dsp_connection_ref, buff_args) {} // FIXME 
+function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, buff_args) {}
 
 
 /**
- * @func fmod_dsp_connection_get_mix_matrix_multiplatform
+ * @func fmod_dsp_connection_get_mix_matrix
  * @desc 
  * @param {real} dsp_connection_ref
- * @param {real} inchannel_hop
- * @param {Id.Buffer} buff_return
+ * @param {real} in_channel_hop
+ * @returns {struct.FmodDSPConnectionMixMatrix}
  * @returns {real}
  */
-function fmod_dsp_connection_get_mix_matrix_multiplatform(dsp_connection_ref, inchannel_hop, buff_return) {} // FIXME 
+function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, inchannel_hop, buff_return) {}
 
 
 /**
@@ -1410,118 +1383,112 @@ function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direc
 
 
 /**
- * @func fmod_geometry_get_polygon_attributes_multiplatform
+ * @func fmod_geometry_get_polygon_attributes
  * @desc 
  * @param {real} geometry_ref
  * @param {real} polygon_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodGeometryPolygonAttributes}
  */
-function fmod_geometry_get_polygon_attributes_multiplatform(geometry_ref, polygon_index, buff_return) {} // FIXME 
+function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index, buff_return) {}
 
 
 /**
- * @func fmod_geometry_get_polygon_mum_vertices
+ * @func fmod_geometry_get_polygon_num_vertices
  * @desc 
  * @param {real} geometry_ref
  * @param {real} polygon_index
  * @returns {real}
  */
-function fmod_geometry_get_polygon_mum_vertices(geometry_ref, polygon_index) {}
+function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
 
 
 /**
- * @func fmod_geometry_set_polygon_vertex_multiplatform
- * @desc 
- * @param {real} geometry_ref
- * @param {real} polygon_index
- * @param {real} vertex_index
- * @param {Id.Buffer} buff_args
- * @returns {real}
- */
-function fmod_geometry_set_polygon_vertex_multiplatform(geometry_ref, polygon_index, vertex_index, buff_args) {} // FIXME 
-
-
-/**
- * @func fmod_geometry_get_polygon_vertex_multiplatform
+ * @func fmod_geometry_set_polygon_vertex
  * @desc 
  * @param {real} geometry_ref
  * @param {real} polygon_index
  * @param {real} vertex_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodVector} position
  */
-function fmod_geometry_get_polygon_vertex_multiplatform(geometry_ref, polygon_index, vertex_index, buff_return) {} // FIXME 
+function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_index, buff_args) {}
 
 
 /**
- * @func fmod_geometry_set_position_multiplatform
+ * @func fmod_geometry_get_polygon_vertex
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} polygon_index
+ * @param {real} vertex_index
+ * @returns {struct.FmodVector}
  */
-function fmod_geometry_set_position_multiplatform(geometry_ref, buff_args) {} // FIXME 
+function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_index, buff_return) {}
 
 
 /**
- * @func fmod_geometry_get_position_multiplatform
+ * @func fmod_geometry_set_position
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodVector} position
  */
-function fmod_geometry_get_position_multiplatform(geometry_ref, buff_return) {} // FIXME 
+function fmod_geometry_set_position(geometry_ref, buff_args) {}
 
 
 /**
- * @func fmod_geometry_set_rotation_multiplatform
+ * @func fmod_geometry_get_position
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @returns {struct.FmodVector}
  */
-function fmod_geometry_set_rotation_multiplatform(geometry_ref, buff_args) {} // FIXME 
+function fmod_geometry_get_position(geometry_ref, buff_return) {}
 
 
 /**
- * @func fmod_geometry_get_rotation_multiplatform
+ * @func fmod_geometry_set_rotation
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodVector} forward
+ * @param {struct.FmodVector} up
  */
-function fmod_geometry_get_rotation_multiplatform(geometry_ref, buff_return) {} // FIXME 
+function fmod_geometry_set_rotation(geometry_ref, buff_args) {}
 
 
 /**
- * @func fmod_geometry_set_scale_multiplatform
+ * @func fmod_geometry_get_rotation
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @returns {struct.FmodGeometryRotation} position
  */
-function fmod_geometry_set_scale_multiplatform(geometry_ref, buff_args) {} // FIXME 
+function fmod_geometry_get_rotation(geometry_ref, buff_return) {}
 
 
 /**
- * @func fmod_geometry_get_scale_multiplatform
+ * @func fmod_geometry_set_scale
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodVector} scale
  */
-function fmod_geometry_get_scale_multiplatform(geometry_ref, buff_return) {} // FIXME 
+function fmod_geometry_set_scale(geometry_ref, buff_args) {}
 
 
 /**
- * @func fmod_geometry_add_polygon_multiplatform
+ * @func fmod_geometry_get_scale
  * @desc 
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @returns {struct.FmodVector}
  */
-function fmod_geometry_add_polygon_multiplatform(geometry_ref, buff_args) {} // FIXME 
+function fmod_geometry_get_scale(geometry_ref, buff_return) {}
+
+
+/**
+ * @func fmod_geometry_add_polygon
+ * @desc 
+ * @param {real} geometry_ref
+ * @param {real} direct_occlusion
+ * @param {real} reverb_occlusion
+ * @param {bool} double_sided
+ * @param {array<struct.FmodVector>} vertices
+ */
+function fmod_geometry_add_polygon(geometry_ref, buff_args) {}
 
 
 /**
@@ -1550,7 +1517,7 @@ function fmod_geometry_get_active(geometry_ref) {}
  * @param {Id.Buffer} buff_return
  * @returns {real}
  */
-function fmod_geometry_get_max_polygons(geometry_ref, buff_return) {} // FIXME 
+function fmod_geometry_get_max_polygons(geometry_ref, buff_return) {}
 
 
 /**
@@ -1597,29 +1564,27 @@ function fmod_geometry_release(geometry_ref) {}
  * @param {Id.Buffer} buff
  * @returns {real}
  */
-function fmod_geometry_save(geometry_ref, buff) {} // FIXME 
+function fmod_geometry_save(geometry_ref, buff) {}
 
 
 /**
- * @func fmod_reverb_3d_set_3d_attributes_multiplatform
+ * @func fmod_reverb_3d_set_3d_attributes
  * @desc 
  * @param {real} reverb_3d_ref
- * @param {Id.Buffer} buff_args
+ * @param {struct.FmodVector} position
  * @param {real} min_distance
  * @param {real} max_distance
- * @returns {real}
  */
-function fmod_reverb_3d_set_3d_attributes_multiplatform(reverb_3d_ref, buff_args, min_distance, max_distance) {} // FIXME 
+function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, buff_args, min_distance, max_distance) {}
 
 
 /**
- * @func fmod_reverb_3d_get_3d_attributes_multiplatform
+ * @func fmod_reverb_3d_get_3d_attributes
  * @desc 
  * @param {real} reverb_3d_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodReverb3DAttributes}
  */
-function fmod_reverb_3d_get_3d_attributes_multiplatform(reverb_3d_ref, buff_return) {} // FIXME 
+function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref, buff_return) {}
 
 
 /**
@@ -1644,13 +1609,12 @@ function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, l
 
 
 /**
- * @func fmod_reverb_3d_get_properties_multiplatform
+ * @func fmod_reverb_3d_get_properties
  * @desc 
  * @param {real} reverb_3d_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodReverbProperties}
  */
-function fmod_reverb_3d_get_properties_multiplatform(reverb_3d_ref, buff_return) {} // FIXME 
+function fmod_reverb_3d_get_properties(reverb_3d_ref, buff_return) {}
 
 
 /**
@@ -1710,13 +1674,12 @@ function fmod_sound_get_name(sound_ref) {}
 
 
 /**
- * @func fmod_sound_get_format_multiplatform
+ * @func fmod_sound_get_format
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSoundFormat}
  */
-function fmod_sound_get_format_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_format(sound_ref, buff_return) {}
 
 
 /**
@@ -1730,25 +1693,23 @@ function fmod_sound_get_length(sound_ref, length_type) {}
 
 
 /**
- * @func fmod_sound_get_num_tags_multiplatform
+ * @func fmod_sound_get_num_tags
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSoundNumTags}
  */
-function fmod_sound_get_num_tags_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_num_tags(sound_ref, buff_return) {}
 
 
 /**
- * @func fmod_sound_get_tag_multiplatform
+ * @func fmod_sound_get_tag
  * @desc 
  * @param {real} sound_ref
  * @param {real} tag_index
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {Id.Buffer} data_buffer
+ * @returns {struct.FmodSoundTag}
  */
-function fmod_sound_get_tag_multiplatform(sound_ref, tag_index, buff_args, buff_return) {} // FIXME 
+function fmod_sound_get_tag(sound_ref, tag_index, buff_args, buff_return) {}
 
 
 /**
@@ -1764,33 +1725,30 @@ function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_c
 
 
 /**
- * @func fmod_sound_get_3d_cone_settings_multiplatform
+ * @func fmod_sound_get_3d_cone_settings
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.Fmod3DConeSettings}
  */
-function fmod_sound_get_3d_cone_settings_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_3d_cone_settings(sound_ref, buff_return) {}
 
 
 /**
- * @func fmod_sound_set_3d_custom_rolloff_multiplatform
+ * @func fmod_sound_set_3d_custom_rolloff
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {array<struct.FmodVector>} points
  */
-function fmod_sound_set_3d_custom_rolloff_multiplatform(sound_ref, buff_args) {} // FIXME 
+function fmod_sound_set_3d_custom_rolloff(sound_ref, buff_args) {}
 
 
 /**
- * @func fmod_sound_get_3d_custom_rolloff_multiplatform
+ * @func fmod_sound_get_3d_custom_rolloff
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<struct.FmodVector>}
  */
-function fmod_sound_get_3d_custom_rolloff_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_3d_custom_rolloff(sound_ref, buff_return) {}
 
 
 /**
@@ -1805,13 +1763,12 @@ function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
 
 
 /**
- * @func fmod_sound_get_3d_min_max_distance_multiplatform
+ * @func fmod_sound_get_3d_min_max_distance
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodMinMaxDistance}
  */
-function fmod_sound_get_3d_min_max_distance_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_3d_min_max_distance(sound_ref, buff_return) {}
 
 
 /**
@@ -1826,13 +1783,12 @@ function fmod_sound_set_defaults(sound_ref, frequency, priority) {}
 
 
 /**
- * @func fmod_sound_get_defaults_multiplatform
+ * @func fmod_sound_get_defaults
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSoundDefaults}
  */
-function fmod_sound_get_defaults_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_defaults(sound_ref, buff_return) {}
 
 
 /**
@@ -1887,15 +1843,14 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
 
 
 /**
- * @func fmod_sound_get_loop_points_multiplatform
+ * @func fmod_sound_get_loop_points
  * @desc 
  * @param {real} sound_ref
  * @param {real} loop_start_type
  * @param {real} loop_end_type
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodLoopPoints}
  */
-function fmod_sound_get_loop_points_multiplatform(sound_ref, loop_start_type, loop_end_type, buff_return) {} // FIXME 
+function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type, buff_return) {}
 
 
 /**
@@ -1946,23 +1901,23 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
 
 
 /**
- * @func fmod_sound_get_open_state_multiplatform
+ * @func fmod_sound_get_open_state
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSoundOpenState}
  */
-function fmod_sound_get_open_state_multiplatform(sound_ref, buff_return) {} // FIXME 
+function fmod_sound_get_open_state(sound_ref, buff_return) {}
 
 
 /**
- * @func fmod_sound_read_data_multiplatform
+ * @func fmod_sound_read_data
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {Id.Buffer} buff
+ * @param {real} length
+ * @param {real} offset
  */
-function fmod_sound_read_data_multiplatform(sound_ref, buff_args) {} // FIXME 
+function fmod_sound_read_data(sound_ref, buff_args) {}
 
 
 /**
@@ -1976,24 +1931,30 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
 
 
 /**
- * @func fmod_sound_lock_multiplatform
+ * @func fmod_sound_lock
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} offset
+ * @param {real} length
+ * @param {Id.Buffer} buff1
+ * @param {Id.Buffer} buff2
+ * @returns {struct.FmodSoundLock}
  */
-function fmod_sound_lock_multiplatform(sound_ref, buff_args, buff_return) {} // FIXME 
+function fmod_sound_lock(sound_ref, buff_args, buff_return) {}
 
 
 /**
- * @func fmod_sound_unlock_multiplatform
+ * @func fmod_sound_unlock
  * @desc 
  * @param {real} sound_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} buff1
+ * @param {real} len1
+ * @param {real} address1
+ * @param {real} buff2
+ * @param {real} len2
+ * @param {real} address2
  */
-function fmod_sound_unlock_multiplatform(sound_ref, buff_args) {} // FIXME 
+function fmod_sound_unlock(sound_ref, buff_args) {}
 
 
 /**
@@ -2046,15 +2007,14 @@ function fmod_sound_get_music_speed(sound_ref) {}
 
 
 /**
- * @func fmod_sound_get_sync_point_multiplatform
+ * @func fmod_sound_get_sync_point
  * @desc 
  * @param {real} sound_ref
  * @param {real} point_index
- * @param {real} offset_type
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {enum.FMOD_TIMEUNIT} offset_type
+ * @returns {struct.FmodSyncPoint}
  */
-function fmod_sound_get_sync_point_multiplatform(sound_ref, point_index, offset_type, buff_return) {} // FIXME 
+function fmod_sound_get_sync_point(sound_ref, point_index, offset_type, buff_return) {}
 
 
 /**
@@ -2339,13 +2299,12 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
 
 
 /**
- * @func fmod_studio_bank_get_bus_list_multiplatform
+ * @func fmod_studio_bank_get_bus_list
  * @desc 
  * @param {real} bank_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<real>}
  */
-function fmod_studio_bank_get_bus_list_multiplatform(bank_ref, buff_return) {} // FIXME 
+function fmod_studio_bank_get_bus_list(bank_ref, buff_return) {}
 
 
 /**
@@ -2358,13 +2317,12 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
 
 
 /**
- * @func fmod_studio_bank_get_event_description_list_multiplatform
+ * @func fmod_studio_bank_get_event_description_list
  * @desc 
  * @param {real} bank_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<real>}
  */
-function fmod_studio_bank_get_event_description_list_multiplatform(bank_ref, buff_return) {} // FIXME 
+function fmod_studio_bank_get_event_description_list(bank_ref, buff_return) {}
 
 
 /**
@@ -2377,14 +2335,13 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
 
 
 /**
- * @func fmod_studio_bank_get_string_info_multiplatform
+ * @func fmod_studio_bank_get_string_info
  * @desc 
  * @param {real} bank_ref
  * @param {real} string_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioStringInfo}
  */
-function fmod_studio_bank_get_string_info_multiplatform(bank_ref, string_index, buff_return) {} // FIXME 
+function fmod_studio_bank_get_string_info(bank_ref, string_index, buff_return) {}
 
 
 /**
@@ -2397,13 +2354,12 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
 
 
 /**
- * @func fmod_studio_bank_get_vca_list_multiplatform
+ * @func fmod_studio_bank_get_vca_list
  * @desc 
  * @param {real} bank_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<real>}
  */
-function fmod_studio_bank_get_vca_list_multiplatform(bank_ref, buff_return) {} // FIXME 
+function fmod_studio_bank_get_vca_list(bank_ref, buff_return) {}
 
 
 /**
@@ -2520,23 +2476,21 @@ function fmod_studio_bus_get_mute(bus_ref) {}
 
 
 /**
- * @func fmod_studio_bus_set_port_index_multiplatform
+ * @func fmod_studio_bus_set_port_index
  * @desc 
  * @param {real} bus_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} port_index
  */
-function fmod_studio_bus_set_port_index_multiplatform(bus_ref, buff_args) {} // FIXME 
+function fmod_studio_bus_set_port_index(bus_ref, buff_args) {}
 
 
 /**
- * @func fmod_studio_bus_get_port_index_multiplatform
+ * @func fmod_studio_bus_get_port_index
  * @desc 
  * @param {real} bus_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {real} port_index
  */
-function fmod_studio_bus_get_port_index_multiplatform(bus_ref, buff_return) {} // FIXME 
+function fmod_studio_bus_get_port_index(bus_ref, buff_return) {}
 
 
 /**
@@ -2567,13 +2521,12 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
 
 
 /**
- * @func fmod_studio_bus_get_cpu_usage_multiplatform
+ * @func fmod_studio_bus_get_cpu_usage
  * @desc 
  * @param {real} bus_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCPUUsage}
  */
-function fmod_studio_bus_get_cpu_usage_multiplatform(bus_ref, buff_return) {} // FIXME 
+function fmod_studio_bus_get_cpu_usage(bus_ref, buff_return) {}
 
 
 /**
@@ -2583,7 +2536,7 @@ function fmod_studio_bus_get_cpu_usage_multiplatform(bus_ref, buff_return) {} //
  * @param {Id.Buffer} buff_return
  * @returns {real}
  */
-function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {} // FIXME 
+function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
 
 
 /**
@@ -2670,13 +2623,12 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
 
 
 /**
- * @func fmod_studio_command_replay_get_current_command_multiplatform
+ * @func fmod_studio_command_replay_get_current_command
  * @desc 
  * @param {real} command_replay_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCommandReplayCurrentCommand}
  */
-function fmod_studio_command_replay_get_current_command_multiplatform(command_replay_ref, buff_return) {} // FIXME 
+function fmod_studio_command_replay_get_current_command(command_replay_ref, buff_return) {}
 
 
 /**
@@ -2747,14 +2699,13 @@ function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
 
 
 /**
- * @func fmod_studio_command_replay_get_command_info_multiplatform
+ * @func fmod_studio_command_replay_get_command_info
  * @desc 
  * @param {real} command_replay_ref
  * @param {real} command_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCommandReplayCommandInfo}
  */
-function fmod_studio_command_replay_get_command_info_multiplatform(command_replay_ref, command_index, buff_return) {} // FIXME 
+function fmod_studio_command_replay_get_command_info(command_replay_ref, command_index, buff_return) {}
 
 
 /**
@@ -2841,13 +2792,12 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
 
 
 /**
- * @func fmod_studio_event_description_get_instance_list_multiplatform
+ * @func fmod_studio_event_description_get_instance_list
  * @desc 
- * @param {real} event_description_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} event_descriptor_ref
+ * @returns {array<real>}
  */
-function fmod_studio_event_description_get_instance_list_multiplatform(event_description_ref, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_instance_list(event_description_ref, buff_return) {}
 
 
 /**
@@ -2941,13 +2891,12 @@ function fmod_studio_event_description_has_sustain_point(event_description_ref) 
 
 
 /**
- * @func fmod_studio_event_description_get_min_max_distance_multiplatform
+ * @func fmod_studio_event_description_get_min_max_distance
  * @desc 
  * @param {real} event_description_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodMinMaxDistance}
  */
-function fmod_studio_event_description_get_min_max_distance_multiplatform(event_description_ref, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_min_max_distance(event_description_ref, buff_return) {}
 
 
 /**
@@ -2960,36 +2909,33 @@ function fmod_studio_event_description_get_sound_size(event_description_ref) {}
 
 
 /**
- * @func fmod_studio_event_description_get_parameter_description_by_name_multiplatform
+ * @func fmod_studio_event_description_get_parameter_description_by_name
  * @desc 
- * @param {real} event_description_ref
+ * @param {real} event_descriptor_ref
  * @param {string} name
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioParameterDescription}
  */
-function fmod_studio_event_description_get_parameter_description_by_name_multiplatform(event_description_ref, name, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_parameter_description_by_name(event_description_ref, name, buff_return) {}
 
 
 /**
- * @func fmod_studio_event_description_get_parameter_description_by_id_multiplatform
+ * @func fmod_studio_event_description_get_parameter_description_by_id
  * @desc 
- * @param {real} event_description_ref
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} event_descriptor_ref
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @returns {struct.FmodStudioParameterDescription}
  */
-function fmod_studio_event_description_get_parameter_description_by_id_multiplatform(event_description_ref, buff_args, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_parameter_description_by_id(event_description_ref, buff_args, buff_return) {}
 
 
 /**
- * @func fmod_studio_event_description_get_parameter_description_by_index_multiplatform
+ * @func fmod_studio_event_description_get_parameter_description_by_index
  * @desc 
- * @param {real} event_description_ref
- * @param {real} index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} event_descriptor_ref
+ * @param {real} parameter_index
+ * @returns {struct.FmodStudioParameterDescription}
  */
-function fmod_studio_event_description_get_parameter_description_by_index_multiplatform(event_description_ref, index, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_parameter_description_by_index(event_description_ref, index, buff_return) {}
 
 
 /**
@@ -3013,14 +2959,14 @@ function fmod_studio_event_description_get_parameter_label_by_name(event_descrip
 
 
 /**
- * @func fmod_studio_event_description_get_parameter_label_by_id_multiplatform
+ * @func fmod_studio_event_description_get_parameter_label_by_id
  * @desc 
- * @param {real} event_description_ref
- * @param {Id.Buffer} buff_args
+ * @param {real} event_descriptor_ref
+ * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} label_index
  * @returns {string}
  */
-function fmod_studio_event_description_get_parameter_label_by_id_multiplatform(event_description_ref, buff_args, label_index) {} // FIXME 
+function fmod_studio_event_description_get_parameter_label_by_id(event_description_ref, buff_args, label_index) {}
 
 
 /**
@@ -3042,7 +2988,7 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_descri
  * @param {Id.Buffer} buff_return
  * @returns {real}
  */
-function fmod_studio_event_description_get_user_property(event_description_ref, name, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_user_property(event_description_ref, name, buff_return) {}
 
 
 /**
@@ -3053,7 +2999,7 @@ function fmod_studio_event_description_get_user_property(event_description_ref, 
  * @param {Id.Buffer} buff_return
  * @returns {real}
  */
-function fmod_studio_event_description_get_user_property_by_index(event_description_ref, index, buff_return) {} // FIXME 
+function fmod_studio_event_description_get_user_property_by_index(event_description_ref, index, buff_return) {}
 
 
 /**
@@ -3257,13 +3203,12 @@ function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
 
 
 /**
- * @func fmod_studio_event_instance_get_volume_multiplatform
+ * @func fmod_studio_event_instance_get_volume
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioEventInstanceVolume}
  */
-function fmod_studio_event_instance_get_volume_multiplatform(event_instance_ref, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_volume(event_instance_ref, buff_return) {}
 
 
 /**
@@ -3276,23 +3221,21 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
 
 
 /**
- * @func fmod_studio_event_instance_set_3d_attributes_multiplatform
+ * @func fmod_studio_event_instance_set_3d_attributes
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {struct.Fmod3DAttributes} attributes
  */
-function fmod_studio_event_instance_set_3d_attributes_multiplatform(event_instance_ref, buff_args) {} // FIXME 
+function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, buff_args) {}
 
 
 /**
- * @func fmod_studio_event_instance_get_3d_attributes_multiplatform
+ * @func fmod_studio_event_instance_get_3d_attributes
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.Fmod3DAttributes}
  */
-function fmod_studio_event_instance_get_3d_attributes_multiplatform(event_instance_ref, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_3d_attributes(event_instance_ref, buff_return) {}
 
 
 /**
@@ -3315,17 +3258,16 @@ function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
 
 
 /**
- * @func fmod_studio_event_instance_get_min_max_distance_multiplatform
+ * @func fmod_studio_event_instance_get_min_max_distance
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodMinMaxDistance}
  */
-function fmod_studio_event_instance_get_min_max_distance_multiplatform(event_instance_ref, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_min_max_distance(event_instance_ref, buff_return) {}
 
 
 /**
- * @func fmod_studio_event_instance_set_parameter_by_name_multiplatform
+ * @func fmod_studio_event_instance_set_parameter_by_name
  * @desc 
  * @param {real} event_instance_ref
  * @param {string} name
@@ -3333,7 +3275,7 @@ function fmod_studio_event_instance_get_min_max_distance_multiplatform(event_ins
  * @param {real} ignore_seek_speed
  * @returns {real}
  */
-function fmod_studio_event_instance_set_parameter_by_name_multiplatform(event_instance_ref, name, value, ignore_seek_speed) {}
+function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, name, value, ignore_seek_speed) {}
 
 
 /**
@@ -3349,49 +3291,45 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(event_insta
 
 
 /**
- * @func fmod_studio_event_instance_get_parameter_by_name_multiplatform
+ * @func fmod_studio_event_instance_get_parameter_by_name
  * @desc 
  * @param {real} event_instance_ref
  * @param {string} name
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioParameter}
  */
-function fmod_studio_event_instance_get_parameter_by_name_multiplatform(event_instance_ref, name, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, name, buff_return) {}
 
 
 /**
- * @func fmod_studio_event_instance_set_parameter_by_id_multiplatform
+ * @func fmod_studio_event_instance_set_parameter_by_id
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_args
+ * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {bool} ignore_seek_speed
  */
-function fmod_studio_event_instance_set_parameter_by_id_multiplatform(event_instance_ref, buff_args, value, ignore_seek_speed) {} // FIXME 
+function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, buff_args, value, ignore_seek_speed) {}
 
 
 /**
- * @func fmod_studio_event_instance_set_parameter_by_id_with_label_multiplatform
+ * @func fmod_studio_event_instance_set_parameter_by_id_with_label
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_args
+ * @param {struct.FmodStudioParameterId} parameter_id
  * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {bool} ignore_seek_speed
  */
-function fmod_studio_event_instance_set_parameter_by_id_with_label_multiplatform(event_instance_ref, buff_args, label, ignore_seek_speed) {} // FIXME 
+function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instance_ref, buff_args, label, ignore_seek_speed) {}
 
 
 /**
- * @func fmod_studio_event_instance_get_parameter_by_id_multiplatform
+ * @func fmod_studio_event_instance_get_parameter_by_id
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @returns {struct.FmodStudioParameter}
  */
-function fmod_studio_event_instance_get_parameter_by_id_multiplatform(event_instance_ref, buff_args, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, buff_args, buff_return) {}
 
 
 /**
@@ -3425,23 +3363,21 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
 
 
 /**
- * @func fmod_studio_event_instance_get_cpu_usage_multiplatform
+ * @func fmod_studio_event_instance_get_cpu_usage
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCPUUsage}
  */
-function fmod_studio_event_instance_get_cpu_usage_multiplatform(event_instance_ref, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_cpu_usage(event_instance_ref, buff_return) {}
 
 
 /**
- * @func fmod_studio_event_instance_get_memory_usage_multiplatform
+ * @func fmod_studio_event_instance_get_memory_usage
  * @desc 
  * @param {real} event_instance_ref
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioMemoryUsage}
  */
-function fmod_studio_event_instance_get_memory_usage_multiplatform(event_instance_ref, buff_return) {} // FIXME 
+function fmod_studio_event_instance_get_memory_usage(event_instance_ref, buff_return) {}
 
 
 /**
@@ -3474,12 +3410,12 @@ function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
 
 
 /**
- * @func fmod_studio_event_intance_get_description
+ * @func fmod_studio_event_instance_get_description
  * @desc 
  * @param {real} event_instance_ref
  * @returns {real}
  */
-function fmod_studio_event_intance_get_description(event_instance_ref) {}
+function fmod_studio_event_instance_get_description(event_instance_ref) {}
 
 
 /**
@@ -3528,11 +3464,11 @@ function fmod_studio_system_release() {}
 
 
 /**
- * @func fmod_studio_system_update_multiplatform
+ * @func fmod_studio_system_update
  * @desc 
  * @returns {real}
  */
-function fmod_studio_system_update_multiplatform() {}
+function fmod_studio_system_update() {}
 
 
 /**
@@ -3571,15 +3507,15 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
 
 
 /**
- * @func fmod_studio_system_load_bank_memory_multiplatform
+ * @func fmod_studio_system_load_bank_memory
  * @desc 
- * @param {Id.Buffer} buff_data
+ * @param {real} buff_data
  * @param {real} length
- * @param {real} mode
- * @param {real} flags
+ * @param {enum.FMOD_STUDIO_LOAD_MEMORY_MODE} mode
+ * @param {enum.FMOD_STUDIO_LOAD_BANK} flags
  * @returns {real}
  */
-function fmod_studio_system_load_bank_memory_multiplatform(buff_data, length, mode, flags) {} // FIXME 
+function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
 
 
 /**
@@ -3617,32 +3553,30 @@ function fmod_studio_system_get_bank_count() {}
 
 
 /**
- * @func fmod_studio_system_get_bank_list_multiplatform
+ * @func fmod_studio_system_get_bank_list
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<real>}
  */
-function fmod_studio_system_get_bank_list_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_bank_list(buff_return) {}
 
 
 /**
- * @func fmod_studio_system_set_listener_attributes_multiplatform
+ * @func fmod_studio_system_set_listener_attributes
  * @desc 
  * @param {real} listener_index
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {struct.Fmod3DAttributes} attributes
+ * @param {struct.FmodVector} attenuation
  */
-function fmod_studio_system_set_listener_attributes_multiplatform(listener_index, buff_args) {} // FIXME 
+function fmod_studio_system_set_listener_attributes(listener_index, buff_args) {}
 
 
 /**
- * @func fmod_studio_system_get_listener_attributes_multiplatform
+ * @func fmod_studio_system_get_listener_attributes
  * @desc 
  * @param {real} listener_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioListenerAttributes}
  */
-function fmod_studio_system_get_listener_attributes_multiplatform(listener_index, buff_return) {} // FIXME 
+function fmod_studio_system_get_listener_attributes(listener_index, buff_return) {}
 
 
 /**
@@ -3718,87 +3652,81 @@ function fmod_studio_system_get_event_by_id(guid_str) {}
 
 
 /**
- * @func fmod_studio_system_get_parameter_by_id_multiplatform
+ * @func fmod_studio_system_get_parameter_by_id
  * @desc 
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameter}
  */
-function fmod_studio_system_get_parameter_by_id_multiplatform(buff_args, buff_return) {} // FIXME 
+function fmod_studio_system_get_parameter_by_id(buff_args, buff_return) {}
 
 
 /**
- * @func fmod_studio_system_set_parameter_by_id_multiplatform
+ * @func fmod_studio_system_set_parameter_by_id
  * @desc 
- * @param {Id.Buffer} buff_args
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {real} value
+ * @param {bool} ignore_seek_speed
+ */
+function fmod_studio_system_set_parameter_by_id(buff_args, value, ignore_seek_speed) {}
+
+
+/**
+ * @func fmod_studio_system_set_parameter_by_id_with_label
+ * @desc 
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {string} label
+ * @param {bool} ignore_seek_speed
+ */
+function fmod_studio_system_set_parameter_by_id_with_label(buff_args, label, ignore_seek_speed) {}
+
+
+/**
+ * @func fmod_studio_system_get_parameter_by_name
+ * @desc 
+ * @param {string} name
+ * @returns {struct.FmodStudioParameter}
+ */
+function fmod_studio_system_get_parameter_by_name(name, buff_return) {}
+
+
+/**
+ * @func fmod_studio_system_set_parameter_by_name
+ * @desc 
+ * @param {string} name
  * @param {real} value
  * @param {real} ignore_seek_speed
  * @returns {real}
  */
-function fmod_studio_system_set_parameter_by_id_multiplatform(buff_args, value, ignore_seek_speed) {} // FIXME 
+function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed) {}
 
 
 /**
- * @func fmod_studio_system_set_parameter_by_id_with_label_multiplatform
- * @desc 
- * @param {Id.Buffer} buff_args
- * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
- */
-function fmod_studio_system_set_parameter_by_id_with_label_multiplatform(buff_args, label, ignore_seek_speed) {} // FIXME 
-
-
-/**
- * @func fmod_studio_system_get_parameter_by_name_multiplatform
- * @desc 
- * @param {string} name
- * @param {Id.Buffer} buff_return
- * @returns {real}
- */
-function fmod_studio_system_get_parameter_by_name_multiplatform(name, buff_return) {} // FIXME 
-
-
-/**
- * @func fmod_studio_system_set_parameter_by_name_multiplatform
- * @desc 
- * @param {string} name
- * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
- */
-function fmod_studio_system_set_parameter_by_name_multiplatform(name, value, ignore_seek_speed) {}
-
-
-/**
- * @func fmod_studio_system_set_parameter_by_name_with_label_multiplatform
+ * @func fmod_studio_system_set_parameter_by_name_with_label
  * @desc 
  * @param {string} name
  * @param {string} label
  * @param {real} ignore_seek_speed
  * @returns {real}
  */
-function fmod_studio_system_set_parameter_by_name_with_label_multiplatform(name, label, ignore_seek_speed) {}
+function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed) {}
 
 
 /**
- * @func fmod_studio_system_get_parameter_description_by_name_multiplatform
+ * @func fmod_studio_system_get_parameter_description_by_name
  * @desc 
  * @param {string} name
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioParameterDescription}
  */
-function fmod_studio_system_get_parameter_description_by_name_multiplatform(name, buff_return) {} // FIXME 
+function fmod_studio_system_get_parameter_description_by_name(name, buff_return) {}
 
 
 /**
- * @func fmod_studio_system_get_parameter_description_by_id_multiplatform
+ * @func fmod_studio_system_get_parameter_description_by_id
  * @desc 
- * @param {Id.Buffer} buff_args
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodStudioParameterId} parameter_id
+ * @returns {struct.FmodStudioParameterDescription}
  */
-function fmod_studio_system_get_parameter_description_by_id_multiplatform(buff_args, buff_return) {} // FIXME 
+function fmod_studio_system_get_parameter_description_by_id(buff_args, buff_return) {}
 
 
 /**
@@ -3810,12 +3738,11 @@ function fmod_studio_system_get_parameter_description_count() {}
 
 
 /**
- * @func fmod_studio_system_get_parameter_description_list_multiplatform
+ * @func fmod_studio_system_get_parameter_description_list
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {array<struct.FmodStudioParameterDescription>}
  */
-function fmod_studio_system_get_parameter_description_list_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_parameter_description_list(buff_return) {}
 
 
 /**
@@ -3829,13 +3756,13 @@ function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
 
 
 /**
- * @func fmod_studio_system_get_parameter_label_by_id_multiplatform
+ * @func fmod_studio_system_get_parameter_label_by_id
  * @desc 
- * @param {Id.Buffer} buff_args
+ * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} label_index
  * @returns {string}
  */
-function fmod_studio_system_get_parameter_label_by_id_multiplatform(buff_args, label_index) {} // FIXME 
+function fmod_studio_system_get_parameter_label_by_id(buff_args, label_index) {}
 
 
 /**
@@ -3857,21 +3784,19 @@ function fmod_studio_system_get_vca_by_id(guid_str) {}
 
 
 /**
- * @func fmod_studio_system_set_advanced_settings_multiplatform
+ * @func fmod_studio_system_set_advanced_settings
  * @desc 
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {struct.FmodStudioAdvancedSettings} settings
  */
-function fmod_studio_system_set_advanced_settings_multiplatform(buff_args) {} // FIXME 
+function fmod_studio_system_set_advanced_settings(buff_args) {}
 
 
 /**
- * @func fmod_studio_system_get_advanced_settings_multiplatform
+ * @func fmod_studio_system_get_advanced_settings
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioAdvancedSettings}
  */
-function fmod_studio_system_get_advanced_settings_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_advanced_settings(buff_return) {}
 
 
 /**
@@ -3903,12 +3828,11 @@ function fmod_studio_system_load_command_replay(filename, flags) {}
 
 
 /**
- * @func fmod_studio_system_get_buffer_usage_multiplatform
+ * @func fmod_studio_system_get_buffer_usage
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioBufferUsage}
  */
-function fmod_studio_system_get_buffer_usage_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_buffer_usage(buff_return) {}
 
 
 /**
@@ -3920,21 +3844,19 @@ function fmod_studio_system_reset_buffer_usage() {}
 
 
 /**
- * @func fmod_studio_system_get_cpu_usage_multiplatform
+ * @func fmod_studio_system_get_cpu_usage
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioCPUUsage}
  */
-function fmod_studio_system_get_cpu_usage_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_cpu_usage(buff_return) {}
 
 
 /**
- * @func fmod_studio_system_get_memory_usage_multiplatform
+ * @func fmod_studio_system_get_memory_usage
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioMemoryUsage}
  */
-function fmod_studio_system_get_memory_usage_multiplatform(buff_return) {} // FIXME 
+function fmod_studio_system_get_memory_usage(buff_return) {}
 
 
 /**
@@ -3964,13 +3886,12 @@ function fmod_studio_system_get_user_data() {}
 
 
 /**
- * @func fmod_studio_system_get_sound_info_multiplatform
+ * @func fmod_studio_system_get_sound_info
  * @desc 
  * @param {string} key
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodStudioSoundInfo}
  */
-function fmod_studio_system_get_sound_info_multiplatform(key, buff_return) {} // FIXME 
+function fmod_studio_system_get_sound_info(key, buff_return) {}
 
 
 /**
@@ -4107,11 +4028,11 @@ function fmod_system_close(system_ref) {}
 
 
 /**
- * @func fmod_system_update_multiplatform
+ * @func fmod_system_update
  * @desc 
  * @returns {real}
  */
-function fmod_system_update_multiplatform() {}
+function fmod_system_update() {}
 
 
 /**
@@ -4156,13 +4077,12 @@ function fmod_system_get_num_drivers() {}
 
 
 /**
- * @func fmod_system_get_driver_info_multiplatform
+ * @func fmod_system_get_driver_info
  * @desc 
  * @param {real} driver_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemDriverInfo}
  */
-function fmod_system_get_driver_info_multiplatform(driver_index, buff_return) {} // FIXME 
+function fmod_system_get_driver_info(driver_index, buff_return) {}
 
 
 /**
@@ -4211,12 +4131,11 @@ function fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_spea
 
 
 /**
- * @func fmod_system_get_software_format_multiplatform
+ * @func fmod_system_get_software_format
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemSoftwareFormat}
  */
-function fmod_system_get_software_format_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_software_format(buff_return) {}
 
 
 /**
@@ -4230,12 +4149,11 @@ function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
 
 
 /**
- * @func fmod_system_get_dsp_buffer_size_multiplatform
+ * @func fmod_system_get_dsp_buffer_size
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemDSPBufferSize}
  */
-function fmod_system_get_dsp_buffer_size_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_dsp_buffer_size(buff_return) {}
 
 
 /**
@@ -4249,30 +4167,27 @@ function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_t
 
 
 /**
- * @func fmod_system_get_stream_buffer_size_multiplatform
+ * @func fmod_system_get_stream_buffer_size
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemStreamBufferSize}
  */
-function fmod_system_get_stream_buffer_size_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_stream_buffer_size(buff_return) {}
 
 
 /**
- * @func fmod_system_set_advanced_settings_multiplatform
+ * @func fmod_system_set_advanced_settings
  * @desc 
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {struct.FmodSystemAdvancedSettings} settings
  */
-function fmod_system_set_advanced_settings_multiplatform(buff_args) {} // FIXME 
+function fmod_system_set_advanced_settings(buff_args) {}
 
 
 /**
- * @func fmod_system_get_advanced_settings_multiplatform
+ * @func fmod_system_get_advanced_settings
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemAdvancedSettings}
  */
-function fmod_system_get_advanced_settings_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_advanced_settings(buff_return) {}
 
 
 /**
@@ -4288,13 +4203,12 @@ function fmod_system_set_speaker_position(speaker, x, y, active) {}
 
 
 /**
- * @func fmod_system_get_speaker_position_multiplatform
+ * @func fmod_system_get_speaker_position
  * @desc 
- * @param {real} speaker
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {enum.FMOD_SPEAKER} speaker
+ * @returns {struct.FmodSystemSpeakerPosition}
  */
-function fmod_system_get_speaker_position_multiplatform(speaker, buff_return) {} // FIXME 
+function fmod_system_get_speaker_position(speaker, buff_return) {}
 
 
 /**
@@ -4309,12 +4223,11 @@ function fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_sca
 
 
 /**
- * @func fmod_system_get_3d_settings_multiplatform
+ * @func fmod_system_get_3d_settings
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystem3DSettings}
  */
-function fmod_system_get_3d_settings_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_3d_settings(buff_return) {}
 
 
 /**
@@ -4385,30 +4298,27 @@ function fmod_system_get_version() {}
 
 
 /**
- * @func fmod_system_get_channels_playing_multiplatform
+ * @func fmod_system_get_channels_playing
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemChannelsPlaying}
  */
-function fmod_system_get_channels_playing_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_channels_playing(buff_return) {}
 
 
 /**
- * @func fmod_system_get_cpu_usage_multiplatform
+ * @func fmod_system_get_cpu_usage
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodCPUUsage}
  */
-function fmod_system_get_cpu_usage_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_cpu_usage(buff_return) {}
 
 
 /**
- * @func fmod_system_get_file_usage_multiplatform
+ * @func fmod_system_get_file_usage
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemFileUsage}
  */
-function fmod_system_get_file_usage_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_file_usage(buff_return) {}
 
 
 /**
@@ -4432,25 +4342,23 @@ function fmod_system_get_speaker_mode_channels(mode) {}
 
 
 /**
- * @func fmod_system_create_sound_multiplatform
+ * @func fmod_system_create_sound
  * @desc 
- * @param {string} name_or_data
- * @param {real} mode
- * @param {Id.Buffer} buff_extra
- * @returns {real}
+ * @param {string|Id.Buffer} name_or_buff
+ * @param {enum.FMOD_MODE} mode
+ * @param {struct.FmodSystemCreateSoundExInfo} extra
  */
-function fmod_system_create_sound_multiplatform(name_or_data, mode, buff_extra) {} // FIXME 
+function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
 
 
 /**
- * @func fmod_system_create_stream_multiplatform
+ * @func fmod_system_create_stream
  * @desc 
- * @param {string} name_or_data
- * @param {real} mode
- * @param {Id.Buffer} buff_extra
- * @returns {real}
+ * @param {string|Id.Buffer} name_or_buff
+ * @param {enum.FMOD_MODE} mode
+ * @param {struct.FmodSystemCreateSoundExInfo} extra
  */
-function fmod_system_create_stream_multiplatform(name_or_data, mode, buff_extra) {} // FIXME 
+function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
 
 
 /**
@@ -4497,25 +4405,25 @@ function fmod_system_create_reverb_3d() {}
 
 
 /**
- * @func fmod_system_play_sound_multiplatform
+ * @func fmod_system_play_sound
  * @desc 
  * @param {real} sound_ref
  * @param {real} channel_group_ref
  * @param {real} pause
  * @returns {real}
  */
-function fmod_system_play_sound_multiplatform(sound_ref, channel_group_ref, pause) {}
+function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
 
 
 /**
- * @func fmod_system_play_dsp_multiplatform
+ * @func fmod_system_play_dsp
  * @desc 
  * @param {real} dsp_ref
  * @param {real} channel_group_ref
  * @param {real} pause
  * @returns {real}
  */
-function fmod_system_play_dsp_multiplatform(dsp_ref, channel_group_ref, pause) {}
+function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
 
 
 /**
@@ -4544,52 +4452,53 @@ function fmod_system_get_master_sound_group() {}
 
 
 /**
- * @func fmod_system_set_3d_listener_attributes_multiplatform
+ * @func fmod_system_set_3d_listener_attributes
  * @desc 
  * @param {real} listener_index
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {struct.FmodVector} position
+ * @param {struct.FmodVector} velocity
+ * @param {struct.FmodVector} forward
+ * @param {struct.FmodVector} up
  */
-function fmod_system_set_3d_listener_attributes_multiplatform(listener_index, buff_args) {} // FIXME 
+function fmod_system_set_3d_listener_attributes(listener_index, buff_args) {}
 
 
 /**
- * @func fmod_system_get_3d_listener_attributes_multiplatform
+ * @func fmod_system_get_3d_listener_attributes
  * @desc 
  * @param {real} listener_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.Fmod3DAttributes}
  */
-function fmod_system_get_3d_listener_attributes_multiplatform(listener_index, buff_return) {} // FIXME 
+function fmod_system_get_3d_listener_attributes(listener_index, buff_return) {}
 
 
 /**
- * @func fmod_system_set_reverb_properties_multiplatform
+ * @func fmod_system_set_reverb_properties
  * @desc 
- * @param {real} instance_index
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} reverb_instance_index
+ * @param {struct.FmodReverbProperties} properties
  */
-function fmod_system_set_reverb_properties_multiplatform(instance_index, buff_args) {} // FIXME 
+function fmod_system_set_reverb_properties(instance_index, buff_args) {}
 
 
 /**
- * @func fmod_system_get_reverb_properties_multiplatform
+ * @func fmod_system_get_reverb_properties
  * @desc 
- * @param {real} instance_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} reverb_instance_index
+ * @returns {struct.FmodReverbProperties}
  */
-function fmod_system_get_reverb_properties_multiplatform(instance_index, buff_return) {} // FIXME 
+function fmod_system_get_reverb_properties(instance_index, buff_return) {}
 
 
 /**
- * @func fmod_system_attach_channel_group_to_port_multiplatform
+ * @func fmod_system_attach_channel_group_to_port
  * @desc 
- * @param {Id.Buffer} buff_args
- * @returns {real}
+ * @param {real} port_type
+ * @param {real} port_index
+ * @param {real} channel_group_ref
+ * @param {bool} pass_thru
  */
-function fmod_system_attach_channel_group_to_port_multiplatform(buff_args) {} // FIXME 
+function fmod_system_attach_channel_group_to_port(buff_args) {}
 
 
 /**
@@ -4602,22 +4511,20 @@ function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
 
 
 /**
- * @func fmod_system_get_record_num_drivers_multiplatform
+ * @func fmod_system_get_record_num_drivers
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemRecordNumDrivers}
  */
-function fmod_system_get_record_num_drivers_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_record_num_drivers(buff_return) {}
 
 
 /**
- * @func fmod_system_get_record_driver_info_multiplatform
+ * @func fmod_system_get_record_driver_info
  * @desc 
- * @param {real} recording_device_index
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @param {real} record_driver_index
+ * @returns {struct.FmodSystemRecordDriverInfo}
  */
-function fmod_system_get_record_driver_info_multiplatform(recording_device_index, buff_return) {} // FIXME 
+function fmod_system_get_record_driver_info(recording_device_index, buff_return) {}
 
 
 /**
@@ -4692,16 +4599,15 @@ function fmod_system_get_geometry_settings() {}
  * @param {real} length
  * @returns {real}
  */
-function fmod_system_load_geometry(buff, length) {} // FIXME 
+function fmod_system_load_geometry(buff, length) {}
 
 
 /**
- * @func fmod_system_get_geometry_occlusion_multiplatform
+ * @func fmod_system_get_geometry_occlusion
  * @desc 
- * @param {Id.Buffer} buff_return
- * @returns {real}
+ * @returns {struct.FmodSystemGeometryOcclusion}
  */
-function fmod_system_get_geometry_occlusion_multiplatform(buff_return) {} // FIXME 
+function fmod_system_get_geometry_occlusion(buff_return) {}
 
 
 /**
@@ -4755,12 +4661,20 @@ function fmod_system_get_user_data(channel_control_ref) {}
  * @param {real} length
  * @returns {real}
  */
-function fmod_fetch_callbacks(buffer, length) {} // FIXME 
+function fmod_fetch_callbacks(buffer, length) {}
 
 
 /**
- * @func fmod_last_error
+ * @func fmod_last_result
  * @desc 
  * @returns {real}
  */
-function fmod_last_error() {}
+function fmod_last_result() {}
+
+
+/**
+ * @module home
+ * @title Home
+ * 
+ * @module_end
+ */
