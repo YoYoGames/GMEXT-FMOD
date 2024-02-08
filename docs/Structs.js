@@ -508,7 +508,7 @@
  * @struct FmodStudioBufferUsage
  * 
  * @member {struct.FmodStudioBufferInfo} command_queue = FmodStudioBufferInfo()
- * @member {struct.FmodStudioBufferInfo} // handle = new FmodStudioBufferInfo()
+ * @member {struct.FmodStudioBufferInfo} handle = new FmodStudioBufferInfo()
  * @struct_end
  */
 
@@ -558,63 +558,63 @@
  * @title Structs
  * 
  * @section_struct
- * @member FmodVector
- * @member FmodCPUUsage
- * @member FmodCPUTimeUsage
- * @member FmodLoopPoints
- * @member FmodMinMaxDistance
- * @member FmodReverbProperties
- * @member Fmod3DConeSettings
- * @member Fmod3DAttributes
- * @member FmodMemoryStats
- * @member FmodSystemCreateSoundExInfo
- * @member FmodSystemAdvancedSettings
- * @member FmodSystemSoftwareFormat
- * @member FmodSystemDSPBufferSize
- * @member FmodSystemStreamBufferSize
- * @member FmodSystemSpeakerPosition
- * @member FmodSystemChannelsPlaying
- * @member FmodSystemFileUsage
- * @member FmodSystemRecordNumDrivers
- * @member FmodSystemRecordDriverInfo
- * @member FmodSystemGeometryOcclusion
- * @member FmodControl3DAttributes
- * @member FmodControl3DDistanceFilter
- * @member FmodControl3DMinMaxDistance
- * @member FmodControl3DOcclusion
- * @member FmodControlDSPClock
- * @member FmodControlDelay
- * @member FmodControlFadePoints
- * @member FmodDSPConnectionData
- * @member FmodDSPChannelFormat
- * @member FmodDSPMeteringInfo
- * @member FmodDSPInOutMeteringInfo
- * @member FmodDSPMeteringEnableInfo
- * @member FmodDSPInfo
- * @member FmodGeometryPolygonAttributes
- * @member FmodGeometryRotation
- * @member FmodReverb3DAttributes
- * @member FmodSoundFormat
- * @member FmodSoundNumTags
- * @member FmodSoundTag
- * @member FmodSoundDefaults
- * @member FmodSoundOpenState
- * @member FmodSoundLockChunck
- * @member FmodSoundLock
- * @member FmodSyncPoint
- * @member FmodStudioMemoryUsage
- * @member FmodStudioParameter
- * @member FmodStudioParameterId
- * @member FmodCommandReplayCurrentCommand
- * @member FmodCommandReplayCommandInfo
- * @member FmodStudioEventInstanceVolume
- * @member FmodStudioListenerAttributes
- * @member FmodStudioBufferInfo
- * @member FmodStudioBufferUsage
- * @member FmodStudioCPUUsage
- * @member FmodStudioSoundInfo
- * @member FmodStudioStringInfo
- * @member FmodStudioParameterDescription
+ * @ref FmodVector
+ * @ref FmodCPUUsage
+ * @ref FmodCPUTimeUsage
+ * @ref FmodLoopPoints
+ * @ref FmodMinMaxDistance
+ * @ref FmodReverbProperties
+ * @ref Fmod3DConeSettings
+ * @ref Fmod3DAttributes
+ * @ref FmodMemoryStats
+ * @ref FmodSystemCreateSoundExInfo
+ * @ref FmodSystemAdvancedSettings
+ * @ref FmodSystemSoftwareFormat
+ * @ref FmodSystemDSPBufferSize
+ * @ref FmodSystemStreamBufferSize
+ * @ref FmodSystemSpeakerPosition
+ * @ref FmodSystemChannelsPlaying
+ * @ref FmodSystemFileUsage
+ * @ref FmodSystemRecordNumDrivers
+ * @ref FmodSystemRecordDriverInfo
+ * @ref FmodSystemGeometryOcclusion
+ * @ref FmodControl3DAttributes
+ * @ref FmodControl3DDistanceFilter
+ * @ref FmodControl3DMinMaxDistance
+ * @ref FmodControl3DOcclusion
+ * @ref FmodControlDSPClock
+ * @ref FmodControlDelay
+ * @ref FmodControlFadePoints
+ * @ref FmodDSPConnectionData
+ * @ref FmodDSPChannelFormat
+ * @ref FmodDSPMeteringInfo
+ * @ref FmodDSPInOutMeteringInfo
+ * @ref FmodDSPMeteringEnableInfo
+ * @ref FmodDSPInfo
+ * @ref FmodGeometryPolygonAttributes
+ * @ref FmodGeometryRotation
+ * @ref FmodReverb3DAttributes
+ * @ref FmodSoundFormat
+ * @ref FmodSoundNumTags
+ * @ref FmodSoundTag
+ * @ref FmodSoundDefaults
+ * @ref FmodSoundOpenState
+ * @ref FmodSoundLockChunck
+ * @ref FmodSoundLock
+ * @ref FmodSyncPoint
+ * @ref FmodStudioMemoryUsage
+ * @ref FmodStudioParameter
+ * @ref FmodStudioParameterId
+ * @ref FmodCommandReplayCurrentCommand
+ * @ref FmodCommandReplayCommandInfo
+ * @ref FmodStudioEventInstanceVolume
+ * @ref FmodStudioListenerAttributes
+ * @ref FmodStudioBufferInfo
+ * @ref FmodStudioBufferUsage
+ * @ref FmodStudioCPUUsage
+ * @ref FmodStudioSoundInfo
+ * @ref FmodStudioStringInfo
+ * @ref FmodStudioParameterDescription
  * @section_end
  * @module_end
  */

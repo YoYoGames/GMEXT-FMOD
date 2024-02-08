@@ -7,6 +7,7 @@
  * @param {real} channel_ref
  * @param {real} frequency
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_frequency(channel_ref, frequency) {}
 
@@ -17,6 +18,7 @@ function fmod_channel_set_frequency(channel_ref, frequency) {}
  * This function retrieves the playback frequency or playback rate.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_frequency(channel_ref) {}
 
@@ -28,6 +30,7 @@ function fmod_channel_get_frequency(channel_ref) {}
  * @param {real} channel_ref
  * @param {real} priority
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_priority(channel_ref, priority) {}
 
@@ -38,6 +41,7 @@ function fmod_channel_set_priority(channel_ref, priority) {}
  * This function retrieves the priority used for virtual voice ordering.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_priority(channel_ref) {}
 
@@ -50,6 +54,7 @@ function fmod_channel_get_priority(channel_ref) {}
  * @param {real} position
  * @param {real} time_unit
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_position(channel_ref, position, time_unit) {}
 
@@ -61,6 +66,7 @@ function fmod_channel_set_position(channel_ref, position, time_unit) {}
  * @param {real} channel_ref
  * @param {real} time_unit
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_position(channel_ref, time_unit) {}
 
@@ -72,6 +78,7 @@ function fmod_channel_get_position(channel_ref, time_unit) {}
  * @param {real} channel_ref
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_channel_group(channel_ref, channel_group_ref) {}
 
@@ -82,6 +89,7 @@ function fmod_channel_set_channel_group(channel_ref, channel_group_ref) {}
  * This function retrieves the ChannelGroup this object outputs to.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_channel_group(channel_ref) {}
 
@@ -93,6 +101,7 @@ function fmod_channel_get_channel_group(channel_ref) {}
  * @param {real} channel_ref
  * @param {real} loop_count
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_loop_count(channel_ref, loop_count) {}
 
@@ -103,6 +112,7 @@ function fmod_channel_set_loop_count(channel_ref, loop_count) {}
  * This function retrieves the number of times to loop before stopping.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_loop_count(channel_ref) {}
 
@@ -117,6 +127,7 @@ function fmod_channel_get_loop_count(channel_ref) {}
  * @param {real} loop_end
  * @param {real} loop_end_type
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, loop_end, loop_end_type) {}
 
@@ -126,9 +137,10 @@ function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, 
  * @desc > **FMOD Function:** [Channel::getLoopPoints](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getlooppoints)
  * This function retrieves the loop start and end points.
  * @param {real}_channel_ref
- * @param {enum.FMOD_TIMEUNIT} loop_start_type
- * @param {enum.FMOD_TIMEUNIT} loop_end_type
+ * @param {constant.FMOD_TIMEUNIT} loop_start_type
+ * @param {constant.FMOD_TIMEUNIT} loop_end_type
  * @returns {struct.FmodLoopPoints}
+ * @func_end
  */
 function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_type) {}
 
@@ -139,6 +151,7 @@ function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_typ
  * This function retrieves whether the Channel is being emulated by the virtual voice system.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_is_virtual(channel_ref) {}
 
@@ -146,9 +159,10 @@ function fmod_channel_is_virtual(channel_ref) {}
 /**
  * @func fmod_channel_get_current_sound
  * @desc > **FMOD Function:** [Channel::getCurrentSound](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getcurrentsound)
- * This function etrieves the currently playing Sound.
+ * This function retrieves the currently playing Sound.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_current_sound(channel_ref) {}
 
@@ -159,6 +173,7 @@ function fmod_channel_get_current_sound(channel_ref) {}
  * This function retrieves the index of this object in the System Channel pool.
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_index(channel_ref) {}
 
@@ -169,6 +184,7 @@ function fmod_channel_get_index(channel_ref) {}
  * 
  * @param {real} channel_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_get_system_object(channel_ref) {}
 
@@ -179,6 +195,7 @@ function fmod_channel_get_system_object(channel_ref) {}
  * This function retrieves the playing state.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_is_playing(channel_control_ref) {}
 
@@ -189,6 +206,7 @@ function fmod_channel_control_is_playing(channel_control_ref) {}
  * This function stops the Channel (or all Channels in nested ChannelGroups) from playing.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_stop(channel_control_ref) {}
 
@@ -200,6 +218,7 @@ function fmod_channel_control_stop(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} paused
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_paused(channel_control_ref, paused) {}
 
@@ -210,6 +229,7 @@ function fmod_channel_control_set_paused(channel_control_ref, paused) {}
  * This function retrieves the paused state.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_paused(channel_control_ref) {}
 
@@ -221,6 +241,7 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} mode
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_mode(channel_control_ref, mode) {}
 
@@ -231,6 +252,7 @@ function fmod_channel_control_set_mode(channel_control_ref, mode) {}
  * This function retrieves the playback mode bits that control how this object behaves.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_mode(channel_control_ref) {}
 
@@ -242,6 +264,7 @@ function fmod_channel_control_get_mode(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} pitch
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_pitch(channel_control_ref, pitch) {}
 
@@ -252,6 +275,7 @@ function fmod_channel_control_set_pitch(channel_control_ref, pitch) {}
  * This function retrieves the relative pitch / playback rate.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_pitch(channel_control_ref) {}
 
@@ -262,6 +286,7 @@ function fmod_channel_control_get_pitch(channel_control_ref) {}
  * This function retrieves an estimation of the output volume.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_audibility(channel_control_ref) {}
 
@@ -273,6 +298,7 @@ function fmod_channel_control_get_audibility(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_volume(channel_control_ref, volume) {}
 
@@ -283,6 +309,7 @@ function fmod_channel_control_set_volume(channel_control_ref, volume) {}
  * This function retrieves the volume level.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_volume(channel_control_ref) {}
 
@@ -294,6 +321,7 @@ function fmod_channel_control_get_volume(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} ramp
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_volume_ramp(channel_control_ref, ramp) {}
 
@@ -304,6 +332,7 @@ function fmod_channel_control_set_volume_ramp(channel_control_ref, ramp) {}
  * This function retrieves whether volume changes are ramped or instantaneous.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
 
@@ -315,6 +344,7 @@ function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} mute
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_mute(channel_control_ref, mute) {}
 
@@ -325,6 +355,7 @@ function fmod_channel_control_set_mute(channel_control_ref, mute) {}
  * This function retrieves the mute state.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_mute(channel_control_ref) {}
 
@@ -336,6 +367,7 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
  * @param {real} control_ref
  * @param {struct.FmodVector} pos
  * @param {struct.FmodVector} vel
+ * @func_end
  */
 function fmod_channel_control_set_3d_attributes(channel_control_ref, pos, vel) {}
 
@@ -346,6 +378,7 @@ function fmod_channel_control_set_3d_attributes(channel_control_ref, pos, vel) {
  * This function retrieves the 3D position and velocity used to apply panning, attenuation and doppler.
  * @param {real} control_ref
  * @returns {struct.FmodControl3DAttributes}
+ * @func_end
  */
 function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
 
@@ -356,6 +389,7 @@ function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
  * This function sets the orientation of a 3D cone shape, used for simulated occlusion.
  * @param {real} control_ref
  * @param {struct.FmodVector} orientation
+ * @func_end
  */
 function fmod_channel_control_set_3d_cone_orientation(channel_control_ref, orientation) {}
 
@@ -366,6 +400,7 @@ function fmod_channel_control_set_3d_cone_orientation(channel_control_ref, orien
  * This function retrieves the orientation of a 3D cone shape, used for simulated occlusion.
  * @param {real} control_ref
  * @returns {struct.FmodVector}
+ * @func_end
  */
 function fmod_channel_control_get_3d_cone_orientation(channel_control_ref) {}
 
@@ -379,6 +414,7 @@ function fmod_channel_control_get_3d_cone_orientation(channel_control_ref) {}
  * @param {real} outside_cone_angle
  * @param {real} outside_volume
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_cone_angle, outside_cone_angle, outside_volume) {}
 
@@ -389,6 +425,7 @@ function fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_c
  * This function retrieves the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.
  * @param {real} control_ref
  * @returns {struct.Fmod3DConeSettings}
+ * @func_end
  */
 function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
 
@@ -399,6 +436,7 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
  * This function sets a custom roll-off shape for 3D distance attenuation.
  * @param {real} control_ref
  * @param {array[struct.FmodVector]} points
+ * @func_end
  */
 function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points) {}
 
@@ -409,6 +447,7 @@ function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points)
  * This function retrieves the current custom roll-off shape for 3D distance attenuation.
  * @param {real} control_ref
  * @returns {array[struct.FmodVector]}
+ * @func_end
  */
 function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref) {}
 
@@ -422,6 +461,7 @@ function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref) {}
  * @param {real} custom_level
  * @param {real} center_freq
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom, custom_level, center_freq) {}
 
@@ -432,6 +472,7 @@ function fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom
  * This function retrieves the override values for the 3D distance filter.
  * @param {real} control_ref
  * @returns {struct.FmodControl3DDistanceFilter}
+ * @func_end
  */
 function fmod_channel_control_get_3d_distance_filter(channel_control_ref) {}
 
@@ -443,6 +484,7 @@ function fmod_channel_control_get_3d_distance_filter(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} level
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_doppler_level(channel_control_ref, level) {}
 
@@ -453,6 +495,7 @@ function fmod_channel_control_set_3d_doppler_level(channel_control_ref, level) {
  * This function retrieves the amount by which doppler is scaled.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_3d_doppler_level(channel_control_ref) {}
 
@@ -464,6 +507,7 @@ function fmod_channel_control_get_3d_doppler_level(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} level
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_level(channel_control_ref, level) {}
 
@@ -474,6 +518,7 @@ function fmod_channel_control_set_3d_level(channel_control_ref, level) {}
  * This function retrieves the blend between 3D panning and 2D panning.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_3d_level(channel_control_ref) {}
 
@@ -486,6 +531,7 @@ function fmod_channel_control_get_3d_level(channel_control_ref) {}
  * @param {real} min
  * @param {real} max
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, max) {}
 
@@ -496,6 +542,7 @@ function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, 
  * This function retrieves the minimum and maximum distances used to calculate the 3D roll-off attenuation.
  * @param {real} control_ref
  * @returns {struct.FmodControl3DMinMaxDistance}
+ * @func_end
  */
 function fmod_channel_control_get_3d_min_max_distance(channel_control_ref) {}
 
@@ -508,6 +555,7 @@ function fmod_channel_control_get_3d_min_max_distance(channel_control_ref) {}
  * @param {real} direct_occlusion
  * @param {real} reverb_occlusion
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlusion, reverb_occlusion) {}
 
@@ -518,6 +566,7 @@ function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlu
  * This function retrieves the 3D attenuation factors for the direct and reverb paths.
  * @param {real} control_ref
  * @returns {struct.FmodControl3DOcclusion}
+ * @func_end
  */
 function fmod_channel_control_get_3d_occlusion(channel_control_ref) {}
 
@@ -529,6 +578,7 @@ function fmod_channel_control_get_3d_occlusion(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} angle
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_3d_spread(channel_control_ref, angle) {}
 
@@ -539,6 +589,7 @@ function fmod_channel_control_set_3d_spread(channel_control_ref, angle) {}
  * This function retrieves the spread of a 3D sound in speaker space.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_3d_spread(channel_control_ref) {}
 
@@ -550,6 +601,7 @@ function fmod_channel_control_get_3d_spread(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} pan
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_pan(channel_control_ref, pan) {}
 
@@ -559,7 +611,8 @@ function fmod_channel_control_set_pan(channel_control_ref, pan) {}
  * @desc > **FMOD Function:** [ChannelControl::setMixLevelsInput](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsinput)
  * This function sets the incoming volume level for each channel of a multi-channel signal.
  * @param {real} control_ref
- * @param {array<real>} levels
+ * @param {array[real]} levels
+ * @func_end
  */
 function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) {}
 
@@ -578,6 +631,7 @@ function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) 
  * @param {real} back_left
  * @param {real} back_right
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_left, front_right, center, lfe, surround_left, surround_right, back_left, back_right) {}
 
@@ -587,10 +641,11 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * @desc > **FMOD Function:** [ChannelControl::setMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixmatrix)
  * This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * @param {real} control_ref
- * @param {array<real>} matrix
+ * @param {array[real]} matrix
  * @param {real} out_channels
  * @param {real} in_channels
  * @param {real} in_channel_hop
+ * @func_end
  */
 function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_channels, in_channels, in_channel_hop) {}
 
@@ -601,6 +656,7 @@ function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_ch
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * @param {real} control_ref
  * @returns {struct.FmodControlMixMatrix}
+ * @func_end
  */
 function fmod_channel_control_get_mix_matrix(channel_control_ref) {}
 
@@ -613,6 +669,7 @@ function fmod_channel_control_get_mix_matrix(channel_control_ref) {}
  * @param {real} reverb_instance
  * @param {real} wet
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_instance, wet) {}
 
@@ -624,6 +681,7 @@ function fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_
  * @param {real} channel_control_ref
  * @param {real} reverb_instance
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_reverb_properties(channel_control_ref, reverb_instance) {}
 
@@ -631,10 +689,11 @@ function fmod_channel_control_get_reverb_properties(channel_control_ref, reverb_
 /**
  * @func fmod_channel_control_set_low_pass_gain
  * @desc > **FMOD Function:** [ChannelControl::setLowPassGain](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setlowpassgain)
- * This function sets the gain of the dry signal when built in lowpass / distance filtering is applied.
+ * This function sets the gain of the dry signal when built-in lowpass / distance filtering is applied.
  * @param {real} channel_control_ref
  * @param {real} gain
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
 
@@ -642,9 +701,10 @@ function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
 /**
  * @func fmod_channel_control_get_low_pass_gain
  * @desc > **FMOD Function:** [ChannelControl::getLowPassGain](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getlowpassgain)
- * This function retrieves the gain of the dry signal when built in lowpass / distance filtering is applied.
+ * This function retrieves the gain of the dry signal when built-in lowpass / distance filtering is applied.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
 
@@ -657,6 +717,7 @@ function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
  * @param {real} dsp_chain_offset
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp_ref) {}
 
@@ -668,6 +729,7 @@ function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp
  * @param {real} channel_control_ref
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref) {}
 
@@ -678,6 +740,7 @@ function fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref) {}
  * This function retrieves the number of DSP units in the DSP chain.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_num_dsps(channel_control_ref) {}
 
@@ -689,6 +752,7 @@ function fmod_channel_control_get_num_dsps(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} index
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_dsp(channel_control_ref, index) {}
 
@@ -701,6 +765,7 @@ function fmod_channel_control_get_dsp(channel_control_ref, index) {}
  * @param {real} dsp_ref
  * @param {real} chain_index
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_dsp_index(channel_control_ref, dsp_ref, chain_index) {}
 
@@ -712,6 +777,7 @@ function fmod_channel_control_set_dsp_index(channel_control_ref, dsp_ref, chain_
  * @param {real} channel_control_ref
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref) {}
 
@@ -722,6 +788,7 @@ function fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref) {}
  * This function retrieves the DSP clock values at this point in time.
  * @param {real} control_ref
  * @returns {struct.FmodControlDSPClock}
+ * @func_end
  */
 function fmod_channel_control_get_dsp_clock(channel_control_ref) {}
 
@@ -734,6 +801,7 @@ function fmod_channel_control_get_dsp_clock(channel_control_ref) {}
  * @param {real} dsp_clock_start
  * @param {real} dsp_clock_end
  * @param {bool} stop_channels
+ * @func_end
  */
 function fmod_channel_control_set_delay(channel_control_ref, dsp_clock_start, dsp_clock_end, stop_channels) {}
 
@@ -744,6 +812,7 @@ function fmod_channel_control_set_delay(channel_control_ref, dsp_clock_start, ds
  * This function retrieves a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.
  * @param {real} control_ref
  * @returns {struct.FmodControlDelay}
+ * @func_end
  */
 function fmod_channel_control_get_delay(channel_control_ref) {}
 
@@ -755,6 +824,7 @@ function fmod_channel_control_get_delay(channel_control_ref) {}
  * @param {real} control_ref
  * @param {real} dsp_clock
  * @param {real} volume
+ * @func_end
  */
 function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, volume) {}
 
@@ -766,6 +836,7 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
  * @param {real} control_ref
  * @param {real} dsp_clock
  * @param {real} volume
+ * @func_end
  */
 function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock, volume) {}
 
@@ -777,6 +848,7 @@ function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock
  * @param {real} control_ref
  * @param {real} dsp_clock_start
  * @param {real} dsp_clock_end
+ * @func_end
  */
 function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_start, dsp_clock_end) {}
 
@@ -787,6 +859,7 @@ function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_
  * This function retrieves information about stored fade points.
  * @param {real} control_ref
  * @returns {struct.FmodControlFadePoints}
+ * @func_end
  */
 function fmod_channel_control_get_fade_points(channel_control_ref) {}
 
@@ -797,6 +870,7 @@ function fmod_channel_control_get_fade_points(channel_control_ref) {}
  * This function sets the callback for ChannelControl level notifications.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_callback(channel_control_ref) {}
 
@@ -807,6 +881,7 @@ function fmod_channel_control_set_callback(channel_control_ref) {}
  * This function retrieves the System that created this object.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_system_object(channel_control_ref) {}
 
@@ -818,6 +893,7 @@ function fmod_channel_control_get_system_object(channel_control_ref) {}
  * @param {real} channel_control_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_set_user_data(channel_control_ref, data) {}
 
@@ -828,6 +904,7 @@ function fmod_channel_control_set_user_data(channel_control_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_control_get_user_data(channel_control_ref) {}
 
@@ -838,6 +915,7 @@ function fmod_channel_control_get_user_data(channel_control_ref) {}
  * This function retrieves the number of Channels that feed into to this group.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_num_channels(channel_group_ref) {}
 
@@ -849,6 +927,7 @@ function fmod_channel_group_get_num_channels(channel_group_ref) {}
  * @param {real} channel_group_ref
  * @param {real} index
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_channel(channel_group_ref, index) {}
 
@@ -861,6 +940,7 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
  * @param {real} child_channel_group_ref
  * @param {real} propagate_dsp_clock
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref, propagate_dsp_clock) {}
 
@@ -871,6 +951,7 @@ function fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref
  * This function retrieves the number of ChannelGroups that feed into to this group.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_num_groups(channel_group_ref) {}
 
@@ -882,6 +963,7 @@ function fmod_channel_group_get_num_groups(channel_group_ref) {}
  * @param {real} channel_group_ref
  * @param {real} group_index
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_group(channel_group_ref, group_index) {}
 
@@ -892,6 +974,7 @@ function fmod_channel_group_get_group(channel_group_ref, group_index) {}
  * This function retrieves the ChannelGroup this object outputs to.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_parent_group(channel_group_ref) {}
 
@@ -902,6 +985,7 @@ function fmod_channel_group_get_parent_group(channel_group_ref) {}
  * This function retrieves the name set when the group was created.
  * @param {real} channel_group_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_channel_group_get_name(channel_group_ref) {}
 
@@ -912,6 +996,7 @@ function fmod_channel_group_get_name(channel_group_ref) {}
  * This function frees the memory for the group.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_release(channel_group_ref) {}
 
@@ -922,6 +1007,7 @@ function fmod_channel_group_release(channel_group_ref) {}
  * This function retrieves the System that created this object.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_channel_group_get_system_object(channel_group_ref) {}
 
@@ -931,6 +1017,7 @@ function fmod_channel_group_get_system_object(channel_group_ref) {}
  * @desc > **FMOD Function:** [File_GetDiskBusy](https://www.fmod.com/docs/2.02/api/core-api-common.html#file_getdiskbusy)
  * This is an information function to retrieve the state of FMOD disk access.
  * @returns {real}
+ * @func_end
  */
 function fmod_file_get_disk_busy() {}
 
@@ -941,6 +1028,7 @@ function fmod_file_get_disk_busy() {}
  * This function sets the busy state for disk access ensuring mutual exclusion of file operations.
  * @param {real} busy
  * @returns {real}
+ * @func_end
  */
 function fmod_file_set_disk_busy(busy) {}
 
@@ -949,7 +1037,9 @@ function fmod_file_set_disk_busy(busy) {}
  * @func fmod_memory_get_stats
  * @desc > **FMOD Function:** [Memory_GetStats](https://www.fmod.com/docs/2.02/api/core-api-common.html#memory_getstats)
  * This function returns information on the memory usage of FMOD.
+ * @param {real} blocking
  * @returns {struct.FmodMemoryStats}
+ * @func_end
  */
 function fmod_memory_get_stats(blocking) {}
 
@@ -962,6 +1052,7 @@ function fmod_memory_get_stats(blocking) {}
  * @param {real} mode
  * @param {string} filename
  * @returns {real}
+ * @func_end
  */
 function fmod_debug_initialize(flags, mode, filename) {}
 
@@ -975,6 +1066,7 @@ function fmod_debug_initialize(flags, mode, filename) {}
  * @param {real} priority
  * @param {real} stacksize
  * @returns {real}
+ * @func_end
  */
 function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
 
@@ -987,6 +1079,7 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
  * @param {real} dsp_input_ref
  * @param {real} dsp_connection_type
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
 
@@ -997,6 +1090,7 @@ function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
  * This function retrieves the DSP unit at the specified index in the input list.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPConnectionData}
+ * @func_end
  */
 function fmod_dsp_get_input(dsp_ref, dsp_input_index) {}
 
@@ -1007,6 +1101,7 @@ function fmod_dsp_get_input(dsp_ref, dsp_input_index) {}
  * This function retrieves the DSP unit at the specified index in the output list.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPConnectionData}
+ * @func_end
  */
 function fmod_dsp_get_output(dsp_ref, dsp_output_index) {}
 
@@ -1017,6 +1112,7 @@ function fmod_dsp_get_output(dsp_ref, dsp_output_index) {}
  * This function retrieves the number of DSP units in the input list.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_num_inputs(dsp_ref) {}
 
@@ -1027,6 +1123,7 @@ function fmod_dsp_get_num_inputs(dsp_ref) {}
  * This function retrieves the number of DSP units in the output list.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_num_outputs(dsp_ref) {}
 
@@ -1039,6 +1136,7 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
  * @param {real} inputs
  * @param {real} outputs
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
 
@@ -1051,6 +1149,7 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
  * @param {real} dsp_other_ref
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
 
@@ -1062,6 +1161,7 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
  * @param {real} dsp_ref
  * @param {real} data_type
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_data_parameter_index(dsp_ref, data_type) {}
 
@@ -1072,6 +1172,7 @@ function fmod_dsp_get_data_parameter_index(dsp_ref, data_type) {}
  * This function retrieves the number of parameters exposed by this unit.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_num_parameters(dsp_ref) {}
 
@@ -1084,6 +1185,7 @@ function fmod_dsp_get_num_parameters(dsp_ref) {}
  * @param {real} parameter_index
  * @param {real} value
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
 
@@ -1095,6 +1197,7 @@ function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
  * @param {real} dsp_ref
  * @param {real} parameter_index
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
 
@@ -1105,8 +1208,9 @@ function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
  * This function sets a binary data parameter by index.
  * @param {real} dsp_ref
  * @param {real} parameter_index
- * @param {Id.Buffer} buffer
+ * @param {buffer} buffer
  * @param {real} length
+ * @func_end
  */
 function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
@@ -1117,8 +1221,9 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
  * This function retrieves a binary data parameter by index.
  * @param {real} dsp_ref
  * @param {real} parameter_index
- * @param {Id.Buffer} buffer
+ * @param {buffer} buffer
  * @param {real} length
+ * @func_end
  */
 function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
@@ -1131,6 +1236,7 @@ function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
  * @param {real} parameter_index
  * @param {real} value
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
 
@@ -1142,6 +1248,7 @@ function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
  * @param {real} dsp_ref
  * @param {real} parameter_index
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_parameter_float(dsp_ref, parameter_index) {}
 
@@ -1154,6 +1261,7 @@ function fmod_dsp_get_parameter_float(dsp_ref, parameter_index) {}
  * @param {real} parameter_index
  * @param {real} value
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
 
@@ -1165,6 +1273,7 @@ function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
  * @param {real} dsp_ref
  * @param {real} parameter_index
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_parameter_int(dsp_ref, parameter_index) {}
 
@@ -1175,6 +1284,7 @@ function fmod_dsp_get_parameter_int(dsp_ref, parameter_index) {}
  * This function retrieves information about a specified parameter.
  * @param {real} dsp_ref
  * @returns {struct}
+ * @func_end
  */
 function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
 
@@ -1188,6 +1298,7 @@ function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
  * @param {real} num_channels
  * @param {real} speaker_mode
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode) {}
 
@@ -1198,6 +1309,7 @@ function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speake
  * This function retrieves the PCM input format this DSP will receive when processing.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPChannelFormat}
+ * @func_end
  */
 function fmod_dsp_get_channel_format(dsp_ref) {}
 
@@ -1207,10 +1319,11 @@ function fmod_dsp_get_channel_format(dsp_ref) {}
  * @desc > ** FMOD Function:** [DSP::getOutputChannelFormat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getoutputchannelformat)
  * This function retrieves the output format this DSP will produce when processing based on the input specified.
  * @param {real} dsp_ref
- * @param {enum.FMOD_CHANNELMASK} channel_mask_in
+ * @param {constant.FMOD_CHANNELMASK} channel_mask_in
  * @param {real} num_channels_in
- * @param {enum.FMOD_SPEAKERMODE} speaker_mode_in
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode_in
  * @returns {struct.FmodDSPChannelFormat}
+ * @func_end
  */
 function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channels_in, speaker_mode_in) {}
 
@@ -1221,6 +1334,7 @@ function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channe
  * This function retrieves the signal metering information.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPInOutMeteringInfo}
+ * @func_end
  */
 function fmod_dsp_get_metering_info(dsp_ref) {}
 
@@ -1233,6 +1347,7 @@ function fmod_dsp_get_metering_info(dsp_ref) {}
  * @param {real} enabled_in
  * @param {real} enabled_out
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out) {}
 
@@ -1243,6 +1358,7 @@ function fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out) {}
  * This function retrieves the input and output signal metering enabled states.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPMeteringEnableInfo}
+ * @func_end
  */
 function fmod_dsp_get_metering_enabled(dsp_ref) {}
 
@@ -1254,6 +1370,7 @@ function fmod_dsp_get_metering_enabled(dsp_ref) {}
  * @param {real} dsp_ref
  * @param {real} active
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_active(dsp_ref, active) {}
 
@@ -1264,6 +1381,7 @@ function fmod_dsp_set_active(dsp_ref, active) {}
  * This function retrieves the processing active state.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_active(dsp_ref) {}
 
@@ -1275,6 +1393,7 @@ function fmod_dsp_get_active(dsp_ref) {}
  * @param {real} dsp_ref
  * @param {real} bypass
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_bypass(dsp_ref, bypass) {}
 
@@ -1285,6 +1404,7 @@ function fmod_dsp_set_bypass(dsp_ref, bypass) {}
  * This function retrieves the processing bypass state.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_bypass(dsp_ref) {}
 
@@ -1298,6 +1418,7 @@ function fmod_dsp_get_bypass(dsp_ref) {}
  * @param {real} postwet
  * @param {real} dry
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
 
@@ -1308,6 +1429,7 @@ function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
  * This function retrieves the scale of the wet and dry signal components.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPWetDryMixInfo}
+ * @func_end
  */
 function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
 
@@ -1318,6 +1440,7 @@ function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
  * This function retrieves the idle state.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_idle(dsp_ref) {}
 
@@ -1328,6 +1451,7 @@ function fmod_dsp_get_idle(dsp_ref) {}
  * This function reset a DSPs internal state ready for new input signal.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_reset(dsp_ref) {}
 
@@ -1338,6 +1462,7 @@ function fmod_dsp_reset(dsp_ref) {}
  * This function frees a DSP object.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_release(dsp_ref) {}
 
@@ -1348,6 +1473,7 @@ function fmod_dsp_release(dsp_ref) {}
  * This function retrieves the pre-defined type of a FMOD registered DSP unit.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_type(dsp_ref) {}
 
@@ -1358,6 +1484,7 @@ function fmod_dsp_get_type(dsp_ref) {}
  * This function retrieves information about this DSP unit.
  * @param {real} dsp_ref
  * @returns {struct.FmodDSPInfo}
+ * @func_end
  */
 function fmod_dsp_get_info(dsp_ref) {}
 
@@ -1368,6 +1495,7 @@ function fmod_dsp_get_info(dsp_ref) {}
  * This function retrieves statistics on the mixer thread CPU usage for this unit.
  * @param {real} dsp_ref
  * @returns {struct.FmodCPUTimeUsage}
+ * @func_end
  */
 function fmod_dsp_get_cpu_usage(dsp_ref) {}
 
@@ -1379,6 +1507,7 @@ function fmod_dsp_get_cpu_usage(dsp_ref) {}
  * @param {real} dsp_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_user_data(dsp_ref, data) {}
 
@@ -1389,6 +1518,7 @@ function fmod_dsp_set_user_data(dsp_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_user_data(dsp_ref) {}
 
@@ -1399,6 +1529,7 @@ function fmod_dsp_get_user_data(dsp_ref) {}
  * This function sets the callback for DSP notifications.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_set_callback(dsp_ref) {}
 
@@ -1409,6 +1540,7 @@ function fmod_dsp_set_callback(dsp_ref) {}
  * This function retrieves the parent System object.
  * @param {real} dsp_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_get_system_object(dsp_ref) {}
 
@@ -1420,6 +1552,7 @@ function fmod_dsp_get_system_object(dsp_ref) {}
  * @param {real} dsp_connection_ref
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
 
@@ -1430,6 +1563,7 @@ function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
  * This function retrieves the connection's volume scale.
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
 
@@ -1439,10 +1573,11 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  * @desc > **FMOD Function:** [DSPConnection::setMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_setmixmatrix)
  * This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * @param {real} dsp_connection_ref
- * @param {array<real>} matrix
+ * @param {array[real]} matrix
  * @param {real} out_channels
  * @param {real} in_channels
  * @param {real} in_channel_hop
+ * @func_end
  */
 function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_channels, in_channels, in_channel_hop) {}
 
@@ -1454,6 +1589,7 @@ function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_chan
  * @param {real} dsp_connection_ref
  * @param {real} in_channel_hop
  * @returns {struct.FmodDSPConnectionMixMatrix}
+ * @func_end
  */
 function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) {}
 
@@ -1464,6 +1600,7 @@ function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) 
  * This function retrieves the connection's input DSP unit.
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_get_input(dsp_connection_ref) {}
 
@@ -1474,6 +1611,7 @@ function fmod_dsp_connection_get_input(dsp_connection_ref) {}
  * This function retrieves the connection's output DSP unit.
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_get_output(dsp_connection_ref) {}
 
@@ -1484,6 +1622,7 @@ function fmod_dsp_connection_get_output(dsp_connection_ref) {}
  * This function retrieves the type of the connection between 2 DSP units.
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_get_type(dsp_connection_ref) {}
 
@@ -1495,6 +1634,7 @@ function fmod_dsp_connection_get_type(dsp_connection_ref) {}
  * @param {real} dsp_connection_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
 
@@ -1505,6 +1645,7 @@ function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} dsp_connection_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
 
@@ -1519,6 +1660,7 @@ function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
  * @param {real} reverb_occlusion
  * @param {real} double_sided
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direct_occlusion, reverb_occlusion, double_sided) {}
 
@@ -1530,6 +1672,7 @@ function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direc
  * @param {real} geometry_ref
  * @param {real} polygon_index
  * @returns {struct.FmodGeometryPolygonAttributes}
+ * @func_end
  */
 function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index) {}
 
@@ -1541,6 +1684,7 @@ function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index) {}
  * @param {real} geometry_ref
  * @param {real} polygon_index
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
 
@@ -1553,6 +1697,7 @@ function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
  * @param {real} polygon_index
  * @param {real} vertex_index
  * @param {struct.FmodVector} position
+ * @func_end
  */
 function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_index, position) {}
 
@@ -1565,6 +1710,7 @@ function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_in
  * @param {real} polygon_index
  * @param {real} vertex_index
  * @returns {struct.FmodVector}
+ * @func_end
  */
 function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_index) {}
 
@@ -1575,6 +1721,7 @@ function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_in
  * This function sets the 3D position of the object.
  * @param {real} geometry_ref
  * @param {struct.FmodVector} position
+ * @func_end
  */
 function fmod_geometry_set_position(geometry_ref, position) {}
 
@@ -1585,6 +1732,7 @@ function fmod_geometry_set_position(geometry_ref, position) {}
  * This function retrieves the 3D position of the object.
  * @param {real} geometry_ref
  * @returns {struct.FmodVector}
+ * @func_end
  */
 function fmod_geometry_get_position(geometry_ref) {}
 
@@ -1596,6 +1744,7 @@ function fmod_geometry_get_position(geometry_ref) {}
  * @param {real} geometry_ref
  * @param {struct.FmodVector} forward
  * @param {struct.FmodVector} up
+ * @func_end
  */
 function fmod_geometry_set_rotation(geometry_ref, forward, up) {}
 
@@ -1606,6 +1755,7 @@ function fmod_geometry_set_rotation(geometry_ref, forward, up) {}
  * This function retrieves the 3D orientation of the object.
  * @param {real} geometry_ref
  * @returns {struct.FmodGeometryRotation}
+ * @func_end
  */
 function fmod_geometry_get_rotation(geometry_ref) {}
 
@@ -1616,6 +1766,7 @@ function fmod_geometry_get_rotation(geometry_ref) {}
  * This function sets the 3D scale of the object.
  * @param {real} geometry_ref
  * @param {struct.FmodVector} scale
+ * @func_end
  */
 function fmod_geometry_set_scale(geometry_ref, scale) {}
 
@@ -1626,6 +1777,7 @@ function fmod_geometry_set_scale(geometry_ref, scale) {}
  * This function retrieves the 3D scale of the object.
  * @param {real} geometry_ref
  * @returns {struct.FmodVector}
+ * @func_end
  */
 function fmod_geometry_get_scale(geometry_ref) {}
 
@@ -1638,7 +1790,8 @@ function fmod_geometry_get_scale(geometry_ref) {}
  * @param {real} direct_occlusion
  * @param {real} reverb_occlusion
  * @param {bool} double_sided
- * @param {array<struct.FmodVector>} vertices
+ * @param {struct.FmodVector} vertices
+ * @func_end
  */
 function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlusion, double_sided, vertices) {}
 
@@ -1650,6 +1803,7 @@ function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlus
  * @param {real} geometry_ref
  * @param {real} active
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_set_active(geometry_ref, active) {}
 
@@ -1660,6 +1814,7 @@ function fmod_geometry_set_active(geometry_ref, active) {}
  * This function retrieves whether an object is processed by the geometry engine.
  * @param {real} geometry_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_get_active(geometry_ref) {}
 
@@ -1669,8 +1824,9 @@ function fmod_geometry_get_active(geometry_ref) {}
  * @desc > **FMOD Function:** [Geometry::getMaxPolygons](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getmaxpolygons)
  * This function retrieves the maximum number of polygons and vertices allocatable for this object.
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff_return
+ * @param {buffer} buff_return
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_get_max_polygons(geometry_ref, buff_return) {}
 
@@ -1681,6 +1837,7 @@ function fmod_geometry_get_max_polygons(geometry_ref, buff_return) {}
  * This function retrieves the number of polygons in this object.
  * @param {real} geometry_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_get_num_polygons(geometry_ref) {}
 
@@ -1692,6 +1849,7 @@ function fmod_geometry_get_num_polygons(geometry_ref) {}
  * @param {real} geometry_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_set_user_data(geometry_ref, data) {}
 
@@ -1702,6 +1860,7 @@ function fmod_geometry_set_user_data(geometry_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} geometry_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_get_user_data(geometry_ref) {}
 
@@ -1712,6 +1871,7 @@ function fmod_geometry_get_user_data(geometry_ref) {}
  * This function frees a geometry object and releases its memory.
  * @param {real} geometry_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_release(geometry_ref) {}
 
@@ -1721,8 +1881,9 @@ function fmod_geometry_release(geometry_ref) {}
  * @desc > **FMOD Function:** [Geometry::save](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_save)
  * This function saves the geometry object as a serialized binary block to a user memory buffer.
  * @param {real} geometry_ref
- * @param {Id.Buffer} buff
+ * @param {buffer} buff
  * @returns {real}
+ * @func_end
  */
 function fmod_geometry_save(geometry_ref, buff) {}
 
@@ -1735,6 +1896,7 @@ function fmod_geometry_save(geometry_ref, buff) {}
  * @param {struct.FmodVector} position
  * @param {real} min_distance
  * @param {real} max_distance
+ * @func_end
  */
 function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance, max_distance) {}
 
@@ -1745,6 +1907,7 @@ function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance,
  * This function retrieves the 3D attributes of a reverb sphere.
  * @param {real} reverb_3d_ref
  * @returns {struct.FmodReverb3DAttributes}
+ * @func_end
  */
 function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
 
@@ -1767,6 +1930,7 @@ function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
  * @param {real} early_late_mix
  * @param {real} wet_level
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level) {}
 
@@ -1777,6 +1941,7 @@ function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, l
  * This function retrieves the environmental properties of a reverb sphere.
  * @param {real} reverb_3d_ref
  * @returns {struct.FmodReverbProperties}
+ * @func_end
  */
 function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
 
@@ -1788,6 +1953,7 @@ function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
  * @param {real} reverb_3d_ref
  * @param {real} active
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
 
@@ -1798,6 +1964,7 @@ function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
  * This function retrieves the active state.
  * @param {real} reverb_3d_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_get_active(reverb_3d_ref) {}
 
@@ -1808,6 +1975,7 @@ function fmod_reverb_3d_get_active(reverb_3d_ref) {}
  * This function releases the memory for a reverb object and makes it inactive.
  * @param {real} reverb_3d_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_release(reverb_3d_ref) {}
 
@@ -1819,6 +1987,7 @@ function fmod_reverb_3d_release(reverb_3d_ref) {}
  * @param {real} reverb_3d_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
 
@@ -1829,6 +1998,7 @@ function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} reverb_3d_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_reverb_3d_get_user_data(reverb_3d_ref) {}
 
@@ -1839,6 +2009,7 @@ function fmod_reverb_3d_get_user_data(reverb_3d_ref) {}
  * This function retrieves the name of a sound.
  * @param {real} sound_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_sound_get_name(sound_ref) {}
 
@@ -1849,6 +2020,7 @@ function fmod_sound_get_name(sound_ref) {}
  * This function returns format information about the sound.
  * @param {real} sound_ref
  * @returns {struct.FmodSoundFormat}
+ * @func_end
  */
 function fmod_sound_get_format(sound_ref) {}
 
@@ -1860,6 +2032,7 @@ function fmod_sound_get_format(sound_ref) {}
  * @param {real} sound_ref
  * @param {real} length_type
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_length(sound_ref, length_type) {}
 
@@ -1870,6 +2043,7 @@ function fmod_sound_get_length(sound_ref, length_type) {}
  * This function retrieves the number of metadata tags.
  * @param {real} sound_ref
  * @returns {struct.FmodSoundNumTags}
+ * @func_end
  */
 function fmod_sound_get_num_tags(sound_ref) {}
 
@@ -1880,8 +2054,9 @@ function fmod_sound_get_num_tags(sound_ref) {}
  * This function retrieves a metadata tag.
  * @param {real} sound_ref
  * @param {real} tag_index
- * @param {Id.Buffer} data_buffer
+ * @param {buffer} data_buffer
  * @returns {struct.FmodSoundTag}
+ * @func_end
  */
 function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
 
@@ -1895,6 +2070,7 @@ function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
  * @param {real} outside_cone_angle
  * @param {real} outside_volume
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume) {}
 
@@ -1905,6 +2081,7 @@ function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_c
  * This function retrieves the inside and outside angles of the 3D projection cone and the outside volume.
  * @param {real} sound_ref
  * @returns {struct.Fmod3DConeSettings}
+ * @func_end
  */
 function fmod_sound_get_3d_cone_settings(sound_ref) {}
 
@@ -1914,7 +2091,8 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
  * @desc > **FMOD Function:** [Sound::set3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dcustomrolloff)
  * This function sets a custom roll-off shape for 3D distance attenuation.
  * @param {real} sound_ref
- * @param {array<struct.FmodVector>} points
+ * @param {array[struct.FmodVector]} points
+ * @func_end
  */
 function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
 
@@ -1924,7 +2102,8 @@ function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
  * @desc > **FMOD Function:** [Sound::get3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dcustomrolloff)
  * This function retrieves the current custom roll-off shape for 3D distance attenuation.
  * @param {real} sound_ref
- * @returns {array<struct.FmodVector>}
+ * @returns {array[struct.FmodVector]}
+ * @func_end
  */
 function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
 
@@ -1937,6 +2116,7 @@ function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
  * @param {real} min
  * @param {real} max
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
 
@@ -1947,6 +2127,7 @@ function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
  * This function retrieves the minimum and maximum audible distance for a 3D sound.
  * @param {real} sound_ref
  * @returns {struct.FmodMinMaxDistance}
+ * @func_end
  */
 function fmod_sound_get_3d_min_max_distance(sound_ref) {}
 
@@ -1959,6 +2140,7 @@ function fmod_sound_get_3d_min_max_distance(sound_ref) {}
  * @param {real} frequency
  * @param {real} priority
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_defaults(sound_ref, frequency, priority) {}
 
@@ -1969,6 +2151,7 @@ function fmod_sound_set_defaults(sound_ref, frequency, priority) {}
  * This function retrieves a sound's default playback attributes.
  * @param {real} sound_ref
  * @returns {struct.FmodSoundDefaults}
+ * @func_end
  */
 function fmod_sound_get_defaults(sound_ref) {}
 
@@ -1980,6 +2163,7 @@ function fmod_sound_get_defaults(sound_ref) {}
  * @param {real} sound_ref
  * @param {real} mode
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_mode(sound_ref, mode) {}
 
@@ -1990,6 +2174,7 @@ function fmod_sound_set_mode(sound_ref, mode) {}
  * This function retrieves the mode of a sound.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_mode(sound_ref) {}
 
@@ -2001,6 +2186,7 @@ function fmod_sound_get_mode(sound_ref) {}
  * @param {real} sound_ref
  * @param {real} count
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_loop_count(sound_ref, count) {}
 
@@ -2011,6 +2197,7 @@ function fmod_sound_set_loop_count(sound_ref, count) {}
  * This function retrieves the sound's loop count.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_loop_count(sound_ref) {}
 
@@ -2025,6 +2212,7 @@ function fmod_sound_get_loop_count(sound_ref) {}
  * @param {real} loop_end
  * @param {real} loop_end_type
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type) {}
 
@@ -2037,6 +2225,7 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
  * @param {real} loop_start_type
  * @param {real} loop_end_type
  * @returns {struct.FmodLoopPoints}
+ * @func_end
  */
 function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {}
 
@@ -2048,6 +2237,7 @@ function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {
  * @param {real} sound_ref
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
 
@@ -2058,6 +2248,7 @@ function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
  * This function retrieves the sound's current sound group.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_sound_group(sound_ref) {}
 
@@ -2068,6 +2259,7 @@ function fmod_sound_get_sound_group(sound_ref) {}
  * This function retrieves the number of subsounds stored within a sound.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_num_sub_sounds(sound_ref) {}
 
@@ -2079,6 +2271,7 @@ function fmod_sound_get_num_sub_sounds(sound_ref) {}
  * @param {real} sound_ref
  * @param {real} sub_sound_index
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_sub_sound(sound_ref, sub_sound_index) {}
 
@@ -2089,6 +2282,7 @@ function fmod_sound_get_sub_sound(sound_ref, sub_sound_index) {}
  * This function retrieves the parent Sound object that contains this subsound.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_sub_sound_parent(sound_ref) {}
 
@@ -2099,6 +2293,7 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
  * This function retrieves the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.
  * @param {real} sound_ref
  * @returns {struct.FmodSoundOpenState}
+ * @func_end
  */
 function fmod_sound_get_open_state(sound_ref) {}
 
@@ -2108,9 +2303,10 @@ function fmod_sound_get_open_state(sound_ref) {}
  * @desc > **FMOD Function:** [Sound::readData](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_readdata)
  * This function reads data from an opened sound to a specified buffer, using FMOD's internal codecs.
  * @param {real} sound_ref
- * @param {Id.Buffer} buff
+ * @param {buffer} buff
  * @param {real} length
  * @param {real} offset
+ * @func_end
  */
 function fmod_sound_read_data(sound_ref, buff, length, offset) {}
 
@@ -2122,6 +2318,7 @@ function fmod_sound_read_data(sound_ref, buff, length, offset) {}
  * @param {real} sound_ref
  * @param {real} pcm
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_seek_data(sound_ref, pcm) {}
 
@@ -2133,9 +2330,10 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
  * @param {real} sound_ref
  * @param {real} offset
  * @param {real} length
- * @param {Id.Buffer} buff1
- * @param {Id.Buffer} buff2
+ * @param {buffer} buff1
+ * @param {buffer} buff2
  * @returns {struct.FmodSoundLock}
+ * @func_end
  */
 function fmod_sound_lock(sound_ref, offset, length, buff1, buff2) {}
 
@@ -2151,6 +2349,7 @@ function fmod_sound_lock(sound_ref, offset, length, buff1, buff2) {}
  * @param {real} buff2
  * @param {real} len2
  * @param {real} address2
+ * @func_end
  */
 function fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2) {}
 
@@ -2161,6 +2360,7 @@ function fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, addres
  * This function gets the number of music channels inside a MOD/S3M/XM/IT/MIDI file.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_music_num_channels(sound_ref) {}
 
@@ -2173,6 +2373,7 @@ function fmod_sound_get_music_num_channels(sound_ref) {}
  * @param {real} channel_index
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {}
 
@@ -2184,6 +2385,7 @@ function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {
  * @param {real} sound_ref
  * @param {real} channel_index
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_music_channel_volume(sound_ref, channel_index) {}
 
@@ -2195,6 +2397,7 @@ function fmod_sound_get_music_channel_volume(sound_ref, channel_index) {}
  * @param {real} sound_ref
  * @param {real} speed
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_music_speed(sound_ref, speed) {}
 
@@ -2205,6 +2408,7 @@ function fmod_sound_set_music_speed(sound_ref, speed) {}
  * This function gets the relative speed of MOD/S3M/XM/IT/MIDI music.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_music_speed(sound_ref) {}
 
@@ -2215,8 +2419,9 @@ function fmod_sound_get_music_speed(sound_ref) {}
  * This function retrieves a sync point.
  * @param {real} sound_ref
  * @param {real} point_index
- * @param {enum.FMOD_TIMEUNIT} offset_type
+ * @param {constant.FMOD_TIMEUNIT} offset_type
  * @returns {struct.FmodSyncPoint}
+ * @func_end
  */
 function fmod_sound_get_sync_point(sound_ref, point_index, offset_type) {}
 
@@ -2227,6 +2432,7 @@ function fmod_sound_get_sync_point(sound_ref, point_index, offset_type) {}
  * This function retrieves the number of sync points stored within a sound.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_num_sync_points(sound_ref) {}
 
@@ -2240,6 +2446,7 @@ function fmod_sound_get_num_sync_points(sound_ref) {}
  * @param {real} offset_type
  * @param {string} name
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
 
@@ -2251,6 +2458,7 @@ function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
  * @param {real} sound_ref
  * @param {real} point_index
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_delete_sync_point(sound_ref, point_index) {}
 
@@ -2261,6 +2469,7 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
  * This function frees a sound object.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_release(sound_ref) {}
 
@@ -2271,6 +2480,7 @@ function fmod_sound_release(sound_ref) {}
  * This function retrieves the parent System object.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_system_object(sound_ref) {}
 
@@ -2282,6 +2492,7 @@ function fmod_sound_get_system_object(sound_ref) {}
  * @param {real} sound_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_set_user_data(sound_ref, data) {}
 
@@ -2292,6 +2503,7 @@ function fmod_sound_set_user_data(sound_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} sound_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_get_user_data(sound_ref) {}
 
@@ -2303,6 +2515,7 @@ function fmod_sound_get_user_data(sound_ref) {}
  * @param {real} sound_group_ref
  * @param {real} max_audible
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_set_max_audible(sound_group_ref, max_audible) {}
 
@@ -2313,6 +2526,7 @@ function fmod_sound_group_set_max_audible(sound_group_ref, max_audible) {}
  * This function retrieves the maximum number of playbacks to be audible at once in a sound group.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_max_audible(sound_group_ref) {}
 
@@ -2324,6 +2538,7 @@ function fmod_sound_group_get_max_audible(sound_group_ref) {}
  * @param {real} sound_group_ref
  * @param {real} behavior
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
 
@@ -2334,6 +2549,7 @@ function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
  * This function retrieves the current max audible behavior.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
 
@@ -2345,6 +2561,7 @@ function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
  * @param {real} sound_group_ref
  * @param {real} speed
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_set_mute_fade_speed(sound_group_ref, speed) {}
 
@@ -2355,6 +2572,7 @@ function fmod_sound_group_set_mute_fade_speed(sound_group_ref, speed) {}
  * This function retrieves the current mute fade time.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_mute_fade_speed(sound_group_ref) {}
 
@@ -2366,6 +2584,7 @@ function fmod_sound_group_get_mute_fade_speed(sound_group_ref) {}
  * @param {real} sound_group_ref
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_set_volume(sound_group_ref, volume) {}
 
@@ -2376,6 +2595,7 @@ function fmod_sound_group_set_volume(sound_group_ref, volume) {}
  * This function retrieves the volume of the sound group.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_volume(sound_group_ref) {}
 
@@ -2386,6 +2606,7 @@ function fmod_sound_group_get_volume(sound_group_ref) {}
  * This function retrieves the current number of sounds in this sound group.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_num_sounds(sound_group_ref) {}
 
@@ -2397,6 +2618,7 @@ function fmod_sound_group_get_num_sounds(sound_group_ref) {}
  * @param {real} sound_group_ref
  * @param {real} sound_index
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_sound(sound_group_ref, sound_index) {}
 
@@ -2407,6 +2629,7 @@ function fmod_sound_group_get_sound(sound_group_ref, sound_index) {}
  * This function retrieves the number of currently playing Channels for the SoundGroup.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_num_playing(sound_group_ref) {}
 
@@ -2417,6 +2640,7 @@ function fmod_sound_group_get_num_playing(sound_group_ref) {}
  * This function stops all sounds within this soundgroup.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_stop(sound_group_ref) {}
 
@@ -2427,6 +2651,7 @@ function fmod_sound_group_stop(sound_group_ref) {}
  * This function retrieves the name of the sound group.
  * @param {real} sound_group_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_sound_group_get_name(sound_group_ref) {}
 
@@ -2437,6 +2662,7 @@ function fmod_sound_group_get_name(sound_group_ref) {}
  * This function releases a soundgroup object and returns all sounds back to the master sound group.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_release(sound_group_ref) {}
 
@@ -2447,6 +2673,7 @@ function fmod_sound_group_release(sound_group_ref) {}
  * This function retrieves the parent System object.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_system_object(sound_group_ref) {}
 
@@ -2458,6 +2685,7 @@ function fmod_sound_group_get_system_object(sound_group_ref) {}
  * @param {real} sound_group_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_set_user_data(sound_group_ref, data) {}
 
@@ -2468,6 +2696,7 @@ function fmod_sound_group_set_user_data(sound_group_ref, data) {}
  * This function retrieves a user value associated with this object.
  * @param {real} sound_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_sound_group_get_user_data(sound_group_ref) {}
 
@@ -2477,7 +2706,8 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::getLoadingState](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getloadingstate)
  * This function retrieves the loading state.
  * @param {real} bank_ref 
- * @returns {enum.FMOD_STUDIO_LOADING_STATE}
+ * @returns {constant.FMOD_STUDIO_LOADING_STATE}
+ * @func_end
  */
 function fmod_studio_bank_get_loading_state(bank_ref) {}
 
@@ -2488,6 +2718,7 @@ function fmod_studio_bank_get_loading_state(bank_ref) {}
  * This function loads non-streaming sample data for all events in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_load_sample_data(bank_ref) {}
 
@@ -2498,6 +2729,7 @@ function fmod_studio_bank_load_sample_data(bank_ref) {}
  * This function unloads non-streaming sample data for all events in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_unload_sample_data(bank_ref) {}
 
@@ -2508,6 +2740,7 @@ function fmod_studio_bank_unload_sample_data(bank_ref) {}
  * This function retrieves the loading state of the samples in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
 
@@ -2518,6 +2751,7 @@ function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
  * This function unloads the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_unload(bank_ref) {}
 
@@ -2528,6 +2762,7 @@ function fmod_studio_bank_unload(bank_ref) {}
  * This function retrieves the number of buses in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_bus_count(bank_ref) {}
 
@@ -2537,7 +2772,8 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::getBusList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuslist)
  * This function retrieves a list of the buses in the bank.
  * @param {real} bank_ref
- * @returns {array<real>}
+ * @returns {array[real]}
+ * @func_end
  */
 function fmod_studio_bank_get_bus_list(bank_ref) {}
 
@@ -2548,6 +2784,7 @@ function fmod_studio_bank_get_bus_list(bank_ref) {}
  * This function retrieves the number of event descriptions in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_event_count(bank_ref) {}
 
@@ -2557,7 +2794,8 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::getEventList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventlist)
  * This function retrieves a list of the event descriptions in the bank.
  * @param {real} bank_ref
- * @returns {array<real>}
+ * @returns {array[real]}
+ * @func_end
  */
 function fmod_studio_bank_get_event_description_list(bank_ref) {}
 
@@ -2568,6 +2806,7 @@ function fmod_studio_bank_get_event_description_list(bank_ref) {}
  * This function retrieves the number of string table entries in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_string_count(bank_ref) {}
 
@@ -2579,6 +2818,7 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
  * @param {real} bank_ref
  * @param {real} string_index
  * @returns {struct.FmodStudioStringInfo}
+ * @func_end
  */
 function fmod_studio_bank_get_string_info(bank_ref, string_index) {}
 
@@ -2589,6 +2829,7 @@ function fmod_studio_bank_get_string_info(bank_ref, string_index) {}
  * This function retrieves the number of VCAs in the bank.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_vca_count(bank_ref) {}
 
@@ -2598,7 +2839,8 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::getVCAList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcalist)
  * This function retrieves a list of the VCAs in the bank.
  * @param {real} bank_ref
- * @returns {array<real>}
+ * @returns {array[real]}
+ * @func_end
  */
 function fmod_studio_bank_get_vca_list(bank_ref) {}
 
@@ -2609,6 +2851,7 @@ function fmod_studio_bank_get_vca_list(bank_ref) {}
  * This function retrieves the GUID.
  * @param {real} bank_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_bank_get_id(bank_ref) {}
 
@@ -2619,6 +2862,7 @@ function fmod_studio_bank_get_id(bank_ref) {}
  * This function retrieves the path.
  * @param {real} bank_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_bank_get_path(bank_ref) {}
 
@@ -2629,6 +2873,7 @@ function fmod_studio_bank_get_path(bank_ref) {}
  * This function checks that the Bank reference is valid.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_is_valid(bank_ref) {}
 
@@ -2640,6 +2885,7 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  * @param {real} bank_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_set_user_data(bank_ref, data) {}
 
@@ -2650,6 +2896,7 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
  * This function retrieves the bank user data.
  * @param {real} bank_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bank_get_user_data(bank_ref) {}
 
@@ -2661,6 +2908,7 @@ function fmod_studio_bank_get_user_data(bank_ref) {}
  * @param {real} bus_ref
  * @param {real} pause
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_set_paused(bus_ref, pause) {}
 
@@ -2671,6 +2919,7 @@ function fmod_studio_bus_set_paused(bus_ref, pause) {}
  * This function retrieves the pause state.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_get_paused(bus_ref) {}
 
@@ -2682,6 +2931,7 @@ function fmod_studio_bus_get_paused(bus_ref) {}
  * @param {real} bus_ref
  * @param {real} stop_mode
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
 
@@ -2693,6 +2943,7 @@ function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
  * @param {real} bus_ref
  * @param {real} volumen
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_set_volume(bus_ref, volumen) {}
 
@@ -2703,6 +2954,7 @@ function fmod_studio_bus_set_volume(bus_ref, volumen) {}
  * This function retrieves the volume level.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_get_volume(bus_ref) {}
 
@@ -2714,6 +2966,7 @@ function fmod_studio_bus_get_volume(bus_ref) {}
  * @param {real} bus_ref
  * @param {real} mute
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_set_mute(bus_ref, mute) {}
 
@@ -2724,6 +2977,7 @@ function fmod_studio_bus_set_mute(bus_ref, mute) {}
  * This function retrieves the mute state.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_get_mute(bus_ref) {}
 
@@ -2734,6 +2988,7 @@ function fmod_studio_bus_get_mute(bus_ref) {}
  * This function sets the port index to use when attaching to an output port.
  * @param {real} bus_ref
  * @param {real} port_index
+ * @func_end
  */
 function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
 
@@ -2744,6 +2999,7 @@ function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
  * This function retrieves the port index assigned to the bus.
  * @param {real} bus_ref
  * @returns {real} port_index
+ * @func_end
  */
 function fmod_studio_bus_get_port_index(bus_ref) {}
 
@@ -2754,6 +3010,7 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
  * This function retrieves the core ChannelGroup.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_get_channel_group(bus_ref) {}
 
@@ -2764,6 +3021,7 @@ function fmod_studio_bus_get_channel_group(bus_ref) {}
  * This function locks the core ChannelGroup.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_lock_channel_group(bus_ref) {}
 
@@ -2774,6 +3032,7 @@ function fmod_studio_bus_lock_channel_group(bus_ref) {}
  * This function unlocks the core ChannelGroup.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_unlock_channel_group(bus_ref) {}
 
@@ -2784,6 +3043,7 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
  * This function retrieves the bus CPU usage data.
  * @param {real} bus_ref
  * @returns {struct.FmodCPUUsage}
+ * @func_end
  */
 function fmod_studio_bus_get_cpu_usage(bus_ref) {}
 
@@ -2793,8 +3053,9 @@ function fmod_studio_bus_get_cpu_usage(bus_ref) {}
  * @desc > **FMOD Function:** [Studio::Bus::getMemoryUsage](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getmemoryusage)
  * This function retrieves memory usage statistics.
  * @param {real} bus_ref
- * @param {Id.Buffer} buff_return
+ * @param {buffer} buff_return
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
 
@@ -2805,6 +3066,7 @@ function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
  * This function retrieves the GUID.
  * @param {real} bus_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_bus_get_id(bus_ref) {}
 
@@ -2815,6 +3077,7 @@ function fmod_studio_bus_get_id(bus_ref) {}
  * This function retrieves the path.
  * @param {real} bus_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_bus_get_path(bus_ref) {}
 
@@ -2825,6 +3088,7 @@ function fmod_studio_bus_get_path(bus_ref) {}
  * This function checks that the Bus reference is valid.
  * @param {real} bus_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_bus_is_valid(bus_ref) {}
 
@@ -2836,6 +3100,7 @@ function fmod_studio_bus_is_valid(bus_ref) {}
  * @param {real} command_replay_ref
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
 
@@ -2846,6 +3111,7 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
  * This function sets the create event instance callback.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_create_instance_callback(command_replay_ref) {}
 
@@ -2856,6 +3122,7 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
  * This function sets a callback that is issued each time the replay reaches a new frame.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
 
@@ -2867,6 +3134,7 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
  * @param {real} command_replay_ref
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, path) {}
 
@@ -2877,6 +3145,7 @@ function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, p
  * This function begins playback.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_start(command_replay_ref) {}
 
@@ -2887,6 +3156,7 @@ function fmod_studio_command_replay_start(command_replay_ref) {}
  * This function stops playback.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_stop(command_replay_ref) {}
 
@@ -2897,6 +3167,7 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
  * This function retrieves the progress through the command replay.
  * @param {real} command_replay_ref
  * @returns {struct.FmodCommandReplayCurrentCommand}
+ * @func_end
  */
 function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
 
@@ -2907,6 +3178,7 @@ function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
  * This function retrieves the playback state.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
 
@@ -2918,6 +3190,7 @@ function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
  * @param {real} command_replay_ref
  * @param {real} pause
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
 
@@ -2928,6 +3201,7 @@ function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
  * This function retrieves the paused state.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_paused(command_replay_ref) {}
 
@@ -2939,6 +3213,7 @@ function fmod_studio_command_replay_get_paused(command_replay_ref) {}
  * @param {real} command_replay_ref
  * @param {real} command_index
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_seek_to_command(command_replay_ref, command_index) {}
 
@@ -2950,6 +3225,7 @@ function fmod_studio_command_replay_seek_to_command(command_replay_ref, command_
  * @param {real} command_replay_ref
  * @param {real} time
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
 
@@ -2961,6 +3237,7 @@ function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
  * @param {real} command_replay_ref
  * @param {real} time
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_command_at_time(command_replay_ref, time) {}
 
@@ -2971,6 +3248,7 @@ function fmod_studio_command_replay_get_command_at_time(command_replay_ref, time
  * This function retrieves the number of commands in the replay.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
 
@@ -2982,6 +3260,7 @@ function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
  * @param {real} command_replay_ref
  * @param {real} command_index
  * @returns {struct.FmodCommandReplayCommandInfo}
+ * @func_end
  */
 function fmod_studio_command_replay_get_command_info(command_replay_ref, command_index) {}
 
@@ -2993,6 +3272,7 @@ function fmod_studio_command_replay_get_command_info(command_replay_ref, command
  * @param {real} command_replay_ref
  * @param {real} command_index
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_command_replay_get_command_string(command_replay_ref, command_index) {}
 
@@ -3003,6 +3283,7 @@ function fmod_studio_command_replay_get_command_string(command_replay_ref, comma
  * This function retrieves the total playback time.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_length(command_replay_ref) {}
 
@@ -3013,6 +3294,7 @@ function fmod_studio_command_replay_get_length(command_replay_ref) {}
  * This function retrieves the Studio System object associated with this replay object.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
 
@@ -3023,6 +3305,7 @@ function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
  * This function checks that the CommandReplay reference is valid.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_is_valid(command_replay_ref) {}
 
@@ -3034,6 +3317,7 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
  * @param {real} command_replay_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
 
@@ -3044,6 +3328,7 @@ function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
  * This function retrieves user data.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_get_user_data(command_replay_ref) {}
 
@@ -3054,6 +3339,7 @@ function fmod_studio_command_replay_get_user_data(command_replay_ref) {}
  * This function releases the command replay.
  * @param {real} command_replay_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_command_replay_release(command_replay_ref) {}
 
@@ -3064,6 +3350,7 @@ function fmod_studio_command_replay_release(command_replay_ref) {}
  * This function creates a playable instance.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_create_instance(event_description_ref) {}
 
@@ -3074,6 +3361,7 @@ function fmod_studio_event_description_create_instance(event_description_ref) {}
  * This function retrieves the number of instances.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_instance_count(event_description_ref) {}
 
@@ -3083,7 +3371,8 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
  * @desc > **FMOD Function:** [Studio::EventDescription::getInstanceList](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getinstancelist)
  * This function retrieves a list of the instances.
  * @param {real} event_descriptor_ref
- * @returns {array<real>}
+ * @returns {array[real]}
+ * @func_end
  */
 function fmod_studio_event_description_get_instance_list(event_description_ref) {}
 
@@ -3094,6 +3383,7 @@ function fmod_studio_event_description_get_instance_list(event_description_ref) 
  * This function releases all instances.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_release_all_instances(event_description_ref) {}
 
@@ -3104,6 +3394,7 @@ function fmod_studio_event_description_release_all_instances(event_description_r
  * This function loads non-streaming sample data used by the event.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_load_sample_data(event_description_ref) {}
 
@@ -3114,6 +3405,7 @@ function fmod_studio_event_description_load_sample_data(event_description_ref) {
  * This function unloads all non-streaming sample data.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_unload_sample_data(event_description_ref) {}
 
@@ -3124,6 +3416,7 @@ function fmod_studio_event_description_unload_sample_data(event_description_ref)
  * This function retrieves the sample data loading state.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_sample_loading_state(event_description_ref) {}
 
@@ -3134,6 +3427,7 @@ function fmod_studio_event_description_get_sample_loading_state(event_descriptio
  * This function retrieves the event's 3D status.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_3d(event_description_ref) {}
 
@@ -3144,6 +3438,7 @@ function fmod_studio_event_description_is_3d(event_description_ref) {}
  * This function retrieves the event's doppler status.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_doppler_enabled(event_description_ref) {}
 
@@ -3154,6 +3449,7 @@ function fmod_studio_event_description_is_doppler_enabled(event_description_ref)
  * This function retrieves the event's oneshot status.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_oneshot(event_description_ref) {}
 
@@ -3164,6 +3460,7 @@ function fmod_studio_event_description_is_oneshot(event_description_ref) {}
  * This function retrieves the event's snapshot status.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_snapshot(event_description_ref) {}
 
@@ -3174,6 +3471,7 @@ function fmod_studio_event_description_is_snapshot(event_description_ref) {}
  * This function retrieves the event's stream status.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_stream(event_description_ref) {}
 
@@ -3184,6 +3482,7 @@ function fmod_studio_event_description_is_stream(event_description_ref) {}
  * This function retrieves whether the event has any sustain points.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_has_sustain_point(event_description_ref) {}
 
@@ -3194,6 +3493,7 @@ function fmod_studio_event_description_has_sustain_point(event_description_ref) 
  * This function retrieves the minimum and maximum distances for 3D attenuation.
  * @param {real} event_description_ref
  * @returns {struct.FmodMinMaxDistance}
+ * @func_end
  */
 function fmod_studio_event_description_get_min_max_distance(event_description_ref) {}
 
@@ -3204,6 +3504,7 @@ function fmod_studio_event_description_get_min_max_distance(event_description_re
  * This function retrieves the sound size for 3D panning.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_sound_size(event_description_ref) {}
 
@@ -3215,6 +3516,7 @@ function fmod_studio_event_description_get_sound_size(event_description_ref) {}
  * @param {real} event_descriptor_ref
  * @param {string} name
  * @returns {struct.FmodStudioParameterDescription}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_description_by_name(event_description_ref, name) {}
 
@@ -3226,6 +3528,7 @@ function fmod_studio_event_description_get_parameter_description_by_name(event_d
  * @param {real} event_descriptor_ref
  * @param {struct.FmodStudioParameterId} parameter_id
  * @returns {struct.FmodStudioParameterDescription}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_description_by_id(event_description_ref, parameter_id) {}
 
@@ -3237,6 +3540,7 @@ function fmod_studio_event_description_get_parameter_description_by_id(event_des
  * @param {real} event_descriptor_ref
  * @param {real} parameter_index
  * @returns {struct.FmodStudioParameterDescription}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_description_by_index(event_description_ref, index) {}
 
@@ -3247,6 +3551,7 @@ function fmod_studio_event_description_get_parameter_description_by_index(event_
  * This function retrieves the number of parameters in the event.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_description_count(event_description_ref) {}
 
@@ -3259,6 +3564,7 @@ function fmod_studio_event_description_get_parameter_description_count(event_des
  * @param {string} name
  * @param {real} label_index
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_label_by_name(event_description_ref, name, label_index) {}
 
@@ -3271,6 +3577,7 @@ function fmod_studio_event_description_get_parameter_label_by_name(event_descrip
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} label_index
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_label_by_id(event_description_ref, parameter_id, label_index) {}
 
@@ -3283,6 +3590,7 @@ function fmod_studio_event_description_get_parameter_label_by_id(event_descripti
  * @param {real} index
  * @param {real} label_index
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_event_description_get_parameter_label_by_index(event_description_ref, index, label_index) {}
 
@@ -3293,8 +3601,9 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_descri
  * This function retrieves a user property by name.
  * @param {real} event_description_ref
  * @param {string} name
- * @param {Id.Buffer} buff_return
+ * @param {buffer} buff_return
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_user_property(event_description_ref, name, buff_return) {}
 
@@ -3305,8 +3614,9 @@ function fmod_studio_event_description_get_user_property(event_description_ref, 
  * This function retrieves a user property by index.
  * @param {real} event_description_ref
  * @param {real} index
- * @param {Id.Buffer} buff_return
+ * @param {buffer} buff_return
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_user_property_by_index(event_description_ref, index, buff_return) {}
 
@@ -3318,6 +3628,7 @@ function fmod_studio_event_description_get_user_property_by_index(event_descript
  * @param {real} event_description_ref
  * @param {string} name
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_user_property_count(event_description_ref, name) {}
 
@@ -3328,6 +3639,7 @@ function fmod_studio_event_description_get_user_property_count(event_description
  * This function retrieves the GUID.
  * @param {real} event_description_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_event_description_get_id(event_description_ref) {}
 
@@ -3338,6 +3650,7 @@ function fmod_studio_event_description_get_id(event_description_ref) {}
  * This function retrieves the length of the timeline.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_length(event_description_ref) {}
 
@@ -3348,6 +3661,7 @@ function fmod_studio_event_description_get_length(event_description_ref) {}
  * This function retrieves the path.
  * @param {real} event_description_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_event_description_get_path(event_description_ref) {}
 
@@ -3359,6 +3673,7 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  * @param {real} event_description_ref
  * @param {real} type
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_set_callback(event_description_ref, type) {}
 
@@ -3370,6 +3685,7 @@ function fmod_studio_event_description_set_callback(event_description_ref, type)
  * @param {real} event_description_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_set_user_data(event_description_ref, data) {}
 
@@ -3380,6 +3696,7 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
  * This function retrieves the event user data.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_get_user_data(event_description_ref) {}
 
@@ -3390,6 +3707,7 @@ function fmod_studio_event_description_get_user_data(event_description_ref) {}
  * This function checks that the EventDescription reference is valid.
  * @param {real} event_description_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_description_is_valid(event_description_ref) {}
 
@@ -3400,6 +3718,7 @@ function fmod_studio_event_description_is_valid(event_description_ref) {}
  * This function starts playback.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_start(event_instance_ref) {}
 
@@ -3411,6 +3730,7 @@ function fmod_studio_event_instance_start(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} mode
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
 
@@ -3421,6 +3741,7 @@ function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
  * This function retrieves the playback state.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
 
@@ -3432,6 +3753,7 @@ function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} pause
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
 
@@ -3442,6 +3764,7 @@ function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
  * This function retrieves the pause state.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_paused(event_instance_ref) {}
 
@@ -3452,6 +3775,7 @@ function fmod_studio_event_instance_get_paused(event_instance_ref) {}
  * This function allows an event to continue past a sustain point.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_keyoff(event_instance_ref) {}
 
@@ -3463,6 +3787,7 @@ function fmod_studio_event_instance_keyoff(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} pitch
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
 
@@ -3473,6 +3798,7 @@ function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
  * This function retrieves the pitch multiplier.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_pitch(event_instance_ref) {}
 
@@ -3485,6 +3811,7 @@ function fmod_studio_event_instance_get_pitch(event_instance_ref) {}
  * @param {real} property
  * @param {real} value
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_property(event_instance_ref, property, value) {}
 
@@ -3496,6 +3823,7 @@ function fmod_studio_event_instance_set_property(event_instance_ref, property, v
  * @param {real} event_instance_ref
  * @param {real} property
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_property(event_instance_ref, property) {}
 
@@ -3507,6 +3835,7 @@ function fmod_studio_event_instance_get_property(event_instance_ref, property) {
  * @param {real} event_instance_ref
  * @param {real} position
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_timeline_position(event_instance_ref, position) {}
 
@@ -3517,6 +3846,7 @@ function fmod_studio_event_instance_set_timeline_position(event_instance_ref, po
  * This function retrieves the timeline cursor position.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_timeline_position(event_instance_ref) {}
 
@@ -3528,6 +3858,7 @@ function fmod_studio_event_instance_get_timeline_position(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
 
@@ -3538,6 +3869,7 @@ function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
  * This function retrieves the volume level.
  * @param {real} event_instance_ref
  * @returns {struct.FmodStudioEventInstanceVolume}
+ * @func_end
  */
 function fmod_studio_event_instance_get_volume(event_instance_ref) {}
 
@@ -3548,6 +3880,7 @@ function fmod_studio_event_instance_get_volume(event_instance_ref) {}
  * This function retrieves the virtualization state.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
 
@@ -3558,6 +3891,7 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
  * This function sets the 3D attributes.
  * @param {real} event_instance_ref
  * @param {struct.Fmod3DAttributes} attributes
+ * @func_end
  */
 function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attributes) {}
 
@@ -3568,6 +3902,7 @@ function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attrib
  * This function retrieves the 3D attributes.
  * @param {real} event_instance_ref
  * @returns {struct.Fmod3DAttributes}
+ * @func_end
  */
 function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
 
@@ -3579,6 +3914,7 @@ function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} mask
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask) {}
 
@@ -3589,6 +3925,7 @@ function fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask) 
  * This function retrieves the listener mask.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
 
@@ -3599,6 +3936,7 @@ function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
  * This function retrieves the minimum and maximum distances for 3D attenuation.
  * @param {real} event_instance_ref
  * @returns {struct.FmodMinMaxDistance}
+ * @func_end
  */
 function fmod_studio_event_instance_get_min_max_distance(event_instance_ref) {}
 
@@ -3612,6 +3950,7 @@ function fmod_studio_event_instance_get_min_max_distance(event_instance_ref) {}
  * @param {real} value
  * @param {real} ignore_seek_speed
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, name, value, ignore_seek_speed) {}
 
@@ -3625,6 +3964,7 @@ function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, na
  * @param {string} label
  * @param {real} ignore_seek_speed
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name_with_label(event_instance_ref, name, label, ignore_seek_speed) {}
 
@@ -3636,6 +3976,7 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(event_insta
  * @param {real} event_instance_ref
  * @param {string} name
  * @returns {struct.FmodStudioParameter}
+ * @func_end
  */
 function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, name) {}
 
@@ -3648,6 +3989,7 @@ function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, na
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} value
  * @param {bool} ignore_seek_speed
+ * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, parameter_id, value, ignore_seek_speed) {}
 
@@ -3660,6 +4002,7 @@ function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, para
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {string} label
  * @param {bool} ignore_seek_speed
+ * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instance_ref, parameter_id, label, ignore_seek_speed) {}
 
@@ -3671,6 +4014,7 @@ function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instanc
  * @param {real} event_instance_ref
  * @param {struct.FmodStudioParameterId} parameter_id
  * @returns {struct.FmodStudioParameter}
+ * @func_end
  */
 function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, parameter_id) {}
 
@@ -3681,6 +4025,7 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
  * This function retrieves the core ChannelGroup.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
 
@@ -3693,6 +4038,7 @@ function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
  * @param {real} index
  * @param {real} level
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, level) {}
 
@@ -3704,6 +4050,7 @@ function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, 
  * @param {real} event_instance_ref
  * @param {real} index
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) {}
 
@@ -3714,6 +4061,7 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
  * This function retrieves the event CPU usage data.
  * @param {real} event_instance_ref
  * @returns {struct.FmodCPUUsage}
+ * @func_end
  */
 function fmod_studio_event_instance_get_cpu_usage(event_instance_ref) {}
 
@@ -3724,6 +4072,7 @@ function fmod_studio_event_instance_get_cpu_usage(event_instance_ref) {}
  * This function retrieves memory usage statistics.
  * @param {real} event_instance_ref
  * @returns {struct.FmodStudioMemoryUsage}
+ * @func_end
  */
 function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
 
@@ -3735,6 +4084,7 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
  * @param {real} event_instance_ref
  * @param {real} type
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
 
@@ -3746,6 +4096,7 @@ function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
  * @param {real} event_instance_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
 
@@ -3756,6 +4107,7 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
  * This function retrieves the event instance user data.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
 
@@ -3766,6 +4118,7 @@ function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
  * This function retrieves the event description.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_get_description(event_instance_ref) {}
 
@@ -3776,6 +4129,7 @@ function fmod_studio_event_instance_get_description(event_instance_ref) {}
  * This function marks the event instance for release.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_release(event_instance_ref) {}
 
@@ -3786,6 +4140,7 @@ function fmod_studio_event_instance_release(event_instance_ref) {}
  * This function checks that the EventInstance reference is valid.
  * @param {real} event_instance_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_event_instance_is_valid(event_instance_ref) {}
 
@@ -3795,6 +4150,7 @@ function fmod_studio_event_instance_is_valid(event_instance_ref) {}
  * @desc > **FMOD Function:** [Studio::System::create](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_create)
  * This is the FMOD Studio System creation function.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_create() {}
 
@@ -3807,6 +4163,7 @@ function fmod_studio_system_create() {}
  * @param {real} studio_flags
  * @param {real} core_flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
 
@@ -3816,6 +4173,7 @@ function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
  * @desc > **FMOD Function:** [Studio::System::release](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_release)
  * This function shuts down and frees the Studio System object.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_release() {}
 
@@ -3825,6 +4183,7 @@ function fmod_studio_system_release() {}
  * @desc > **FMOD Function:** [Studio::System::update](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_update)
  * This function updates the FMOD Studio System.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_update() {}
 
@@ -3834,6 +4193,7 @@ function fmod_studio_system_update() {}
  * @desc > **FMOD Function:** [Studio::System::flushCommands](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushcommands)
  * This function blocks until all pending commands have been executed.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_flush_commands() {}
 
@@ -3843,6 +4203,7 @@ function fmod_studio_system_flush_commands() {}
  * @desc > **FMOD Function:** [Studio::System::flushSampleLoading](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushsampleloading)
  * This function blocks until all sample loading and unloading has completed.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_flush_sample_loading() {}
 
@@ -3853,6 +4214,7 @@ function fmod_studio_system_flush_sample_loading() {}
  * This function loads the metadata of a Studio bank using custom read callbacks.
  * @param {real} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_load_bank_custom(flags) {}
 
@@ -3864,6 +4226,7 @@ function fmod_studio_system_load_bank_custom(flags) {}
  * @param {string} filename
  * @param {real} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_load_bank_file(filename, flags) {}
 
@@ -3874,9 +4237,10 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
  * This function loads the metadata of a Studio bank from memory.
  * @param {real} buff_data
  * @param {real} length
- * @param {enum.FMOD_STUDIO_LOAD_MEMORY_MODE} mode
- * @param {enum.FMOD_STUDIO_LOAD_BANK} flags
+ * @param {constant.FMOD_STUDIO_LOAD_MEMORY_MODE} mode
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
 
@@ -3886,6 +4250,7 @@ function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
  * @desc > **FMOD Function:** [Studio::System::unloadAll](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_unloadall)
  * This function unloads all currently loaded banks.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_unload_all() {}
 
@@ -3896,6 +4261,7 @@ function fmod_studio_system_unload_all() {}
  * This function retrieves a loaded bank.
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_bank(path) {}
 
@@ -3906,6 +4272,7 @@ function fmod_studio_system_get_bank(path) {}
  * This function retrieves a loaded bank.
  * @param {string} guid_str
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_bank_by_id(guid_str) {}
 
@@ -3915,6 +4282,7 @@ function fmod_studio_system_get_bank_by_id(guid_str) {}
  * @desc > **FMOD Function:** [Studio::System::getBankCount](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbankcount)
  * This function retrieves the number of loaded banks.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_bank_count() {}
 
@@ -3923,7 +4291,8 @@ function fmod_studio_system_get_bank_count() {}
  * @func fmod_studio_system_get_bank_list
  * @desc > **FMOD Function:** [Studio::System::getBankList](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbanklist)
  * This function retrieves the loaded Banks.
- * @returns {array<real>}
+ * @returns {array[real]}
+ * @func_end
  */
 function fmod_studio_system_get_bank_list() {}
 
@@ -3935,6 +4304,7 @@ function fmod_studio_system_get_bank_list() {}
  * @param {real} listener_index
  * @param {struct.Fmod3DAttributes} attributes
  * @param {struct.FmodVector} attenuation
+ * @func_end
  */
 function fmod_studio_system_set_listener_attributes(listener_index, attributes, attenuation) {}
 
@@ -3945,6 +4315,7 @@ function fmod_studio_system_set_listener_attributes(listener_index, attributes, 
  * This function retrieves listener 3D attributes.
  * @param {real} listener_index
  * @returns {struct.FmodStudioListenerAttributes}
+ * @func_end
  */
 function fmod_studio_system_get_listener_attributes(listener_index) {}
 
@@ -3956,6 +4327,7 @@ function fmod_studio_system_get_listener_attributes(listener_index) {}
  * @param {real} listener_index
  * @param {real} weight
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_listener_weight(listener_index, weight) {}
 
@@ -3966,6 +4338,7 @@ function fmod_studio_system_set_listener_weight(listener_index, weight) {}
  * This function retrieves listener weighting.
  * @param {real} listener_index
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_listener_weight(listener_index) {}
 
@@ -3976,6 +4349,7 @@ function fmod_studio_system_get_listener_weight(listener_index) {}
  * This function sets the number of listeners in the 3D sound scene.
  * @param {real} num
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_num_listeners(num) {}
 
@@ -3985,6 +4359,7 @@ function fmod_studio_system_set_num_listeners(num) {}
  * @desc > **FMOD Function:** [Studio::System::getNumListeners](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getnumlisteners)
  * This function retrieves the number of listeners.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_num_listeners() {}
 
@@ -3995,6 +4370,7 @@ function fmod_studio_system_get_num_listeners() {}
  * This function retrieves a loaded bus.
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_bus(path) {}
 
@@ -4005,6 +4381,7 @@ function fmod_studio_system_get_bus(path) {}
  * This function retrieves a loaded bus by its ID.
  * @param {string} guid
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_bus_by_id(guid) {}
 
@@ -4015,6 +4392,7 @@ function fmod_studio_system_get_bus_by_id(guid) {}
  * This function retrieves an EventDescription.
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_event(path) {}
 
@@ -4025,6 +4403,7 @@ function fmod_studio_system_get_event(path) {}
  * This function retrieves an EventDescription.
  * @param {string} guid_str
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_event_by_id(guid_str) {}
 
@@ -4034,6 +4413,7 @@ function fmod_studio_system_get_event_by_id(guid_str) {}
  * @desc > **FMOD Function:** [Studio::System::getParameterByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterbyid)
  * This function retrieves a global parameter value by unique identifier.
  * @param {struct.FmodStudioParameterId} parameter_id
+ * @func_end
  */
 function fmod_studio_system_get_parameter_by_id(parameter_id) {}
 
@@ -4045,6 +4425,7 @@ function fmod_studio_system_get_parameter_by_id(parameter_id) {}
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} value
  * @param {bool} ignore_seek_speed
+ * @func_end
  */
 function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek_speed) {}
 
@@ -4056,6 +4437,7 @@ function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {string} label
  * @param {bool} ignore_seek_speed
+ * @func_end
  */
 function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, ignore_seek_speed) {}
 
@@ -4066,6 +4448,7 @@ function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, 
  * This function retrieves a global parameter value by name.
  * @param {string} name
  * @returns {struct.FmodStudioParameter}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_by_name(name) {}
 
@@ -4078,6 +4461,7 @@ function fmod_studio_system_get_parameter_by_name(name) {}
  * @param {real} value
  * @param {real} ignore_seek_speed
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed) {}
 
@@ -4090,6 +4474,7 @@ function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed
  * @param {string} label
  * @param {real} ignore_seek_speed
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed) {}
 
@@ -4100,6 +4485,7 @@ function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore
  * This function retrieves a global parameter by name or path.
  * @param {string} name
  * @returns {struct.FmodStudioParameterDescription}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_description_by_name(name) {}
 
@@ -4110,6 +4496,7 @@ function fmod_studio_system_get_parameter_description_by_name(name) {}
  * This function retrieves a global parameter by ID.
  * @param {struct.FmodStudioParameterId} parameter_id
  * @returns {struct.FmodStudioParameterDescription}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_description_by_id(parameter_id) {}
 
@@ -4119,6 +4506,7 @@ function fmod_studio_system_get_parameter_description_by_id(parameter_id) {}
  * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionCount](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptioncount)
  * This function retrieves the number of global parameters.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_description_count() {}
 
@@ -4127,7 +4515,8 @@ function fmod_studio_system_get_parameter_description_count() {}
  * @func fmod_studio_system_get_parameter_description_list
  * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionList](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionlist)
  * This function retrieves a list of global parameters.
- * @returns {array<struct.FmodStudioParameterDescription>}
+ * @returns {array[struct.FmodStudioParameterDescription]}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_description_list() {}
 
@@ -4139,6 +4528,7 @@ function fmod_studio_system_get_parameter_description_list() {}
  * @param {string} name
  * @param {real} labelindex
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
 
@@ -4150,6 +4540,7 @@ function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
  * @param {struct.FmodStudioParameterId} parameter_id
  * @param {real} label_index
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index) {}
 
@@ -4160,6 +4551,7 @@ function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
  * This function retrieves a loaded VCA.
  * @param {string} path
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_vca(path) {}
 
@@ -4170,6 +4562,7 @@ function fmod_studio_system_get_vca(path) {}
  * This function retrieves a loaded VCA.
  * @param {string} guid_str
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_vca_by_id(guid_str) {}
 
@@ -4179,6 +4572,7 @@ function fmod_studio_system_get_vca_by_id(guid_str) {}
  * @desc > **FMOD Function:** [Studio::System::setAdvancedSettings](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setadvancedsettings)
  * This function sets advanced settings.
  * @param {struct.FmodStudioAdvancedSettings} settings
+ * @func_end
  */
 function fmod_studio_system_set_advanced_settings(settings) {}
 
@@ -4188,6 +4582,7 @@ function fmod_studio_system_set_advanced_settings(settings) {}
  * @desc > **FMOD Function:** [Studio::System::getAdvancedSettings](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getadvancedsettings)
  * This function retrieves advanced settings.
  * @returns {struct.FmodStudioAdvancedSettings}
+ * @func_end
  */
 function fmod_studio_system_get_advanced_settings() {}
 
@@ -4199,6 +4594,7 @@ function fmod_studio_system_get_advanced_settings() {}
  * @param {string} filename
  * @param {real} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_start_command_capture(filename, flags) {}
 
@@ -4208,6 +4604,7 @@ function fmod_studio_system_start_command_capture(filename, flags) {}
  * @desc > **FMOD Function:** [Studio::System::stopCommandCapture](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_stopcommandcapture)
  * This function stops recording Studio commands.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_stop_command_capture() {}
 
@@ -4219,6 +4616,7 @@ function fmod_studio_system_stop_command_capture() {}
  * @param {string} filename
  * @param {real} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_load_command_replay(filename, flags) {}
 
@@ -4228,6 +4626,7 @@ function fmod_studio_system_load_command_replay(filename, flags) {}
  * @desc > **FMOD Function:** [Studio::System::getBufferUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbufferusage)
  * This function retrieves buffer usage information.
  * @returns {struct.FmodStudioBufferUsage}
+ * @func_end
  */
 function fmod_studio_system_get_buffer_usage() {}
 
@@ -4237,6 +4636,7 @@ function fmod_studio_system_get_buffer_usage() {}
  * @desc > **FMOD Function:** [Studio::System::resetBufferUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_resetbufferusage)
  * This function resets memory buffer usage statistics.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_reset_buffer_usage() {}
 
@@ -4246,6 +4646,7 @@ function fmod_studio_system_reset_buffer_usage() {}
  * @desc > **FMOD Function:** [Studio::System::getCPUUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcpuusage)
  * This function retrieves the amount of CPU used for different parts of the Studio engine.
  * @returns {struct.FmodStudioCPUUsage}
+ * @func_end
  */
 function fmod_studio_system_get_cpu_usage() {}
 
@@ -4255,6 +4656,7 @@ function fmod_studio_system_get_cpu_usage() {}
  * @desc > **FMOD Function:** [Studio::System::getMemoryUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getmemoryusage)
  * This function retrieves memory usage statistics.
  * @returns {struct.FmodStudioMemoryUsage}
+ * @func_end
  */
 function fmod_studio_system_get_memory_usage() {}
 
@@ -4265,6 +4667,7 @@ function fmod_studio_system_get_memory_usage() {}
  * This function sets a callback for the FMOD Studio System.
  * @param {real} type
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_callback(type) {}
 
@@ -4275,6 +4678,7 @@ function fmod_studio_system_set_callback(type) {}
  * This function sets the user data.
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_set_user_data(data) {}
 
@@ -4284,6 +4688,7 @@ function fmod_studio_system_set_user_data(data) {}
  * @desc > **FMOD Function:** [Studio::System::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getuserdata)
  * This function retrieves the user data.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_user_data() {}
 
@@ -4294,6 +4699,7 @@ function fmod_studio_system_get_user_data() {}
  * This function retrieves information for loading a sound from the audio table.
  * @param {string} key
  * @returns {struct.FmodStudioSoundInfo}
+ * @func_end
  */
 function fmod_studio_system_get_sound_info(key) {}
 
@@ -4303,6 +4709,7 @@ function fmod_studio_system_get_sound_info(key) {}
  * @desc > **FMOD Function:** [Studio::System::getCoreSystem](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcoresystem)
  * This function retrieves the Core System.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_get_core_system() {}
 
@@ -4313,6 +4720,7 @@ function fmod_studio_system_get_core_system() {}
  * This function retrieves the ID for a bank, event, snapshot, bus or VCA.
  * @param {string} path
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_system_lookup_id(path) {}
 
@@ -4323,6 +4731,7 @@ function fmod_studio_system_lookup_id(path) {}
  * This function retrieves the path for a bank, event, snapshot, bus or VCA.
  * @param {string} str_guid
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_system_lookup_path(str_guid) {}
 
@@ -4332,6 +4741,7 @@ function fmod_studio_system_lookup_path(str_guid) {}
  * @desc > **FMOD Function:** [Studio::System::isValid](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_isvalid)
  * This function checks that the System reference is valid and has been initialized.
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_system_is_valid() {}
 
@@ -4343,6 +4753,7 @@ function fmod_studio_system_is_valid() {}
  * @param {real} vca_ref
  * @param {real} volume
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_vca_set_volume(vca_ref, volume) {}
 
@@ -4353,6 +4764,7 @@ function fmod_studio_vca_set_volume(vca_ref, volume) {}
  * This function retrieves the volume level.
  * @param {real} vca_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_vca_get_volume(vca_ref) {}
 
@@ -4363,6 +4775,7 @@ function fmod_studio_vca_get_volume(vca_ref) {}
  * This function retrieves the GUID.
  * @param {real} vca_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_vca_get_id(vca_ref) {}
 
@@ -4373,6 +4786,7 @@ function fmod_studio_vca_get_id(vca_ref) {}
  * This function retrieves the path.
  * @param {real} vca_ref
  * @returns {string}
+ * @func_end
  */
 function fmod_studio_vca_get_path(vca_ref) {}
 
@@ -4383,6 +4797,7 @@ function fmod_studio_vca_get_path(vca_ref) {}
  * This function checks that the VCA reference is valid.
  * @param {real} vca_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_studio_vca_is_valid(vca_ref) {}
 
@@ -4392,6 +4807,7 @@ function fmod_studio_vca_is_valid(vca_ref) {}
  * @desc > **FMOD Function:** [System_Create](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_create)
  * This function creates an instance of the FMOD system.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create() {}
 
@@ -4402,6 +4818,7 @@ function fmod_system_create() {}
  * 
  * @param {real} system_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_system_select(system_ref) {}
 
@@ -4411,6 +4828,7 @@ function fmod_system_select(system_ref) {}
  * @desc GM-specific function - TODO
  * 
  * @returns {real}
+ * @func_end
  */
 function fmod_system_count() {}
 
@@ -4422,6 +4840,7 @@ function fmod_system_count() {}
  * @param {real} max_channels
  * @param {real} flags
  * @returns {real}
+ * @func_end
  */
 function fmod_system_init(max_channels, flags) {}
 
@@ -4432,6 +4851,7 @@ function fmod_system_init(max_channels, flags) {}
  * This function closes and frees this object and its resources.
  * @param {real} system_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_system_release(system_ref) {}
 
@@ -4442,6 +4862,7 @@ function fmod_system_release(system_ref) {}
  * This function close the connections to the output and returns to an uninitialized state without releasing the object.
  * @param {real} system_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_system_close(system_ref) {}
 
@@ -4451,6 +4872,7 @@ function fmod_system_close(system_ref) {}
  * @desc > **FMOD Function:** [System::update](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_update)
  * This function updates the FMOD system.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_update() {}
 
@@ -4460,6 +4882,7 @@ function fmod_system_update() {}
  * @desc > **FMOD Function:** [System::mixerSuspend](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixersuspend)
  * This function suspends the mixer thread and relinquishes usage of audio hardware while maintaining internal state.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_mixer_suspend() {}
 
@@ -4469,6 +4892,7 @@ function fmod_system_mixer_suspend() {}
  * @desc > **FMOD Function:** [System::mixerResume](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixerresume)
  * This function resumes the mixer thread and reacquires access to audio hardware.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_mixer_resume() {}
 
@@ -4479,6 +4903,7 @@ function fmod_system_mixer_resume() {}
  * This function sets the type of output interface used to run the mixer.
  * @param {real} output
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_output(output) {}
 
@@ -4488,6 +4913,7 @@ function fmod_system_set_output(output) {}
  * @desc > **FMOD Function:** [System::getOutput](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getoutput)
  * This function retrieves the type of output interface used to run the mixer.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_output() {}
 
@@ -4497,6 +4923,7 @@ function fmod_system_get_output() {}
  * @desc > **FMOD Function:** [System::getNumDrivers](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnumdrivers)
  * This function retrieves the number of output drivers available for the selected output type.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_num_drivers() {}
 
@@ -4507,6 +4934,7 @@ function fmod_system_get_num_drivers() {}
  * This function retrieves identification information about a sound device specified by its index, and specific to the selected output mode.
  * @param {real} driver_index
  * @returns {struct.FmodSystemDriverInfo}
+ * @func_end
  */
 function fmod_system_get_driver_info(driver_index) {}
 
@@ -4517,6 +4945,7 @@ function fmod_system_get_driver_info(driver_index) {}
  * This function sets the output driver for the selected output type.
  * @param {real} driver
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_driver(driver) {}
 
@@ -4526,6 +4955,7 @@ function fmod_system_set_driver(driver) {}
  * @desc > **FMOD Function:** [System::getDriver](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriver)
  * This function retrieves the output driver for the selected output type.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_driver() {}
 
@@ -4536,6 +4966,7 @@ function fmod_system_get_driver() {}
  * This function sets the maximum number of software mixed Channels possible.
  * @param {real} software_channels
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_software_channels(software_channels) {}
 
@@ -4545,6 +4976,7 @@ function fmod_system_set_software_channels(software_channels) {}
  * @desc > **FMOD Function:** [System::getSoftwareChannels](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwarechannels)
  * This function retrieves the maximum number of software mixed Channels possible.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_software_channels() {}
 
@@ -4557,6 +4989,7 @@ function fmod_system_get_software_channels() {}
  * @param {real} speaker_mode
  * @param {real} num_raw_speakers
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_speakers) {}
 
@@ -4566,6 +4999,7 @@ function fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_spea
  * @desc > **FMOD Function:** [System::getSoftwareFormat](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwareformat)
  * This function retrieves the output format for the software mixer.
  * @returns {struct.FmodSystemSoftwareFormat}
+ * @func_end
  */
 function fmod_system_get_software_format() {}
 
@@ -4577,6 +5011,7 @@ function fmod_system_get_software_format() {}
  * @param {real} buff_size
  * @param {real} num_buffers
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
 
@@ -4586,6 +5021,7 @@ function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
  * @desc > **FMOD Function:** [System::getDSPBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdspbuffersize)
  * This function retrieves the buffer size settings for the FMOD software mixing engine.
  * @returns {struct.FmodSystemDSPBufferSize}
+ * @func_end
  */
 function fmod_system_get_dsp_buffer_size() {}
 
@@ -4597,6 +5033,7 @@ function fmod_system_get_dsp_buffer_size() {}
  * @param {real} file_buffer_size
  * @param {real} file_buffer_size_type
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type) {}
 
@@ -4606,6 +5043,7 @@ function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_t
  * @desc > **FMOD Function:** [System::getStreamBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getstreambuffersize)
  * This function retrieves the default file buffer size for newly opened streams.
  * @returns {struct.FmodSystemStreamBufferSize}
+ * @func_end
  */
 function fmod_system_get_stream_buffer_size() {}
 
@@ -4615,6 +5053,7 @@ function fmod_system_get_stream_buffer_size() {}
  * @desc > **FMOD Function:** [System::setAdvancedSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setadvancedsettings)
  * This function sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.
  * @param {struct.FmodSystemAdvancedSettings} settings
+ * @func_end
  */
 function fmod_system_set_advanced_settings(settings) {}
 
@@ -4624,6 +5063,7 @@ function fmod_system_set_advanced_settings(settings) {}
  * @desc > **FMOD Function:** [System::getAdvancedSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getadvancedsettings)
  * This function retrieves the advanced settings for the system object.
  * @returns {struct.FmodSystemAdvancedSettings}
+ * @func_end
  */
 function fmod_system_get_advanced_settings() {}
 
@@ -4637,6 +5077,7 @@ function fmod_system_get_advanced_settings() {}
  * @param {real} y
  * @param {real} active
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_speaker_position(speaker, x, y, active) {}
 
@@ -4645,8 +5086,9 @@ function fmod_system_set_speaker_position(speaker, x, y, active) {}
  * @func fmod_system_get_speaker_position
  * @desc > **FMOD Function:** [System::getSpeakerPosition](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakerposition)
  * This function retrieves the position of the specified speaker for the current speaker mode.
- * @param {enum.FMOD_SPEAKER} speaker
+ * @param {constant.FMOD_SPEAKER} speaker
  * @returns {struct.FmodSystemSpeakerPosition}
+ * @func_end
  */
 function fmod_system_get_speaker_position(speaker) {}
 
@@ -4659,6 +5101,7 @@ function fmod_system_get_speaker_position(speaker) {}
  * @param {real} distance_factor
  * @param {real} rolloff_scale
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_scale) {}
 
@@ -4668,6 +5111,7 @@ function fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_sca
  * @desc > **FMOD Function:** [System::get3DSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dsettings)
  * This function retrieves the global doppler scale, distance factor and roll-off scale for all 3D sounds.
  * @returns {struct.FmodSystem3DSettings}
+ * @func_end
  */
 function fmod_system_get_3d_settings() {}
 
@@ -4678,6 +5122,7 @@ function fmod_system_get_3d_settings() {}
  * This function sets the number of 3D 'listeners' in the 3D sound scene.
  * @param {real} num
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_3d_num_listeners(num) {}
 
@@ -4687,6 +5132,7 @@ function fmod_system_set_3d_num_listeners(num) {}
  * @desc > **FMOD Function:** [System::get3DNumListeners](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dnumlisteners)
  * This function retrieves the number of 3D listeners.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_3d_num_listeners() {}
 
@@ -4696,6 +5142,7 @@ function fmod_system_get_3d_num_listeners() {}
  * @desc > **FMOD Function:** [System::set3DRolloffCallback](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3drolloffcallback)
  * This function sets a callback to allow custom calculation of distance attenuation.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_3d_rolloff_callback() {}
 
@@ -4706,6 +5153,7 @@ function fmod_system_set_3d_rolloff_callback() {}
  * This function set a proxy server to use for all subsequent internet connections.
  * @param {string} proxy
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_network_proxy(proxy) {}
 
@@ -4715,6 +5163,7 @@ function fmod_system_set_network_proxy(proxy) {}
  * @desc > **FMOD Function:** [System::getNetworkProxy](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworkproxy)
  * This function retrieves the URL of the proxy server used in internet streaming.
  * @returns {string}
+ * @func_end
  */
 function fmod_system_get_network_proxy() {}
 
@@ -4725,6 +5174,7 @@ function fmod_system_get_network_proxy() {}
  * This function sets the timeout for network streams.
  * @param {real} timeout
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_network_timeout(timeout) {}
 
@@ -4734,6 +5184,7 @@ function fmod_system_set_network_timeout(timeout) {}
  * @desc > **FMOD Function:** [System::getNetworkTimeout](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworktimeout)
  * This function retrieves the timeout value for network streams.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_network_timeout() {}
 
@@ -4743,6 +5194,7 @@ function fmod_system_get_network_timeout() {}
  * @desc > **FMOD Function:** [System::getVersion](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getversion)
  * This function retrieves the FMOD version number.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_version() {}
 
@@ -4752,6 +5204,7 @@ function fmod_system_get_version() {}
  * @desc > **FMOD Function:** [System::getChannelsPlaying](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannelsplaying)
  * This function retrieves the number of currently playing Channels.
  * @returns {struct.FmodSystemChannelsPlaying}
+ * @func_end
  */
 function fmod_system_get_channels_playing() {}
 
@@ -4761,6 +5214,7 @@ function fmod_system_get_channels_playing() {}
  * @desc > **FMOD Function:** [System::getCPUUsage](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getcpuusage)
  * This function retrieves the amount of CPU used for different parts of the Core engine.
  * @returns {struct.FmodCPUUsage}
+ * @func_end
  */
 function fmod_system_get_cpu_usage() {}
 
@@ -4770,6 +5224,7 @@ function fmod_system_get_cpu_usage() {}
  * @desc > **FMOD Function:** [System::getFileUsage](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getfileusage)
  * This function retrieves information about file reads.
  * @returns {struct.FmodSystemFileUsage}
+ * @func_end
  */
 function fmod_system_get_file_usage() {}
 
@@ -4782,6 +5237,7 @@ function fmod_system_get_file_usage() {}
  * @param {real} target_speaker_mode
  * @param {real} matrix_hop
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix_hop) {}
 
@@ -4792,6 +5248,7 @@ function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_
  * This function retrieves the channel count for a given speaker mode.
  * @param {real} mode
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_speaker_mode_channels(mode) {}
 
@@ -4800,9 +5257,10 @@ function fmod_system_get_speaker_mode_channels(mode) {}
  * @func fmod_system_create_sound
  * @desc > **FMOD Function:** [System::createSound](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsound)
  * This function loads a sound into memory, opens it for streaming or sets it up for callback based sounds.
- * @param {string|Id.Buffer} name_or_buff
- * @param {enum.FMOD_MODE} mode
+ * @param {string|buffer} name_or_buff
+ * @param {constant.FMOD_MODE} mode
  * @param {struct.FmodSystemCreateSoundExInfo} extra
+ * @func_end
  */
 function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
 
@@ -4811,9 +5269,10 @@ function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
  * @func fmod_system_create_stream
  * @desc > **FMOD Function:** [System::createStream](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createstream)
  * This function opens a sound for streaming.
- * @param {string|Id.Buffer} name_or_buff
- * @param {enum.FMOD_MODE} mode
+ * @param {string|buffer} name_or_buff
+ * @param {constant.FMOD_MODE} mode
  * @param {struct.FmodSystemCreateSoundExInfo} extra
+ * @func_end
  */
 function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
 
@@ -4823,6 +5282,7 @@ function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
  * @desc > **FMOD Function:** [System::createDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdsp)
  * This function creates a DSP object given a plugin description structure.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_dsp() {}
 
@@ -4833,6 +5293,7 @@ function fmod_system_create_dsp() {}
  * This function creates a DSP object given a built-in type index.
  * @param {real} type
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_dsp_by_type(type) {}
 
@@ -4843,6 +5304,7 @@ function fmod_system_create_dsp_by_type(type) {}
  * This function creates a ChannelGroup object.
  * @param {string} name
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_channel_group(name) {}
 
@@ -4853,6 +5315,7 @@ function fmod_system_create_channel_group(name) {}
  * This function creates a SoundGroup object.
  * @param {string} name
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_sound_group(name) {}
 
@@ -4862,6 +5325,7 @@ function fmod_system_create_sound_group(name) {}
  * @desc > **FMOD Function:** [System::createReverb3D](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createreverb3d)
  * This function creates a 'virtual reverb' object. This object reacts to 3D location and morphs the reverb environment based on how close it is to the reverb object's center.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_reverb_3d() {}
 
@@ -4874,6 +5338,7 @@ function fmod_system_create_reverb_3d() {}
  * @param {real} channel_group_ref
  * @param {real} pause
  * @returns {real}
+ * @func_end
  */
 function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
 
@@ -4886,6 +5351,7 @@ function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
  * @param {real} channel_group_ref
  * @param {real} pause
  * @returns {real}
+ * @func_end
  */
 function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
 
@@ -4896,6 +5362,7 @@ function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
  * This function retrieves a handle to a Channel by ID.
  * @param {real} index
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_channel(index) {}
 
@@ -4905,6 +5372,7 @@ function fmod_system_get_channel(index) {}
  * @desc > **FMOD Function:** [System::getMasterChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmasterchannelgroup)
  * This function retrieves the master ChannelGroup that all sounds ultimately route to.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_master_channel_group() {}
 
@@ -4914,6 +5382,7 @@ function fmod_system_get_master_channel_group() {}
  * @desc > **FMOD Function:** [System::getMasterSoundGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmastersoundgroup)
  * This function retrieves the default SoundGroup, where all sounds are placed when they are created.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_master_sound_group() {}
 
@@ -4927,6 +5396,7 @@ function fmod_system_get_master_sound_group() {}
  * @param {struct.FmodVector} velocity
  * @param {struct.FmodVector} forward
  * @param {struct.FmodVector} up
+ * @func_end
  */
 function fmod_system_set_3d_listener_attributes(listener_index, position, velocity, forward, up) {}
 
@@ -4937,6 +5407,7 @@ function fmod_system_set_3d_listener_attributes(listener_index, position, veloci
  * This function retrieves the position, velocity and orientation of the specified 3D sound listener.
  * @param {real} listener_index
  * @returns {struct.Fmod3DAttributes}
+ * @func_end
  */
 function fmod_system_get_3d_listener_attributes(listener_index) {}
 
@@ -4947,6 +5418,7 @@ function fmod_system_get_3d_listener_attributes(listener_index) {}
  * This function sets parameters for the global reverb environment.
  * @param {real} reverb_instance_index
  * @param {struct.FmodReverbProperties} properties
+ * @func_end
  */
 function fmod_system_set_reverb_properties(instance_index, properties) {}
 
@@ -4957,6 +5429,7 @@ function fmod_system_set_reverb_properties(instance_index, properties) {}
  * This function retrieves the current reverb environment for the specified reverb instance.
  * @param {real} reverb_instance_index
  * @returns {struct.FmodReverbProperties}
+ * @func_end
  */
 function fmod_system_get_reverb_properties(instance_index) {}
 
@@ -4969,6 +5442,7 @@ function fmod_system_get_reverb_properties(instance_index) {}
  * @param {real} port_index
  * @param {real} channel_group_ref
  * @param {bool} pass_thru
+ * @func_end
  */
 function fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru) {}
 
@@ -4979,6 +5453,7 @@ function fmod_system_attach_channel_group_to_port(port_type, port_index, channel
  * This function disconnects the output of the specified ChannelGroup from an audio port on the output driver.
  * @param {real} channel_group_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
 
@@ -4988,6 +5463,7 @@ function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
  * @desc > **FMOD Function:** [System::getRecordNumDrivers](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordnumdrivers)
  * This function retrieves the number of recording devices available for this output mode. Use this to enumerate all recording devices possible so that the user can select one.
  * @returns {struct.FmodSystemRecordNumDrivers}
+ * @func_end
  */
 function fmod_system_get_record_num_drivers() {}
 
@@ -4998,6 +5474,7 @@ function fmod_system_get_record_num_drivers() {}
  * This function retrieves identification information about an audio device specified by its index, and specific to the output mode.
  * @param {real} record_driver_index
  * @returns {struct.FmodSystemRecordDriverInfo}
+ * @func_end
  */
 function fmod_system_get_record_driver_info(recording_device_index) {}
 
@@ -5008,6 +5485,7 @@ function fmod_system_get_record_driver_info(recording_device_index) {}
  * This function retrieves the current recording position of the record buffer in PCM samples.
  * @param {real} device_index
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_record_position(device_index) {}
 
@@ -5020,6 +5498,7 @@ function fmod_system_get_record_position(device_index) {}
  * @param {real} sound_ref
  * @param {real} loop
  * @returns {real}
+ * @func_end
  */
 function fmod_system_record_start(device_index, sound_ref, loop) {}
 
@@ -5030,6 +5509,7 @@ function fmod_system_record_start(device_index, sound_ref, loop) {}
  * This function stops the recording engine from recording to a pre-created Sound object.
  * @param {real} device_index
  * @returns {real}
+ * @func_end
  */
 function fmod_system_record_stop(device_index) {}
 
@@ -5040,6 +5520,7 @@ function fmod_system_record_stop(device_index) {}
  * This function retrieves the state of the FMOD recording API, i.e. if it is currently recording or not.
  * @param {real} device_index
  * @returns {real}
+ * @func_end
  */
 function fmod_system_is_recording(device_index) {}
 
@@ -5051,6 +5532,7 @@ function fmod_system_is_recording(device_index) {}
  * @param {real} max_polygons
  * @param {real} max_vertices
  * @returns {real}
+ * @func_end
  */
 function fmod_system_create_geometry(max_polygons, max_vertices) {}
 
@@ -5061,6 +5543,7 @@ function fmod_system_create_geometry(max_polygons, max_vertices) {}
  * This function sets the maximum world size for the geometry engine for performance / precision reasons.
  * @param {real} max_world_size
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_geometry_settings(max_world_size) {}
 
@@ -5070,6 +5553,7 @@ function fmod_system_set_geometry_settings(max_world_size) {}
  * @desc > **FMOD Function:** [System::getGeometrySettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometrysettings)
  * This function retrieves the maximum world size for the geometry engine.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_geometry_settings() {}
 
@@ -5078,9 +5562,10 @@ function fmod_system_get_geometry_settings() {}
  * @func fmod_system_load_geometry
  * @desc > **FMOD Function:** [System::loadGeometry](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_loadgeometry)
  * This function creates a geometry object from a block of memory which contains pre-saved geometry data.
- * @param {Id.Buffer} buff
+ * @param {buffer} buff
  * @param {real} length
  * @returns {real}
+ * @func_end
  */
 function fmod_system_load_geometry(buff, length) {}
 
@@ -5090,6 +5575,7 @@ function fmod_system_load_geometry(buff, length) {}
  * @desc > **FMOD Function:** [System::getGeometryOcclusion](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometryocclusion)
  * This function calculates geometry occlusion between a listener and a sound source.
  * @returns {struct.FmodSystemGeometryOcclusion}
+ * @func_end
  */
 function fmod_system_get_geometry_occlusion() {}
 
@@ -5099,6 +5585,7 @@ function fmod_system_get_geometry_occlusion() {}
  * @desc > **FMOD Function:** [System::lockDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_lockdsp)
  * This is a mutual exclusion function to lock the FMOD DSP engine (which runs asynchronously in another thread), so that it will not execute.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_lock_dsp() {}
 
@@ -5108,6 +5595,7 @@ function fmod_system_lock_dsp() {}
  * @desc > **FMOD Function:** [System::unlockDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_unlockdsp)
  * This is a mutual exclusion function to unlock the FMOD DSP engine (which runs asynchronously in another thread) and let it continue executing.
  * @returns {real}
+ * @func_end
  */
 function fmod_system_unlock_dsp() {}
 
@@ -5118,6 +5606,7 @@ function fmod_system_unlock_dsp() {}
  * This function sets the callback for System level notifications.
  * @param {real} type
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_callback(type) {}
 
@@ -5129,6 +5618,7 @@ function fmod_system_set_callback(type) {}
  * @param {real} channel_control_ref
  * @param {real} data
  * @returns {real}
+ * @func_end
  */
 function fmod_system_set_user_data(channel_control_ref, data) {}
 
@@ -5139,6 +5629,7 @@ function fmod_system_set_user_data(channel_control_ref, data) {}
  * This function retrieves a user value associated with a System object.
  * @param {real} channel_control_ref
  * @returns {real}
+ * @func_end
  */
 function fmod_system_get_user_data(channel_control_ref) {}
 
@@ -5147,9 +5638,10 @@ function fmod_system_get_user_data(channel_control_ref) {}
  * @func fmod_fetch_callbacks
  * @desc This function fetches the FMOD callbacks.
  * 
- * @param {Id.Buffer} buffer
+ * @param {buffer} buffer
  * @param {real} length
  * @returns {real}
+ * @func_end
  */
 function fmod_fetch_callbacks(buffer, length) {}
 
@@ -5159,6 +5651,7 @@ function fmod_fetch_callbacks(buffer, length) {}
  * @desc This function returns the result of the last call to any of FMOD's functions.
  * 
  * @returns {real}
+ * @func_end
  */
 function fmod_last_result() {}
 
@@ -5166,6 +5659,723 @@ function fmod_last_result() {}
 /**
  * @module home
  * @title Home
+ * @description This is the FMOD extension for GameMaker.
+ * 
+ * @section Guides
+ * 
+ * @section_end
+ * 
+ * @section FMOD Modules
+ * @ref module.system
+ * @ref module.channel
+ * @ref module.channel_control
+ * @ref module.channel_group
+ * @ref module.DSP
+ * @ref module.dsp_connection
+ * @ref module.reverb_3d
+ * @ref module.sound
+ * @ref module.sound_group
+ * @ref module.misc
+ * @section_end
+ * 
+ * @section FMOD Studio Modules
+ * @ref module.bank
+ * @ref module.bus
+ * @ref module.command_replay
+ * @ref module.event_description
+ * @ref module.event_instance
+ * @ref module.studio_system
+ * @ref module.studio_vca
+ * @ref module.channel
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module channel
+ * @title Channel
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_channel_set_frequency
+ * @ref fmod_channel_get_frequency
+ * @ref fmod_channel_set_priority
+ * @ref fmod_channel_get_priority
+ * @ref fmod_channel_set_position
+ * @ref fmod_channel_get_position
+ * @ref fmod_channel_set_channel_group
+ * @ref fmod_channel_get_channel_group
+ * @ref fmod_channel_set_loop_count
+ * @ref fmod_channel_get_loop_count
+ * @ref fmod_channel_set_loop_points
+ * @ref fmod_channel_get_loop_points
+ * @ref fmod_channel_is_virtual
+ * @ref fmod_channel_get_current_sound
+ * @ref fmod_channel_get_index
+ * @ref fmod_channel_get_system_object
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module channel_control
+ * @title Channel Control
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_channel_control_is_playing
+ * @ref fmod_channel_control_stop
+ * @ref fmod_channel_control_set_paused
+ * @ref fmod_channel_control_get_paused
+ * @ref fmod_channel_control_set_mode
+ * @ref fmod_channel_control_get_mode
+ * @ref fmod_channel_control_set_pitch
+ * @ref fmod_channel_control_get_pitch
+ * @ref fmod_channel_control_get_audibility
+ * @ref fmod_channel_control_set_volume
+ * @ref fmod_channel_control_get_volume
+ * @ref fmod_channel_control_set_volume_ramp
+ * @ref fmod_channel_control_get_volume_ramp
+ * @ref fmod_channel_control_set_mute
+ * @ref fmod_channel_control_get_mute
+ * @ref fmod_channel_control_set_3d_attributes
+ * @ref fmod_channel_control_get_3d_attributes
+ * @ref fmod_channel_control_set_3d_cone_orientation
+ * @ref fmod_channel_control_get_3d_cone_orientation
+ * @ref fmod_channel_control_set_3d_cone_settings
+ * @ref fmod_channel_control_get_3d_cone_settings
+ * @ref fmod_channel_control_set_3d_custom_rolloff
+ * @ref fmod_channel_control_get_3d_custom_rolloff
+ * @ref fmod_channel_control_set_3d_distance_filter
+ * @ref fmod_channel_control_get_3d_distance_filter
+ * @ref fmod_channel_control_set_3d_doppler_level
+ * @ref fmod_channel_control_get_3d_doppler_level
+ * @ref fmod_channel_control_set_3d_level
+ * @ref fmod_channel_control_get_3d_level
+ * @ref fmod_channel_control_set_3d_min_max_distance
+ * @ref fmod_channel_control_get_3d_min_max_distance
+ * @ref fmod_channel_control_set_3d_occlusion
+ * @ref fmod_channel_control_get_3d_occlusion
+ * @ref fmod_channel_control_set_3d_spread
+ * @ref fmod_channel_control_get_3d_spread
+ * @ref fmod_channel_control_set_pan
+ * @ref fmod_channel_control_set_mix_levels_input
+ * @ref fmod_channel_control_set_mix_levels_output
+ * @ref fmod_channel_control_set_mix_matrix
+ * @ref fmod_channel_control_get_mix_matrix
+ * @ref fmod_channel_control_set_reverb_properties
+ * @ref fmod_channel_control_get_reverb_properties
+ * @ref fmod_channel_control_set_low_pass_gain
+ * @ref fmod_channel_control_get_low_pass_gain
+ * @ref fmod_channel_control_add_dsp
+ * @ref fmod_channel_control_remove_dsp
+ * @ref fmod_channel_control_get_num_dsps
+ * @ref fmod_channel_control_get_dsp
+ * @ref fmod_channel_control_set_dsp_index
+ * @ref fmod_channel_control_get_dsp_index
+ * @ref fmod_channel_control_get_dsp_clock
+ * @ref fmod_channel_control_set_delay
+ * @ref fmod_channel_control_get_delay
+ * @ref fmod_channel_control_add_fade_point
+ * @ref fmod_channel_control_set_fade_point_ramp
+ * @ref fmod_channel_control_remove_fade_points
+ * @ref fmod_channel_control_get_fade_points
+ * @ref fmod_channel_control_set_callback
+ * @ref fmod_channel_control_get_system_object
+ * @ref fmod_channel_control_set_user_data
+ * @ref fmod_channel_control_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module channel_group
+ * @title Channel Group
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_channel_group_get_num_channels
+ * @ref fmod_channel_group_get_channel
+ * @ref fmod_channel_group_add_group
+ * @ref fmod_channel_group_get_num_groups
+ * @ref fmod_channel_group_get_group
+ * @ref fmod_channel_group_get_parent_group
+ * @ref fmod_channel_set_channel_group
+ * @ref fmod_channel_get_channel_group
+ * @ref fmod_channel_group_get_name
+ * @ref fmod_channel_group_release
+ * @ref fmod_channel_group_get_system_object
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module DSP
+ * @title DSP
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_dsp_add_input
+ * @ref fmod_dsp_get_input
+ * @ref fmod_dsp_get_output
+ * @ref fmod_dsp_get_num_inputs
+ * @ref fmod_dsp_get_num_outputs
+ * @ref fmod_dsp_disconnect_all
+ * @ref fmod_dsp_disconnect_from
+ * @ref fmod_dsp_get_data_parameter_index
+ * @ref fmod_dsp_get_num_parameters
+ * @ref fmod_dsp_set_parameter_bool
+ * @ref fmod_dsp_get_parameter_bool
+ * @ref fmod_dsp_set_parameter_data
+ * @ref fmod_dsp_get_parameter_data
+ * @ref fmod_dsp_set_parameter_float
+ * @ref fmod_dsp_get_parameter_float
+ * @ref fmod_dsp_set_parameter_int
+ * @ref fmod_dsp_get_parameter_int
+ * @ref fmod_dsp_get_parameter_info
+ * @ref fmod_dsp_set_channel_format
+ * @ref fmod_dsp_get_channel_format
+ * @ref fmod_dsp_get_output_channel_format
+ * @ref fmod_dsp_get_metering_info
+ * @ref fmod_dsp_set_metering_enabled
+ * @ref fmod_dsp_get_metering_enabled
+ * @ref fmod_dsp_set_active
+ * @ref fmod_dsp_get_active
+ * @ref fmod_dsp_set_bypass
+ * @ref fmod_dsp_get_bypass
+ * @ref fmod_dsp_set_wet_dry_mix
+ * @ref fmod_dsp_get_wet_dry_mix
+ * @ref fmod_dsp_get_idle
+ * @ref fmod_dsp_reset
+ * @ref fmod_dsp_release
+ * @ref fmod_dsp_get_type
+ * @ref fmod_dsp_get_info
+ * @ref fmod_dsp_get_cpu_usage
+ * @ref fmod_dsp_set_user_data
+ * @ref fmod_dsp_get_user_data
+ * @ref fmod_dsp_set_callback
+ * @ref fmod_dsp_get_system_object
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module dsp_connection
+ * @title DSP Connection
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_dsp_connection_set_mix
+ * @ref fmod_dsp_connection_get_mix
+ * @ref fmod_dsp_connection_set_mix_matrix
+ * @ref fmod_dsp_connection_get_mix_matrix
+ * @ref fmod_dsp_connection_get_input
+ * @ref fmod_dsp_connection_get_output
+ * @ref fmod_dsp_connection_get_type
+ * @ref fmod_dsp_connection_set_user_data
+ * @ref fmod_dsp_connection_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module geometry
+ * @title Geometry
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_geometry_set_polygon_attributes
+ * @ref fmod_geometry_get_polygon_attributes
+ * @ref fmod_geometry_get_polygon_num_vertices
+ * @ref fmod_geometry_set_polygon_vertex
+ * @ref fmod_geometry_get_polygon_vertex
+ * @ref fmod_geometry_set_position
+ * @ref fmod_geometry_get_position
+ * @ref fmod_geometry_set_rotation
+ * @ref fmod_geometry_get_rotation
+ * @ref fmod_geometry_set_scale
+ * @ref fmod_geometry_get_scale
+ * @ref fmod_geometry_add_polygon
+ * @ref fmod_geometry_set_active
+ * @ref fmod_geometry_get_active
+ * @ref fmod_geometry_get_max_polygons
+ * @ref fmod_geometry_get_num_polygons
+ * @ref fmod_geometry_set_user_data
+ * @ref fmod_geometry_get_user_data
+ * @ref fmod_geometry_release
+ * @ref fmod_geometry_save
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module reverb_3d
+ * @title Reverb3D
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_reverb_3d_set_3d_attributes
+ * @ref fmod_reverb_3d_get_3d_attributes
+ * @ref fmod_reverb_3d_set_properties
+ * @ref fmod_reverb_3d_get_properties
+ * @ref fmod_reverb_3d_set_active
+ * @ref fmod_reverb_3d_get_active
+ * @ref fmod_reverb_3d_release
+ * @ref fmod_reverb_3d_set_user_data
+ * @ref fmod_reverb_3d_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module sound
+ * @title Sound
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_sound_get_name
+ * @ref fmod_sound_get_format
+ * @ref fmod_sound_get_length
+ * @ref fmod_sound_get_num_tags
+ * @ref fmod_sound_get_tag
+ * @ref fmod_sound_set_3d_cone_settings
+ * @ref fmod_sound_get_3d_cone_settings
+ * @ref fmod_sound_set_3d_custom_rolloff
+ * @ref fmod_sound_get_3d_custom_rolloff
+ * @ref fmod_sound_set_3d_min_max_distance
+ * @ref fmod_sound_get_3d_min_max_distance
+ * @ref fmod_sound_set_defaults
+ * @ref fmod_sound_get_defaults
+ * @ref fmod_sound_set_mode
+ * @ref fmod_sound_get_mode
+ * @ref fmod_sound_set_loop_count
+ * @ref fmod_sound_get_loop_count
+ * @ref fmod_sound_set_loop_points
+ * @ref fmod_sound_get_loop_points
+ * @ref fmod_sound_set_sound_group
+ * @ref fmod_sound_get_sound_group
+ * @ref fmod_sound_get_num_sub_sounds
+ * @ref fmod_sound_get_sub_sound
+ * @ref fmod_sound_get_sub_sound_parent
+ * @ref fmod_sound_get_open_state
+ * @ref fmod_sound_read_data
+ * @ref fmod_sound_seek_data
+ * @ref fmod_sound_lock
+ * @ref fmod_sound_unlock
+ * @ref fmod_sound_get_music_num_channels
+ * @ref fmod_sound_set_music_channel_volume
+ * @ref fmod_sound_get_music_channel_volume
+ * @ref fmod_sound_set_music_speed
+ * @ref fmod_sound_get_music_speed
+ * @ref fmod_sound_get_sync_point
+ * @ref fmod_sound_get_num_sync_points
+ * @ref fmod_sound_add_sync_point
+ * @ref fmod_sound_delete_sync_point
+ * @ref fmod_sound_release
+ * @ref fmod_sound_get_system_object
+ * @ref fmod_sound_set_user_data
+ * @ref fmod_sound_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module sound_group
+ * @title Sound Group
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_sound_group_set_max_audible
+ * @ref fmod_sound_group_get_max_audible
+ * @ref fmod_sound_group_set_max_audible_behavior
+ * @ref fmod_sound_group_get_max_audible_behavior
+ * @ref fmod_sound_group_set_mute_fade_speed
+ * @ref fmod_sound_group_get_mute_fade_speed
+ * @ref fmod_sound_group_set_volume
+ * @ref fmod_sound_group_get_volume
+ * @ref fmod_sound_group_get_num_sounds
+ * @ref fmod_sound_group_get_sound
+ * @ref fmod_sound_group_get_num_playing
+ * @ref fmod_sound_group_stop
+ * @ref fmod_sound_group_get_name
+ * @ref fmod_sound_group_release
+ * @ref fmod_sound_group_get_system_object
+ * @ref fmod_sound_group_set_user_data
+ * @ref fmod_sound_group_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module bank
+ * @title Bank
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_bank_get_loading_state
+ * @ref fmod_studio_bank_load_sample_data
+ * @ref fmod_studio_bank_unload_sample_data
+ * @ref fmod_studio_bank_get_sample_loading_state
+ * @ref fmod_studio_bank_unload
+ * @ref fmod_studio_bank_get_bus_count
+ * @ref fmod_studio_bank_get_bus_list
+ * @ref fmod_studio_bank_get_event_count
+ * @ref fmod_studio_bank_get_event_description_list
+ * @ref fmod_studio_bank_get_string_count
+ * @ref fmod_studio_bank_get_string_info
+ * @ref fmod_studio_bank_get_vca_count
+ * @ref fmod_studio_bank_get_vca_list
+ * @ref fmod_studio_bank_get_id
+ * @ref fmod_studio_bank_get_path
+ * @ref fmod_studio_bank_is_valid
+ * @ref fmod_studio_bank_set_user_data
+ * @ref fmod_studio_bank_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module bus
+ * @title Bus
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_bus_set_paused
+ * @ref fmod_studio_bus_get_paused
+ * @ref fmod_studio_bus_stop_all_events
+ * @ref fmod_studio_bus_set_volume
+ * @ref fmod_studio_bus_get_volume
+ * @ref fmod_studio_bus_set_mute
+ * @ref fmod_studio_bus_get_mute
+ * @ref fmod_studio_bus_set_port_index
+ * @ref fmod_studio_bus_get_port_index
+ * @ref fmod_studio_bus_get_channel_group
+ * @ref fmod_studio_bus_lock_channel_group
+ * @ref fmod_studio_bus_unlock_channel_group
+ * @ref fmod_studio_bus_get_cpu_usage
+ * @ref fmod_studio_bus_get_memory_usage
+ * @ref fmod_studio_bus_get_id
+ * @ref fmod_studio_bus_get_path
+ * @ref fmod_studio_bus_is_valid
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module command_replay
+ * @title Command Replay
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_command_replay_set_bank_path
+ * @ref fmod_studio_command_replay_set_create_instance_callback
+ * @ref fmod_studio_command_replay_set_frame_callback
+ * @ref fmod_studio_command_replay_set_load_bank_callback
+ * @ref fmod_studio_command_replay_start
+ * @ref fmod_studio_command_replay_stop
+ * @ref fmod_studio_command_replay_get_current_command
+ * @ref fmod_studio_command_replay_get_playback_state
+ * @ref fmod_studio_command_replay_set_paused
+ * @ref fmod_studio_command_replay_get_paused
+ * @ref fmod_studio_command_replay_seek_to_command
+ * @ref fmod_studio_command_replay_seek_to_time
+ * @ref fmod_studio_command_replay_get_command_at_time
+ * @ref fmod_studio_command_replay_get_command_count
+ * @ref fmod_studio_command_replay_get_command_info
+ * @ref fmod_studio_command_replay_get_command_string
+ * @ref fmod_studio_command_replay_get_length
+ * @ref fmod_studio_command_replay_get_system_object
+ * @ref fmod_studio_command_replay_is_valid
+ * @ref fmod_studio_command_replay_set_user_data
+ * @ref fmod_studio_command_replay_get_user_data
+ * @ref fmod_studio_command_replay_release
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module event_description
+ * @title Event Description
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_event_description_create_instance
+ * @ref fmod_studio_event_description_get_instance_count
+ * @ref fmod_studio_event_description_get_instance_list
+ * @ref fmod_studio_event_description_release_all_instances
+ * @ref fmod_studio_event_description_load_sample_data
+ * @ref fmod_studio_event_description_unload_sample_data
+ * @ref fmod_studio_event_description_get_sample_loading_state
+ * @ref fmod_studio_event_description_is_3d
+ * @ref fmod_studio_event_description_is_doppler_enabled
+ * @ref fmod_studio_event_description_is_oneshot
+ * @ref fmod_studio_event_description_is_snapshot
+ * @ref fmod_studio_event_description_is_stream
+ * @ref fmod_studio_event_description_has_sustain_point
+ * @ref fmod_studio_event_description_get_min_max_distance
+ * @ref fmod_studio_event_description_get_sound_size
+ * @ref fmod_studio_event_description_get_parameter_description_by_name
+ * @ref fmod_studio_event_description_get_parameter_description_by_id
+ * @ref fmod_studio_event_description_get_parameter_description_by_index
+ * @ref fmod_studio_event_description_get_parameter_description_count
+ * @ref fmod_studio_event_description_get_parameter_label_by_name
+ * @ref fmod_studio_event_description_get_parameter_label_by_id
+ * @ref fmod_studio_event_description_get_parameter_label_by_index
+ * @ref fmod_studio_event_description_get_user_property
+ * @ref fmod_studio_event_description_get_user_property_by_index
+ * @ref fmod_studio_event_description_get_user_property_count
+ * @ref fmod_studio_event_description_get_id
+ * @ref fmod_studio_event_description_get_length
+ * @ref fmod_studio_event_description_get_path
+ * @ref fmod_studio_event_description_set_callback
+ * @ref fmod_studio_event_description_set_user_data
+ * @ref fmod_studio_event_description_get_user_data
+ * @ref fmod_studio_event_description_is_valid
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module event_instance
+ * @title Event Instance
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_event_instance_start
+ * @ref fmod_studio_event_instance_stop
+ * @ref fmod_studio_event_instance_get_playback_state
+ * @ref fmod_studio_event_instance_set_paused
+ * @ref fmod_studio_event_instance_get_paused
+ * @ref fmod_studio_event_instance_keyoff
+ * @ref fmod_studio_event_instance_set_pitch
+ * @ref fmod_studio_event_instance_get_pitch
+ * @ref fmod_studio_event_instance_set_property
+ * @ref fmod_studio_event_instance_get_property
+ * @ref fmod_studio_event_instance_set_timeline_position
+ * @ref fmod_studio_event_instance_get_timeline_position
+ * @ref fmod_studio_event_instance_set_volume
+ * @ref fmod_studio_event_instance_get_volume
+ * @ref fmod_studio_event_instance_is_virtual
+ * @ref fmod_studio_event_instance_set_3d_attributes
+ * @ref fmod_studio_event_instance_get_3d_attributes
+ * @ref fmod_studio_event_instance_set_listener_mask
+ * @ref fmod_studio_event_instance_get_listener_mask
+ * @ref fmod_studio_event_instance_get_min_max_distance
+ * @ref fmod_studio_event_instance_set_parameter_by_name
+ * @ref fmod_studio_event_instance_set_parameter_by_name_with_label
+ * @ref fmod_studio_event_instance_get_parameter_by_name
+ * @ref fmod_studio_event_instance_set_parameter_by_id
+ * @ref fmod_studio_event_instance_set_parameter_by_id_with_label
+ * @ref fmod_studio_event_instance_get_parameter_by_id
+ * @ref fmod_studio_event_instance_get_channel_group
+ * @ref fmod_studio_event_instance_set_reverb_level
+ * @ref fmod_studio_event_instance_get_reverb_level
+ * @ref fmod_studio_event_instance_get_cpu_usage
+ * @ref fmod_studio_event_instance_get_memory_usage
+ * @ref fmod_studio_event_instance_set_callback
+ * @ref fmod_studio_event_instance_set_user_data
+ * @ref fmod_studio_event_instance_get_user_data
+ * @ref fmod_studio_event_instance_get_description
+ * @ref fmod_studio_event_instance_release
+ * @ref fmod_studio_event_instance_is_valid
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module studio_system
+ * @title FMOD Studio System
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_system_create
+ * @ref fmod_studio_system_init
+ * @ref fmod_studio_system_release
+ * @ref fmod_studio_system_update
+ * @ref fmod_studio_system_flush_commands
+ * @ref fmod_studio_system_flush_sample_loading
+ * @ref fmod_studio_system_load_bank_custom
+ * @ref fmod_studio_system_load_bank_file
+ * @ref fmod_studio_system_load_bank_memory
+ * @ref fmod_studio_system_unload_all
+ * @ref fmod_studio_system_get_bank
+ * @ref fmod_studio_system_get_bank_by_id
+ * @ref fmod_studio_system_get_bank_count
+ * @ref fmod_studio_system_get_bank_list
+ * @ref fmod_studio_system_set_listener_attributes
+ * @ref fmod_studio_system_get_listener_attributes
+ * @ref fmod_studio_system_set_listener_weight
+ * @ref fmod_studio_system_get_listener_weight
+ * @ref fmod_studio_system_set_num_listeners
+ * @ref fmod_studio_system_get_num_listeners
+ * @ref fmod_studio_system_get_bus
+ * @ref fmod_studio_system_get_bus_by_id
+ * @ref fmod_studio_system_get_event
+ * @ref fmod_studio_system_get_event_by_id
+ * @ref fmod_studio_system_get_parameter_by_id
+ * @ref fmod_studio_system_set_parameter_by_id
+ * @ref fmod_studio_system_set_parameter_by_id_with_label
+ * @ref fmod_studio_system_get_parameter_by_name
+ * @ref fmod_studio_system_set_parameter_by_name
+ * @ref fmod_studio_system_set_parameter_by_name_with_label
+ * @ref fmod_studio_system_get_parameter_description_by_name
+ * @ref fmod_studio_system_get_parameter_description_by_id
+ * @ref fmod_studio_system_get_parameter_description_count
+ * @ref fmod_studio_system_get_parameter_description_list
+ * @ref fmod_studio_system_get_parameter_label_by_name
+ * @ref fmod_studio_system_get_parameter_label_by_id
+ * @ref fmod_studio_system_get_vca
+ * @ref fmod_studio_system_get_vca_by_id
+ * @ref fmod_studio_system_set_advanced_settings
+ * @ref fmod_studio_system_get_advanced_settings
+ * @ref fmod_studio_system_start_command_capture
+ * @ref fmod_studio_system_stop_command_capture
+ * @ref fmod_studio_system_load_command_replay
+ * @ref fmod_studio_system_get_buffer_usage
+ * @ref fmod_studio_system_reset_buffer_usage
+ * @ref fmod_studio_system_get_cpu_usage
+ * @ref fmod_studio_system_get_memory_usage
+ * @ref fmod_studio_system_set_callback
+ * @ref fmod_studio_system_set_user_data
+ * @ref fmod_studio_system_get_user_data
+ * @ref fmod_studio_system_get_sound_info
+ * @ref fmod_studio_system_get_core_system
+ * @ref fmod_studio_system_lookup_id
+ * @ref fmod_studio_system_lookup_path
+ * @ref fmod_studio_system_is_valid
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module studio_vca
+ * @title FMOD Studio VCA
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_studio_vca_set_volume
+ * @ref fmod_studio_vca_get_volume
+ * @ref fmod_studio_vca_get_id
+ * @ref fmod_studio_vca_get_path
+ * @ref fmod_studio_vca_is_valid
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module system
+ * @title FMOD System
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_system_create
+ * @ref fmod_system_select
+ * @ref fmod_system_count
+ * @ref fmod_system_init
+ * @ref fmod_system_release
+ * @ref fmod_system_close
+ * @ref fmod_system_update
+ * @ref fmod_system_mixer_suspend
+ * @ref fmod_system_mixer_resume
+ * @ref fmod_system_set_output
+ * @ref fmod_system_get_output
+ * @ref fmod_system_get_num_drivers
+ * @ref fmod_system_get_driver_info
+ * @ref fmod_system_set_driver
+ * @ref fmod_system_get_driver
+ * @ref fmod_system_set_software_channels
+ * @ref fmod_system_get_software_channels
+ * @ref fmod_system_set_software_format
+ * @ref fmod_system_get_software_format
+ * @ref fmod_system_set_dsp_buffer_size
+ * @ref fmod_system_get_dsp_buffer_size
+ * @ref fmod_system_set_stream_buffer_size
+ * @ref fmod_system_get_stream_buffer_size
+ * @ref fmod_system_set_advanced_settings
+ * @ref fmod_system_get_advanced_settings
+ * @ref fmod_system_set_speaker_position
+ * @ref fmod_system_get_speaker_position
+ * @ref fmod_system_set_3d_settings
+ * @ref fmod_system_get_3d_settings
+ * @ref fmod_system_set_3d_num_listeners
+ * @ref fmod_system_get_3d_num_listeners
+ * @ref fmod_system_set_3d_rolloff_callback
+ * @ref fmod_system_set_network_proxy
+ * @ref fmod_system_get_network_proxy
+ * @ref fmod_system_set_network_timeout
+ * @ref fmod_system_get_network_timeout
+ * @ref fmod_system_get_version
+ * @ref fmod_system_get_channels_playing
+ * @ref fmod_system_get_cpu_usage
+ * @ref fmod_system_get_file_usage
+ * @ref fmod_system_get_default_mix_matrix
+ * @ref fmod_system_get_speaker_mode_channels
+ * @ref fmod_system_create_sound
+ * @ref fmod_system_create_stream
+ * @ref fmod_system_create_dsp
+ * @ref fmod_system_create_dsp_by_type
+ * @ref fmod_system_create_channel_group
+ * @ref fmod_system_create_sound_group
+ * @ref fmod_system_create_reverb_3d
+ * @ref fmod_system_play_sound
+ * @ref fmod_system_play_dsp
+ * @ref fmod_system_get_channel
+ * @ref fmod_system_get_master_channel_group
+ * @ref fmod_system_get_master_sound_group
+ * @ref fmod_system_set_3d_listener_attributes
+ * @ref fmod_system_get_3d_listener_attributes
+ * @ref fmod_system_set_reverb_properties
+ * @ref fmod_system_get_reverb_properties
+ * @ref fmod_system_attach_channel_group_to_port
+ * @ref fmod_system_detach_channel_group_from_port
+ * @ref fmod_system_get_record_num_drivers
+ * @ref fmod_system_get_record_driver_info
+ * @ref fmod_system_get_record_position
+ * @ref fmod_system_record_start
+ * @ref fmod_system_record_stop
+ * @ref fmod_system_is_recording
+ * @ref fmod_system_create_geometry
+ * @ref fmod_system_set_geometry_settings
+ * @ref fmod_system_get_geometry_settings
+ * @ref fmod_system_load_geometry
+ * @ref fmod_system_get_geometry_occlusion
+ * @ref fmod_system_lock_dsp
+ * @ref fmod_system_unlock_dsp
+ * @ref fmod_system_set_callback
+ * @ref fmod_system_set_user_data
+ * @ref fmod_system_get_user_data
+ * @section_end
+ * 
+ * @module_end
+ */
+
+/**
+ * @module misc
+ * @title Miscellaneous
+ * @desc 
+ * 
+ * @section_func
+ * @ref fmod_fetch_callbacks
+ * @ref fmod_last_result
+ * @ref fmod_memory_get_stats
+ * @section_end
  * 
  * @module_end
  */
