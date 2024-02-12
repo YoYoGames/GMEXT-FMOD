@@ -8,9 +8,9 @@
  *
  * This function sets the frequency or playback rate.
  * 
- * [[Note: The default frequency is determined by the audio format of the Sound or DSP.]]
+ * [[Note: The default frequency is determined by the audio format of the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) or DSP.]]
  *
- * [[Note: Sounds opened as ${const.FMOD_MODE}.`CREATESAMPLE` (not ${const.FMOD_MODE}.`CREATESTREAM` or ${const.FMOD_MODE}.`CREATECOMPRESSEDSAMPLE`) can be played backwards by giving a negative frequency.]]
+ * [[Note: Sounds opened as `FMOD_MODE.CREATESAMPLE` (not `FMOD_MODE.CREATESTREAM` or `FMOD_MODE.CREATECOMPRESSEDSAMPLE`) can be played backwards by giving a negative frequency.]]
  * 
  * @param {real} channel_ref A reference to a channel.
  * @param {real} frequency The playback rate, expressed in Hertz.
@@ -42,7 +42,7 @@ function fmod_channel_get_frequency(channel_ref) {}
  *
  * This function sets the priority used for virtual voice ordering.
  * 
- * [[Note: Priority is used as a coarse grain control for the virtual voice system, lower priority Channels will always be stolen before higher ones. For Channels of equal priority, those with the quietest ${func.fmod_channel_control_get_audibility} value will be stolen first.]]
+ * [[Note: Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest ${func.fmod_channel_control_get_audibility} value will be stolen first.]]
  * 
  * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
  * 
@@ -63,7 +63,7 @@ function fmod_channel_set_priority(channel_ref, priority) {}
  * 
  * The function returns the priority value where 0 represents most important and 256 represents least important.
  * 
- * * [[Note: Priority is used as a coarse grain control for the virtual voice system, lower priority Channels will always be stolen before higher ones. For Channels of equal priority, those with the quietest ${func.fmod_channel_control_get_audibility} value will be stolen first.]]
+ * * [[Note: Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest ${func.fmod_channel_control_get_audibility} value will be stolen first.]]
  * 
  * @param {real} channel_ref A reference to a channel.
  * @returns {real} priority
@@ -82,7 +82,7 @@ function fmod_channel_get_priority(channel_ref) {}
  * 
  * [[Note: Certain ${const.FMOD_TIMEUNIT} types are always available: `FMOD_TIMEUNIT.PCM`, `FMOD_TIMEUNIT.PCMBYTES` and `FMOD_TIMEUNIT.MS`. The others are format specific such as `FMOD_TIMEUNIT.MODORDER` / `FMOD_TIMEUNIT.MODROW` / `FMOD_TIMEUNIT.MODPATTERN` which is specific to files of type MOD / S3M / XM / IT.]]
  * 
- * [[Note: If playing a Sound created with ${func.fmod_system_create_stream} or ${const.FMOD_MODE}.`CREATESTREAM` changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with ${const.FMOD_MODE}.`NONBLOCKING`. This will cause the stream to go into ${const.FMOD_OPENSTATE}.`SETPOSITION` state (see Sound::getOpenState) and Sound commands will return ${const.FMOD_RESULT}.`ERR_NOTREADY`. ${func.fmod_channel_get_position} will also not update until this non-blocking set position operation has completed.]]
+ * [[Note: If playing a Sound created with ${func.fmod_system_create_stream} or `FMOD_MODE.CREATESTREAM` changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with `FMOD_MODE.NONBLOCKING`. This will cause the stream to go into `FMOD_OPENSTATE.SETPOSITION` state (see ${function.fmod_sound_get_open_state}) and Sound commands will return ${const.FMOD_RESULT}.`ERR_NOTREADY`. ${func.fmod_channel_get_position} will also not update until this non-blocking set position operation has completed.]]
  * 
  * [[Note: Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify `FMOD_TIMEUNIT.MS` or `FMOD_TIMEUNIT.PCM`. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify `FMOD_MODE.ACCURATETIME` when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.]]
  * 
@@ -120,14 +120,14 @@ function fmod_channel_get_position(channel_ref, time_unit) {}
  *
  * <br />
  *
- * This function sets the ChannelGroup this object outputs to.
+ * This function sets the channelgroup this object outputs to.
  * 
- * [[Note: A ChannelGroup may contain many Channels.]]
+ * [[Note: A channelgroup may contain many channels.]]
  * 
- * [[Note: Channels may only output to a single ChannelGroup. This operation will remove it from the previous group first.]]
+ * [[Note: Channels may only output to a single channelgroup. This operation will remove it from the previous group first.]]
  * 
  * @param {real} channel_ref A reference to a channel.
- * @param {real} channel_group_ref A reference to the ChannelGroup to use as the output group.
+ * @param {real} channel_group_ref A reference to the channelgroup to use as the output group.
  * @func_end
  */
 function fmod_channel_set_channel_group(channel_ref, channel_group_ref) {}
@@ -156,7 +156,7 @@ function fmod_channel_get_channel_group(channel_ref) {}
  *
  * This function sets the number of times to loop before stopping.
  * 
- * [[Note: The 'mode' of the Sound or Channel must be `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for this function to work.]]
+ * [[Note: The 'mode' of the sound or channel must be `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for this function to work.]]
  * 
  * @param {real} channel_ref A reference to a channel.
  * @param {real} loop_count The number of times to loop before stopping where 0 represents "oneshot", 1 represents "loop once then stop" and -1 represents "loop forever".
@@ -192,12 +192,12 @@ function fmod_channel_get_loop_count(channel_ref) {}
  *
  * This function sets the loop start and end points.
  * 
- * Loop points may only be set on a Channel playing a Sound, not a Channel playing a DSP (See System::playDSP).
+ * Loop points may only be set on a channel playing a sound, not a channel playing a DSP (See ${function.fmod_system_play_dsp}).
  * 
  * [[Note: Valid ${const.FMOD_TIMEUNIT} types are `FMOD_TIMEUNIT.PCM`, `FMOD_TIMEUNIT.MS`, `FMOD_TIMEUNIT.PCMBYTES`. Any other time units return `FMOD_RESULT.ERR_FORMAT`.
  * If `FMOD_TIMEUNIT.MS` or `FMOD_TIMEUNIT.PCMBYTES` are used, the value is internally converted from `FMOD_TIMEUNIT.PCM`, so the retrieved value may not exactly match the set value.]]
  * 
- * The Channel's mode must be set to FMOD_LOOP_NORMAL or FMOD_LOOP_BIDI for loop points to affect playback.
+ * The Channel's mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.
  * 
  * See also: [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues)
  * 
@@ -237,7 +237,7 @@ function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_typ
  *
  * <br />
  *
- * This function retrieves whether the Channel is being emulated by the virtual voice system.
+ * This function retrieves whether the channel is being emulated by the virtual voice system.
  * 
  * If `true` is returned, the channel is silent / emulated. If `false` is returned, the channel is audible / real.
  * 
@@ -256,9 +256,9 @@ function fmod_channel_is_virtual(channel_ref) {}
  *
  * <br />
  *
- * This function retrieves the currently playing Sound.
+ * This function retrieves the currently playing sound.
  * 
- * [[Note: The function returns 0 if no Sound is playing.]]
+ * [[Note: The function returns 0 if no sound is playing.]]
  * 
  * @param {real} channel_ref A reference to a channel.
  * @returns {real}
@@ -273,9 +273,9 @@ function fmod_channel_get_current_sound(channel_ref) {}
  *
  * <br />
  *
- * This function retrieves the index of this object in the System Channel pool.
+ * This function retrieves the index of this object in the system channel pool.
  * 
- * [[Note: This value is in the range \[0, `max_channels` value passed to ${func.fmod_system_init} - 1\]]]
+ * [[Note: This value is in the range \[0, `max_channels` value passed to ${func.fmod_system_init} - 1\].]]
  * 
  * @param {real} channel_ref A reference to a channel.
  * @returns {real}
@@ -290,7 +290,7 @@ function fmod_channel_get_index(channel_ref) {}
  * 
  * <br />
  * 
- * This function retrieves the System that created this object.
+ * This function retrieves the system that created this object.
  * 
  * The value 0 is returned in case something went wrong.
  * 
@@ -310,11 +310,11 @@ function fmod_channel_get_system_object(channel_ref) {}
  *
  * This function retrieves the playing state.
  * 
- * [[Note: A Channel is considered playing after System::playSound or System::playDSP, even if it is paused.]]
+ * [[Note: A channel is considered playing after ${function.fmod_system_play_sound} or ${function.fmod_system_play_dsp}, even if it is paused.]]
  * 
- * [[Note: A ChannelGroup is considered playing if it has any playing Channels.]]
+ * [[Note: A channelgroup is considered playing if it has any playing channels.]]
  * 
- * @param {real} channel_control_ref A reference to a ChannelControl.
+ * @param {real} channel_control_ref A reference to a channelcontrol.
  * @returns {boolean}
  * @func_end
  */
@@ -327,13 +327,13 @@ function fmod_channel_control_is_playing(channel_control_ref) {}
  *
  * <br />
  *
- * This function stops the Channel (or all Channels in nested ChannelGroups) from playing.
+ * This function stops the channel (or all channels in nested channelgroups) from playing.
  * 
  * This will free up internal resources for reuse by the virtual voice system.
  * 
- * [[Note: Channels are stopped automatically when their playback position reaches the length of the Sound being played. This is not the case however if the Channel is playing a DSP or the Sound is looping, in which case the Channel will continue playing until stop is called. Once stopped, the Channel handle will become invalid and can be discarded and any API calls made with it will return FMOD_ERR_INVALID_HANDLE.]]
+ * [[Note: Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return `FMOD_RESULT.ERR_INVALID_HANDLE`.]]
  * 
- * @param {real} channel_control_ref A reference to a ChannelControl.
+ * @param {real} channel_control_ref A reference to a channelcontrol.
  * @func_end
  */
 function fmod_channel_control_stop(channel_control_ref) {}
@@ -347,11 +347,11 @@ function fmod_channel_control_stop(channel_control_ref) {}
  *
  * This function sets the paused state.
  * 
- * Pause halts playback which effectively freezes Channel::getPosition and ChannelControl::getDSPClock values.
+ * Pause halts playback which effectively freezes ${func.fmod_channel_get_position} and ${function.fmod_channel_control_get_dsp_clock} values.
  * 
- * [[Note: An individual pause state is kept for each object, pausing a parent ChannelGroup will effectively pause this object however when queried the individual pause state is returned.]]
+ * [[Note: An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.]]
  * 
- * @param {real} channel_control_ref A reference to a ChannelControl.
+ * @param {real} channel_control_ref A reference to a channelcontrol.
  * @param {boolean} paused Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
  * @func_end
  */
@@ -366,7 +366,7 @@ function fmod_channel_control_set_paused(channel_control_ref, paused) {}
  *
  * This function retrieves the paused state.
  * 
- * [[Note: An individual pause state is kept for each object, pausing a parent ChannelGroup will effectively pause this object however when queried the individual pause state is returned.]]
+ * [[Note: An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {boolean} Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
@@ -400,11 +400,11 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
  * * `FMOD_MODE.3D_IGNOREGEOMETRY`
  * * `FMOD_MODE.VIRTUAL_PLAYFROMSTART`
  * 
- * When changing the loop mode, sounds created with System::createStream or FMOD_CREATESTREAM may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see FMOD_CREATESOUNDEXINFO). If this happens, you may need to reflush the stream buffer by calling Channel::setPosition. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.
+ * When changing the loop mode, sounds created with ${function.fmod_system_create_stream} or `FMOD_MODE.CREATESTREAM` may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see ${struct.FmodSystemCreateSoundExInfo}). If this happens, you may need to reflush the stream buffer by calling ${function.fmod_channel_set_position}. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.
  * 
- * When changing the loop mode of sounds created with System::createSound or FMOD_CREATESAMPLE, if the sound was set up as FMOD_LOOP_OFF, then set to FMOD_LOOP_NORMAL with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using Sound::setMode, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use ChannelControl::setMode it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use Sound::setMode), to let it prepare the data as if it was looping so that it does not click whenever ChannelControl::setMode is used to turn looping on.
+ * When changing the loop mode of sounds created with ${function.fmod_system_create_sound} or `FMOD_MODE.CREATESAMPLE`, if the sound was set up as `FMOD_MODE.LOOP_OFF`, then set to `FMOD_MODE.LOOP_NORMAL` with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using ${function.fmod_sound_set_mode}, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use ${function.fmod_channel_control_set_mode} it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use ${function.fmod_sound_set_mode}), to let it prepare the data as if it was looping so that it does not click whenever ${function.fmod_channel_control_set_mode} is used to turn looping on.
  * 
- * If FMOD_3D_IGNOREGEOMETRY or FMOD_VIRTUAL_PLAYFROMSTART is not specified, the flag will be cleared if it was specified previously.
+ * If `FMOD_MODE.3D_IGNOREGEOMETRY` or `FMOD_MODE.VIRTUAL_PLAYFROMSTART` is not specified, the flag will be cleared if it was specified previously.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @param {FMOD_MODE} mode The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is `FMOD_MODE.DEFAULT`.
@@ -499,7 +499,7 @@ function fmod_channel_control_get_audibility(channel_control_ref) {}
  *
  * This function sets the volume level.
  * 
- * [[Note: To define the volume per Sound use Sound::setDefaults.]]
+ * [[Note: To define the volume per Sound use ${function.fmod_sound_set_defaults}.]]
  * 
  * [[Note: Setting `volume` at a level higher than 1 can lead to distortion/clipping.]]
  * 
@@ -569,7 +569,7 @@ function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
  * 
  * Mute is an additional control for volume, the effect of which is equivalent to setting the volume to zero.
  * 
- * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ChannelControl::getAudibility can be used to calculate overall audibility for a Channel or ChannelGroup.]]
+ * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ${function.fmod_channel_control_get_audibility} can be used to calculate overall audibility for a Channel or ChannelGroup.]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @param {boolean} mute The mute state to set. A value of `true` means silent. A value of `false` means audible.
@@ -588,7 +588,7 @@ function fmod_channel_control_set_mute(channel_control_ref, mute) {}
  * 
  * The mute state is a value where `true` indicates silent and `false` indicates audible.
  * 
- * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ChannelControl::getAudibility can be used to calculate overall audibility for a Channel or ChannelGroup.]]
+ * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ${function.fmod_channel_control_get_audibility} can be used to calculate overall audibility for a Channel or ChannelGroup.]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {boolean}
@@ -609,9 +609,9 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
  * 
  * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
  * 
- * [[Note: For a stereo 3D sound, you can set the spread of the left/right parts in speaker space by using ChannelControl::set3DSpread.]]
+ * [[Note: For a stereo 3D sound, you can set the spread of the left/right parts in speaker space by using ${function.fmod_channel_control_set_3d_spread}.]]
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {struct.FmodVector} pos The position in 3D space used for panning and attenuation. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
  * @param {struct.FmodVector} vel The velocity in 3D space used for doppler. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units) per second.
  * @func_end
@@ -627,7 +627,7 @@ function fmod_channel_control_set_3d_attributes(channel_control_ref, pos, vel) {
  *
  * This function retrieves the 3D position and velocity used to apply panning, attenuation and doppler.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControl3DAttributes}
  * @func_end
  */
@@ -644,11 +644,11 @@ function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
  * 
  * [[Note: The `FMOD_MODE.AS_3D` flag must be set on this object otherwise `FMOD_RESULT.ERR_NEEDS3D` is returned.]]
  * 
- * [[Note: This function has no effect unless ChannelControl::set3DConeSettings has been used to change the cone inside/outside angles from the default.]]
+ * [[Note: This function has no effect unless ${function.fmod_channel_control_set_3d_cone_settings} has been used to change the cone inside/outside angles from the default.]]
  * 
  * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {struct.FmodVector} orientation The normalized orientation vector, which represents the direction of the sound cone. Default is [0, 0, 1].
  * @func_end
  */
@@ -665,7 +665,7 @@ function fmod_channel_control_set_3d_cone_orientation(channel_control_ref, orien
  * 
  * The orientation is returned as a normalized orientation vector, which represents the direction of the sound cone.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodVector}
  * @func_end
  */
@@ -680,7 +680,7 @@ function fmod_channel_control_get_3d_cone_orientation(channel_control_ref) {}
  *
  * This function sets the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.
  * 
- * When ChannelControl::set3DConeOrientation is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
+ * When ${function.fmod_channel_control_set_3d_cone_orientation} is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
  *
  * * If the relative angle is within the `insideconeangle`, the sound will not have any attenuation applied.
  * * If the relative angle is between the `insideconeangle` and `outsideconeangle`, linear volume attenuation (between 1 and `outsidevolume`) is applied between the two angles until it reaches the `outsideconeangle`.
@@ -705,13 +705,13 @@ function fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_c
  *
  * This function retrieves the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.
  * 
- * When ChannelControl::set3DConeOrientation is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
+ * When ${function.fmod_channel_control_set_3d_cone_orientation} is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
  * 
  * * If the relative angle is within the `insideconeangle`, the sound will not have any attenuation applied.
  * * If the relative angle is between the `insideconeangle` and `outsideconeangle`, linear volume attenuation (between 1 and `outsidevolume`) is applied between the two angles until it reaches the `outsideconeangle`.
  * * If the relative angle is outside of the `outsideconeangle` the volume does not attenuate any further.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.Fmod3DConeSettings}
  * @func_end
  */
@@ -748,7 +748,7 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
  * };
  * ```
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {array[struct.FmodVector]} points An array of vectors sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0. Pass null or equivalent to disable custom rolloff.
  * @func_end
  */
@@ -763,7 +763,7 @@ function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points)
  *
  * This function retrieves the current custom roll-off shape for 3D distance attenuation.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {array[struct.FmodVector]}
  * @func_end
  */
@@ -798,7 +798,7 @@ function fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom
  *
  * This function retrieves the override values for the 3D distance filter.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControl3DDistanceFilter}
  * @func_end
  */
@@ -813,7 +813,7 @@ function fmod_channel_control_get_3d_distance_filter(channel_control_ref) {}
  *
  * This function sets the amount by which doppler is scaled.
  * 
- * The doppler effect will be disabled if System::set3DNumListeners is given a value greater than 1.
+ * The doppler effect will be disabled if ${function.fmod_system_set_3d_num_listeners} is given a value greater than 1.
  * 
  * [[Note: The `FMOD_MODE.AS_3D` flag must be set on this object otherwise `FMOD_RESULT.ERR_NEEDS3D` is returned.]]
  * 
@@ -897,10 +897,23 @@ function fmod_channel_control_get_3d_level(channel_control_ref) {}
  *
  * This function sets the minimum and maximum distances used to calculate the 3D roll-off attenuation.
  * 
+ * When the listener is within the minimum distance of the sound source the 3D volume will be at its maximum. As the listener moves from the minimum distance to the maximum distance the sound will attenuate following the roll-off curve set. When outside the maximum distance the sound will no longer attenuate.
+ * 
+ * Attenuation in 3D space is controlled by the roll-off mode, which can be one of `FMOD_MODE.AS_3D_INVERSEROLLOFF`, `FMOD_MODE.AS_3D_LINEARROLLOFF`, `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`, `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF`, `FMOD_MODE.AS_3D_CUSTOMROLLOFF`.
+ * 
+ * Minimum distance is useful to give the impression that the sound is loud or soft in 3D space.
+ * A sound with a small 3D minimum distance in a typical (non custom) roll-off mode will make the sound appear small, and the sound will attenuate quickly.
+ * A sound with a large minimum distance will make the sound appear larger.
+ * 
+ * The `FMOD_MODE.AS_3D` flag must be set on this object otherwise `FMOD_RESULT.ERR_NEEDS3D` is returned.
+ * 
+ * To define the min and max distance per Sound instead of Channel or ChannelGroup use ${function.fmod_sound_set_3d_min_max_distance}.
+ * 
+ * If `FMOD_MODE.AS_3D_CUSTOMROLLOFF` has been set on this object these values are stored, but ignored in 3D processing.
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} min 
- * @param {real} max 
- * @returns {real}
+ * @param {real} min The distance from the source where attenuation begins. A value in the range [0, `max`]. Default is 1.
+ * @param {real} max The distance from the source where attenuation ends. A value in the range [`min`, `infinity`]. Default is 10000.
  * @func_end
  */
 function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, max) {}
@@ -914,7 +927,7 @@ function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, 
  *
  * This function retrieves the minimum and maximum distances used to calculate the 3D roll-off attenuation.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControl3DMinMaxDistance}
  * @func_end
  */
@@ -929,10 +942,13 @@ function fmod_channel_control_get_3d_min_max_distance(channel_control_ref) {}
  *
  * This function sets the 3D attenuation factors for the direct and reverb paths.
  * 
+ * There is a reverb path/send when ${function.fmod_channel_control_set_reverb_properties} has been used, `reverb_occlusion` controls its attenuation.
+ * 
+ * If the System has been initialized with `FMOD_INIT.CHANNEL_DISTANCEFILTER` or `FMOD_INIT.CHANNEL_LOWPASS` the `direct_occlusion` is applied as frequency filtering rather than volume attenuation.
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} direct_occlusion
- * @param {real} reverb_occlusion
- * @returns {real}
+ * @param {real} direct_occlusion The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @param {real} reverb_occlusion Occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
  * @func_end
  */
 function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlusion, reverb_occlusion) {}
@@ -946,7 +962,7 @@ function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlu
  *
  * This function retrieves the 3D attenuation factors for the direct and reverb paths.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControl3DOcclusion}
  * @func_end
  */
@@ -961,9 +977,17 @@ function fmod_channel_control_get_3d_occlusion(channel_control_ref) {}
  *
  * This function sets the spread of a 3D sound in speaker space.
  * 
+ * When the spread angle is 0 (default) a multi-channel signal will collapse to mono and be spatialized to a single point based on ${function.fmod_channel_control_set_3d_attributes} calculations. As the angle is increased, each channel within a multi-channel signal will be rotated away from that point. For 2, 4, 6, 8, and 12 channel signals, the spread is arranged from leftmost speaker to rightmost speaker intelligently, for example in 5.1 the leftmost speaker is rear left, followed by front left, center, front right then finally rear right as the rightmost speaker (LFE is not spread). For other channel counts the individual channels are spread evenly in the order of the signal. As the signal is spread the power will be preserved.
+ * 
+ * For a stereo signal given different spread angles:
+ *
+ * * 0: Sound is collapsed to mono and spatialized to a single point.
+ * * 90: Left channel is rotated 45 degrees to the left compared with angle=0 and the right channel 45 degrees to the right.
+ * * 180: Left channel is rotated 90 degrees to the left compared with angle=0 and the right channel 90 degrees to the right.
+ * * 360: Left channel is rotated 180 degrees to the left and the right channel 180 degrees to the right. This means the sound is collapsed to mono and spatialized to a single point in the opposite direction compared with (angle=0).
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} angle
- * @returns {real}
+ * @param {real} angle The angle (in degrees) over which the sound is spread. The default value is 0.
  * @func_end
  */
 function fmod_channel_control_set_3d_spread(channel_control_ref, angle) {}
@@ -976,6 +1000,8 @@ function fmod_channel_control_set_3d_spread(channel_control_ref, angle) {}
  * <br />
  *
  * This function retrieves the spread of a 3D sound in speaker space.
+ * 
+ * It returns the angle (in degrees) over which the sound is spread.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -992,9 +1018,14 @@ function fmod_channel_control_get_3d_spread(channel_control_ref) {}
  *
  * This function sets the left/right pan level.
  * 
+ * This is a convenience function to avoid passing a matrix, it will overwrite values set via ${function.fmod_channel_control_set_mix_levels_input}, ${function.${function.fmod_channel_control_set_mix_levels_output}} and ${function.fmod_system_set_software_format}.
+ * 
+ * Mono inputs are panned from left to right using constant power panning (non linear fade). Stereo and greater inputs will isolate the front left and right input channels and fade them up and down based on the pan value (silencing other channels). The output channel count will always match the System speaker mode set via ${function.fmod_system_set_software_format}.
+ * 
+ * [[Note: If the System is initialized with `FMOD_SPEAKERMODE.RAW` calling this function will produce silence.]]
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} pan
- * @returns {real}
+ * @param {real} pan The pan level where -1 represents full left, 0 represents center and 1 represents full right. Default is 0.
  * @func_end
  */
 function fmod_channel_control_set_pan(channel_control_ref, pan) {}
@@ -1008,8 +1039,12 @@ function fmod_channel_control_set_pan(channel_control_ref, pan) {}
  *
  * This function sets the incoming volume level for each channel of a multi-channel signal.
  * 
- * @param {real} control_ref A reference to a control.
- * @param {array[real]} levels
+ * This is a convenience function to avoid passing a matrix, it will overwrite values set via ${function.fmod_channel_control_set_pan}, ${function.fmod_channel_control_set_mix_levels_output} and ${function.fmod_channel_control_set_mix_matrix}.
+ * 
+ * [[Note: This is currently only supported for Channel, not ChannelGroup.]]
+ * 
+ * @param {real} control_ref A reference to a channel control.
+ * @param {array[real]} levels An array of volume levels for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.
  * @func_end
  */
 function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) {}
@@ -1023,15 +1058,23 @@ function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) 
  *
  * This function sets the outgoing volume levels for each speaker.
  * 
+ * Specify the level for a given output speaker, if the channel count of the input and output do not match, channels will be up/down mixed as appropriate to approximate the given speaker values. For example stereo input with 5.1 output will use the `center` parameter to distribute signal to the center speaker from front left and front right channels.
+ * 
+ * This is a convenience function to avoid passing a matrix, it will overwrite values set via ${function.fmod_channel_control_set_pan}, ${function.fmod_channel_control_set_mix_levels_input} and ${function.fmod_channel_control_set_mix_matrix}.
+ * 
+ * The output channel count will always match the System speaker mode set via ${function.fmod_system_set_software_format}.
+ * 
+ * [[Note: If the System is initialized with `FMOD_SPEAKERMODE.RAW` calling this function will produce silence.]]
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} front_left
- * @param {real} front_right
- * @param {real} center
- * @param {real} lfe
- * @param {real} surround_left
- * @param {real} surround_right
- * @param {real} back_left
- * @param {real} back_right
+ * @param {real} front_left The volume level for `FMOD_SPEAKER.FRONT_LEFT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} front_right The volume level for `FMOD_SPEAKER.FRONT_RIGHT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} center The volume level for `FMOD_SPEAKER.FRONT_CENTER`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} lfe The volume level for `FMOD_SPEAKER.LOW_FREQUENCY`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} surround_left The volume level for `FMOD_SPEAKER.SURROUND_LEFT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} surround_right The volume level for `FMOD_SPEAKER.SURROUND_RIGHT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} back_left The volume level for `FMOD_SPEAKER.BACK_LEFT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {real} back_right The volume level for `FMOD_SPEAKER.BACK_RIGHT`. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
  * @returns {real}
  * @func_end
  */
@@ -1046,11 +1089,28 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  *
  * This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
- * @param {real} control_ref A reference to a control.
- * @param {array[real]} matrix
- * @param {real} out_channels
- * @param {real} in_channels
- * @param {real} in_channel_hop
+ * This will overwrite values set via ${function.fmod_channel_control_set_pan}, ${function.fmod_channel_control_set_mix_levels_input} and ${function.fmod_channel_control_set_mix_levels_output}.
+ * 
+ * If no matrix is passed in via matrix a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.
+ * 
+ * Example 5.1 unit matrix:
+ * 
+ * ```
+ * 1 0 0 0 0 0
+ * 0 1 0 0 0 0
+ * 0 0 1 0 0 0
+ * 0 0 0 1 0 0
+ * 0 0 0 0 1 0
+ * 0 0 0 0 0 1
+ * ```
+ * 
+ * Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.
+ * 
+ * @param {real} control_ref A reference to a channel control.
+ * @param {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
+ * @param {real} out_channels The number of output channels (rows) in `matrix`.
+ * @param {real} in_channels The number of input channels (columns) in `matrix`.
+ * @param {real} in_channel_hop The width (total number of columns) in the source `matrix`. A matrix element is referenced as 'outchannel * inchannel_hop + inchannel'. The default value is `in_channels`.
  * @func_end
  */
 function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_channels, in_channels, in_channel_hop) {}
@@ -1064,11 +1124,11 @@ function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_ch
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlMixMatrix}
  * @func_end
  */
-function fmod_channel_control_get_mix_matrix(channel_control_ref) {}
+function fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop) {}
 
 
 /**
@@ -1079,10 +1139,15 @@ function fmod_channel_control_get_mix_matrix(channel_control_ref) {}
  *
  * This function sets the wet / send level for a particular reverb instance.
  * 
+ * Channels are automatically connected to all existing reverb instances due to the default wet level of 1. ChannelGroups however will not send to any reverb by default requiring an explicit call to this function.
+ * 
+ * ChannelGroup reverb is optimal for the case where you want to send 1 mixed signal to the reverb, rather than a lot of individual Channel reverb sends. It is advisable to do this to reduce CPU if you have many Channels inside a ChannelGroup.
+ * 
+ * When setting a wet level for a ChannelGroup, any Channels under that ChannelGroup will still have their existing sends to the reverb. To avoid this doubling up you should explicitly set the Channel wet levels to 0.
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} reverb_instance
- * @param {real} wet
- * @returns {real}
+ * @param {real} reverb_instance A reverb instance index.
+ * @param {real} wet The send level for the signal to the reverb. 0 = none, 1 = full. A negative level inverts the signal. Default is 1 for Channel, 0 for ChannelGroup.
  * @func_end
  */
 function fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_instance, wet) {}
@@ -1096,8 +1161,11 @@ function fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_
  *
  * This function retrieves the wet / send level for a particular reverb instance.
  * 
+ * It returns the send level for the signal to the reverb. 0 = none, 1 = full.
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} reverb_instance
+ * @param {real} reverb_instance A reverb instance index.
+
  * @returns {real}
  * @func_end
  */
@@ -1112,9 +1180,12 @@ function fmod_channel_control_get_reverb_properties(channel_control_ref, reverb_
  *
  * This function sets the gain of the dry signal when built-in lowpass / distance filtering is applied.
  * 
+ * [[Note: This requires the built-in lowpass to be created with `FMOD_INIT.CHANNEL_LOWPASS` or `FMOD_INIT.CHANNEL_DISTANCEFILTER`.]]
+ * 
+ * [[Note: This is currently only supported for Channel, not ChannelGroup.]]
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} gain
- * @returns {real}
+ * @param {real} gain The gain level where 0 represents silent (full filtering) and 1 represents full volume (no filtering). Default is 1.
  * @func_end
  */
 function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
@@ -1127,6 +1198,12 @@ function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
  * <br />
  *
  * This function retrieves the gain of the dry signal when built-in lowpass / distance filtering is applied.
+ * 
+ * The function returns the gain level where 0 represents silent (full filtering) and 1 represents full volume (no filtering).
+ * 
+ * [[Note: This requires the built in-lowpass to be created with `FMOD_INIT.CHANNEL_LOWPASS` or `FMOD_INIT.CHANNEL_DISTANCEFILTER`.]]
+ * 
+ * [[Note: Currently only supported for Channel, not ChannelGroup.]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1143,10 +1220,13 @@ function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
  *
  * This function adds a DSP unit to the specified index in the DSP chain.
  * 
+ * If `dsp_ref` is already added to an existing object it will be removed and then added to this object.
+ * 
+ * For detailed information on FMOD's [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) network, read the [DSP Architecture and Usage](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) white paper.
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_chain_offset
- * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @param {real} dsp_chain_offset The offset into the DSP chain, see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets for 'head' and 'tail' and 'fader' units.
+ * @param {real} dsp_ref The DSP unit to be added.
  * @func_end
  */
 function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp_ref) {}
@@ -1161,8 +1241,7 @@ function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp
  * This function removes the specified DSP unit from the DSP chain.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @param {real} dsp_ref The DSP unit to be removed.
  * @func_end
  */
 function fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref) {}
@@ -1174,7 +1253,9 @@ function fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref) {}
  *
  * <br />
  *
- * This function retrieves the number of DSP units in the DSP chain.
+ * This function retrieves the number of [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) units in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * 
+ * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1191,8 +1272,12 @@ function fmod_channel_control_get_num_dsps(channel_control_ref) {}
  *
  * This function retrieves the DSP unit at the specified index in the DSP chain.
  * 
+ * It returns the DSP unit at the specified `index`.
+ * 
+ * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} index
+ * @param {real} index The offset into the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain), see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets for 'head' and 'tail' and 'fader' units.
  * @returns {real}
  * @func_end
  */
@@ -1207,9 +1292,11 @@ function fmod_channel_control_get_dsp(channel_control_ref, index) {}
  *
  * This function sets the index in the DSP chain of the specified DSP.
  * 
+ * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_ref A reference to a DSP.
- * @param {real} chain_index
+ * @param {real} dsp_ref A reference to a DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * @param {real} chain_index The offset into the DSP chain to move the DSP to, see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets.
  * @returns {real}
  * @func_end
  */
@@ -1224,8 +1311,10 @@ function fmod_channel_control_set_dsp_index(channel_control_ref, dsp_ref, chain_
  *
  * This function retrieves the index of a DSP inside the Channel or ChannelGroup's DSP chain.
  * 
+ * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_ref A reference to a DSP.
+ * @param {real} dsp_ref DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
  * @returns {real}
  * @func_end
  */
@@ -1240,7 +1329,9 @@ function fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref) {}
  *
  * This function retrieves the DSP clock values at this point in time.
  * 
- * @param {real} control_ref A reference to a control.
+ * To perform sample accurate scheduling in conjunction with ${function.fmod_channel_control_set_delay} and ${function.fmod_channel_control_add_fade_point} query the `parentclock` value.
+ * 
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlDSPClock}
  * @func_end
  */
@@ -1255,10 +1346,11 @@ function fmod_channel_control_get_dsp_clock(channel_control_ref) {}
  *
  * This function sets a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.
  * 
- * @param {real} control_ref A reference to a control.
- * @param {real} dsp_clock_start
- * @param {real} dsp_clock_end
- * @param {bool} stop_channels
+ * @param {real} control_ref A reference to a channel control.
+ * @param {real} dsp_clock_start The DSP clock of the parent ChannelGroup to audibly start playing sound at. Default is 0.
+ * @param {real} dsp_clock_end DSP clock of the parent ChannelGroup to audibly stop playing sound at. Default is 0.
+ * @param {bool} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
+False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
  * @func_end
  */
 function fmod_channel_control_set_delay(channel_control_ref, dsp_clock_start, dsp_clock_end, stop_channels) {}
@@ -1272,7 +1364,7 @@ function fmod_channel_control_set_delay(channel_control_ref, dsp_clock_start, ds
  *
  * This function retrieves a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlDelay}
  * @func_end
  */
@@ -1287,7 +1379,7 @@ function fmod_channel_control_get_delay(channel_control_ref) {}
  *
  * This function adds a sample accurate fade point at a time relative to the parent ChannelGroup DSP clock.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {real} dsp_clock
  * @param {real} volume
  * @func_end
@@ -1303,7 +1395,7 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
  *
  * This function adds a volume ramp at the specified time in the future using fade points.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {real} dsp_clock
  * @param {real} volume
  * @func_end
@@ -1319,7 +1411,7 @@ function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock
  *
  * This function removes all fade points between the two specified clock values (inclusive).
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @param {real} dsp_clock_start
  * @param {real} dsp_clock_end
  * @func_end
@@ -1335,7 +1427,7 @@ function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_
  *
  * This function retrieves information about stored fade points.
  * 
- * @param {real} control_ref A reference to a control.
+ * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlFadePoints}
  * @func_end
  */
@@ -6673,7 +6765,7 @@ function fmod_system_create() {}
 
 /**
  * @func fmod_system_select
- * @desc GM-specific function - TODO
+ * @desc GM-specific function
  * 
  * @param {real} system_ref A reference to a system.
  * @returns {real}
@@ -6684,7 +6776,7 @@ function fmod_system_select(system_ref) {}
 
 /**
  * @func fmod_system_count
- * @desc GM-specific function - TODO
+ * @desc GM-specific function
  * 
  * @returns {real}
  * @func_end
