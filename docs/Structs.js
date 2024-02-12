@@ -268,17 +268,18 @@
 /**
  * @struct FmodControlDSPClock
  * 
- * @member {real} dsp_clock 
- * @member {real} parent_clock 
+ * @member {real} dsp_clock The DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_TAIL`) node. Expressed in samples.
+ * @member {real} parent_clock DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_TAIL`) node of the parent ChannelGroup. Expressed in samples.
  * @struct_end
  */
 
 /**
  * @struct FmodControlDelay
  * 
- * @member {real} dsp_clock_start 
- * @member {real} dsp_clock_end 
- * @member {boolean} stop_channels 
+ * @member {real} dsp_clock_start DSP clock of the parent ChannelGroup to audibly start playing sound at.
+ * @member {real} dsp_clock_end DSP clock of the parent ChannelGroup to audibly stop playing sound at.
+ * @member {boolean} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
+False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
  * @struct_end
  */
 
