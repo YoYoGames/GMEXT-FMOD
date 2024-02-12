@@ -243,16 +243,25 @@
 /**
  * @struct FmodControl3DMinMaxDistance
  * 
- * @member {real} min_dist 
- * @member {real} max_dist 
+ * @member {real} min_dist The distance from the source where attenuation begins. A value in the range [0, `infinity`]. Default is 1.
+ * @member {real} max_dist The distance from the source where attenuation ends. A value in the range [`min`, `infinity`]. Default is 1.
  * @struct_end
  */
 
 /**
  * @struct FmodControl3DOcclusion
  * 
- * @member {real} direct 
- * @member {real} reverb 
+ * @member {real} direct The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @member {real} reverb The occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodControlMixMatrix
+ * 
+ * @member matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
+ * @member out_channels The number of valid output channels (rows) in `matrix`.
+ * @member in_channels Number of valid input channels (columns) in `matrix`.
  * @struct_end
  */
 
@@ -379,12 +388,12 @@
 
 /**
  * @struct FmodSoundTag
- * 
- * @member {string} name 
- * @member {real} type 
- * @member {real} update 
- * @member {real} data_len 
- * @member {real} data_type 
+ * @desc Tag data / metadata description.
+ * @member {string} name Name.
+ * @member {constant.FMOD_TAGTYPE} type Tag type.
+ * @member {real} update True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
+ * @member {real} data_len Size of `data`.
+ * @member {constant.FMOD_TAGDATATYPE} data_type Tag data type.
  * @struct_end
  */
 
