@@ -4008,7 +4008,7 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves an array of the buses in the bank.
+ * This function retrieves an array containing the buses in the bank.
  * 
  * May be used in conjunction with ${func.fmod_studio_bank_get_bus_count} to enumerate the buses in the bank.
  * 
@@ -4046,7 +4046,13 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the event descriptions in the bank.
+ * This function retrieves an array containing the event descriptions in the bank.
+ * 
+ * This will return a maximum of capacity events from the bank. If the bank contains more than capacity events, then additional events will be silently ignored.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_event_count} to enumerate the events in the bank.
+ * 
+ * This function retrieves the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not retrieved.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4063,6 +4069,8 @@ function fmod_studio_bank_get_event_description_list(bank_ref) {}
  *
  * This function retrieves the number of string table entries in the bank.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_string_info} to enumerate the string table in a bank.
+ * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
  * @func_end
@@ -4078,8 +4086,14 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
  *
  * This function retrieves a string table entry.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_string_count} to enumerate the string table in a bank.
+ * 
+ * If the path is longer than size then it is truncated and this function returns FMOD_RESULT.ERR_TRUNCATED.
+ * 
+ * The retrieved parameter can be used to get the buffer size required to hold the full path.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @param {real} string_index
+ * @param {real} string_index String table entry index.
  * @returns {struct.FmodStudioStringInfo}
  * @func_end
  */
@@ -4094,6 +4108,8 @@ function fmod_studio_bank_get_string_info(bank_ref, string_index) {}
  *
  * This function retrieves the number of VCAs in the bank.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_vca_list} to enumerate the VCAs in a bank.
+ * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
  * @func_end
@@ -4107,7 +4123,11 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the VCAs in the bank.
+ * This function retrieves an array containing the VCAs in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_vca_count} to enumerate the VCAs in a bank.
+ * 
+ * This returns a maximum of capacity VCAs from the bank. If the bank contains more than capacity VCAs, additional VCAs will be silently ignored.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4122,7 +4142,7 @@ function fmod_studio_bank_get_vca_list(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {string}
@@ -4137,7 +4157,11 @@ function fmod_studio_bank_get_id(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the given bank.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned.
+ * 
+ * If the path is longer than size then it is truncated and this function returns `FMOD_RESULT.ERR_TRUNCATED`.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {string}
