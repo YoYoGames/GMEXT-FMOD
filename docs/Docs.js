@@ -1124,6 +1124,8 @@ function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_ch
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
+ * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
+ * 
  * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlMixMatrix}
  * @func_end
@@ -1379,9 +1381,23 @@ function fmod_channel_control_get_delay(channel_control_ref) {}
  *
  * This function adds a sample accurate fade point at a time relative to the parent ChannelGroup DSP clock.
  * 
+ * Fade points are scaled against other volume settings and in-between each fade point the volume will be linearly ramped.
+ * 
+ * To perform sample accurate fading use ${function.fmod_channel_control_get_dsp_clock} to query the parent clock value. If a parent ChannelGroup changes its pitch, the fade points will still be correct as the parent clock rate is adjusted by that pitch.
+ * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock
- * @param {real} volume
+ * @param {real} dsp_clock The DSP clock of the parent ChannelGroup to set the fade point volume. Expressed in samples.
+ * @param {real} volume The (linear) volume level at the given `dspclock`. Values above 1.0 amplify the signal.
+ * 
+ * @example
+ *  * ```gml
+ * // Example. Ramp from full volume to half volume over the next 4096 samples
+ * var _dsp_clock = FMOD_ChannelControl_GetDSPClock(target);
+ * var _clock_val = _dsp_clock.parent_clock;
+ * FMOD_ChannelControl_AddFadePoint(target, _clock_val, 1);
+ * FMOD_ChannelControl_AddFadePoint(target, _clock_val + 4096, 0.5);
+ * ```
+ * The above code shows how to perform sample accurate fading. It ramps from full volume to half volume over the next 4096 samples.
  * @func_end
  */
 function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, volume) {}
@@ -1741,6 +1757,7 @@ function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
  * This function retrieves the DSP unit at the specified index in the input list.
  * 
  * @param {real} dsp_ref A reference to a DSP.
+ * @param {real} dsp_chain_index The index in the DSP's chain to look up.
  * @returns {struct.FmodDSPConnectionData}
  * @func_end
  */
@@ -3517,8 +3534,8 @@ function fmod_sound_get_music_speed(sound_ref) {}
  * This function retrieves a sync point.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} point_index
- * @param {constant.FMOD_TIMEUNIT} offset_type
+ * @param {real} point_index 
+ * @param {constant.FMOD_TIMEUNIT} offset_type 
  * @returns {struct.FmodSyncPoint}
  * @func_end
  */
