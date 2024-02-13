@@ -3903,9 +3903,11 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the loading state.
+ * This function is used to check the loading state of a bank which has been loaded asynchronously using the `FMOD_STUDIO_LOAD_BANK.NONBLOCKING` flag, or is pending unload following a call to ${func.fmod_studio_bank_unload}.
  * 
- * @param {real} bank_ref 
+ * If an asynchronous load failed due to a file error, state will contain `FMOD_STUDIO_LOADING_STATE.ERROR` and the return code from this function will be the error code of the bank load function.
+ * 
+ * @param {real} bank_ref A reference to a bank.
  * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
@@ -3920,8 +3922,11 @@ function fmod_studio_bank_get_loading_state(bank_ref) {}
  *
  * This function loads non-streaming sample data for all events in the bank.
  * 
+ * Use this function to preload sample data ahead of time so that the events in the bank can play immediately when started.
+ *
+ * This function is equivalent to calling ${func.fmod_studio_event_description_load_sample_data} for all events in the bank, including referenced events.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_load_sample_data(bank_ref) {}
@@ -3935,8 +3940,9 @@ function fmod_studio_bank_load_sample_data(bank_ref) {}
  *
  * This function unloads non-streaming sample data for all events in the bank.
  * 
+ * Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details [see Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading).
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_unload_sample_data(bank_ref) {}
@@ -3950,8 +3956,12 @@ function fmod_studio_bank_unload_sample_data(bank_ref) {}
  *
  * This function retrieves the loading state of the samples in the bank.
  * 
+ * May be used for tracking the status of the ${func.fmod_studio_bank_load_sample_data} operation.
+ *
+ * If ${func.fmod_studio_bank_load_sample_data} has not been called for the bank then this function will return `FMOD_STUDIO_LOADING_STATE.UNLOADED` even though sample data may have been loaded by other API calls.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
 function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
@@ -3965,8 +3975,11 @@ function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
  *
  * This function unloads the bank.
  * 
+ * This will destroy all objects created from the bank, unload all sample data inside the bank, and invalidate all API handles referring to the bank.
+ * 
+ * If the bank was loaded from user-managed memory, e.g. by ${func.fmod_studio_system_load_bank_memory} with the `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT` mode, then the memory must not be freed until the unload has completed. Poll the loading state using ${func.fmod_studio_bank_get_loading_state} or use the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` system callback to determine when it is safe to free the memory.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_unload(bank_ref) {}
@@ -3979,6 +3992,8 @@ function fmod_studio_bank_unload(bank_ref) {}
  * <br />
  *
  * This function retrieves the number of buses in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_bus_list} to enumerate the buses in the bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
@@ -3993,7 +4008,11 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the buses in the bank.
+ * This function retrieves an array of the buses in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_bus_count} to enumerate the buses in the bank.
+ * 
+ * This function returns a maximum of capacity buses from the bank. If the bank contains more than capacity buses, additional buses will be silently ignored.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4009,6 +4028,10 @@ function fmod_studio_bank_get_bus_list(bank_ref) {}
  * <br />
  *
  * This function retrieves the number of event descriptions in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_event_description_list} to enumerate the events in the bank.
+ * 
+ * This function counts the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not counted.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
