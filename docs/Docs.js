@@ -4193,7 +4193,7 @@ function fmod_studio_bank_get_path(bank_ref) {}
  *
  * <br />
  *
- * This function checks whether the given Bank reference is valid.
+ * This function checks whether the given Bank reference is valid, returning `true` or `false`.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {boolean}
@@ -4223,9 +4223,9 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
  *
  * <br />
  *
- * TThis function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
- * NaN if no user data
+ * The function returns `NaN` if there is no user data attached to the bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
@@ -4241,11 +4241,12 @@ function fmod_studio_bank_get_user_data(bank_ref) {}
  *
  * <br />
  *
- * This function sets the pause state.
+ * This function allows pausing/unpausing of all audio routed into the bus.
+ * 
+ * An individual pause state is kept for each bus. Pausing a bus will override the pause state of its inputs (meaning they return true from ${func.fmod_studio_bus_get_paused}), while unpausing a bus will cause its inputs to obey their individual pause state. The pause state is processed in the Studio system update, so ${func.fmod_studio_bus_get_paused} will return the state as determined by the last update.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} pause
- * @returns {real}
+ * @param {boolean} pause `true` to pause the bus, `false` to unpause.
  * @func_end
  */
 function fmod_studio_bus_set_paused(bus_ref, pause) {}
@@ -4257,10 +4258,10 @@ function fmod_studio_bus_set_paused(bus_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the pause state.
+ * This function retrieves the pause state of the given bus, returning `true` if paused and `false` if unpaused.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_get_paused(bus_ref) {}
@@ -4272,11 +4273,10 @@ function fmod_studio_bus_get_paused(bus_ref) {}
  *
  * <br />
  *
- * This function stops all event instances that are routed into the bus.
+ * This function stops all event instances that are routed into the bus. You pass it an ${constant.FMOD_STUDIO_STOP_MODE} enum member.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} stop_mode
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_STOP_MODE} stop_mode The stop mode to use.
  * @func_end
  */
 function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
@@ -4288,11 +4288,12 @@ function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
  *
  * <br />
  *
- * This function sets the volume level.
+ * This function sets the volume level of the bus.
+ * 
+ * This volume is applied as a scaling factor to the volume level set in FMOD Studio.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} volumen
- * @returns {real}
+ * @param {real} volume Volume level. Negative level inverts the signal. Linear unit, range (-inf, inf), default: 1
  * @func_end
  */
 function fmod_studio_bus_set_volume(bus_ref, volumen) {}
@@ -4304,7 +4305,7 @@ function fmod_studio_bus_set_volume(bus_ref, volumen) {}
  *
  * <br />
  *
- * This function retrieves the volume level.
+ * This function retrieves the volume level of the bus.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
@@ -4319,11 +4320,14 @@ function fmod_studio_bus_get_volume(bus_ref) {}
  *
  * <br />
  *
- * This function sets the mute state.
+ * This function sets the mute state of the bus.
+ * 
+ * Mute is an additional control for volume, the effect of which is equivalent to setting the volume to zero.
+ * 
+ * An individual mute state is kept for each bus. Muting a bus will override the mute state of its inputs (meaning they return `true` from ${func.fmod_studio_bus_get_mute}), while unmuting a bus will cause its inputs to obey their individual mute state. The mute state is processed in the Studio system update, so ${func.fmod_studio_bus_get_mute} will return the state as determined by the last update.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} mute
- * @returns {real}
+ * @param {real} mute `true` to mute, `false` to unmute.
  * @func_end
  */
 function fmod_studio_bus_set_mute(bus_ref, mute) {}
@@ -4335,10 +4339,10 @@ function fmod_studio_bus_set_mute(bus_ref, mute) {}
  *
  * <br />
  *
- * This function retrieves the mute state.
+ * This function retrieves the mute state. This will be `true` if muted and `false` if not.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_get_mute(bus_ref) {}
@@ -4352,8 +4356,14 @@ function fmod_studio_bus_get_mute(bus_ref) {}
  *
  * This function sets the port index to use when attaching to an output port.
  * 
+ * When a bus which is an output port is instantiated it will be connected to an output port based on the port type set in Studio. For some port types a platform specific port index is required to connect to the correct output port. For example, if the output port type is a speaker in a controller then a platform specific port index may be required to specify which controller the bus is to attach to. In such a case call this function passing the platform specific port index.
+ * 
+ * There is no need to call this function for port types which do not require an index.
+ * 
+ * This function may be called at any time after a bank containing the bus has been loaded.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} port_index
+ * @param {constant.FMOD_PORT_INDEX} port_index Port index to use when attaching to an output port.
  * @func_end
  */
 function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
@@ -4365,7 +4375,7 @@ function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
  *
  * <br />
  *
- * This function retrieves the port index assigned to the bus.
+ * This function retrieves the port index assigned to the bus, as a ${constant.FMOD_PORT_INDEX} enum member.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real} port_index
@@ -4382,6 +4392,8 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
  *
  * This function retrieves the core ChannelGroup.
  * 
+ * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, this function will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
+ * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
  * @func_end
@@ -4397,8 +4409,13 @@ function fmod_studio_bus_get_channel_group(bus_ref) {}
  *
  * This function locks the core ChannelGroup.
  * 
+ * This forces the system to create the ChannelGroup and keep it available until ${func.fmod_studio_bus_unlock_channel_group} is called. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * 
+ * The ChannelGroup may not be available immediately after calling this function. When Studio has been initialized in asynchronous mode, the ChannelGroup will not be created until the command has been executed in the async thread. When Studio has been initialized with `FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE`, the ChannelGroup will be created in the next ${func.fmod_studio_system_update} call.
+ * 
+ * You can call ${func.fmod_studio_system_flush_commands} to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via ${func.fmod_studio_bus_get_channel_group} until it is ready.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bus_lock_channel_group(bus_ref) {}
@@ -4412,8 +4429,9 @@ function fmod_studio_bus_lock_channel_group(bus_ref) {}
  *
  * This function unlocks the core ChannelGroup.
  * 
+ * This allows the system to destroy the ChannelGroup when it is not needed. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bus_unlock_channel_group(bus_ref) {}
@@ -4426,6 +4444,8 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
  * <br />
  *
  * This function retrieves the bus CPU usage data.
+ * 
+ * `FMOD_INIT.PROFILE_ENABLE` with ${func.fmod_system_init} is required to call this function.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {struct.FmodCPUUsage}
@@ -4440,11 +4460,12 @@ function fmod_studio_bus_get_cpu_usage(bus_ref) {}
  *
  * <br />
  *
- * This function retrieves memory usage statistics.
+ * This function retrieves memory usage statistics into an existing ${struct.FmodStudioMemoryUsage} struct.
+ * 
+ * Memory usage statistics are only available in logging builds, in release builds this will contain zero for all values after calling this function.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {buffer} buff_return
- * @returns {real}
+ * @param {struct.FmodStudioMemoryUsage} memory_usage_struct An existing struct which will contain the memory usage data after the call.
  * @func_end
  */
 function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
@@ -4456,7 +4477,7 @@ function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given bus.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {string}
@@ -4471,7 +4492,11 @@ function fmod_studio_bus_get_id(bus_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the bus.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned.
+ * 
+ * If the path is longer than size then it is truncated and this function returns `FMOD_RESULT.ERR_TRUNCATED`.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {string}
@@ -4486,10 +4511,10 @@ function fmod_studio_bus_get_path(bus_ref) {}
  *
  * <br />
  *
- * This function checks that the Bus reference is valid.
+ * This function checks that the Bus reference is valid, returning `true` or `false`.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_is_valid(bus_ref) {}
