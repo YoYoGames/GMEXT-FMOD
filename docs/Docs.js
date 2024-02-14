@@ -1411,9 +1411,15 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
  *
  * This function adds a volume ramp at the specified time in the future using fade points.
  * 
+ * This is a convenience function that creates a scheduled 64 sample fade point ramp from the current volume level to volume arriving at `dsp_clock` time.
+ * 
+ * Can be use in conjunction with ${function.fmod_channel_control_set_delay}.
+ * 
+ * All fade points after `dsp_clock` will be removed.
+ * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock
- * @param {real} volume
+ * @param {real} dsp_clock The time (in samples) at which the ramp will end, as measured by the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
+ * @param {real} volume The volume level at the given `dsp_clock`. 0 = silent, 1 = full.
  * @func_end
  */
 function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock, volume) {}
@@ -1428,8 +1434,8 @@ function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock
  * This function removes all fade points between the two specified clock values (inclusive).
  * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock_start
- * @param {real} dsp_clock_end
+ * @param {real} dsp_clock_start The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to begin removing fade points. Expressed in samples.
+ * @param {real} dsp_clock_end The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to stop removing fade points. Expressed in samples.
  * @func_end
  */
 function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_start, dsp_clock_end) {}
@@ -1441,7 +1447,7 @@ function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_
  *
  * <br />
  *
- * This function retrieves information about stored fade points.
+ * This function retrieves information about all stored fade points.
  * 
  * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlFadePoints}
@@ -1459,7 +1465,6 @@ function fmod_channel_control_get_fade_points(channel_control_ref) {}
  * This function sets the callback for ChannelControl level notifications.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @returns {real}
  * @func_end
  */
 function fmod_channel_control_set_callback(channel_control_ref) {}
@@ -1486,11 +1491,12 @@ function fmod_channel_control_get_system_object(channel_control_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a real user value associated with this object.
+ * 
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to store on this object.
  * @func_end
  */
 function fmod_channel_control_set_user_data(channel_control_ref, data) {}
@@ -1502,7 +1508,9 @@ function fmod_channel_control_set_user_data(channel_control_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves the user value associated with this object, as set with ${function.fmod_channel_control_set_user_data}.
+ * 
+ * [[Note: While FMOD allows you to set arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1535,8 +1543,10 @@ function fmod_channel_group_get_num_channels(channel_group_ref) {}
  *
  * This function retrieves the Channel at the specified index in the list of Channel inputs.
  * 
+ * The function returns a reference to the Channel.
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} index
+ * @param {real} index The offset into the list of [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) inputs.
  * @returns {real}
  * @func_end
  */
@@ -1551,9 +1561,11 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
  *
  * This function adds a ChannelGroup as an input to this group.
  * 
+ * The function returns a reference to the [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) created between the head DSP of `child_channel_group_ref` and the tail DSP of `channel_group_ref`.
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} child_channel_group_ref A reference to a child ChannelGroup.
- * @param {real} propagate_dsp_clock
+ * @param {real} child_channel_group_ref The ChannelGroup to add.
+ * @param {boolean} propagate_dsp_clock Whether to recursively propagate this object's clock values to `child_channel_group_ref`.
  * @returns {real}
  * @func_end
  */
@@ -1584,7 +1596,7 @@ function fmod_channel_group_get_num_groups(channel_group_ref) {}
  * This function retrieves the ChannelGroup at the specified index in the list of group inputs.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} group_index
+ * @param {real} group_index The offset into the list of group inputs. A value in the range [0, ${function.fmod_channel_group_get_num_groups}].
  * @returns {real}
  * @func_end
  */
@@ -1629,6 +1641,8 @@ function fmod_channel_group_get_name(channel_group_ref) {}
  *
  * This function frees the memory for the group.
  * 
+ * [[Note: Any [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) or [ChannelGroups](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) feeding into this group are moved to the master ChannelGroup.]]
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
  * @func_end
@@ -1642,7 +1656,7 @@ function fmod_channel_group_release(channel_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the System that created this object.
+ * This function retrieves the [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) that created this object.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
@@ -1659,6 +1673,8 @@ function fmod_channel_group_get_system_object(channel_group_ref) {}
  *
  * This is an information function to retrieve the state of FMOD disk access.
  * 
+ * [[Warning: Do not use this function to synchronize your own reads with, as due to timing, you might call this function and it says false = it is not busy, but the split second after calling this function, internally FMOD might set it to busy. Use ${function.fmod_file_set_disk_busy} for proper mutual exclusion as it uses semaphores.]]
+ * 
  * @returns {real}
  * @func_end
  */
@@ -1673,7 +1689,11 @@ function fmod_file_get_disk_busy() {}
  *
  * This function sets the busy state for disk access ensuring mutual exclusion of file operations.
  * 
- * @param {real} busy
+ * [[Note: If file IO is currently being performed by FMOD this function will block until it has completed.]]
+ * 
+ * [[Note: This function should be called in pairs once to set the state, then again to clear it once complete.]]
+ * 
+ * @param {real} busy The busy state where 1 represent the beginning of disk access and 0 represents the end of disk access.
  * @returns {real}
  * @func_end
  */
@@ -1688,7 +1708,9 @@ function fmod_file_set_disk_busy(busy) {}
  *
  * This function returns information on the memory usage of FMOD.
  * 
- * @param {real} blocking
+ * This information is byte accurate and counts all allocs and frees internally. This is useful for determining a fixed memory size to make FMOD work within for fixed memory machines such as consoles.
+ * 
+ * @param {boolean} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
  * @returns {struct.FmodMemoryStats}
  * @func_end
  */
@@ -1703,10 +1725,21 @@ function fmod_memory_get_stats(blocking) {}
  *
  * This function specifies the level and delivery method of log messages when using the logging version of FMOD.
  * 
- * @param {real} flags
- * @param {real} mode
- * @param {string} filename
- * @returns {real}
+ * This function will return `FMOD_RESULT.ERR_UNSUPPORTED` when using the non-logging (release) versions of FMOD.
+ * 
+ * The logging version of FMOD can be recognized by the 'L' suffix in the library name, fmodL.dll or libfmodL.so for instance.
+ * 
+ * Note that:
+ * 
+ * * `FMOD_DEBUG_FLAGS.LEVEL_LOG` produces informational, warning and error messages.
+ * * `FMOD_DEBUG_FLAGS.LEVEL_WARNING` produces warnings and error messages.
+ * * `FMOD_DEBUG_FLAGS.LEVEL_ERROR` produces error messages only.
+ * 
+ * See Also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * 
+ * @param {constant.FMOD_DEBUG_FLAGS} flags The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.
+ * @param {constant.FMOD_DEBUG_MODE} mode The destination for log messages. Optional. The default value is `FMOD_DEBUG_MODE.TTY`.
+ * @param {string} filename The filename to use when mode is set to file, only required when using that mode. Optional. The default value is `pointer_null`.
  * @func_end
  */
 function fmod_debug_initialize(flags, mode, filename) {}
@@ -1720,11 +1753,18 @@ function fmod_debug_initialize(flags, mode, filename) {}
  *
  * This function specifies the affinity, priority and stack size for all FMOD created threads.
  * 
- * @param {real} type
- * @param {real} affinity
- * @param {real} priority
- * @param {real} stacksize
- * @returns {real}
+ * You must call this function for the chosen thread before that thread is created for the settings to take effect.
+ * 
+ * Affinity can be specified using one (or more) of the ${constant.FMOD_THREAD_AFFINITY} constants or by providing the bits explicitly, i.e. (1<<3) for logical core three (core affinity is zero based). See platform documentation for details on the available cores for a given device.
+ * 
+ * Priority can be specified using one of the ${constant.FMOD_THREAD_PRIORITY} constants or by providing the value explicitly, i.e. (-2) for the lowest thread priority on Windows. See platform documentation for details on the available priority values for a given operating system.
+ * 
+ * The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.
+ * 
+ * @param {constant.FMOD_THREAD_TYPE} type The identifier for an FMOD thread.
+ * @param {constant.FMOD_THREAD_AFFINITY} affinity A bitfield of desired CPU cores to assign the given thread to.
+ * @param {constant.FMOD_THREAD_PRIORITY} priority The scheduling priority to assign the given thread to.
+ * @param {constant.FMOD_THREAD_STACK_SIZE} stacksize The amount of stack space available to the given thread.
  * @func_end
  */
 function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
@@ -1737,11 +1777,15 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
  *
  * <br />
  *
- * This function adds a DSP unit as an input to this object.
+ * This function adds a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit as an input to this object and returns the new [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) between the two units.
  * 
- * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_input_ref A reference to a dsp_input.
- * @param {real} dsp_connection_type
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: When a DSP has multiple inputs the signals are automatically mixed together, sent to the unit's output(s).]]
+ * 
+ * @param {real} dsp_ref A reference to a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * @param {real} dsp_input_ref A reference to the DSP unit to be added to `dsp_ref`.
+ * @param {constant.FMOD_DSPCONNECTION_TYPE} dsp_connection_type The type of connection between the two units. Optional. Default is `FMOD_DSPCONNECTION_TYPE.STANDARD`.
  * @returns {real}
  * @func_end
  */
@@ -1756,8 +1800,12 @@ function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
  *
  * This function retrieves the DSP unit at the specified index in the input list.
  * 
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_chain_index The index in the DSP's chain to look up.
+ * @param {real} dsp_chain_index The offset into `dsp_ref`'s input list. A value in the range [0, ${function.fmod_dsp_get_num_inputs}]
  * @returns {struct.FmodDSPConnectionData}
  * @func_end
  */
@@ -1772,7 +1820,12 @@ function fmod_dsp_get_input(dsp_ref, dsp_input_index) {}
  *
  * This function retrieves the DSP unit at the specified index in the output list.
  * 
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
+ * @param {real} dsp_chain_index A value in the range [0, ${function.fmod_dsp_get_num_inputs}]
  * @returns {struct.FmodDSPConnectionData}
  * @func_end
  */
@@ -1785,7 +1838,9 @@ function fmod_dsp_get_output(dsp_ref, dsp_output_index) {}
  *
  * <br />
  *
- * This function retrieves the number of DSP units in the input list.
+ * This function retrieves the number of DSP units in the given DSP's input list.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -1800,7 +1855,9 @@ function fmod_dsp_get_num_inputs(dsp_ref) {}
  *
  * <br />
  *
- * This function retrieves the number of DSP units in the output list.
+ * This function retrieves the number of DSP units in the given DSP's output list.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
