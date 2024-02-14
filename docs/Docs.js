@@ -4176,10 +4176,10 @@ function fmod_studio_bank_get_path(bank_ref) {}
  *
  * <br />
  *
- * This function checks that the Bank reference is valid.
+ * This function checks whether the given Bank reference is valid.
  * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bank_is_valid(bank_ref) {}
@@ -4190,12 +4190,11 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_setuserdata)
  *
  * <br />
- *
- * This function sets the bank user data.
+ * 
+ * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @param {real} data
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_set_user_data(bank_ref, data) {}
@@ -4207,7 +4206,9 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the bank user data.
+ * TThis function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * 
+ * NaN if no user data
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
