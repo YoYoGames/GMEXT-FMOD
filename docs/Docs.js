@@ -5434,11 +5434,10 @@ function fmod_studio_event_description_set_callback(event_description_ref, type)
  *
  * <br />
  *
- * This function sets the event user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_event_description_set_user_data(event_description_ref, data) {}
@@ -5450,7 +5449,7 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
  *
  * <br />
  *
- * This function retrieves the event user data.
+ * This function retrieves the real value attached to the object in ${func.fmod_studio_event_description_set_user_data}.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5468,7 +5467,7 @@ function fmod_studio_event_description_get_user_data(event_description_ref) {}
  * This function checks that the EventDescription reference is valid.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_valid(event_description_ref) {}
