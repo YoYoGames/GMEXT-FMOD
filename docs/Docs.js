@@ -5400,11 +5400,29 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  *
  * <br />
  *
- * This function sets the user callback.
+ * This function enables a user callback which will be assigned to all event instances subsequently created from the event. The callback for individual instances can be set with ${func.fmod_studio_event_instance_set_callback}.
+ * 
+ * This callback is triggered as an Async Social event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} type
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_CALLBACK} type The bitfield specifying which callback types are required.
+ * 
+ * @event social
+ * @member {string} type The value `"fmod_studio_event_description_set_callback"`
+ * @member {c onstant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
+ * @member {real} event_instance_ref Handle of the EventInstance that has changed state.
+ * @member {string} name Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER`
+ * @member {real} sub_sound_index Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} sound_ref Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} position Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} bar Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} beat Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} tempo Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_lower Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_upper Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} event_id Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_event_description_set_callback(event_description_ref, type) {}
