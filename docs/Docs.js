@@ -1104,7 +1104,7 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * 0 0 0 0 0 1
  * ```
  * 
- * Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.
+ * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
  * 
  * @param {real} control_ref A reference to a channel control.
  * @param {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
@@ -2487,8 +2487,7 @@ function fmod_dsp_get_system_object(dsp_ref) {}
  * This function sets the connection's volume scale.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume The volume scale applied to the input before being passed to the output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
  * @func_end
  */
 function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
@@ -2501,6 +2500,8 @@ function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
  * <br />
  *
  * This function retrieves the connection's volume scale.
+ * 
+ * The function returns the volume scale applied to the input before being passed to the output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2517,11 +2518,28 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  *
  * This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
+ * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
+ * 
+ * If null or equivalent is passed in via `matrix` a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.
+ * 
+ * Example 5.1 unit matrix: 
+ * 
+ * ```
+ * 1 0 0 0 0 0
+ * 0 1 0 0 0 0
+ * 0 0 1 0 0 0
+ * 0 0 0 1 0 0
+ * 0 0 0 0 1 0
+ * 0 0 0 0 0 1
+ * ```
+ * 
+ * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
+ * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {array[real]} matrix
- * @param {real} out_channels
- * @param {real} in_channels
- * @param {real} in_channel_hop
+ * @param {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel. Null or equivalent sets a 'default' matrix.
+ * @param {real} out_channels The number of output channels (rows) in `matrix`. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}];
+ * @param {real} in_channels The number of input channels (columns) in `matrix`. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}];
+ * @param {real} in_channel_hop OPTIONAL The width (total number of columns) of source `matrix`. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}]; Defaults to `in_channels`.
  * @func_end
  */
 function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_channels, in_channels, in_channel_hop) {}
@@ -2535,8 +2553,10 @@ function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_chan
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
+ * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
+ * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} in_channel_hop
+ * @param {real} in_channel_hop The width (total number of columns) of the destination matrix. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix.
  * @returns {struct.FmodDSPConnectionMixMatrix}
  * @func_end
  */
@@ -2550,6 +2570,8 @@ function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) 
  * <br />
  *
  * This function retrieves the connection's input DSP unit.
+ * 
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FMOD_RESULT.ERR_NOTREADY` and the value 0 will be returned.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2565,6 +2587,8 @@ function fmod_dsp_connection_get_input(dsp_connection_ref) {}
  * <br />
  *
  * This function retrieves the connection's output DSP unit.
+ * 
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FMOD_RESULT.ERR_NOTREADY` and the value 0 will be returned.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2582,7 +2606,7 @@ function fmod_dsp_connection_get_output(dsp_connection_ref) {}
  * This function retrieves the type of the connection between 2 DSP units.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @returns {real}
+ * @returns {constant.FMOD_DSPCONNECTION_TYPE}
  * @func_end
  */
 function fmod_dsp_connection_get_type(dsp_connection_ref) {}
@@ -2597,8 +2621,7 @@ function fmod_dsp_connection_get_type(dsp_connection_ref) {}
  * This function sets a user value associated with this object.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The floating-point value to set.
  * @func_end
  */
 function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
@@ -2610,7 +2633,7 @@ function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves the floating-point user value associated with this object, as set by an earlier call to ${function.fmod_dsp_connection_set_user_data}.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2629,11 +2652,10 @@ function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
  * This function sets individual attributes for a polygon inside a geometry object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} direct_occlusion
- * @param {real} reverb_occlusion
- * @param {real} double_sided
- * @returns {real}
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion.
+ * @param {real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion.
+ * @param {boolean} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @func_end
  */
 function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direct_occlusion, reverb_occlusion, double_sided) {}
@@ -2648,7 +2670,7 @@ function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direc
  * This function retrieves the attributes for a polygon.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
  * @returns {struct.FmodGeometryPolygonAttributes}
  * @func_end
  */
@@ -2664,7 +2686,7 @@ function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index) {}
  * This function gets the number of vertices in a polygon.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
  * @returns {real}
  * @func_end
  */
@@ -2679,9 +2701,15 @@ function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
  *
  * This function alters the position of a polygon's vertex inside a geometry object.
  * 
+ * Vertices are relative to the position of the object. See ${function.fmod_geometry_set_position}.
+ * 
+ * There may be some significant overhead with this function as it may cause some reconfiguration of internal data structures used to speed up sound-ray testing.
+ * 
+ * You may get better results if you want to modify your object by using ${function.fmod_geometry_set_position}, ${function.fmod_geometry_set_scale} and ${function.fmod_geometry_set_rotation}.
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} vertex_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} vertex_index The polygon vertex index. A value in the range [0, ${function.fmod_geometry_get_polygon_num_vertices}].
  * @param {struct.FmodVector} position
  * @func_end
  */
@@ -2697,8 +2725,8 @@ function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_in
  * This function retrieves the position of a vertex.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} vertex_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} vertex_index The polygon vertex index. A value in the range [0, ${function.fmod_geometry_get_polygon_num_vertices}].
  * @returns {struct.FmodVector}
  * @func_end
  */
@@ -2713,8 +2741,10 @@ function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_in
  *
  * This function sets the 3D position of the object.
  * 
+ * [[Note: The position is in world space.]]
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} position
+ * @param {struct.FmodVector} position The 3D position. Default is `{x: 0, y: 0, z: 0}`.
  * @func_end
  */
 function fmod_geometry_set_position(geometry_ref, position) {}
@@ -2727,6 +2757,8 @@ function fmod_geometry_set_position(geometry_ref, position) {}
  * <br />
  *
  * This function retrieves the 3D position of the object.
+ * 
+ * [[Note: The position is in world space.]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @returns {struct.FmodVector}
@@ -2743,9 +2775,11 @@ function fmod_geometry_get_position(geometry_ref) {}
  *
  * This function sets the 3D orientation of the object.
  * 
+ * See remarks in ${function.fmod_system_set_3d_listener_attributes} for a more elaborate description on forward and up vectors.
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} forward
- * @param {struct.FmodVector} up
+ * @param {struct.FmodVector} forward The forwards orientation. This vector must be of unit length and perpendicular to the up vector. Default is `{x: 0, y: 0, z: 1}`.
+ * @param {struct.FmodVector} up The upwards orientation. This vector must be of unit length and perpendicular to the forwards vector. Default is `{x: 0, y: 1, z: 0}`.
  * @func_end
  */
 function fmod_geometry_set_rotation(geometry_ref, forward, up) {}
@@ -2775,7 +2809,7 @@ function fmod_geometry_get_rotation(geometry_ref) {}
  * This function sets the 3D scale of the object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} scale
+ * @param {struct.FmodVector} scale The scale value. Default is `{x: 1, y: 1, z: 1}`.
  * @func_end
  */
 function fmod_geometry_set_scale(geometry_ref, scale) {}
@@ -2804,11 +2838,20 @@ function fmod_geometry_get_scale(geometry_ref) {}
  *
  * This function adds a polygon.
  * 
+ * It returns the polygon index that you can use with other per polygon based functions as a handle.
+ * 
+ * [[Note: All vertices must lay in the same plane otherwise behavior may be unpredictable. The polygon is assumed to be convex. A non convex polygon will produce unpredictable behavior. Polygons with zero area will be ignored.]]
+ * 
+ * [[Note: Polygons cannot be added if already at the maximum number of polygons or if the addition of their vertices would result in exceeding the maximum number of vertices.]]
+ * 
+ * [[Note: Vertices of an object are in object space, not world space, and so are relative to the position, or center of the object. See ${function.fmod_geometry_set_position}.]]
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} direct_occlusion
- * @param {real} reverb_occlusion
- * @param {bool} double_sided
- * @param {struct.FmodVector} vertices
+ * @param {real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @param {real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @param {boolean} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
+ * @param {array[struct.FmodVector]} vertices An array of vertices located in object space.
+ * @returns {real}
  * @func_end
  */
 function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlusion, double_sided, vertices) {}
@@ -2823,8 +2866,8 @@ function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlus
  * This function sets whether an object is processed by the geometry engine.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} active
- * @returns {real}
+ * @param {real} active Whether to allow this object to be processed by the geometry engine. Default is true.
+ * @returns {boolean}
  * @func_end
  */
 function fmod_geometry_set_active(geometry_ref, active) {}
@@ -2839,7 +2882,7 @@ function fmod_geometry_set_active(geometry_ref, active) {}
  * This function retrieves whether an object is processed by the geometry engine.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_geometry_get_active(geometry_ref) {}
@@ -2882,11 +2925,10 @@ function fmod_geometry_get_num_polygons(geometry_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a floating-point user value associated with this object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to be stored on this object.
  * @func_end
  */
 function fmod_geometry_set_user_data(geometry_ref, data) {}
@@ -2898,7 +2940,7 @@ function fmod_geometry_set_user_data(geometry_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_geometry_set_user_data}.
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @returns {real}
@@ -2916,7 +2958,6 @@ function fmod_geometry_get_user_data(geometry_ref) {}
  * This function frees a geometry object and releases its memory.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @returns {real}
  * @func_end
  */
 function fmod_geometry_release(geometry_ref) {}
@@ -2928,10 +2969,14 @@ function fmod_geometry_release(geometry_ref) {}
  *
  * <br />
  *
- * This function saves the geometry object as a serialized binary block to a user memory buffer.
+ * This function saves the geometry object as a serialized binary block to a ${type.buffer}.
+ * 
+ * The function returns the size of the data written to the buffer, in bytes.
+ * 
+ * [[Note: The data can be saved to a file if required and loaded later with ${function.fmod_system_load_geometry}.]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {buffer} buff
+ * @param {buffer} buff The address of the ${type.buffer} to write the data to.
  * @returns {real}
  * @func_end
  */
