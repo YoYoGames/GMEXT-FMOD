@@ -656,6 +656,20 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @struct_end
  */
 
+/**
+ * @struct FmodStudioUserProperty
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_USER_PROPERTY](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#fmod_studio_user_property)
+ * 
+ * This struct describes a user property object.
+ * 
+ * @member {string} name The parameter name.
+ * @member {constant.FMOD_STUDIO_USER_PROPERTY_TYPE} type The user property type.
+ * @member {string} string_value String value. Only valid when type is `FMOD_STUDIO_USER_PROPERTY_TYPE.STRING`.
+ * @member {real} int_value Integer (real) value. Only valid when type is `FMOD_STUDIO_USER_PROPERTY_TYPE.INTEGER`.
+ * @member {boolean} bool_value Boolean value. Only valid when type is `FMOD_STUDIO_USER_PROPERTY_TYPE.BOOLEAN`.
+ * @member {real} float_value Float (real) value. Only valid when type is `FMOD_STUDIO_USER_PROPERTY_TYPE.FLOAT`.
+ * @struct_end
+ */
 
 /**
  * @module structs
@@ -719,6 +733,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodStudioSoundInfo
  * @ref FmodStudioStringInfo
  * @ref FmodStudioParameterDescription
+ * @ref FmodStudioUserProperty
  * @section_end
  * @module_end
  */

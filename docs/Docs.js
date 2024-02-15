@@ -4920,7 +4920,13 @@ function fmod_studio_command_replay_release(command_replay_ref) {}
  *
  * <br />
  *
- * This function creates a playable instance.
+ * This function creates a playable instance, returning a handle to the new [EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html) object.
+ * 
+ * When an event instance is created, any required non-streaming sample data is loaded asynchronously.
+ * 
+ * Use ${func.fmod_studio_event_description_get_sample_loading_state} to check the loading status.
+ * 
+ * Sample data can be loaded ahead of time with ${func.fmod_studio_event_description_load_sample_data} or ${func.fmod_studio_bank_load_sample_data}. See [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for more information.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -4935,7 +4941,9 @@ function fmod_studio_event_description_create_instance(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the number of instances.
+ * This function retrieves the number of instances in the EventDescription.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_instance_list} to enumerate the instances of this event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -4950,7 +4958,11 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
  *
  * <br />
  *
- * This function retrieves a list of the instances.
+ * This function retrieves an array containing the instances in the given EventDescription.
+ * 
+ * This returns a maximum of capacity instances. If more than capacity instances have been created then additional instances will be silently ignored.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_instance_count} to enumerate the instances of this event.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
  * @returns {array[real]}
@@ -4965,10 +4977,9 @@ function fmod_studio_event_description_get_instance_list(event_description_ref) 
  *
  * <br />
  *
- * This function releases all instances.
+ * This function immediately stops and releases all instances of the event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_release_all_instances(event_description_ref) {}
@@ -4979,11 +4990,12 @@ function fmod_studio_event_description_release_all_instances(event_description_r
  * @desc > **FMOD Function:** [Studio::EventDescription::loadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata)
  *
  * <br />
- *
- * This function loads non-streaming sample data used by the event.
+ * 
+ * This function will load all non-streaming sample data required by the event and any referenced events.
+ * 
+ * Sample data is loaded asynchronously, ${func.fmod_studio_event_description_get_sample_loading_state} may be used to poll the loading state.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_load_sample_data(event_description_ref) {}
@@ -4997,8 +5009,9 @@ function fmod_studio_event_description_load_sample_data(event_description_ref) {
  *
  * This function unloads all non-streaming sample data.
  * 
+ * Sample data will not be unloaded until all instances of the event are released.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_unload_sample_data(event_description_ref) {}
@@ -5012,8 +5025,10 @@ function fmod_studio_event_description_unload_sample_data(event_description_ref)
  *
  * This function retrieves the sample data loading state.
  * 
+ * If the event is invalid, then the state is set to `FMOD_STUDIO_LOADING_STATE.UNLOADED` and this results in `FMOD_RESULT.ERR_INVALID_HANDLE` (in the next ${func.fmod_last_result} call).
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
 function fmod_studio_event_description_get_sample_loading_state(event_description_ref) {}
@@ -5025,10 +5040,12 @@ function fmod_studio_event_description_get_sample_loading_state(event_descriptio
  *
  * <br />
  *
- * This function retrieves the event's 3D status.
+ * This function retrieves the event's 3D status. For more info, see [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d).
+ * 
+ * This will return `true` if the event is 3D and `false` if not.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_3d(event_description_ref) {}
@@ -5042,8 +5059,12 @@ function fmod_studio_event_description_is_3d(event_description_ref) {}
  *
  * This function retrieves the event's doppler status.
  * 
+ * This will return `true` if doppler is enabled, and `false` if not.
+ * 
+ * Note: If the event was built to a bank using versions of FMOD Studio prior to 2.01.09, then this function will return false regardless of the event's doppler state.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_doppler_enabled(event_description_ref) {}
@@ -5057,8 +5078,14 @@ function fmod_studio_event_description_is_doppler_enabled(event_description_ref)
  *
  * This function retrieves the event's oneshot status.
  * 
+ * This will return `true` if the event is a oneshot event, and `false` if not.
+ * 
+ * An event is considered oneshot if it is guaranteed to terminate without intervention in bounded time after being started. Instances of such events can be played in a fire-and-forget fashion by calling ${func.fmod_studio_event_instance_start} immediately followed by ${func.fmod_studio_event_instance_release}.
+ * 
+ * Note: If the event contains nested events built to separate banks and those banks have not been loaded then this function may fail to correctly determine the event's oneshot status.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_oneshot(event_description_ref) {}
@@ -5072,8 +5099,10 @@ function fmod_studio_event_description_is_oneshot(event_description_ref) {}
  *
  * This function retrieves the event's snapshot status.
  * 
+ * This will return `true` if the event is a snapshot and `false` if not.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_snapshot(event_description_ref) {}
@@ -5085,10 +5114,12 @@ function fmod_studio_event_description_is_snapshot(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the event's stream status.
+ * This function retrieves the event's stream status, returning `true` if the event contains one or more streamed sounds, otherwise `false`.
+ * 
+ * Note: If the event contains nested events built to separate banks and those banks have not been loaded then this function may fail to correctly determine the event's stream status.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_stream(event_description_ref) {}
@@ -5100,10 +5131,10 @@ function fmod_studio_event_description_is_stream(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves whether the event has any sustain points.
+ * This function retrieves whether the event has any sustain points (`true` or `false`).
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_has_sustain_point(event_description_ref) {}
@@ -5115,7 +5146,7 @@ function fmod_studio_event_description_has_sustain_point(event_description_ref) 
  *
  * <br />
  *
- * This function retrieves the minimum and maximum distances for 3D attenuation.
+ * This function retrieves the minimum and maximum distances for 3D attenuation, as a struct.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {struct.FmodMinMaxDistance}
@@ -5131,6 +5162,8 @@ function fmod_studio_event_description_get_min_max_distance(event_description_re
  * <br />
  *
  * This function retrieves the sound size for 3D panning.
+ * 
+ * Retrieves the largest Sound Size value of all Spatializers and 3D Object Spatializers on the event's master track. Returns 0 if there are no Spatializers or 3D Object Spatializers.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5148,7 +5181,7 @@ function fmod_studio_event_description_get_sound_size(event_description_ref) {}
  * This function retrieves an event parameter description by name.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5164,7 +5197,7 @@ function fmod_studio_event_description_get_parameter_description_by_name(event_d
  * This function retrieves an event parameter description by ID.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter ID struct.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5179,8 +5212,10 @@ function fmod_studio_event_description_get_parameter_description_by_id(event_des
  *
  * This function retrieves an event parameter description by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_parameter_description_count} to enumerate event parameters.
+ * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5194,6 +5229,8 @@ function fmod_studio_event_description_get_parameter_description_by_index(event_
  * <br />
  *
  * This function retrieves the number of parameters in the event.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_parameter_description_by_index} to enumerate event parameters.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5210,9 +5247,11 @@ function fmod_studio_event_description_get_parameter_description_count(event_des
  *
  * This function retrieves an event parameter label by name or path.
  * 
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
- * @param {real} label_index
+ * @param {string} name Parameter name (UTF-8 string).
+ * @param {real} label_index Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5228,8 +5267,8 @@ function fmod_studio_event_description_get_parameter_label_by_name(event_descrip
  * This function retrieves an event parameter label by ID.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} label_index
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter ID struct.
+ * @param {real} label_index The label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5244,9 +5283,11 @@ function fmod_studio_event_description_get_parameter_label_by_id(event_descripti
  *
  * This function retrieves an event parameter label by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_parameter_description_count} to enumerate event parameters.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} index
- * @param {real} label_index
+ * @param {real} index The parameter index.
+ * @param {real} label_index The label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5262,9 +5303,8 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_descri
  * This function retrieves a user property by name.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
- * @param {buffer} buff_return
- * @returns {real}
+ * @param {string} name The user property name (UTF-8 string).
+ * @returns {struct.FmodStudioUserProperty}
  * @func_end
  */
 function fmod_studio_event_description_get_user_property(event_description_ref, name, buff_return) {}
@@ -5278,10 +5318,11 @@ function fmod_studio_event_description_get_user_property(event_description_ref, 
  *
  * This function retrieves a user property by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_user_property_count} to enumerate event user properties.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} index
- * @param {buffer} buff_return
- * @returns {real}
+ * @param {real} index The user property index.
+ * @returns {struct.FmodStudioUserProperty}
  * @func_end
  */
 function fmod_studio_event_description_get_user_property_by_index(event_description_ref, index, buff_return) {}
@@ -5295,8 +5336,9 @@ function fmod_studio_event_description_get_user_property_by_index(event_descript
  *
  * This function retrieves the number of user properties attached to the event.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_user_property_by_index} to enumerate event user properties.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
  * @returns {real}
  * @func_end
  */
@@ -5309,7 +5351,7 @@ function fmod_studio_event_description_get_user_property_count(event_description
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the EventDescription.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {string}
@@ -5324,7 +5366,9 @@ function fmod_studio_event_description_get_id(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the length of the timeline.
+ * This function retrieves the length of the timeline in milliseconds.
+ * 
+ * A timeline's length is the largest of any logic markers, transition leadouts and the end of any trigger boxes on the timeline.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5339,7 +5383,9 @@ function fmod_studio_event_description_get_length(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the EventDescription.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {string}
