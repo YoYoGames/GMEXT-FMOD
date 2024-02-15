@@ -5482,8 +5482,11 @@ function fmod_studio_event_description_is_valid(event_description_ref) {}
  *
  * This function starts playback.
  * 
+ * If the instance was already playing then calling this function will restart the event.
+ * 
+ * Generally it is a best practice to call ${func.fmod_studio_event_instance_release} on event instances immediately after starting them, unless you want to play the event instance multiple times or explicitly stop it and start it again later.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_start(event_instance_ref) {}
@@ -5498,8 +5501,7 @@ function fmod_studio_event_instance_start(event_instance_ref) {}
  * This function stops playback.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} mode
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_STOP_MODE} mode The stop mode to use.
  * @func_end
  */
 function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
@@ -5511,10 +5513,12 @@ function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
  *
  * <br />
  *
- * This function retrieves the playback state.
+ * This function retrieves the playback state of the EventInstance.
+ * 
+ * If the instance is invalid, this will return `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_PLAYBACK_STATE}
  * @func_end
  */
 function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
@@ -5526,11 +5530,10 @@ function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the pause state.
+ * This function sets the pause state of the EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} pause
- * @returns {real}
+ * @param {real} pause `true` to pause, `false` to unpause
  * @func_end
  */
 function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
@@ -5542,10 +5545,10 @@ function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the pause state.
+ * This function returns the pause state of the EventInstance (`true` if paused, otherwise `false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_get_paused(event_instance_ref) {}
@@ -5559,8 +5562,11 @@ function fmod_studio_event_instance_get_paused(event_instance_ref) {}
  *
  * This function allows an event to continue past a sustain point.
  * 
+ * Multiple sustain points may be bypassed ahead of time and the key off count will be decremented each time the timeline cursor passes a sustain point.
+ * 
+ * This results in `FMOD_RESULT.ERR_EVENT_NOTFOUND` if the event has no sustain points (in the next call to ${func.fmod_last_result}).
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_keyoff(event_instance_ref) {}
@@ -5574,9 +5580,10 @@ function fmod_studio_event_instance_keyoff(event_instance_ref) {}
  *
  * This function sets the pitch multiplier.
  * 
+ * The pitch multiplier is used to modulate the event instance's pitch. The pitch multiplier can be set to any value greater than or equal to zero but the final combined pitch is clamped to the range [0, 100] before being applied.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} pitch
- * @returns {real}
+ * @param {real} pitch Pitch multiplier, range: (0, inf), default: 1
  * @func_end
  */
 function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
@@ -5588,7 +5595,7 @@ function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
  *
  * <br />
  *
- * This function retrieves the pitch multiplier.
+ * This function retrieves the pitch multiplier assigned to the EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -5605,10 +5612,13 @@ function fmod_studio_event_instance_get_pitch(event_instance_ref) {}
  *
  * This function sets the value of a built-in property.
  * 
+ * This will override the value set in Studio. Using the default ${constant.FMOD_STUDIO_EVENT_PROPERTY} value (e.g. -1) will revert back to the default values set in Studio.
+ * 
+ * An FMOD spatializer or object spatializer may override the values set for `FMOD_STUDIO_EVENT_PROPERTY.MINIMUM_DISTANCE` and `FMOD_STUDIO_EVENT_PROPERTY.MAXIMUM_DISTANCE`.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} property
- * @param {real} value
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_PROPERTY} property Property type to set.
+ * @param {real} value Property value to set.
  * @func_end
  */
 function fmod_studio_event_instance_set_property(event_instance_ref, property, value) {}
