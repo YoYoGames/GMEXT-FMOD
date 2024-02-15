@@ -343,8 +343,8 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 /**
  * @struct FmodDSPChannelFormat
  * @desc This struct holds the PCM input format a DSP will receive when processing.
- * @member {real} channel_mask Deprecated.
- * @member {constant.FMOD_CHANNELMASK} num_channels The number of channels to be processed.
+ * @member {constant.FMOD_CHANNELMASK} channel_mask Deprecated.
+ * @member {real} num_channels The number of channels to be processed.
  * @member {constant.FMOD_SPEAKERMODE} speaker_mode The speaker mode to describe the channel mapping.
  * @struct_end
  */
@@ -381,7 +381,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 /**
  * @struct FmodDSPInfo
  * @desc This struct stores information about a DSP unit.
- * @member {string} name The name of this unit will be written (null terminated) to the provided 32 byte buffer.
+ * @member {string} name The name of this unit will be written (null-terminated) to the provided 32 byte buffer.
  * @member {real} version The version number of this unit, usually formated as hex AAAABBBB where the AAAA is the major version number and the BBBB is the minor version number.
  * @member {real} channels The number of channels this unit processes where 0 represents "any".
  * @member {real} config_width The configuration dialog box width where 0 represents "no dialog box".

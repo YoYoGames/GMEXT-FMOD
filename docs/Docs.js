@@ -1874,10 +1874,11 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
  *
  * This function disconnects all inputs and/or outputs.
  * 
+ * This is a convenience function that is faster than disconnecting all inputs and outputs individually.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} inputs
- * @param {real} outputs
- * @returns {real}
+ * @param {boolean} inputs Whether all inputs should be disconnected.
+ * @param {boolean} outputs Whether all outputs should be disconnected.
  * @func_end
  */
 function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
@@ -1891,10 +1892,13 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
  *
  * This function disconnects the specified input DSP.
  * 
+ * If `dsp_other_ref` had only one output, after this operation that entire sub graph will no longer be connected to the DSP network.
+ * 
+ * After this operation `dsp_connection_ref` is no longer valid.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_other_ref A reference to a dsp_other.
- * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @returns {real}
+ * @param {real} dsp_other_ref The input unit to disconnect, if not specified all inputs and outputs are disconnected from this unit.
+ * @param {real} dsp_connection_ref When there is more than one connection between two units this can be used to define which of the connections should be disconnected. Defaults to the value 0.
  * @func_end
  */
 function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
@@ -1908,8 +1912,12 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
  *
  * This function retrieves the index of the first data parameter of a particular data type.
  * 
+ * The function returns the index of the first data parameter of type `data_type` after the function is called. This will be -1 if no matches were found.
+ * 
+ * This function returns `FMOD_RESULT.OK` if a parameter of matching type is found and `FMOD_RESULT.ERR_INVALID_PARAM` if no matches were found.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} data_type
+ * @param {real} data_type The type of data to find. Typically of type `FMOD_DSP_PARAMETER_DATA_TYPE`.
  * @returns {real}
  * @func_end
  */
@@ -1923,6 +1931,8 @@ function fmod_dsp_get_data_parameter_index(dsp_ref, data_type) {}
  * <br />
  *
  * This function retrieves the number of parameters exposed by this unit.
+ * 
+ * You can use this value to enumerate all parameters of a DSP unit with $(function.fmod_dsp_get_parameter_info).
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -1940,9 +1950,8 @@ function fmod_dsp_get_num_parameters(dsp_ref) {}
  * This function sets a boolean parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {boolean} value The parameter value.
  * @func_end
  */
 function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
@@ -1957,8 +1966,8 @@ function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
  * This function retrieves a boolean parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
@@ -1972,10 +1981,14 @@ function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
  *
  * This function sets a binary data parameter by index.
  * 
+ * You write the binary data for the parameter to a buffer using the [Buffer functions](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm) and then pass the buffer and the length of the data, in bytes, to this function. The first byte of the buffer is the first byte of the data.
+ * 
+ * [[Note: This function doesn't take an offset, so the first byte of data is at the start of the buffer (at an offset of 0 bytes).]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {buffer} buffer
- * @param {real} length
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {buffer} buffer The ${type.buffer} that stores the data.
+ * @param {real} length The length of the data in the buffer, in bytes.
  * @func_end
  */
 function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
@@ -1989,10 +2002,16 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
  *
  * This function retrieves a binary data parameter by index.
  * 
+ * The binary data is copied to the ${type.buffer} that you specify. A total number of `length` bytes are written.
+ * 
+ * [[Note: This function doesn't take an offset, so the data is written to the start of the buffer (at an offset of 0 bytes).]]
+ * 
+ * [[Warning: The ${type.buffer} that receives the data should be large enough to hold the parameter value, as this function doesn't resize the buffer. Any parameter data beyond the length of the buffer will not be included.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {buffer} buffer
- * @param {real} length
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {buffer} buffer The ${type.buffer} that receives the data.
+ * @param {real} length The length of the data to copy into the buffer, in bytes.
  * @func_end
  */
 function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
@@ -2007,9 +2026,8 @@ function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
  * This function sets a floating point parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {real} value The parameter floating point data.
  * @func_end
  */
 function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
@@ -2024,7 +2042,7 @@ function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
  * This function retrieves a floating point parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
  * @returns {real}
  * @func_end
  */
@@ -2040,9 +2058,8 @@ function fmod_dsp_get_parameter_float(dsp_ref, parameter_index) {}
  * This function sets an integer parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {real} value The parameter integer data.
  * @func_end
  */
 function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
@@ -2057,7 +2074,7 @@ function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
  * This function retrieves an integer parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
  * @returns {real}
  * @func_end
  */
@@ -2087,11 +2104,12 @@ function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
  *
  * This function sets the PCM input format this DSP will receive when processing.
  * 
+ * [[Note: Setting the number of channels on a unit will force either a down or up mix to that channel count before processing the DSP read/process callback.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} channel_mask
- * @param {real} num_channels
- * @param {real} speaker_mode
- * @returns {real}
+ * @param {constant.FMOD_CHANNELMASK} channel_mask Deprecated.
+ * @param {real} num_channels The number of channels to be processed. A value in the range [0, ${function.FMOD_MAX_CHANNEL_WIDTH}].
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode The speaker mode to describe the channel mapping.
  * @func_end
  */
 function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode) {}
@@ -2121,9 +2139,9 @@ function fmod_dsp_get_channel_format(dsp_ref) {}
  * This function retrieves the output format this DSP will produce when processing based on the input specified.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {constant.FMOD_CHANNELMASK} channel_mask_in
- * @param {real} num_channels_in
- * @param {constant.FMOD_SPEAKERMODE} speaker_mode_in
+ * @param {constant.FMOD_CHANNELMASK} channel_mask_in Deprecated.
+ * @param {real} num_channels_in The number of channels for the input signal.
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode_in The speaker mode for the input signal.
  * @returns {struct.FmodDSPChannelFormat}
  * @func_end
  */
@@ -2137,6 +2155,10 @@ function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channe
  * <br />
  *
  * This function retrieves the signal metering information.
+ * 
+ * [[Note: Requesting metering information when it hasn't been enabled will result in `FMOD_RESULT.ERR_BADCOMMAND`.]]
+ * 
+ * [[Note: `FMOD_INIT.PROFILE_METER_ALL` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {struct.FmodDSPInOutMeteringInfo}
@@ -2153,9 +2175,15 @@ function fmod_dsp_get_metering_info(dsp_ref) {}
  *
  * This function sets the input and output signal metering enabled states.
  * 
+ * Input metering is pre-processing, while output metering is post-processing.
+ * 
+ * Enabled metering allows ${function.fmod_dsp_get_metering_info} to return metering information and allows FMOD profiling tools to visualize the levels.
+ * 
+ * [[Note: `FMOD_INIT.PROFILE_METER_ALL` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} enabled_in
- * @param {real} enabled_out
+ * @param {boolean} enabled_in The metering enabled state for the input signal.
+ * @param {boolean} enabled_out The mtering enabled state for the output signal.
  * @returns {real}
  * @func_end
  */
@@ -2185,9 +2213,12 @@ function fmod_dsp_get_metering_enabled(dsp_ref) {}
  *
  * This function sets the processing active state.
  * 
+ * If `active` is false, processing of this unit and its inputs are stopped.
+ * 
+ * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} active
- * @returns {real}
+ * @param {boolean} active The active state. Default is `false`.
  * @func_end
  */
 function fmod_dsp_set_active(dsp_ref, active) {}
@@ -2201,8 +2232,12 @@ function fmod_dsp_set_active(dsp_ref, active) {}
  *
  * This function retrieves the processing active state.
  * 
+ * If `active` is false, processing of this unit and its inputs are stopped.
+ * 
+ * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_active(dsp_ref) {}
@@ -2216,9 +2251,10 @@ function fmod_dsp_get_active(dsp_ref) {}
  *
  * This function sets the processing bypass state.
  * 
+ * If `bypass` is true, processing of this unit is skipped but it continues to process its inputs.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} bypass
- * @returns {real}
+ * @param {boolean} bypass The bypass state. Default is false.
  * @func_end
  */
 function fmod_dsp_set_bypass(dsp_ref, bypass) {}
@@ -2232,8 +2268,10 @@ function fmod_dsp_set_bypass(dsp_ref, bypass) {}
  *
  * This function retrieves the processing bypass state.
  * 
+ * If the returned value is `true`, processing of this unit is skipped but it continues to process its inputs.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_bypass(dsp_ref) {}
@@ -2248,10 +2286,9 @@ function fmod_dsp_get_bypass(dsp_ref) {}
  * This function sets the scale of the wet and dry signal components.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} prewet
- * @param {real} postwet
- * @param {real} dry
- * @returns {real}
+ * @param {real} prewet The level of the 'Dry' (pre-processed signal) mix that is processed by the DSP. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @param {real} postwet The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @param {real} dry The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. The default is 0.
  * @func_end
  */
 function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
@@ -2280,8 +2317,12 @@ function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
  *
  * This function retrieves the idle state.
  * 
+ * A DSP is considered idle when it stops receiving input signal and all internal processing of stored input has been exhausted.
+ * 
+ * Each DSP type has the potential to have differing idle behaviour based on the type of effect. A reverb or echo may take a longer time to go idle after it stops receiving a valid signal, compared to an effect with a shorter tail length like an EQ filter.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_idle(dsp_ref) {}
@@ -2295,8 +2336,9 @@ function fmod_dsp_get_idle(dsp_ref) {}
  *
  * This function reset a DSPs internal state ready for new input signal.
  * 
+ * This will clear all internal state derived from input signal while retaining any set parameter values. The intended use of the function is to avoid audible artifacts if moving the DSP from one part of the DSP network to another.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
  * @func_end
  */
 function fmod_dsp_reset(dsp_ref) {}
@@ -2310,8 +2352,9 @@ function fmod_dsp_reset(dsp_ref) {}
  *
  * This function frees a DSP object.
  * 
+ * If DSP is not removed from the network with ${function.fmod_channel_control_remove_dsp} after being added with ${function.fmod_channel_control_add_dsp}, it will not release and will instead return `FMOD_RESULT.ERR_DSP_INUSE`.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
  * @func_end
  */
 function fmod_dsp_release(dsp_ref) {}
@@ -2325,8 +2368,10 @@ function fmod_dsp_release(dsp_ref) {}
  *
  * This function retrieves the pre-defined type of a FMOD registered DSP unit.
  * 
+ * This is only valid for built-in FMOD effects. Any user plugins will simply return `FMOD_DSP_TYPE.UNKNOWN`.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {constant.FMOD_DSP_TYPE} The DSP type.
  * @func_end
  */
 function fmod_dsp_get_type(dsp_ref) {}
@@ -2355,6 +2400,8 @@ function fmod_dsp_get_info(dsp_ref) {}
  *
  * This function retrieves statistics on the mixer thread CPU usage for this unit.
  * 
+ * [[Note: `FMOD_INIT.PROFILE_ENABLE` with ${function.fmod_system_init} is required to call this function.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {struct.FmodCPUTimeUsage}
  * @func_end
@@ -2371,8 +2418,7 @@ function fmod_dsp_get_cpu_usage(dsp_ref) {}
  * This function sets a user value associated with this object.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The floating point value stored on this object.
  * @func_end
  */
 function fmod_dsp_set_user_data(dsp_ref, data) {}
@@ -2384,7 +2430,7 @@ function fmod_dsp_set_user_data(dsp_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a floating point user value associated with this object.
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -2399,10 +2445,19 @@ function fmod_dsp_get_user_data(dsp_ref) {}
  *
  * <br />
  *
- * This function sets the callback for DSP notifications.
+ * This function enables DSP notifications for the given DSP.
+ * 
+ * When enabled, callbacks for this DSP will be triggered as an ${event.social}.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * 
+ * @event social
+ * @member {string} type The string `"fmod_dsp_set_callback"`.
+ * @member {constant.FMOD_DSP_CALLBACK_TYPE} kind The kind of DSP callback.
+ * @member {real} dsp_ref The DSP for which this callback is triggered.
+ * @member {real} parameter_index OPTIONAL The index of the DSP parameter that's released (only included when `kind` is `FMOD_DSP_CALLBACK_TYPE.DATAPARAMETERRELEASE`).
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_dsp_set_callback(dsp_ref) {}
