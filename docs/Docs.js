@@ -4211,7 +4211,7 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} bank_ref A reference to a bank.
- * @param {real} data
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_bank_set_user_data(bank_ref, data) {}
@@ -4460,12 +4460,12 @@ function fmod_studio_bus_get_cpu_usage(bus_ref) {}
  *
  * <br />
  *
- * This function retrieves memory usage statistics into an existing ${struct.FmodStudioMemoryUsage} struct.
+ * This function retrieves memory usage statistics into an ${struct.FmodStudioMemoryUsage} struct.
  * 
  * Memory usage statistics are only available in logging builds, in release builds this will contain zero for all values after calling this function.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {struct.FmodStudioMemoryUsage} memory_usage_struct An existing struct which will contain the memory usage data after the call.
+ * @return {struct.FmodStudioMemoryUsage}
  * @func_end
  */
 function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
@@ -4529,9 +4529,10 @@ function fmod_studio_bus_is_valid(bus_ref) {}
  *
  * This function sets a path substition that will be used when loading banks with this replay.
  * 
+ * ${func.fmod_studio_system_load_bank_file} commands in the replay are redirected to load banks from the specified directory, instead of using the directory recorded in the captured commands.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {string} path
- * @returns {real}
+ * @param {string} path The path to use when loading banks.
  * @func_end
  */
 function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
@@ -4543,10 +4544,24 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
  *
  * <br />
  *
- * This function sets the create event instance callback.
+ * This function enables the create event instance callback.
+ * 
+ * The create instance callback is invoked each time a ${func.fmod_studio_event_description_create_instance} command is processed.
+ * 
+ * The callback can either create a new event instance based on the callback parameters or skip creating the instance. If the instance is not created then subsequent commands for the event instance will be ignored in the replay.
+ * 
+ * If this callback is not set then the system will always create an event instance.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type The value `"fmod_studio_command_replay_set_create_instance_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} event_description_ref The handle of the event description associated with the newly created instance
+ * @member {real} event_instance_ref The handle of the created instance
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_create_instance_callback(command_replay_ref) {}
@@ -4558,10 +4573,18 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
  *
  * <br />
  *
- * This function sets a callback that is issued each time the replay reaches a new frame.
+ * This function enables a callback that is issued each time the replay reaches a new frame.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type  The value `"fmod_studio_command_replay_set_frame_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} command_index Current playback command index
+ * @member {real} current_time Current playback time
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
@@ -4573,11 +4596,28 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
  *
  * <br />
  *
- * This function sets the bank loading callback.
+ * This function enables the bank loading callback.
+ * 
+ * The load bank callback is invoked whenever any of the Studio load bank functions are reached.
+ * 
+ * This callback is required to be implemented to successfully replay ${func.fmod_studio_system_load_bank_memory} and ${func.fmod_studio_system_load_bank_custom} commands.
+ * 
+ * The callback is responsible for loading the bank based on the callback parameters. If the bank is not loaded subsequent commands which reference objects in the bank will fail.
+ * 
+ * If this callback is not set then the system will attempt to load banks from file according to recorded ${func.fmod_studio_system_load_bank_file} commands and skip other load commands.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {string} path
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type  The value `"fmod_studio_command_replay_set_load_bank_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} command_index The command that involved this callback
+ * @member {real} bank_ref The bank loaded by this function
+ * @member {real} bank_guid The GUID of the bank that needs to be loaded
+ * @member {real} bank_filename The filename of the bank that needs to be loaded
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, path) {}
@@ -4591,8 +4631,9 @@ function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, p
  *
  * This function begins playback.
  * 
+ * If the replay is already running then calling this function will restart replay from the beginning.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_command_replay_start(command_replay_ref) {}
@@ -4606,8 +4647,9 @@ function fmod_studio_command_replay_start(command_replay_ref) {}
  *
  * This function stops playback.
  * 
+ * If the `FMOD_STUDIO_COMMANDREPLAY.SKIP_CLEANUP` flag has been used then the system state is left as it was at the end of the playback, otherwise all resources that were created as part of the replay will be cleaned up.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_command_replay_stop(command_replay_ref) {}
@@ -4620,6 +4662,8 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
  * <br />
  *
  * This function retrieves the progress through the command replay.
+ * 
+ * If this function is called before ${func.fmod_studio_command_replay_start} then both commandindex and currenttime (in the returned struct) will be returned as 0. If this function is called after ${func.fmod_studio_command_replay_stop} then the index and time of the last command which was replayed will be returned.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {struct.FmodCommandReplayCurrentCommand}
@@ -4634,10 +4678,10 @@ function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
  *
  * <br />
  *
- * This function retrieves the playback state.
+ * This function retrieves the playback state of the given CommandReplay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_PLAYBACK_STATE}
  * @func_end
  */
 function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
@@ -4649,11 +4693,10 @@ function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
  *
  * <br />
  *
- * This function sets the paused state.
+ * This function sets the paused state of the given CommandReplay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} pause
- * @returns {real}
+ * @param {boolean} pause `true` to pause, `false` to unpause.
  * @func_end
  */
 function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
@@ -4665,10 +4708,10 @@ function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the paused state.
+ * This function retrieves the paused state of the given CommandReplay (`true` if paused, `false` if not).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_command_replay_get_paused(command_replay_ref) {}
@@ -4683,7 +4726,7 @@ function fmod_studio_command_replay_get_paused(command_replay_ref) {}
  * This function seeks the playback position to a command.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The command index to seek to.
  * @returns {real}
  * @func_end
  */
@@ -4695,12 +4738,11 @@ function fmod_studio_command_replay_seek_to_command(command_replay_ref, command_
  * @desc > **FMOD Function:** [Studio::CommandReplay::seekToTime](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_seektotime)
  *
  * <br />
- *
- * This function seeks the playback position to a time.
+ * 
+ * This function moves the playback position to the the first command at or after `time`. If no command exists at or after `time`, then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} time
- * @returns {real}
+ * @param {real} time The time to seek to.
  * @func_end
  */
 function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
@@ -4714,8 +4756,10 @@ function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
  *
  * This function retrieves the command index corresponding to the given playback time.
  * 
+ * This will return an index for the first command at or after `time`. If `time` is greater than the total playback time then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned (in the next ${func.fmod_last_result} call).
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} time
+ * @param {real} time The time used to find a command index.
  * @returns {real}
  * @func_end
  */
@@ -4729,6 +4773,8 @@ function fmod_studio_command_replay_get_command_at_time(command_replay_ref, time
  * <br />
  *
  * This function retrieves the number of commands in the replay.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_command_replay_get_command_info} to enumerate the commands in the replay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {real}
@@ -4745,8 +4791,10 @@ function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
  *
  * This function retrieves command information.
  * 
+ * May be used in conjunction with ${func.fmod_studio_command_replay_get_command_count} to enumerate the commands in the replay.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The index of the command.
  * @returns {struct.FmodCommandReplayCommandInfo}
  * @func_end
  */
@@ -4759,10 +4807,12 @@ function fmod_studio_command_replay_get_command_info(command_replay_ref, command
  *
  * <br />
  *
- * This function retrieves the string representation of a command.
+ * This function returns the string representation of a command.
+ * 
+ * If the string representation of the command is too long to fit in the buffer it will be truncated and this function will return `FMOD_RESULT.ERR_TRUNCATED` (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The index of the command.
  * @returns {string}
  * @func_end
  */
@@ -4808,7 +4858,7 @@ function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
  * This function checks that the CommandReplay reference is valid.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_command_replay_is_valid(command_replay_ref) {}
@@ -4822,9 +4872,10 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
  *
  * This function sets user data.
  * 
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
@@ -4836,7 +4887,9 @@ function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
  *
  * <br />
  *
- * This function retrieves user data.
+ * This function retrieves user data attached to this object (a real value, passed into ${func.fmod_studio_command_replay_set_user_data}).
+ * 
+ * The function returns `NaN` if there is no user data attached to the bank.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {real}
