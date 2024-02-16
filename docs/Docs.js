@@ -5409,7 +5409,7 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  * 
  * @event social
  * @member {string} type The value `"fmod_studio_event_description_set_callback"`
- * @member {c onstant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
+ * @member {constant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
  * @member {real} event_instance_ref Handle of the EventInstance that has changed state.
  * @member {string} name Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER`
  * @member {real} sub_sound_index Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
@@ -5632,8 +5632,10 @@ function fmod_studio_event_instance_set_property(event_instance_ref, property, v
  *
  * This function retrieves the value of a built-in property.
  * 
+ * A default ${constant.FMOD_STUDIO_EVENT_PROPERTY} value means that the Instance is using the value set in Studio and it has not been overridden using ${func.fmod_studio_event_instance_set_property}.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} property
+ * @param {constant.FMOD_STUDIO_EVENT_PROPERTY} property Property type to get the value of.
  * @returns {real}
  * @func_end
  */
@@ -5649,8 +5651,7 @@ function fmod_studio_event_instance_get_property(event_instance_ref, property) {
  * This function sets the timeline cursor position.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} position
- * @returns {real}
+ * @param {real} position The timeline position in milliseconds.
  * @func_end
  */
 function fmod_studio_event_instance_set_timeline_position(event_instance_ref, position) {}
@@ -5679,9 +5680,10 @@ function fmod_studio_event_instance_get_timeline_position(event_instance_ref) {}
  *
  * This function sets the volume level.
  * 
+ * This volume is applied as a scaling factor for the event volume. It does not override the volume level set in FMOD Studio, nor any internal volume automation or modulation.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume Volume, Range: (0, inf), Default: 1
  * @func_end
  */
 function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
@@ -5708,10 +5710,10 @@ function fmod_studio_event_instance_get_volume(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the virtualization state.
+ * This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded (`true` or `false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
@@ -5723,10 +5725,12 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the 3D attributes.
+ * This function sets the 3D attributes for the given EventInstance.
+ * 
+ * An event's 3D attributes specify its position, velocity and orientation. The 3D attributes are used to calculate 3D panning, doppler and the values of automatic distance and angle parameters.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.Fmod3DAttributes} attributes
+ * @param {struct.Fmod3DAttributes} attributes The 3D attributes struct.
  * @func_end
  */
 function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attributes) {}
@@ -5738,7 +5742,7 @@ function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attrib
  *
  * <br />
  *
- * This function retrieves the 3D attributes.
+ * This function retrieves the 3D attributes struct for the given EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.Fmod3DAttributes}
@@ -5755,9 +5759,13 @@ function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
  *
  * This function sets the listener mask.
  * 
+ * The listener mask controls which listeners are considered when calculating 3D panning and the values of listener relative [automatic parameters](https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter).
+ * 
+ * To create the mask you must perform bitwise OR and shift operations, the basic form is `1 << listener_index` OR'd together with other required listener indices.
+ * For example to create a mask for listener index 0 and 2 the calculation would be `mask = (1 << 0) | (1 << 2)`, to include all listeners use the default mask of `0xFFFFFFFF`.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} mask
- * @returns {real}
+ * @param {real} mask Listener mask (default: 0xFFFFFFFF)
  * @func_end
  */
 function fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask) {}
@@ -5784,7 +5792,7 @@ function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the minimum and maximum distances for 3D attenuation.
+ * This function retrieves the minimum and maximum distances for 3D attenuation as an ${struct.FmodMinMaxDistance} struct.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodMinMaxDistance}
@@ -5801,11 +5809,16 @@ function fmod_studio_event_instance_get_min_max_distance(event_instance_ref) {}
  *
  * This function sets a parameter value by name.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the event has no parameter matching name then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
- * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
+ * @param {real} value Value for given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, name, value, ignore_seek_speed) {}
@@ -5819,11 +5832,18 @@ function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, na
  *
  * This function sets a parameter value by name, looking up the value label.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the event has no parameter matching name then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
- * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
+ * @param {string} label Labeled value for the given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name_with_label(event_instance_ref, name, label, ignore_seek_speed) {}
@@ -5838,7 +5858,7 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(event_insta
  * This function retrieves a parameter value by name.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -5853,10 +5873,14 @@ function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, na
  *
  * This function sets a parameter value by unique identifier.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} value
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {real} value Value for given identifier.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, parameter_id, value, ignore_seek_speed) {}
@@ -5870,10 +5894,16 @@ function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, para
  *
  * This function sets a parameter value by unique identifier, looking up the value label.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {string} label
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {string} label Labeled value for given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instance_ref, parameter_id, label, ignore_seek_speed) {}
@@ -5888,7 +5918,7 @@ function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instanc
  * This function retrieves a parameter value by unique identifier.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter identifier.
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -5901,7 +5931,9 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
  *
  * <br />
  *
- * This function retrieves the core ChannelGroup.
+ * This function retrieves the core `ChannelGroup` corresponding to the master track.
+ * 
+ * Until the event instance has been fully created this function will result in `FMOD_RESULT.ERR_STUDIO_NOT_LOADED` (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -5918,10 +5950,11 @@ function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
  *
  * This function sets the core reverb send level.
  * 
+ * This controls the send level for the signal from the event instance to a core reverb instance.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} index
- * @param {real} level
- * @returns {real}
+ * @param {real} index Core reverb instance index, Range: [0, 3]
+ * @param {real} level Reverb send level, Linear, Range: [0, 1], Default: 0\
  * @func_end
  */
 function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, level) {}
@@ -5936,7 +5969,7 @@ function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, 
  * This function retrieves the core reverb send level.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} index
+ * @param {real} index Core reverb instance index, Range: [0, 3]
  * @returns {real}
  * @func_end
  */
@@ -5950,6 +5983,8 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
  * <br />
  *
  * This function retrieves the event CPU usage data.
+ * 
+ * `FMOD_INIT.PROFILE_ENABLE` with ${func.fmod_system_init} is required to call this function.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodCPUUsage}
@@ -5966,6 +6001,8 @@ function fmod_studio_event_instance_get_cpu_usage(event_instance_ref) {}
  *
  * This function retrieves memory usage statistics.
  * 
+ * Memory usage statistics are only available in logging builds, in release builds the struct will contain zero for all values.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodStudioMemoryUsage}
  * @func_end
@@ -5979,11 +6016,27 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the user callback.
+ * This function enables the user callback in the Async Social event.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} type
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_CALLBACK} type Bitfield specifying which callback types are required.
+ * 
+ * @event social
+ * @member {string} type The value `"fmod_studio_event_description_set_callback"`
+ * @member {constant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
+ * @member {real} event_instance_ref Handle of the EventInstance that has changed state.
+ * @member {string} name Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER`
+ * @member {real} sub_sound_index Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} sound_ref Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} position Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} bar Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} beat Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} tempo Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_lower Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_upper Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} event_id Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
@@ -5995,11 +6048,10 @@ function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
  *
  * <br />
  *
- * This function sets the event instance user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
@@ -6011,7 +6063,7 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the event instance user data.
+ * This function retrieves the real value attached to this object in ${func.fmod_studio_event_instance_set_user_data}.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -6026,7 +6078,7 @@ function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the event description.
+ * This function retrieves a handle to the EventDescription for the given EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -6041,10 +6093,11 @@ function fmod_studio_event_instance_get_description(event_instance_ref) {}
  *
  * <br />
  *
- * This function marks the event instance for release.
+ * This function marks the event instance to be released. Event instances marked for release are destroyed by the asynchronous update when they are in the stopped state (`FMOD_STUDIO_PLAYBACK_STATE.STOPPED`).
+ * 
+ * Generally it is a best practice to release event instances immediately after calling ${func.fmod_studio_event_instance_start}, unless you want to play the event instance multiple times or explicitly stop it and start it again later. It is possible to interact with the instance after calling release(), however if the sound has stopped `FMOD_RESULT.ERR_INVALID_HANDLE` will be returned in the next ${func.fmod_last_result} call.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_release(event_instance_ref) {}
@@ -6056,10 +6109,10 @@ function fmod_studio_event_instance_release(event_instance_ref) {}
  *
  * <br />
  *
- * This function checks that the EventInstance reference is valid.
+ * This function checks whether the EventInstance reference is valid (`true`) or not (`false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_is_valid(event_instance_ref) {}
