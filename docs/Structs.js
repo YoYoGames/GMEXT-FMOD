@@ -446,11 +446,11 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @desc > **FMOD Struct:** [FMOD_TAG](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tag)
  * 
  * This struct holds tag data / metadata description.
- * @member {string} name Name.
- * @member {constant.FMOD_TAGTYPE} type Tag type.
+ * @member {string} name The tag name.
+ * @member {constant.FMOD_TAGTYPE} type The tag type.
  * @member {real} update True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
- * @member {real} data_len Size of `data`, in bytes.
- * @member {constant.FMOD_TAGDATATYPE} data_type Tag data type.
+ * @member {real} data_len The size of the binary tag data, in bytes. For example, an [ID3v1](https://en.wikipedia.org/wiki/ID3) tag is always 128. Other tag types store more data and can have a variable size.
+ * @member {constant.FMOD_TAGDATATYPE} data_type Tge tag data type.
  * @struct_end
  */
 

@@ -2992,10 +2992,14 @@ function fmod_geometry_save(geometry_ref, buff) {}
  *
  * This function sets the 3D attributes of a reverb sphere.
  * 
+ * When the position of the listener is less than `max_distance` away from the position of one or more reverb objects, the listener's 3D reverb properties are a weighted combination of those reverb objects. Otherwise, the reverb dsp will use the global reverb settings.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {struct.FmodVector} position
- * @param {real} min_distance
- * @param {real} max_distance
+ * @param {struct.FmodVector} position The position in 3D space representing the center of the reverb. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {real} min_distance The distance from the centerpoint within which the reverb will have full effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {real} max_distance The distance from the centerpoint beyond which the reverb will have no effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
  * @func_end
  */
 function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance, max_distance) {}
@@ -3008,6 +3012,8 @@ function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance,
  * <br />
  *
  * This function retrieves the 3D attributes of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverb3DAttributes}
@@ -3024,20 +3030,21 @@ function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
  *
  * This function sets the environmental properties of a reverb sphere.
  * 
+ * [[Note: the default reverb properties are the same as the `FMOD_PRESET_GENERIC` preset under ${constant.FMOD_REVERB_PRESETS}.]]
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} decay_time
- * @param {real} early_delay
- * @param {real} late_delay
- * @param {real} hf_reference
- * @param {real} hf_decay_ratio
- * @param {real} diffusion
- * @param {real} density
- * @param {real} low_shelf_frequency
- * @param {real} low_shelf_gain
- * @param {real} high_cut
- * @param {real} early_late_mix
- * @param {real} wet_level
- * @returns {real}
+ * @param {real} decay_time The reverberation decay time, expressed in milliseconds. A value in the range [0, 20000]. The default is 1500.
+ * @param {real} early_delay The initial reflection delay time, expressed in milliseconds. A value in the range [0, 300]. The default is 7.
+ * @param {real} late_delay The late reverberation delay time relative to initial reflection, expressed in milliseconds. A value in the range [0, 100]. The default is 11.
+ * @param {real} hf_reference The reference high frequency, in Hertz. A value in the range [20, 20000]. Default is 5000.
+ * @param {real} hf_decay_ratio The high-frequency to mid-frequency decay time ratio, as a percentage. A value in the range [10, 100]. The default is 50.
+ * @param {real} diffusion A value that controls the echo density in the late reverberation decay, as a percentage. A value in the range [10, 100]. The default is 50.
+ * @param {real} density A value that controls the modal density in the late reverberation decay, as a percentage. A value in the range [0, 100]. The default is 100.
+ * @param {real} low_shelf_frequency The reference low frequency, in Hertz. A value in the range [20, 1000]. The default is 250.
+ * @param {real} low_shelf_gain The relative room effect level at low frequencies, expressed in decibels (dB). A value in the range [-36, 12]. The default is 0.
+ * @param {real} high_cut The relative room effect level at high frequencies, in Hertz. A value in the range [0, 20000]. The default is 20000.
+ * @param {real} early_late_mix The early reflections level relative to room effect, as a percentage. The default is 50.
+ * @param {real} wet_level The room effect level at mid frequencies, expressed in decibels (dB). A value in the range [-80, 20]. The default is -6.
  * @func_end
  */
 function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level) {}
@@ -3050,6 +3057,8 @@ function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, l
  * <br />
  *
  * This function retrieves the environmental properties of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverbProperties}
@@ -3066,9 +3075,10 @@ function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
  *
  * This function sets the active state.
  * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} active
- * @returns {real}
+ * @param {boolean} active The active state of the reverb sphere. The default is `true`.
  * @func_end
  */
 function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
@@ -3080,10 +3090,12 @@ function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
  *
  * <br />
  *
- * This function retrieves the active state.
+ * This function retrieves the active state of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_reverb_3d_get_active(reverb_3d_ref) {}
@@ -3097,8 +3109,9 @@ function fmod_reverb_3d_get_active(reverb_3d_ref) {}
  *
  * This function releases the memory for a reverb object and makes it inactive.
  * 
+ * [[Note: If you release all Reverb3D objects and have not added a new Reverb3D object, ${function.fmod_system_set_reverb_properties} should be called to reset the reverb properties.]]
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @returns {real}
  * @func_end
  */
 function fmod_reverb_3d_release(reverb_3d_ref) {}
@@ -3110,11 +3123,10 @@ function fmod_reverb_3d_release(reverb_3d_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a single floating-point user value associated with this object.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value stored on this object.
  * @func_end
  */
 function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
@@ -3126,7 +3138,7 @@ function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a floating-point user value associated with this object, as set with an earlier call to [$function.fmod_reverb_3d_set_user_data].
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {real}
@@ -3174,8 +3186,14 @@ function fmod_sound_get_format(sound_ref) {}
  *
  * This function retrieves the length using the specified time unit.
  * 
+ * `length_type` must be valid for the file format. For example, an MP3 file does not support `FMOD_TIMEUNIT.MODORDER`.
+ * 
+ * A length of 0xFFFFFFFF means the sound is of unlimited length, such as an internet radio stream or MOD/S3M/XM/IT file which may loop forever.
+ * 
+ * [[Note: Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as un-tagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use `FMOD_MODE.ACCURATETIME` when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} length_type
+ * @param {constant.FMOD_TIMEUNIT} length_type The time unit type to retrieve.
  * @returns {real}
  * @func_end
  */
@@ -3189,6 +3207,10 @@ function fmod_sound_get_length(sound_ref, length_type) {}
  * <br />
  *
  * This function retrieves the number of metadata tags.
+ * 
+ * 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.
+ * 
+ * [[Note: This value could be periodically checked to see if new tags are available in certain circumstances. This might be the case with internet based streams (i.e. shoutcast or icecast) where the name of the song or other attributes might change.]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {struct.FmodSoundNumTags}
@@ -3205,12 +3227,64 @@ function fmod_sound_get_num_tags(sound_ref) {}
  *
  * This function retrieves a metadata tag.
  * 
+ * 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.
+ * 
+ * The number of tags available can be found with ${function.fmod_sound_get_num_tags}.
+ * 
+ * Displaying or retrieving tags can be done in 3 different ways:
+ * 
+ * * All tags can be continuously retrieved by looping from 0 to the `num_tags` value in ${function.fmod_sound_get_num_tags} - 1. Updated tags will refresh automatically, and the `update` member of the ${struct.FmodSoundTag} structure will be set to `true` if a tag has been updated, due to something like a netstream changing the song name for example.
+ * * Tags can be retrieved by specifying -1 as the index and only updating tags that are returned. If all tags are retrieved and this function is called the function will return an error of `FMOD_RESULT.ERR_TAGNOTFOUND`.
+ * * Specific tags can be retrieved by specifying a name parameter. The index can be 0 based or -1 in the same fashion as described previously.
+ * 
+ * [[Note: With netstreams an important consideration must be made between songs, a tag may occur that changes the playback rate of the song. It is up to the user to catch this and reset the playback rate with ${function.fmod_channel_set_frequency}. A sample rate change will be signalled with a tag of type `FMOD_TAGTYPE.FMOD`.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} tag_index
- * @param {buffer} data_buffer
+ * @param {real} tag_index The index into the tag list.
+ * @param {buffer} data_buffer The ${type.buffer} in which to store the raw, binary tag data.
  * @returns {struct.FmodSoundTag}
+ * 
+ * @example
+ * 
+ * The following example reads any tags that have arrived, this could happen if a radio station switches to a new song. This loop only runs IF there is an update to the tags.
+ * 
+ * ```gml
+ * var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+ * while (fmod_last_error() == FMOD_RESULT.OK)
+ * {
+ *     // Move cursor to the beginning of the buffer
+ *     buffer_seek(tag_data_buff, buffer_seek_start, 0);
+ *     
+ *     if (_tag.data_type == FMOD_TAGDATATYPE.STRING)
+ *     {
+ *         var _value = buffer_read(tag_data_buff, buffer_string);
+ *         tag_strings[tag_index] = $"{_tag.name}: {_value}";
+ *         tag_index = (tag_index + 1) % tag_count;
+ *         
+ *         if (_tag.type == FMOD_TAGTYPE.PLAYLIST && _tag.name == "FILE")
+ *         {
+ *             var _url = _value;
+ *             fmod_sound_release(sound_index);
+ *             
+ *             sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING, extra);
+ *         }
+ *     }
+ *     else if (_tag.type == FMOD_TAGTYPE.FMOD)
+ *     {
+ *         // When a song changes, the sample rate may also change, so compensate here.
+ *         if ((_tag.name == "Sample Rate Change") && channel_index != -1)
+ *         {
+ *             var _frequency = buffer_read(tag_data_buff, buffer_f32);
+ *             fmod_channel_set_frequency(channel_index, _frequency);
+ *         }
+ *     }
+ * 	    
+ *     _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+ * }
+```
  * @func_end
  */
+
 function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
 
 
@@ -3222,11 +3296,15 @@ function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
  *
  * This function sets the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.
  * 
+ * When ${function.fmod_channel_control_set_3d_cone_orientation} is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
+ * 
+ * * If the relative angle is within the `inside_cone_angle`, the sound will not have any attenuation applied.
+ * * If the relative angle is between the `inside_cone_angle` and `outside_cone_angle`, linear volume attenuation (between 1 and `outside_volume`) is applied between the two angles until it reaches the `outside_cone_angle`.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} inside_cone_angle
- * @param {real} outside_cone_angle
- * @param {real} outside_volume
- * @returns {real}
+ * @param {real} inside_cone_angle The inside cone angle, expressed in degrees. This is the angle spread within which the sound is unattenuated. A value in the range [0, ]. The default is 360.
+ * @param {real} outside_cone_angle The outside cone angle, expressed in degrees. This is the angle spread outside of which the sound is attenuated to its outsidevolume. A value in the range [, 360]. The default is 360.
+ * @param {real} outside_volume The cone outside volume. A value in the range [0, 1]. The default is 1.
  * @func_end
  */
 function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume) {}
@@ -3255,8 +3333,30 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
  *
  * This function sets a custom roll-off shape for 3D distance attenuation.
  * 
+ * [[Note: This function must be used in conjunction with the `FMOD_MODE.AS_3D_CUSTOMROLLOFF` flag to be activated.]]
+ * 
+ * This function does not duplicate the memory for the points internally. The memory you pass to FMOD must remain valid while in use.
+ * 
+ * If `FMOD_MODE.AS_3D_CUSTOMROLLOFF` is set and the roll-off shape is not set, FMOD will revert to `FMOD_MODE.AS_3D_INVERSEROLLOFF` roll-off mode.
+ * 
+ * When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.
+ * 
+ * The distance in-between point values is linearly interpolated until the final point where the last value is held.
+ * 
+ * If the points are not sorted by distance, an error will result.
+ * 
+ * ```gml
+ * // Defining a custom array of points
+ * curve =
+ * [
+ *     { x: 0,  y:  1, z: 0 },
+ *     { x: 2,  y: .2, z: 0 },
+ *     { x: 2,  y:  0, z: 0 }
+ * ];
+ * ```
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {array[struct.FmodVector]} points
+ * @param {array[struct.FmodVector]} points An array of points sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0.
  * @func_end
  */
 function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
@@ -3285,10 +3385,28 @@ function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
  *
  * This function sets the minimum and maximum audible distance for a 3D sound.
  * 
+ * The distances are meant to simulate the 'size' of a sound. Reducing the `min` distance will mean the sound appears smaller in the world, and in some modes makes the volume attenuate faster as the listener moves away from the sound.
+ * Increasing the `min` distance simulates a larger sound in the world, and in some modes makes the volume attenuate slower as the listener moves away from the sound.
+ * 
+ * `max` will affect attenuation differently based on roll-off mode set in the mode parameter of $(function.fmod_system_create_sound), ${function.fmod_system_create_stream}, ${function.fmod_sound_set_mode} or ${function.fmod_channel_control_set_mode}.
+ * 
+ * For these modes the volume will attenuate to 0 volume (silence), when the distance from the sound is equal to or further than the max distance:
+ * 
+ * * `FMOD_MODE.AS_3D_LINEARROLLOFF`
+ * * `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`
+ * 
+ * For these modes the volume will stop attenuating at the point of the `max` distance, without affecting the rate of attenuation:
+ * 
+ * * `FMOD_MODE.AS_3D_INVERSEROLLOFF`
+ * * `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF`
+ * 
+ * For this mode the `max` distance is ignored:
+ * 
+ * * `FMOD_MODE.AS_3D_CUSTOMROLLOFF`
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} min
- * @param {real} max
- * @returns {real}
+ * @param {real} min The sound's minimum volume distance, or the distance that the sound has no attenuation due to 3D positioning. The default value is 1.
+ * @param {real} max The sound's maximum volume distance, or the distance that no additional attenuation will occur. See below for notes on different max distance behaviors. The default value is 10000.
  * @func_end
  */
 function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
@@ -3317,9 +3435,11 @@ function fmod_sound_get_3d_min_max_distance(sound_ref) {}
  *
  * This function sets a sound's default playback attributes.
  * 
+ * When the Sound is played it will use these values without having to specify them later on a per Channel basis.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} frequency
- * @param {real} priority
+ * @param {real} frequency The default playback frequency, in Hertz. The default is 48000.
+ * @param {real} priority The default priority where 0 is the highest priority. A value in the range [0, 256]. The default is 128.
  * @returns {real}
  * @func_end
  */
