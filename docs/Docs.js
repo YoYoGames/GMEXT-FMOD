@@ -6127,7 +6127,8 @@ function fmod_studio_event_instance_is_valid(event_instance_ref) {}
  *
  * This is the FMOD Studio System creation function.
  * 
- * @returns {real}
+ * Call ${func.fmod_studio_system_release} to free the Studio System.
+ * 
  * @func_end
  */
 function fmod_studio_system_create() {}
@@ -6141,10 +6142,13 @@ function fmod_studio_system_create() {}
  *
  * This function initializes the Studio System.
  * 
- * @param {real} max_channels
- * @param {real} studio_flags
- * @param {real} core_flags
- * @returns {real}
+ * The core system used by the studio system is initialized at the same time as the studio system.
+ * 
+ * The `flags` parameter is passed to ${func.fmod_system_init} to initialize the core.
+ * 
+ * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
+ * @param {constant.FMOD_STUDIO_INIT} studio_flags Studio system initialization flags.
+ * @param {constant.FMOD_INIT} core_flags Core system initialization flags.
  * @func_end
  */
 function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
@@ -6158,7 +6162,8 @@ function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
  *
  * This function shuts down and frees the Studio System object.
  * 
- * @returns {real}
+ * This will free the memory used by the Studio System object and everything created under it.
+ * 
  * @func_end
  */
 function fmod_studio_system_release() {}
@@ -6172,7 +6177,6 @@ function fmod_studio_system_release() {}
  *
  * This function updates the FMOD Studio System.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_update() {}
@@ -6184,9 +6188,8 @@ function fmod_studio_system_update() {}
  *
  * <br />
  *
- * This function blocks until all pending commands have been executed.
+ * This function blocks the calling thread until all pending commands have been executed and all non-blocking bank loads have been completed.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_flush_commands() {}
@@ -6200,7 +6203,6 @@ function fmod_studio_system_flush_commands() {}
  *
  * This function blocks until all sample loading and unloading has completed.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_flush_sample_loading() {}
