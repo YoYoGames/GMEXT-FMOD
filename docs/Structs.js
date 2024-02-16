@@ -474,17 +474,17 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodSoundLockChunck
- * @desc 
- * @member {real} length 
- * @member {pointer} patch_address 
+ * @desc This struct holds information about a data chunck in an FMOD sound.
+ * @member {real} length The length of the data chunk, in bytes.
+ * @member {pointer} patch_address The address of the data chunk in FMOD's memory (required in the later call ${function.fmod_sound_unlock}).
  * @struct_end
  */
 
 /**
  * @struct FmodSoundLock
- * 
- * @member {struct.FmodSoundLockChunck} buffer1 
- * @member {struct.FmodSoundLockChunck} buffer2 
+ * @desc This struct holds information about a sound lock.
+ * @member {struct.FmodSoundLockChunck} buffer1 The first chunk of the sound's data in FMOD memory that's been locked.
+ * @member {struct.FmodSoundLockChunck} buffer2 The second chunk of the sound's data in FMOD memory that's been locked. Can be zero-length.
  * @struct_end
  */
 

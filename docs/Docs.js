@@ -3250,7 +3250,7 @@ function fmod_sound_get_num_tags(sound_ref) {}
  * 
  * ```gml
  * var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
- * while (fmod_last_error() == FMOD_RESULT.OK)
+ * while (fmod_last_result() == FMOD_RESULT.OK)
  * {
  *     // Move cursor to the beginning of the buffer
  *     buffer_seek(tag_data_buff, buffer_seek_start, 0);
@@ -3469,9 +3469,30 @@ function fmod_sound_get_defaults(sound_ref) {}
  *
  * This function sets or alters the mode of a sound.
  * 
+ * [[Note: When calling this function, note that it will only take effect when the sound is played again with ${function.fmod_system_play_sound}. This is the default for when the sound next plays, not a mode that will suddenly change all currently playing instances of this sound.]]
+ * 
+ * [[Note: Changing the mode on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
+ * Flags supported: 
+ * 
+ * `FMOD_MODE.LOOP_OFF`
+ * `FMOD_MODE.LOOP_NORMAL`
+ * `FMOD_MODE.LOOP_BIDI`
+ * `FMOD_MODE.AS_3D_HEADRELATIVE`
+ * `FMOD_MODE.AS_3D_WORLDRELATIVE`
+ * `FMOD_MODE.AS_2D`
+ `* FMOD_MODE.AS_3D`
+ * `FMOD_MODE.AS_3D_INVERSEROLLOFF`
+ * `FMOD_MODE.AS_3D_LINEARROLLOFF`
+ * `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`
+ * `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF`
+ * `FMOD_MODE.AS_3D_CUSTOMROLLOFF`
+ * `FMOD_MODE.AS_3D_IGNOREGEOMETRY`
+ * 
+ * If `FMOD_MODE.AS_3D_IGNOREGEOMETRY` is not specified, the flag will be cleared if it was specified previously.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} mode
- * @returns {real}
+ * @param {constant.FMOD_MODE} mode The mode bits to set. The default is `FMOD_MODE.DEFAULT`.
  * @func_end
  */
 function fmod_sound_set_mode(sound_ref, mode) {}
@@ -3485,8 +3506,10 @@ function fmod_sound_set_mode(sound_ref, mode) {}
  *
  * This function retrieves the mode of a sound.
  * 
+ * [[Note: The mode will be dependent on the mode set by a call to ${function.fmod_system_create_sound}, ${function.fmod_system_create_stream} or ${function.fmod_sound_set_mode}.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @returns {real}
+ * @returns {constant.FMOD_MODE}
  * @func_end
  */
 function fmod_sound_get_mode(sound_ref) {}
@@ -3500,9 +3523,10 @@ function fmod_sound_get_mode(sound_ref) {}
  *
  * This function sets the sound to loop a specified number of times before stopping if the playback mode is set to looping.
  * 
+ * [[Note: Changing the loop count on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} count
- * @returns {real}
+ * @param {real} count The number of times to loop before final playback where -1 is always loop. 0 means no loop. Default is -1.
  * @func_end
  */
 function fmod_sound_set_loop_count(sound_ref, count) {}
@@ -3515,6 +3539,10 @@ function fmod_sound_set_loop_count(sound_ref, count) {}
  * <br />
  *
  * This function retrieves the sound's loop count.
+ * 
+ * The value -1 is returned when the sound loops infinitely. The value 0 means don't loop.
+ * 
+ * [[Note: Unlike the [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) loop count function, this function simply returns the value set with ${function.fmod_sound_set_loop_count}. It does not decrement as it plays (especially seeing as one sound can be played multiple times).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3531,12 +3559,19 @@ function fmod_sound_get_loop_count(sound_ref) {}
  *
  * This function sets the loop points within a sound.
  * 
+ * The values used for `loop_start` and `loop_end` are inclusive, which means these positions will be played.
+ * 
+ * If a `loop_end` is smaller or equal to `loop_start` an error will be returned. The same will happen for any values that are equal or greater than the length of the sound.
+ * 
+ * [[Note: Changing loop points on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
+ * [[Note: The [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)'s mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} loop_start
- * @param {real} loop_start_type
- * @param {real} loop_end
- * @param {real} loop_end_type
- * @returns {real}
+ * @param {real} loop_start The loop start point. A value in the range [0, `loop_end`].
+ * @param {constant.FMOD_TIMEUNIT} loop_start_type The time format of `loop_start`.
+ * @param {real} loop_end The loop end point. A value in the range [`loop_start`, ${function.fmod_sound_get_length}].
+ * @param {constant.FMOD_TIMEUNIT} loop_end_type The time format of `loop_end`.
  * @func_end
  */
 function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type) {}
@@ -3550,9 +3585,11 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
  *
  * This function retrieves the loop points for a sound.
  * 
+ * The values from `loop_start` and `loop_end` are inclusive, which means these positions will be played.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} loop_start_type
- * @param {real} loop_end_type
+ * @param {constant.FMOD_TIMEUNIT} loop_start_type The time format in which to return `loop_start`.
+ * @param {constant.FMOD_TIMEUNIT} loop_end_type The time format in which to return `loop_end`.
  * @returns {struct.FmodLoopPoints}
  * @func_end
  */
@@ -3567,9 +3604,10 @@ function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {
  *
  * This function moves the sound from its existing SoundGroup to the specified sound group.
  * 
+ * By default, a sound is located in the 'master sound group'. This can be retrieved with ${function.fmod_system_get_master_sound_group}.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} sound_group_ref A reference to a SoundGroup.
- * @returns {real}
+ * @param {real} sound_group_ref The [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) to move the sound to.
  * @func_end
  */
 function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
@@ -3581,7 +3619,7 @@ function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the sound's current sound group.
+ * This function retrieves the sound's current [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3598,6 +3636,8 @@ function fmod_sound_get_sound_group(sound_ref) {}
  *
  * This function retrieves the number of subsounds stored within a sound.
  * 
+ * A format that has subsounds is a container format, such as FSB, DLS, MOD, S3M, XM, IT.
+ * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
  * @func_end
@@ -3613,8 +3653,14 @@ function fmod_sound_get_num_sub_sounds(sound_ref) {}
  *
  * This function retrieves a handle to a Sound object that is contained within the parent sound.
  * 
+ * If the sound is a stream and `FMOD_MODE.NONBLOCKING` was not used, then this call will perform a blocking seek/flush to the specified subsound.
+ * 
+ * If `FMOD_MODE.NONBLOCKING` was used to open this sound and the sound is a stream, FMOD will do a non blocking seek/flush and set the state of the subsound to `FMOD_OPENSTATE.SEEKING`.
+ * 
+ * The sound won't be ready to be used when `FMOD_MODE.NONBLOCKING` is used, until the state of the sound becomes `FMOD_OPENSTATE.READY` or `FMOD_OPENSTATE.ERROR`.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} sub_sound_index
+ * @param {real} sub_sound_index The index of the subsound.
  * @returns {real}
  * @func_end
  */
@@ -3628,6 +3674,8 @@ function fmod_sound_get_sub_sound(sound_ref, sub_sound_index) {}
  * <br />
  *
  * This function retrieves the parent Sound object that contains this subsound.
+ * 
+ * If the sound is not a subsound, the value returned will be 0.
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3644,6 +3692,16 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
  *
  * This function retrieves the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.
  * 
+ * When a sound is opened with `FMOD_MODE.NONBLOCKING`, it is opened and prepared in the background, or asynchronously. This allows the main application to execute without stalling on audio loads.
+ * This function will describe the state of the asynchronous load routine i.e. whether it has succeeded, failed or is still in progress.
+ * 
+ * If `starving` is true, then you will most likely hear a stuttering/repeating sound as the decode buffer loops on itself and replays old data.
+ * With the ability to detect stream starvation, muting the sound with ${function.fmod_channel_control_set_mute} will keep the stream quiet until it is not starving anymore.
+ * 
+ * [[Note: Always check `open_state` to determine the state of the sound. Do not assume that if this function returns `FMOD_RESULT.OK` then the sound has finished loading.]]
+ * 
+ * See also: ${constant.FMOD_MODE}
+ * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {struct.FmodSoundOpenState}
  * @func_end
@@ -3657,12 +3715,27 @@ function fmod_sound_get_open_state(sound_ref) {}
  *
  * <br />
  *
- * This function reads data from an opened sound to a specified buffer, using FMOD's internal codecs.
+ * This function reads data from an opened sound to a specified ${type.buffer}, using FMOD's internal codecs.
+ * 
+ * It function returns the actual number of bytes written to the buffer or -1 in case of an error.
+ * 
+ * This can be used for decoding data offline in small pieces (or big pieces), rather than playing and capturing it, or loading the whole file at once and having to ${function.fmod_sound_lock} / ${function.fmod_sound_unlock} the data.
+ * 
+ * If you read too much data, it is possible that ${function.fmod_last_result} will return `FMOD_RESULT.ERR_FILE_EOF`, meaning it is out of data. The returned 'read' parameter will reflect this by returning a smaller number of bytes read than was requested.
+ * 
+ * As a non streaming sound reads and decodes the whole file then closes it upon calling ${function.fmod_system_create_sound}, ${function.fmod_sound_read_data} will then not work because the file handle is closed. Use `FMOD_MODE.OPENONLY` to stop FMOD reading/decoding the file.
+ * If `FMOD_MODE.OPENONLY` flag is used when opening a sound, it will leave the file handle open, and FMOD will not read/decode any data internally, so the read cursor will stay at position 0. This will allow the user to read the data from the start.
+ * 
+ * For streams, the streaming engine will decode a small chunk of data and this will advance the read cursor. You need to either use `FMOD_MODE.OPENONLY` to stop the stream pre-buffering or call ${function.fmod_sound_seek_data} to reset the read cursor back to the start of the file, otherwise it will appear as if the start of the stream is missing.
+ * ${function.fmod_channel_set_position} will have the same result. These functions will flush the stream buffer and read in a chunk of audio internally. This is why if you want to read from an absolute position you should use ${function.fmod_sound_seek_data} and not the previously mentioned functions.
+ * 
+ * If you are calling ${function.fmod_sound_read_data} and ${function.fmod_sound_seek_data} on a stream, information functions such as ${fmod_channel_get_position} may give misleading results. Calling ${function.fmod_channel_get_position} will cause the streaming engine to reset and flush the stream, leading to the time values returning to their correct position.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {buffer} buff
- * @param {real} length
- * @param {real} offset
+ * @param {buffer} buff The ${type.buffer} to read the decoded data into.
+ * @param {real} length The length of the data to read into the buffer, in bytes.
+ * @param {real} offset The offset in the buffer, in bytes, to write the data.
+ * @returns {real}
  * @func_end
  */
 function fmod_sound_read_data(sound_ref, buff, length, offset) {}
@@ -3676,9 +3749,14 @@ function fmod_sound_read_data(sound_ref, buff, length, offset) {}
  *
  * This function seeks a sound for use with data reading, using FMOD's internal codecs.
  * 
+ * [[Warning: This function is for use in conjunction with ${function.fmod_sound_read_data} and `FMOD_MODE.OPENONLY`.]]
+ * 
+ * For streaming sounds, if this function is called, it will advance the internal file pointer but not update the streaming engine. This can lead to de-synchronization of position information for the stream and audible playback.
+ * 
+ * A stream can reset its stream buffer and position synchronization by calling ${function.fmod_channel_set_position}. This causes reset and flush of the stream buffer.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} pcm
- * @returns {real}
+ * @param {real} pcm The seek offset, in samples.
  * @func_end
  */
 function fmod_sound_seek_data(sound_ref, pcm) {}
@@ -3692,11 +3770,29 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
  *
  * This function gives access to a portion or all the sample data of a sound for direct manipulation.
  * 
+ * With this function you get access to the raw audio data. If the data is 8, 16, 24 or 32bit PCM data, mono or stereo data, you must take this into consideration when processing the data. See [Sample Data](https://www.fmod.com/docs/2.02/api/glossary.html#sample-data) for more information.
+ * 
+ * The locked data is copied to the buffers that you pass to the function. This can be two buffers as the data may "wrap around" to the start of the sound.
+ * The first buffer will always store the data up to the end of the sound. The second will store the remainder, starting at the start of the sound.
+ * If the range of data you want to copy doesn't exceed the length of the sound the second buffer will have no data written to it.
+ * 
+ * You can lock multiple regions of data of a sound at the same time, but you should make sure the regions don't overlap.
+ * If some bytes are locked by multiple calls to this function, they will remain locked after you make all corresponding calls to ${function.fmod_sound_unlock}.
+ * 
+ * [[Important: You must always unlock the data again after you have finished with it, using ${function.fmod_sound_unlock}.]]
+ * 
+ * If the sound is created with `FMOD_MODE.CREATECOMPRESSEDSAMPLE` the data retrieved will be the compressed bitstream.
+ * 
+ * It is not possible to lock the following:
+ * 
+ * * A parent sound containing subsounds. A parent sound has no audio data and ${function.fmod_last_result} will return `FMOD_RESULT.ERR_SUBSOUNDS`.
+ * * A stream / sound created with `FMOD_MODE.CREATESTREAM`. `FMOD_RESULT.ERR_BADCOMMAND` will be returned by ${function.fmod_last_result} in this case.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} offset
- * @param {real} length
- * @param {buffer} buff1
- * @param {buffer} buff2
+ * @param {real} offset The offset into the sound's buffer to be retrieved, in bytes.
+ * @param {real} length Length of the data required to be retrieved.
+ * @param {buffer} buff1 The buffer to write the first part of the locked data to.
+ * @param {buffer} buff2 The buffer to write the second part of the locked data to. This will only be written to if the `offset` + `length` has exceeded the length of the sample buffer.
  * @returns {struct.FmodSoundLock}
  * @func_end
  */
@@ -3711,13 +3807,17 @@ function fmod_sound_lock(sound_ref, offset, length, buff1, buff2) {}
  *
  * This function finalizes a previous sample data lock and submits it back to the Sound object.
  * 
+ * The data being 'unlocked' must first have been locked with ${function.fmod_sound_lock}.
+ * 
+ * [[Warning: If an unlock is not performed on PCM data, then sample loops may produce audible clicks.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} buff1
- * @param {real} len1
- * @param {real} address1
- * @param {real} buff2
- * @param {real} len2
- * @param {real} address2
+ * @param {real} buff1 The first buffer passed to an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} len1 The length of the data in the first buffer, in bytes.
+ * @param {real} address1 The `patch_address` of `buffer1`'s corresponding chunck in FMOD memory, as returned by an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} buff2 OPTIONAL The second buffer passed to an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} len2 OPTIONAL The length of the data in the second buffer, in bytes.
+ * @param {real} address2 OPTIONAL The `patch_address` of `buffer2`'s corresponding chunck in FMOD memory, as returned by an earlier call to ${function.fmod_sound_lock}.
  * @func_end
  */
 function fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2) {}
@@ -3747,9 +3847,8 @@ function fmod_sound_get_music_num_channels(sound_ref) {}
  * This function sets the volume of a MOD/S3M/XM/IT/MIDI music channel volume.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} channel_index
- * @param {real} volume
- * @returns {real}
+ * @param {real} channel_index The MOD/S3M/XM/IT/MIDI music subchannel to set a linear volume for.
+ * @param {real} volume The volume of the channel. A value in the range [0, 1]. Default is 1.
  * @func_end
  */
 function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {}
@@ -3764,7 +3863,7 @@ function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {
  * This function retrieves the volume of a MOD/S3M/XM/IT/MIDI music channel volume.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} channel_index
+ * @param {real} channel_index The MOD/S3M/XM/IT/MIDI music subchannel to retrieve the volume for.
  * @returns {real}
  * @func_end
  */
@@ -3780,8 +3879,7 @@ function fmod_sound_get_music_channel_volume(sound_ref, channel_index) {}
  * This function sets the relative speed of MOD/S3M/XM/IT/MIDI music.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} speed
- * @returns {real}
+ * @param {real} speed The speed of the song. A value in the range [0.01, 100]. The default is 1.
  * @func_end
  */
 function fmod_sound_set_music_speed(sound_ref, speed) {}
@@ -3810,9 +3908,11 @@ function fmod_sound_get_music_speed(sound_ref) {}
  *
  * This function retrieves a sync point.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} point_index 
- * @param {constant.FMOD_TIMEUNIT} offset_type 
+ * @param {real} point_index The index of the sync point. A value in the range [0, ${function.fmod_sound_get_num_sync_points}].
+ * @param {constant.FMOD_TIMEUNIT} offset_type The format in which to return the sync point offset.
  * @returns {struct.FmodSyncPoint}
  * @func_end
  */
@@ -3826,6 +3926,8 @@ function fmod_sound_get_sync_point(sound_ref, point_index, offset_type) {}
  * <br />
  *
  * This function retrieves the number of sync points stored within a sound.
+ * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3842,11 +3944,12 @@ function fmod_sound_get_num_sync_points(sound_ref) {}
  *
  * This function adds a sync point at a specific time within the sound.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} offset
- * @param {real} offset_type
- * @param {string} name
- * @returns {real}
+ * @param {real} offset The offset value.
+ * @param {constant.FMOD_TIMEUNIT} offset_type The `offset` unit type.
+ * @param {string} name The sync point name.
  * @func_end
  */
 function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
@@ -3860,9 +3963,10 @@ function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
  *
  * This function deletes a sync point within the sound.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} point_index
- * @returns {real}
+ * @param {struct.FmodSyncPoint} point_index The sync point.
  * @func_end
  */
 function fmod_sound_delete_sync_point(sound_ref, point_index) {}
@@ -3876,8 +3980,11 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
  *
  * This function frees a sound object.
  * 
+ * This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.
+ * 
+ * If the sound was opened with `FMOD_MODE.NONBLOCKING` and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using ${function.fmod_sound_get_open_state} and checking the open state for `FMOD_OPENSTATE.READY` and `FMOD_OPENSTATE.ERROR` is a good way to avoid stalls.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @returns {real}
  * @func_end
  */
 function fmod_sound_release(sound_ref) {}
@@ -3904,11 +4011,10 @@ function fmod_sound_get_system_object(sound_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a floating-point user value associated with this object.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to be stored on this object.
  * @func_end
  */
 function fmod_sound_set_user_data(sound_ref, data) {}
@@ -3920,7 +4026,7 @@ function fmod_sound_set_user_data(sound_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a user value associated with this object, set with ${function.fmod_sound_set_user_data}.
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
