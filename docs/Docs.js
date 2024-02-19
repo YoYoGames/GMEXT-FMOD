@@ -4494,9 +4494,7 @@ function fmod_studio_bus_get_id(bus_ref) {}
  *
  * This function retrieves the path of the bus.
  * 
- * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned.
- * 
- * If the path is longer than size then it is truncated and this function returns `FMOD_RESULT.ERR_TRUNCATED`.
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {string}
@@ -7047,9 +7045,10 @@ function fmod_studio_system_is_valid() {}
  *
  * This function sets the volume level.
  * 
+ * The VCA volume level is used to linearly modulate the levels of the buses and VCAs which it controls.
+ * 
  * @param {real} vca_ref A reference to a vca.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume Volume level. Negative level inverts the signal. Range: [-inf, inf], Default: 1
  * @func_end
  */
 function fmod_studio_vca_set_volume(vca_ref, volume) {}
@@ -7061,7 +7060,7 @@ function fmod_studio_vca_set_volume(vca_ref, volume) {}
  *
  * <br />
  *
- * This function retrieves the volume level.
+ * This function retrieves the volume level set by ${func.fmod_studio_vca_set_volume}.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {real}
@@ -7076,7 +7075,7 @@ function fmod_studio_vca_get_volume(vca_ref) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given VCA.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {string}
@@ -7092,6 +7091,8 @@ function fmod_studio_vca_get_id(vca_ref) {}
  * <br />
  *
  * This function retrieves the path.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {string}
