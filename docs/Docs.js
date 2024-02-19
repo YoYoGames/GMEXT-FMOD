@@ -6214,9 +6214,15 @@ function fmod_studio_system_flush_sample_loading() {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank using custom read callbacks.
+ * This function loads the metadata of a Studio bank and returns a handle to the Bank.
  * 
- * @param {real} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6229,10 +6235,16 @@ function fmod_studio_system_load_bank_custom(flags) {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank from file.
+ * This function loads the metadata of a Studio bank from file, returning a handle to the Bank.
  * 
- * @param {string} filename
- * @param {real} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {string} filename Name of the file on the disk.
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6245,12 +6257,22 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank from memory.
+ * This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.
  * 
- * @param {real} buff_data
- * @param {real} length
- * @param {constant.FMOD_STUDIO_LOAD_MEMORY_MODE} mode
- * @param {constant.FMOD_STUDIO_LOAD_BANK} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY`, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.
+ * 
+ * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT`, FMOD will use the passed memory buffer directly. When using this mode the buffer must be aligned to ${constant.FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT} and the memory must persist until the bank has been fully unloaded, which can be some time after calling ${func.fmod_studio_bank_unload} to unload the bank. You can ensure the memory is not being freed prematurely by only freeing it after receiving the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` callback (enabled in ${func.fmod_studio_system_set_callback}).
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {real} buff_data Memory buffer.
+ * @param {real} length Length of the memory buffer.
+ * @param {constant.FMOD_STUDIO_LOAD_MEMORY_MODE} mode Loading mode to use.
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6265,7 +6287,6 @@ function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
  *
  * This function unloads all currently loaded banks.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_unload_all() {}
@@ -6279,7 +6300,11 @@ function fmod_studio_system_unload_all() {}
  *
  * This function retrieves a loaded bank.
  * 
- * @param {string} path
+ * `path` may be a path, such as `bank:/Weapons` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bank. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6292,9 +6317,9 @@ function fmod_studio_system_get_bank(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded bank.
+ * This function retrieves a loaded bank by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str Bank [GUID](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths).
  * @returns {real}
  * @func_end
  */
@@ -6309,6 +6334,8 @@ function fmod_studio_system_get_bank_by_id(guid_str) {}
  *
  * This function retrieves the number of loaded banks.
  * 
+ * May be used in conjunction with ${func.fmod_studio_system_get_bank_list} to enumerate the loaded banks.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -6321,7 +6348,9 @@ function fmod_studio_system_get_bank_count() {}
  *
  * <br />
  *
- * This function retrieves the loaded Banks.
+ * This function retrieves an array containing the loaded banks.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_system_get_bank_count} to enumerate the loaded banks.
  * 
  * @returns {array[real]}
  * @func_end
@@ -6337,9 +6366,11 @@ function fmod_studio_system_get_bank_list() {}
  *
  * This function sets the 3D attributes of the listener.
  * 
- * @param {real} listener_index
- * @param {struct.Fmod3DAttributes} attributes
- * @param {struct.FmodVector} attenuation
+ * If you don't pass a value for `attenuation`, the listener only uses the position in `attributes`.
+ * 
+ * @param {real} listener_index Index of listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
+ * @param {struct.Fmod3DAttributes} attributes 3D attributes.
+ * @param {struct.FmodVector} [attenuation=undefined] Position used for calculating attenuation.
  * @func_end
  */
 function fmod_studio_system_set_listener_attributes(listener_index, attributes, attenuation) {}
@@ -6351,9 +6382,9 @@ function fmod_studio_system_set_listener_attributes(listener_index, attributes, 
  *
  * <br />
  *
- * This function retrieves listener 3D attributes.
+ * This function retrieves listener 3D attributes, containing a struct for the attributes, and a struct for the attenuation position.
  * 
- * @param {real} listener_index
+ * @param {real} listener_index Index of listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
  * @returns {struct.FmodStudioListenerAttributes}
  * @func_end
  */
@@ -6368,9 +6399,14 @@ function fmod_studio_system_get_listener_attributes(listener_index) {}
  *
  * This function sets the listener weighting.
  * 
- * @param {real} listener_index
- * @param {real} weight
- * @returns {real}
+ * Listener weighting is a factor which determines how much the listener influences the mix. It is taken into account for 3D panning, doppler, and the automatic distance event parameter. A listener with a weight of 0 has no effect on the mix.
+ * 
+ * Listener weighting can be used to fade in and out multiple listeners. For example to do a crossfade, an additional listener can be created with a weighting of 0 that ramps up to 1 while the old listener weight is ramped down to 0. After the crossfade is finished the number of listeners can be reduced to 1 again.
+ * 
+ * The sum of all the listener weights should add up to at least 1. It is a user error to set all listener weights to 0.
+ * 
+ * @param {real} listener_index Listener index.
+ * @param {real} weight Weighting value, Range: [0, 1], Default: 1
  * @func_end
  */
 function fmod_studio_system_set_listener_weight(listener_index, weight) {}
@@ -6382,9 +6418,9 @@ function fmod_studio_system_set_listener_weight(listener_index, weight) {}
  *
  * <br />
  *
- * This function retrieves listener weighting.
+ * This function retrieves the weighting value of the listener.
  * 
- * @param {real} listener_index
+ * @param {real} listener_index Listener index.
  * @returns {real}
  * @func_end
  */
@@ -6399,8 +6435,11 @@ function fmod_studio_system_get_listener_weight(listener_index) {}
  *
  * This function sets the number of listeners in the 3D sound scene.
  * 
- * @param {real} num
- * @returns {real}
+ * If the number of listeners is set to more than 1 then FMOD uses a 'closest sound to the listener' method to determine what should be heard.
+ * 
+ * See the [Studio 3D Events](https://www.fmod.com/docs/2.02/api/white-papers-studio-3d-events.html#multiple-listeners) white paper for more information.
+ * 
+ * @param {real} num Number of listeners, Range: [1, ${constant.FMOD_MAX_LISTENERS}], Default: 1
  * @func_end
  */
 function fmod_studio_system_set_num_listeners(num) {}
@@ -6426,9 +6465,13 @@ function fmod_studio_system_get_num_listeners() {}
  *
  * <br />
  *
- * This function retrieves a loaded bus.
+ * This function allows you to retrieve a handle for any bus in the global mixer.
  * 
- * @param {string} path
+ * `path` may be a path, such as `bus:/SFX/Ambience` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bus. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6441,9 +6484,9 @@ function fmod_studio_system_get_bus(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded bus by its ID.
+ * This function allows you to retrieve a handle for any bus in the global mixer using its GUID.
  * 
- * @param {string} guid
+ * @param {string} guid Bus GUID.
  * @returns {real}
  * @func_end
  */
@@ -6455,10 +6498,14 @@ function fmod_studio_system_get_bus_by_id(guid) {}
  * @desc > **FMOD Function:** [Studio::System::getEvent](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getevent)
  *
  * <br />
- *
- * This function retrieves an EventDescription.
  * 
- * @param {string} path
+ * This function allows you to retrieve a handle to any loaded event description.
+ * 
+ * `path` may be a path, such as `event:/UI/Cancel` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The [path or the ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the event or snapshot. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6471,9 +6518,9 @@ function fmod_studio_system_get_event(path) {}
  *
  * <br />
  *
- * This function retrieves an EventDescription.
+ * This function allows you to retrieve a handle to any loaded event description by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str Event or snapshot GUID.
  * @returns {real}
  * @func_end
  */
@@ -6486,9 +6533,10 @@ function fmod_studio_system_get_event_by_id(guid_str) {}
  *
  * <br />
  *
- * This function retrieves a global parameter value by unique identifier.
+ * This function retrieves a global parameter value struct by its unique identifier.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @return {struct.FmodStudioParameter}
  * @func_end
  */
 function fmod_studio_system_get_parameter_by_id(parameter_id) {}
@@ -6502,9 +6550,9 @@ function fmod_studio_system_get_parameter_by_id(parameter_id) {}
  *
  * This function sets a global parameter value by unique identifier.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} value
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {real} value Value for given identifier.
+ * @param {bool} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek_speed) {}
@@ -6518,9 +6566,11 @@ function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek
  *
  * This function sets a global parameter value by unique identifier, looking up the value label.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {string} label
- * @param {bool} ignore_seek_speed
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {string} label Labeled value for given identifier.
+ * @param {bool} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, ignore_seek_speed) {}
@@ -6532,9 +6582,9 @@ function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, 
  *
  * <br />
  *
- * This function retrieves a global parameter value by name.
+ * This function retrieves a global parameter value struct by name.
  * 
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -6549,10 +6599,9 @@ function fmod_studio_system_get_parameter_by_name(name) {}
  *
  * This function sets a global parameter value by name.
  * 
- * @param {string} name
- * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
+ * @param {real} value Value for given name.
+ * @param {real} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed) {}
@@ -6566,10 +6615,9 @@ function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed
  *
  * This function sets a global parameter value by name, looking up the value label.
  * 
- * @param {string} name
- * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
+ * @param {string} label Labeled value for given name.
+ * @param {real} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed) {}
@@ -6583,7 +6631,9 @@ function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore
  *
  * This function retrieves a global parameter by name or path.
  * 
- * @param {string} name
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
+ * @param {string} name Parameter name. (UTF-8 string)
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -6598,7 +6648,7 @@ function fmod_studio_system_get_parameter_description_by_name(name) {}
  *
  * This function retrieves a global parameter by ID.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter ID.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -6625,7 +6675,7 @@ function fmod_studio_system_get_parameter_description_count() {}
  *
  * <br />
  *
- * This function retrieves a list of global parameters.
+ * This function retrieves an array of global parameters.
  * 
  * @returns {array[struct.FmodStudioParameterDescription]}
  * @func_end
@@ -6641,8 +6691,10 @@ function fmod_studio_system_get_parameter_description_list() {}
  *
  * This function retrieves a global parameter label by name or path.
  * 
- * @param {string} name
- * @param {real} labelindex
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
+ * @param {string} name Parameter name. (UTF-8 string)
+ * @param {real} labelindex Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -6657,8 +6709,8 @@ function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
  *
  * This function retrieves a global parameter label by ID.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} label_index
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter ID.
+ * @param {real} label_index Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -6671,9 +6723,13 @@ function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
  *
  * <br />
  *
- * This function retrieves a loaded VCA.
+ * This function allows you to retrieve a handle for any VCA in the global mixer.
  * 
- * @param {string} path
+ * `path` may be a path, such as `vca:/MyVCA`, or an ID string, such as `{d9982c58-a056-4e6c-b8e3-883854b4bffb}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The path or the ID string that identifies the VCA. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6686,9 +6742,9 @@ function fmod_studio_system_get_vca(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded VCA.
+ * This function allows you to retrieve a handle for any VCA in the global mixer by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str VCA GUID.
  * @returns {real}
  * @func_end
  */
@@ -6701,9 +6757,18 @@ function fmod_studio_system_get_vca_by_id(guid_str) {}
  *
  * <br />
  *
- * This function sets advanced settings.
+ * This function sets advanced settings. This must be called prior to Studio initialization.
  * 
  * @param {struct.FmodStudioAdvancedSettings} settings
+ * 
+ * @example
+ * ```gml
+ * var _adv_settings = new FmodStudioAdvancedSettings();
+ * _adv_settings.studio_update_period = 40;
+ * _adv_settings.streaming_schedule_delay = -1;
+ * fmod_studio_system_set_advanced_settings(_adv_settings);
+ * ```
+ * 
  * @func_end
  */
 function fmod_studio_system_set_advanced_settings(settings) {}

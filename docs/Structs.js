@@ -672,6 +672,21 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  */
 
 /**
+ * @struct FmodStudioAdvancedSettings
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_ADVANCEDSETTINGS](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_advancedsettings)
+ * 
+ * This struct describes a Studio advanced settings object.
+ * 
+ * @member {real} command_queue_size Command queue size for studio async processing. Default: 32768
+ * @member {real} handle_initial_size Initial size to allocate for handles. Memory for handles will grow as needed in pages. Default: `8192 * 8`
+ * @member {real} studio_update_period Update period of Studio when in async mode, in milliseconds. Will be quantized to the nearest multiple of mixer duration. Default: 20
+ * @member {real} idle_sampledata_pool_size Size in bytes of sample data to retain in memory when no longer used, to avoid repeated disk I/O. Use -1 to disable. Default: 262144
+ * @member {real} streaming_schedule_delay Specify the schedule delay for streams, in samples. Lower values can reduce latency when scheduling events containing streams but may cause scheduling issues if too small. Default: 8192
+ * @member {string} encryption_key Specify the key for loading sounds from encrypted banks. (UTF-8 string). Default: `pointer_null`
+ * @struct_end
+ */
+
+/**
  * @module structs
  * @title Structs
  * 
@@ -734,6 +749,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodStudioStringInfo
  * @ref FmodStudioParameterDescription
  * @ref FmodStudioUserProperty
+ * @ref FmodStudioAdvancedSettings
  * @section_end
  * @module_end
  */
