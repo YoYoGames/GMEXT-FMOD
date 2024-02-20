@@ -4313,9 +4313,11 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the loading state.
+ * This function is used to check the loading state of a bank which has been loaded asynchronously using the `FMOD_STUDIO_LOAD_BANK.NONBLOCKING` flag, or is pending unload following a call to ${func.fmod_studio_bank_unload}.
  * 
- * @param {real} bank_ref 
+ * If an asynchronous load failed due to a file error, state will contain `FMOD_STUDIO_LOADING_STATE.ERROR` and the return code from this function will be the error code of the bank load function.
+ * 
+ * @param {real} bank_ref A reference to a bank.
  * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
@@ -4330,8 +4332,11 @@ function fmod_studio_bank_get_loading_state(bank_ref) {}
  *
  * This function loads non-streaming sample data for all events in the bank.
  * 
+ * Use this function to preload sample data ahead of time so that the events in the bank can play immediately when started.
+ *
+ * This function is equivalent to calling ${func.fmod_studio_event_description_load_sample_data} for all events in the bank, including referenced events.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_load_sample_data(bank_ref) {}
@@ -4345,8 +4350,9 @@ function fmod_studio_bank_load_sample_data(bank_ref) {}
  *
  * This function unloads non-streaming sample data for all events in the bank.
  * 
+ * Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details [see Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading).
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_unload_sample_data(bank_ref) {}
@@ -4360,8 +4366,12 @@ function fmod_studio_bank_unload_sample_data(bank_ref) {}
  *
  * This function retrieves the loading state of the samples in the bank.
  * 
+ * May be used for tracking the status of the ${func.fmod_studio_bank_load_sample_data} operation.
+ *
+ * If ${func.fmod_studio_bank_load_sample_data} has not been called for the bank then this function will return `FMOD_STUDIO_LOADING_STATE.UNLOADED` even though sample data may have been loaded by other API calls.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
 function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
@@ -4375,8 +4385,11 @@ function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
  *
  * This function unloads the bank.
  * 
+ * This will destroy all objects created from the bank, unload all sample data inside the bank, and invalidate all API handles referring to the bank.
+ * 
+ * If the bank was loaded from user-managed memory, e.g. by ${func.fmod_studio_system_load_bank_memory} with the `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT` mode, then the memory must not be freed until the unload has completed. Poll the loading state using ${func.fmod_studio_bank_get_loading_state} or use the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` system callback to determine when it is safe to free the memory.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bank_unload(bank_ref) {}
@@ -4389,6 +4402,8 @@ function fmod_studio_bank_unload(bank_ref) {}
  * <br />
  *
  * This function retrieves the number of buses in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_bus_list} to enumerate the buses in the bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
@@ -4403,7 +4418,11 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the buses in the bank.
+ * This function retrieves an array containing the buses in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_bus_count} to enumerate the buses in the bank.
+ * 
+ * This function returns a maximum of capacity buses from the bank. If the bank contains more than capacity buses, additional buses will be silently ignored.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4420,6 +4439,10 @@ function fmod_studio_bank_get_bus_list(bank_ref) {}
  *
  * This function retrieves the number of event descriptions in the bank.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_event_description_list} to enumerate the events in the bank.
+ * 
+ * This function counts the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not counted.
+ * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
  * @func_end
@@ -4433,7 +4456,13 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the event descriptions in the bank.
+ * This function retrieves an array containing the event descriptions in the bank.
+ * 
+ * This will return a maximum of capacity events from the bank. If the bank contains more than capacity events, then additional events will be silently ignored.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_event_count} to enumerate the events in the bank.
+ * 
+ * This function retrieves the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not retrieved.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4450,6 +4479,8 @@ function fmod_studio_bank_get_event_description_list(bank_ref) {}
  *
  * This function retrieves the number of string table entries in the bank.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_string_info} to enumerate the string table in a bank.
+ * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
  * @func_end
@@ -4465,8 +4496,14 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
  *
  * This function retrieves a string table entry.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_string_count} to enumerate the string table in a bank.
+ * 
+ * If the path is longer than size then it is truncated and this function returns FMOD_RESULT.ERR_TRUNCATED.
+ * 
+ * The retrieved parameter can be used to get the buffer size required to hold the full path.
+ * 
  * @param {real} bank_ref A reference to a bank.
- * @param {real} string_index
+ * @param {real} string_index String table entry index.
  * @returns {struct.FmodStudioStringInfo}
  * @func_end
  */
@@ -4481,6 +4518,8 @@ function fmod_studio_bank_get_string_info(bank_ref, string_index) {}
  *
  * This function retrieves the number of VCAs in the bank.
  * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_vca_list} to enumerate the VCAs in a bank.
+ * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
  * @func_end
@@ -4494,7 +4533,11 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves a list of the VCAs in the bank.
+ * This function retrieves an array containing the VCAs in the bank.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_bank_get_vca_count} to enumerate the VCAs in a bank.
+ * 
+ * This returns a maximum of capacity VCAs from the bank. If the bank contains more than capacity VCAs, additional VCAs will be silently ignored.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
@@ -4509,7 +4552,7 @@ function fmod_studio_bank_get_vca_list(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {string}
@@ -4524,7 +4567,11 @@ function fmod_studio_bank_get_id(bank_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the given bank.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned.
+ * 
+ * If the path is longer than size then it is truncated and this function returns `FMOD_RESULT.ERR_TRUNCATED`.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {string}
@@ -4539,10 +4586,10 @@ function fmod_studio_bank_get_path(bank_ref) {}
  *
  * <br />
  *
- * This function checks that the Bank reference is valid.
+ * This function checks whether the given Bank reference is valid, returning `true` or `false`.
  * 
  * @param {real} bank_ref A reference to a bank.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bank_is_valid(bank_ref) {}
@@ -4553,12 +4600,11 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_setuserdata)
  *
  * <br />
- *
- * This function sets the bank user data.
+ * 
+ * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} bank_ref A reference to a bank.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_bank_set_user_data(bank_ref, data) {}
@@ -4570,7 +4616,9 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the bank user data.
+ * This function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * 
+ * The function returns `NaN` if there is no user data attached to the bank.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {real}
@@ -4586,11 +4634,12 @@ function fmod_studio_bank_get_user_data(bank_ref) {}
  *
  * <br />
  *
- * This function sets the pause state.
+ * This function allows pausing/unpausing of all audio routed into the bus.
+ * 
+ * An individual pause state is kept for each bus. Pausing a bus will override the pause state of its inputs (meaning they return true from ${func.fmod_studio_bus_get_paused}), while unpausing a bus will cause its inputs to obey their individual pause state. The pause state is processed in the Studio system update, so ${func.fmod_studio_bus_get_paused} will return the state as determined by the last update.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} pause
- * @returns {real}
+ * @param {boolean} pause `true` to pause the bus, `false` to unpause.
  * @func_end
  */
 function fmod_studio_bus_set_paused(bus_ref, pause) {}
@@ -4602,10 +4651,10 @@ function fmod_studio_bus_set_paused(bus_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the pause state.
+ * This function retrieves the pause state of the given bus, returning `true` if paused and `false` if unpaused.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_get_paused(bus_ref) {}
@@ -4617,11 +4666,10 @@ function fmod_studio_bus_get_paused(bus_ref) {}
  *
  * <br />
  *
- * This function stops all event instances that are routed into the bus.
+ * This function stops all event instances that are routed into the bus. You pass it an ${constant.FMOD_STUDIO_STOP_MODE} enum member.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} stop_mode
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_STOP_MODE} stop_mode The stop mode to use.
  * @func_end
  */
 function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
@@ -4633,11 +4681,12 @@ function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
  *
  * <br />
  *
- * This function sets the volume level.
+ * This function sets the volume level of the bus.
+ * 
+ * This volume is applied as a scaling factor to the volume level set in FMOD Studio.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} volumen
- * @returns {real}
+ * @param {real} volume Volume level. Negative level inverts the signal. Linear unit, range (-inf, inf), default: 1
  * @func_end
  */
 function fmod_studio_bus_set_volume(bus_ref, volumen) {}
@@ -4649,7 +4698,7 @@ function fmod_studio_bus_set_volume(bus_ref, volumen) {}
  *
  * <br />
  *
- * This function retrieves the volume level.
+ * This function retrieves the volume level of the bus.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
@@ -4664,11 +4713,14 @@ function fmod_studio_bus_get_volume(bus_ref) {}
  *
  * <br />
  *
- * This function sets the mute state.
+ * This function sets the mute state of the bus.
+ * 
+ * Mute is an additional control for volume, the effect of which is equivalent to setting the volume to zero.
+ * 
+ * An individual mute state is kept for each bus. Muting a bus will override the mute state of its inputs (meaning they return `true` from ${func.fmod_studio_bus_get_mute}), while unmuting a bus will cause its inputs to obey their individual mute state. The mute state is processed in the Studio system update, so ${func.fmod_studio_bus_get_mute} will return the state as determined by the last update.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} mute
- * @returns {real}
+ * @param {real} mute `true` to mute, `false` to unmute.
  * @func_end
  */
 function fmod_studio_bus_set_mute(bus_ref, mute) {}
@@ -4680,10 +4732,10 @@ function fmod_studio_bus_set_mute(bus_ref, mute) {}
  *
  * <br />
  *
- * This function retrieves the mute state.
+ * This function retrieves the mute state. This will be `true` if muted and `false` if not.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_get_mute(bus_ref) {}
@@ -4697,8 +4749,14 @@ function fmod_studio_bus_get_mute(bus_ref) {}
  *
  * This function sets the port index to use when attaching to an output port.
  * 
+ * When a bus which is an output port is instantiated it will be connected to an output port based on the port type set in Studio. For some port types a platform specific port index is required to connect to the correct output port. For example, if the output port type is a speaker in a controller then a platform specific port index may be required to specify which controller the bus is to attach to. In such a case call this function passing the platform specific port index.
+ * 
+ * There is no need to call this function for port types which do not require an index.
+ * 
+ * This function may be called at any time after a bank containing the bus has been loaded.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @param {real} port_index
+ * @param {constant.FMOD_PORT_INDEX} port_index Port index to use when attaching to an output port.
  * @func_end
  */
 function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
@@ -4710,7 +4768,7 @@ function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
  *
  * <br />
  *
- * This function retrieves the port index assigned to the bus.
+ * This function retrieves the port index assigned to the bus, as a ${constant.FMOD_PORT_INDEX} enum member.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real} port_index
@@ -4727,6 +4785,8 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
  *
  * This function retrieves the core ChannelGroup.
  * 
+ * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, this function will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
+ * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
  * @func_end
@@ -4742,8 +4802,13 @@ function fmod_studio_bus_get_channel_group(bus_ref) {}
  *
  * This function locks the core ChannelGroup.
  * 
+ * This forces the system to create the ChannelGroup and keep it available until ${func.fmod_studio_bus_unlock_channel_group} is called. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * 
+ * The ChannelGroup may not be available immediately after calling this function. When Studio has been initialized in asynchronous mode, the ChannelGroup will not be created until the command has been executed in the async thread. When Studio has been initialized with `FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE`, the ChannelGroup will be created in the next ${func.fmod_studio_system_update} call.
+ * 
+ * You can call ${func.fmod_studio_system_flush_commands} to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via ${func.fmod_studio_bus_get_channel_group} until it is ready.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bus_lock_channel_group(bus_ref) {}
@@ -4757,8 +4822,9 @@ function fmod_studio_bus_lock_channel_group(bus_ref) {}
  *
  * This function unlocks the core ChannelGroup.
  * 
+ * This allows the system to destroy the ChannelGroup when it is not needed. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_bus_unlock_channel_group(bus_ref) {}
@@ -4771,6 +4837,8 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
  * <br />
  *
  * This function retrieves the bus CPU usage data.
+ * 
+ * `FMOD_INIT.PROFILE_ENABLE` with ${func.fmod_system_init} is required to call this function.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {struct.FmodCPUUsage}
@@ -4785,11 +4853,12 @@ function fmod_studio_bus_get_cpu_usage(bus_ref) {}
  *
  * <br />
  *
- * This function retrieves memory usage statistics.
+ * This function retrieves memory usage statistics into an ${struct.FmodStudioMemoryUsage} struct.
+ * 
+ * Memory usage statistics are only available in logging builds, in release builds this will contain zero for all values after calling this function.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @param {buffer} buff_return
- * @returns {real}
+ * @return {struct.FmodStudioMemoryUsage}
  * @func_end
  */
 function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
@@ -4801,7 +4870,7 @@ function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given bus.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {string}
@@ -4816,7 +4885,9 @@ function fmod_studio_bus_get_id(bus_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the bus.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {string}
@@ -4831,10 +4902,10 @@ function fmod_studio_bus_get_path(bus_ref) {}
  *
  * <br />
  *
- * This function checks that the Bus reference is valid.
+ * This function checks that the Bus reference is valid, returning `true` or `false`.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_bus_is_valid(bus_ref) {}
@@ -4849,9 +4920,10 @@ function fmod_studio_bus_is_valid(bus_ref) {}
  *
  * This function sets a path substition that will be used when loading banks with this replay.
  * 
+ * ${func.fmod_studio_system_load_bank_file} commands in the replay are redirected to load banks from the specified directory, instead of using the directory recorded in the captured commands.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {string} path
- * @returns {real}
+ * @param {string} path The path to use when loading banks.
  * @func_end
  */
 function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
@@ -4863,10 +4935,24 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
  *
  * <br />
  *
- * This function sets the create event instance callback.
+ * This function enables the create event instance callback.
+ * 
+ * The create instance callback is invoked each time a ${func.fmod_studio_event_description_create_instance} command is processed.
+ * 
+ * The callback can either create a new event instance based on the callback parameters or skip creating the instance. If the instance is not created then subsequent commands for the event instance will be ignored in the replay.
+ * 
+ * If this callback is not set then the system will always create an event instance.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type The value `"fmod_studio_command_replay_set_create_instance_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} event_description_ref The handle of the event description associated with the newly created instance
+ * @member {real} event_instance_ref The handle of the created instance
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_create_instance_callback(command_replay_ref) {}
@@ -4878,10 +4964,18 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
  *
  * <br />
  *
- * This function sets a callback that is issued each time the replay reaches a new frame.
+ * This function enables a callback that is issued each time the replay reaches a new frame.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type  The value `"fmod_studio_command_replay_set_frame_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} command_index Current playback command index
+ * @member {real} current_time Current playback time
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
@@ -4893,11 +4987,28 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
  *
  * <br />
  *
- * This function sets the bank loading callback.
+ * This function enables the bank loading callback.
+ * 
+ * The load bank callback is invoked whenever any of the Studio load bank functions are reached.
+ * 
+ * This callback is required to be implemented to successfully replay ${func.fmod_studio_system_load_bank_memory} and ${func.fmod_studio_system_load_bank_custom} commands.
+ * 
+ * The callback is responsible for loading the bank based on the callback parameters. If the bank is not loaded subsequent commands which reference objects in the bank will fail.
+ * 
+ * If this callback is not set then the system will attempt to load banks from file according to recorded ${func.fmod_studio_system_load_bank_file} commands and skip other load commands.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {string} path
- * @returns {real}
+ * 
+ * @event social
+ * @desc The Social Async event executed for the create event instance callback
+ * @member {string} type  The value `"fmod_studio_command_replay_set_load_bank_callback"`
+ * @member {real} command_replay_ref The handle of the Command Replay triggering this event
+ * @member {real} command_index The command that involved this callback
+ * @member {real} bank_ref The bank loaded by this function
+ * @member {real} bank_guid The GUID of the bank that needs to be loaded
+ * @member {real} bank_filename The filename of the bank that needs to be loaded
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, path) {}
@@ -4911,8 +5022,9 @@ function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, p
  *
  * This function begins playback.
  * 
+ * If the replay is already running then calling this function will restart replay from the beginning.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_command_replay_start(command_replay_ref) {}
@@ -4926,8 +5038,9 @@ function fmod_studio_command_replay_start(command_replay_ref) {}
  *
  * This function stops playback.
  * 
+ * If the `FMOD_STUDIO_COMMANDREPLAY.SKIP_CLEANUP` flag has been used then the system state is left as it was at the end of the playback, otherwise all resources that were created as part of the replay will be cleaned up.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_command_replay_stop(command_replay_ref) {}
@@ -4940,6 +5053,8 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
  * <br />
  *
  * This function retrieves the progress through the command replay.
+ * 
+ * If this function is called before ${func.fmod_studio_command_replay_start} then both commandindex and currenttime (in the returned struct) will be returned as 0. If this function is called after ${func.fmod_studio_command_replay_stop} then the index and time of the last command which was replayed will be returned.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {struct.FmodCommandReplayCurrentCommand}
@@ -4954,10 +5069,10 @@ function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
  *
  * <br />
  *
- * This function retrieves the playback state.
+ * This function retrieves the playback state of the given CommandReplay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_PLAYBACK_STATE}
  * @func_end
  */
 function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
@@ -4969,11 +5084,10 @@ function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
  *
  * <br />
  *
- * This function sets the paused state.
+ * This function sets the paused state of the given CommandReplay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} pause
- * @returns {real}
+ * @param {boolean} pause `true` to pause, `false` to unpause.
  * @func_end
  */
 function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
@@ -4985,10 +5099,10 @@ function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the paused state.
+ * This function retrieves the paused state of the given CommandReplay (`true` if paused, `false` if not).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_command_replay_get_paused(command_replay_ref) {}
@@ -5003,7 +5117,7 @@ function fmod_studio_command_replay_get_paused(command_replay_ref) {}
  * This function seeks the playback position to a command.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The command index to seek to.
  * @returns {real}
  * @func_end
  */
@@ -5015,12 +5129,11 @@ function fmod_studio_command_replay_seek_to_command(command_replay_ref, command_
  * @desc > **FMOD Function:** [Studio::CommandReplay::seekToTime](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_seektotime)
  *
  * <br />
- *
- * This function seeks the playback position to a time.
+ * 
+ * This function moves the playback position to the the first command at or after `time`. If no command exists at or after `time`, then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} time
- * @returns {real}
+ * @param {real} time The time to seek to.
  * @func_end
  */
 function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
@@ -5034,8 +5147,10 @@ function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
  *
  * This function retrieves the command index corresponding to the given playback time.
  * 
+ * This will return an index for the first command at or after `time`. If `time` is greater than the total playback time then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned (in the next ${func.fmod_last_result} call).
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} time
+ * @param {real} time The time used to find a command index.
  * @returns {real}
  * @func_end
  */
@@ -5049,6 +5164,8 @@ function fmod_studio_command_replay_get_command_at_time(command_replay_ref, time
  * <br />
  *
  * This function retrieves the number of commands in the replay.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_command_replay_get_command_info} to enumerate the commands in the replay.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {real}
@@ -5065,8 +5182,10 @@ function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
  *
  * This function retrieves command information.
  * 
+ * May be used in conjunction with ${func.fmod_studio_command_replay_get_command_count} to enumerate the commands in the replay.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The index of the command.
  * @returns {struct.FmodCommandReplayCommandInfo}
  * @func_end
  */
@@ -5079,10 +5198,12 @@ function fmod_studio_command_replay_get_command_info(command_replay_ref, command
  *
  * <br />
  *
- * This function retrieves the string representation of a command.
+ * This function returns the string representation of a command.
+ * 
+ * If the string representation of the command is too long to fit in the buffer it will be truncated and this function will return `FMOD_RESULT.ERR_TRUNCATED` (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} command_index
+ * @param {real} command_index The index of the command.
  * @returns {string}
  * @func_end
  */
@@ -5128,7 +5249,7 @@ function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
  * This function checks that the CommandReplay reference is valid.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_command_replay_is_valid(command_replay_ref) {}
@@ -5142,9 +5263,10 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
  *
  * This function sets user data.
  * 
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
@@ -5156,7 +5278,9 @@ function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
  *
  * <br />
  *
- * This function retrieves user data.
+ * This function retrieves user data attached to this object (a real value, passed into ${func.fmod_studio_command_replay_set_user_data}).
+ * 
+ * The function returns `NaN` if there is no user data attached to the bank.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {real}
@@ -5187,7 +5311,13 @@ function fmod_studio_command_replay_release(command_replay_ref) {}
  *
  * <br />
  *
- * This function creates a playable instance.
+ * This function creates a playable instance, returning a handle to the new [EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html) object.
+ * 
+ * When an event instance is created, any required non-streaming sample data is loaded asynchronously.
+ * 
+ * Use ${func.fmod_studio_event_description_get_sample_loading_state} to check the loading status.
+ * 
+ * Sample data can be loaded ahead of time with ${func.fmod_studio_event_description_load_sample_data} or ${func.fmod_studio_bank_load_sample_data}. See [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for more information.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5202,7 +5332,9 @@ function fmod_studio_event_description_create_instance(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the number of instances.
+ * This function retrieves the number of instances in the EventDescription.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_instance_list} to enumerate the instances of this event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5217,7 +5349,11 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
  *
  * <br />
  *
- * This function retrieves a list of the instances.
+ * This function retrieves an array containing the instances in the given EventDescription.
+ * 
+ * This returns a maximum of capacity instances. If more than capacity instances have been created then additional instances will be silently ignored.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_instance_count} to enumerate the instances of this event.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
  * @returns {array[real]}
@@ -5232,10 +5368,9 @@ function fmod_studio_event_description_get_instance_list(event_description_ref) 
  *
  * <br />
  *
- * This function releases all instances.
+ * This function immediately stops and releases all instances of the event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_release_all_instances(event_description_ref) {}
@@ -5246,11 +5381,12 @@ function fmod_studio_event_description_release_all_instances(event_description_r
  * @desc > **FMOD Function:** [Studio::EventDescription::loadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata)
  *
  * <br />
- *
- * This function loads non-streaming sample data used by the event.
+ * 
+ * This function will load all non-streaming sample data required by the event and any referenced events.
+ * 
+ * Sample data is loaded asynchronously, ${func.fmod_studio_event_description_get_sample_loading_state} may be used to poll the loading state.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_load_sample_data(event_description_ref) {}
@@ -5264,8 +5400,9 @@ function fmod_studio_event_description_load_sample_data(event_description_ref) {
  *
  * This function unloads all non-streaming sample data.
  * 
+ * Sample data will not be unloaded until all instances of the event are released.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_description_unload_sample_data(event_description_ref) {}
@@ -5279,8 +5416,10 @@ function fmod_studio_event_description_unload_sample_data(event_description_ref)
  *
  * This function retrieves the sample data loading state.
  * 
+ * If the event is invalid, then the state is set to `FMOD_STUDIO_LOADING_STATE.UNLOADED` and this results in `FMOD_RESULT.ERR_INVALID_HANDLE` (in the next ${func.fmod_last_result} call).
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_LOADING_STATE}
  * @func_end
  */
 function fmod_studio_event_description_get_sample_loading_state(event_description_ref) {}
@@ -5292,10 +5431,12 @@ function fmod_studio_event_description_get_sample_loading_state(event_descriptio
  *
  * <br />
  *
- * This function retrieves the event's 3D status.
+ * This function retrieves the event's 3D status. For more info, see [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d).
+ * 
+ * This will return `true` if the event is 3D and `false` if not.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_3d(event_description_ref) {}
@@ -5309,8 +5450,12 @@ function fmod_studio_event_description_is_3d(event_description_ref) {}
  *
  * This function retrieves the event's doppler status.
  * 
+ * This will return `true` if doppler is enabled, and `false` if not.
+ * 
+ * Note: If the event was built to a bank using versions of FMOD Studio prior to 2.01.09, then this function will return false regardless of the event's doppler state.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_doppler_enabled(event_description_ref) {}
@@ -5324,8 +5469,14 @@ function fmod_studio_event_description_is_doppler_enabled(event_description_ref)
  *
  * This function retrieves the event's oneshot status.
  * 
+ * This will return `true` if the event is a oneshot event, and `false` if not.
+ * 
+ * An event is considered oneshot if it is guaranteed to terminate without intervention in bounded time after being started. Instances of such events can be played in a fire-and-forget fashion by calling ${func.fmod_studio_event_instance_start} immediately followed by ${func.fmod_studio_event_instance_release}.
+ * 
+ * Note: If the event contains nested events built to separate banks and those banks have not been loaded then this function may fail to correctly determine the event's oneshot status.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_oneshot(event_description_ref) {}
@@ -5339,8 +5490,10 @@ function fmod_studio_event_description_is_oneshot(event_description_ref) {}
  *
  * This function retrieves the event's snapshot status.
  * 
+ * This will return `true` if the event is a snapshot and `false` if not.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_snapshot(event_description_ref) {}
@@ -5352,10 +5505,12 @@ function fmod_studio_event_description_is_snapshot(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the event's stream status.
+ * This function retrieves the event's stream status, returning `true` if the event contains one or more streamed sounds, otherwise `false`.
+ * 
+ * Note: If the event contains nested events built to separate banks and those banks have not been loaded then this function may fail to correctly determine the event's stream status.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_stream(event_description_ref) {}
@@ -5367,10 +5522,10 @@ function fmod_studio_event_description_is_stream(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves whether the event has any sustain points.
+ * This function retrieves whether the event has any sustain points (`true` or `false`).
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_has_sustain_point(event_description_ref) {}
@@ -5382,7 +5537,7 @@ function fmod_studio_event_description_has_sustain_point(event_description_ref) 
  *
  * <br />
  *
- * This function retrieves the minimum and maximum distances for 3D attenuation.
+ * This function retrieves the minimum and maximum distances for 3D attenuation, as a struct.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {struct.FmodMinMaxDistance}
@@ -5398,6 +5553,8 @@ function fmod_studio_event_description_get_min_max_distance(event_description_re
  * <br />
  *
  * This function retrieves the sound size for 3D panning.
+ * 
+ * Retrieves the largest Sound Size value of all Spatializers and 3D Object Spatializers on the event's master track. Returns 0 if there are no Spatializers or 3D Object Spatializers.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5415,7 +5572,7 @@ function fmod_studio_event_description_get_sound_size(event_description_ref) {}
  * This function retrieves an event parameter description by name.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5431,7 +5588,7 @@ function fmod_studio_event_description_get_parameter_description_by_name(event_d
  * This function retrieves an event parameter description by ID.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter ID struct.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5446,8 +5603,10 @@ function fmod_studio_event_description_get_parameter_description_by_id(event_des
  *
  * This function retrieves an event parameter description by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_parameter_description_count} to enumerate event parameters.
+ * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -5461,6 +5620,8 @@ function fmod_studio_event_description_get_parameter_description_by_index(event_
  * <br />
  *
  * This function retrieves the number of parameters in the event.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_event_description_get_parameter_description_by_index} to enumerate event parameters.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5477,9 +5638,11 @@ function fmod_studio_event_description_get_parameter_description_count(event_des
  *
  * This function retrieves an event parameter label by name or path.
  * 
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
- * @param {real} label_index
+ * @param {string} name Parameter name (UTF-8 string).
+ * @param {real} label_index Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5495,8 +5658,8 @@ function fmod_studio_event_description_get_parameter_label_by_name(event_descrip
  * This function retrieves an event parameter label by ID.
  * 
  * @param {real} event_descriptor_ref A reference to an EventDescription.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} label_index
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter ID struct.
+ * @param {real} label_index The label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5511,9 +5674,11 @@ function fmod_studio_event_description_get_parameter_label_by_id(event_descripti
  *
  * This function retrieves an event parameter label by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_parameter_description_count} to enumerate event parameters.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} index
- * @param {real} label_index
+ * @param {real} index The parameter index.
+ * @param {real} label_index The label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -5529,9 +5694,8 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_descri
  * This function retrieves a user property by name.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
- * @param {buffer} buff_return
- * @returns {real}
+ * @param {string} name The user property name (UTF-8 string).
+ * @returns {struct.FmodStudioUserProperty}
  * @func_end
  */
 function fmod_studio_event_description_get_user_property(event_description_ref, name, buff_return) {}
@@ -5545,10 +5709,11 @@ function fmod_studio_event_description_get_user_property(event_description_ref, 
  *
  * This function retrieves a user property by index.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_user_property_count} to enumerate event user properties.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} index
- * @param {buffer} buff_return
- * @returns {real}
+ * @param {real} index The user property index.
+ * @returns {struct.FmodStudioUserProperty}
  * @func_end
  */
 function fmod_studio_event_description_get_user_property_by_index(event_description_ref, index, buff_return) {}
@@ -5562,8 +5727,9 @@ function fmod_studio_event_description_get_user_property_by_index(event_descript
  *
  * This function retrieves the number of user properties attached to the event.
  * 
+ * May be used in combination with ${func.fmod_studio_event_description_get_user_property_by_index} to enumerate event user properties.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {string} name
  * @returns {real}
  * @func_end
  */
@@ -5576,7 +5742,7 @@ function fmod_studio_event_description_get_user_property_count(event_description
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the EventDescription.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {string}
@@ -5591,7 +5757,9 @@ function fmod_studio_event_description_get_id(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the length of the timeline.
+ * This function retrieves the length of the timeline in milliseconds.
+ * 
+ * A timeline's length is the largest of any logic markers, transition leadouts and the end of any trigger boxes on the timeline.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5606,7 +5774,9 @@ function fmod_studio_event_description_get_length(event_description_ref) {}
  *
  * <br />
  *
- * This function retrieves the path.
+ * This function retrieves the path of the EventDescription.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {string}
@@ -5621,11 +5791,29 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  *
  * <br />
  *
- * This function sets the user callback.
+ * This function enables a user callback which will be assigned to all event instances subsequently created from the event. The callback for individual instances can be set with ${func.fmod_studio_event_instance_set_callback}.
+ * 
+ * This callback is triggered as an Async Social event.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} type
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_CALLBACK} type The bitfield specifying which callback types are required.
+ * 
+ * @event social
+ * @member {string} type The value `"fmod_studio_event_description_set_callback"`
+ * @member {constant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
+ * @member {real} event_instance_ref Handle of the EventInstance that has changed state.
+ * @member {string} name Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER`
+ * @member {real} sub_sound_index Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} sound_ref Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} position Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} bar Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} beat Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} tempo Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_lower Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_upper Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} event_id Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_event_description_set_callback(event_description_ref, type) {}
@@ -5637,11 +5825,10 @@ function fmod_studio_event_description_set_callback(event_description_ref, type)
  *
  * <br />
  *
- * This function sets the event user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_event_description_set_user_data(event_description_ref, data) {}
@@ -5653,7 +5840,7 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
  *
  * <br />
  *
- * This function retrieves the event user data.
+ * This function retrieves the real value attached to the object in ${func.fmod_studio_event_description_set_user_data}.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5671,7 +5858,7 @@ function fmod_studio_event_description_get_user_data(event_description_ref) {}
  * This function checks that the EventDescription reference is valid.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_description_is_valid(event_description_ref) {}
@@ -5686,8 +5873,11 @@ function fmod_studio_event_description_is_valid(event_description_ref) {}
  *
  * This function starts playback.
  * 
+ * If the instance was already playing then calling this function will restart the event.
+ * 
+ * Generally it is a best practice to call ${func.fmod_studio_event_instance_release} on event instances immediately after starting them, unless you want to play the event instance multiple times or explicitly stop it and start it again later.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_start(event_instance_ref) {}
@@ -5702,8 +5892,7 @@ function fmod_studio_event_instance_start(event_instance_ref) {}
  * This function stops playback.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} mode
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_STOP_MODE} mode The stop mode to use.
  * @func_end
  */
 function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
@@ -5715,10 +5904,12 @@ function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
  *
  * <br />
  *
- * This function retrieves the playback state.
+ * This function retrieves the playback state of the EventInstance.
+ * 
+ * If the instance is invalid, this will return `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {constant.FMOD_STUDIO_PLAYBACK_STATE}
  * @func_end
  */
 function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
@@ -5730,11 +5921,10 @@ function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the pause state.
+ * This function sets the pause state of the EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} pause
- * @returns {real}
+ * @param {real} pause `true` to pause, `false` to unpause
  * @func_end
  */
 function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
@@ -5746,10 +5936,10 @@ function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves the pause state.
+ * This function returns the pause state of the EventInstance (`true` if paused, otherwise `false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_get_paused(event_instance_ref) {}
@@ -5763,8 +5953,11 @@ function fmod_studio_event_instance_get_paused(event_instance_ref) {}
  *
  * This function allows an event to continue past a sustain point.
  * 
+ * Multiple sustain points may be bypassed ahead of time and the key off count will be decremented each time the timeline cursor passes a sustain point.
+ * 
+ * This results in `FMOD_RESULT.ERR_EVENT_NOTFOUND` if the event has no sustain points (in the next call to ${func.fmod_last_result}).
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_keyoff(event_instance_ref) {}
@@ -5778,9 +5971,10 @@ function fmod_studio_event_instance_keyoff(event_instance_ref) {}
  *
  * This function sets the pitch multiplier.
  * 
+ * The pitch multiplier is used to modulate the event instance's pitch. The pitch multiplier can be set to any value greater than or equal to zero but the final combined pitch is clamped to the range [0, 100] before being applied.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} pitch
- * @returns {real}
+ * @param {real} pitch Pitch multiplier, range: (0, inf), default: 1
  * @func_end
  */
 function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
@@ -5792,7 +5986,7 @@ function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
  *
  * <br />
  *
- * This function retrieves the pitch multiplier.
+ * This function retrieves the pitch multiplier assigned to the EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -5809,10 +6003,13 @@ function fmod_studio_event_instance_get_pitch(event_instance_ref) {}
  *
  * This function sets the value of a built-in property.
  * 
+ * This will override the value set in Studio. Using the default ${constant.FMOD_STUDIO_EVENT_PROPERTY} value (e.g. -1) will revert back to the default values set in Studio.
+ * 
+ * An FMOD spatializer or object spatializer may override the values set for `FMOD_STUDIO_EVENT_PROPERTY.MINIMUM_DISTANCE` and `FMOD_STUDIO_EVENT_PROPERTY.MAXIMUM_DISTANCE`.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} property
- * @param {real} value
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_PROPERTY} property Property type to set.
+ * @param {real} value Property value to set.
  * @func_end
  */
 function fmod_studio_event_instance_set_property(event_instance_ref, property, value) {}
@@ -5826,8 +6023,10 @@ function fmod_studio_event_instance_set_property(event_instance_ref, property, v
  *
  * This function retrieves the value of a built-in property.
  * 
+ * A default ${constant.FMOD_STUDIO_EVENT_PROPERTY} value means that the Instance is using the value set in Studio and it has not been overridden using ${func.fmod_studio_event_instance_set_property}.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} property
+ * @param {constant.FMOD_STUDIO_EVENT_PROPERTY} property Property type to get the value of.
  * @returns {real}
  * @func_end
  */
@@ -5843,8 +6042,7 @@ function fmod_studio_event_instance_get_property(event_instance_ref, property) {
  * This function sets the timeline cursor position.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} position
- * @returns {real}
+ * @param {real} position The timeline position in milliseconds.
  * @func_end
  */
 function fmod_studio_event_instance_set_timeline_position(event_instance_ref, position) {}
@@ -5873,9 +6071,10 @@ function fmod_studio_event_instance_get_timeline_position(event_instance_ref) {}
  *
  * This function sets the volume level.
  * 
+ * This volume is applied as a scaling factor for the event volume. It does not override the volume level set in FMOD Studio, nor any internal volume automation or modulation.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume Volume, Range: (0, inf), Default: 1
  * @func_end
  */
 function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
@@ -5902,10 +6101,10 @@ function fmod_studio_event_instance_get_volume(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the virtualization state.
+ * This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded (`true` or `false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
@@ -5917,10 +6116,12 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the 3D attributes.
+ * This function sets the 3D attributes for the given EventInstance.
+ * 
+ * An event's 3D attributes specify its position, velocity and orientation. The 3D attributes are used to calculate 3D panning, doppler and the values of automatic distance and angle parameters.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.Fmod3DAttributes} attributes
+ * @param {struct.Fmod3DAttributes} attributes The 3D attributes struct.
  * @func_end
  */
 function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attributes) {}
@@ -5932,7 +6133,7 @@ function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attrib
  *
  * <br />
  *
- * This function retrieves the 3D attributes.
+ * This function retrieves the 3D attributes struct for the given EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.Fmod3DAttributes}
@@ -5949,9 +6150,13 @@ function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
  *
  * This function sets the listener mask.
  * 
+ * The listener mask controls which listeners are considered when calculating 3D panning and the values of listener relative [automatic parameters](https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter).
+ * 
+ * To create the mask you must perform bitwise OR and shift operations, the basic form is `1 << listener_index` OR'd together with other required listener indices.
+ * For example to create a mask for listener index 0 and 2 the calculation would be `mask = (1 << 0) | (1 << 2)`, to include all listeners use the default mask of `0xFFFFFFFF`.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} mask
- * @returns {real}
+ * @param {real} mask Listener mask (default: 0xFFFFFFFF)
  * @func_end
  */
 function fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask) {}
@@ -5978,7 +6183,7 @@ function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the minimum and maximum distances for 3D attenuation.
+ * This function retrieves the minimum and maximum distances for 3D attenuation as an ${struct.FmodMinMaxDistance} struct.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodMinMaxDistance}
@@ -5995,11 +6200,16 @@ function fmod_studio_event_instance_get_min_max_distance(event_instance_ref) {}
  *
  * This function sets a parameter value by name.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the event has no parameter matching name then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
- * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
+ * @param {real} value Value for given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, name, value, ignore_seek_speed) {}
@@ -6013,11 +6223,18 @@ function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, na
  *
  * This function sets a parameter value by name, looking up the value label.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the event has no parameter matching name then `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
- * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
+ * @param {string} label Labeled value for the given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_name_with_label(event_instance_ref, name, label, ignore_seek_speed) {}
@@ -6032,7 +6249,7 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(event_insta
  * This function retrieves a parameter value by name.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive, UTF-8 string).
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -6047,10 +6264,14 @@ function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, na
  *
  * This function sets a parameter value by unique identifier.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} value
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {real} value Value for given identifier.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, parameter_id, value, ignore_seek_speed) {}
@@ -6064,10 +6285,16 @@ function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, para
  *
  * This function sets a parameter value by unique identifier, looking up the value label.
  * 
+ * The value will be set instantly regardless of `ignoreseekspeed` when the Event playback state is `FMOD_STUDIO_PLAYBACK_STATE.STOPPED`.
+ * 
+ * If the specified parameter is read only, is an automatic parameter or is not of type `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` then `FMOD_RESULT.ERR_INVALID_PARAM` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {string} label
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {string} label Labeled value for given name.
+ * @param {boolean} [ignore_seek_speed=false] Whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instance_ref, parameter_id, label, ignore_seek_speed) {}
@@ -6082,7 +6309,7 @@ function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instanc
  * This function retrieves a parameter value by unique identifier.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id The parameter identifier.
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -6095,7 +6322,9 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
  *
  * <br />
  *
- * This function retrieves the core ChannelGroup.
+ * This function retrieves the core `ChannelGroup` corresponding to the master track.
+ * 
+ * Until the event instance has been fully created this function will result in `FMOD_RESULT.ERR_STUDIO_NOT_LOADED` (in the next ${func.fmod_last_result} call).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -6112,10 +6341,11 @@ function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
  *
  * This function sets the core reverb send level.
  * 
+ * This controls the send level for the signal from the event instance to a core reverb instance.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} index
- * @param {real} level
- * @returns {real}
+ * @param {real} index Core reverb instance index, Range: [0, 3]
+ * @param {real} level Reverb send level, Linear, Range: [0, 1], Default: 0\
  * @func_end
  */
 function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, level) {}
@@ -6130,7 +6360,7 @@ function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, 
  * This function retrieves the core reverb send level.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} index
+ * @param {real} index Core reverb instance index, Range: [0, 3]
  * @returns {real}
  * @func_end
  */
@@ -6144,6 +6374,8 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
  * <br />
  *
  * This function retrieves the event CPU usage data.
+ * 
+ * `FMOD_INIT.PROFILE_ENABLE` with ${func.fmod_system_init} is required to call this function.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodCPUUsage}
@@ -6160,6 +6392,8 @@ function fmod_studio_event_instance_get_cpu_usage(event_instance_ref) {}
  *
  * This function retrieves memory usage statistics.
  * 
+ * Memory usage statistics are only available in logging builds, in release builds the struct will contain zero for all values.
+ * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {struct.FmodStudioMemoryUsage}
  * @func_end
@@ -6173,11 +6407,27 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
  *
  * <br />
  *
- * This function sets the user callback.
+ * This function enables the user callback in the Async Social event.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} type
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_EVENT_CALLBACK} type Bitfield specifying which callback types are required.
+ * 
+ * @event social
+ * @member {string} type The value `"fmod_studio_event_description_set_callback"`
+ * @member {constant.FMOD_STUDIO_EVENT_CALLBACK} kind The callback type passed into the original function.
+ * @member {real} event_instance_ref Handle of the EventInstance that has changed state.
+ * @member {string} name Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER`
+ * @member {real} sub_sound_index Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} sound_ref Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND` or `FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND`
+ * @member {real} position Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER` or `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} bar Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} beat Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} tempo Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_lower Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} time_signature_upper Valid when kind=`FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT` or `FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @member {real} event_id Valid when kind=`FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT`
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
@@ -6189,11 +6439,10 @@ function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
  *
  * <br />
  *
- * This function sets the event instance user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The real value to attach.
  * @func_end
  */
 function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
@@ -6205,7 +6454,7 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the event instance user data.
+ * This function retrieves the real value attached to this object in ${func.fmod_studio_event_instance_set_user_data}.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -6220,7 +6469,7 @@ function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
  *
  * <br />
  *
- * This function retrieves the event description.
+ * This function retrieves a handle to the EventDescription for the given EventInstance.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -6235,10 +6484,11 @@ function fmod_studio_event_instance_get_description(event_instance_ref) {}
  *
  * <br />
  *
- * This function marks the event instance for release.
+ * This function marks the event instance to be released. Event instances marked for release are destroyed by the asynchronous update when they are in the stopped state (`FMOD_STUDIO_PLAYBACK_STATE.STOPPED`).
+ * 
+ * Generally it is a best practice to release event instances immediately after calling ${func.fmod_studio_event_instance_start}, unless you want to play the event instance multiple times or explicitly stop it and start it again later. It is possible to interact with the instance after calling release(), however if the sound has stopped `FMOD_RESULT.ERR_INVALID_HANDLE` will be returned in the next ${func.fmod_last_result} call.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
  * @func_end
  */
 function fmod_studio_event_instance_release(event_instance_ref) {}
@@ -6250,10 +6500,10 @@ function fmod_studio_event_instance_release(event_instance_ref) {}
  *
  * <br />
  *
- * This function checks that the EventInstance reference is valid.
+ * This function checks whether the EventInstance reference is valid (`true`) or not (`false`).
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_studio_event_instance_is_valid(event_instance_ref) {}
@@ -6268,7 +6518,8 @@ function fmod_studio_event_instance_is_valid(event_instance_ref) {}
  *
  * This is the FMOD Studio System creation function.
  * 
- * @returns {real}
+ * Call ${func.fmod_studio_system_release} to free the Studio System.
+ * 
  * @func_end
  */
 function fmod_studio_system_create() {}
@@ -6282,10 +6533,13 @@ function fmod_studio_system_create() {}
  *
  * This function initializes the Studio System.
  * 
- * @param {real} max_channels
- * @param {real} studio_flags
- * @param {real} core_flags
- * @returns {real}
+ * The core system used by the studio system is initialized at the same time as the studio system.
+ * 
+ * The `flags` parameter is passed to ${func.fmod_system_init} to initialize the core.
+ * 
+ * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
+ * @param {constant.FMOD_STUDIO_INIT} studio_flags Studio system initialization flags.
+ * @param {constant.FMOD_INIT} core_flags Core system initialization flags.
  * @func_end
  */
 function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
@@ -6299,7 +6553,8 @@ function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
  *
  * This function shuts down and frees the Studio System object.
  * 
- * @returns {real}
+ * This will free the memory used by the Studio System object and everything created under it.
+ * 
  * @func_end
  */
 function fmod_studio_system_release() {}
@@ -6313,7 +6568,6 @@ function fmod_studio_system_release() {}
  *
  * This function updates the FMOD Studio System.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_update() {}
@@ -6325,9 +6579,8 @@ function fmod_studio_system_update() {}
  *
  * <br />
  *
- * This function blocks until all pending commands have been executed.
+ * This function blocks the calling thread until all pending commands have been executed and all non-blocking bank loads have been completed.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_flush_commands() {}
@@ -6341,7 +6594,6 @@ function fmod_studio_system_flush_commands() {}
  *
  * This function blocks until all sample loading and unloading has completed.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_flush_sample_loading() {}
@@ -6353,9 +6605,15 @@ function fmod_studio_system_flush_sample_loading() {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank using custom read callbacks.
+ * This function loads the metadata of a Studio bank and returns a handle to the Bank.
  * 
- * @param {real} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6368,10 +6626,16 @@ function fmod_studio_system_load_bank_custom(flags) {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank from file.
+ * This function loads the metadata of a Studio bank from file, returning a handle to the Bank.
  * 
- * @param {string} filename
- * @param {real} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {string} filename Name of the file on the disk.
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6384,12 +6648,22 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank from memory.
+ * This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.
  * 
- * @param {real} buff_data
- * @param {real} length
- * @param {constant.FMOD_STUDIO_LOAD_MEMORY_MODE} mode
- * @param {constant.FMOD_STUDIO_LOAD_BANK} flags
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * 
+ * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY`, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.
+ * 
+ * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT`, FMOD will use the passed memory buffer directly. When using this mode the buffer must be aligned to ${constant.FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT} and the memory must persist until the bank has been fully unloaded, which can be some time after calling ${func.fmod_studio_bank_unload} to unload the bank. You can ensure the memory is not being freed prematurely by only freeing it after receiving the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` callback (enabled in ${func.fmod_studio_system_set_callback}).
+ * 
+ * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result()} value after a function call that uses the Bank handle.
+ * 
+ * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${func.fmod_studio_bank_load_sample_data} or ${func.fmod_studio_system_get_event}.
+ * 
+ * @param {real} buff_data Memory buffer.
+ * @param {real} length Length of the memory buffer.
+ * @param {constant.FMOD_STUDIO_LOAD_MEMORY_MODE} mode Loading mode to use.
+ * @param {constant.FMOD_STUDIO_LOAD_BANK} flags Flags to control bank loading.
  * @returns {real}
  * @func_end
  */
@@ -6404,7 +6678,6 @@ function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
  *
  * This function unloads all currently loaded banks.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_unload_all() {}
@@ -6418,7 +6691,11 @@ function fmod_studio_system_unload_all() {}
  *
  * This function retrieves a loaded bank.
  * 
- * @param {string} path
+ * `path` may be a path, such as `bank:/Weapons` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bank. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6431,9 +6708,9 @@ function fmod_studio_system_get_bank(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded bank.
+ * This function retrieves a loaded bank by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str Bank [GUID](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths).
  * @returns {real}
  * @func_end
  */
@@ -6448,6 +6725,8 @@ function fmod_studio_system_get_bank_by_id(guid_str) {}
  *
  * This function retrieves the number of loaded banks.
  * 
+ * May be used in conjunction with ${func.fmod_studio_system_get_bank_list} to enumerate the loaded banks.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -6460,7 +6739,9 @@ function fmod_studio_system_get_bank_count() {}
  *
  * <br />
  *
- * This function retrieves the loaded Banks.
+ * This function retrieves an array containing the loaded banks.
+ * 
+ * May be used in conjunction with ${func.fmod_studio_system_get_bank_count} to enumerate the loaded banks.
  * 
  * @returns {array[real]}
  * @func_end
@@ -6476,9 +6757,11 @@ function fmod_studio_system_get_bank_list() {}
  *
  * This function sets the 3D attributes of the listener.
  * 
- * @param {real} listener_index
- * @param {struct.Fmod3DAttributes} attributes
- * @param {struct.FmodVector} attenuation
+ * If you don't pass a value for `attenuation`, the listener only uses the position in `attributes`.
+ * 
+ * @param {real} listener_index Index of listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
+ * @param {struct.Fmod3DAttributes} attributes 3D attributes.
+ * @param {struct.FmodVector} [attenuation=undefined] Position used for calculating attenuation.
  * @func_end
  */
 function fmod_studio_system_set_listener_attributes(listener_index, attributes, attenuation) {}
@@ -6490,9 +6773,9 @@ function fmod_studio_system_set_listener_attributes(listener_index, attributes, 
  *
  * <br />
  *
- * This function retrieves listener 3D attributes.
+ * This function retrieves listener 3D attributes, containing a struct for the attributes, and a struct for the attenuation position.
  * 
- * @param {real} listener_index
+ * @param {real} listener_index Index of listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
  * @returns {struct.FmodStudioListenerAttributes}
  * @func_end
  */
@@ -6507,9 +6790,14 @@ function fmod_studio_system_get_listener_attributes(listener_index) {}
  *
  * This function sets the listener weighting.
  * 
- * @param {real} listener_index
- * @param {real} weight
- * @returns {real}
+ * Listener weighting is a factor which determines how much the listener influences the mix. It is taken into account for 3D panning, doppler, and the automatic distance event parameter. A listener with a weight of 0 has no effect on the mix.
+ * 
+ * Listener weighting can be used to fade in and out multiple listeners. For example to do a crossfade, an additional listener can be created with a weighting of 0 that ramps up to 1 while the old listener weight is ramped down to 0. After the crossfade is finished the number of listeners can be reduced to 1 again.
+ * 
+ * The sum of all the listener weights should add up to at least 1. It is a user error to set all listener weights to 0.
+ * 
+ * @param {real} listener_index Listener index.
+ * @param {real} weight Weighting value, Range: [0, 1], Default: 1
  * @func_end
  */
 function fmod_studio_system_set_listener_weight(listener_index, weight) {}
@@ -6521,9 +6809,9 @@ function fmod_studio_system_set_listener_weight(listener_index, weight) {}
  *
  * <br />
  *
- * This function retrieves listener weighting.
+ * This function retrieves the weighting value of the listener.
  * 
- * @param {real} listener_index
+ * @param {real} listener_index Listener index.
  * @returns {real}
  * @func_end
  */
@@ -6538,8 +6826,11 @@ function fmod_studio_system_get_listener_weight(listener_index) {}
  *
  * This function sets the number of listeners in the 3D sound scene.
  * 
- * @param {real} num
- * @returns {real}
+ * If the number of listeners is set to more than 1 then FMOD uses a 'closest sound to the listener' method to determine what should be heard.
+ * 
+ * See the [Studio 3D Events](https://www.fmod.com/docs/2.02/api/white-papers-studio-3d-events.html#multiple-listeners) white paper for more information.
+ * 
+ * @param {real} num Number of listeners, Range: [1, ${constant.FMOD_MAX_LISTENERS}], Default: 1
  * @func_end
  */
 function fmod_studio_system_set_num_listeners(num) {}
@@ -6565,9 +6856,13 @@ function fmod_studio_system_get_num_listeners() {}
  *
  * <br />
  *
- * This function retrieves a loaded bus.
+ * This function allows you to retrieve a handle for any bus in the global mixer.
  * 
- * @param {string} path
+ * `path` may be a path, such as `bus:/SFX/Ambience` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bus. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6580,9 +6875,9 @@ function fmod_studio_system_get_bus(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded bus by its ID.
+ * This function allows you to retrieve a handle for any bus in the global mixer using its GUID.
  * 
- * @param {string} guid
+ * @param {string} guid Bus GUID.
  * @returns {real}
  * @func_end
  */
@@ -6594,10 +6889,14 @@ function fmod_studio_system_get_bus_by_id(guid) {}
  * @desc > **FMOD Function:** [Studio::System::getEvent](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getevent)
  *
  * <br />
- *
- * This function retrieves an EventDescription.
  * 
- * @param {string} path
+ * This function allows you to retrieve a handle to any loaded event description.
+ * 
+ * `path` may be a path, such as `event:/UI/Cancel` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The [path or the ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the event or snapshot. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6610,9 +6909,9 @@ function fmod_studio_system_get_event(path) {}
  *
  * <br />
  *
- * This function retrieves an EventDescription.
+ * This function allows you to retrieve a handle to any loaded event description by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str Event or snapshot GUID.
  * @returns {real}
  * @func_end
  */
@@ -6625,9 +6924,10 @@ function fmod_studio_system_get_event_by_id(guid_str) {}
  *
  * <br />
  *
- * This function retrieves a global parameter value by unique identifier.
+ * This function retrieves a global parameter value struct by its unique identifier.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @return {struct.FmodStudioParameter}
  * @func_end
  */
 function fmod_studio_system_get_parameter_by_id(parameter_id) {}
@@ -6641,9 +6941,9 @@ function fmod_studio_system_get_parameter_by_id(parameter_id) {}
  *
  * This function sets a global parameter value by unique identifier.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} value
- * @param {bool} ignore_seek_speed
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {real} value Value for given identifier.
+ * @param {bool} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek_speed) {}
@@ -6657,9 +6957,11 @@ function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek
  *
  * This function sets a global parameter value by unique identifier, looking up the value label.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {string} label
- * @param {bool} ignore_seek_speed
+ * If the specified label is not found, `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call. This lookup is case sensitive.
+ * 
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter identifier.
+ * @param {string} label Labeled value for given identifier.
+ * @param {bool} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, ignore_seek_speed) {}
@@ -6671,9 +6973,9 @@ function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, 
  *
  * <br />
  *
- * This function retrieves a global parameter value by name.
+ * This function retrieves a global parameter value struct by name.
  * 
- * @param {string} name
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
  * @returns {struct.FmodStudioParameter}
  * @func_end
  */
@@ -6688,10 +6990,9 @@ function fmod_studio_system_get_parameter_by_name(name) {}
  *
  * This function sets a global parameter value by name.
  * 
- * @param {string} name
- * @param {real} value
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
+ * @param {real} value Value for given name.
+ * @param {real} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed) {}
@@ -6705,10 +7006,9 @@ function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed
  *
  * This function sets a global parameter value by name, looking up the value label.
  * 
- * @param {string} name
- * @param {string} label
- * @param {real} ignore_seek_speed
- * @returns {real}
+ * @param {string} name Parameter name (case-insensitive). (UTF-8 string)
+ * @param {string} label Labeled value for given name.
+ * @param {real} [ignore_seek_speed=false] Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @func_end
  */
 function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed) {}
@@ -6722,7 +7022,9 @@ function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore
  *
  * This function retrieves a global parameter by name or path.
  * 
- * @param {string} name
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
+ * @param {string} name Parameter name. (UTF-8 string)
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -6737,7 +7039,7 @@ function fmod_studio_system_get_parameter_description_by_name(name) {}
  *
  * This function retrieves a global parameter by ID.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter ID.
  * @returns {struct.FmodStudioParameterDescription}
  * @func_end
  */
@@ -6764,7 +7066,7 @@ function fmod_studio_system_get_parameter_description_count() {}
  *
  * <br />
  *
- * This function retrieves a list of global parameters.
+ * This function retrieves an array of global parameters.
  * 
  * @returns {array[struct.FmodStudioParameterDescription]}
  * @func_end
@@ -6780,8 +7082,10 @@ function fmod_studio_system_get_parameter_description_list() {}
  *
  * This function retrieves a global parameter label by name or path.
  * 
- * @param {string} name
- * @param {real} labelindex
+ * `name` can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.
+ * 
+ * @param {string} name Parameter name. (UTF-8 string)
+ * @param {real} labelindex Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -6796,8 +7100,8 @@ function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
  *
  * This function retrieves a global parameter label by ID.
  * 
- * @param {struct.FmodStudioParameterId} parameter_id
- * @param {real} label_index
+ * @param {struct.FmodStudioParameterId} parameter_id Parameter ID.
+ * @param {real} label_index Label index to retrieve.
  * @returns {string}
  * @func_end
  */
@@ -6810,9 +7114,13 @@ function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
  *
  * <br />
  *
- * This function retrieves a loaded VCA.
+ * This function allows you to retrieve a handle for any VCA in the global mixer.
  * 
- * @param {string} path
+ * `path` may be a path, such as `vca:/MyVCA`, or an ID string, such as `{d9982c58-a056-4e6c-b8e3-883854b4bffb}`.
+ * 
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * 
+ * @param {string} path The path or the ID string that identifies the VCA. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6825,9 +7133,9 @@ function fmod_studio_system_get_vca(path) {}
  *
  * <br />
  *
- * This function retrieves a loaded VCA.
+ * This function allows you to retrieve a handle for any VCA in the global mixer by its GUID.
  * 
- * @param {string} guid_str
+ * @param {string} guid_str VCA GUID.
  * @returns {real}
  * @func_end
  */
@@ -6840,9 +7148,18 @@ function fmod_studio_system_get_vca_by_id(guid_str) {}
  *
  * <br />
  *
- * This function sets advanced settings.
+ * This function sets advanced settings. This must be called prior to Studio initialization.
  * 
  * @param {struct.FmodStudioAdvancedSettings} settings
+ * 
+ * @example
+ * ```gml
+ * var _adv_settings = new FmodStudioAdvancedSettings();
+ * _adv_settings.studio_update_period = 40;
+ * _adv_settings.streaming_schedule_delay = -1;
+ * fmod_studio_system_set_advanced_settings(_adv_settings);
+ * ```
+ * 
  * @func_end
  */
 function fmod_studio_system_set_advanced_settings(settings) {}
@@ -6870,9 +7187,12 @@ function fmod_studio_system_get_advanced_settings() {}
  *
  * This function starts recording Studio commands to a file.
  * 
- * @param {string} filename
- * @param {real} flags
- * @returns {real}
+ * The commands generated by the FMOD Studio API can be captured and later replayed for debug and profiling purposes.
+ * 
+ * Unless the `FMOD_STUDIO_COMMANDCAPTURE.SKIP_INITIAL_STATE` flag is specified, the command capture will first record the set of all banks and event instances that currently exist.
+ * 
+ * @param {string} filename The name of the file to which the recorded commands are written. (UTF-8 string)
+ * @param {constant.FMOD_STUDIO_COMMANDCAPTURE} flags Flags that control command capturing.
  * @func_end
  */
 function fmod_studio_system_start_command_capture(filename, flags) {}
@@ -6886,7 +7206,6 @@ function fmod_studio_system_start_command_capture(filename, flags) {}
  *
  * This function stops recording Studio commands.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_stop_command_capture() {}
@@ -6898,10 +7217,10 @@ function fmod_studio_system_stop_command_capture() {}
  *
  * <br />
  *
- * This function loads a command replay.
+ * This function loads a command replay and returns its handle.
  * 
- * @param {string} filename
- * @param {real} flags
+ * @param {string} filename The name of the file from which to load the command replay. (UTF-8 string)
+ * @param {constant.FMOD_STUDIO_COMMANDCAPTURE} flags Flags that control command capturing.
  * @returns {real}
  * @func_end
  */
@@ -6914,7 +7233,11 @@ function fmod_studio_system_load_command_replay(filename, flags) {}
  *
  * <br />
  *
- * This function retrieves buffer usage information.
+ * This function retrieves buffer usage information in a struct.
+ * 
+ * Stall count and time values are cumulative. They can be reset by calling ${func.fmod_studio_system_reset_buffer_usage}.
+ * 
+ * Stalls due to the studio command queue overflowing can be avoided by setting a larger command queue size with ${func.fmod_studio_system_set_advanced_settings}.
  * 
  * @returns {struct.FmodStudioBufferUsage}
  * @func_end
@@ -6928,9 +7251,8 @@ function fmod_studio_system_get_buffer_usage() {}
  *
  * <br />
  *
- * This function resets memory buffer usage statistics.
+ * This function resets the memory buffer usage statistics tracked by the FMOD Studio System.
  * 
- * @returns {real}
  * @func_end
  */
 function fmod_studio_system_reset_buffer_usage() {}
@@ -6943,6 +7265,8 @@ function fmod_studio_system_reset_buffer_usage() {}
  * <br />
  *
  * This function retrieves the amount of CPU used for different parts of the Studio engine.
+ * 
+ * For readability, the percentage values are smoothed to provide a more stable output.
  * 
  * @returns {struct.FmodStudioCPUUsage}
  * @func_end
@@ -6958,6 +7282,10 @@ function fmod_studio_system_get_cpu_usage() {}
  *
  * This function retrieves memory usage statistics.
  * 
+ * The memory usage `sample_data` value for the system is the total size of non-streaming sample data currently loaded.
+ * 
+ * Memory usage statistics are only available in logging builds, in release builds the returned struct will contain zero for all values after calling this function.
+ * 
  * @returns {struct.FmodStudioMemoryUsage}
  * @func_end
  */
@@ -6970,10 +7298,16 @@ function fmod_studio_system_get_memory_usage() {}
  *
  * <br />
  *
- * This function sets a callback for the FMOD Studio System.
+ * This function enables a callback for the FMOD Studio System. The callbacks will be received in the Async Social event.
  * 
- * @param {real} type
- * @returns {real}
+ * @param {constant.FMOD_STUDIO_SYSTEM_CALLBACK} type
+ * 
+ * @event social
+ * @member {string} type The value `"fmod_studio_system_set_callback"`
+ * @member {constant.FMOD_STUDIO_SYSTEM_CALLBACK} kind The callback type
+ * @member {real} bank_ref Handle of the bank. Only valid when kind=`FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD`
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_studio_system_set_callback(type) {}
@@ -6985,9 +7319,9 @@ function fmod_studio_system_set_callback(type) {}
  *
  * <br />
  *
- * This function sets the user data.
+ * This function allows you to attach a real value to this object.
  * 
- * @param {real} data
+ * @param {real} data The real value to attach.
  * @returns {real}
  * @func_end
  */
@@ -7000,7 +7334,7 @@ function fmod_studio_system_set_user_data(data) {}
  *
  * <br />
  *
- * This function retrieves the user data.
+ * This function retrieves the real value attached to this object.
  * 
  * @returns {real}
  * @func_end
@@ -7016,7 +7350,13 @@ function fmod_studio_system_get_user_data() {}
  *
  * This function retrieves information for loading a sound from the audio table.
  * 
- * @param {string} key
+ * The returned struct contains information to be passed to ${func.fmod_system_create_found} (which will create a parent sound), along with a subsound index to be passed to ${func.fmod_sound_get_sub_sound} once the parent sound is loaded.
+ * 
+ * The user is expected to call ${func.fmod_system_create_sound} with the given information. It is up to the user to combine in any desired loading flags, such as `FMOD_MODE.CREATESTREAM`, `FMOD_MODE.CREATECOMPRESSEDSAMPLE` or `FMOD_MODE.NONBLOCKING` with the flags in `mode` (in the returned struct).
+ * 
+ * When the banks have been loaded via ${func.fmod_studio_system_load_bank_memory}, the mode will be returned as `FMOD_MODE.OPENMEMORY_POINT`. This won't work with the default `FMOD_MODE.CREATESAMPLE` mode. For memory banks, you should add in the `FMOD_MODE.CREATECOMPRESSEDSAMPLE` or FMOD_CREATESTREAM flag, or remove `FMOD_MODE.OPENMEMORY_POINT` and add `FMOD_MODE.OPENMEMORY` to decompress the sample into a new allocation.
+ * 
+ * @param {string} key The key that identifies the sound. (UTF-8 string)
  * @returns {struct.FmodStudioSoundInfo}
  * @func_end
  */
@@ -7031,6 +7371,8 @@ function fmod_studio_system_get_sound_info(key) {}
  *
  * This function retrieves the Core System.
  * 
+ * The Core System object can be retrieved before initializing the Studio System object to call additional core configuration functions.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -7043,9 +7385,13 @@ function fmod_studio_system_get_core_system() {}
  *
  * <br />
  *
- * This function retrieves the ID for a bank, event, snapshot, bus or VCA.
+ * This function retrieves the GUID for a bank, event, snapshot, bus or VCA.
  * 
- * @param {string} path
+ * The [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * The path can be copied to the system clipboard from FMOD Studio using the "Copy Path" context menu command.
+ * 
+ * @param {string} path Path. (UTF-8 string)
  * @returns {string}
  * @func_end
  */
@@ -7060,7 +7406,9 @@ function fmod_studio_system_lookup_id(path) {}
  *
  * This function retrieves the path for a bank, event, snapshot, bus or VCA.
  * 
- * @param {string} str_guid
+ * The [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * 
+ * @param {string} str_guid GUID.
  * @returns {string}
  * @func_end
  */
@@ -7090,9 +7438,10 @@ function fmod_studio_system_is_valid() {}
  *
  * This function sets the volume level.
  * 
+ * The VCA volume level is used to linearly modulate the levels of the buses and VCAs which it controls.
+ * 
  * @param {real} vca_ref A reference to a vca.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume Volume level. Negative level inverts the signal. Range: [-inf, inf], Default: 1
  * @func_end
  */
 function fmod_studio_vca_set_volume(vca_ref, volume) {}
@@ -7104,7 +7453,7 @@ function fmod_studio_vca_set_volume(vca_ref, volume) {}
  *
  * <br />
  *
- * This function retrieves the volume level.
+ * This function retrieves the volume level set by ${func.fmod_studio_vca_set_volume}.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {real}
@@ -7119,7 +7468,7 @@ function fmod_studio_vca_get_volume(vca_ref) {}
  *
  * <br />
  *
- * This function retrieves the GUID.
+ * This function retrieves the GUID of the given VCA.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {string}
@@ -7135,6 +7484,8 @@ function fmod_studio_vca_get_id(vca_ref) {}
  * <br />
  *
  * This function retrieves the path.
+ * 
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next call to ${func.fmod_last_result}.
  * 
  * @param {real} vca_ref A reference to a vca.
  * @returns {string}
