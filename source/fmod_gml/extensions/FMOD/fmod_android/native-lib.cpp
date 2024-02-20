@@ -370,10 +370,10 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_channel_control_set_low_pass_gain(arg0,arg1);
     return _return;
 }
-extern "C" double fmod_channel_control_get_low_Pass_gain(double channel_control_ref);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodchannelcontrolgetlowPassgain(JNIEnv* env, jclass cl, jdouble arg0)
+extern "C" double fmod_channel_control_get_low_pass_gain(double channel_control_ref);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodchannelcontrolgetlowpassgain(JNIEnv* env, jclass cl, jdouble arg0)
 {
-    auto _return = (jdouble) fmod_channel_control_get_low_Pass_gain(arg0);
+    auto _return = (jdouble) fmod_channel_control_get_low_pass_gain(arg0);
     return _return;
 }
 extern "C" double fmod_channel_control_add_dsp(double channel_control_ref, double dsp_chain_offset, double dsp_ref);
@@ -894,10 +894,10 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_geometry_get_polygon_attributes_multiplatform(arg0,arg1,_arg2);
     return _return;
 }
-extern "C" double fmod_geometry_get_polygon_mum_vertices(double geometry_ref, double polygon_index);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrygetpolygonmumvertices(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1)
+extern "C" double fmod_geometry_get_polygon_num_vertices(double geometry_ref, double polygon_index);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrygetpolygonnumvertices(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1)
 {
-    auto _return = (jdouble) fmod_geometry_get_polygon_mum_vertices(arg0,arg1);
+    auto _return = (jdouble) fmod_geometry_get_polygon_num_vertices(arg0,arg1);
     return _return;
 }
 extern "C" double fmod_geometry_set_polygon_vertex_multiplatform(double geometry_ref, double polygon_index, double vertex_index, char* buff_args);
@@ -975,11 +975,11 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_geometry_get_active(arg0);
     return _return;
 }
-extern "C" double fmod_geometry_get_max_polygons(double geometry_ref, char* buff_return);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrygetmaxpolygons(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
+extern "C" double fmod_geometry_get_max_polygons_multiplatform(double geometry_ref, char* buff_return);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrygetmaxpolygonsmultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
 {
 	char* _arg1 = (char*)env->GetDirectBufferAddress(arg1);
-    auto _return = (jdouble) fmod_geometry_get_max_polygons(arg0,_arg1);
+    auto _return = (jdouble) fmod_geometry_get_max_polygons_multiplatform(arg0,_arg1);
     return _return;
 }
 extern "C" double fmod_geometry_get_num_polygons(double geometry_ref);
@@ -1006,11 +1006,11 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_geometry_release(arg0);
     return _return;
 }
-extern "C" double fmod_geometry_save(double geometry_ref, char* buff);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrysave(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
+extern "C" double fmod_geometry_save_multiplatform(double geometry_ref, char* buff_args);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodgeometrysavemultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
 {
 	char* _arg1 = (char*)env->GetDirectBufferAddress(arg1);
-    auto _return = (jdouble) fmod_geometry_save(arg0,_arg1);
+    auto _return = (jdouble) fmod_geometry_save_multiplatform(arg0,_arg1);
     return _return;
 }
 extern "C" double fmod_reverb_3d_set_3d_attributes_multiplatform(double reverb_3d_ref, char* buff_args, double min_distance, double max_distance);
@@ -1635,11 +1635,11 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_studio_bus_get_cpu_usage_multiplatform(arg0,_arg1);
     return _return;
 }
-extern "C" double fmod_studio_bus_get_memory_usage(double bus_ref, char* buff_return);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudiobusgetmemoryusage(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
+extern "C" double fmod_studio_bus_get_memory_usage_multiplatform(double bus_ref, char* buff_return);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudiobusgetmemoryusagemultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jobject arg1)
 {
 	char* _arg1 = (char*)env->GetDirectBufferAddress(arg1);
-    auto _return = (jdouble) fmod_studio_bus_get_memory_usage(arg0,_arg1);
+    auto _return = (jdouble) fmod_studio_bus_get_memory_usage_multiplatform(arg0,_arg1);
     return _return;
 }
 extern "C" char* fmod_studio_bus_get_id(double bus_ref);
@@ -1941,28 +1941,26 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = env->NewStringUTF(fmod_studio_event_description_get_parameter_label_by_index(arg0,arg1,arg2));
     return _return;
 }
-extern "C" double fmod_studio_event_description_get_user_property(double event_description_ref, char* name, char* buff_return);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserproperty(JNIEnv* env, jclass cl, jdouble arg0, jstring arg1, jobject arg2)
+extern "C" double fmod_studio_event_description_get_user_property_multiplatform(double event_description_ref, char* name, char* buff_return);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserpropertymultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jstring arg1, jobject arg2)
 {
 	char* _arg1 = (char*)env->GetStringUTFChars(arg1, 0);
 	char* _arg2 = (char*)env->GetDirectBufferAddress(arg2);
-    auto _return = (jdouble) fmod_studio_event_description_get_user_property(arg0,_arg1,_arg2);
+    auto _return = (jdouble) fmod_studio_event_description_get_user_property_multiplatform(arg0,_arg1,_arg2);
 	env->ReleaseStringUTFChars(arg1, _arg1);
     return _return;
 }
-extern "C" double fmod_studio_event_description_get_user_property_by_index(double event_description_ref, double index, char* buff_return);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserpropertybyindex(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1, jobject arg2)
+extern "C" double fmod_studio_event_description_get_user_property_by_index_multiplatform(double event_description_ref, double index, char* buff_return);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserpropertybyindexmultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1, jobject arg2)
 {
 	char* _arg2 = (char*)env->GetDirectBufferAddress(arg2);
-    auto _return = (jdouble) fmod_studio_event_description_get_user_property_by_index(arg0,arg1,_arg2);
+    auto _return = (jdouble) fmod_studio_event_description_get_user_property_by_index_multiplatform(arg0,arg1,_arg2);
     return _return;
 }
-extern "C" double fmod_studio_event_description_get_user_property_count(double event_description_ref, char* name);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserpropertycount(JNIEnv* env, jclass cl, jdouble arg0, jstring arg1)
+extern "C" double fmod_studio_event_description_get_user_property_count(double event_description_ref);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventdescriptiongetuserpropertycount(JNIEnv* env, jclass cl, jdouble arg0)
 {
-	char* _arg1 = (char*)env->GetStringUTFChars(arg1, 0);
-    auto _return = (jdouble) fmod_studio_event_description_get_user_property_count(arg0,_arg1);
-	env->ReleaseStringUTFChars(arg1, _arg1);
+    auto _return = (jdouble) fmod_studio_event_description_get_user_property_count(arg0);
     return _return;
 }
 extern "C" char* fmod_studio_event_description_get_id(double event_description_ref);
@@ -2232,10 +2230,10 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_studio_event_instance_get_user_data(arg0);
     return _return;
 }
-extern "C" double fmod_studio_event_intance_get_description(double event_instance_ref);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventintancegetdescription(JNIEnv* env, jclass cl, jdouble arg0)
+extern "C" double fmod_studio_event_instance_get_description(double event_instance_ref);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodstudioeventinstancegetdescription(JNIEnv* env, jclass cl, jdouble arg0)
 {
-    auto _return = (jdouble) fmod_studio_event_intance_get_description(arg0);
+    auto _return = (jdouble) fmod_studio_event_instance_get_description(arg0);
     return _return;
 }
 extern "C" double fmod_studio_event_instance_release(double event_instance_ref);
@@ -2925,10 +2923,11 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_system_get_file_usage_multiplatform(_arg0);
     return _return;
 }
-extern "C" double fmod_system_get_default_mix_matrix(double source_speaker_mode, double target_speaker_mode, double matrix_hop);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodsystemgetdefaultmixmatrix(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1, jdouble arg2)
+extern "C" double fmod_system_get_default_mix_matrix_multiplatform(double source_speaker_mode, double target_speaker_mode, double matrix_hop, char* buff_return);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodsystemgetdefaultmixmatrixmultiplatform(JNIEnv* env, jclass cl, jdouble arg0, jdouble arg1, jdouble arg2, jobject arg3)
 {
-    auto _return = (jdouble) fmod_system_get_default_mix_matrix(arg0,arg1,arg2);
+	char* _arg3 = (char*)env->GetDirectBufferAddress(arg3);
+    auto _return = (jdouble) fmod_system_get_default_mix_matrix_multiplatform(arg0,arg1,arg2,_arg3);
     return _return;
 }
 extern "C" double fmod_system_get_speaker_mode_channels(double mode);
@@ -3116,11 +3115,11 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_system_get_geometry_settings();
     return _return;
 }
-extern "C" double fmod_system_load_geometry(char* buff, double length);
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodsystemloadgeometry(JNIEnv* env, jclass cl, jobject arg0, jdouble arg1)
+extern "C" double fmod_system_load_geometry_multiplatform(char* buff_args, double length);
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodsystemloadgeometrymultiplatform(JNIEnv* env, jclass cl, jobject arg0, jdouble arg1)
 {
 	char* _arg0 = (char*)env->GetDirectBufferAddress(arg0);
-    auto _return = (jdouble) fmod_system_load_geometry(_arg0,arg1);
+    auto _return = (jdouble) fmod_system_load_geometry_multiplatform(_arg0,arg1);
     return _return;
 }
 extern "C" double fmod_system_get_geometry_occlusion_multiplatform(char* buff_return);
@@ -3167,9 +3166,9 @@ extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNI
     auto _return = (jdouble) fmod_fetch_callbacks(_arg0,arg1);
     return _return;
 }
-extern "C" double fmod_last_error();
-extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodlasterror(JNIEnv* env, jclass cl)
+extern "C" double fmod_last_result();
+extern "C" JNIEXPORT jdouble JNICALL Java_com_ACOMPANY_APROJECT_MainActivity_JNIfmodlastresult(JNIEnv* env, jclass cl)
 {
-    auto _return = (jdouble) fmod_last_error();
+    auto _return = (jdouble) fmod_last_result();
     return _return;
 }

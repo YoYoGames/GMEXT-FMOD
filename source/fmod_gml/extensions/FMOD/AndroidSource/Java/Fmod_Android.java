@@ -260,9 +260,9 @@ public double fmod_channel_control_set_low_pass_gain(double arg0,double arg1)
 {
     return JNIfmodchannelcontrolsetlowpassgain(arg0,arg1);
 }
-public double fmod_channel_control_get_low_Pass_gain(double arg0)
+public double fmod_channel_control_get_low_pass_gain(double arg0)
 {
-    return JNIfmodchannelcontrolgetlowPassgain(arg0);
+    return JNIfmodchannelcontrolgetlowpassgain(arg0);
 }
 public double fmod_channel_control_add_dsp(double arg0,double arg1,double arg2)
 {
@@ -592,9 +592,9 @@ public double fmod_geometry_get_polygon_attributes_multiplatform(double arg0,dou
 {
     return JNIfmodgeometrygetpolygonattributesmultiplatform(arg0,arg1,arg2);
 }
-public double fmod_geometry_get_polygon_mum_vertices(double arg0,double arg1)
+public double fmod_geometry_get_polygon_num_vertices(double arg0,double arg1)
 {
-    return JNIfmodgeometrygetpolygonmumvertices(arg0,arg1);
+    return JNIfmodgeometrygetpolygonnumvertices(arg0,arg1);
 }
 public double fmod_geometry_set_polygon_vertex_multiplatform(double arg0,double arg1,double arg2,ByteBuffer arg3)
 {
@@ -640,9 +640,9 @@ public double fmod_geometry_get_active(double arg0)
 {
     return JNIfmodgeometrygetactive(arg0);
 }
-public double fmod_geometry_get_max_polygons(double arg0,ByteBuffer arg1)
+public double fmod_geometry_get_max_polygons_multiplatform(double arg0,ByteBuffer arg1)
 {
-    return JNIfmodgeometrygetmaxpolygons(arg0,arg1);
+    return JNIfmodgeometrygetmaxpolygonsmultiplatform(arg0,arg1);
 }
 public double fmod_geometry_get_num_polygons(double arg0)
 {
@@ -660,9 +660,9 @@ public double fmod_geometry_release(double arg0)
 {
     return JNIfmodgeometryrelease(arg0);
 }
-public double fmod_geometry_save(double arg0,ByteBuffer arg1)
+public double fmod_geometry_save_multiplatform(double arg0,ByteBuffer arg1)
 {
-    return JNIfmodgeometrysave(arg0,arg1);
+    return JNIfmodgeometrysavemultiplatform(arg0,arg1);
 }
 public double fmod_reverb_3d_set_3d_attributes_multiplatform(double arg0,ByteBuffer arg1,double arg2,double arg3)
 {
@@ -1060,9 +1060,9 @@ public double fmod_studio_bus_get_cpu_usage_multiplatform(double arg0,ByteBuffer
 {
     return JNIfmodstudiobusgetcpuusagemultiplatform(arg0,arg1);
 }
-public double fmod_studio_bus_get_memory_usage(double arg0,ByteBuffer arg1)
+public double fmod_studio_bus_get_memory_usage_multiplatform(double arg0,ByteBuffer arg1)
 {
-    return JNIfmodstudiobusgetmemoryusage(arg0,arg1);
+    return JNIfmodstudiobusgetmemoryusagemultiplatform(arg0,arg1);
 }
 public String fmod_studio_bus_get_id(double arg0)
 {
@@ -1252,17 +1252,17 @@ public String fmod_studio_event_description_get_parameter_label_by_index(double 
 {
     return JNIfmodstudioeventdescriptiongetparameterlabelbyindex(arg0,arg1,arg2);
 }
-public double fmod_studio_event_description_get_user_property(double arg0,String arg1,ByteBuffer arg2)
+public double fmod_studio_event_description_get_user_property_multiplatform(double arg0,String arg1,ByteBuffer arg2)
 {
-    return JNIfmodstudioeventdescriptiongetuserproperty(arg0,arg1,arg2);
+    return JNIfmodstudioeventdescriptiongetuserpropertymultiplatform(arg0,arg1,arg2);
 }
-public double fmod_studio_event_description_get_user_property_by_index(double arg0,double arg1,ByteBuffer arg2)
+public double fmod_studio_event_description_get_user_property_by_index_multiplatform(double arg0,double arg1,ByteBuffer arg2)
 {
-    return JNIfmodstudioeventdescriptiongetuserpropertybyindex(arg0,arg1,arg2);
+    return JNIfmodstudioeventdescriptiongetuserpropertybyindexmultiplatform(arg0,arg1,arg2);
 }
-public double fmod_studio_event_description_get_user_property_count(double arg0,String arg1)
+public double fmod_studio_event_description_get_user_property_count(double arg0)
 {
-    return JNIfmodstudioeventdescriptiongetuserpropertycount(arg0,arg1);
+    return JNIfmodstudioeventdescriptiongetuserpropertycount(arg0);
 }
 public String fmod_studio_event_description_get_id(double arg0)
 {
@@ -1428,9 +1428,9 @@ public double fmod_studio_event_instance_get_user_data(double arg0)
 {
     return JNIfmodstudioeventinstancegetuserdata(arg0);
 }
-public double fmod_studio_event_intance_get_description(double arg0)
+public double fmod_studio_event_instance_get_description(double arg0)
 {
-    return JNIfmodstudioeventintancegetdescription(arg0);
+    return JNIfmodstudioeventinstancegetdescription(arg0);
 }
 public double fmod_studio_event_instance_release(double arg0)
 {
@@ -1840,9 +1840,9 @@ public double fmod_system_get_file_usage_multiplatform(ByteBuffer arg0)
 {
     return JNIfmodsystemgetfileusagemultiplatform(arg0);
 }
-public double fmod_system_get_default_mix_matrix(double arg0,double arg1,double arg2)
+public double fmod_system_get_default_mix_matrix_multiplatform(double arg0,double arg1,double arg2,ByteBuffer arg3)
 {
-    return JNIfmodsystemgetdefaultmixmatrix(arg0,arg1,arg2);
+    return JNIfmodsystemgetdefaultmixmatrixmultiplatform(arg0,arg1,arg2,arg3);
 }
 public double fmod_system_get_speaker_mode_channels(double arg0)
 {
@@ -1956,9 +1956,9 @@ public double fmod_system_get_geometry_settings()
 {
     return JNIfmodsystemgetgeometrysettings();
 }
-public double fmod_system_load_geometry(ByteBuffer arg0,double arg1)
+public double fmod_system_load_geometry_multiplatform(ByteBuffer arg0,double arg1)
 {
-    return JNIfmodsystemloadgeometry(arg0,arg1);
+    return JNIfmodsystemloadgeometrymultiplatform(arg0,arg1);
 }
 public double fmod_system_get_geometry_occlusion_multiplatform(ByteBuffer arg0)
 {
@@ -1988,9 +1988,9 @@ public double fmod_fetch_callbacks(ByteBuffer arg0,double arg1)
 {
     return JNIfmodfetchcallbacks(arg0,arg1);
 }
-public double fmod_last_error()
+public double fmod_last_result()
 {
-    return JNIfmodlasterror();
+    return JNIfmodlastresult();
 }
 
 };

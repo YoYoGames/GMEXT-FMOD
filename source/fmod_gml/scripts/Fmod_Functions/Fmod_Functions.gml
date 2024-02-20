@@ -364,6 +364,25 @@ function fmod_system_play_dsp(_dsp_ref, _pause, _channel_group_ref = undefined)
 	return fmod_system_play_dsp_multiplatform(_dsp_ref, _channel_group_ref, _pause);
 }
 
+/// @param {enum.FMOD_SPEAKERMODE} source_speaker_mode 
+/// @param {enum.FMOD_SPEAKERMODE} target_speaker_mode 
+/// @param {real} matrix_hop
+/// @returns {Array<real>}
+function fmod_system_get_default_mix_matrix(_source_speaker_mode, _target_speaker_mode, _matrix_hop) {
+
+	// Get return buffer address
+	var _return_buffer_address = ext_return_buffer_address();
+
+	// Call to fmod extensions
+	fmod_system_get_default_mix_matrix_multiplatform(_source_speaker_mode, _target_speaker_mode, _matrix_hop, _return_buffer_address);
+	
+	// Unpack return value
+	var _return_value = ext_buffer_unpack(ext_return_buffer());
+	
+	return _return_value;
+
+}
+
 function FmodSystemDriverInfo() constructor {
 	index = 0;
 	name = "";
@@ -717,6 +736,20 @@ function fmod_system_get_reverb_properties(_reverb_instance_index)
 	var _return_value = ext_buffer_unpack(ext_return_buffer());
 	
 	return _return_value;
+}
+
+/// @param {Id.Buffer} buffer_id
+/// @param {real} length
+function fmod_system_load_geometry(_buffer_id, _length) {
+	
+	var _args = [
+		// [ value, forced_type ]
+		[ _buffer_id, BUFFER_BUFFER ], // buffer
+	]
+		
+	var _args_buffer_address = ext_pack_args(_args);
+	
+	return fmod_system_load_geometry_multiplatform(_args_buffer_address, _length);
 }
 
 function fmod_system_update() {
@@ -1195,8 +1228,24 @@ function fmod_dsp_get_parameter_data(_dsp_ref, _parameter_index, _buffer, _lengt
 	fmod_dsp_get_parameter_data_multiplatform(_dsp_ref, _parameter_index, buffer_get_address(_buffer), _length);
 }
 
+function FmodDspParameterDescValue() constructor {
+	default_val = 0;
+	maximum = 0;
+	minimum = 0;
+}
+
+function FmodDspParameterDesc() constructor {
+	type = 0;
+	name = "";
+	label = "";
+	description = "";
+	int_value = new FmodDspParameterDescValue();
+	float_value = new FmodDspParameterDescValue();
+	bool_value = new FmodDspParameterDescValue();
+}
+
 /// @param {real} dsp_ref
-/// @returns {struct}
+/// @returns {struct.FmodDspParameterDesc}
 function fmod_dsp_get_parameter_info(_dsp_ref, _parameter_index)
 {
 	// Get return buffer address
@@ -1208,7 +1257,7 @@ function fmod_dsp_get_parameter_info(_dsp_ref, _parameter_index)
 	// Unpack return value
 	var _return_value = ext_buffer_unpack(ext_return_buffer());
 	
-	return _return_value;
+	return _return_value ?? new FmodDspParameterDesc(); 
 }
 
 function FmodDSPChannelFormat() constructor {
@@ -1604,6 +1653,42 @@ function fmod_geometry_add_polygon(_geometry_ref, _direct_occlusion, _reverb_occ
 	return fmod_geometry_add_polygon_multiplatform(_geometry_ref, _args_buffer_address);
 }
 
+function FmodMaxPolygonsInfo() constructor {
+	max_polygons = 0;
+	max_vertices = 0;
+}
+
+/// @param {real} geometry_ref
+/// @returns {struct.FmodMaxPolygonsInfo}
+function fmod_geometry_get_max_polygons(_geometry_ref) {
+	// Get return buffer address
+	var _return_buffer_address = ext_return_buffer_address();
+
+	// Call to fmod extensions
+	fmod_geometry_get_max_polygons_multiplatform(_geometry_ref, _return_buffer_address);
+	
+	// Unpack return value
+	var _return_value = ext_buffer_unpack(ext_return_buffer());
+	
+	return _return_value ?? new FmodMaxPolygonsInfo();
+}
+
+/// @param {real} geometry_ref
+/// @param {Id.Buffer} buffer_id
+/// @returns {real}
+function fmod_geometry_save(_geometry_ref, _buffer_id) {
+
+	var _args = [
+		// [ value, forced_type ]
+		[ _buffer_id, BUFFER_BUFFER ],
+	];
+	
+	var _args_buffer_address = ext_pack_args(_args);
+	
+	return fmod_geometry_save_multiplatform(_geometry_ref, _args_buffer_address);
+}
+
+
 #endregion
 
 #region Reverb 3D
@@ -1766,7 +1851,7 @@ function fmod_sound_set_3d_custom_rolloff(_sound_ref, _points)
 	
 	var _args_buffer_address = ext_pack_args(_args);
 	
-	return fmod_geometry_set_polygon_vertex_multiplatform(_sound_ref, _args_buffer_address);
+	return fmod_sound_set_3d_custom_rolloff_multiplatform(_sound_ref, _args_buffer_address);
 }
 
 /// @param {real} sound_ref
@@ -2003,7 +2088,7 @@ function fmod_studio_bus_set_port_index(_bus_ref, _port_index)
 	// Get args buffer address
 	var _args_buffer_address = ext_pack_args(_args);
 	
-	return fmod_studio_event_instance_set_3d_attributes_multiplatform(_bus_ref, _args_buffer_address);
+	return fmod_studio_bus_set_port_index_multiplatform(_bus_ref, _args_buffer_address);
 }
 
 /// @param {real} bus_ref
@@ -2038,6 +2123,22 @@ function fmod_studio_bus_get_cpu_usage(_bus_ref)
 	return _return_value ?? new FmodCPUUsage();
 }
 
+/// @param {real} bus_ref
+/// @returns {struct.FmodStudioMemoryUsage}
+function fmod_studio_bus_get_memory_usage(_bus_ref)
+{
+	// Get return buffer address
+	var _return_buffer_address = ext_return_buffer_address();
+
+	// Call to fmod extensions
+	fmod_studio_bus_get_memory_usage_multiplatform(_bus_ref, _return_buffer_address);
+	
+	// Unpack return value
+	var _return_value = ext_buffer_unpack(ext_return_buffer());
+
+	return _return_value ?? new FmodStudioMemoryUsage();
+}
+
 #endregion
 
 #region Studio Command Replay
@@ -2055,7 +2156,7 @@ function fmod_studio_command_replay_get_current_command(_command_replay_ref)
 	var _return_buffer_address = ext_return_buffer_address();
 
 	// Call to fmod extensions
-	fmod_studio_bus_get_cpu_usage_multiplatform(_command_replay_ref, _return_buffer_address);
+	fmod_studio_command_replay_get_current_command_multiplatform(_command_replay_ref, _return_buffer_address);
 	
 	// Unpack return value
 	var _return_value = ext_buffer_unpack(ext_return_buffer());
@@ -2108,6 +2209,47 @@ function fmod_studio_event_description_get_min_max_distance(_event_description_r
 	var _return_value = ext_buffer_unpack(ext_return_buffer());
 	
 	return _return_value ?? new FmodMinMaxDistance();
+}
+
+
+function FmodStudioUserProperty() constructor {
+	name = "";
+	type = FMOD_STUDIO_USER_PROPERTY_TYPE.BOOLEAN;
+	string_value = "";
+	int_value = 0;
+	bool_value = false;
+	float_value = 1.0
+}
+
+
+/// @param {real} event_description_ref
+/// @param {string} name
+function fmod_studio_event_description_get_user_property(_event_description_ref, _name) {
+	// Get return buffer address
+	var _return_buffer_address = ext_return_buffer_address();
+
+	// Call to fmod extensions
+	fmod_studio_event_description_get_user_property_multiplatform(_event_description_ref, _name, _return_buffer_address);
+	
+	// Unpack return value
+	var _return_value = ext_buffer_unpack(ext_return_buffer());
+	
+	return _return_value ?? new FmodStudioUserProperty();
+}
+
+/// @param {real} event_description_ref
+/// @param {real} index
+function fmod_studio_event_description_get_user_property_by_index(_event_description_ref, _index) {
+	// Get return buffer address
+	var _return_buffer_address = ext_return_buffer_address();
+
+	// Call to fmod extensions
+	fmod_studio_event_description_get_user_property_by_index_multiplatform(_event_description_ref, _index, _return_buffer_address);
+	
+	// Unpack return value
+	var _return_value = ext_buffer_unpack(ext_return_buffer());
+	
+	return _return_value ?? new FmodStudioUserProperty();
 }
 
 #endregion
@@ -2311,14 +2453,20 @@ function fmod_studio_system_load_bank_memory(_buff_data, _length, _mode, _flags)
 
 /// @param {real} listener_index
 /// @param {struct.Fmod3DAttributes} attributes
-/// @param {struct.FmodVector} attenuation
-function fmod_studio_system_set_listener_attributes(_listener_index, _attributes, _attenuation = new FmodVector())
+/// @param {struct.FmodVector} [attenuation=undefined]
+function fmod_studio_system_set_listener_attributes(_listener_index, _attributes, _attenuation = undefined)
 {
 	var _args = [
 		// [ value, forced_type ]
 		[ _attributes, buffer_f32 ],	// struct<struct<<float>>
-		[ _attenuation, buffer_f32 ],	// struct<float>
 	];
+	
+	// Options argument
+	if (!is_undefined(_attenuation)) {
+		array_push(_args, [
+			_attenuation, buffer_f32,	// struct<float>
+		])
+	}
 	
 	// Get args buffer address
 	var _args_buffer_address = ext_pack_args(_args);
@@ -2649,6 +2797,8 @@ function fmod_studio_system_update() {
 	fmod_handle_async_events();
 	return fmod_studio_system_update_multiplatform();
 }
+
+
 
 #endregion
 

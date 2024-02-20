@@ -4,7 +4,7 @@
 
 char gStringBuffer[1024]{};
 
-FMOD_RESULT fmod_last_result = FMOD_RESULT::FMOD_OK;
+FMOD_RESULT g_fmod_last_result = FMOD_RESULT::FMOD_OK;
 
 #define yy_cpp_callbacks
 
@@ -24,26 +24,26 @@ uint64_t packIndexIntoRef(uint32_t index, uint8_t type)
 void unregisterMasterGroups(FMOD::System* fmod_system) {
 	// Remove the master channel group
 	FMOD::ChannelGroup* channel_group = nullptr;
-	fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
-	if (fmod_last_result == FMOD_OK)
+	g_fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
+	if (g_fmod_last_result == FMOD_OK)
 		unregisterResource(channel_group, map_channel_groups);
 
 	// Remove the master sound group
 	FMOD::SoundGroup* sound_group = nullptr;
-	fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
-	if (fmod_last_result == FMOD_OK)
+	g_fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
+	if (g_fmod_last_result == FMOD_OK)
 		unregisterResource(sound_group, map_sound_groups);
 }
 
 void registerMasterGroups(FMOD::System* fmod_system) {
 	// Adding the master channel group
 	FMOD::ChannelGroup* channel_group;
-	fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
+	g_fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
 	registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
 
 	// Adding the master sound group
 	FMOD::SoundGroup* sound_group;
-	fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
+	g_fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
 	registerOrFindResource(sound_group, index_sound_groups, map_sound_groups);
 }
 
@@ -73,9 +73,9 @@ void async_create_event(const StructStream& async_map)
 	callbacks << async_map;
 }
 
-func double fmod_last_error()
+func double fmod_last_result()
 {
-	return (double)fmod_last_result;
+	return (double)g_fmod_last_result;
 }
 
 const char* fmodResultToString(FMOD_RESULT result)

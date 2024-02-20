@@ -20,7 +20,7 @@
 
 #include "ExtBufferIO.h"
 
-extern FMOD_RESULT fmod_last_result;
+extern FMOD_RESULT g_fmod_last_result;
 
 void async_create_event(const StructStream& async_map);
 
@@ -107,6 +107,13 @@ const char* fmodResultToString(FMOD_RESULT result);
 
 uint64_t packIndexIntoRef(uint32_t index, uint8_t type);
 
+
+// ERROR
+#define FMOD_ERROR_BUFFER_OVERFLOW -10
+
+
+
+
 struct CustomUserData
 {
 	uint32_t id = 0;
@@ -184,7 +191,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		uint32_t _ext_id = (output >> 40) & 0x3FF;                                    \
 		if (_ext_id != GM_FMOD_EXT)                                                   \
 		{                                                                             \
-			fmod_last_result = (FMOD_RESULT)-1;                                       \
+			g_fmod_last_result = (FMOD_RESULT)-1;                                       \
 			LOG_ERROR("Invalid fmod type, type not compatible with extension call."); \
 			return 0;                                                                 \
 		}                                                                             \
@@ -202,7 +209,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                               \
 		else                                                                            \
 		{                                                                               \
-			fmod_last_result = (FMOD_RESULT)-2;                                         \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                         \
 			LOG_ERROR("Invalid fmod channel type.");                                    \
 			return 0;                                                                   \
 		}                                                                               \
@@ -228,7 +235,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                           \
 		else                                                                                        \
 		{                                                                                           \
-			fmod_last_result = (FMOD_RESULT)-2;                                                     \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                     \
 			LOG_ERROR("Invalid argument type, expecting a fmod channel group.");                    \
 			return 0;                                                                               \
 		}                                                                                           \
@@ -258,7 +265,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                           \
 		else                                                                                        \
 		{                                                                                           \
-			fmod_last_result = (FMOD_RESULT)-2;                                                     \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                     \
 			LOG_ERROR("Invalid argument type, expecting a fmod channel control.");                  \
 			return 0;                                                                               \
 		}                                                                                           \
@@ -284,7 +291,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                           \
 		else                                                                        \
 		{                                                                           \
-			fmod_last_result = (FMOD_RESULT)-2;                                     \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                     \
 			LOG_ERROR("Invalid argument type, expecting a fmod sound.");            \
 			return 0;                                                               \
 		}                                                                           \
@@ -310,7 +317,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                       \
 		else                                                                                    \
 		{                                                                                       \
-			fmod_last_result = (FMOD_RESULT)-2;                                                 \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                 \
 			LOG_ERROR("Invalid argument type, expecting a fmod sound group.");                  \
 			return 0;                                                                           \
 		}                                                                                       \
@@ -336,7 +343,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                       \
 		else                                                                    \
 		{                                                                       \
-			fmod_last_result = (FMOD_RESULT)-2;                                 \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                 \
 			LOG_ERROR("Invalid argument type, expecting a fmod dsp.");          \
 			return 0;                                                           \
 		}                                                                       \
@@ -362,7 +369,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                             \
 		else                                                                                          \
 		{                                                                                             \
-			fmod_last_result = (FMOD_RESULT)-2;                                                       \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                       \
 			LOG_ERROR("Invalid argument type, expecting a fmod dsp connection.");                     \
 			return 0;                                                                                 \
 		}                                                                                             \
@@ -388,7 +395,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                             \
 		else                                                                          \
 		{                                                                             \
-			fmod_last_result = (FMOD_RESULT)-2;                                       \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                       \
 			LOG_ERROR("Invalid argument type, expecting a fmod reverb 3d.");          \
 			return 0;                                                                 \
 		}                                                                             \
@@ -414,7 +421,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                   \
 		else                                                                                \
 		{                                                                                   \
-			fmod_last_result = (FMOD_RESULT)-2;                                             \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                             \
 			LOG_ERROR("Invalid argument type, expecting a fmod geometry.");                 \
 			return 0;                                                                       \
 		}                                                                                   \
@@ -440,7 +447,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                             \
 		else                                                                          \
 		{                                                                             \
-			fmod_last_result = (FMOD_RESULT)-2;                                       \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                       \
 			LOG_ERROR("Invalid argument type, expecting a fmod system.");             \
 			return 0;                                                                 \
 		}                                                                             \
@@ -458,7 +465,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                    \
 		else                                                                                 \
 		{                                                                                    \
-			fmod_last_result = (FMOD_RESULT)-2;                                              \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                              \
 			LOG_ERROR("Invalid fmod bank type.");                                            \
 			return 0;                                                                        \
 		}                                                                                    \
@@ -476,7 +483,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                   \
 		else                                                                                \
 		{                                                                                   \
-			fmod_last_result = (FMOD_RESULT)-2;                                             \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                             \
 			LOG_ERROR("Invalid fmod bus type.");                                            \
 			return 0;                                                                       \
 		}                                                                                   \
@@ -494,7 +501,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                             \
 		else                                                                                          \
 		{                                                                                             \
-			fmod_last_result = (FMOD_RESULT)-2;                                                       \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                       \
 			LOG_ERROR("Invalid fmod command replay type.");                                           \
 			return 0;                                                                                 \
 		}                                                                                             \
@@ -512,7 +519,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                                \
 		else                                                                                             \
 		{                                                                                                \
-			fmod_last_result = (FMOD_RESULT)-2;                                                          \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                          \
 			LOG_ERROR("Invalid fmod event description type.");                                           \
 			return 0;                                                                                    \
 		}                                                                                                \
@@ -530,7 +537,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                             \
 		else                                                                                          \
 		{                                                                                             \
-			fmod_last_result = (FMOD_RESULT)-2;                                                       \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                       \
 			LOG_ERROR("Invalid fmod event instance type.");                                           \
 			return 0;                                                                                 \
 		}                                                                                             \
@@ -548,7 +555,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                   \
 		else                                                                                \
 		{                                                                                   \
-			fmod_last_result = (FMOD_RESULT)-2;                                             \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                             \
 			LOG_ERROR("Invalid fmod vca type.");                                            \
 			return 0;                                                                       \
 		}                                                                                   \
@@ -566,7 +573,7 @@ void registerMasterGroups(FMOD::System* fmod_system);
 		}                                                                                      \
 		else                                                                                   \
 		{                                                                                      \
-			fmod_last_result = (FMOD_RESULT)-2;                                                \
+			g_fmod_last_result = (FMOD_RESULT)-2;                                                \
 			LOG_ERROR("Invalid call, no fmod studio system found.");                           \
 			return 0;                                                                          \
 		}                                                                                      \

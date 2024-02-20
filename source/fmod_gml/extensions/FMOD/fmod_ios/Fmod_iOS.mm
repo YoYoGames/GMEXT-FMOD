@@ -399,9 +399,9 @@ func double fmod_channel_control_set_low_pass_gain(double channel_control_ref, d
 auto _return = (double) fmod_channel_control_set_low_pass_gain(arg0, arg1);
 return _return;
 }
-func double fmod_channel_control_get_low_Pass_gain(double channel_control_ref);
--(double) fmod_channel_control_get_low_Pass_gain:(double) arg0 {
-auto _return = (double) fmod_channel_control_get_low_Pass_gain(arg0);
+func double fmod_channel_control_get_low_pass_gain(double channel_control_ref);
+-(double) fmod_channel_control_get_low_pass_gain:(double) arg0 {
+auto _return = (double) fmod_channel_control_get_low_pass_gain(arg0);
 return _return;
 }
 func double fmod_channel_control_add_dsp(double channel_control_ref, double dsp_chain_offset, double dsp_ref);
@@ -814,9 +814,9 @@ func double fmod_geometry_get_polygon_attributes_multiplatform(double geometry_r
 auto _return = (double) fmod_geometry_get_polygon_attributes_multiplatform(arg0, arg1, arg2);
 return _return;
 }
-func double fmod_geometry_get_polygon_mum_vertices(double geometry_ref, double polygon_index);
--(double) fmod_geometry_get_polygon_mum_vertices:(double) arg0 arg1:(double) arg1 {
-auto _return = (double) fmod_geometry_get_polygon_mum_vertices(arg0, arg1);
+func double fmod_geometry_get_polygon_num_vertices(double geometry_ref, double polygon_index);
+-(double) fmod_geometry_get_polygon_num_vertices:(double) arg0 arg1:(double) arg1 {
+auto _return = (double) fmod_geometry_get_polygon_num_vertices(arg0, arg1);
 return _return;
 }
 func double fmod_geometry_set_polygon_vertex_multiplatform(double geometry_ref, double polygon_index, double vertex_index, char* buff_args);
@@ -874,9 +874,9 @@ func double fmod_geometry_get_active(double geometry_ref);
 auto _return = (double) fmod_geometry_get_active(arg0);
 return _return;
 }
-func double fmod_geometry_get_max_polygons(double geometry_ref, char* buff_return);
--(double) fmod_geometry_get_max_polygons:(double) arg0 arg1:(char*) arg1 {
-auto _return = (double) fmod_geometry_get_max_polygons(arg0, arg1);
+func double fmod_geometry_get_max_polygons_multiplatform(double geometry_ref, char* buff_return);
+-(double) fmod_geometry_get_max_polygons_multiplatform:(double) arg0 arg1:(char*) arg1 {
+auto _return = (double) fmod_geometry_get_max_polygons_multiplatform(arg0, arg1);
 return _return;
 }
 func double fmod_geometry_get_num_polygons(double geometry_ref);
@@ -899,9 +899,9 @@ func double fmod_geometry_release(double geometry_ref);
 auto _return = (double) fmod_geometry_release(arg0);
 return _return;
 }
-func double fmod_geometry_save(double geometry_ref, char* buff);
--(double) fmod_geometry_save:(double) arg0 arg1:(char*) arg1 {
-auto _return = (double) fmod_geometry_save(arg0, arg1);
+func double fmod_geometry_save_multiplatform(double geometry_ref, char* buff_args);
+-(double) fmod_geometry_save_multiplatform:(double) arg0 arg1:(char*) arg1 {
+auto _return = (double) fmod_geometry_save_multiplatform(arg0, arg1);
 return _return;
 }
 func double fmod_reverb_3d_set_3d_attributes_multiplatform(double reverb_3d_ref, char* buff_args, double min_distance, double max_distance);
@@ -1399,9 +1399,9 @@ func double fmod_studio_bus_get_cpu_usage_multiplatform(double bus_ref, char* bu
 auto _return = (double) fmod_studio_bus_get_cpu_usage_multiplatform(arg0, arg1);
 return _return;
 }
-func double fmod_studio_bus_get_memory_usage(double bus_ref, char* buff_return);
--(double) fmod_studio_bus_get_memory_usage:(double) arg0 arg1:(char*) arg1 {
-auto _return = (double) fmod_studio_bus_get_memory_usage(arg0, arg1);
+func double fmod_studio_bus_get_memory_usage_multiplatform(double bus_ref, char* buff_return);
+-(double) fmod_studio_bus_get_memory_usage_multiplatform:(double) arg0 arg1:(char*) arg1 {
+auto _return = (double) fmod_studio_bus_get_memory_usage_multiplatform(arg0, arg1);
 return _return;
 }
 func char* fmod_studio_bus_get_id(double bus_ref);
@@ -1639,19 +1639,19 @@ func char* fmod_studio_event_description_get_parameter_label_by_index(double eve
 auto _return = (char*) fmod_studio_event_description_get_parameter_label_by_index(arg0, arg1, arg2);
 return _return;
 }
-func double fmod_studio_event_description_get_user_property(double event_description_ref, char* name, char* buff_return);
--(double) fmod_studio_event_description_get_user_property:(double) arg0 arg1:(char*) arg1 arg2:(char*) arg2 {
-auto _return = (double) fmod_studio_event_description_get_user_property(arg0, arg1, arg2);
+func double fmod_studio_event_description_get_user_property_multiplatform(double event_description_ref, char* name, char* buff_return);
+-(double) fmod_studio_event_description_get_user_property_multiplatform:(double) arg0 arg1:(char*) arg1 arg2:(char*) arg2 {
+auto _return = (double) fmod_studio_event_description_get_user_property_multiplatform(arg0, arg1, arg2);
 return _return;
 }
-func double fmod_studio_event_description_get_user_property_by_index(double event_description_ref, double index, char* buff_return);
--(double) fmod_studio_event_description_get_user_property_by_index:(double) arg0 arg1:(double) arg1 arg2:(char*) arg2 {
-auto _return = (double) fmod_studio_event_description_get_user_property_by_index(arg0, arg1, arg2);
+func double fmod_studio_event_description_get_user_property_by_index_multiplatform(double event_description_ref, double index, char* buff_return);
+-(double) fmod_studio_event_description_get_user_property_by_index_multiplatform:(double) arg0 arg1:(double) arg1 arg2:(char*) arg2 {
+auto _return = (double) fmod_studio_event_description_get_user_property_by_index_multiplatform(arg0, arg1, arg2);
 return _return;
 }
-func double fmod_studio_event_description_get_user_property_count(double event_description_ref, char* name);
--(double) fmod_studio_event_description_get_user_property_count:(double) arg0 arg1:(char*) arg1 {
-auto _return = (double) fmod_studio_event_description_get_user_property_count(arg0, arg1);
+func double fmod_studio_event_description_get_user_property_count(double event_description_ref);
+-(double) fmod_studio_event_description_get_user_property_count:(double) arg0 {
+auto _return = (double) fmod_studio_event_description_get_user_property_count(arg0);
 return _return;
 }
 func char* fmod_studio_event_description_get_id(double event_description_ref);
@@ -1859,9 +1859,9 @@ func double fmod_studio_event_instance_get_user_data(double event_instance_ref);
 auto _return = (double) fmod_studio_event_instance_get_user_data(arg0);
 return _return;
 }
-func double fmod_studio_event_intance_get_description(double event_instance_ref);
--(double) fmod_studio_event_intance_get_description:(double) arg0 {
-auto _return = (double) fmod_studio_event_intance_get_description(arg0);
+func double fmod_studio_event_instance_get_description(double event_instance_ref);
+-(double) fmod_studio_event_instance_get_description:(double) arg0 {
+auto _return = (double) fmod_studio_event_instance_get_description(arg0);
 return _return;
 }
 func double fmod_studio_event_instance_release(double event_instance_ref);
@@ -2374,9 +2374,9 @@ func double fmod_system_get_file_usage_multiplatform(char* buff_return);
 auto _return = (double) fmod_system_get_file_usage_multiplatform(arg0);
 return _return;
 }
-func double fmod_system_get_default_mix_matrix(double source_speaker_mode, double target_speaker_mode, double matrix_hop);
--(double) fmod_system_get_default_mix_matrix:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 {
-auto _return = (double) fmod_system_get_default_mix_matrix(arg0, arg1, arg2);
+func double fmod_system_get_default_mix_matrix_multiplatform(double source_speaker_mode, double target_speaker_mode, double matrix_hop, char* buff_return);
+-(double) fmod_system_get_default_mix_matrix_multiplatform:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 arg3:(char*) arg3 {
+auto _return = (double) fmod_system_get_default_mix_matrix_multiplatform(arg0, arg1, arg2, arg3);
 return _return;
 }
 func double fmod_system_get_speaker_mode_channels(double mode);
@@ -2519,9 +2519,9 @@ func double fmod_system_get_geometry_settings();
 auto _return = (double) fmod_system_get_geometry_settings();
 return _return;
 }
-func double fmod_system_load_geometry(char* buff, double length);
--(double) fmod_system_load_geometry:(char*) arg0 arg1:(double) arg1 {
-auto _return = (double) fmod_system_load_geometry(arg0, arg1);
+func double fmod_system_load_geometry_multiplatform(char* buff_args, double length);
+-(double) fmod_system_load_geometry_multiplatform:(char*) arg0 arg1:(double) arg1 {
+auto _return = (double) fmod_system_load_geometry_multiplatform(arg0, arg1);
 return _return;
 }
 func double fmod_system_get_geometry_occlusion_multiplatform(char* buff_return);
@@ -2559,9 +2559,9 @@ func double fmod_fetch_callbacks(char* buffer, double length);
 auto _return = (double) fmod_fetch_callbacks(arg0, arg1);
 return _return;
 }
-func double fmod_last_error();
--(double) fmod_last_error {
-auto _return = (double) fmod_last_error();
+func double fmod_last_result();
+-(double) fmod_last_result {
+auto _return = (double) fmod_last_result();
 return _return;
 }
 

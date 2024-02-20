@@ -13,9 +13,9 @@ func double fmod_studio_system_create()
 		return (double)studio_system_selected_ref;
 
 	FMOD::Studio::System* fmod_studio_system = nullptr;
-	fmod_last_result = FMOD::Studio::System::create(&fmod_studio_system);
+	g_fmod_last_result = FMOD::Studio::System::create(&fmod_studio_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -24,7 +24,7 @@ func double fmod_studio_system_create()
 	FMOD::System* fmod_system = nullptr;
 	fmod_studio_system->getCoreSystem(&fmod_system);
 
-	if (fmod_last_result == FMOD_OK)
+	if (g_fmod_last_result == FMOD_OK)
 	{
 		auto system_id = registerOrFindResource(fmod_system, index_systems, map_systems);
 		system_selected_ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
@@ -40,9 +40,9 @@ func double fmod_studio_system_init(double max_channels, double studio_flags, do
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	void* extraDriverData = NULL;
-	fmod_last_result = fmod_studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)studio_flags, (FMOD_INITFLAGS)core_flags, extraDriverData);
+	g_fmod_last_result = fmod_studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)studio_flags, (FMOD_INITFLAGS)core_flags, extraDriverData);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -64,7 +64,7 @@ func double fmod_studio_system_release()
 	FMOD::System* fmod_system = nullptr;
 	fmod_studio_system->getCoreSystem(&fmod_system);
 
-	if (fmod_last_result == FMOD_OK)
+	if (g_fmod_last_result == FMOD_OK)
 	{
 		unregisterResource(fmod_system, map_systems);
 	}
@@ -72,7 +72,7 @@ func double fmod_studio_system_release()
 	// Unregister master channel & sound groups
 	unregisterMasterGroups(fmod_system);
 
-	fmod_last_result = fmod_studio_system->release();
+	g_fmod_last_result = fmod_studio_system->release();
 	return 0;
 }
 
@@ -82,7 +82,7 @@ func double fmod_studio_system_update_multiplatform()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->update();
+	g_fmod_last_result = fmod_studio_system->update();
 	return 0;
 }
 
@@ -91,7 +91,7 @@ func double fmod_studio_system_flush_commands()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->flushCommands();
+	g_fmod_last_result = fmod_studio_system->flushCommands();
 	return 0;
 }
 
@@ -100,7 +100,7 @@ func double fmod_studio_system_flush_sample_loading()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->flushSampleLoading();
+	g_fmod_last_result = fmod_studio_system->flushSampleLoading();
 	return 0;
 }
 
@@ -115,9 +115,9 @@ func double fmod_studio_system_load_bank_custom(double flags)
 	info.size = sizeof(info);
 
 	FMOD::Studio::Bank* bank = nullptr;
-	fmod_last_result = fmod_studio_system->loadBankCustom(&info, (FMOD_STUDIO_LOAD_BANK_FLAGS)flags, &bank);
+	g_fmod_last_result = fmod_studio_system->loadBankCustom(&info, (FMOD_STUDIO_LOAD_BANK_FLAGS)flags, &bank);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -131,9 +131,9 @@ func double fmod_studio_system_load_bank_file(char* filename, double flags)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::Bank* bank = nullptr;
-	fmod_last_result = fmod_studio_system->loadBankFile((const char*)filename, (FMOD_STUDIO_LOAD_BANK_FLAGS)flags, &bank);
+	g_fmod_last_result = fmod_studio_system->loadBankFile((const char*)filename, (FMOD_STUDIO_LOAD_BANK_FLAGS)flags, &bank);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -147,10 +147,10 @@ func double fmod_studio_system_load_bank_memory_multiplatform(char* buff_data, d
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::Bank* bank;
-	fmod_last_result =
+	g_fmod_last_result =
 		fmod_studio_system->loadBankMemory((const char*)buff_data, (int)length, (FMOD_STUDIO_LOAD_MEMORY_MODE)mode, (FMOD_STUDIO_LOAD_BANK_FLAGS)flags, &bank);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -163,7 +163,7 @@ func double fmod_studio_system_unload_all()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->unloadAll();
+	g_fmod_last_result = fmod_studio_system->unloadAll();
 	return 0;
 }
 
@@ -173,9 +173,9 @@ func double fmod_studio_system_get_bank(char* path)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::Bank* bank;
-	fmod_last_result = fmod_studio_system->getBank(path, &bank);
+	g_fmod_last_result = fmod_studio_system->getBank(path, &bank);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -191,9 +191,9 @@ func double fmod_studio_system_get_bank_by_id(char* guid_str)
 	FMOD_GUID guid = StringToGUID(guid_str);
 
 	FMOD::Studio::Bank* bank;
-	fmod_last_result = fmod_studio_system->getBankByID(&guid, &bank);
+	g_fmod_last_result = fmod_studio_system->getBankByID(&guid, &bank);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -207,7 +207,7 @@ func double fmod_studio_system_get_bank_count()
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	int count = 0;
-	fmod_last_result = fmod_studio_system->getBankCount(&count);
+	g_fmod_last_result = fmod_studio_system->getBankCount(&count);
 
 	return (double)count;
 }
@@ -220,9 +220,9 @@ func double fmod_studio_system_get_bank_list_multiplatform(char* buff_return)
 	int count = 0;
 	constexpr int capacity = 512;
 	FMOD::Studio::Bank* banks[capacity];
-	fmod_last_result = fmod_studio_system->getBankList(banks, capacity, &count);
+	g_fmod_last_result = fmod_studio_system->getBankList(banks, capacity, &count);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -247,11 +247,18 @@ func double fmod_studio_system_set_listener_attributes_multiplatform(double list
 
 	auto args = buffer_unpack((uint8_t*)buff_args);
 	auto map_attributes = YYGetStruct(args[0]);
-	auto map_attenuation = YYGetStruct(args[1]);
 
 	FMOD_3D_ATTRIBUTES attributes = Fmod3DAttributesFromMap(map_attributes);
-	FMOD_VECTOR vector_attenuation = FmodVectorFromMap(map_attenuation);
-	fmod_last_result = fmod_studio_system->setListenerAttributes((int)listener_index, &attributes, &vector_attenuation);
+	
+	if (args.size() > 1) {
+		// Second argument is optional
+		auto map_attenuation = YYGetStruct(args[1]);
+		FMOD_VECTOR vector_attenuation = FmodVectorFromMap(map_attenuation);
+		g_fmod_last_result = fmod_studio_system->setListenerAttributes((int)listener_index, &attributes, &vector_attenuation);
+	}
+	else {
+		g_fmod_last_result = fmod_studio_system->setListenerAttributes((int)listener_index, &attributes, nullptr);
+	}
 
 	return 0;
 }
@@ -264,9 +271,9 @@ func double fmod_studio_system_get_listener_attributes_multiplatform(double list
 	FMOD_3D_ATTRIBUTES attributes;
 	FMOD_VECTOR vector_attenuation;
 
-	fmod_last_result = fmod_studio_system->getListenerAttributes((int)listener_index, &attributes, &vector_attenuation);
+	g_fmod_last_result = fmod_studio_system->getListenerAttributes((int)listener_index, &attributes, &vector_attenuation);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -288,7 +295,7 @@ func double fmod_studio_system_set_listener_weight(double listener_index, double
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->setListenerWeight((int)listener_index, (float)weight);
+	g_fmod_last_result = fmod_studio_system->setListenerWeight((int)listener_index, (float)weight);
 	return 0;
 }
 
@@ -298,7 +305,7 @@ func double fmod_studio_system_get_listener_weight(double listener_index)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	float weight;
-	fmod_last_result = fmod_studio_system->getListenerWeight((int)listener_index, &weight);
+	g_fmod_last_result = fmod_studio_system->getListenerWeight((int)listener_index, &weight);
 
 	return (double)weight;
 }
@@ -308,7 +315,7 @@ func double fmod_studio_system_set_num_listeners(double num)
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->setNumListeners((int)num);
+	g_fmod_last_result = fmod_studio_system->setNumListeners((int)num);
 	return 0;
 }
 
@@ -318,7 +325,7 @@ func double fmod_studio_system_get_num_listeners()
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	int num;
-	fmod_last_result = fmod_studio_system->getNumListeners(&num);
+	g_fmod_last_result = fmod_studio_system->getNumListeners(&num);
 	return (double)num;
 }
 
@@ -330,9 +337,9 @@ func double fmod_studio_system_get_bus(char* path)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::Bus* bus;
-	fmod_last_result = fmod_studio_system->getBus(path, &bus);
+	g_fmod_last_result = fmod_studio_system->getBus(path, &bus);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -348,9 +355,9 @@ func double fmod_studio_system_get_bus_by_id(char* guid)
 	FMOD::Studio::Bus* bus;
 	FMOD_GUID fmod_guid = StringToGUID(guid);
 
-	fmod_last_result = fmod_studio_system->getBusByID(&fmod_guid, &bus);
+	g_fmod_last_result = fmod_studio_system->getBusByID(&fmod_guid, &bus);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -366,9 +373,9 @@ func double fmod_studio_system_get_event(char* path)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::EventDescription* event_description;
-	fmod_last_result = fmod_studio_system->getEvent(path, &event_description);
+	g_fmod_last_result = fmod_studio_system->getEvent(path, &event_description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -383,9 +390,9 @@ func double fmod_studio_system_get_event_by_id(char* guid_str)
 
 	FMOD::Studio::EventDescription* event_description;
 	FMOD_GUID guid = StringToGUID(guid_str);
-	fmod_last_result = fmod_studio_system->getEventByID(&guid, &event_description);
+	g_fmod_last_result = fmod_studio_system->getEventByID(&guid, &event_description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -407,9 +414,9 @@ func double fmod_studio_system_get_parameter_by_id_multiplatform(char* buff_args
 
 	float value;
 	float final_value;
-	fmod_last_result = fmod_studio_system->getParameterByID(parameter_id, &value, &final_value);
+	g_fmod_last_result = fmod_studio_system->getParameterByID(parameter_id, &value, &final_value);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -433,7 +440,7 @@ func double fmod_studio_system_set_parameter_by_id_multiplatform(char* buff_args
 
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
 
-	fmod_last_result = fmod_studio_system->setParameterByID(parameter_id, (float)value, ignore_seek_speed);
+	g_fmod_last_result = fmod_studio_system->setParameterByID(parameter_id, (float)value, ignore_seek_speed);
 
 	return 0;
 }
@@ -448,7 +455,7 @@ func double fmod_studio_system_set_parameter_by_id_with_label_multiplatform(char
 
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
 
-	fmod_last_result = fmod_studio_system->setParameterByIDWithLabel(parameter_id, (const char*)label, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = fmod_studio_system->setParameterByIDWithLabel(parameter_id, (const char*)label, ignore_seek_speed >= 0.5);
 
 	return 0;
 }
@@ -456,7 +463,7 @@ func double fmod_studio_system_set_parameter_by_id_with_label_multiplatform(char
 // ignore same but with arrays....
 // func double fmod_studio_system_set_parameters_by_ids(char* buff_args_, char label, double ignore_seek_speed)
 //{
-//	fmod_last_result = fmod_studio_system->setParameterByIDs(parameter_id, (const char*)label, ignore_seek_speed >= 0.5);
+//	g_fmod_last_result = fmod_studio_system->setParameterByIDs(parameter_id, (const char*)label, ignore_seek_speed >= 0.5);
 //	return 0;
 // }
 
@@ -467,9 +474,9 @@ func double fmod_studio_system_get_parameter_by_name_multiplatform(char* name, c
 
 	float value;
 	float final_value;
-	fmod_last_result = fmod_studio_system->getParameterByName(name, &value, &final_value);
+	g_fmod_last_result = fmod_studio_system->getParameterByName(name, &value, &final_value);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -488,7 +495,7 @@ func double fmod_studio_system_set_parameter_by_name_multiplatform(char* name, d
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->setParameterByName(name, (float)value, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = fmod_studio_system->setParameterByName(name, (float)value, ignore_seek_speed >= 0.5);
 
 	return 0;
 }
@@ -498,7 +505,7 @@ func double fmod_studio_system_set_parameter_by_name_with_label_multiplatform(ch
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->setParameterByNameWithLabel(name, (const char*)label, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = fmod_studio_system->setParameterByNameWithLabel(name, (const char*)label, ignore_seek_speed >= 0.5);
 
 	return 0;
 }
@@ -509,9 +516,9 @@ func double fmod_studio_system_get_parameter_description_by_name_multiplatform(c
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION description;
-	fmod_last_result = fmod_studio_system->getParameterDescriptionByName(name, &description);
+	g_fmod_last_result = fmod_studio_system->getParameterDescriptionByName(name, &description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -534,9 +541,9 @@ func double fmod_studio_system_get_parameter_description_by_id_multiplatform(cha
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION description;
-	fmod_last_result = fmod_studio_system->getParameterDescriptionByID(parameter_id, &description);
+	g_fmod_last_result = fmod_studio_system->getParameterDescriptionByID(parameter_id, &description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -554,7 +561,7 @@ func double fmod_studio_system_get_parameter_description_count()
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	int count;
-	fmod_last_result = fmod_studio_system->getParameterDescriptionCount(&count);
+	g_fmod_last_result = fmod_studio_system->getParameterDescriptionCount(&count);
 
 	return count;
 }
@@ -565,18 +572,20 @@ func double fmod_studio_system_get_parameter_description_list_multiplatform(char
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	int count = 0;
-	FMOD_STUDIO_PARAMETER_DESCRIPTION description[100]{};
-	fmod_last_result = fmod_studio_system->getParameterDescriptionList(description, 100, &count);
+	g_fmod_last_result = fmod_studio_system->getParameterDescriptionCount(&count);
+	std::vector<FMOD_STUDIO_PARAMETER_DESCRIPTION> descriptions(count);
 
-	if (fmod_last_result != FMOD_OK)
+	g_fmod_last_result = fmod_studio_system->getParameterDescriptionList(descriptions.data(), count, &count);
+
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
 
 	ArrayStream vec_return = {};
-	for (int i = 0; i < count; i++)
+	for (const auto& description : descriptions)
 	{
-		StructStream map_return = FmodStudioParamaterDescriptionToGMStruct(description[i]);
+		StructStream map_return = FmodStudioParamaterDescriptionToGMStruct(description);
 		vec_return << map_return;
 	}
 
@@ -591,7 +600,7 @@ func char* fmod_studio_system_get_parameter_label_by_name(char* name, double lab
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	int retrieved;
-	fmod_last_result = fmod_studio_system->getParameterLabelByName((const char*)name, (int)labelindex, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = fmod_studio_system->getParameterLabelByName((const char*)name, (int)labelindex, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -608,7 +617,7 @@ func char* fmod_studio_system_get_parameter_label_by_id_multiplatform(char* buff
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = fmod_studio_system->getParameterLabelByID(parameter_id, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = fmod_studio_system->getParameterLabelByID(parameter_id, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -621,9 +630,9 @@ func double fmod_studio_system_get_vca(char* path)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::VCA* vca = nullptr;
-	fmod_last_result = fmod_studio_system->getVCA(path, &vca);
+	g_fmod_last_result = fmod_studio_system->getVCA(path, &vca);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -639,9 +648,9 @@ func double fmod_studio_system_get_vca_by_id(char* guid_str)
 	FMOD_GUID guid = StringToGUID(guid_str);
 
 	FMOD::Studio::VCA* vca;
-	fmod_last_result = fmod_studio_system->getVCAByID(&guid, &vca);
+	g_fmod_last_result = fmod_studio_system->getVCAByID(&guid, &vca);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -674,7 +683,7 @@ func double fmod_studio_system_set_advanced_settings_multiplatform(char* buff_ar
 	settings.streamingscheduledelay = streamingscheduledelay;
 	settings.encryptionkey = encryptionkey;
 
-	fmod_last_result = fmod_studio_system->setAdvancedSettings(&settings);
+	g_fmod_last_result = fmod_studio_system->setAdvancedSettings(&settings);
 
 	return 0;
 }
@@ -685,9 +694,9 @@ func double fmod_studio_system_get_advanced_settings_multiplatform(char* buff_re
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_STUDIO_ADVANCEDSETTINGS settings;
-	fmod_last_result = fmod_studio_system->getAdvancedSettings(&settings);
+	g_fmod_last_result = fmod_studio_system->getAdvancedSettings(&settings);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -712,7 +721,7 @@ func double fmod_studio_system_start_command_capture(char* filename, double flag
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->startCommandCapture(filename, (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)flags);
+	g_fmod_last_result = fmod_studio_system->startCommandCapture(filename, (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)flags);
 	return 0;
 }
 
@@ -721,7 +730,7 @@ func double fmod_studio_system_stop_command_capture()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->stopCommandCapture();
+	g_fmod_last_result = fmod_studio_system->stopCommandCapture();
 	return 0;
 }
 
@@ -733,9 +742,9 @@ func double fmod_studio_system_load_command_replay(char* filename, double flags)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD::Studio::CommandReplay* replay;
-	fmod_last_result = fmod_studio_system->loadCommandReplay(filename, (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)flags, &replay);
+	g_fmod_last_result = fmod_studio_system->loadCommandReplay(filename, (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)flags, &replay);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -751,9 +760,9 @@ func double fmod_studio_system_get_buffer_usage_multiplatform(char* buff_return)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_STUDIO_BUFFER_USAGE usage;
-	fmod_last_result = fmod_studio_system->getBufferUsage(&usage);
+	g_fmod_last_result = fmod_studio_system->getBufferUsage(&usage);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -770,7 +779,7 @@ func double fmod_studio_system_reset_buffer_usage()
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->resetBufferUsage();
+	g_fmod_last_result = fmod_studio_system->resetBufferUsage();
 	return 0;
 }
 
@@ -781,9 +790,9 @@ func double fmod_studio_system_get_cpu_usage_multiplatform(char* buff_return)
 
 	FMOD_STUDIO_CPU_USAGE usage{};
 	FMOD_CPU_USAGE usage_core{};
-	fmod_last_result = fmod_studio_system->getCPUUsage(&usage, &usage_core);
+	g_fmod_last_result = fmod_studio_system->getCPUUsage(&usage, &usage_core);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -814,9 +823,9 @@ func double fmod_studio_system_get_memory_usage_multiplatform(char* buff_return)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_STUDIO_MEMORY_USAGE memory_usage{};
-	fmod_last_result = fmod_studio_system->getMemoryUsage(&memory_usage);
+	g_fmod_last_result = fmod_studio_system->getMemoryUsage(&memory_usage);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -833,7 +842,7 @@ func double fmod_studio_system_get_memory_usage_multiplatform(char* buff_return)
 // func double fmod_studio_system_register_plugin()
 //{
 //	//FMOD_DSP_DESCRIPTION* description;
-//	//fmod_last_result = fmod_studio_system->registerPlugin(&memoryusage);
+//	//g_fmod_last_result = fmod_studio_system->registerPlugin(&memoryusage);
 //
 //
 //	return 0;
@@ -841,7 +850,7 @@ func double fmod_studio_system_get_memory_usage_multiplatform(char* buff_return)
 //
 // func double fmod_studio_system_unregister_plugin(char* name)
 //{
-//	fmod_last_result = fmod_studio_system->unregisterPlugin(name);
+//	g_fmod_last_result = fmod_studio_system->unregisterPlugin(name);
 //	return 0;
 // }
 
@@ -884,7 +893,7 @@ func double fmod_studio_system_set_callback(double type)
 	FMOD::Studio::System* fmod_studio_system = nullptr;
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
-	fmod_last_result = fmod_studio_system->setCallback(CALLBACK_fmod_studio_system, (FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)type);
+	g_fmod_last_result = fmod_studio_system->setCallback(CALLBACK_fmod_studio_system, (FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)type);
 	return 0;
 }
 
@@ -917,9 +926,9 @@ func double fmod_studio_system_get_sound_info_multiplatform(char* key, char* buf
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_STUDIO_SOUND_INFO info;
-	fmod_last_result = fmod_studio_system->getSoundInfo(key, &info);
+	g_fmod_last_result = fmod_studio_system->getSoundInfo(key, &info);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -945,7 +954,7 @@ func double fmod_studio_system_get_core_system()
 	FMOD::System* fmod_system = nullptr;
 	fmod_studio_system->getCoreSystem(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -961,7 +970,7 @@ func char* fmod_studio_system_lookup_id(char* path)
 	validate_fmod_studio_system(studio_system_selected_ref, fmod_studio_system);
 
 	FMOD_GUID guid{};
-	fmod_last_result = fmod_studio_system->lookupID(path, &guid);
+	g_fmod_last_result = fmod_studio_system->lookupID(path, &guid);
 
 	strncpy_s(gStringBuffer, GUIDtoString(guid).c_str(), sizeof(gStringBuffer) - 1);
 	gStringBuffer[sizeof(gStringBuffer) - 1] = '\0';  // Ensure null termination
@@ -977,7 +986,7 @@ func char* fmod_studio_system_lookup_path(char* str_guid)
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = fmod_studio_system->lookupPath(&guid, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = fmod_studio_system->lookupPath(&guid, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }

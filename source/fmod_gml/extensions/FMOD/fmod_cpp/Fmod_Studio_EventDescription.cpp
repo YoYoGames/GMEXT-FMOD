@@ -13,7 +13,7 @@ func double fmod_studio_event_description_create_instance(double event_descripti
 	FMOD::Studio::EventInstance* eventInstance = nullptr;
 	event_description->createInstance(&eventInstance);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -27,7 +27,7 @@ func double fmod_studio_event_description_get_instance_count(double event_descri
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	int count = 0;
-	fmod_last_result = event_description->getInstanceCount(&count);
+	g_fmod_last_result = event_description->getInstanceCount(&count);
 
 	return count;
 }
@@ -40,9 +40,9 @@ func double fmod_studio_event_description_get_instance_list_multiplatform(double
 	int count = 0;
 	constexpr int list_capacity = 512;
 	FMOD::Studio::EventInstance* event_instances[list_capacity];
-	fmod_last_result = event_description->getInstanceList(event_instances, list_capacity, &count);
+	g_fmod_last_result = event_description->getInstanceList(event_instances, list_capacity, &count);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -63,7 +63,7 @@ func double fmod_studio_event_description_release_all_instances(double event_des
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
-	fmod_last_result = event_description->releaseAllInstances();
+	g_fmod_last_result = event_description->releaseAllInstances();
 
 	return 0;
 }
@@ -75,7 +75,7 @@ func double fmod_studio_event_description_load_sample_data(double event_descript
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
-	fmod_last_result = event_description->loadSampleData();
+	g_fmod_last_result = event_description->loadSampleData();
 
 	return 0;
 }
@@ -85,7 +85,7 @@ func double fmod_studio_event_description_unload_sample_data(double event_descri
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
-	fmod_last_result = event_description->unloadSampleData();
+	g_fmod_last_result = event_description->unloadSampleData();
 
 	return 0;
 }
@@ -96,7 +96,7 @@ func double fmod_studio_event_description_get_sample_loading_state(double event_
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	FMOD_STUDIO_LOADING_STATE state = FMOD_STUDIO_LOADING_STATE::FMOD_STUDIO_LOADING_STATE_ERROR;
-	fmod_last_result = event_description->getSampleLoadingState(&state);
+	g_fmod_last_result = event_description->getSampleLoadingState(&state);
 
 	return (double)state;
 }
@@ -109,7 +109,7 @@ func double fmod_studio_event_description_is_3d(double event_description_ref)
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool is_3d = false;
-	fmod_last_result = event_description->is3D(&is_3d);
+	g_fmod_last_result = event_description->is3D(&is_3d);
 
 	return is_3d ? 1.0 : 0.0;
 }
@@ -120,7 +120,7 @@ func double fmod_studio_event_description_is_doppler_enabled(double event_descri
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool is_doppler = false;
-	fmod_last_result = event_description->isDopplerEnabled(&is_doppler);
+	g_fmod_last_result = event_description->isDopplerEnabled(&is_doppler);
 
 	return is_doppler ? 1.0 : 0.0;
 }
@@ -131,7 +131,7 @@ func double fmod_studio_event_description_is_oneshot(double event_description_re
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool is_oneshot = false;
-	fmod_last_result = event_description->isOneshot(&is_oneshot);
+	g_fmod_last_result = event_description->isOneshot(&is_oneshot);
 
 	return is_oneshot ? 1.0 : 0.0;
 }
@@ -142,7 +142,7 @@ func double fmod_studio_event_description_is_snapshot(double event_description_r
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool is_snapshot = false;
-	fmod_last_result = event_description->isSnapshot(&is_snapshot);
+	g_fmod_last_result = event_description->isSnapshot(&is_snapshot);
 
 	return is_snapshot ? 1.0 : 0.0;
 }
@@ -153,7 +153,7 @@ func double fmod_studio_event_description_is_stream(double event_description_ref
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool is_stream = false;
-	fmod_last_result = event_description->isStream(&is_stream);
+	g_fmod_last_result = event_description->isStream(&is_stream);
 
 	return is_stream ? 1.0 : 0.0;
 }
@@ -164,7 +164,7 @@ func double fmod_studio_event_description_has_sustain_point(double event_descrip
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	bool has_sustain = false;
-	fmod_last_result = event_description->hasSustainPoint(&has_sustain);
+	g_fmod_last_result = event_description->hasSustainPoint(&has_sustain);
 
 	return has_sustain ? 1.0 : 0.0;
 }
@@ -175,9 +175,9 @@ func double fmod_studio_event_description_get_min_max_distance_multiplatform(dou
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	float max = 0, min = 0;
-	fmod_last_result = event_description->getMinMaxDistance(&min, &max);
+	g_fmod_last_result = event_description->getMinMaxDistance(&min, &max);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -197,7 +197,7 @@ func double fmod_studio_event_description_get_sound_size(double event_descriptio
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	float size = 0;
-	fmod_last_result = event_description->getSoundSize(&size);
+	g_fmod_last_result = event_description->getSoundSize(&size);
 
 	return size;
 }
@@ -209,9 +209,9 @@ func double fmod_studio_event_description_get_parameter_description_by_name_mult
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION description{};
-	fmod_last_result = event_description->getParameterDescriptionByName((const char*)name, &description);
+	g_fmod_last_result = event_description->getParameterDescriptionByName((const char*)name, &description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -233,9 +233,9 @@ func double fmod_studio_event_description_get_parameter_description_by_id_multip
 
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
 	FMOD_STUDIO_PARAMETER_DESCRIPTION description;
-	fmod_last_result = event_description->getParameterDescriptionByID(parameter_id, &description);
+	g_fmod_last_result = event_description->getParameterDescriptionByID(parameter_id, &description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -254,9 +254,9 @@ func double fmod_studio_event_description_get_parameter_description_by_index_mul
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION description;
 
-	fmod_last_result = event_description->getParameterDescriptionByIndex((int)index, &description);
+	g_fmod_last_result = event_description->getParameterDescriptionByIndex((int)index, &description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -274,7 +274,7 @@ func double fmod_studio_event_description_get_parameter_description_count(double
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	int count;
-	fmod_last_result = event_description->getParameterDescriptionCount(&count);
+	g_fmod_last_result = event_description->getParameterDescriptionCount(&count);
 
 	return count;
 }
@@ -286,7 +286,7 @@ func char* fmod_studio_event_description_get_parameter_label_by_name(double even
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = event_description->getParameterLabelByName((const char*)name, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = event_description->getParameterLabelByName((const char*)name, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -303,7 +303,7 @@ func char* fmod_studio_event_description_get_parameter_label_by_id_multiplatform
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = event_description->getParameterLabelByID(parameter_id, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = event_description->getParameterLabelByID(parameter_id, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -315,7 +315,7 @@ func char* fmod_studio_event_description_get_parameter_label_by_index(double eve
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = event_description->getParameterLabelByIndex((int)index, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = event_description->getParameterLabelByIndex((int)index, (int)label_index, gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -336,15 +336,15 @@ StructStream FmodStudioUserPropertyToMap(const FMOD_STUDIO_USER_PROPERTY& proper
 	return map_return;
 }
 
-func double fmod_studio_event_description_get_user_property(double event_description_ref, char* name, char* buff_return)
+func double fmod_studio_event_description_get_user_property_multiplatform(double event_description_ref, char* name, char* buff_return)
 {
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	FMOD_STUDIO_USER_PROPERTY property;
-	fmod_last_result = event_description->getUserProperty((const char*)name, &property);
+	g_fmod_last_result = event_description->getUserProperty((const char*)name, &property);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -356,15 +356,15 @@ func double fmod_studio_event_description_get_user_property(double event_descrip
 	return 0;
 }
 
-func double fmod_studio_event_description_get_user_property_by_index(double event_description_ref, double index, char* buff_return)
+func double fmod_studio_event_description_get_user_property_by_index_multiplatform(double event_description_ref, double index, char* buff_return)
 {
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	FMOD_STUDIO_USER_PROPERTY property;
-	fmod_last_result = event_description->getUserPropertyByIndex((int)index, &property);
+	g_fmod_last_result = event_description->getUserPropertyByIndex((int)index, &property);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -376,13 +376,13 @@ func double fmod_studio_event_description_get_user_property_by_index(double even
 	return 0;
 }
 
-func double fmod_studio_event_description_get_user_property_count(double event_description_ref, char* name)
+func double fmod_studio_event_description_get_user_property_count(double event_description_ref)
 {
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	int count;
-	fmod_last_result = event_description->getUserPropertyCount(&count);
+	g_fmod_last_result = event_description->getUserPropertyCount(&count);
 	return count;
 }
 
@@ -394,10 +394,10 @@ func char* fmod_studio_event_description_get_id(double event_description_ref)
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	FMOD_GUID id;
-	fmod_last_result = event_description->getID(&id);
+	g_fmod_last_result = event_description->getID(&id);
 
 	gStringBuffer[0] = '\0';
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return gStringBuffer;
 	}
@@ -414,7 +414,7 @@ func double fmod_studio_event_description_get_length(double event_description_re
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
 	int size;
-	fmod_last_result = event_description->getLength(&size);
+	g_fmod_last_result = event_description->getLength(&size);
 	return (double)size;
 }
 
@@ -425,7 +425,7 @@ func char* fmod_studio_event_description_get_path(double event_description_ref)
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = event_description->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = event_description->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }
@@ -551,7 +551,7 @@ func double fmod_studio_event_description_set_callback(double event_description_
 	FMOD::Studio::EventDescription* event_description = nullptr;
 	validate_fmod_studio_event_description(event_description_ref, event_description);
 
-	fmod_last_result = event_description->setCallback(CALLBACK_fmod_studio_event_description, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)type);
+	g_fmod_last_result = event_description->setCallback(CALLBACK_fmod_studio_event_description, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)type);
 	return 0;
 }
 

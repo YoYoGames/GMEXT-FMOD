@@ -61,7 +61,7 @@ public class MainActivity {
 	public static native double JNIfmodchannelcontrolsetreverbproperties(double arg0,double arg1,double arg2);
 	public static native double JNIfmodchannelcontrolgetreverbproperties(double arg0,double arg1);
 	public static native double JNIfmodchannelcontrolsetlowpassgain(double arg0,double arg1);
-	public static native double JNIfmodchannelcontrolgetlowPassgain(double arg0);
+	public static native double JNIfmodchannelcontrolgetlowpassgain(double arg0);
 	public static native double JNIfmodchannelcontroladddsp(double arg0,double arg1,double arg2);
 	public static native double JNIfmodchannelcontrolremovedsp(double arg0,double arg1);
 	public static native double JNIfmodchannelcontrolgetnumdsps(double arg0);
@@ -144,7 +144,7 @@ public class MainActivity {
 	public static native double JNIfmoddspconnectiongetuserdata(double arg0);
 	public static native double JNIfmodgeometrysetpolygonattributes(double arg0,double arg1,double arg2,double arg3,double arg4);
 	public static native double JNIfmodgeometrygetpolygonattributesmultiplatform(double arg0,double arg1,ByteBuffer arg2);
-	public static native double JNIfmodgeometrygetpolygonmumvertices(double arg0,double arg1);
+	public static native double JNIfmodgeometrygetpolygonnumvertices(double arg0,double arg1);
 	public static native double JNIfmodgeometrysetpolygonvertexmultiplatform(double arg0,double arg1,double arg2,ByteBuffer arg3);
 	public static native double JNIfmodgeometrygetpolygonvertexmultiplatform(double arg0,double arg1,double arg2,ByteBuffer arg3);
 	public static native double JNIfmodgeometrysetpositionmultiplatform(double arg0,ByteBuffer arg1);
@@ -156,12 +156,12 @@ public class MainActivity {
 	public static native double JNIfmodgeometryaddpolygonmultiplatform(double arg0,ByteBuffer arg1);
 	public static native double JNIfmodgeometrysetactive(double arg0,double arg1);
 	public static native double JNIfmodgeometrygetactive(double arg0);
-	public static native double JNIfmodgeometrygetmaxpolygons(double arg0,ByteBuffer arg1);
+	public static native double JNIfmodgeometrygetmaxpolygonsmultiplatform(double arg0,ByteBuffer arg1);
 	public static native double JNIfmodgeometrygetnumpolygons(double arg0);
 	public static native double JNIfmodgeometrysetuserdata(double arg0,double arg1);
 	public static native double JNIfmodgeometrygetuserdata(double arg0);
 	public static native double JNIfmodgeometryrelease(double arg0);
-	public static native double JNIfmodgeometrysave(double arg0,ByteBuffer arg1);
+	public static native double JNIfmodgeometrysavemultiplatform(double arg0,ByteBuffer arg1);
 	public static native double JNIfmodreverb3dset3dattributesmultiplatform(double arg0,ByteBuffer arg1,double arg2,double arg3);
 	public static native double JNIfmodreverb3dget3dattributesmultiplatform(double arg0,ByteBuffer arg1);
 	public static native double JNIfmodreverb3dsetproperties(double arg0,double arg1,double arg2,double arg3,double arg4,double arg5,double arg6,double arg7,double arg8,double arg9,double arg10,double arg11,double arg12);
@@ -261,7 +261,7 @@ public class MainActivity {
 	public static native double JNIfmodstudiobuslockchannelgroup(double arg0);
 	public static native double JNIfmodstudiobusunlockchannelgroup(double arg0);
 	public static native double JNIfmodstudiobusgetcpuusagemultiplatform(double arg0,ByteBuffer arg1);
-	public static native double JNIfmodstudiobusgetmemoryusage(double arg0,ByteBuffer arg1);
+	public static native double JNIfmodstudiobusgetmemoryusagemultiplatform(double arg0,ByteBuffer arg1);
 	public static native String JNIfmodstudiobusgetid(double arg0);
 	public static native String JNIfmodstudiobusgetpath(double arg0);
 	public static native double JNIfmodstudiobusisvalid(double arg0);
@@ -309,9 +309,9 @@ public class MainActivity {
 	public static native String JNIfmodstudioeventdescriptiongetparameterlabelbyname(double arg0,String arg1,double arg2);
 	public static native String JNIfmodstudioeventdescriptiongetparameterlabelbyidmultiplatform(double arg0,ByteBuffer arg1,double arg2);
 	public static native String JNIfmodstudioeventdescriptiongetparameterlabelbyindex(double arg0,double arg1,double arg2);
-	public static native double JNIfmodstudioeventdescriptiongetuserproperty(double arg0,String arg1,ByteBuffer arg2);
-	public static native double JNIfmodstudioeventdescriptiongetuserpropertybyindex(double arg0,double arg1,ByteBuffer arg2);
-	public static native double JNIfmodstudioeventdescriptiongetuserpropertycount(double arg0,String arg1);
+	public static native double JNIfmodstudioeventdescriptiongetuserpropertymultiplatform(double arg0,String arg1,ByteBuffer arg2);
+	public static native double JNIfmodstudioeventdescriptiongetuserpropertybyindexmultiplatform(double arg0,double arg1,ByteBuffer arg2);
+	public static native double JNIfmodstudioeventdescriptiongetuserpropertycount(double arg0);
 	public static native String JNIfmodstudioeventdescriptiongetid(double arg0);
 	public static native double JNIfmodstudioeventdescriptiongetlength(double arg0);
 	public static native String JNIfmodstudioeventdescriptiongetpath(double arg0);
@@ -353,7 +353,7 @@ public class MainActivity {
 	public static native double JNIfmodstudioeventinstancesetcallback(double arg0,double arg1);
 	public static native double JNIfmodstudioeventinstancesetuserdata(double arg0,double arg1);
 	public static native double JNIfmodstudioeventinstancegetuserdata(double arg0);
-	public static native double JNIfmodstudioeventintancegetdescription(double arg0);
+	public static native double JNIfmodstudioeventinstancegetdescription(double arg0);
 	public static native double JNIfmodstudioeventinstancerelease(double arg0);
 	public static native double JNIfmodstudioeventinstanceisvalid(double arg0);
 	public static native double JNIfmodstudiosystemcreate();
@@ -456,7 +456,7 @@ public class MainActivity {
 	public static native double JNIfmodsystemgetchannelsplayingmultiplatform(ByteBuffer arg0);
 	public static native double JNIfmodsystemgetcpuusagemultiplatform(ByteBuffer arg0);
 	public static native double JNIfmodsystemgetfileusagemultiplatform(ByteBuffer arg0);
-	public static native double JNIfmodsystemgetdefaultmixmatrix(double arg0,double arg1,double arg2);
+	public static native double JNIfmodsystemgetdefaultmixmatrixmultiplatform(double arg0,double arg1,double arg2,ByteBuffer arg3);
 	public static native double JNIfmodsystemgetspeakermodechannels(double arg0);
 	public static native double JNIfmodsystemcreatesoundmultiplatform(String arg0,double arg1,ByteBuffer arg2);
 	public static native double JNIfmodsystemcreatestreammultiplatform(String arg0,double arg1,ByteBuffer arg2);
@@ -485,7 +485,7 @@ public class MainActivity {
 	public static native double JNIfmodsystemcreategeometry(double arg0,double arg1);
 	public static native double JNIfmodsystemsetgeometrysettings(double arg0);
 	public static native double JNIfmodsystemgetgeometrysettings();
-	public static native double JNIfmodsystemloadgeometry(ByteBuffer arg0,double arg1);
+	public static native double JNIfmodsystemloadgeometrymultiplatform(ByteBuffer arg0,double arg1);
 	public static native double JNIfmodsystemgetgeometryocclusionmultiplatform(ByteBuffer arg0);
 	public static native double JNIfmodsystemlockdsp();
 	public static native double JNIfmodsystemunlockdsp();
@@ -493,7 +493,7 @@ public class MainActivity {
 	public static native double JNIfmodsystemsetuserdata(double arg0,double arg1);
 	public static native double JNIfmodsystemgetuserdata(double arg0);
 	public static native double JNIfmodfetchcallbacks(ByteBuffer arg0,double arg1);
-	public static native double JNIfmodlasterror();
+	public static native double JNIfmodlastresult();
 
 
     static { System.loadLibrary("YYFMOD"); }
