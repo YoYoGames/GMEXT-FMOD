@@ -1104,7 +1104,7 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * 0 0 0 0 0 1
  * ```
  * 
- * Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.
+ * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
  * 
  * @param {real} control_ref A reference to a channel control.
  * @param {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
@@ -1203,7 +1203,7 @@ function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
  * 
  * The function returns the gain level where 0 represents silent (full filtering) and 1 represents full volume (no filtering).
  * 
- * [[Note: This requires the built in-lowpass to be created with `FMOD_INIT.CHANNEL_LOWPASS` or `FMOD_INIT.CHANNEL_DISTANCEFILTER`.]]
+ * [[Note: This requires the built-in lowpass to be created with `FMOD_INIT.CHANNEL_LOWPASS` or `FMOD_INIT.CHANNEL_DISTANCEFILTER`.]]
  * 
  * [[Note: Currently only supported for Channel, not ChannelGroup.]]
  * 
@@ -1411,9 +1411,15 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
  *
  * This function adds a volume ramp at the specified time in the future using fade points.
  * 
+ * This is a convenience function that creates a scheduled 64 sample fade point ramp from the current volume level to volume arriving at `dsp_clock` time.
+ * 
+ * Can be use in conjunction with ${function.fmod_channel_control_set_delay}.
+ * 
+ * All fade points after `dsp_clock` will be removed.
+ * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock
- * @param {real} volume
+ * @param {real} dsp_clock The time (in samples) at which the ramp will end, as measured by the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
+ * @param {real} volume The volume level at the given `dsp_clock`. 0 = silent, 1 = full.
  * @func_end
  */
 function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock, volume) {}
@@ -1428,8 +1434,8 @@ function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock
  * This function removes all fade points between the two specified clock values (inclusive).
  * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock_start
- * @param {real} dsp_clock_end
+ * @param {real} dsp_clock_start The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to begin removing fade points. Expressed in samples.
+ * @param {real} dsp_clock_end The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to stop removing fade points. Expressed in samples.
  * @func_end
  */
 function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_start, dsp_clock_end) {}
@@ -1441,7 +1447,7 @@ function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_
  *
  * <br />
  *
- * This function retrieves information about stored fade points.
+ * This function retrieves information about all stored fade points.
  * 
  * @param {real} control_ref A reference to a channel control.
  * @returns {struct.FmodControlFadePoints}
@@ -1459,7 +1465,6 @@ function fmod_channel_control_get_fade_points(channel_control_ref) {}
  * This function sets the callback for ChannelControl level notifications.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @returns {real}
  * @func_end
  */
 function fmod_channel_control_set_callback(channel_control_ref) {}
@@ -1486,11 +1491,12 @@ function fmod_channel_control_get_system_object(channel_control_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a real user value associated with this object.
+ * 
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to store on this object.
  * @func_end
  */
 function fmod_channel_control_set_user_data(channel_control_ref, data) {}
@@ -1502,7 +1508,9 @@ function fmod_channel_control_set_user_data(channel_control_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves the user value associated with this object, as set with ${function.fmod_channel_control_set_user_data}.
+ * 
+ * [[Note: While FMOD allows you to set arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1535,8 +1543,10 @@ function fmod_channel_group_get_num_channels(channel_group_ref) {}
  *
  * This function retrieves the Channel at the specified index in the list of Channel inputs.
  * 
+ * The function returns a reference to the Channel.
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} index
+ * @param {real} index The offset into the list of [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) inputs.
  * @returns {real}
  * @func_end
  */
@@ -1551,9 +1561,11 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
  *
  * This function adds a ChannelGroup as an input to this group.
  * 
+ * The function returns a reference to the [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) created between the head DSP of `child_channel_group_ref` and the tail DSP of `channel_group_ref`.
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} child_channel_group_ref A reference to a child ChannelGroup.
- * @param {real} propagate_dsp_clock
+ * @param {real} child_channel_group_ref The ChannelGroup to add.
+ * @param {boolean} propagate_dsp_clock Whether to recursively propagate this object's clock values to `child_channel_group_ref`.
  * @returns {real}
  * @func_end
  */
@@ -1584,7 +1596,7 @@ function fmod_channel_group_get_num_groups(channel_group_ref) {}
  * This function retrieves the ChannelGroup at the specified index in the list of group inputs.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} group_index
+ * @param {real} group_index The offset into the list of group inputs. A value in the range [0, ${function.fmod_channel_group_get_num_groups}].
  * @returns {real}
  * @func_end
  */
@@ -1629,6 +1641,8 @@ function fmod_channel_group_get_name(channel_group_ref) {}
  *
  * This function frees the memory for the group.
  * 
+ * [[Note: Any [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) or [ChannelGroups](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) feeding into this group are moved to the master ChannelGroup.]]
+ * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
  * @func_end
@@ -1642,7 +1656,7 @@ function fmod_channel_group_release(channel_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the System that created this object.
+ * This function retrieves the [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) that created this object.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
@@ -1659,6 +1673,8 @@ function fmod_channel_group_get_system_object(channel_group_ref) {}
  *
  * This is an information function to retrieve the state of FMOD disk access.
  * 
+ * [[Warning: Do not use this function to synchronize your own reads with, as due to timing, you might call this function and it says false = it is not busy, but the split second after calling this function, internally FMOD might set it to busy. Use ${function.fmod_file_set_disk_busy} for proper mutual exclusion as it uses semaphores.]]
+ * 
  * @returns {real}
  * @func_end
  */
@@ -1673,7 +1689,11 @@ function fmod_file_get_disk_busy() {}
  *
  * This function sets the busy state for disk access ensuring mutual exclusion of file operations.
  * 
- * @param {real} busy
+ * [[Note: If file IO is currently being performed by FMOD this function will block until it has completed.]]
+ * 
+ * [[Note: This function should be called in pairs once to set the state, then again to clear it once complete.]]
+ * 
+ * @param {real} busy The busy state where 1 represent the beginning of disk access and 0 represents the end of disk access.
  * @returns {real}
  * @func_end
  */
@@ -1688,7 +1708,9 @@ function fmod_file_set_disk_busy(busy) {}
  *
  * This function returns information on the memory usage of FMOD.
  * 
- * @param {real} blocking
+ * This information is byte accurate and counts all allocs and frees internally. This is useful for determining a fixed memory size to make FMOD work within for fixed memory machines such as consoles.
+ * 
+ * @param {boolean} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
  * @returns {struct.FmodMemoryStats}
  * @func_end
  */
@@ -1703,10 +1725,21 @@ function fmod_memory_get_stats(blocking) {}
  *
  * This function specifies the level and delivery method of log messages when using the logging version of FMOD.
  * 
- * @param {real} flags
- * @param {real} mode
- * @param {string} filename
- * @returns {real}
+ * This function will return `FMOD_RESULT.ERR_UNSUPPORTED` when using the non-logging (release) versions of FMOD.
+ * 
+ * The logging version of FMOD can be recognized by the 'L' suffix in the library name, fmodL.dll or libfmodL.so for instance.
+ * 
+ * Note that:
+ * 
+ * * `FMOD_DEBUG_FLAGS.LEVEL_LOG` produces informational, warning and error messages.
+ * * `FMOD_DEBUG_FLAGS.LEVEL_WARNING` produces warnings and error messages.
+ * * `FMOD_DEBUG_FLAGS.LEVEL_ERROR` produces error messages only.
+ * 
+ * See Also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * 
+ * @param {constant.FMOD_DEBUG_FLAGS} flags The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.
+ * @param {constant.FMOD_DEBUG_MODE} mode The destination for log messages. Optional. The default value is `FMOD_DEBUG_MODE.TTY`.
+ * @param {string} filename The filename to use when mode is set to file, only required when using that mode. Optional. The default value is `pointer_null`.
  * @func_end
  */
 function fmod_debug_initialize(flags, mode, filename) {}
@@ -1720,11 +1753,18 @@ function fmod_debug_initialize(flags, mode, filename) {}
  *
  * This function specifies the affinity, priority and stack size for all FMOD created threads.
  * 
- * @param {real} type
- * @param {real} affinity
- * @param {real} priority
- * @param {real} stacksize
- * @returns {real}
+ * You must call this function for the chosen thread before that thread is created for the settings to take effect.
+ * 
+ * Affinity can be specified using one (or more) of the ${constant.FMOD_THREAD_AFFINITY} constants or by providing the bits explicitly, i.e. (1<<3) for logical core three (core affinity is zero based). See platform documentation for details on the available cores for a given device.
+ * 
+ * Priority can be specified using one of the ${constant.FMOD_THREAD_PRIORITY} constants or by providing the value explicitly, i.e. (-2) for the lowest thread priority on Windows. See platform documentation for details on the available priority values for a given operating system.
+ * 
+ * The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.
+ * 
+ * @param {constant.FMOD_THREAD_TYPE} type The identifier for an FMOD thread.
+ * @param {constant.FMOD_THREAD_AFFINITY} affinity A bitfield of desired CPU cores to assign the given thread to.
+ * @param {constant.FMOD_THREAD_PRIORITY} priority The scheduling priority to assign the given thread to.
+ * @param {constant.FMOD_THREAD_STACK_SIZE} stacksize The amount of stack space available to the given thread.
  * @func_end
  */
 function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
@@ -1737,11 +1777,15 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
  *
  * <br />
  *
- * This function adds a DSP unit as an input to this object.
+ * This function adds a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit as an input to this object and returns the new [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) between the two units.
  * 
- * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_input_ref A reference to a dsp_input.
- * @param {real} dsp_connection_type
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: When a DSP has multiple inputs the signals are automatically mixed together, sent to the unit's output(s).]]
+ * 
+ * @param {real} dsp_ref A reference to a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * @param {real} dsp_input_ref A reference to the DSP unit to be added to `dsp_ref`.
+ * @param {constant.FMOD_DSPCONNECTION_TYPE} dsp_connection_type The type of connection between the two units. Optional. Default is `FMOD_DSPCONNECTION_TYPE.STANDARD`.
  * @returns {real}
  * @func_end
  */
@@ -1756,8 +1800,12 @@ function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
  *
  * This function retrieves the DSP unit at the specified index in the input list.
  * 
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_chain_index The index in the DSP's chain to look up.
+ * @param {real} dsp_chain_index The offset into `dsp_ref`'s input list. A value in the range [0, ${function.fmod_dsp_get_num_inputs}]
  * @returns {struct.FmodDSPConnectionData}
  * @func_end
  */
@@ -1772,7 +1820,12 @@ function fmod_dsp_get_input(dsp_ref, dsp_input_index) {}
  *
  * This function retrieves the DSP unit at the specified index in the output list.
  * 
+ * The returned connection will remain valid until the units are disconnected.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
+ * @param {real} dsp_chain_index A value in the range [0, ${function.fmod_dsp_get_num_inputs}]
  * @returns {struct.FmodDSPConnectionData}
  * @func_end
  */
@@ -1785,7 +1838,9 @@ function fmod_dsp_get_output(dsp_ref, dsp_output_index) {}
  *
  * <br />
  *
- * This function retrieves the number of DSP units in the input list.
+ * This function retrieves the number of DSP units in the given DSP's input list.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -1800,7 +1855,9 @@ function fmod_dsp_get_num_inputs(dsp_ref) {}
  *
  * <br />
  *
- * This function retrieves the number of DSP units in the output list.
+ * This function retrieves the number of DSP units in the given DSP's output list.
+ * 
+ * [[Note: This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -1817,10 +1874,11 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
  *
  * This function disconnects all inputs and/or outputs.
  * 
+ * This is a convenience function that is faster than disconnecting all inputs and outputs individually.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} inputs
- * @param {real} outputs
- * @returns {real}
+ * @param {boolean} inputs Whether all inputs should be disconnected.
+ * @param {boolean} outputs Whether all outputs should be disconnected.
  * @func_end
  */
 function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
@@ -1834,10 +1892,13 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
  *
  * This function disconnects the specified input DSP.
  * 
+ * If `dsp_other_ref` had only one output, after this operation that entire sub graph will no longer be connected to the DSP network.
+ * 
+ * After this operation `dsp_connection_ref` is no longer valid.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} dsp_other_ref A reference to a dsp_other.
- * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @returns {real}
+ * @param {real} dsp_other_ref The input unit to disconnect, if not specified all inputs and outputs are disconnected from this unit.
+ * @param {real} dsp_connection_ref When there is more than one connection between two units this can be used to define which of the connections should be disconnected. Defaults to the value 0.
  * @func_end
  */
 function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
@@ -1851,8 +1912,12 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
  *
  * This function retrieves the index of the first data parameter of a particular data type.
  * 
+ * The function returns the index of the first data parameter of type `data_type` after the function is called. This will be -1 if no matches were found.
+ * 
+ * This function returns `FMOD_RESULT.OK` if a parameter of matching type is found and `FMOD_RESULT.ERR_INVALID_PARAM` if no matches were found.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} data_type
+ * @param {real} data_type The type of data to find. Typically of type `FMOD_DSP_PARAMETER_DATA_TYPE`.
  * @returns {real}
  * @func_end
  */
@@ -1866,6 +1931,8 @@ function fmod_dsp_get_data_parameter_index(dsp_ref, data_type) {}
  * <br />
  *
  * This function retrieves the number of parameters exposed by this unit.
+ * 
+ * You can use this value to enumerate all parameters of a DSP unit with $(function.fmod_dsp_get_parameter_info).
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -1883,9 +1950,8 @@ function fmod_dsp_get_num_parameters(dsp_ref) {}
  * This function sets a boolean parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {boolean} value The parameter value.
  * @func_end
  */
 function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
@@ -1900,8 +1966,8 @@ function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
  * This function retrieves a boolean parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
@@ -1915,10 +1981,14 @@ function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
  *
  * This function sets a binary data parameter by index.
  * 
+ * You write the binary data for the parameter to a buffer using the [Buffer functions](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm) and then pass the buffer and the length of the data, in bytes, to this function. The first byte of the buffer is the first byte of the data.
+ * 
+ * [[Note: This function doesn't take an offset, so the first byte of data is at the start of the buffer (at an offset of 0 bytes).]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {buffer} buffer
- * @param {real} length
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {buffer} buffer The ${type.buffer} that stores the data.
+ * @param {real} length The length of the data in the buffer, in bytes.
  * @func_end
  */
 function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
@@ -1932,10 +2002,16 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
  *
  * This function retrieves a binary data parameter by index.
  * 
+ * The binary data is copied to the ${type.buffer} that you specify. A total number of `length` bytes are written.
+ * 
+ * [[Note: This function doesn't take an offset, so the data is written to the start of the buffer (at an offset of 0 bytes).]]
+ * 
+ * [[Warning: The ${type.buffer} that receives the data should be large enough to hold the parameter value, as this function doesn't resize the buffer. Any parameter data beyond the length of the buffer will not be included.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {buffer} buffer
- * @param {real} length
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {buffer} buffer The ${type.buffer} that receives the data.
+ * @param {real} length The length of the data to copy into the buffer, in bytes.
  * @func_end
  */
 function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
@@ -1950,9 +2026,8 @@ function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
  * This function sets a floating point parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {real} value The parameter floating point data.
  * @func_end
  */
 function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
@@ -1967,7 +2042,7 @@ function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
  * This function retrieves a floating point parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
  * @returns {real}
  * @func_end
  */
@@ -1983,9 +2058,8 @@ function fmod_dsp_get_parameter_float(dsp_ref, parameter_index) {}
  * This function sets an integer parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
- * @param {real} value
- * @returns {real}
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
+ * @param {real} value The parameter integer data.
  * @func_end
  */
 function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
@@ -2000,7 +2074,7 @@ function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
  * This function retrieves an integer parameter by index.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} parameter_index
+ * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters}].
  * @returns {real}
  * @func_end
  */
@@ -2030,11 +2104,12 @@ function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
  *
  * This function sets the PCM input format this DSP will receive when processing.
  * 
+ * [[Note: Setting the number of channels on a unit will force either a down or up mix to that channel count before processing the DSP read/process callback.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} channel_mask
- * @param {real} num_channels
- * @param {real} speaker_mode
- * @returns {real}
+ * @param {constant.FMOD_CHANNELMASK} channel_mask Deprecated.
+ * @param {real} num_channels The number of channels to be processed. A value in the range [0, ${function.FMOD_MAX_CHANNEL_WIDTH}].
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode The speaker mode to describe the channel mapping.
  * @func_end
  */
 function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode) {}
@@ -2064,9 +2139,9 @@ function fmod_dsp_get_channel_format(dsp_ref) {}
  * This function retrieves the output format this DSP will produce when processing based on the input specified.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {constant.FMOD_CHANNELMASK} channel_mask_in
- * @param {real} num_channels_in
- * @param {constant.FMOD_SPEAKERMODE} speaker_mode_in
+ * @param {constant.FMOD_CHANNELMASK} channel_mask_in Deprecated.
+ * @param {real} num_channels_in The number of channels for the input signal.
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode_in The speaker mode for the input signal.
  * @returns {struct.FmodDSPChannelFormat}
  * @func_end
  */
@@ -2080,6 +2155,10 @@ function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channe
  * <br />
  *
  * This function retrieves the signal metering information.
+ * 
+ * [[Note: Requesting metering information when it hasn't been enabled will result in `FMOD_RESULT.ERR_BADCOMMAND`.]]
+ * 
+ * [[Note: `FMOD_INIT.PROFILE_METER_ALL` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {struct.FmodDSPInOutMeteringInfo}
@@ -2096,9 +2175,15 @@ function fmod_dsp_get_metering_info(dsp_ref) {}
  *
  * This function sets the input and output signal metering enabled states.
  * 
+ * Input metering is pre-processing, while output metering is post-processing.
+ * 
+ * Enabled metering allows ${function.fmod_dsp_get_metering_info} to return metering information and allows FMOD profiling tools to visualize the levels.
+ * 
+ * [[Note: `FMOD_INIT.PROFILE_METER_ALL` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} enabled_in
- * @param {real} enabled_out
+ * @param {boolean} enabled_in The metering enabled state for the input signal.
+ * @param {boolean} enabled_out The mtering enabled state for the output signal.
  * @returns {real}
  * @func_end
  */
@@ -2128,9 +2213,12 @@ function fmod_dsp_get_metering_enabled(dsp_ref) {}
  *
  * This function sets the processing active state.
  * 
+ * If `active` is false, processing of this unit and its inputs are stopped.
+ * 
+ * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} active
- * @returns {real}
+ * @param {boolean} active The active state. Default is `false`.
  * @func_end
  */
 function fmod_dsp_set_active(dsp_ref, active) {}
@@ -2144,8 +2232,12 @@ function fmod_dsp_set_active(dsp_ref, active) {}
  *
  * This function retrieves the processing active state.
  * 
+ * If `active` is false, processing of this unit and its inputs are stopped.
+ * 
+ * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_active(dsp_ref) {}
@@ -2159,9 +2251,10 @@ function fmod_dsp_get_active(dsp_ref) {}
  *
  * This function sets the processing bypass state.
  * 
+ * If `bypass` is true, processing of this unit is skipped but it continues to process its inputs.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} bypass
- * @returns {real}
+ * @param {boolean} bypass The bypass state. Default is false.
  * @func_end
  */
 function fmod_dsp_set_bypass(dsp_ref, bypass) {}
@@ -2175,8 +2268,10 @@ function fmod_dsp_set_bypass(dsp_ref, bypass) {}
  *
  * This function retrieves the processing bypass state.
  * 
+ * If the returned value is `true`, processing of this unit is skipped but it continues to process its inputs.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_bypass(dsp_ref) {}
@@ -2191,10 +2286,9 @@ function fmod_dsp_get_bypass(dsp_ref) {}
  * This function sets the scale of the wet and dry signal components.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} prewet
- * @param {real} postwet
- * @param {real} dry
- * @returns {real}
+ * @param {real} prewet The level of the 'Dry' (pre-processed signal) mix that is processed by the DSP. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @param {real} postwet The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @param {real} dry The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. The default is 0.
  * @func_end
  */
 function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
@@ -2223,8 +2317,12 @@ function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
  *
  * This function retrieves the idle state.
  * 
+ * A DSP is considered idle when it stops receiving input signal and all internal processing of stored input has been exhausted.
+ * 
+ * Each DSP type has the potential to have differing idle behaviour based on the type of effect. A reverb or echo may take a longer time to go idle after it stops receiving a valid signal, compared to an effect with a shorter tail length like an EQ filter.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_dsp_get_idle(dsp_ref) {}
@@ -2238,8 +2336,9 @@ function fmod_dsp_get_idle(dsp_ref) {}
  *
  * This function reset a DSPs internal state ready for new input signal.
  * 
+ * This will clear all internal state derived from input signal while retaining any set parameter values. The intended use of the function is to avoid audible artifacts if moving the DSP from one part of the DSP network to another.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
  * @func_end
  */
 function fmod_dsp_reset(dsp_ref) {}
@@ -2253,8 +2352,9 @@ function fmod_dsp_reset(dsp_ref) {}
  *
  * This function frees a DSP object.
  * 
+ * If DSP is not removed from the network with ${function.fmod_channel_control_remove_dsp} after being added with ${function.fmod_channel_control_add_dsp}, it will not release and will instead return `FMOD_RESULT.ERR_DSP_INUSE`.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
  * @func_end
  */
 function fmod_dsp_release(dsp_ref) {}
@@ -2268,8 +2368,10 @@ function fmod_dsp_release(dsp_ref) {}
  *
  * This function retrieves the pre-defined type of a FMOD registered DSP unit.
  * 
+ * This is only valid for built-in FMOD effects. Any user plugins will simply return `FMOD_DSP_TYPE.UNKNOWN`.
+ * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * @returns {constant.FMOD_DSP_TYPE} The DSP type.
  * @func_end
  */
 function fmod_dsp_get_type(dsp_ref) {}
@@ -2298,6 +2400,8 @@ function fmod_dsp_get_info(dsp_ref) {}
  *
  * This function retrieves statistics on the mixer thread CPU usage for this unit.
  * 
+ * [[Note: `FMOD_INIT.PROFILE_ENABLE` with ${function.fmod_system_init} is required to call this function.]]
+ * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {struct.FmodCPUTimeUsage}
  * @func_end
@@ -2314,8 +2418,7 @@ function fmod_dsp_get_cpu_usage(dsp_ref) {}
  * This function sets a user value associated with this object.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The floating point value stored on this object.
  * @func_end
  */
 function fmod_dsp_set_user_data(dsp_ref, data) {}
@@ -2327,7 +2430,7 @@ function fmod_dsp_set_user_data(dsp_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a floating point user value associated with this object.
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -2342,10 +2445,19 @@ function fmod_dsp_get_user_data(dsp_ref) {}
  *
  * <br />
  *
- * This function sets the callback for DSP notifications.
+ * This function enables DSP notifications for the given DSP.
+ * 
+ * When enabled, callbacks for this DSP will be triggered as an ${event.social}.
  * 
  * @param {real} dsp_ref A reference to a DSP.
- * @returns {real}
+ * 
+ * @event social
+ * @member {string} type The string `"fmod_dsp_set_callback"`.
+ * @member {constant.FMOD_DSP_CALLBACK_TYPE} kind The kind of DSP callback.
+ * @member {real} dsp_ref The DSP for which this callback is triggered.
+ * @member {real} parameter_index OPTIONAL The index of the DSP parameter that's released (only included when `kind` is `FMOD_DSP_CALLBACK_TYPE.DATAPARAMETERRELEASE`).
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_dsp_set_callback(dsp_ref) {}
@@ -2375,8 +2487,7 @@ function fmod_dsp_get_system_object(dsp_ref) {}
  * This function sets the connection's volume scale.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} volume
- * @returns {real}
+ * @param {real} volume The volume scale applied to the input before being passed to the output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
  * @func_end
  */
 function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
@@ -2389,6 +2500,8 @@ function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
  * <br />
  *
  * This function retrieves the connection's volume scale.
+ * 
+ * The function returns the volume scale applied to the input before being passed to the output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2405,11 +2518,28 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  *
  * This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
+ * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
+ * 
+ * If null or equivalent is passed in via `matrix` a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.
+ * 
+ * Example 5.1 unit matrix: 
+ * 
+ * ```
+ * 1 0 0 0 0 0
+ * 0 1 0 0 0 0
+ * 0 0 1 0 0 0
+ * 0 0 0 1 0 0
+ * 0 0 0 0 1 0
+ * 0 0 0 0 0 1
+ * ```
+ * 
+ * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
+ * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {array[real]} matrix
- * @param {real} out_channels
- * @param {real} in_channels
- * @param {real} in_channel_hop
+ * @param {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel. Null or equivalent sets a 'default' matrix.
+ * @param {real} out_channels The number of output channels (rows) in `matrix`. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}];
+ * @param {real} in_channels The number of input channels (columns) in `matrix`. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}];
+ * @param {real} in_channel_hop OPTIONAL The width (total number of columns) of source `matrix`. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}]; Defaults to `in_channels`.
  * @func_end
  */
 function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_channels, in_channels, in_channel_hop) {}
@@ -2423,8 +2553,10 @@ function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_chan
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
  * 
+ * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
+ * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} in_channel_hop
+ * @param {real} in_channel_hop The width (total number of columns) of the destination matrix. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix.
  * @returns {struct.FmodDSPConnectionMixMatrix}
  * @func_end
  */
@@ -2438,6 +2570,8 @@ function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) 
  * <br />
  *
  * This function retrieves the connection's input DSP unit.
+ * 
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FMOD_RESULT.ERR_NOTREADY` and the value 0 will be returned.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2453,6 +2587,8 @@ function fmod_dsp_connection_get_input(dsp_connection_ref) {}
  * <br />
  *
  * This function retrieves the connection's output DSP unit.
+ * 
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FMOD_RESULT.ERR_NOTREADY` and the value 0 will be returned.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2470,7 +2606,7 @@ function fmod_dsp_connection_get_output(dsp_connection_ref) {}
  * This function retrieves the type of the connection between 2 DSP units.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @returns {real}
+ * @returns {constant.FMOD_DSPCONNECTION_TYPE}
  * @func_end
  */
 function fmod_dsp_connection_get_type(dsp_connection_ref) {}
@@ -2485,8 +2621,7 @@ function fmod_dsp_connection_get_type(dsp_connection_ref) {}
  * This function sets a user value associated with this object.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The floating-point value to set.
  * @func_end
  */
 function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
@@ -2498,7 +2633,7 @@ function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves the floating-point user value associated with this object, as set by an earlier call to ${function.fmod_dsp_connection_set_user_data}.
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2517,11 +2652,10 @@ function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
  * This function sets individual attributes for a polygon inside a geometry object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} direct_occlusion
- * @param {real} reverb_occlusion
- * @param {real} double_sided
- * @returns {real}
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion.
+ * @param {real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion.
+ * @param {boolean} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @func_end
  */
 function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direct_occlusion, reverb_occlusion, double_sided) {}
@@ -2536,7 +2670,7 @@ function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direc
  * This function retrieves the attributes for a polygon.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
  * @returns {struct.FmodGeometryPolygonAttributes}
  * @func_end
  */
@@ -2552,7 +2686,7 @@ function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index) {}
  * This function gets the number of vertices in a polygon.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
  * @returns {real}
  * @func_end
  */
@@ -2567,9 +2701,15 @@ function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
  *
  * This function alters the position of a polygon's vertex inside a geometry object.
  * 
+ * Vertices are relative to the position of the object. See ${function.fmod_geometry_set_position}.
+ * 
+ * There may be some significant overhead with this function as it may cause some reconfiguration of internal data structures used to speed up sound-ray testing.
+ * 
+ * You may get better results if you want to modify your object by using ${function.fmod_geometry_set_position}, ${function.fmod_geometry_set_scale} and ${function.fmod_geometry_set_rotation}.
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} vertex_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} vertex_index The polygon vertex index. A value in the range [0, ${function.fmod_geometry_get_polygon_num_vertices}].
  * @param {struct.FmodVector} position
  * @func_end
  */
@@ -2585,8 +2725,8 @@ function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_in
  * This function retrieves the position of a vertex.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} polygon_index
- * @param {real} vertex_index
+ * @param {real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
+ * @param {real} vertex_index The polygon vertex index. A value in the range [0, ${function.fmod_geometry_get_polygon_num_vertices}].
  * @returns {struct.FmodVector}
  * @func_end
  */
@@ -2601,8 +2741,10 @@ function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_in
  *
  * This function sets the 3D position of the object.
  * 
+ * [[Note: The position is in world space.]]
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} position
+ * @param {struct.FmodVector} position The 3D position. Default is `{x: 0, y: 0, z: 0}`.
  * @func_end
  */
 function fmod_geometry_set_position(geometry_ref, position) {}
@@ -2615,6 +2757,8 @@ function fmod_geometry_set_position(geometry_ref, position) {}
  * <br />
  *
  * This function retrieves the 3D position of the object.
+ * 
+ * [[Note: The position is in world space.]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @returns {struct.FmodVector}
@@ -2631,9 +2775,11 @@ function fmod_geometry_get_position(geometry_ref) {}
  *
  * This function sets the 3D orientation of the object.
  * 
+ * See remarks in ${function.fmod_system_set_3d_listener_attributes} for a more elaborate description on forward and up vectors.
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} forward
- * @param {struct.FmodVector} up
+ * @param {struct.FmodVector} forward The forwards orientation. This vector must be of unit length and perpendicular to the up vector. Default is `{x: 0, y: 0, z: 1}`.
+ * @param {struct.FmodVector} up The upwards orientation. This vector must be of unit length and perpendicular to the forwards vector. Default is `{x: 0, y: 1, z: 0}`.
  * @func_end
  */
 function fmod_geometry_set_rotation(geometry_ref, forward, up) {}
@@ -2663,7 +2809,7 @@ function fmod_geometry_get_rotation(geometry_ref) {}
  * This function sets the 3D scale of the object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {struct.FmodVector} scale
+ * @param {struct.FmodVector} scale The scale value. Default is `{x: 1, y: 1, z: 1}`.
  * @func_end
  */
 function fmod_geometry_set_scale(geometry_ref, scale) {}
@@ -2692,11 +2838,20 @@ function fmod_geometry_get_scale(geometry_ref) {}
  *
  * This function adds a polygon.
  * 
+ * It returns the polygon index that you can use with other per polygon based functions as a handle.
+ * 
+ * [[Note: All vertices must lay in the same plane otherwise behavior may be unpredictable. The polygon is assumed to be convex. A non convex polygon will produce unpredictable behavior. Polygons with zero area will be ignored.]]
+ * 
+ * [[Note: Polygons cannot be added if already at the maximum number of polygons or if the addition of their vertices would result in exceeding the maximum number of vertices.]]
+ * 
+ * [[Note: Vertices of an object are in object space, not world space, and so are relative to the position, or center of the object. See ${function.fmod_geometry_set_position}.]]
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} direct_occlusion
- * @param {real} reverb_occlusion
- * @param {bool} double_sided
- * @param {struct.FmodVector} vertices
+ * @param {real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @param {real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
+ * @param {boolean} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
+ * @param {array[struct.FmodVector]} vertices An array of vertices located in object space.
+ * @returns {real}
  * @func_end
  */
 function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlusion, double_sided, vertices) {}
@@ -2711,8 +2866,8 @@ function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlus
  * This function sets whether an object is processed by the geometry engine.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} active
- * @returns {real}
+ * @param {real} active Whether to allow this object to be processed by the geometry engine. Default is true.
+ * @returns {boolean}
  * @func_end
  */
 function fmod_geometry_set_active(geometry_ref, active) {}
@@ -2727,7 +2882,7 @@ function fmod_geometry_set_active(geometry_ref, active) {}
  * This function retrieves whether an object is processed by the geometry engine.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_geometry_get_active(geometry_ref) {}
@@ -2741,12 +2896,13 @@ function fmod_geometry_get_active(geometry_ref) {}
  *
  * This function retrieves the maximum number of polygons and vertices allocatable for this object.
  * 
+ * [[Note: The maximum number is set with ${function.fmod_system_create_geometry}.]]
+ * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {buffer} buff_return
  * @returns {real}
  * @func_end
  */
-function fmod_geometry_get_max_polygons(geometry_ref, buff_return) {}
+function fmod_geometry_get_max_polygons(geometry_ref) {}
 
 
 /**
@@ -2770,11 +2926,10 @@ function fmod_geometry_get_num_polygons(geometry_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a floating-point user value associated with this object.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to be stored on this object.
  * @func_end
  */
 function fmod_geometry_set_user_data(geometry_ref, data) {}
@@ -2786,7 +2941,7 @@ function fmod_geometry_set_user_data(geometry_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_geometry_set_user_data}.
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @returns {real}
@@ -2804,7 +2959,6 @@ function fmod_geometry_get_user_data(geometry_ref) {}
  * This function frees a geometry object and releases its memory.
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @returns {real}
  * @func_end
  */
 function fmod_geometry_release(geometry_ref) {}
@@ -2816,10 +2970,14 @@ function fmod_geometry_release(geometry_ref) {}
  *
  * <br />
  *
- * This function saves the geometry object as a serialized binary block to a user memory buffer.
+ * This function saves the geometry object as a serialized binary block to a ${type.buffer}.
+ * 
+ * The function returns the size of the data written to the buffer, in bytes.
+ * 
+ * [[Note: The data can be saved to a file if required and loaded later with ${function.fmod_system_load_geometry}.]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
- * @param {buffer} buff
+ * @param {buffer} buff The address of the ${type.buffer} to write the data to.
  * @returns {real}
  * @func_end
  */
@@ -2835,10 +2993,14 @@ function fmod_geometry_save(geometry_ref, buff) {}
  *
  * This function sets the 3D attributes of a reverb sphere.
  * 
+ * When the position of the listener is less than `max_distance` away from the position of one or more reverb objects, the listener's 3D reverb properties are a weighted combination of those reverb objects. Otherwise, the reverb dsp will use the global reverb settings.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {struct.FmodVector} position
- * @param {real} min_distance
- * @param {real} max_distance
+ * @param {struct.FmodVector} position The position in 3D space representing the center of the reverb. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {real} min_distance The distance from the centerpoint within which the reverb will have full effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {real} max_distance The distance from the centerpoint beyond which the reverb will have no effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
  * @func_end
  */
 function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance, max_distance) {}
@@ -2851,6 +3013,8 @@ function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance,
  * <br />
  *
  * This function retrieves the 3D attributes of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverb3DAttributes}
@@ -2867,20 +3031,21 @@ function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
  *
  * This function sets the environmental properties of a reverb sphere.
  * 
+ * [[Note: the default reverb properties are the same as the `FMOD_PRESET_GENERIC` preset under ${constant.FMOD_REVERB_PRESETS}.]]
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} decay_time
- * @param {real} early_delay
- * @param {real} late_delay
- * @param {real} hf_reference
- * @param {real} hf_decay_ratio
- * @param {real} diffusion
- * @param {real} density
- * @param {real} low_shelf_frequency
- * @param {real} low_shelf_gain
- * @param {real} high_cut
- * @param {real} early_late_mix
- * @param {real} wet_level
- * @returns {real}
+ * @param {real} decay_time The reverberation decay time, expressed in milliseconds. A value in the range [0, 20000]. The default is 1500.
+ * @param {real} early_delay The initial reflection delay time, expressed in milliseconds. A value in the range [0, 300]. The default is 7.
+ * @param {real} late_delay The late reverberation delay time relative to initial reflection, expressed in milliseconds. A value in the range [0, 100]. The default is 11.
+ * @param {real} hf_reference The reference high frequency, in Hertz. A value in the range [20, 20000]. Default is 5000.
+ * @param {real} hf_decay_ratio The high-frequency to mid-frequency decay time ratio, as a percentage. A value in the range [10, 100]. The default is 50.
+ * @param {real} diffusion A value that controls the echo density in the late reverberation decay, as a percentage. A value in the range [10, 100]. The default is 50.
+ * @param {real} density A value that controls the modal density in the late reverberation decay, as a percentage. A value in the range [0, 100]. The default is 100.
+ * @param {real} low_shelf_frequency The reference low frequency, in Hertz. A value in the range [20, 1000]. The default is 250.
+ * @param {real} low_shelf_gain The relative room effect level at low frequencies, expressed in decibels (dB). A value in the range [-36, 12]. The default is 0.
+ * @param {real} high_cut The relative room effect level at high frequencies, in Hertz. A value in the range [0, 20000]. The default is 20000.
+ * @param {real} early_late_mix The early reflections level relative to room effect, as a percentage. The default is 50.
+ * @param {real} wet_level The room effect level at mid frequencies, expressed in decibels (dB). A value in the range [-80, 20]. The default is -6.
  * @func_end
  */
 function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level) {}
@@ -2893,6 +3058,8 @@ function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, l
  * <br />
  *
  * This function retrieves the environmental properties of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverbProperties}
@@ -2909,9 +3076,10 @@ function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
  *
  * This function sets the active state.
  * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} active
- * @returns {real}
+ * @param {boolean} active The active state of the reverb sphere. The default is `true`.
  * @func_end
  */
 function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
@@ -2923,10 +3091,12 @@ function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
  *
  * <br />
  *
- * This function retrieves the active state.
+ * This function retrieves the active state of a reverb sphere.
+ * 
+ * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @returns {real}
+ * @returns {boolean}
  * @func_end
  */
 function fmod_reverb_3d_get_active(reverb_3d_ref) {}
@@ -2940,8 +3110,9 @@ function fmod_reverb_3d_get_active(reverb_3d_ref) {}
  *
  * This function releases the memory for a reverb object and makes it inactive.
  * 
+ * [[Note: If you release all Reverb3D objects and have not added a new Reverb3D object, ${function.fmod_system_set_reverb_properties} should be called to reset the reverb properties.]]
+ * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @returns {real}
  * @func_end
  */
 function fmod_reverb_3d_release(reverb_3d_ref) {}
@@ -2953,11 +3124,10 @@ function fmod_reverb_3d_release(reverb_3d_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a single floating-point user value associated with this object.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value stored on this object.
  * @func_end
  */
 function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
@@ -2969,7 +3139,7 @@ function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a floating-point user value associated with this object, as set with an earlier call to [$function.fmod_reverb_3d_set_user_data].
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {real}
@@ -3017,8 +3187,14 @@ function fmod_sound_get_format(sound_ref) {}
  *
  * This function retrieves the length using the specified time unit.
  * 
+ * `length_type` must be valid for the file format. For example, an MP3 file does not support `FMOD_TIMEUNIT.MODORDER`.
+ * 
+ * A length of 0xFFFFFFFF means the sound is of unlimited length, such as an internet radio stream or MOD/S3M/XM/IT file which may loop forever.
+ * 
+ * [[Note: Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as un-tagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use `FMOD_MODE.ACCURATETIME` when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} length_type
+ * @param {constant.FMOD_TIMEUNIT} length_type The time unit type to retrieve.
  * @returns {real}
  * @func_end
  */
@@ -3032,6 +3208,10 @@ function fmod_sound_get_length(sound_ref, length_type) {}
  * <br />
  *
  * This function retrieves the number of metadata tags.
+ * 
+ * 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.
+ * 
+ * [[Note: This value could be periodically checked to see if new tags are available in certain circumstances. This might be the case with internet based streams (i.e. shoutcast or icecast) where the name of the song or other attributes might change.]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {struct.FmodSoundNumTags}
@@ -3048,12 +3228,64 @@ function fmod_sound_get_num_tags(sound_ref) {}
  *
  * This function retrieves a metadata tag.
  * 
+ * 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.
+ * 
+ * The number of tags available can be found with ${function.fmod_sound_get_num_tags}.
+ * 
+ * Displaying or retrieving tags can be done in 3 different ways:
+ * 
+ * * All tags can be continuously retrieved by looping from 0 to the `num_tags` value in ${function.fmod_sound_get_num_tags} - 1. Updated tags will refresh automatically, and the `update` member of the ${struct.FmodSoundTag} structure will be set to `true` if a tag has been updated, due to something like a netstream changing the song name for example.
+ * * Tags can be retrieved by specifying -1 as the index and only updating tags that are returned. If all tags are retrieved and this function is called the function will return an error of `FMOD_RESULT.ERR_TAGNOTFOUND`.
+ * * Specific tags can be retrieved by specifying a name parameter. The index can be 0 based or -1 in the same fashion as described previously.
+ * 
+ * [[Note: With netstreams an important consideration must be made between songs, a tag may occur that changes the playback rate of the song. It is up to the user to catch this and reset the playback rate with ${function.fmod_channel_set_frequency}. A sample rate change will be signalled with a tag of type `FMOD_TAGTYPE.FMOD`.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} tag_index
- * @param {buffer} data_buffer
+ * @param {real} tag_index The index into the tag list.
+ * @param {buffer} data_buffer The ${type.buffer} in which to store the raw, binary tag data.
  * @returns {struct.FmodSoundTag}
+ * 
+ * @example
+ * 
+ * The following example reads any tags that have arrived, this could happen if a radio station switches to a new song. This loop only runs IF there is an update to the tags.
+ * 
+ * ```gml
+ * var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+ * while (fmod_last_result() == FMOD_RESULT.OK)
+ * {
+ *     // Move cursor to the beginning of the buffer
+ *     buffer_seek(tag_data_buff, buffer_seek_start, 0);
+ *     
+ *     if (_tag.data_type == FMOD_TAGDATATYPE.STRING)
+ *     {
+ *         var _value = buffer_read(tag_data_buff, buffer_string);
+ *         tag_strings[tag_index] = $"{_tag.name}: {_value}";
+ *         tag_index = (tag_index + 1) % tag_count;
+ *         
+ *         if (_tag.type == FMOD_TAGTYPE.PLAYLIST && _tag.name == "FILE")
+ *         {
+ *             var _url = _value;
+ *             fmod_sound_release(sound_index);
+ *             
+ *             sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING, extra);
+ *         }
+ *     }
+ *     else if (_tag.type == FMOD_TAGTYPE.FMOD)
+ *     {
+ *         // When a song changes, the sample rate may also change, so compensate here.
+ *         if ((_tag.name == "Sample Rate Change") && channel_index != -1)
+ *         {
+ *             var _frequency = buffer_read(tag_data_buff, buffer_f32);
+ *             fmod_channel_set_frequency(channel_index, _frequency);
+ *         }
+ *     }
+ * 	    
+ *     _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+ * }
+```
  * @func_end
  */
+
 function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
 
 
@@ -3065,11 +3297,15 @@ function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
  *
  * This function sets the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.
  * 
+ * When ${function.fmod_channel_control_set_3d_cone_orientation} is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.
+ * 
+ * * If the relative angle is within the `inside_cone_angle`, the sound will not have any attenuation applied.
+ * * If the relative angle is between the `inside_cone_angle` and `outside_cone_angle`, linear volume attenuation (between 1 and `outside_volume`) is applied between the two angles until it reaches the `outside_cone_angle`.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} inside_cone_angle
- * @param {real} outside_cone_angle
- * @param {real} outside_volume
- * @returns {real}
+ * @param {real} inside_cone_angle The inside cone angle, expressed in degrees. This is the angle spread within which the sound is unattenuated. A value in the range [0, ]. The default is 360.
+ * @param {real} outside_cone_angle The outside cone angle, expressed in degrees. This is the angle spread outside of which the sound is attenuated to its outsidevolume. A value in the range [, 360]. The default is 360.
+ * @param {real} outside_volume The cone outside volume. A value in the range [0, 1]. The default is 1.
  * @func_end
  */
 function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume) {}
@@ -3098,8 +3334,30 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
  *
  * This function sets a custom roll-off shape for 3D distance attenuation.
  * 
+ * [[Note: This function must be used in conjunction with the `FMOD_MODE.AS_3D_CUSTOMROLLOFF` flag to be activated.]]
+ * 
+ * This function does not duplicate the memory for the points internally. The memory you pass to FMOD must remain valid while in use.
+ * 
+ * If `FMOD_MODE.AS_3D_CUSTOMROLLOFF` is set and the roll-off shape is not set, FMOD will revert to `FMOD_MODE.AS_3D_INVERSEROLLOFF` roll-off mode.
+ * 
+ * When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.
+ * 
+ * The distance in-between point values is linearly interpolated until the final point where the last value is held.
+ * 
+ * If the points are not sorted by distance, an error will result.
+ * 
+ * ```gml
+ * // Defining a custom array of points
+ * curve =
+ * [
+ *     { x: 0,  y:  1, z: 0 },
+ *     { x: 2,  y: .2, z: 0 },
+ *     { x: 2,  y:  0, z: 0 }
+ * ];
+ * ```
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {array[struct.FmodVector]} points
+ * @param {array[struct.FmodVector]} points An array of points sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0.
  * @func_end
  */
 function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
@@ -3128,10 +3386,28 @@ function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
  *
  * This function sets the minimum and maximum audible distance for a 3D sound.
  * 
+ * The distances are meant to simulate the 'size' of a sound. Reducing the `min` distance will mean the sound appears smaller in the world, and in some modes makes the volume attenuate faster as the listener moves away from the sound.
+ * Increasing the `min` distance simulates a larger sound in the world, and in some modes makes the volume attenuate slower as the listener moves away from the sound.
+ * 
+ * `max` will affect attenuation differently based on roll-off mode set in the mode parameter of $(function.fmod_system_create_sound), ${function.fmod_system_create_stream}, ${function.fmod_sound_set_mode} or ${function.fmod_channel_control_set_mode}.
+ * 
+ * For these modes the volume will attenuate to 0 volume (silence), when the distance from the sound is equal to or further than the max distance:
+ * 
+ * * `FMOD_MODE.AS_3D_LINEARROLLOFF`
+ * * `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`
+ * 
+ * For these modes the volume will stop attenuating at the point of the `max` distance, without affecting the rate of attenuation:
+ * 
+ * * `FMOD_MODE.AS_3D_INVERSEROLLOFF`
+ * * `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF`
+ * 
+ * For this mode the `max` distance is ignored:
+ * 
+ * * `FMOD_MODE.AS_3D_CUSTOMROLLOFF`
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} min
- * @param {real} max
- * @returns {real}
+ * @param {real} min The sound's minimum volume distance, or the distance that the sound has no attenuation due to 3D positioning. The default value is 1.
+ * @param {real} max The sound's maximum volume distance, or the distance that no additional attenuation will occur. See below for notes on different max distance behaviors. The default value is 10000.
  * @func_end
  */
 function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
@@ -3160,9 +3436,11 @@ function fmod_sound_get_3d_min_max_distance(sound_ref) {}
  *
  * This function sets a sound's default playback attributes.
  * 
+ * When the Sound is played it will use these values without having to specify them later on a per Channel basis.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} frequency
- * @param {real} priority
+ * @param {real} frequency The default playback frequency, in Hertz. The default is 48000.
+ * @param {real} priority The default priority where 0 is the highest priority. A value in the range [0, 256]. The default is 128.
  * @returns {real}
  * @func_end
  */
@@ -3192,9 +3470,30 @@ function fmod_sound_get_defaults(sound_ref) {}
  *
  * This function sets or alters the mode of a sound.
  * 
+ * [[Note: When calling this function, note that it will only take effect when the sound is played again with ${function.fmod_system_play_sound}. This is the default for when the sound next plays, not a mode that will suddenly change all currently playing instances of this sound.]]
+ * 
+ * [[Note: Changing the mode on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
+ * Flags supported: 
+ * 
+ * `FMOD_MODE.LOOP_OFF`
+ * `FMOD_MODE.LOOP_NORMAL`
+ * `FMOD_MODE.LOOP_BIDI`
+ * `FMOD_MODE.AS_3D_HEADRELATIVE`
+ * `FMOD_MODE.AS_3D_WORLDRELATIVE`
+ * `FMOD_MODE.AS_2D`
+ `* FMOD_MODE.AS_3D`
+ * `FMOD_MODE.AS_3D_INVERSEROLLOFF`
+ * `FMOD_MODE.AS_3D_LINEARROLLOFF`
+ * `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`
+ * `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF`
+ * `FMOD_MODE.AS_3D_CUSTOMROLLOFF`
+ * `FMOD_MODE.AS_3D_IGNOREGEOMETRY`
+ * 
+ * If `FMOD_MODE.AS_3D_IGNOREGEOMETRY` is not specified, the flag will be cleared if it was specified previously.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} mode
- * @returns {real}
+ * @param {constant.FMOD_MODE} mode The mode bits to set. The default is `FMOD_MODE.DEFAULT`.
  * @func_end
  */
 function fmod_sound_set_mode(sound_ref, mode) {}
@@ -3208,8 +3507,10 @@ function fmod_sound_set_mode(sound_ref, mode) {}
  *
  * This function retrieves the mode of a sound.
  * 
+ * [[Note: The mode will be dependent on the mode set by a call to ${function.fmod_system_create_sound}, ${function.fmod_system_create_stream} or ${function.fmod_sound_set_mode}.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @returns {real}
+ * @returns {constant.FMOD_MODE}
  * @func_end
  */
 function fmod_sound_get_mode(sound_ref) {}
@@ -3223,9 +3524,10 @@ function fmod_sound_get_mode(sound_ref) {}
  *
  * This function sets the sound to loop a specified number of times before stopping if the playback mode is set to looping.
  * 
+ * [[Note: Changing the loop count on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} count
- * @returns {real}
+ * @param {real} count The number of times to loop before final playback where -1 is always loop. 0 means no loop. Default is -1.
  * @func_end
  */
 function fmod_sound_set_loop_count(sound_ref, count) {}
@@ -3238,6 +3540,10 @@ function fmod_sound_set_loop_count(sound_ref, count) {}
  * <br />
  *
  * This function retrieves the sound's loop count.
+ * 
+ * The value -1 is returned when the sound loops infinitely. The value 0 means don't loop.
+ * 
+ * [[Note: Unlike the [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) loop count function, this function simply returns the value set with ${function.fmod_sound_set_loop_count}. It does not decrement as it plays (especially seeing as one sound can be played multiple times).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3254,12 +3560,19 @@ function fmod_sound_get_loop_count(sound_ref) {}
  *
  * This function sets the loop points within a sound.
  * 
+ * The values used for `loop_start` and `loop_end` are inclusive, which means these positions will be played.
+ * 
+ * If a `loop_end` is smaller or equal to `loop_start` an error will be returned. The same will happen for any values that are equal or greater than the length of the sound.
+ * 
+ * [[Note: Changing loop points on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * 
+ * [[Note: The [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)'s mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} loop_start
- * @param {real} loop_start_type
- * @param {real} loop_end
- * @param {real} loop_end_type
- * @returns {real}
+ * @param {real} loop_start The loop start point. A value in the range [0, `loop_end`].
+ * @param {constant.FMOD_TIMEUNIT} loop_start_type The time format of `loop_start`.
+ * @param {real} loop_end The loop end point. A value in the range [`loop_start`, ${function.fmod_sound_get_length}].
+ * @param {constant.FMOD_TIMEUNIT} loop_end_type The time format of `loop_end`.
  * @func_end
  */
 function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type) {}
@@ -3273,9 +3586,11 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
  *
  * This function retrieves the loop points for a sound.
  * 
+ * The values from `loop_start` and `loop_end` are inclusive, which means these positions will be played.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} loop_start_type
- * @param {real} loop_end_type
+ * @param {constant.FMOD_TIMEUNIT} loop_start_type The time format in which to return `loop_start`.
+ * @param {constant.FMOD_TIMEUNIT} loop_end_type The time format in which to return `loop_end`.
  * @returns {struct.FmodLoopPoints}
  * @func_end
  */
@@ -3290,9 +3605,10 @@ function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {
  *
  * This function moves the sound from its existing SoundGroup to the specified sound group.
  * 
+ * By default, a sound is located in the 'master sound group'. This can be retrieved with ${function.fmod_system_get_master_sound_group}.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} sound_group_ref A reference to a SoundGroup.
- * @returns {real}
+ * @param {real} sound_group_ref The [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) to move the sound to.
  * @func_end
  */
 function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
@@ -3304,7 +3620,7 @@ function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the sound's current sound group.
+ * This function retrieves the sound's current [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3321,6 +3637,8 @@ function fmod_sound_get_sound_group(sound_ref) {}
  *
  * This function retrieves the number of subsounds stored within a sound.
  * 
+ * A format that has subsounds is a container format, such as FSB, DLS, MOD, S3M, XM, IT.
+ * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
  * @func_end
@@ -3336,8 +3654,14 @@ function fmod_sound_get_num_sub_sounds(sound_ref) {}
  *
  * This function retrieves a handle to a Sound object that is contained within the parent sound.
  * 
+ * If the sound is a stream and `FMOD_MODE.NONBLOCKING` was not used, then this call will perform a blocking seek/flush to the specified subsound.
+ * 
+ * If `FMOD_MODE.NONBLOCKING` was used to open this sound and the sound is a stream, FMOD will do a non blocking seek/flush and set the state of the subsound to `FMOD_OPENSTATE.SEEKING`.
+ * 
+ * The sound won't be ready to be used when `FMOD_MODE.NONBLOCKING` is used, until the state of the sound becomes `FMOD_OPENSTATE.READY` or `FMOD_OPENSTATE.ERROR`.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} sub_sound_index
+ * @param {real} sub_sound_index The index of the subsound.
  * @returns {real}
  * @func_end
  */
@@ -3351,6 +3675,8 @@ function fmod_sound_get_sub_sound(sound_ref, sub_sound_index) {}
  * <br />
  *
  * This function retrieves the parent Sound object that contains this subsound.
+ * 
+ * If the sound is not a subsound, the value returned will be 0.
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3367,6 +3693,16 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
  *
  * This function retrieves the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.
  * 
+ * When a sound is opened with `FMOD_MODE.NONBLOCKING`, it is opened and prepared in the background, or asynchronously. This allows the main application to execute without stalling on audio loads.
+ * This function will describe the state of the asynchronous load routine i.e. whether it has succeeded, failed or is still in progress.
+ * 
+ * If `starving` is true, then you will most likely hear a stuttering/repeating sound as the decode buffer loops on itself and replays old data.
+ * With the ability to detect stream starvation, muting the sound with ${function.fmod_channel_control_set_mute} will keep the stream quiet until it is not starving anymore.
+ * 
+ * [[Note: Always check `open_state` to determine the state of the sound. Do not assume that if this function returns `FMOD_RESULT.OK` then the sound has finished loading.]]
+ * 
+ * See also: ${constant.FMOD_MODE}
+ * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {struct.FmodSoundOpenState}
  * @func_end
@@ -3380,12 +3716,27 @@ function fmod_sound_get_open_state(sound_ref) {}
  *
  * <br />
  *
- * This function reads data from an opened sound to a specified buffer, using FMOD's internal codecs.
+ * This function reads data from an opened sound to a specified ${type.buffer}, using FMOD's internal codecs.
+ * 
+ * It function returns the actual number of bytes written to the buffer or -1 in case of an error.
+ * 
+ * This can be used for decoding data offline in small pieces (or big pieces), rather than playing and capturing it, or loading the whole file at once and having to ${function.fmod_sound_lock} / ${function.fmod_sound_unlock} the data.
+ * 
+ * If you read too much data, it is possible that ${function.fmod_last_result} will return `FMOD_RESULT.ERR_FILE_EOF`, meaning it is out of data. The returned 'read' parameter will reflect this by returning a smaller number of bytes read than was requested.
+ * 
+ * As a non streaming sound reads and decodes the whole file then closes it upon calling ${function.fmod_system_create_sound}, ${function.fmod_sound_read_data} will then not work because the file handle is closed. Use `FMOD_MODE.OPENONLY` to stop FMOD reading/decoding the file.
+ * If `FMOD_MODE.OPENONLY` flag is used when opening a sound, it will leave the file handle open, and FMOD will not read/decode any data internally, so the read cursor will stay at position 0. This will allow the user to read the data from the start.
+ * 
+ * For streams, the streaming engine will decode a small chunk of data and this will advance the read cursor. You need to either use `FMOD_MODE.OPENONLY` to stop the stream pre-buffering or call ${function.fmod_sound_seek_data} to reset the read cursor back to the start of the file, otherwise it will appear as if the start of the stream is missing.
+ * ${function.fmod_channel_set_position} will have the same result. These functions will flush the stream buffer and read in a chunk of audio internally. This is why if you want to read from an absolute position you should use ${function.fmod_sound_seek_data} and not the previously mentioned functions.
+ * 
+ * If you are calling ${function.fmod_sound_read_data} and ${function.fmod_sound_seek_data} on a stream, information functions such as ${fmod_channel_get_position} may give misleading results. Calling ${function.fmod_channel_get_position} will cause the streaming engine to reset and flush the stream, leading to the time values returning to their correct position.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {buffer} buff
- * @param {real} length
- * @param {real} offset
+ * @param {buffer} buff The ${type.buffer} to read the decoded data into.
+ * @param {real} length The length of the data to read into the buffer, in bytes.
+ * @param {real} offset The offset in the buffer, in bytes, to write the data.
+ * @returns {real}
  * @func_end
  */
 function fmod_sound_read_data(sound_ref, buff, length, offset) {}
@@ -3399,9 +3750,14 @@ function fmod_sound_read_data(sound_ref, buff, length, offset) {}
  *
  * This function seeks a sound for use with data reading, using FMOD's internal codecs.
  * 
+ * [[Warning: This function is for use in conjunction with ${function.fmod_sound_read_data} and `FMOD_MODE.OPENONLY`.]]
+ * 
+ * For streaming sounds, if this function is called, it will advance the internal file pointer but not update the streaming engine. This can lead to de-synchronization of position information for the stream and audible playback.
+ * 
+ * A stream can reset its stream buffer and position synchronization by calling ${function.fmod_channel_set_position}. This causes reset and flush of the stream buffer.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} pcm
- * @returns {real}
+ * @param {real} pcm The seek offset, in samples.
  * @func_end
  */
 function fmod_sound_seek_data(sound_ref, pcm) {}
@@ -3415,11 +3771,29 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
  *
  * This function gives access to a portion or all the sample data of a sound for direct manipulation.
  * 
+ * With this function you get access to the raw audio data. If the data is 8, 16, 24 or 32bit PCM data, mono or stereo data, you must take this into consideration when processing the data. See [Sample Data](https://www.fmod.com/docs/2.02/api/glossary.html#sample-data) for more information.
+ * 
+ * The locked data is copied to the buffers that you pass to the function. This can be two buffers as the data may "wrap around" to the start of the sound.
+ * The first buffer will always store the data up to the end of the sound. The second will store the remainder, starting at the start of the sound.
+ * If the range of data you want to copy doesn't exceed the length of the sound the second buffer will have no data written to it.
+ * 
+ * You can lock multiple regions of data of a sound at the same time, but you should make sure the regions don't overlap.
+ * If some bytes are locked by multiple calls to this function, they will remain locked after you make all corresponding calls to ${function.fmod_sound_unlock}.
+ * 
+ * [[Important: You must always unlock the data again after you have finished with it, using ${function.fmod_sound_unlock}.]]
+ * 
+ * If the sound is created with `FMOD_MODE.CREATECOMPRESSEDSAMPLE` the data retrieved will be the compressed bitstream.
+ * 
+ * It is not possible to lock the following:
+ * 
+ * * A parent sound containing subsounds. A parent sound has no audio data and ${function.fmod_last_result} will return `FMOD_RESULT.ERR_SUBSOUNDS`.
+ * * A stream / sound created with `FMOD_MODE.CREATESTREAM`. `FMOD_RESULT.ERR_BADCOMMAND` will be returned by ${function.fmod_last_result} in this case.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} offset
- * @param {real} length
- * @param {buffer} buff1
- * @param {buffer} buff2
+ * @param {real} offset The offset into the sound's buffer to be retrieved, in bytes.
+ * @param {real} length Length of the data required to be retrieved.
+ * @param {buffer} buff1 The buffer to write the first part of the locked data to.
+ * @param {buffer} buff2 The buffer to write the second part of the locked data to. This will only be written to if the `offset` + `length` has exceeded the length of the sample buffer.
  * @returns {struct.FmodSoundLock}
  * @func_end
  */
@@ -3434,13 +3808,17 @@ function fmod_sound_lock(sound_ref, offset, length, buff1, buff2) {}
  *
  * This function finalizes a previous sample data lock and submits it back to the Sound object.
  * 
+ * The data being 'unlocked' must first have been locked with ${function.fmod_sound_lock}.
+ * 
+ * [[Warning: If an unlock is not performed on PCM data, then sample loops may produce audible clicks.]]
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} buff1
- * @param {real} len1
- * @param {real} address1
- * @param {real} buff2
- * @param {real} len2
- * @param {real} address2
+ * @param {real} buff1 The first buffer passed to an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} len1 The length of the data in the first buffer, in bytes.
+ * @param {real} address1 The `patch_address` of `buffer1`'s corresponding chunck in FMOD memory, as returned by an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} buff2 OPTIONAL The second buffer passed to an earlier call to ${function.fmod_sound_lock}.
+ * @param {real} len2 OPTIONAL The length of the data in the second buffer, in bytes.
+ * @param {real} address2 OPTIONAL The `patch_address` of `buffer2`'s corresponding chunck in FMOD memory, as returned by an earlier call to ${function.fmod_sound_lock}.
  * @func_end
  */
 function fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2) {}
@@ -3470,9 +3848,8 @@ function fmod_sound_get_music_num_channels(sound_ref) {}
  * This function sets the volume of a MOD/S3M/XM/IT/MIDI music channel volume.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} channel_index
- * @param {real} volume
- * @returns {real}
+ * @param {real} channel_index The MOD/S3M/XM/IT/MIDI music subchannel to set a linear volume for.
+ * @param {real} volume The volume of the channel. A value in the range [0, 1]. Default is 1.
  * @func_end
  */
 function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {}
@@ -3487,7 +3864,7 @@ function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {
  * This function retrieves the volume of a MOD/S3M/XM/IT/MIDI music channel volume.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} channel_index
+ * @param {real} channel_index The MOD/S3M/XM/IT/MIDI music subchannel to retrieve the volume for.
  * @returns {real}
  * @func_end
  */
@@ -3503,8 +3880,7 @@ function fmod_sound_get_music_channel_volume(sound_ref, channel_index) {}
  * This function sets the relative speed of MOD/S3M/XM/IT/MIDI music.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} speed
- * @returns {real}
+ * @param {real} speed The speed of the song. A value in the range [0.01, 100]. The default is 1.
  * @func_end
  */
 function fmod_sound_set_music_speed(sound_ref, speed) {}
@@ -3533,9 +3909,11 @@ function fmod_sound_get_music_speed(sound_ref) {}
  *
  * This function retrieves a sync point.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} point_index 
- * @param {constant.FMOD_TIMEUNIT} offset_type 
+ * @param {real} point_index The index of the sync point. A value in the range [0, ${function.fmod_sound_get_num_sync_points}].
+ * @param {constant.FMOD_TIMEUNIT} offset_type The format in which to return the sync point offset.
  * @returns {struct.FmodSyncPoint}
  * @func_end
  */
@@ -3549,6 +3927,8 @@ function fmod_sound_get_sync_point(sound_ref, point_index, offset_type) {}
  * <br />
  *
  * This function retrieves the number of sync points stored within a sound.
+ * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3565,11 +3945,12 @@ function fmod_sound_get_num_sync_points(sound_ref) {}
  *
  * This function adds a sync point at a specific time within the sound.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} offset
- * @param {real} offset_type
- * @param {string} name
- * @returns {real}
+ * @param {real} offset The offset value.
+ * @param {constant.FMOD_TIMEUNIT} offset_type The `offset` unit type.
+ * @param {string} name The sync point name.
  * @func_end
  */
 function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
@@ -3583,9 +3964,10 @@ function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
  *
  * This function deletes a sync point within the sound.
  * 
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} point_index
- * @returns {real}
+ * @param {struct.FmodSyncPoint} point_index The sync point.
  * @func_end
  */
 function fmod_sound_delete_sync_point(sound_ref, point_index) {}
@@ -3599,8 +3981,11 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
  *
  * This function frees a sound object.
  * 
+ * This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.
+ * 
+ * If the sound was opened with `FMOD_MODE.NONBLOCKING` and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using ${function.fmod_sound_get_open_state} and checking the open state for `FMOD_OPENSTATE.READY` and `FMOD_OPENSTATE.ERROR` is a good way to avoid stalls.
+ * 
  * @param {real} sound_ref A reference to a sound.
- * @returns {real}
  * @func_end
  */
 function fmod_sound_release(sound_ref) {}
@@ -3627,11 +4012,10 @@ function fmod_sound_get_system_object(sound_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a floating-point user value associated with this object.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to be stored on this object.
  * @func_end
  */
 function fmod_sound_set_user_data(sound_ref, data) {}
@@ -3643,7 +4027,7 @@ function fmod_sound_set_user_data(sound_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a user value associated with this object, set with ${function.fmod_sound_set_user_data}.
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3660,9 +4044,13 @@ function fmod_sound_get_user_data(sound_ref) {}
  *
  * This function sets the maximum number of playbacks to be audible at once in a sound group.
  * 
+ * If playing instances of sounds in this group equal or exceed number specified here, attempts to play more of the sounds will be met with `FMOD_RESULT.ERR_MAXAUDIBLE` by default.
+ * Use ${function.fmod_sound_group_set_max_audible_behavior} to change the way the sound playback behaves when too many sounds are playing. Muting, failing and stealing behaviors can be specified. See ${constant.FMOD_SOUNDGROUP_BEHAVIOR}.
+ * 
+ * ${function.fmod_sound_group_get_num_playing} can be used to determine how many instances of the sounds in the SoundGroup are currently playing.
+ * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} max_audible
- * @returns {real}
+ * @param {real} max_audible The maximum number of playbacks to be audible at once. -1 denotes unlimited (default).
  * @func_end
  */
 function fmod_sound_group_set_max_audible(sound_group_ref, max_audible) {}
@@ -3692,8 +4080,7 @@ function fmod_sound_group_get_max_audible(sound_group_ref) {}
  * This function changes the way the sound playback behaves when too many sounds are playing in a soundgroup.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} behavior
- * @returns {real}
+ * @param {constant.FMOD_SOUNDGROUP_BEHAVIOR} behavior The [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html)'s max playbacks behavior. The default is `FMOD_SOUNDGROUP_BEHAVIOR.FAIL`.
  * @func_end
  */
 function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
@@ -3708,7 +4095,7 @@ function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
  * This function retrieves the current max audible behavior.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @returns {real}
+ * @returns {constant.FMOD_SOUNDGROUP_BEHAVIOR}
  * @func_end
  */
 function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
@@ -3722,9 +4109,12 @@ function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
  *
  * This function sets a mute fade time.
  * 
+ * If a mode besides `FMOD_SOUNDGROUP_BEHAVIOR.MUTE` is used, the fade speed is ignored.
+ * 
+ * When more sounds are playing in a SoundGroup than are specified with ${function.fmod_sound_group_set_max_audible}, the least important [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if `FMOD_SOUNDGROUP_BEHAVIOR.MUTE` is used, and any previous sounds that were silent because of this rule will fade in if they are more important.
+ * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} speed
- * @returns {real}
+ * @param {real} speed The fade time, in seconds. 0 means no fading (default).
  * @func_end
  */
 function fmod_sound_group_set_mute_fade_speed(sound_group_ref, speed) {}
@@ -3736,7 +4126,7 @@ function fmod_sound_group_set_mute_fade_speed(sound_group_ref, speed) {}
  *
  * <br />
  *
- * This function retrieves the current mute fade time.
+ * This function retrieves the current mute fade time, in seconds.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -3753,9 +4143,9 @@ function fmod_sound_group_get_mute_fade_speed(sound_group_ref) {}
  *
  * This function sets the volume of the sound group.
  * 
+ * [[Note: This scales the volume of all [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) playing [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in this [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} volume
- * @returns {real}
  * @func_end
  */
 function fmod_sound_group_set_volume(sound_group_ref, volume) {}
@@ -3767,7 +4157,7 @@ function fmod_sound_group_set_volume(sound_group_ref, volume) {}
  *
  * <br />
  *
- * This function retrieves the volume of the sound group.
+ * This function retrieves the volume level of the sound group.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -3782,7 +4172,7 @@ function fmod_sound_group_get_volume(sound_group_ref) {}
  *
  * <br />
  *
- * This function retrieves the current number of sounds in this sound group.
+ * This function retrieves the current number of [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in this SoundGroup.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -3799,8 +4189,10 @@ function fmod_sound_group_get_num_sounds(sound_group_ref) {}
  *
  * This function retrieves a sound.
  * 
+ * [[Note: Use ${function.fmod_sound_group_get_num_sounds} in conjunction with this function to enumerate all sounds in a [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} sound_index
+ * @param {real} sound_index The index of the sound in the given SoundGroup.
  * @returns {real}
  * @func_end
  */
@@ -3813,7 +4205,9 @@ function fmod_sound_group_get_sound(sound_group_ref, sound_index) {}
  *
  * <br />
  *
- * This function retrieves the number of currently playing Channels for the SoundGroup.
+ * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) for the [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
+ * 
+ * The function returns the number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) playing. If the [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) only has one [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html), and that Sound is playing twice, the figure returned will be two.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -3831,7 +4225,6 @@ function fmod_sound_group_get_num_playing(sound_group_ref) {}
  * This function stops all sounds within this sound group.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @returns {real}
  * @func_end
  */
 function fmod_sound_group_stop(sound_group_ref) {}
@@ -3860,8 +4253,9 @@ function fmod_sound_group_get_name(sound_group_ref) {}
  *
  * This function releases a soundgroup object and returns all sounds back to the master sound group.
  * 
+ * [[Important: You cannot release the master [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @returns {real}
  * @func_end
  */
 function fmod_sound_group_release(sound_group_ref) {}
@@ -3888,11 +4282,10 @@ function fmod_sound_group_get_system_object(sound_group_ref) {}
  *
  * <br />
  *
- * This function sets a user value associated with this object.
+ * This function sets a floating-point user value associated with this object.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {real} data
- * @returns {real}
+ * @param {real} data The value to set on the object.
  * @func_end
  */
 function fmod_sound_group_set_user_data(sound_group_ref, data) {}
@@ -3904,7 +4297,7 @@ function fmod_sound_group_set_user_data(sound_group_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object.
+ * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_sound_group_set_user_data}.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -7125,6 +7518,14 @@ function fmod_studio_vca_is_valid(vca_ref) {}
  *
  * This function creates an instance of the FMOD system.
  * 
+ * It must be called first to create an FMOD [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) object before any other API calls (except for ${function.fmod_debug_initialize}). Use this function to create 1 or multiple instances of FMOD System objects.
+ * 
+ * If the new FMOD system is created successfully, the function returns a reference to the system and makes it the *selected* system.
+ * 
+ * [[Note: All function calls that you make to the `fmod_system_*` functions work on the selected system. You can call ${function.fmod_system_select} to change this.]]
+ * 
+ * Use ${function.fmod_system_release} to free the system object.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -7133,10 +7534,9 @@ function fmod_system_create() {}
 
 /**
  * @func fmod_system_select
- * @desc GM-specific function
+ * @desc This function selects the FMOD system the `fmod_system_*` functions work on.
  * 
- * @param {real} system_ref A reference to a system.
- * @returns {real}
+ * @param {real} system_ref The reference to the system to be selected.
  * @func_end
  */
 function fmod_system_select(system_ref) {}
@@ -7144,7 +7544,9 @@ function fmod_system_select(system_ref) {}
 
 /**
  * @func fmod_system_count
- * @desc GM-specific function
+ * @desc This function returns the number of FMOD [Systems](https://www.fmod.com/docs/2.02/api/core-api-system.html).
+ * 
+ * [[Note: Every successful call to ${function.fmod_system_create} creates an instance of an FMOD system object that's included in the count.]]
  * 
  * @returns {real}
  * @func_end
@@ -7160,8 +7562,18 @@ function fmod_system_count() {}
  *
  * This function initializes the system object and prepares FMOD for playback.
  * 
- * @param {real} max_channels
- * @param {real} flags
+ * [[Important: A system object must first be created with ${function.fmod_system_create}.]]
+ * 
+ * Most API functions require an initialized System object before they will succeed, otherwise they will return `FMOD_RESULT.ERR_UNINITIALIZED`. Some can only be called before initialization. These are:
+ * 
+ * * ${function.fmod_system_set_software_format}
+ * * ${function.fmod_system_set_software_channels}
+ * * ${function.fmod_system_set_dsp_buffer_size}
+ * 
+ * [[Note: ${function.fmod_system_set_output} can be called before or after ${function.fmod_system_init} on Android, GameCore, UWP, Windows and Mac. Other platforms can only call this before ${function.fmod_system_init}.]]
+ * 
+ * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * @param {constant.FMOD_INIT} flags The initialization flags. More than one mode can be set at once by combining them with the OR operator.
  * @returns {real}
  * @func_end
  */
@@ -7174,10 +7586,9 @@ function fmod_system_init(max_channels, flags) {}
  *
  * <br />
  *
- * This function closes and frees this object and its resources.
+ * This function closes and frees the given FMOD [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) object and its resources.
  * 
- * @param {real} system_ref A reference to a system.
- * @returns {real}
+ * [[Note: This will internally call ${function.fmod_system_close}, so calling ${function.fmod_system_close} before this function is not necessary.]]
  * @func_end
  */
 function fmod_system_release(system_ref) {}
@@ -7191,8 +7602,11 @@ function fmod_system_release(system_ref) {}
  *
  * This function close the connections to the output and returns to an uninitialized state without releasing the object.
  * 
+ * Closing renders FMOD objects created with this System invalid. You should make sure any [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html), [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html), [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) and [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) objects are released before calling this.
+ * 
+ * All pre-initialize configuration settings will remain and the System can be reinitialized as needed.
+ * 
  * @param {real} system_ref A reference to a system.
- * @returns {real}
  * @func_end
  */
 function fmod_system_close(system_ref) {}
@@ -7206,7 +7620,23 @@ function fmod_system_close(system_ref) {}
  *
  * This function updates the FMOD system.
  * 
- * @returns {real}
+ * [[Important: This function updates the *selected* system. To update another FMOD system instance use ${function.fmod_system_select} to select it and call ${function.fmod_system_update} again.]]
+ * 
+ * It should be called once per frame in your application (for example in a [Step event](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Events.htm)) to perform actions such as:
+ * 
+ * * Panning and reverb from 3D attributes changes.
+ * * The virtualization of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) based on their audibility.
+ * * Mixing for non-realtime output types. See comment below.
+ * * Streaming if using `FMOD_INIT.STREAM_FROM_UPDATE`.
+ * * Mixing if using `FMOD_INIT.MIX_FROM_UPDATE`.
+ * * Firing callbacks that are deferred until update.
+ * * DSP cleanup.
+ * 
+ * If `FMOD_OUTPUTTYPE.NOSOUND_NRT` or `FMOD_OUTPUTTYPE.WAVWRITER_NRT` output modes are used, this function also drives the software / DSP engine, instead of it running asynchronously in a thread as is the default behavior.
+ * This can be used for faster than realtime updates to the decoding or DSP engine which might be useful if the output is the wav writer for example.
+ * 
+ * If `FMOD_INIT.STREAM_FROM_UPDATE` is used, this function will update the stream engine. Combining this with the non realtime output will mean smoother captured output.
+ * 
  * @func_end
  */
 function fmod_system_update() {}
@@ -7220,7 +7650,10 @@ function fmod_system_update() {}
  *
  * This function suspends the mixer thread and relinquishes usage of audio hardware while maintaining internal state.
  * 
- * @returns {real}
+ * It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.
+ * 
+ * All internal state will be maintained, i.e. created [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) will stay available in memory.
+ * 
  * @func_end
  */
 function fmod_system_mixer_suspend() {}
@@ -7234,7 +7667,12 @@ function fmod_system_mixer_suspend() {}
  *
  * This function resumes the mixer thread and reacquires access to audio hardware.
  * 
- * @returns {real}
+ * It is used on mobile platforms when entering the foreground after being suspended.
+ * 
+ * All internal state will resume, i.e. created [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) are still valid and playback will continue.
+ * 
+ * [[Note: On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.]]
+ * 
  * @func_end
  */
 function fmod_system_mixer_resume() {}
@@ -7248,8 +7686,15 @@ function fmod_system_mixer_resume() {}
  *
  * This function sets the type of output interface used to run the mixer.
  * 
- * @param {real} output
- * @returns {real}
+ * The function is typically used to select between different OS-specific audio APIs which may have different features.
+ * 
+ * It is only necessary to call this function if you want to specifically switch away from the default output mode for the operating system. The most optimal mode is selected by default for the operating system.
+ * 
+ * [[Note: (Windows, UWP, GameCore, Android, MacOS, iOS, Linux Only) This function can be called after ${function.fmod_system_init} to perform special handling of driver disconnections, see `FMOD_SYSTEM_CALLBACK.DEVICELISTCHANGED`.]]
+ * 
+ * [[Note: When using the Studio API, switching to an NRT (non-realtime) output type after FMOD is already initialized will not behave correctly unless the Studio API was initialized with `FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE`.]]
+ * 
+ * @param {constant.FMOD_OUTPUTTYPE} output The output type.
  * @func_end
  */
 function fmod_system_set_output(output) {}
@@ -7263,7 +7708,7 @@ function fmod_system_set_output(output) {}
  *
  * This function retrieves the type of output interface used to run the mixer.
  * 
- * @returns {real}
+ * @returns {constant.FMOD_OUTPUTTYPE}
  * @func_end
  */
 function fmod_system_get_output() {}
@@ -7276,6 +7721,9 @@ function fmod_system_get_output() {}
  * <br />
  *
  * This function retrieves the number of output drivers available for the selected output type.
+ * 
+ * If ${function.fmod_system_set_output} has not been called, this function will return the number of drivers available for the default output type.
+ * A possible use for this function is to iterate through available sound devices for the current output type, and use ${function.fmod_system_get_driver_info} to get the device's name and other attributes.
  * 
  * @returns {real}
  * @func_end
@@ -7291,7 +7739,7 @@ function fmod_system_get_num_drivers() {}
  *
  * This function retrieves identification information about a sound device specified by its index, and specific to the selected output mode.
  * 
- * @param {real} driver_index
+ * @param {real} driver_index The index of the sound driver device. A value in the range [0, ${function.fmod_system_get_num_drivers}].
  * @returns {struct.FmodSystemDriverInfo}
  * @func_end
  */
@@ -7306,8 +7754,11 @@ function fmod_system_get_driver_info(driver_index) {}
  *
  * This function sets the output driver for the selected output type.
  * 
- * @param {real} driver
- * @returns {real}
+ * When an output type has more than one driver available, this function can be used to select between them.
+ * 
+ * If this function is called after ${function.fmod_system_init}, the current driver will be shutdown and the newly selected driver will be initialized / started.
+ * 
+ * @param {real} driver The driver index where 0 represents the default for the output type. A value in the range [0, ${function.fmod_system_get_num_drivers}].
  * @func_end
  */
 function fmod_system_set_driver(driver) {}
@@ -7321,6 +7772,8 @@ function fmod_system_set_driver(driver) {}
  *
  * This function retrieves the output driver for the selected output type.
  * 
+ * It returns the driver index where 0 represents the default for the output type.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -7333,10 +7786,12 @@ function fmod_system_get_driver() {}
  *
  * <br />
  *
- * This function sets the maximum number of software mixed Channels possible.
+ * This function sets the maximum number of software mixed [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) possible.
  * 
- * @param {real} software_channels
- * @returns {real}
+ * This function cannot be called after FMOD is already activated, it must be called before ${function.fmod_system_init}, or after ${function.fmod_system_close}.
+ * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide.
+ * 
+ * @param {real} software_channels The maximum number of real Channels to be allocated by FMOD. The default is 64.
  * @func_end
  */
 function fmod_system_set_software_channels(software_channels) {}
@@ -7349,6 +7804,8 @@ function fmod_system_set_software_channels(software_channels) {}
  * <br />
  *
  * This function retrieves the maximum number of software mixed Channels possible.
+ * 
+ * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide.
  * 
  * @returns {real}
  * @func_end
@@ -7364,10 +7821,19 @@ function fmod_system_get_software_channels() {}
  *
  * This function sets the output format for the software mixer.
  * 
- * @param {real} sample_rate
- * @param {real} speaker_mode
- * @param {real} num_raw_speakers
- * @returns {real}
+ * If loading Studio banks, this must be called with `speaker_mode` corresponding to the project output format if there is a possibility of the output audio device not matching the project format. Any differences between the project format and `speaker_mode` will cause the mix to sound wrong.
+ * 
+ * By default, `speaker_mode` will assume the setup the OS / output prefers.
+ * 
+ * Altering the `sample_rate` from the OS / output preferred rate may incur extra latency. Altering the `speaker_mode` from the OS / output preferred mode may cause an upmix/downmix which can alter the sound.
+ * 
+ * On lower power platforms such as mobile `sample_rate` will default to 24KHz to reduce CPU cost.
+ * 
+ * [[Note: This function must be called before ${function.fmod_system_init}, or after ${function.fmod_system_close}.]]
+ * 
+ * @param {real} sample_rate The sample rate of the mixer, in Hertz. A value in the range [8000, 192000]. Default is 48000.
+ * @param {constant.FMOD_SPEAKERMODE} speaker_mode The speaker setup of the mixer.
+ * @param {real} num_raw_speakers The number of speakers for `FMOD_SPEAKERMODE.RAW` mode.
  * @func_end
  */
 function fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_speakers) {}
@@ -7395,9 +7861,43 @@ function fmod_system_get_software_format() {}
  *
  * This function sets the buffer size for the FMOD software mixing engine.
  * 
- * @param {real} buff_size
- * @param {real} num_buffers
- * @returns {real}
+ * This function is used if you need to control mixer latency or granularity. Smaller buffer sizes lead to smaller latency, but can lead to stuttering/skipping/unstable sound on slower machines or soundcards with bad drivers.
+ * 
+ * To get the `buffer_size` in milliseconds, divide it by the output rate and multiply the result by 1000. For a `buffer_size` of 1024 and an output rate of 48khz (see ${function.fmod_system_set_software_format}), milliseconds = 1024 / 48000 * 1000 = 21.33ms. This means the mixer updates every 21.33ms.
+ * 
+ * To get the total buffer size multiply the `buff_size` by the `num_buffers` value. By default this would be 4 * 1024 = 4096 samples, or 4 * 21.33ms = 85.33ms. This would generally be the total latency of the software mixer, but in reality due to one of the buffers being written to constantly, and the cursor position of the buffer that is audible, the latency is typically more like the (number of buffers - 1.5) multiplied by the buffer length.
+ * 
+ * To convert from milliseconds back to 'samples', simply multiply the value in milliseconds by the sample rate of the output (i.e. 48000 if that is what it is set to), then divide by 1000.
+ * 
+ * The FMOD software mixer mixes to a ringbuffer (a `buffer_wrap` ${type.buffer} in GameMaker). The size of this ringbuffer is determined here. It mixes a block of sound data every 'bufferlength' number of samples, and there are 'numbuffers' number of these blocks that make up the entire ringbuffer. Adjusting these values can lead to extremely low latency performance (smaller values), or greater stability in sound output (larger values).
+ * 
+ * [[Warning: The 'buffersize' is generally best left alone. Making the granularity smaller will just increase CPU usage (cache misses and DSP network overhead). Making it larger affects how often you hear commands update such as volume/pitch/pan changes. Anything above 20ms will be noticeable and sound parameter changes will be obvious instead of smooth.]]
+ * 
+ * FMOD chooses the most optimal size by default for best stability, depending on the output type. It is not recommended changing this value unless you really need to. You may get worse performance than the default settings chosen by FMOD. If you do set the size manually, the `buff_size` argument must be a multiple of four, typically 256, 480, 512, 1024 or 2048 depedning on your latency requirements.
+ * 
+ * The values in milliseconds and average latency expected from the settings can be calculated using the following code:
+ * 
+ * ```gml
+ * var _dsp_buffer_info = fmod_system_get_dsp_buffer_size();
+ * var _sw_format_info = fmod_system_get_software_format();
+ * // Note that you can check for errors here with two calls to fmod_last_result(), one after each function.
+ * 
+ * var _buff_size = _dsp_buffer_info.buff_size;
+ * var _num_buffers = _dsp_buffer_info.num_buffers;
+ * var _sample_rate = _sw_format_info.sample_rate;
+ * 
+ * var _ms = dsp_buffer_info.buff_size * 1000 / _sample_rate;
+ * 
+ * show_debug_message("Mixer buffer size       = {0}", _ms);
+ * show_debug_message("Mixer Total buffer size = {0}", _ms * _num_buffers);
+ * show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
+ * ```
+ * 
+ * * This function cannot be called after FMOD is already activated with ${function.fmod_system_init}.
+ * * The function must be called before ${function.fmod_system_init}, or after ${function.fmod_system_close}.
+ * 
+ * @param {real} buff_size The mixer engine block size, in samples. The default is 1024. Use this to adjust mixer update granularity. See below for more information on buffer length vs latency.
+ * @param {real} num_buffers The mixer engine number of buffers used. The default is 4. Use this to adjust mixer latency. See below for more information on number of buffers vs latency.
  * @func_end
  */
 function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
@@ -7410,6 +7910,12 @@ function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
  * <br />
  *
  * This function retrieves the buffer size settings for the FMOD software mixing engine.
+ * 
+ * To get the `buff_size` in milliseconds, divide it by the output rate and multiply the result by 1000. For a `buff_size` of 1024 and an output rate of 48kHz (see ${function.fmod_system_set_software_format}), milliseconds = 1024 / 48000 * 1000 = 21.33ms. This means the mixer updates every 21.33ms.
+ *
+ * To get the total buffer size multiply the `buff_size` by the `num_buffers` value. By default this would be 41024 = 4096 samples, or 421.33ms = 85.33ms. This would generally be the total latency of the software mixer, but in reality due to one of the buffers being written to constantly, and the cursor position of the buffer that is audible, the latency is typically more like the (number of buffers - 1.5) multiplied by the buffer length.
+ *
+ * To convert from milliseconds back to 'samples', simply multiply the value in milliseconds by the sample rate of the output (i.e. 48000 if that is what it is set to), then divide by 1000.
  * 
  * @returns {struct.FmodSystemDSPBufferSize}
  * @func_end
@@ -7425,9 +7931,31 @@ function fmod_system_get_dsp_buffer_size() {}
  *
  * This function sets the default file buffer size for newly opened streams.
  * 
- * @param {real} file_buffer_size
- * @param {real} file_buffer_size_type
- * @returns {real}
+ * Valid units for the ${constant.FMOD_TIMEUNIT} of `file_buffer_size_type` are: 
+ * 
+ * `FMOD_TIMEUNIT.MS`
+ * `FMOD_TIMEUNIT.PCM`
+ * `FMOD_TIMEUNIT.PCMBYTES`
+ * `FMOD_TIMEUNIT.RAWBYTES`
+ * 
+ * Larger values will consume more memory, whereas smaller values may cause buffer under-run / starvation / stuttering caused by large delays in disk access (i.e. netstream), or CPU usage in slow machines, or by trying to play too many streams at once.
+ * 
+ * This does not affect streams created with `FMOD_MODE.OPENUSER`, as the buffer size is specified in ${function.fmod_system_create_sound}.
+ * 
+ * This does not affect latency of playback. All streams are pre-buffered (unless opened with `FMOD_MODE.OPENONLY`), so they will always start immediately.
+ * 
+ * Seek and Play operations can sometimes cause a reflush of this buffer.
+ * 
+ * If `FMOD_TIMEUNIT.RAWBYTES` is used, the memory allocated is two times the size passed in, because FMOD allocates a double buffer.
+ * 
+ * If `FMOD_TIMEUNIT.MS`, `FMOD_TIMEUNIT.PCM` or `FMOD_TIMEUNIT.PCMBYTES` is used, and the stream is infinite (such as a shoutcast netstream), or VBR, then FMOD cannot calculate an accurate compression ratio to work with when the file is opened. This means it will then base the buffersize on `FMOD_TIMEUNIT.PCMBYTES`, or in other words the number of PCM bytes, but this will be incorrect for some compressed formats. Use `FMOD_TIMEUNIT.RAWBYTES` for these type (infinite / undetermined length) of streams for more accurate read sizes.
+ * 
+ * To determine the actual memory usage of a stream, including sound buffer and other overhead, use ${function.fmod_memory_get_stats} before and after creating a sound.
+ * 
+ * The stream may still stutter if the codec uses a large amount of cpu time, which impacts the smaller, internal 'decode' buffer. The decode buffer size is changeable via ${struct.FmodSystemCreateSoundExInfo}.
+ * 
+ * @param {real} file_buffer_size The file buffer size. The default is 16384.
+ * @param {constant.FMOD_TIMEUNIT} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FMOD_TIMEUNIT.RAWBYTES`.
  * @func_end
  */
 function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type) {}
@@ -7440,6 +7968,13 @@ function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_t
  * <br />
  *
  * This function retrieves the default file buffer size for newly opened streams.
+ *
+ * Valid units for the ${constant.FMOD_TIMEUNIT} of `file_buffer_size_type` are: 
+ * 
+ * `FMOD_TIMEUNIT.MS`
+ * `FMOD_TIMEUNIT.PCM`
+ * `FMOD_TIMEUNIT.PCMBYTES`
+ * `FMOD_TIMEUNIT.RAWBYTES`
  * 
  * @returns {struct.FmodSystemStreamBufferSize}
  * @func_end
@@ -7455,7 +7990,9 @@ function fmod_system_get_stream_buffer_size() {}
  *
  * This function sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.
  * 
- * @param {struct.FmodSystemAdvancedSettings} settings
+ * 
+ * 
+ * @param {struct.FmodSystemAdvancedSettings} settings The advanced settings to use.
  * @func_end
  */
 function fmod_system_set_advanced_settings(settings) {}
@@ -7483,11 +8020,40 @@ function fmod_system_get_advanced_settings() {}
  *
  * This function sets the position of the specified speaker for the current speaker mode.
  * 
- * @param {real} speaker
- * @param {real} x
- * @param {real} y
- * @param {real} active
- * @returns {real}
+ * This function allows the user to specify the position of their speaker to account for non standard setups.
+ * It also allows the user to disable speakers from 3D consideration in a game.
+ * 
+ * This allows you to customize the position of the speakers for the current ${constant.FMOD_SPEAKERMODE} by giving X (left to right) and Y (front to back) coordinates.
+ * When disabling a speaker, 3D spatialization will be redistributed around the missing speaker so the signal isn't lost.
+ * 
+ * A stereo setup would look like this:
+ * 
+ * ```gml
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_LEFT, -1, 0, true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_RIGHT, 1, 0, true);
+ * ```
+ * 
+ * A 7.1 setup would look like this:
+ * 
+ * ```gml
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_LEFT,     dsin( -30), dcos( -30), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_RIGHT,    dsin(  30), dcos(  30), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_CENTER,   dsin(   0), dcos(   0), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.LOW_FREQUENCY,  dsin(   0), dcos(   0), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.SURROUND_LEFT,  dsin( -90), dcos( -90), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.SURROUND_RIGHT, dsin(  90), dcos(  90), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_LEFT,      dsin(-150), dcos(-150), true);
+ * fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_RIGHT,     dsin( 150), dcos( 150), true);
+ * ```
+ * 
+ * Calling ${function.fmod_system_set_software_format} will override any customization made with this function.
+ * 
+ * Users of the Studio API should be aware this function does not affect the speaker positions used by the Spatializer DSPs, it is purely for Core API spatialization via ${function.fmod_channel_control_set_3d_attributes}.
+ * 
+ * @param {constant.FMOD_SPEAKER} speaker The speaker.
+ * @param {real} x The 2D X position relative to the listener. A value in the range [-1, 1], where: -1 = left, 0 = middle, +1 = right.
+ * @param {real} y 2D Y position relative to the listener. A value in the range [-1, 1], where: -1 = back, 0 = middle, +1 = front.
+ * @param {boolean} active The active state of a speaker. `true` = included in 3D calculations, `false` = ignored.
  * @func_end
  */
 function fmod_system_set_speaker_position(speaker, x, y, active) {}
@@ -7501,7 +8067,7 @@ function fmod_system_set_speaker_position(speaker, x, y, active) {}
  *
  * This function retrieves the position of the specified speaker for the current speaker mode.
  * 
- * @param {constant.FMOD_SPEAKER} speaker
+ * @param {constant.FMOD_SPEAKER} speaker The speaker.
  * @returns {struct.FmodSystemSpeakerPosition}
  * @func_end
  */
@@ -7516,10 +8082,16 @@ function fmod_system_get_speaker_position(speaker) {}
  *
  * This function sets the global doppler scale, distance factor and log roll-off scale for all 3D sound in FMOD.
  * 
- * @param {real} doppler_scale
- * @param {real} distance_factor
- * @param {real} rolloff_scale
- * @returns {real}
+ * The `doppler_scale` is a general scaling factor for how much the pitch varies due to doppler shifting in 3D sound. Doppler is the pitch bending effect when a sound comes towards the listener or moves away from it, much like the effect you hear when a train goes past you with its horn sounding. With "dopplerscale" you can exaggerate or diminish the effect. FMOD's effective speed of sound at a doppler factor of 1.0 is 340 m/s.
+ * 
+ * The `distance_factor` is the FMOD 3D engine relative distance factor, compared to 1.0 meters. Another way to put it is that it equates to "how many units per meter does your engine have". For example, if you are using feet then "scale" would equal 3.28.
+ * This only affects doppler. If you keep your min/max distance, custom roll-off curves, and positions in scale relative to each other, the volume roll-off will not change. If you set this, the mindistance of a sound will automatically set itself to this value when it is created in case the user forgets to set the mindistance to match the new distancefactor.
+ * 
+ * The `rolloff_scale` is a global factor applied to the roll-off of sounds using roll-off modes other than `FMOD_MODE.AS_3D_CUSTOMROLLOFF`. When a sound uses a roll-off mode other than `FMOD_MODE.AS_3D_CUSTOMROLLOFF` and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula `distance = (distance - minDistance) * rolloffscale + minDistance`.
+ * 
+ * @param {real} doppler_scale A scaling factor for doppler shift. Default is 1.
+ * @param {real} distance_factor A factor for converting game distance units to FMOD distance units. Default is 1.
+ * @param {real} rolloff_scale A scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FMOD_MODE.AS_3D_CUSTOMROLLOFF` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.
  * @func_end
  */
 function fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_scale) {}
@@ -7547,8 +8119,13 @@ function fmod_system_get_3d_settings() {}
  *
  * This function sets the number of 3D 'listeners' in the 3D sound scene.
  * 
- * @param {real} num
- * @returns {real}
+ * This function is useful mainly for split-screen game purposes.
+ * 
+ * If the number of listeners is set to more than 1, then panning and doppler are turned off. All sound effects will be mono. FMOD uses a 'closest sound to the listener' method to determine what should be heard in this case.
+ * 
+ * [[Note: Users of the Studio API should call ${function.fmod_studio_system_set_num_listeners} instead of this function.]]
+ * 
+ * @param {real} num The number of listeners in the scene. A value in the range [1, ${constant.FMOD_MAX_LISTENERS}]. The default is 1.
  * @func_end
  */
 function fmod_system_set_3d_num_listeners(num) {}
@@ -7562,6 +8139,8 @@ function fmod_system_set_3d_num_listeners(num) {}
  *
  * This function retrieves the number of 3D listeners.
  * 
+ * [[Note: Users of the Studio API should call ${function.fmod_studio_system_get_num_listeners} instead of this function.]]
+ * 
  * @returns {real}
  * @func_end
  */
@@ -7574,9 +8153,18 @@ function fmod_system_get_3d_num_listeners() {}
  *
  * <br />
  *
- * This function sets a callback to allow custom calculation of distance attenuation.
+ * This function enables callbacks for custom calculation of distance attenuation.
  * 
- * @returns {real}
+ * This function overrides `FMOD_MODE.AS_3D_INVERSEROLLOFF`, `FMOD_MODE.AS_3D_LINEARROLLOFF`, `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`, `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF` and `FMOD_MODE.AS_3D_CUSTOMROLLOFF`.
+ * 
+ * See also: [Callback behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * 
+ * @event social
+ * @member type {string} The string value `"fmod_system_set_3d_rolloff_callback"`.
+ * @member distance {real} The distance.
+ * @member channel_ref {real} The reference to the channel for which this event is triggered.
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_system_set_3d_rolloff_callback() {}
@@ -7588,7 +8176,7 @@ function fmod_system_set_3d_rolloff_callback() {}
  *
  * <br />
  *
- * This function set a proxy server to use for all subsequent internet connections.
+ * This function sets a proxy server to use for all subsequent internet connections.
  * 
  * You should specify the proxy in `host:port` format e.g. `www.fmod.com:8888` (defaults to port 80 if no port is specified).
  * 
@@ -7652,7 +8240,7 @@ function fmod_system_get_network_timeout() {}
  * 
  * The FMOD version is a 32 bit hexadecimal value formatted as 16:8:8, with the upper 16 bits being the product version, the middle 8 bits being the major version and the bottom 8 bits being the minor version. For example a value of 0x00010203 is equal to 1.02.03.
  * 
- * [[Note: You can compare this against the `FMOD_VERSION` macro to make sure header and runtime library versions match.]]
+ * [[Note: You should compare this against the `FMOD_VERSION` macro to make sure header and runtime library versions match.]]
  * 
  * @returns {real}
  * @func_end
@@ -7666,7 +8254,7 @@ function fmod_system_get_version() {}
  *
  * <br />
  *
- * This function retrieves the number of currently playing Channels.
+ * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
  * 
  * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
  * 
@@ -7700,6 +8288,8 @@ function fmod_system_get_cpu_usage() {}
  *
  * This function retrieves information about file reads.
  * 
+ * [[Note: The values returned are running totals that never reset.]]
+ * 
  * @returns {struct.FmodSystemFileUsage}
  * @func_end
  */
@@ -7714,10 +8304,16 @@ function fmod_system_get_file_usage() {}
  *
  * This function retrieves the default matrix used to convert from one speaker mode to another.
  * 
- * @param {real} source_speaker_mode
- * @param {real} target_speaker_mode
- * @param {real} matrix_hop
- * @returns {real}
+ * The matrix is returned as an ${type.array}.
+ * 
+ * The gain for source channel 's' to target channel 't' is matrix[t * matrixhop + s].
+ * 
+ * If `source_speaker_mode` or `target_speaker_mode` is `FMOD_SPEAKERMODE.RAW`, this function will return `FMOD_RESULT.ERR_INVALID_PARAM`.
+ * 
+ * @param {constant.FMOD_SPEAKERMODE} source_speaker_mode The speaker mode being converted from.
+ * @param {constant.FMOD_SPEAKERMODE} target_speaker_mode The speaker mode being converted to.
+ * @param {real} matrix_hop The number of source channels in the matrix. If this is 0, the number of source channels will be derived from `source_speaker_mode`. A maximum value of ${constant.FMOD_MAX_CHANNEL_WIDTH}.
+ * @returns {array[real]}
  * @func_end
  */
 function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix_hop) {}
@@ -7731,7 +8327,7 @@ function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_
  *
  * This function retrieves the channel count for a given speaker mode.
  * 
- * @param {real} mode
+ * @param {constant.FMOD_SPEAKERMODE} mode The speaker mode to query.
  * @returns {real}
  * @func_end
  */
@@ -7746,9 +8342,33 @@ function fmod_system_get_speaker_mode_channels(mode) {}
  *
  * This function loads a sound into memory, opens it for streaming or sets it up for callback based sounds.
  * 
- * @param {string|buffer} name_or_buff
- * @param {constant.FMOD_MODE} mode
- * @param {struct.FmodSystemCreateSoundExInfo} extra
+ * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * 
+ * `FMOD_MODE.CREATESAMPLE` will try to load and decompress the whole sound into memory, use `FMOD_MODE.CREATESTREAM` to open it as a stream and have it play back in realtime from disk or another medium. `FMOD_MODE.CREATECOMPRESSEDSAMPLE` can also be used for certain formats to play the sound directly in its compressed format from the mixer.
+ * 
+ * * To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the `FMOD_MODE.CREATESTREAM` flag.
+ * * To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed soundeffects, but not the overhead of disk access.
+ * * To open a sound as 2D, so that it is not affected by 3D processing, use the `FMOD_MODE.AS_2D` flag. 3D sound commands will be ignored on these types of sounds.
+ * * To open a sound as 3D, so that it is treated as a 3D sound, use the `FMOD_MODE.AS_3D` flag.
+ * 
+ * [[Note: `FMOD_MODE.OPENRAW`, `FMOD_MODE.OPENMEMORY`, `FMOD_MODE.OPENMEMORY_POINT` and `FMOD_MODE.OPENUSER` will not work here without the exinfo structure present, as more information is needed.]]
+ * 
+ * Use `FMOD_MODE.NONBLOCKING` to have the sound open or load in the background. You can use ${function.fmod_sound_get_open_state} to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with `FMOD_MODE.OPENMEMORY` if the sound is not in a ready state, as it will most likely lead to a crash.
+ * 
+ * To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with `FMOD_MODE.CREATESTREAM`, use ${function.fmod_system_set_stream_buffer_size} to increase read ahead.
+ * 
+ * As using `FMOD_MODE.OPENUSER` causes FMOD to ignore whatever is passed as the first argument `name_or_buffer`, recommended practice is to pass 0 or equivalent.
+ * 
+ * Specifying `FMOD_MODE.OPENMEMORY_POINT` will POINT to the ${type.buffer} that you pass as `name_or_buff`, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after ${function.fmod_sound_release} is called.
+ * 
+ * With `FMOD_MODE.OPENMEMORY_POINT`, only PCM formats and compressed formats using `FMOD_MODE.CREATECOMPRESSEDSAMPLE` are supported.
+ * 
+ * [[Warning: Use of FMOD_MODE.NONBLOCKING is currently not supported for JavaScript.]]
+ * 
+ * @param {string|buffer} name_or_buff The name of the file or URL to open or a buffer to a preloaded sound memory block if `FMOD_MODE.OPENMEMORY` / `FMOD_MODE.OPENMEMORY_POINT` is used.
+ * @param {constant.FMOD_MODE} mode The behavior modifier for opening the sound.
+ * @param {struct.FmodSystemCreateSoundExInfo} extra OPTIONAL Extended information for creating the sound. Defaults to an empty struct.
+ * @returns {real}
  * @func_end
  */
 function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
@@ -7762,9 +8382,16 @@ function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
  *
  * This function opens a sound for streaming.
  * 
- * @param {string|buffer} name_or_buff
- * @param {constant.FMOD_MODE} mode
- * @param {struct.FmodSystemCreateSoundExInfo} extra
+ * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * 
+ * This is a convenience function for ${function.fmod_system_create_sound} with the `FMOD_MODE.CREATESTREAM` flag added.
+ * 
+ * A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.
+ * 
+ * @param {string|buffer} name_or_buff The name of the file or URL to open or a ${type.buffer} storing a preloaded sound memory block if `FMOD_MODE.OPENMEMORY` / `FMOD_MODE.OPENMEMORY_POINT` is used.
+ * @param {constant.FMOD_MODE} mode The behavior modifier for opening the sound.
+ * @param {struct.FmodSystemCreateSoundExInfo} extra OPTIONAL Extended information while playing the sound.
+ * @returns {real}
  * @func_end
  */
 function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
@@ -7776,7 +8403,13 @@ function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
  *
  * <br />
  *
- * This function creates a DSP object given a plugin description structure.
+ * This function creates a DSP object.
+ * 
+ * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit.
+ * 
+ * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * 
+ * DSPs must be attached to the DSP graph before they become active, either via ${function.fmod_channel_control_add_dsp} or ${function.fmod_dsp_add_input}.
  * 
  * @returns {real}
  * @func_end
@@ -7792,7 +8425,15 @@ function fmod_system_create_dsp() {}
  *
  * This function creates a DSP object given a built-in type index.
  * 
- * @param {real} type
+ * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit.
+ * 
+ * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * 
+ * DSPs must be attached to the DSP graph before they become active, either via ${function.fmod_channel_control_add_dsp} or ${function.fmod_dsp_add_input}.
+ * 
+ * Using `FMOD_DSP_TYPE.VSTPLUGIN` or `FMOD_DSP_TYPE.WINAMPPLUGIN` will return the first loaded plugin of this type.
+ * 
+ * @param {constant.FMOD_DSP_TYPE} type The type of built-in DSP unit to create.
  * @returns {real}
  * @func_end
  */
@@ -7807,7 +8448,15 @@ function fmod_system_create_dsp_by_type(type) {}
  *
  * This function creates a ChannelGroup object.
  * 
- * @param {string} name
+ * The function returns a reference to the newly created [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
+ * 
+ * ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html). See `FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`.
+ * 
+ * If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * 
+ * All ChannelGroups will initially output directly to the master ChannelGroup (See ${function.fmod_system_get_master_channel_group}). ChannelGroups can be re-parented this with ${function.fmod_channel_group_add_group}.
+ * 
+ * @param {string} name A label for the ChannelGroup, for identification purposes.
  * @returns {real}
  * @func_end
  */
@@ -7822,7 +8471,17 @@ function fmod_system_create_channel_group(name) {}
  *
  * This function creates a SoundGroup object.
  * 
- * @param {string} name
+ * It returns a reference to the newly created [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
+ * 
+ * A SoundGroup is a way to address multiple [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) at once with group level commands, such as:
+ * 
+ * * The attributes of Sounds that are playing or about to be played, such as volume. See (${function.fmod_sound_group_set_volume}).
+ * * Control of playback, such as stopping Sounds. See (${function.fmod_sound_group_stop}).
+ * * Playback behavior such as 'max audible', to limit playback of certain types of Sounds. See (${function.fmod_sound_group_set_max_audible}).
+ * 
+ * Once a SoundGroup is created, ${function.fmod_sound_set_sound_group} is used to put a Sound in a SoundGroup.
+ * 
+ * @param {string} name The name of the SoundGroup.
  * @returns {real}
  * @func_end
  */
@@ -7836,6 +8495,32 @@ function fmod_system_create_sound_group(name) {}
  * <br />
  *
  * This function creates a 'virtual reverb' object. This object reacts to 3D location and morphs the reverb environment based on how close it is to the reverb object's center.
+ * 
+ * The function returns a reference to the newly created virtual [reverb](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html) object.
+ * 
+ * Multiple reverb objects can be created to achieve a multi-reverb environment. 1 reverb object is used for all 3D reverb objects (slot 0 by default).
+ * 
+ * The 3D reverb object is a sphere having 3D attributes (position, minimum distance, maximum distance) and reverb properties.
+ * 
+ * The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * 
+ * When the listener is within the sphere of effect of one or more 3D reverbs, the listener's 3D reverb properties are a weighted combination of such 3D reverbs.
+ * 
+ * When the listener is outside all of the reverbs, no reverb is applied.
+ * 
+ * ${function.fmod_system_set_reverb_properties} can be used to create an alternative reverb that can be used for 2D and background global reverb.
+ * 
+ * To avoid this reverb interfering with the reverb slot used by the 3D reverb, 2D reverb should use a different slot ID with ${function.fmod_system_set_reverb_properties}, otherwise ${struct.FmodSystemAdvancedSettings}'s `reverb_3d_instance` property can also be used to place 3D reverb on a different reverb slot.
+ * 
+ * Use ${function.fmod_channel_control_set_reverb_properties} to turn off reverb for 2D sounds (i.e. set wet = 0).
+ * 
+ * Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) running that just morphs between the different virtual reverbs.
+ * 
+ * Note about reverb DSP unit allocation. To remove the DSP unit and the associated CPU cost, first make sure all 3D reverb objects are released. Then call ${function.fmod_system_set_reverb_properties} with the 3D reverb's slot ID (default is 0) with a property point of 0, to signal that the reverb instance should be deleted.
+ * 
+ * If a 3D reverb is still present, and ${function.fmod_system_set_reverb_properties} function is called to free the reverb, the 3D reverb system will immediately recreate it upon the next ${function.fmod_system_update} call.
+ * 
+ * [[Note: the 3D reverb system will not affect Studio events unless it is explicitly enabled by calling ${function.fmod_studio_event_instance_set_reverb_level} on each event instance.]]
  * 
  * @returns {real}
  * @func_end
@@ -7851,9 +8536,21 @@ function fmod_system_create_reverb_3d() {}
  *
  * This function plays a Sound on a Channel.
  * 
- * @param {real} sound_ref A reference to a sound.
- * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} pause
+ * It returns the newly playing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * 
+ * When a sound is played, it will use the sound's default frequency and priority. See ${function.fmod_sound_set_defaults}.
+ * 
+ * A sound defined as `FMOD_MODE.AS_3D` will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to `true`, and call ${function.fmod_channel_control_set_3d_attributes}.
+ * 
+ * Specifying a `channel_group_ref` as part of `fmod_system_play_sound` is more efficient than using ${function.fmod_channel_set_channel_group} after `fmod_system_play_sound`, and could avoid audible glitches if the sound is not in a paused state.
+ * 
+ * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels) for more information.
+ * 
+ * Playing more [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) for more information.
+ * 
+ * @param {real} sound_ref A reference to the sound to play.
+ * @param {real} channel_group_ref A reference to the ChannelGroup to output to instead of the master.
+ * @param {boolean} pause Whether to start in the paused state. Start a Channel paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
  * @returns {real}
  * @func_end
  */
@@ -7868,9 +8565,17 @@ function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
  *
  * This function plays a DSP along with any of its inputs on a Channel.
  * 
- * @param {real} dsp_ref A reference to a DSP.
- * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} pause
+ * It returns the newly playing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * 
+ * Specifying a channelgroup as part of `fmod_system_play_dsp` is more efficient than using ${function.fmod_channel_set_channel_group} after `fmod_system_play_dsp`, and could avoid audible glitches if the `fmod_system_play_dsp` is not in a paused state.
+ * 
+ * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels) for more information.
+ * 
+ * Playing more [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) or [DSPs](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) for more information.
+ * 
+ * @param {real} dsp_ref A reference to the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit to play.
+ * @param {real} channel_group_ref A reference to the [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) to output to instead of the master.
+ * @param {boolean} pause Whether to start in the paused state. Start a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
  * @returns {real}
  * @func_end
  */
@@ -7883,9 +8588,11 @@ function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
  *
  * <br />
  *
- * This function retrieves a handle to a Channel by ID.
+ * This function retrieves a reference to a Channel by ID.
  * 
- * @param {real} index
+ * This function is mainly for getting handles to existing (playing) Channels and setting their attributes. The only way to 'create' an instance of a Channel for playback is to use ${function.fmod_system_play_sound} or ${function.fmod_system_play_dsp}.
+ * 
+ * @param {real} index The channel's index in the FMOD [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) pool. Specify a Channel number from 0 to the `max_channels` value specified in ${function.fmod_system_init} minus 1.
  * @returns {real}
  * @func_end
  */
@@ -7899,6 +8606,9 @@ function fmod_system_get_channel(index) {}
  * <br />
  *
  * This function retrieves the master ChannelGroup that all sounds ultimately route to.
+ * 
+ * This is the default [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) that [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) play on, unless a different ChannelGroup is specified with ${function.fmod_system_play_sound}, ${function.fmod_system_play_dsp} or ${function.fmod_channel_set_channel_group}.
+ * A master ChannelGroup can be used to do things like set the 'master volume' for all playing Channels. See ${function.fmod_channel_control_set_volume}.
  * 
  * @returns {real}
  * @func_end
@@ -7914,6 +8624,8 @@ function fmod_system_get_master_channel_group() {}
  *
  * This function retrieves the default SoundGroup, where all sounds are placed when they are created.
  * 
+ * If a [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) is released, the [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in it will be put back into this SoundGroup.
+ * 
  * @returns {real}
  * @func_end
  */
@@ -7928,11 +8640,27 @@ function fmod_system_get_master_sound_group() {}
  *
  * This function sets the position, velocity and orientation of the specified 3D sound listener.
  * 
- * @param {real} listener_index
- * @param {struct.FmodVector} position
- * @param {struct.FmodVector} velocity
- * @param {struct.FmodVector} forward
- * @param {struct.FmodVector} up
+ * The `forward` and `up` vectors must be perpendicular and be of unit length (magnitude of each vector should be 1).
+ * 
+ * Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).
+ * 
+ * For velocity, remember to use units per **second**, and not units per frame. This is a common mistake and will make the doppler effect sound wrong if velocity is based on movement per frame rather than a fixed time period.
+ * If velocity per frame is calculated, it can be converted to velocity per second by dividing it by the time taken between frames as a fraction of a second.
+ * i.e.
+ * 
+ * ```gml
+ * velocity_units_per_second = (position_currentframe - position_lastframe) / time_taken_since_last_frame_in_seconds;
+ * ```
+ * 
+ * At 60 FPS  the formula would look like `velocity_units_per_second = (position_currentframe - position_lastframe) / 0.0166667`.
+ * 
+ * [[Note: Users of the Studio API should call ${function.fmod_studio_system_set_listener_attributes} instead of this function.]]
+ * 
+ * @param {real} listener_index The index of the listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
+ * @param {struct.FmodVector} position The position in 3D world space used for panning and attenuation, in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {struct.FmodVector} velocity The velocity in 3D space used for doppler, in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units) per second.
+ * @param {struct.FmodVector} forward The forwards orientation.
+ * @param {struct.FmodVector} up The upwards orientation.
  * @func_end
  */
 function fmod_system_set_3d_listener_attributes(listener_index, position, velocity, forward, up) {}
@@ -7946,7 +8674,9 @@ function fmod_system_set_3d_listener_attributes(listener_index, position, veloci
  *
  * This function retrieves the position, velocity and orientation of the specified 3D sound listener.
  * 
- * @param {real} listener_index
+ * [[Note: Users of the Studio API should call ${function.fmod_studio_system_get_listener_attributes} instead of this function.]]
+ * 
+ * @param {real} listener_index The index of the listener to get 3D attributes for. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
  * @returns {struct.Fmod3DAttributes}
  * @func_end
  */
@@ -7961,8 +8691,12 @@ function fmod_system_get_3d_listener_attributes(listener_index) {}
  *
  * This function sets parameters for the global reverb environment.
  * 
- * @param {real} reverb_instance_index
- * @param {struct.FmodReverbProperties} properties
+ * To assist in defining reverb properties there are several presets available, see ${constant.FMOD_REVERB_PRESETS}.
+ * 
+ * When using each instance for the first time, FMOD will create an SFX reverb DSP unit that takes up several hundred kilobytes of memory and some CPU.
+ * 
+ * @param {real} reverb_instance_index The index of the particular reverb instance to target. A value in the range [0, ${constant.FMOD_REVERB_MAXINSTANCES}].
+ * @param {struct.FmodReverbProperties} properties The reverb environment description. Passing 0 to this function will delete the reverb.
  * @func_end
  */
 function fmod_system_set_reverb_properties(instance_index, properties) {}
@@ -7976,7 +8710,7 @@ function fmod_system_set_reverb_properties(instance_index, properties) {}
  *
  * This function retrieves the current reverb environment for the specified reverb instance.
  * 
- * @param {real} reverb_instance_index
+ * @param {real} reverb_instance_index The index of the particular reverb instance to target.
  * @returns {struct.FmodReverbProperties}
  * @func_end
  */
@@ -7991,10 +8725,12 @@ function fmod_system_get_reverb_properties(instance_index) {}
  *
  * This function connects the output of the specified ChannelGroup to an audio port on the output driver.
  * 
- * @param {real} port_type
- * @param {real} port_index
- * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {bool} pass_thru
+ * Ports are additional outputs supported by some ${constant.FMOD_OUTPUTTYPE} plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the [platform details](https://www.fmod.com/docs/2.02/api/platforms.html) chapter.
+ * 
+ * @param {constant.FMOD_PORT_TYPE} port_type The port type (output mode specific).
+ * @param {constant.FMOD_PORT_INDEX} port_index The index to specify which instance of the specified portType to use (output mode specific).
+ * @param {real} channel_group_ref The ChannelGroup to attach the port to.
+ * @param {bool} pass_thru Whether the signal should additionally route to the existing ChannelGroup output.
  * @func_end
  */
 function fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru) {}
@@ -8008,8 +8744,9 @@ function fmod_system_attach_channel_group_to_port(port_type, port_index, channel
  *
  * This function disconnects the output of the specified ChannelGroup from an audio port on the output driver.
  * 
- * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @returns {real}
+ * Removing a [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) from a port will reroute the audio back to the main mix.
+ * 
+ * @param {real} channel_group_ref The ChannelGroup to detach the port from.
  * @func_end
  */
 function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
@@ -8037,7 +8774,7 @@ function fmod_system_get_record_num_drivers() {}
  *
  * This function retrieves identification information about an audio device specified by its index, and specific to the output mode.
  * 
- * @param {real} record_driver_index
+ * @param {real} record_driver_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @returns {struct.FmodSystemRecordDriverInfo}
  * @func_end
  */
@@ -8052,7 +8789,13 @@ function fmod_system_get_record_driver_info(recording_device_index) {}
  *
  * This function retrieves the current recording position of the record buffer in PCM samples.
  * 
- * @param {real} device_index
+ * ${function.fmod_last_result} will return `FMOD_RESULT.ERR_RECORD_DISCONNECTED` if the driver is unplugged.
+ * 
+ * The position will return to 0 when ${function.fmod_system_record_stop} is called or when a non-looping recording reaches the end.
+ * 
+ * [[Note: on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FMOD_RESULT.ERR_RECORD_DISCONNECTED` for your information though.]]
+ * 
+ * @param {real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @returns {real}
  * @func_end
  */
@@ -8067,10 +8810,17 @@ function fmod_system_get_record_position(device_index) {}
  *
  * This function starts the recording engine recording to a pre-created Sound object.
  * 
- * @param {real} device_index
- * @param {real} sound_ref A reference to a sound.
- * @param {real} loop
- * @returns {real}
+ * ${function.fmod_last_result} will return `FMOD_RESULT.ERR_RECORD_DISCONNECTED` if the driver is unplugged.
+ * 
+ * The sound must be created as `FMOD_MODE.CREATESAMPLE`. Raw PCM data can be accessed with ${function.fmod_sound_lock}, ${function.fmod_sound_unlock} and ${function.fmod_system_get_record_position}.
+ * 
+ * Recording from the same driver a second time will stop the first recording.
+ * 
+ * For lowest latency set the Sound sample rate to the rate returned by ${function.fmod_system_get_record_driver_info}, otherwise a resampler will be allocated to handle the difference in frequencies, which adds latency.
+ * 
+ * @param {real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
+ * @param {real} sound_ref A reference to a user-created sound for the user to record to.
+ * @param {boolean} loop A flag to tell the recording engine whether to continue recording to the provided sound from the start again, after it has reached the end. If this is set to `true` the data will be continually be overwritten once every loop.
  * @func_end
  */
 function fmod_system_record_start(device_index, sound_ref, loop) {}
@@ -8084,8 +8834,9 @@ function fmod_system_record_start(device_index, sound_ref, loop) {}
  *
  * This function stops the recording engine from recording to a pre-created Sound object.
  * 
- * @param {real} device_index
- * @returns {real}
+ * ${function.fmod_last_result} returns no error if unplugged or already stopped.
+ * 
+ * @param {real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @func_end
  */
 function fmod_system_record_stop(device_index) {}
@@ -8099,8 +8850,14 @@ function fmod_system_record_stop(device_index) {}
  *
  * This function retrieves the state of the FMOD recording API, i.e. if it is currently recording or not.
  * 
- * @param {real} device_index
- * @returns {real}
+ * Recording can be started with ${function.fmod_system_record_start} and stopped with ${function.fmod_system_record_stop}.
+ * 
+ * ${function.fmod_last_result} will return `FMOD_RESULT.ERR_RECORD_DISCONNECTED` if the driver is unplugged.
+ * 
+ * [[Note: on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FMOD_RESULT.ERR_RECORD_DISCONNECTED` for your information though.]]
+ * 
+ * @param {real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
+ * @returns {boolean}
  * @func_end
  */
 function fmod_system_is_recording(device_index) {}
@@ -8114,8 +8871,17 @@ function fmod_system_is_recording(device_index) {}
  *
  * This is a geometry creation function. This function will create a base geometry object which can then have polygons added to it.
  * 
- * @param {real} max_polygons
- * @param {real} max_vertices
+ * It returns a reference to the newly created [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) object.
+ * 
+ * Polygons can be added to a geometry object using ${function.fmod_geometry_add_polygon}. For best efficiency, avoid overlapping of polygons and long thin polygons.
+ * 
+ * A geometry object stores its polygons in a group to allow optimization for line testing, insertion and updating of geometry in real-time.
+ * Geometry objects also allow for efficient rotation, scaling and translation of groups of polygons.
+ * 
+ * It is important to set the value of `max_world_size` to an appropriate value using ${function.fmod_system_set_geometry_settings}.
+ * 
+ * @param {real} max_polygons The maximum number of polygons within this object.
+ * @param {real} max_vertices The maximum number of vertices within this object.
  * @returns {real}
  * @func_end
  */
@@ -8130,8 +8896,14 @@ function fmod_system_create_geometry(max_polygons, max_vertices) {}
  *
  * This function sets the maximum world size for the geometry engine for performance / precision reasons.
  * 
- * @param {real} max_world_size
- * @returns {real}
+ * FMOD uses an efficient spatial partitioning system to store polygons for ray casting purposes.
+ * The maximum size of the world (`max_world_size`) should be set to allow processing within a known range.
+ * Outside of this range, objects and polygons will not be processed as efficiently.
+ * Excessive world size settings can also cause loss of precision and efficiency.
+ * 
+ * Setting `max_world_size` should be done first before creating any geometry. It can be done any time afterwards but may be slow in this case.
+ * 
+ * @param {real} max_world_size The maximum size of the world from the centerpoint to the edge using the same units used in other 3D functions.
  * @func_end
  */
 function fmod_system_set_geometry_settings(max_world_size) {}
@@ -8144,6 +8916,11 @@ function fmod_system_set_geometry_settings(max_world_size) {}
  * <br />
  *
  * This function retrieves the maximum world size for the geometry engine.
+ * 
+ * FMOD uses an efficient spatial partitioning system to store polygons for ray casting purposes.
+ * The maximum size of the world should be set to allow processing within a known range.
+ * Outside of this range, objects and polygons will not be processed as efficiently.
+ * Excessive world size settings can also cause loss of precision and efficiency.
  * 
  * @returns {real}
  * @func_end
@@ -8159,8 +8936,12 @@ function fmod_system_get_geometry_settings() {}
  *
  * This function creates a geometry object from a block of memory which contains pre-saved geometry data.
  * 
- * @param {buffer} buff
- * @param {real} length
+ * It creates a reference to the newly created [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) object.
+ * 
+ * This function avoids the need to manually create and add geometry for faster start time.
+ * 
+ * @param {buffer} buff A buffer storing pre-saved geometry data from an earlier call to ${function.fmod_geometry_save}.
+ * @param {real} length The size of the data in `buff`.
  * @returns {real}
  * @func_end
  */
@@ -8174,6 +8955,8 @@ function fmod_system_load_geometry(buff, length) {}
  * <br />
  *
  * This function calculates geometry occlusion between a listener and a sound source.
+ * 
+ * If single-sided polygons have been created, it is important to get the source and listener positions around the right way, as the occlusion from point A to point B may not be the same as the occlusion from point B to point A.
  * 
  * @returns {struct.FmodSystemGeometryOcclusion}
  * @func_end
@@ -8189,7 +8972,16 @@ function fmod_system_get_geometry_occlusion() {}
  *
  * This is a mutual exclusion function to lock the FMOD DSP engine (which runs asynchronously in another thread), so that it will not execute.
  * 
- * @returns {real}
+ * If the FMOD DSP engine is already executing, this function will block until it has completed.
+ * 
+ * The function may be used to synchronize DSP network operations carried out.
+ * 
+ * An example of using this function may be for when you want to construct a DSP sub-network, without the DSP engine executing in the background while the sub-network is still under construction.
+ * 
+ * Once the DSP engine no longer needs to be locked, it must be unlocked with ${function.fmod_system_unlock_dsp}.
+ * 
+ * [[Note: The DSP engine should not be locked for a significant amount of time, otherwise inconsistency in the audio output may result. (audio skipping / stuttering).]]
+ * 
  * @func_end
  */
 function fmod_system_lock_dsp() {}
@@ -8203,7 +8995,8 @@ function fmod_system_lock_dsp() {}
  *
  * This is a mutual exclusion function to unlock the FMOD DSP engine (which runs asynchronously in another thread) and let it continue executing.
  * 
- * @returns {real}
+ * The DSP engine must be locked with ${function.fmod_system_lock_dsp} before this function is called.
+ * 
  * @func_end
  */
 function fmod_system_unlock_dsp() {}
@@ -8212,13 +9005,22 @@ function fmod_system_unlock_dsp() {}
 /**
  * @func fmod_system_set_callback
  * @desc > **FMOD Function:** [System::setCallback](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setcallback)
- *
- * <br />
- *
- * This function sets the callback for System level notifications.
  * 
- * @param {real} type
- * @returns {real}
+ * <br />
+ * 
+ * This function enables callbacks for System level notifications.
+ * 
+ * [[Note: FMOD System callbacks will be triggered as a ${event.social} but the ${var.async_load} DS map won't contain any specific information.]]
+ * 
+ * See also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * 
+ * @param {constant.FMOD_SYSTEM_CALLBACK} type A bitfield specifying which callback types are required, to filter out unwanted callbacks.
+ * 
+ * @event social
+ * @member {string} type the string `"fmod_system_set_callback"`
+ * @member {constant.FMOD_SYSTEM_CALLBACK} kind The kind of callback triggered.
+ * @event_end
+ * 
  * @func_end
  */
 function fmod_system_set_callback(type) {}
@@ -8230,14 +9032,14 @@ function fmod_system_set_callback(type) {}
  *
  * <br />
  *
- * This function sets a user value associated with a System object.
+ * This function sets a user value associated with the currently selected System object.
  * 
- * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} data
- * @returns {real}
+ * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system for which you want to set the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
+ * 
+ * @param {real} data The user-specified data to be stored within the System object.
  * @func_end
  */
-function fmod_system_set_user_data(channel_control_ref, data) {}
+function fmod_system_set_user_data(data) {}
 
 
 /**
@@ -8246,33 +9048,25 @@ function fmod_system_set_user_data(channel_control_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with a System object.
+ * This function retrieves the user value associated with the currently selected System object.
  * 
- * @param {real} channel_control_ref A reference to a ChannelControl.
+ * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system of which you want to get the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
+ * 
  * @returns {real}
  * @func_end
  */
-function fmod_system_get_user_data(channel_control_ref) {}
+function fmod_system_get_user_data() {}
 
 // Miscellaneous
-
-/**
- * @func fmod_fetch_callbacks
- * @desc This function fetches the FMOD callbacks.
- * 
- * @param {buffer} buffer
- * @param {real} length
- * @returns {real}
- * @func_end
- */
-function fmod_fetch_callbacks(buffer, length) {}
-
 
 /**
  * @func fmod_last_result
  * @desc This function returns the result of the last call to any of FMOD's functions.
  * 
- * @returns {real}
+ * The extension functions themselves don't return a value indicating if a function call was succesful or not.
+ * You should therefore use this function if you want to get the result of the last function that you called.
+ * 
+ * @returns {constant.FMOD_RESULT}
  * @func_end
  */
 function fmod_last_result() {}
@@ -8994,7 +9788,6 @@ function fmod_last_result() {}
  * @desc 
  * 
  * @section_func
- * @ref fmod_fetch_callbacks
  * @ref fmod_last_result
  * @ref fmod_memory_get_stats
  * @section_end
