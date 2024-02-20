@@ -4315,7 +4315,7 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
  *
  * This function is used to check the loading state of a bank which has been loaded asynchronously using the `FMOD_STUDIO_LOAD_BANK.NONBLOCKING` flag, or is pending unload following a call to ${func.fmod_studio_bank_unload}.
  * 
- * If an asynchronous load failed due to a file error, state will contain `FMOD_STUDIO_LOADING_STATE.ERROR` and the return code from this function will be the error code of the bank load function.
+ * If an asynchronous load failed due to a file error, state will contain `FMOD_STUDIO_LOADING_STATE.ERROR` and the return code from the next ${func.fmod_last_result} call will be the error code of the bank load function.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {constant.FMOD_STUDIO_LOADING_STATE}
@@ -4387,7 +4387,7 @@ function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
  * 
  * This will destroy all objects created from the bank, unload all sample data inside the bank, and invalidate all API handles referring to the bank.
  * 
- * If the bank was loaded from user-managed memory, e.g. by ${func.fmod_studio_system_load_bank_memory} with the `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT` mode, then the memory must not be freed until the unload has completed. Poll the loading state using ${func.fmod_studio_bank_get_loading_state} or use the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` system callback to determine when it is safe to free the memory.
+ * If the bank was loaded from user-managed memory, e.g. by ${func.fmod_studio_system_load_bank_memory} with the `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT` mode, then the memory must not be freed until the unload has completed. Poll the loading state using ${func.fmod_studio_bank_get_loading_state} or use the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` system callback (see ${func.fmod_studio_system_set_callback}) to determine when it is safe to free the memory.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @func_end
@@ -4422,8 +4422,6 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
  * 
  * May be used in conjunction with ${func.fmod_studio_bank_get_bus_count} to enumerate the buses in the bank.
  * 
- * This function returns a maximum of capacity buses from the bank. If the bank contains more than capacity buses, additional buses will be silently ignored.
- * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
  * @func_end
@@ -4457,8 +4455,6 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
  * <br />
  *
  * This function retrieves an array containing the event descriptions in the bank.
- * 
- * This will return a maximum of capacity events from the bank. If the bank contains more than capacity events, then additional events will be silently ignored.
  * 
  * May be used in conjunction with ${func.fmod_studio_bank_get_event_count} to enumerate the events in the bank.
  * 
@@ -4498,10 +4494,6 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
  * 
  * May be used in conjunction with ${func.fmod_studio_bank_get_string_count} to enumerate the string table in a bank.
  * 
- * If the path is longer than size then it is truncated and this function returns FMOD_RESULT.ERR_TRUNCATED.
- * 
- * The retrieved parameter can be used to get the buffer size required to hold the full path.
- * 
  * @param {real} bank_ref A reference to a bank.
  * @param {real} string_index String table entry index.
  * @returns {struct.FmodStudioStringInfo}
@@ -4537,8 +4529,6 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
  * 
  * May be used in conjunction with ${func.fmod_studio_bank_get_vca_count} to enumerate the VCAs in a bank.
  * 
- * This returns a maximum of capacity VCAs from the bank. If the bank contains more than capacity VCAs, additional VCAs will be silently ignored.
- * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {array[real]}
  * @func_end
@@ -4569,9 +4559,7 @@ function fmod_studio_bank_get_id(bank_ref) {}
  *
  * This function retrieves the path of the given bank.
  * 
- * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned.
- * 
- * If the path is longer than size then it is truncated and this function returns `FMOD_RESULT.ERR_TRUNCATED`.
+ * The strings bank must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @returns {string}
@@ -4771,7 +4759,7 @@ function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
  * This function retrieves the port index assigned to the bus, as a ${constant.FMOD_PORT_INDEX} enum member.
  * 
  * @param {real} bus_ref A reference to a bus.
- * @returns {real} port_index
+ * @returns {constant.FMOD_PORT_INDEX} port_index
  * @func_end
  */
 function fmod_studio_bus_get_port_index(bus_ref) {}
@@ -4785,7 +4773,7 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
  *
  * This function retrieves the core ChannelGroup.
  * 
- * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, this function will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
+ * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, the next call to ${func.fmod_last_result} will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
@@ -4935,7 +4923,7 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
  *
  * <br />
  *
- * This function enables the create event instance callback.
+ * This function enables the create event instance callback, received in the Async Social event.
  * 
  * The create instance callback is invoked each time a ${func.fmod_studio_event_description_create_instance} command is processed.
  * 
@@ -4964,7 +4952,7 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
  *
  * <br />
  *
- * This function enables a callback that is issued each time the replay reaches a new frame.
+ * This function enables a callback that is issued each time the replay reaches a new frame. This is received in the Async Social event.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * 
@@ -4987,7 +4975,7 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
  *
  * <br />
  *
- * This function enables the bank loading callback.
+ * This function enables the bank loading callback, received in the Async Social event.
  * 
  * The load bank callback is invoked whenever any of the Studio load bank functions are reached.
  * 
@@ -5054,7 +5042,7 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
  *
  * This function retrieves the progress through the command replay.
  * 
- * If this function is called before ${func.fmod_studio_command_replay_start} then both commandindex and currenttime (in the returned struct) will be returned as 0. If this function is called after ${func.fmod_studio_command_replay_stop} then the index and time of the last command which was replayed will be returned.
+ * If this function is called before ${func.fmod_studio_command_replay_start} then both `commandindex` and `currenttime` (in the returned struct) will be returned as 0. If this function is called after ${func.fmod_studio_command_replay_stop} then the index and time of the last command which was replayed will be returned.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @returns {struct.FmodCommandReplayCurrentCommand}
@@ -5350,8 +5338,6 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
  * <br />
  *
  * This function retrieves an array containing the instances in the given EventDescription.
- * 
- * This returns a maximum of capacity instances. If more than capacity instances have been created then additional instances will be silently ignored.
  * 
  * May be used in conjunction with ${func.fmod_studio_event_description_get_instance_count} to enumerate the instances of this event.
  * 
@@ -5842,6 +5828,8 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
  *
  * This function retrieves the real value attached to the object in ${func.fmod_studio_event_description_set_user_data}.
  * 
+ * Returns `NaN` when no attached value is found.
+ * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
  * @func_end
@@ -5955,7 +5943,7 @@ function fmod_studio_event_instance_get_paused(event_instance_ref) {}
  * 
  * Multiple sustain points may be bypassed ahead of time and the key off count will be decremented each time the timeline cursor passes a sustain point.
  * 
- * This results in `FMOD_RESULT.ERR_EVENT_NOTFOUND` if the event has no sustain points (in the next call to ${func.fmod_last_result}).
+ * This results in `FMOD_RESULT.ERR_EVENT_NOTFOUND` (in the next call to ${func.fmod_last_result}) if the event has no sustain points.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @func_end
@@ -6455,6 +6443,8 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
  * <br />
  *
  * This function retrieves the real value attached to this object in ${func.fmod_studio_event_instance_set_user_data}.
+ * 
+ * Returns `NaN` if no attached user data is found.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @returns {real}
@@ -7334,7 +7324,7 @@ function fmod_studio_system_set_user_data(data) {}
  *
  * <br />
  *
- * This function retrieves the real value attached to this object.
+ * This function retrieves the real value attached to this object. Returns `NaN` if no value is attached.
  * 
  * @returns {real}
  * @func_end
