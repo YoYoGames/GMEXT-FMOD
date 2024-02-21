@@ -434,14 +434,29 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 
 /**
  * @struct FmodDspParameterDesc
- * @desc This struct is a base structure for DSP parameter descriptions.
+ * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc)
  * 
- * @member {constant.FMOD_DSP_PARAMETER_TYPE} type The parameter type.
+ * This struct is a base structure for DSP parameter descriptions.
+ * 
+ * @member {real} type The parameter type ([FMOD_DSP_PARAMETER_TYPE](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_type)).
  * @member {string} name The parameter name.
- * @member {string} name The parameter name.
- * @member {string} name The parameter name.
- * @member {string} name The parameter name.
- * @member {string} name The parameter name.
+ * @member {string} label The unit type label.
+ * @member {string} description The description of the parameter.
+ * @member {struct.FmodDspParameterDescValue} int_value The integer value in case of an integer.
+ * @member {struct.FmodDspParameterDescValue} float_value The floating-point value in case of a float.
+ * @member {struct.FmodDspParameterDescValue} bool_value The boolean value in case of a boolean.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodDspParameterDescValue
+ * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC_*](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool)
+ * 
+ * This struct stores a parameter description.
+ * 
+ * @member {real} default_val The default value.
+ * @member {real} minimum The minimum value.
+ * @member {real} maximum The maximum value.
  * @struct_end
  */
 
@@ -786,6 +801,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPInfo
  * @ref FmodDSPConnectionMixMatrix
  * @ref FmodDspParameterDesc
+ * @ref FmodDspParameterDescValue
  * @ref FmodGeometryPolygonAttributes
  * @ref FmodGeometryRotation
  * @ref FmodReverb3DAttributes
