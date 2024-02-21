@@ -9104,6 +9104,21 @@ function fmod_system_get_user_data() {}
  */
 function fmod_last_result() {}
 
+/**
+ * @func fmod_path_bundle
+ * @desc Since FMOD uses direct C++ access to the file system, it doesn't know anything about the user path automatically. This function returns returns the full bundle path to an [Included File](https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm) in the `datafiles` folder.
+ * 
+ * @returns {string}
+ * @func_end
+ */
+
+/**
+ * @func fmod_path_user
+ * @desc Since FMOD uses direct C++ access to the file system, it doesn't know anything about the bundle path automatically. This function returns the full path to a file stored in the save path.
+ * 
+ * @returns {string}
+ * @func_end
+ */
 
 /**
  * @module home
@@ -9920,6 +9935,8 @@ function fmod_last_result() {}
  * @ref fmod_memory_get_stats
  * @ref fmod_debug_initialize
  * @ref fmod_thread_set_attributes
+ * @ref fmod_path_bundle
+ * @ref fmod_path_user
  * @section_end
  * 
  * @module_end
