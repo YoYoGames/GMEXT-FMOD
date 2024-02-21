@@ -1752,8 +1752,8 @@ function fmod_memory_get_stats(blocking) {}
  * See Also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
  * 
  * @param {constant.FMOD_DEBUG_FLAGS} flags The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.
- * @param {constant.FMOD_DEBUG_MODE} [mode=FMOD_DEBUG_MODE.TTY] The destination for log messages.
- * @param {string} [filename=pointer_null] The filename to use when mode is set to file, only required when using that mode.
+ * @param {constant.FMOD_DEBUG_MODE} mode The destination for log messages. The default is `FMOD_DEBUG_MODE.TTY`.
+ * @param {string} filename The filename to use when mode is set to file, only required when using that mode. The default is `pointer_null`.
  * @func_end
  */
 function fmod_debug_initialize(flags, mode=FMOD_DEBUG_MODE.TTY, filename=pointer_null) {}

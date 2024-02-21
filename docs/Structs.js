@@ -433,6 +433,19 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  */
 
 /**
+ * @struct FmodDspParameterDesc
+ * @desc This struct is a base structure for DSP parameter descriptions.
+ * 
+ * @member {constant.FMOD_DSP_PARAMETER_TYPE} type The parameter type.
+ * @member {string} name The parameter name.
+ * @member {string} name The parameter name.
+ * @member {string} name The parameter name.
+ * @member {string} name The parameter name.
+ * @member {string} name The parameter name.
+ * @struct_end
+ */
+
+/**
  * @struct FmodGeometryPolygonAttributes
  * @desc This struct stores the attributes for a polygon.
  * @member {real} direct_occlusion The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion.
@@ -772,6 +785,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPWetDryMixInfo
  * @ref FmodDSPInfo
  * @ref FmodDSPConnectionMixMatrix
+ * @ref FmodDspParameterDesc
  * @ref FmodGeometryPolygonAttributes
  * @ref FmodGeometryRotation
  * @ref FmodReverb3DAttributes
