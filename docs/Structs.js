@@ -40,8 +40,8 @@
 /**
  * @struct FmodLoopPoints
  * @desc This struct stores a loop start and end point.
- * @member {real} loop_start The loop start point. A value in the range [0, {function.fmod_sound_get_length} - 1].
- * @member {real} loop_end The loop end point. A value in the range [0, {function.fmod_sound_get_length} - 1].
+ * @member {real} loop_start The loop start point. A value in the range [0, ${function.fmod_sound_get_length} - 1].
+ * @member {real} loop_end The loop end point. A value in the range [0, ${function.fmod_sound_get_length} - 1].
  * @struct_end
  */
 
@@ -106,7 +106,7 @@
  * @struct FmodMemoryStats
  * @desc This struct stores on the memory usage of FMOD.
  * @member {real} current_alloced The currently allocated memory at the time of the call.
- * @member {real} max_alloced The maximum allocated memory since ${func.fmod_system_init} or Memory_Initialize.
+ * @member {real} max_alloced The maximum allocated memory since ${func.fmod_system_init}.
  * @struct_end
  */
 
@@ -116,12 +116,12 @@
  * 
  * This struct holds additional options for creating a Sound.
  * 
- * @member {real} length The number of bytes to read starting at `fileoffset`, or the length of the Sound to create for `FMOD_MODE.OPENUSER`, or the length of `name_or_data` for `FMOD_MODE.OPENMEMORY` / `FMOD_MODE.OPENMEMORY_POINT`.
+ * @member {real} length The number of bytes to read starting at `file_offset`, or the length of the Sound to create for `FMOD_MODE.OPENUSER`, or the length of `name_or_buff` for `FMOD_MODE.OPENMEMORY` / `FMOD_MODE.OPENMEMORY_POINT`.
  * @member {real} file_offset The file offset (in bytes) to start reading from.
- * @member {real} num_channels The number of channels in sound data for `FMOD_MODE.OPENUSER` / `FMOD_MODE.OPENRAW`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
+ * @member {real} num_channels The number of channels in sound data for `FMOD_MODE.OPENUSER` / `FMOD_MODE.OPENRAW`. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}].
  * @member {real} default_frequency The default frequency (in Hertz) of sound data for `FMOD_MODE.OPENUSER` / `FMOD_MODE.OPENRAW`.
  * @member {constant.FMOD_SOUND_FORMAT} format The format of sound data for `FMOD_MODE.OPENUSER` / `FMOD_MODE.OPENRAW`.
- * @member {real} decode_buffer_size The size (in samples) of the decoded buffer for `FMOD_MODE.CREATESTREAM`, or the block size used with `pcmreadcallback` for `FMOD_MODE.OPENUSER`.
+ * @member {real} decode_buffer_size The size (in samples) of the decoded buffer for `FMOD_MODE.CREATESTREAM`, or the block size used for `FMOD_MODE.OPENUSER`.
  * @member {real} initial_subsound The initial subsound to seek to for `FMOD_MODE.CREATESTREAM`.
  * @member {real} num_subsounds Number of subsounds available for `FMOD_MODE.OPENUSER`, or the maximum subsounds to load from file.
  * @member {real} inclusion_list_num The list of subsound indices to load from file.
@@ -133,7 +133,7 @@
  * @member {constant.FMOD_CHANNELORDER} channel_order Custom ordering of speakers for this sound data.
  * @member {real} initial_seek_position The initial position to seek to for `FMOD_MODE.CREATESTREAM`.
  * @member {constant.FMOD_TIMEUNIT} initial_seek_pos_type The time units for `initial_seek_position`.
- * @member {boolean} ignore_set_filesystem Ignore System::setFileSystem and `FMOD_CREATESOUNDEXINFO` file callbacks.
+ * @member {boolean} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
  * @member {real} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
  * @member {real} min_midi_granularity The mixer granularity for `FMOD_SOUND_TYPE.MIDI` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {real} non_block_thread_id The thread index to execute `FMOD_MODE.NONBLOCKING` loads on for parallel Sound loading.
@@ -148,7 +148,7 @@
  * 
  * This is a structure to allow configuration of lesser used system level settings. These tweaks generally allow the user to set resource limits and customize settings to better fit their application.
  * 
- * Specifying one of the codec maximums will help determine the maximum CPU usage of playing `FMOD_MODE.CREATECOMPRESSEDSAMPLE` Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during ${func.fmod_system_init}) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if `maxMPEGCodecs` is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.
+ * Specifying one of the codec maximums will help determine the maximum CPU usage of playing `FMOD_MODE.CREATECOMPRESSEDSAMPLE` Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during ${func.fmod_system_init}) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if `max_mpeg_codecs` is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.
  * 
  * Setting `dsp_buffer_pool_size` will pre-allocate memory for the FMOD DSP network. See [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html). By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.
  * 
@@ -166,11 +166,24 @@
  * @member {real} geometry_max_fade_time For use with [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html), the maximum time it takes for a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) to fade to the new volume level when its occlusion changes.
  * @member {real} distance_filter_center_freq For use with `FMOD_INIT.CHANNEL_DISTANCEFILTER`, the default center frequency for the distance filtering effect. A value in the range [10, 22050].
  * @member {real} reverb_3d_instance For use with [Reverb3D](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html), selects which global reverb instance to use. A value in the range [0, ${constant.FMOD_REVERB_MAXINSTANCES}].
- * @member {real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `bufferlength` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode)). ie 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32KB.
+ * @member {real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `buffer_length` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode)). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.
  * @member {constant.FMOD_DSP_RESAMPLER} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
  * @member {real} random_seed The seed value to initialize the internal random number generator.
  * @member {real} max_convolution_threads The maximum number of CPU threads to use for `FMOD_DSP_TYPE.CONVOLUTIONREVERB` effect. 1 = effect is entirely processed inside the `FMOD_THREAD_TYPE.MIXER` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FMOD_THREAD_TYPE.CONVOLUTION1` and `FMOD_THREAD_TYPE.CONVOLUTION2` to increase throughput. A value in the range [0, 3].
  * @member {real} max_opus_codecs The maximum number of Opus Sounds created as `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. A value in the range [0, 256].
+ * @struct_end
+ */
+
+/**
+ * @struct FmodSystemDriverInfo
+ * @desc This struct holds identification information about a sound device specified by its index, and specific to a given output mode.
+ * 
+ * @member {real} index The index of the sound driver device. A value in the range [0, ${function.fmod_system_get_num_drivers}].
+ * @member {string} name The name of the device.
+ * @member {string} guid The GUID that uniquely identifies the device.
+ * @member {real} system_rate The sample rate this device operates at.
+ * @member {constant.FMOD_SPEAKERMODE} speaker_mode The speaker setup this device is currently using.
+ * @member {real} speaker_mode_channels The number of channels in the current speaker setup.
  * @struct_end
  */
 
@@ -195,7 +208,7 @@
  * @struct FmodSystemStreamBufferSize
  * @desc This struct stores the default file buffer size for newly opened streams.
  * @member {real} file_buffer_size The buffer size.
- * @member {FMOD_TIMEUNIT} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FMOD_TIMEUNIT.RAWBYTES`.
+ * @member {constant.FMOD_TIMEUNIT} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FMOD_TIMEUNIT.RAWBYTES`.
  * @struct_end
  */
 
@@ -204,7 +217,16 @@
  * @desc This struct stores the position of a speaker and its active state.
  * @member {real} x The speaker's 2D X position relative to the listener. -1 = left, 0 = middle, +1 = right.
  * @member {real} y The speaker's 2D Y position relative to the listener. -1 = back, 0 = middle, +1 = front.
- * @member {boolean} active The active state of the speaker. True = included in 3D calculations, False = ignored.
+ * @member {boolean} active The active state of the speaker. `true` = included in 3D calculations, `false` = ignored.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodSystem3DSettings
+ * @desc This struct stores the global doppler scale, distance factor and roll-off scale for all 3D sounds.
+ * @member {real} doppler_scale This is a scaling factor for doppler shift.
+ * @member {real} distance_factor This is a factor for converting game distance units to FMOD distance units.
+ * @member {real} rolloff_scale This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FMOD_MODE.AS_3D_CUSTOMROLLOFF` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.
  * @struct_end
  */
 
@@ -271,7 +293,7 @@
 /**
  * @struct FmodControl3DDistanceFilter
  * @desc This struct holds override values for the 3D distance filter.
- * @member {boolean} custom Whether to override automatic distance filtering and use `customLevel` instead.
+ * @member {boolean} custom Whether to override automatic distance filtering and use `custom_level` instead.
  * @member {real} custom_level The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation.
  * @member {real} center_freq The center frequency of the band-pass filter used to simulate distance attenuation. A value in the range [10, 22050]. 0 for default of `FmodSystemAdvancedSettings.distance_filter_center_freq`.
  * @struct_end
@@ -281,7 +303,7 @@
  * @struct FmodControl3DMinMaxDistance
  * @desc This struct holds the minimum and maximum distances used to calculate the 3D roll-off attenuation.
  * @member {real} min_dist The distance from the source where attenuation begins, expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units). A value in the range [0, `infinity`]. Default is 1.
- * @member {real} max_dist The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units). A value in the range [`min`, `infinity`]. Default is 1.
+ * @member {real} max_dist The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units). A value in the range [`min_dist`, `infinity`]. Default is 1.
  * @struct_end
  */
 
@@ -308,8 +330,8 @@
 /**
  * @struct FmodControlDSPClock
  * @desc This struct holds the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock values at a point in time.
- * @member {real} dsp_clock The DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_TAIL`) node. Expressed in samples.
- * @member {real} parent_clock DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_TAIL`) node of the parent ChannelGroup. Expressed in samples.
+ * @member {real} dsp_clock The DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`) node. Expressed in samples.
+ * @member {real} parent_clock DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`) node of the parent ChannelGroup. Expressed in samples.
  * @struct_end
  */
 
@@ -379,6 +401,15 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  */
 
 /**
+ * @struct FmodDSPWetDryMixInfo
+ * @desc This struct stores the scale of the wet and dry signal components.
+ * @member {real} pre_wet The level of the 'Dry' (pre-processed signal) mix that is processed by the DSP. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @member {real} post_wet The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @member {real} dry The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
+ * @struct_end
+ */
+
+/**
  * @struct FmodDSPInfo
  * @desc This struct stores information about a DSP unit.
  * @member {string} name The name of this unit will be written (null-terminated) to the provided 32 byte buffer.
@@ -386,6 +417,18 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {real} channels The number of channels this unit processes where 0 represents "any".
  * @member {real} config_width The configuration dialog box width where 0 represents "no dialog box".
  * @member {real} config_height The configuration dialog box height where 0 represents "no dialog box".
+ * @struct_end
+ */
+
+/**
+ * @struct FmodDSPConnectionMixMatrix
+ * @desc This struct stores a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
+ * 
+ * A matrix element is referenced from the incoming matrix data as `outchannel * inchannel_hop + inchannel`.
+ * 
+ * @member {array[real]} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
+ * @member {real} out_channels The number of valid output channels (rows) in `matrix`.
+ * @member {real} in_channels The number of valid input channels (columns) in `matrix`
  * @struct_end
  */
 
@@ -449,7 +492,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {string} name The tag name.
  * @member {constant.FMOD_TAGTYPE} type The tag type.
  * @member {real} update True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
- * @member {real} data_len The size of the binary tag data, in bytes. For example, an [ID3v1](https://en.wikipedia.org/wiki/ID3) tag is always 128. Other tag types store more data and can have a variable size.
+ * @member {real} data_len The size of the binary tag data, in bytes. For example, an [ID3v1](https://en.wikipedia.org/wiki/ID3) tag always consists of 128 bytes. Other tag types store more data and can have a variable size.
  * @member {constant.FMOD_TAGDATATYPE} data_type Tge tag data type.
  * @struct_end
  */
@@ -468,7 +511,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {constant.FMOD_OPENSTATE} open_state The open state of a sound.
  * @member {real} percent_buffered The filled percentage of a stream's file buffer.
  * @member {boolean} starving The starving state. `true` if a stream has decoded more than the stream file buffer has ready.
- * @member {boolean} disk_busy The disk is currently being accessed for this sound.
+ * @member {boolean} disk_busy Whether the disk is currently being accessed for this sound.
  * @struct_end
  */
 
@@ -476,7 +519,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @struct FmodSoundLockChunck
  * @desc This struct holds information about a data chunck in an FMOD sound.
  * @member {real} length The length of the data chunk, in bytes.
- * @member {pointer} patch_address The address of the data chunk in FMOD's memory (required in the later call ${function.fmod_sound_unlock}).
+ * @member {pointer} patch_address The address of the data chunk in FMOD's memory (required in the later call to ${function.fmod_sound_unlock}).
  * @struct_end
  */
 
@@ -702,10 +745,12 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodMemoryStats
  * @ref FmodSystemCreateSoundExInfo
  * @ref FmodSystemAdvancedSettings
+ * @ref FmodSystemDriverInfo
  * @ref FmodSystemSoftwareFormat
  * @ref FmodSystemDSPBufferSize
  * @ref FmodSystemStreamBufferSize
  * @ref FmodSystemSpeakerPosition
+ * @ref FmodSystem3DSettings
  * @ref FmodSystemChannelsPlaying
  * @ref FmodSystemFileUsage
  * @ref FmodSystemRecordNumDrivers
@@ -715,6 +760,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodControl3DDistanceFilter
  * @ref FmodControl3DMinMaxDistance
  * @ref FmodControl3DOcclusion
+ * @ref FmodControlMixMatrix
  * @ref FmodControlDSPClock
  * @ref FmodControlDelay
  * @ref FmodControlFadePoints
@@ -723,7 +769,9 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPMeteringInfo
  * @ref FmodDSPInOutMeteringInfo
  * @ref FmodDSPMeteringEnableInfo
+ * @ref FmodDSPWetDryMixInfo
  * @ref FmodDSPInfo
+ * @ref FmodDSPConnectionMixMatrix
  * @ref FmodGeometryPolygonAttributes
  * @ref FmodGeometryRotation
  * @ref FmodReverb3DAttributes

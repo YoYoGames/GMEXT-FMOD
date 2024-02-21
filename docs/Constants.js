@@ -10,7 +10,7 @@
  * 
  * This constant holds the current FMOD version number.
  * 
- * The version is a 32 bit hexadecimal value formatted as 16:8:8, with the upper 16 bits being the product version, the middle 8 bits being the major version and the bottom 8 bits being the minor version. For example a value of 0x00010203 is equal to 1.02.03.
+ * The version is a 32 bit hexadecimal value formatted as `16:8:8`, with the upper 16 bits being the product version, the middle 8 bits being the major version and the bottom 8 bits being the minor version. For example a value of `0x00010203` is equal to` 1.02.03`.
  * 
  * @const_end
  */
@@ -44,7 +44,7 @@
  *
  * This enum specifies the bitfields for the memory allocation type being passed into FMOD memory callbacks.
  * @member NORMAL This value specifies standard memory allocation.
- * @member STREAM_FILE This value specifies a stream file buffer, size controllable with ${function.fmod_system_set_stream_buffer_size).
+ * @member STREAM_FILE This value specifies a stream file buffer, size controllable with ${function.fmod_system_set_stream_buffer_size}.
  * @member STREAM_DECODE This value specifies a stream decode buffer, size controllable with `FmodSystemCreateSoundExInfo.decodebuffersize`.
  * @member SAMPLEDATA This value specifies a sample data buffer. Raw audio data, usually PCM/MPEG/ADPCM/XMA data.
  * @member DSP_BUFFER Deprecated.
@@ -61,7 +61,7 @@
  * <br />
  *
  * This enum specifies the configuration flags used when initialising the FMOD system.
- * @member NORMAL Initialize normally
+ * @member NORMAL Initialize normally.
  * @member STREAM_FROM_UPDATE No stream thread is created internally. Streams are driven from ${function.fmod_system_update}. Mainly used with non-realtime outputs.
  * @member MIX_FROM_UPDATE No mixer thread is created internally. Mixing is driven from ${function.fmod_system_update}. Only applies to polling based output modes such as `FMOD_OUTPUTTYPE.NOSOUND`, `FMOD_OUTPUTTYPE.WAVWRITER`.
  * @member RIGHTHANDED_3D 3D calculations will be performed in right-handed coordinates.
@@ -147,14 +147,14 @@
  * @member LOOP_OFF For non looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html). (DEFAULT). Overrides `FMOD_MODE.LOOP_NORMAL` / `FMOD_MODE.LOOP_BIDI`.
  * @member LOOP_NORMAL For forward looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
  * @member LOOP_BIDI For bidirectional looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html). (only works on non-streaming, real voices).
- * @member AS_2D Ignores any 3d processing. (DEFAULT).
+ * @member AS_2D Ignores any 3D processing. (DEFAULT).
  * @member AS_3D Makes the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) positionable in 3D. Overrides `FMOD_MODE.AS_2D`.
  * @member CREATESTREAM Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides `FMOD_MODE.CREATESAMPLE` and `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.
  * @member CREATESAMPLE Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.
  * @member CREATECOMPRESSEDSAMPLE Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides `FMOD_MODE.CREATESAMPLE`. If the sound data is not one of the supported formats, it will behave as if it was created with `FMOD_MODE.CREATESAMPLE` and decode the sound into PCM.
  * @member OPENUSER Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
  * @member OPENMEMORY When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. If used with `FMOD_MODE.CREATESAMPLE` or `FMOD_MODE.CREATECOMPRESSEDSAMPLE`, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using `FMOD_MODE.NONBLOCKING` then wait until the Sound is in the `FMOD_OPENSTATE.READY` state. If used with `FMOD_MODE.CREATESTREAM`, FMOD will stream out of the ${type.buffer} that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.
- * @member OPENMEMORY_POINT When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. This differs to `FMOD_MODE.OPENMEMORY` in that it uses the memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FMOD_MODE.CREATECOMPRESSEDSAMPLE` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
+ * @member OPENMEMORY_POINT When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. This differs to `FMOD_MODE.OPENMEMORY` in that it uses the ${type.buffer} memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FMOD_MODE.CREATECOMPRESSEDSAMPLE` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
  * @member OPENRAW Will ignore file format and treat as raw pcm. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.
  * @member OPENONLY Just open the file, don't prebuffer or read. Good for fast opens for info, or when ${function.fmod_sound_read_data} is to be used.
  * @member ACCURATETIME For ${function.fmod_system_create_sound} - for accurate ${function.fmod_sound_get_length} / ${function.fmod_channel_set_position} on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. `FMOD_MODE.OPENONLY` does not affect this.
@@ -395,7 +395,7 @@
  * 
  * This macro holds the maximum number of global reverb instances.
  * 
- * Each instance of a reverb is an instance of a ${constant.FMOD_DSP_SFXREVERB} dsp in the mix graph. This is unrelated to the number of possible Reverb3D objects, which is unlimited.
+ * Each instance of a reverb is an instance of a ${constant.FMOD_DSP_SFXREVERB} DSP in the mix graph. This is unrelated to the number of possible Reverb3D objects, which is unlimited.
  * 
  * @const_end
  */
@@ -411,13 +411,13 @@
  * @member FEEDER Thread used by some output plugins for transferring buffered audio from `FMOD_THREAD_TYPE.MIXER` to the sound output device.
  * @member STREAM Thread that decodes compressed audio to PCM for Sounds created as `FMOD_MODE.CREATESTREAM`.
  * @member FILE Thread that reads compressed audio from disk to be consumed by `FMOD_THREAD_TYPE.STREAM`.
- * @member NONBLOCKING Thread that processes the creation of Sounds asynchronously when opened with FMOD_NONBLOCKING.
+ * @member NONBLOCKING Thread that processes the creation of Sounds asynchronously when opened with `FMOD_MODE.NONBLOCKING`.
  * @member RECORD Thread used by some output plugins for transferring audio from a microphone to `FMOD_THREAD_TYPE.MIXER`.
  * @member GEOMETRY Thread used by the Geometry system for performing background calculations.
  * @member PROFILER Thread for network communication when using `FMOD_INIT.PROFILE_ENABLE`.
  * @member STUDIO_UPDATE Thread for processing Studio API commands and scheduling sound playback.
- * @member STUDIO_LOAD_BANK Thread for asynchronously loading Studio::Bank metadata.
- * @member STUDIO_LOAD_SAMPLE Thread for asynchronously loading Studio::Bank sample data.
+ * @member STUDIO_LOAD_BANK Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html) metadata.
+ * @member STUDIO_LOAD_SAMPLE Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html) sample data.
  * @member CONVOLUTION1 Thread for processing medium size delay lines for `FMOD_DSP_TYPE.CONVOLUTIONREVERB`.
  * @member CONVOLUTION2 Thread for processing larger size delay lines for `FMOD_DSP_TYPE.CONVOLUTIONREVERB`.
  * @const_end
@@ -496,7 +496,7 @@
  * @member ERR_TAGNOTFOUND The specified tag could not be found or there are no tags.
  * @member ERR_TOOMANYCHANNELS The Sound created exceeds the allowable input channel count. This can be increased using the 'maxinputchannels' parameter in ${function.fmod_system_set_software_format}.
  * @member ERR_TRUNCATED The retrieved string is too long to fit in the supplied buffer and has been truncated.
- * @member ERR_UNIMPLEMENTED Something in FMOD hasn't been implemented when it should be. Contact support.
+ * @member ERR_UNIMPLEMENTED Something in FMOD hasn't been implemented when it should be. Contact FMOD support.
  * @member ERR_UNINITIALIZED This command failed because ${function.fmod_system_init} or ${function.fmod_system_set_driver} was not called.
  * @member ERR_UNSUPPORTED A command issued was not supported by this object. Possibly a plugin without certain callbacks specified.
  * @member ERR_VERSION The version number of this file format is not supported.
@@ -555,6 +555,7 @@
  * @member AAUDIO Android - AAudio. (Default on Android 8.1 and above)
  * @member AUDIOWORKLET HTML5 - Web Audio AudioWorkletNode output. (Default on HTML5 if available)
  * @member PHASE iOS - PHASE framework. (Disabled)
+ * @member OHAUDIO OpenHarmony - OHAudio.
  * @const_end
  */
 
@@ -951,8 +952,8 @@
  * @member PARAMEQ Attenuates or amplifies a selected frequency range. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_PARAMEQ} for parameter information, [Effect reference - Parametric EQ](https://www.fmod.com/docs/2.02/api/effects-reference.html#parametric-eq) for overview.
  * @member PITCHSHIFT Bends the pitch of a sound without changing the speed of playback. See ${constant.FMOD_DSP_PITCHSHIFT} for parameter information, [Effect reference - Pitch Shifter](https://www.fmod.com/docs/2.02/api/effects-reference.html#pitch-shifter) for overview.
  * @member CHORUS Produces a chorus effect on the sound. See ${constant.FMOD_DSP_CHORUS} for parameter information, [Effect reference - Chorus](https://www.fmod.com/docs/2.02/api/effects-reference.html#chorus) for overview.
- * @member VSTPLUGIN Allows the use of Steinberg VST plugins.
- * @member WINAMPPLUGIN Allows the use of Nullsoft Winamp plugins.
+ * @member VSTPLUGIN Allows the use of Steinberg VST plugins. Note that plugins are currently not implemented in the extension.
+ * @member WINAMPPLUGIN Allows the use of Nullsoft Winamp plugins. Note that plugins are currently not implemented in the extension.
  * @member ITECHO Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See ${constant.FMOD_DSP_ITECHO} for parameter information, [Effect reference - IT Echo](https://www.fmod.com/docs/2.02/api/effects-reference.html#it-echo) for overview.
  * @member COMPRESSOR Dynamic compression (linked/unlinked multi-channel, wideband). See ${constant.FMOD_DSP_COMPRESSOR} for parameter information, [Effect reference - Compressor](https://www.fmod.com/docs/2.02/api/effects-reference.html#compressor) for overview.
  * @member SFXREVERB I3DL2 reverb effect. See ${constant.FMOD_DSP_SFXREVERB} for parameter information, [Effect reference - SFX Reverb](https://www.fmod.com/docs/2.02/api/effects-reference.html#sfx-reverb) for overview.
@@ -1323,10 +1324,6 @@
  *
  * This enum specifies delay DSP parameter types.
  * 
- * [[Note: Every time MaxDelay is changed, the plugin re-allocates the delay buffer. This means the delay will disappear at that time while it refills its new buffer. A larger MaxDelay results in larger amounts of memory allocated.]]
- *
- * Channel delays above MaxDelay will be clipped to MaxDelay and the delay buffer will not be resized.
- * 
  * @member CH0 Channel #0 Delay.
  * @member CH1 Channel #1 Delay.
  * @member CH2 Channel #2 Delay.
@@ -1343,7 +1340,6 @@
  * @member CH13 Channel #13 Delay.
  * @member CH14 Channel #14 Delay.
  * @member CH15 Channel #15 Delay.
- * @member MAXDELAY Maximum delay, for memory allocation purposes.
  * @const_end
  */
 
@@ -1418,7 +1414,7 @@
  * <br />
  *
  * This enum specifies 2D Stereo Mode values for Pan DSP.
- * @member DISTRIBUTED The parts of a stereo sound are spread around destination speakers based on `FMOD_DSP_PAN._2D_EXTENT` / `FMOD_DSP_PAN._2D_DIRECTION`
+ * @member DISTRIBUTED The parts of a stereo sound are spread around destination speakers based on `FMOD_DSP_PAN._2D_EXTENT` / `FMOD_DSP_PAN._2D_DIRECTION`.
  * @member DISCRETE The L/R parts of a stereo sound are rotated around a circle based on `FMOD_DSP_PAN._2D_STEREO_AXIS` / `FMOD_DSP_PAN._2D_STEREO_SEPARATION`.
  * @const_end
  */
@@ -1574,8 +1570,8 @@
  *
  * This enum specifies FFT DSP parameter types.
  * 
- * Set the attributes for the spectrum analysis with `FMOD_DSP_FFT.WINDOWSIZE` and `FMOD_DSP_FFT.WINDOWTYPE`, and retrieve the results with FMOD_DSP_FFT_SPECTRUM and `FMOD_DSP_FFT.DOMINANT_FREQ`.
- * `FMOD_DSP_FFT_SPECTRUM` stores its data in the `FMOD_DSP_PARAMETER_DATA_TYPE_FFT`. You will need to cast to this structure to get the right data.
+ * Set the attributes for the spectrum analysis with `FMOD_DSP_FFT.WINDOWSIZE` and `FMOD_DSP_FFT.WINDOWTYPE`, and retrieve the results with `FMOD_DSP_FFT.SPECTRUMDATA` and `FMOD_DSP_FFT.DOMINANT_FREQ`.
+ * `FMOD_DSP_FFT.SPECTRUMDATA` stores its data in the `FMOD_DSP_PARAMETER_DATA_TYPE_FFT`. You will need to cast to this structure to get the right data.
  * 
  * @member WINDOWSIZE Window size. Must be a power of 2 between 128 and 16384.
  * @member WINDOWTYPE FFT Window Type.
@@ -2117,6 +2113,8 @@
  * @module constants
  * @title Constants
  * @description These are the constants that you can use in the FMOD extension.
+ * 
+ * [[Note: Although all items on this page are [Constants](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm), some are defined as macros in the extension, others as enums. See a constant's description to learn its type.]]
  * 
  * @section_const
  * @ref FMOD_VERSION
