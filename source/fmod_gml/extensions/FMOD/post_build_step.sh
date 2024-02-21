@@ -20,10 +20,16 @@ setupmacOS() {
     
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
+
+        # Assert if xcode-tools are installed (required)
+        assertXcodeToolsInstalled
+
         itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
 
         if [[ $ENABLE_STUDIO_FLAG == 1 ]]; then
             itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
+            codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
         fi
     else
         itemCopyTo "$SDK_CORE_SOURCE" "${YYprojectName}/${YYprojectName}/Supporting Files/libfmodL.dylib"
