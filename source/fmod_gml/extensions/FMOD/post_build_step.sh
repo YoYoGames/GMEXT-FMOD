@@ -20,7 +20,11 @@ setupmacOS() {
     
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
-        logError "Extension is not compatible with the macOS VM export, please use YYC."
+        itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
+
+        if [[ $ENABLE_STUDIO_FLAG == 1 ]]; then
+            itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
+        fi
     else
         itemCopyTo "$SDK_CORE_SOURCE" "${YYprojectName}/${YYprojectName}/Supporting Files/libfmodL.dylib"
 
