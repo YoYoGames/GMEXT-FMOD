@@ -9068,7 +9068,7 @@ function fmod_last_result() {}
  * @description This is the FMOD extension for GameMaker.
  * 
  * @section Guides
- * 
+ * @ref page.GettingStarted
  * @section_end
  * 
  * @section FMOD Modules
