@@ -21,7 +21,7 @@
  *
  * <br />
  *
- * This constant specifies the requested information to be output when using the logging version of FMOD.
+ * This enum specifies the requested information to be output when using the logging version of FMOD.
  * @member LEVEL_NONE Disable all messages.
  * @member LEVEL_ERROR Enable only error messages.
  * @member LEVEL_WARNING Enable warning and error messages.
@@ -42,7 +42,7 @@
  *
  * <br />
  *
- * This constant specifies the bitfields for the memory allocation type being passed into FMOD memory callbacks.
+ * This enum specifies the bitfields for the memory allocation type being passed into FMOD memory callbacks.
  * @member NORMAL This value specifies standard memory allocation.
  * @member STREAM_FILE This value specifies a stream file buffer, size controllable with ${function.fmod_system_set_stream_buffer_size).
  * @member STREAM_DECODE This value specifies a stream decode buffer, size controllable with `FmodSystemCreateSoundExInfo.decodebuffersize`.
@@ -60,7 +60,7 @@
  *
  * <br />
  *
- * This constant specifies the configuration flags used when initialising the FMOD system.
+ * This enum specifies the configuration flags used when initialising the FMOD system.
  * @member NORMAL Initialize normally
  * @member STREAM_FROM_UPDATE No stream thread is created internally. Streams are driven from ${function.fmod_system_update}. Mainly used with non-realtime outputs.
  * @member MIX_FROM_UPDATE No mixer thread is created internally. Mixing is driven from ${function.fmod_system_update}. Only applies to polling based output modes such as `FMOD_OUTPUTTYPE.NOSOUND`, `FMOD_OUTPUTTYPE.WAVWRITER`.
@@ -84,7 +84,7 @@
  *
  * <br />
  *
- * This constant specifies flags that provide additional information about a particular driver.
+ * This enum specifies flags that provide additional information about a particular driver.
  * @member CONNECTED Device is currently plugged in.
  * @member DEFAULT Device is the user's preferred choice.
  * @const_end
@@ -96,7 +96,7 @@
  *
  * <br />
  *
- * This constant specifies the time types used for position or length.
+ * This enum specifies the time types used for position or length.
  * @member MS Milliseconds.
  * @member PCM PCM samples, related to milliseconds * samplerate / 1000.
  * @member PCMBYTES Bytes, related to PCM samples * channels * datawidth (i.e. 16bit = 2 bytes).
@@ -114,7 +114,7 @@
  *
  * <br />
  *
- * This constant specifies types of callback called by the FMOD system.
+ * This enum specifies types of callback called by the FMOD system.
  * @member DEVICELISTCHANGED Called from ${function.fmod_system_update} when the enumerated list of devices has changed. Called from the main (calling) thread when set from the Core API or Studio API in synchronous mode, and from the Studio Update Thread when in default / async mode.
  * @member DEVICELOST Deprecated.
  * @member MEMORYALLOCATIONFAILED Called directly when a memory allocation fails.
@@ -142,7 +142,7 @@
  *
  * <br />
  *
- * This constant specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.
+ * This enum specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.
  * @member DEFAULT Default for all modes listed below. `FMOD_MODE.LOOP_OFF`, `FMOD_MODE.AS_2D`, `FMOD_MODE.AS_3D_WORLDRELATIVE`, `FMOD_MODE.AS_3D_INVERSEROLLOFF`
  * @member LOOP_OFF For non looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html). (DEFAULT). Overrides `FMOD_MODE.LOOP_NORMAL` / `FMOD_MODE.LOOP_BIDI`.
  * @member LOOP_NORMAL For forward looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
@@ -152,7 +152,7 @@
  * @member CREATESTREAM Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides `FMOD_MODE.CREATESAMPLE` and `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.
  * @member CREATESAMPLE Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.
  * @member CREATECOMPRESSEDSAMPLE Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides `FMOD_MODE.CREATESAMPLE`. If the sound data is not one of the supported formats, it will behave as if it was created with `FMOD_MODE.CREATESAMPLE` and decode the sound into PCM.
- * @member OPENUSER Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally readcallback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * @member OPENUSER Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
  * @member OPENMEMORY When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. If used with `FMOD_MODE.CREATESAMPLE` or `FMOD_MODE.CREATECOMPRESSEDSAMPLE`, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using `FMOD_MODE.NONBLOCKING` then wait until the Sound is in the `FMOD_OPENSTATE.READY` state. If used with `FMOD_MODE.CREATESTREAM`, FMOD will stream out of the ${type.buffer} that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.
  * @member OPENMEMORY_POINT When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. This differs to `FMOD_MODE.OPENMEMORY` in that it uses the memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FMOD_MODE.CREATECOMPRESSEDSAMPLE` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
  * @member OPENRAW Will ignore file format and treat as raw pcm. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.
@@ -181,7 +181,7 @@
  *
  * <br />
  *
- * This constant specifies flags that describe the speakers present in a given signal.
+ * This enum specifies flags that describe the speakers present in a given signal.
  * @member FRONT_LEFT Front left channel.
  * @member FRONT_RIGHT Front right channel.
  * @member FRONT_CENTER Front center channel.
@@ -209,7 +209,7 @@
  *
  * <br />
  *
- * This constant specifies the output type specific index for when there are multiple instances or destinations for a port type.
+ * This enum specifies the output type specific index for when there are multiple instances or destinations for a port type.
  * @member NONE Use when a port index is not required
  * @member FLAG_VR_CONTROLLER Use as a flag to indicate the intended controller is associated with a VR headset
  * @const_end
@@ -221,7 +221,7 @@
  *
  * <br />
  *
- * This constant specifies the scheduling priority to assign a given thread to.
+ * This enum specifies the scheduling priority to assign a given thread to.
  * @member PLATFORM_MIN Lower bound of platform specific priority range.
  * @member PLATFORM_MAX Upper bound of platform specific priority range.
  * @member DEFAULT For a given thread use the default listed below, i.e. `FMOD_THREAD_TYPE.MIXER` uses `FMOD_THREAD_PRIORITY.MIXER`.
@@ -253,7 +253,7 @@
  *
  * <br />
  *
- * This constant specifies the stack space available to the given thread.
+ * This enum specifies the stack space available to the given thread.
  * @member DEFAULT For a given thread use the default listed below, i.e. `FMOD_THREAD_TYPE.MIXER` uses `FMOD_THREAD_STACK_SIZE.MIXER`.
  * @member MIXER Default stack size for `FMOD_THREAD_TYPE.MIXER`. Set to 80 * 1024.
  * @member FEEDER Default stack size for `FMOD_THREAD_TYPE.FEEDER`. Set to 16  * 1024.
@@ -277,7 +277,7 @@
  *
  * <br />
  *
- * This constant specifies the bitfields for specifying the CPU core a given thread runs on.
+ * This enum specifies the bitfields for specifying the CPU core a given thread runs on.
  * @member GROUP_DEFAULT For a given thread use the default listed below, i.e. `FMOD_THREAD_TYPE.MIXER` uses `FMOD_THREAD_AFFINITY.MIXER`.
  * @member GROUP_A Grouping A is recommended to isolate the mixer thread `FMOD_THREAD_TYPE.MIXER`.
  * @member GROUP_B Grouping B is recommended to isolate the Studio update thread `FMOD_THREAD_TYPE.STUDIO_UPDATE`.
@@ -323,9 +323,9 @@
  *
  * <br />
  * 
- * This group of constants holds predefined reverb configurations. To simplify usage, and avoid manually selecting reverb parameters, a table of common presets is supplied for ease of use.
+ * This group of macros holds predefined reverb configurations. To simplify usage, and avoid manually selecting reverb parameters, a table of common presets is supplied for ease of use.
  * 
- * These constants define default values for the ${struct.FmodReverbProperties} [struct](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm?rhsearch=structs&rhhlterm=structs).
+ * The macros define default values for the ${struct.FmodReverbProperties} [struct](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm?rhsearch=structs&rhhlterm=structs).
  * 
  * @member FMOD_PRESET_OFF { decay_time:  1000, early_delay:   7, late_delay:  11, hf_reference: 5000, hf_decay_ratio: 100, diffusion: 100, density: 100, low_shelf_frequency: 250, low_shelf_gain: 0, high_cut:    20, early_late_mix:  96, wet_level: -80.0 }
  * @member FMOD_PRESET_GENERIC { decay_time:  1500, early_delay:   7, late_delay:  11, hf_reference: 5000, hf_decay_ratio:  83, diffusion: 100, density: 100, low_shelf_frequency: 250, low_shelf_gain: 0, high_cut: 14500, early_late_mix:  96, wet_level:  -8.0 }
@@ -360,7 +360,7 @@
  *
  * <br />
  * 
- * This constant holds the maximum number of channels per frame of audio supported by audio files, buffers, connections and DSPs.
+ * This macro holds the maximum number of channels per frame of audio supported by audio files, buffers, connections and DSPs.
  * 
  * @const_end
  */
@@ -371,7 +371,7 @@
  *
  * <br />
  * 
- * This constant holds the maximum number of System objects allowed.
+ * This macro holds the maximum number of System objects allowed.
  * 
  * @const_end
  */
@@ -382,7 +382,7 @@
  *
  * <br />
  * 
- * This constant holds the maximum number of listeners supported.
+ * This macro holds the maximum number of listeners supported.
  * 
  * @const_end
  */
@@ -393,7 +393,7 @@
  *
  * <br />
  * 
- * This constant holds the maximum number of global reverb instances.
+ * This macro holds the maximum number of global reverb instances.
  * 
  * Each instance of a reverb is an instance of a ${constant.FMOD_DSP_SFXREVERB} dsp in the mix graph. This is unrelated to the number of possible Reverb3D objects, which is unlimited.
  * 
@@ -406,7 +406,7 @@
  *
  * <br />
  *
- * This constant specifies named constants for threads created at runtime.
+ * This enum specifies named constants for threads created at runtime.
  * @member MIXER Thread responsible for mixing and processing blocks of audio.
  * @member FEEDER Thread used by some output plugins for transferring buffered audio from `FMOD_THREAD_TYPE.MIXER` to the sound output device.
  * @member STREAM Thread that decodes compressed audio to PCM for Sounds created as `FMOD_MODE.CREATESTREAM`.
@@ -429,7 +429,7 @@
  *
  * <br />
  *
- * This constant specifies the error codes returned from every function.
+ * This enum specifies the error codes returned from every function.
  * @member OK No errors.
  * @member ERR_BADCOMMAND Tried to call a function on a data type that does not allow this type of functionality (i.e. calling ${function.fmod_sound_lock} on a streaming [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)).
  * @member ERR_CHANNEL_ALLOC Error trying to allocate a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
@@ -521,7 +521,7 @@
  *
  * <br />
  *
- * This constant specifies built-in output types that can be used to run the mixer.
+ * This enum specifies built-in output types that can be used to run the mixer.
  * @member CHANNEL Type representing Channel
  * @member CHANNELGROUP Type representing ChannelGroup
  * @const_end
@@ -533,7 +533,7 @@
  *
  * <br />
  *
- * This constant specifies built-in output types that can be used to run the mixer.
+ * This enum specifies built-in output types that can be used to run the mixer.
  * @member AUTODETECT Picks the best output mode for the platform. This is the default.
  * @member UNKNOWN All - 3rd party plugin, unknown. This is for use with ${function.fmod_system_get_output} only.
  * @member NOSOUND All - Perform all mixing but discard the final output.
@@ -564,7 +564,7 @@
  *
  * <br />
  *
- * This constant specifies the destination of log output when using the logging version of FMOD.
+ * This enum specifies the destination of log output when using the logging version of FMOD.
  * @member TTY Default log location per platform, i.e. Visual Studio output window, stderr, LogCat, etc.
  * @member FILE Write log to specified file path.
  * @member CALLBACK Call specified callback with log information.
@@ -577,7 +577,7 @@
  *
  * <br />
  *
- * This constant specifies speaker mode types.
+ * This enum specifies speaker mode types.
  * @member DEFAULT Default speaker mode for the chosen output mode which will resolve after ${function.fmod_system_init}.
  * @member RAW Assume there is no special mapping from a given channel to a speaker, channels map 1:1 in order. Use ${function.fmod_system_set_software_format} to specify the speaker count.
  * @member MONO 1 speaker setup (monaural).
@@ -596,7 +596,7 @@
  *
  * <br />
  *
- * This constant assigns an enumeration for a speaker index.
+ * This enum assigns an enumeration for a speaker index.
  * @member NONE No speaker
  * @member FRONT_LEFT The front left speaker
  * @member FRONT_RIGHT The front right speaker
@@ -619,7 +619,7 @@
  *
  * <br />
  *
- * This constant specifies speaker ordering for multi-channel signals.
+ * This enum specifies speaker ordering for multi-channel signals.
  * @member DEFAULT Left, Right, Center, LFE, Surround Left, Surround Right, Back Left, Back Right (see ${constant.FMOD_SPEAKER} enumeration)
  * @member WAVEFORMAT Left, Right, Center, LFE, Back Left, Back Right, Surround Left, Surround Right (as per Microsoft .wav WAVEFORMAT structure master order)
  * @member PROTOOLS Left, Center, Right, Surround Left, Surround Right, LFE
@@ -635,7 +635,7 @@
  *
  * <br />
  *
- * This constant specifies the types of plugin used to extend functionality.
+ * This enum specifies the types of plugin used to extend functionality.
  * @member OUTPUT Audio output interface plugin represented with `FMOD_OUTPUT_DESCRIPTION`.
  * @member CODEC File format codec plugin represented with `FMOD_CODEC_DESCRIPTION`.
  * @member DSP DSP unit plugin represented with `FMOD_DSP_DESCRIPTION`.
@@ -648,7 +648,7 @@
  *
  * <br />
  *
- * This constant specifies the recognized audio formats that can be loaded into a Sound.
+ * This enum specifies the recognized audio formats that can be loaded into a Sound.
  * @member UNKNOWN Unknown or custom codec plugin.
  * @member AIFF Audio Interchange File Format (.aif, .aiff). Uncompressed integer formats only.
  * @member ASF Microsoft Advanced Systems Format (.asf, .wma, .wmv). Platform provided decoder, available only on Windows.
@@ -683,7 +683,7 @@
  *
  * <br />
  *
- * This constant specifies values describes the native format of the hardware or software buffer that will be used.
+ * This enum specifies values describes the native format of the hardware or software buffer that will be used.
  * @member NONE Uninitalized / unknown.
  * @member PCM8 8bit integer PCM data.
  * @member PCM16 16bit integer PCM data.
@@ -700,7 +700,7 @@
  *
  * <br />
  *
- * This constant specifies values describing what state a sound is in after `FMOD_MODE.NONBLOCKING` has been used to open it.
+ * This enum specifies values describing what state a sound is in after `FMOD_MODE.NONBLOCKING` has been used to open it.
  * @member READY Opened and ready to play.
  * @member LOADING Initial load in progress.
  * @member ERROR Failed to open - file not found, out of memory, etc. See return value of ${function.fmod_sound_get_open_state} for what happened.
@@ -718,7 +718,7 @@
  *
  * <br />
  *
- * This constant specifies values specifying behavior when a sound group's max audible value is exceeded.
+ * This enum specifies values specifying behavior when a sound group's max audible value is exceeded.
  * @member FAIL Excess sounds will fail when calling ${function.fmod_system_play_sound}.
  * @member MUTE Excess sounds will begin mute and will become audible when sufficient sounds are stopped.
  * @member STEALLOWEST Excess sounds will steal from the quietest Sound playing in the group.
@@ -731,19 +731,11 @@
  *
  * <br />
  *
- * This constant specifies the types of callbacks called by Channels and ChannelGroups.
+ * This enum specifies the types of callbacks called by Channels and ChannelGroups.
  * @member END Called when a sound ends. Supported by Channel only.
- *             commanddata1: Unused.
- *             commanddata2: Unused.
  * @member VIRTUALVOICE Called when a Channel is made virtual or real. Supported by Channel objects only.
- *                      commanddata1: (int) 0 represents 'virtual to real' and 1 represents 'real to virtual'.
- *                      commanddata2: Unused.
  * @member SYNCPOINT Called when a syncpoint is encountered. Can be from wav file markers or user added. Supported by Channel only.
- *                   commanddata1: (int) representing the index of the sync point for use with [Sound::getSyncPointInfo](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsyncpointinfo).
- *                   commanddata2: Unused.
  * @member OCCLUSION Called when geometry occlusion values are calculated. Can be used to clamp or change the value. Supported by Channel and ChannelGroup.
- *                   commanddata1: (float *) representing the calculated direct occlusion value, can be modified.
- *                   commanddata2: (float *) representing the calculated reverb occlusion value, can be modified.
  * @const_end
  */
 
@@ -753,7 +745,7 @@
  *
  * <br />
  *
- * This constant specifies references to built-in DSP positions that reside in a Channel or ChannelGroup DSP chain.
+ * This enum specifies references to built-in DSP positions that reside in a Channel or ChannelGroup DSP chain.
  * @member HEAD Head of the DSP chain, equivalent of index 0.
  * @member FADER Built-in fader DSP.
  * @member TAIL Tail of the DSP chain, equivalent of the number of DSPs minus 1.
@@ -766,7 +758,7 @@
  *
  * <br />
  *
- * This constant specifies identifiers used to represent the different types of instance in the error callback.
+ * This enum specifies identifiers used to represent the different types of instance in the error callback.
  * @member NONE Type representing no known instance type.
  * @member SYSTEM Type representing [System](https://www.fmod.com/docs/2.02/api/core-api-system.html).
  * @member CHANNEL Type representing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
@@ -795,7 +787,7 @@
  *
  * <br />
  *
- * This constant specifies the list of interpolation types used for resampling.
+ * This enum specifies the list of interpolation types used for resampling.
  * @member DEFAULT Default interpolation method, same as `FMOD_DSP_RESAMPLER.LINEAR`.
  * @member NOINTERP No interpolation. High frequency aliasing hiss will be audible depending on the sample rate of the sound.
  * @member LINEAR Linear interpolation (default method). Fast and good quality, causes very slight lowpass effect on low frequency sounds.
@@ -810,7 +802,7 @@
  *
  * <br />
  *
- * This constant specifies the types of callbacks called by DSPs.
+ * This enum specifies the types of callbacks called by DSPs.
  * 
  * Callbacks are called from the game thread when set from the Core API or Studio API in synchronous mode, and from the Studio Update Thread when in default / async mode.
  * 
@@ -825,7 +817,7 @@
  *
  * <br />
  *
- * This constant specifies the list of connection types between 2 DSP nodes.
+ * This enum specifies the list of connection types between 2 DSP nodes.
  * @member STANDARD Default connection type. Audio is mixed from the input to the output DSP's audible buffer.
  * @member SIDECHAIN Sidechain connection type. Audio is mixed from the input to the output DSP's sidechain buffer.
  * @member SEND Send connection type. Audio is mixed from the input to the output DSP's audible buffer, but the input is NOT executed, only copied from. A standard connection or sidechain needs to make an input execute to generate data.
@@ -839,7 +831,7 @@
  *
  * <br />
  *
- * This constant specifies the list of tag data / metadata types that could be stored within a sound. These include id3 tags, metadata from netstreams and vorbis/asf data.
+ * This enum specifies the list of tag data / metadata types that could be stored within a sound. These include id3 tags, metadata from netstreams and vorbis/asf data.
  * @member UNKNOWN Tag type that is not recognized by FMOD
  * @member ID3V1 MP3 ID3 Tag 1.0. Typically 1 tag stored 128 bytes from end of an MP3 file.
  * @member ID3V2 MP3 ID3 Tag 2.0. Variable length tags with more than 1 possible.
@@ -860,7 +852,7 @@
  *
  * <br />
  *
- * This constant specifies the list of tag data / metadata types.
+ * This enum specifies the list of tag data / metadata types.
  * @member BINARY Raw binary data. see ${struct.FmodSoundTag} structure for length of data in bytes.
  * @member INT Integer - Note this integer could be 8bit / 16bit / 32bit / 64bit. See ${struct.FmodSoundTag} structure for integer size (1 vs 2 vs 4 vs 8 bytes).
  * @member FLOAT IEEE floating point number. See ${struct.FmodSoundTag} structure to confirm if the float data is 32bit or 64bit (4 vs 8 bytes).
@@ -877,7 +869,7 @@
  *
  * <br />
  *
- * This constant specifies the port types available for routing audio.
+ * This enum specifies the port types available for routing audio.
  * @member MUSIC Background music, pass `FMOD_PORT_INDEX.NONE` as port index.
  * @member COPYRIGHT_MUSIC Copyright background music, pass `FMOD_PORT_INDEX.NONE` as port index.
  * @member VOICE Voice chat, pass platform specific user ID of desired user as port index.
@@ -896,6 +888,7 @@
  *
  * <br />
  * 
+ * This macro holds the codec plugin API version.
  * @const_end
  */
 
@@ -905,7 +898,7 @@
  *
  * <br />
  *
- * This constant specifies file seek methods.
+ * This enum specifies file seek methods.
  * @member SET Seeks from the beginning.
  * @member CURRENT Seeks from the current position.
  * @member END Seeks from the end.
@@ -920,7 +913,7 @@
  *
  * <br />
  * 
- * This constant holds the plugin SDK version.
+ * This macro holds the plugin SDK version.
  * 
  * @const_end
  */
@@ -931,7 +924,7 @@
  *
  * <br />
  * 
- * This constant holds the length in bytes of the buffer pointed to by the valuestr argument of FMOD_DSP_GETPARAM_XXXX_CALLBACK functions.
+ * This macro holds the length in bytes of the buffer pointed to by the valuestr argument of FMOD_DSP_GETPARAM_XXXX_CALLBACK functions.
  * 
  * @const_end
  */
@@ -942,7 +935,7 @@
  *
  * <br />
  *
- * This constant specifies DSP types.
+ * This enum specifies DSP types.
  * @member UNKNOWN Was created via a non-FMOD plugin and has an unknown purpose.
  * @member MIXER Does not process the signal, acts as a unit purely for mixing inputs.
  * @member OSCILLATOR Generates sine/square/saw/triangle or noise tones. See ${constant.FMOD_DSP_OSCILLATOR} for parameter information, [Effect reference - Oscillator](https://www.fmod.com/docs/2.02/api/effects-reference.html#oscillator) for overview.
@@ -975,7 +968,7 @@
  * @member FFT Analyzes the signal and provides spectrum information back through getParameter. See ${constant.FMOD_DSP_FFT} for parameter information, [Effect reference - FFT](https://www.fmod.com/docs/2.02/api/effects-reference.html#fft) for overview.
  * @member LOUDNESS_METER Analyzes the loudness and true peak of the signal.
  * @member ENVELOPEFOLLOWER Tracks the envelope of the input/sidechain signal. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_ENVELOPEFOLLOWER} for parameter information, [Effect reference - Envelope Follower](https://www.fmod.com/docs/2.02/api/effects-reference.html#envelope-follower) for overview.
- * @member CONVOLUTIONREVERB Convolution reverb. See ${constant.FMOD_DSP_CONVOLUTION_REVERB} for parameter information, [Effect reference - Convolution Reverb](https://www.fmod.com/docs/2.02/api/effects-reference.html#convolution-reverb) for overview.
+ * @member CONVOLUTIONREVERB Convolution reverb. See ${constant.FMOD_DSP_TYPE}'s `CONVOLUTION_REVERB` for parameter information, [Effect reference - Convolution Reverb](https://www.fmod.com/docs/2.02/api/effects-reference.html#convolution-reverb) for overview.
  * @member CHANNELMIX Provides per channel gain, channel grouping of the input signal which also sets the speaker format for the output signal, and customizable input to output channel routing. See ${constant.FMOD_DSP_CHANNELMIX} for parameter information, [Effect reference - Channel Mix](https://www.fmod.com/docs/2.02/api/effects-reference.html#channel-mix) for overview.
  * @member TRANSCEIVER 'sends' and 'receives' from a selection of up to 32 different slots. It is like a send/return but it uses global slots rather than returns as the destination. It also has other features. Multiple transceivers can receive from a single channel, or multiple transceivers can send to a single channel, or a combination of both. See ${constant.FMOD_DSP_TRANSCEIVER} for parameter information, [Effect reference - Transceiver](https://www.fmod.com/docs/2.02/api/effects-reference.html#transceiver) for overview.
  * @member OBJECTPAN Spatializes input signal by passing it to an external object mixer. See ${constant.FMOD_DSP_OBJECTPAN} for parameter information, [Effect reference - Object Panner](https://www.fmod.com/docs/2.02/api/effects-reference.html#object-panner) for overview.
@@ -989,7 +982,7 @@
  *
  * <br />
  *
- * This constant specifies oscillator DSP parameter types.
+ * This enum specifies oscillator DSP parameter types.
  * @member TYPE Waveform type. 0 = sine. 1 = square. 2 = sawup. 3 = sawdown. 4 = triangle. 5 = noise.
  * @member RATE Frequency of the tone. Does not affect the noise generator.
  * @const_end
@@ -1001,7 +994,7 @@
  *
  * <br />
  *
- * This constant specifies lowpass DSP parameter types.
+ * This enum specifies lowpass DSP parameter types.
  * 
  * Deprecated and will be removed in a future release, emulate with `FMOD_DSP_TYPE.MULTIBAND_EQ`.
  * 
@@ -1016,7 +1009,7 @@
  *
  * <br />
  *
- * This constant specifies lowpass DSP parameter types.
+ * This enum specifies lowpass DSP parameter types.
  * @member CUTOFF Lowpass cutoff frequency.
  * @member RESONANCE Lowpass resonance Q value.
  * @const_end
@@ -1028,7 +1021,7 @@
  *
  * <br />
  *
- * This constant specifies highpass DSP parameter types.
+ * This enum specifies highpass DSP parameter types.
  * @member CUTOFF Highpass cutoff frequency.
  * @member RESONANCE Highpass resonance Q value.
  * @const_end
@@ -1040,7 +1033,7 @@
  *
  * <br />
  *
- * This constant specifies echo DSP parameter types.
+ * This enum specifies echo DSP parameter types.
  * @member DELAY Echo delay.
  * @member FEEDBACK Echo decay per delay. 100.0 = No decay, 0.0 = total decay.
  * @member DRYLEVEL Original sound volume.
@@ -1054,7 +1047,7 @@
  *
  * <br />
  *
- * This constant specifies fader DSP parameter types.
+ * This enum specifies fader DSP parameter types.
  * @member GAIN Signal gain.
  * @member OVERALL_GAIN Overall gain to allow FMOD to know the DSP is scaling the signal for visualization purposes.
  * @const_end
@@ -1066,7 +1059,7 @@
  *
  * <br />
  *
- * This constant specifies flange DSP parameter types.
+ * This enum specifies flange DSP parameter types.
  * @member MIX Percentage of wet signal in mix.
  * @member DEPTH Flange depth.
  * @member RATE Flange speed.
@@ -1079,7 +1072,7 @@
  *
  * <br />
  *
- * This constant specifies distortion DSP parameter types.
+ * This enum specifies distortion DSP parameter types.
  * @member LEVEL Distortion value.
  * @const_end
  */
@@ -1090,7 +1083,7 @@
  *
  * <br />
  *
- * This constant specifies normalize DSP parameter types.
+ * This enum specifies normalize DSP parameter types.
  * 
  * Normalize amplifies the sound based on the maximum peaks within the signal. For example if the maximum peaks in the signal were 50% of the bandwidth, it would scale the whole sound by 2.
  * 
@@ -1112,7 +1105,7 @@
  *
  * <br />
  *
- * This constant specifies limited DSP parameter types.
+ * This enum specifies limited DSP parameter types.
  * @member RELEASETIME Time to return the gain reduction to full in ms.
  * @member CEILING Maximum level of the output signal.
  * @member MAXIMIZERGAIN Maximum amplification allowed.
@@ -1126,7 +1119,7 @@
  *
  * <br />
  *
- * This constant specifies parametric EQ DSP parameter types.
+ * This enum specifies parametric EQ DSP parameter types.
  * 
  * Deprecated and will be removed in a future release, to emulate with `FMOD_DSP_TYPE.MULTIBAND_EQ`:
  *
@@ -1146,7 +1139,7 @@
  *
  * <br />
  *
- * This constant specifies multiband EQ DSP parameter types.
+ * This enum specifies multiband EQ DSP parameter types.
  * 
  * Flexible five band parametric equalizer.
  * 
@@ -1179,7 +1172,7 @@
  *
  * <br />
  *
- * This constant specifies multiband EQ Filter types.
+ * This enum specifies multiband EQ Filter types.
  * @member DISABLED Disabled filter, no processing.
  * @member LOWPASS_12DB Resonant low-pass filter, attenuates frequencies (12dB per octave) above a given point (with specificed resonance) while allowing the rest to pass.
  * @member LOWPASS_24DB Resonant low-pass filter, attenuates frequencies (24dB per octave) above a given point (with specificed resonance) while allowing the rest to pass.
@@ -1202,7 +1195,7 @@
  *
  * <br />
  *
- * This constant specifies pitch shift DSP parameter types.
+ * This enum specifies pitch shift DSP parameter types.
  * 
  * `FMOD_DSP_PITCHSHIFT.MAXCHANNELS` dictates the amount of memory allocated. By default, the maxchannels value is 0. If FMOD is set to stereo, the pitch shift unit will allocate enough memory for 2 channels. If it is 5.1, it will allocate enough memory for a 6 channel pitch shift, etc.
  * 
@@ -1225,7 +1218,7 @@
  *
  * <br />
  *
- * This constant specifies chorus DSP parameter types.
+ * This enum specifies chorus DSP parameter types.
  * 
  * Chorus is an effect where the sound is more 'spacious' due a copy of the signal being played along side the original, but with the delay of each copy modulating on a sine wave. As there are 2 versions of the same signal (dry vs wet), by default each signal is given 50% mix, so that the total is not louder than the original unaffected signal.
  * 
@@ -1241,7 +1234,7 @@
  *
  * <br />
  *
- * This constant specifies IT Echo DSP parameter types.
+ * This enum specifies IT Echo DSP parameter types.
  * 
  * This is effectively a software based echo filter that emulates the DirectX DMO echo effect. Impulse tracker files can support this, and FMOD will produce the effect on ANY platform, not just those that support DirectX effects!
  * 
@@ -1263,7 +1256,7 @@
  *
  * <br />
  *
- * This constant specifies compressor DSP parameter types.
+ * This enum specifies compressor DSP parameter types.
  * 
  * This is a multi-channel software limiter that is uniform across the whole spectrum.
  * The limiter is not guaranteed to catch every peak above the threshold level, because it cannot apply gain reduction instantaneously - the time delay is determined by the attack time. However setting the attack time too short will distort the sound, so it is a compromise. High level peaks can be avoided by using a short attack time - but not too short, and setting the threshold a few decibels below the critical level.
@@ -1284,7 +1277,7 @@
  *
  * <br />
  *
- * This constant specifies SFX Reverb DSP parameter types.
+ * This enum specifies SFX Reverb DSP parameter types.
  * 
  * This is a high quality I3DL2 based reverb. On top of the I3DL2 property set, "Dry Level" is also included to allow the dry mix to be changed. These properties can be set with presets in ${constant.FMOD_REVERB_PRESETS}.
  * 
@@ -1310,9 +1303,9 @@
  *
  * <br />
  *
- * This constant specifies simple Lowpass DSP Parameter types.
+ * This enum specifies simple Lowpass DSP Parameter types.
  * 
- * Deprecated and will be removed in a future release, to emulate with `FMOD_DSP_TYPE.MULTIBAND_EQ`:
+ * Deprecated and will be removed in a future release, emulate with `FMOD_DSP_TYPE.MULTIBAND_EQ`.
  * 
  * This is a very simple low pass filter, based on two single-pole RC time-constant modules.
  * 
@@ -1328,7 +1321,7 @@
  *
  * <br />
  *
- * This constant specifies delay DSP parameter types.
+ * This enum specifies delay DSP parameter types.
  * 
  * [[Note: Every time MaxDelay is changed, the plugin re-allocates the delay buffer. This means the delay will disappear at that time while it refills its new buffer. A larger MaxDelay results in larger amounts of memory allocated.]]
  *
@@ -1360,7 +1353,7 @@
  *
  * <br />
  *
- * This constant specifies tremolo DSP parameter types.
+ * This enum specifies tremolo DSP parameter types.
  * 
  * The tremolo effect varies the amplitude of a sound. Depending on the settings, this unit can produce a tremolo, chopper or auto-pan effect.
  * 
@@ -1389,7 +1382,7 @@
  *
  * <br />
  *
- * This constant specifies send DSP parameter types.
+ * This enum specifies send DSP parameter types.
  * @member RETURNID ID of the Return DSP this send is connected to where -1 indicates no connected return DSP.
  * @member LEVEL Send level.
  * @const_end
@@ -1401,7 +1394,7 @@
  *
  * <br />
  *
- * This constant specifies return DSP parameter types.
+ * This enum specifies return DSP parameter types.
  * @member ID ID of this Return DSP.
  * @member INPUT_SPEAKER_MODE Input speaker mode of this return.
  * @const_end
@@ -1413,7 +1406,7 @@
  *
  * <br />
  *
- * This constant specifies simple Highpass DSP parameter types.
+ * This enum specifies simple Highpass DSP parameter types.
  * @member CUTOFF Highpass cutoff frequency.
  * @const_end
  */
@@ -1424,7 +1417,7 @@
  *
  * <br />
  *
- * This constant specifies 2D Stereo Mode values for Pan DSP.
+ * This enum specifies 2D Stereo Mode values for Pan DSP.
  * @member DISTRIBUTED The parts of a stereo sound are spread around destination speakers based on `FMOD_DSP_PAN._2D_EXTENT` / `FMOD_DSP_PAN._2D_DIRECTION`
  * @member DISCRETE The L/R parts of a stereo sound are rotated around a circle based on `FMOD_DSP_PAN._2D_STEREO_AXIS` / `FMOD_DSP_PAN._2D_STEREO_SEPARATION`.
  * @const_end
@@ -1436,7 +1429,7 @@
  *
  * <br />
  *
- * This constant specifies pan Mode values for Pan DSP.
+ * This enum specifies pan Mode values for Pan DSP.
  * @member MONO Single channel output.
  * @member STEREO Two channel output.
  * @member SURROUND Three or more channel output. Includes common modes like quad, 5.1 or 7.1.
@@ -1449,7 +1442,7 @@
  *
  * <br />
  *
- * This constant specifies 3D roll-off values for Pan DSP.
+ * This enum specifies 3D roll-off values for Pan DSP.
  * 
  * Minimum and Maximum distance settings are controlled with `FMOD_DSP_PAN._3D_MIN_DISTANCE` and `FMOD_DSP_PAN._3D_MAX_DISTANCE`.
  * 
@@ -1467,7 +1460,7 @@
  *
  * <br />
  *
- * This constant specifies 3D Extent Mode values for Pan DSP.
+ * This enum specifies 3D Extent Mode values for Pan DSP.
  * @member AUTO Automatically determine the extent.
  * @member USER User-defined extent.
  * @member OFF No extent.
@@ -1480,7 +1473,7 @@
  *
  * <br />
  *
- * This constant specifies pan DSP parameter types.
+ * This enum specifies pan DSP parameter types.
  * 
  * `FMOD_DSP_PAN._3D_PAN_BLEND` controls the percentage of the effect supplied by `FMOD_DSP_PAN._2D_DIRECTION` and `FMOD_DSP_PAN._2D_EXTENT`.
  * 
@@ -1527,7 +1520,7 @@
  *
  * <br />
  *
- * This constant specifies crossover values for Three EQ DSP.
+ * This enum specifies crossover values for Three EQ DSP.
  * @member _12DB 12dB/Octave crossover slope.
  * @member _24DB 24dB/Octave crossover slope.
  * @member _48DB 48dB/Octave crossover slope.
@@ -1540,7 +1533,7 @@
  *
  * <br />
  *
- * This constant specifies three EQ DSP parameter types.
+ * This enum specifies three EQ DSP parameter types.
  * @member LOWGAIN Low frequency gain.
  * @member MIDGAIN Mid frequency gain.
  * @member HIGHGAIN High frequency gain.
@@ -1556,7 +1549,7 @@
  *
  * <br />
  *
- * This constant specifies the list of windowing methods for the FFT DSP.
+ * This enum specifies the list of windowing methods for the FFT DSP.
  * 
  * Used in spectrum analysis to reduce leakage / transient signals interfering with the analysis. This is a problem with analysis of continuous signals that only have a small portion of the signal sample (the FFT window size). Windowing the signal with a curve or triangle tapers the sides of the FFT window to help alleviate this problem.
  * 
@@ -1579,7 +1572,7 @@
  *
  * <br />
  *
- * This constant specifies FFT DSP parameter types.
+ * This enum specifies FFT DSP parameter types.
  * 
  * Set the attributes for the spectrum analysis with `FMOD_DSP_FFT.WINDOWSIZE` and `FMOD_DSP_FFT.WINDOWTYPE`, and retrieve the results with FMOD_DSP_FFT_SPECTRUM and `FMOD_DSP_FFT.DOMINANT_FREQ`.
  * `FMOD_DSP_FFT_SPECTRUM` stores its data in the `FMOD_DSP_PARAMETER_DATA_TYPE_FFT`. You will need to cast to this structure to get the right data.
@@ -1607,7 +1600,7 @@
  *
  * <br />
  *
- * This constant specifies loudness meter DSP parameter types.
+ * This enum specifies loudness meter DSP parameter types.
  * @member STATE Update state.
  * @member WEIGHTING Channel weighting.
  * @member INFO Metering information.
@@ -1620,7 +1613,7 @@
  *
  * <br />
  *
- * This constant specifies loudness meter state indicating update behavior.
+ * This enum specifies loudness meter state indicating update behavior.
  * @member RESET_INTEGRATED Reset loudness meter information except max peak.
  * @member RESET_MAXPEAK Reset loudness meter max peak.
  * @member RESET_ALL Reset all loudness meter information.
@@ -1635,7 +1628,7 @@
  *
  * <br />
  *
- * This constant specifies parameter types for the `FMOD_DSP_TYPE.ENVELOPEFOLLOWER` unit. This is a simple envelope follower for tracking the signal level. This unit does not affect the incoming signal.
+ * This enum specifies parameter types for the `FMOD_DSP_TYPE.ENVELOPEFOLLOWER` unit. This is a simple envelope follower for tracking the signal level. This unit does not affect the incoming signal.
  * 
  * @member ATTACK Attack time.
  * @member RELEASE Release time.
@@ -1650,7 +1643,7 @@
  *
  * <br />
  *
- * This constant specifies Convolution reverb DSP parameter types.
+ * This enum specifies Convolution reverb DSP parameter types.
  * 
  * Convolution reverb is a reverberation effect that uses a recording of a physical space known as an Impulse Response file (or IR file) to generate frequency specific reverberation.
  * 
@@ -1667,7 +1660,7 @@
  *
  * <br />
  *
- * This constant specifies channel Mix DSP outgrouping parameter types.
+ * This enum specifies channel Mix DSP outgrouping parameter types.
  * @member DEFAULT Output channel count = input channel count. Mapping: See ${constant.FMOD_SPEAKER} enumeration.
  * @member ALLMONO Output channel count = 1. Mapping: Mono, Mono, Mono, Mono, Mono, Mono, ... (each channel all the way up to ${constant.FMOD_MAX_CHANNEL_WIDTH} channels are treated as if they were mono)
  * @member ALLSTEREO Output channel count = 2. Mapping: Left, Right, Left, Right, Left, Right, ... (each pair of channels is treated as stereo all the way up to ${constant.FMOD_MAX_CHANNEL_WIDTH} channels)
@@ -1685,7 +1678,7 @@
  *
  * <br />
  *
- * This constant specifies channel Mix DSP parameter types.
+ * This enum specifies channel Mix DSP parameter types.
  * 
  * For `FMOD_DSP_CHANNELMIX.OUTPUTGROUPING`, this value will set the output speaker format for the DSP which determines the number of output channels.
  *
@@ -1765,7 +1758,7 @@
  *
  * <br />
  *
- * This constant specifies speaker mode values for Transceiver DSP.
+ * This enum specifies speaker mode values for Transceiver DSP.
  * 
  * The speaker mode of a transceiver buffer (of which there are up to 32 of) is determined automatically depending on the signal flowing through the transceiver effect, or it can be forced. Use a smaller fixed speaker mode buffer to save memory. Only relevant for transmitter dsps, as they control the format of the transceiver channel's buffer.
  * 
@@ -1786,7 +1779,7 @@
  *
  * <br />
  *
- * This constant specifies transceiver DSP parameter types.
+ * This enum specifies transceiver DSP parameter types.
  * @member TRANSMIT `false` = Transceiver is a 'receiver' (like a return) and accepts data from a channel. `true` = Transceiver is a 'transmitter' (like a send).
  * @member GAIN Gain to receive or transmit.
  * @member CHANNEL Global slot that can be transmitted to or received from.
@@ -1800,7 +1793,7 @@
  *
  * <br />
  *
- * This constant specifies object based spatializer parameters.
+ * This enum specifies object based spatializer parameters.
  * 
  * Signal processed by this DSP will be sent to the global object mixer (effectively a send), any DSP connected after this will receive silence.
  * 
@@ -1841,7 +1834,7 @@
  *
  * <br />
  *
- * This constant specifies the output method used to interact with the mixer.
+ * This enum specifies the output method used to interact with the mixer.
  * 
  * For hardware that presents a callback that must be filled immediately `FMOD_OUTPUT_METHOD.MIX_BUFFERED` is recommended as buffering occurs in a separate thread, reading from the mixer is simply a memcpy. Using `FMOD_OUTPUT_METHOD_MIX.DIRECT` is recommended if you want to take direct control of how and when the mixer runs.
  * 
@@ -1858,7 +1851,7 @@
  *
  * <br />
  * 
- * This constant holds the required memory alignment of banks in user memory.
+ * This macro holds the required memory alignment of banks in user memory.
  * 
  * @const_end
  */
@@ -1869,7 +1862,7 @@
  *
  * <br />
  *
- * This constant specifies FMOD Studio System initialization flags.
+ * This enum specifies FMOD Studio System initialization flags.
  * @member NORMAL Use defaults for all initialization options.
  * @member LIVEUPDATE Enable live update.
  * @member ALLOW_MISSING_PLUGINS Load banks even if they reference plugins that have not been loaded.
@@ -1886,7 +1879,7 @@
  *
  * <br />
  *
- * This constant specifies flags describing the behavior of a parameter.
+ * This enum specifies flags describing the behavior of a parameter.
  * @member READONLY Read-only.
  * @member AUTOMATIC Automatic parameter.
  * @member GLOBAL Global parameter.
@@ -1901,7 +1894,7 @@
  *
  * <br />
  *
- * This constant specifies the callback types for the Studio System callback.
+ * This enum specifies the callback types for the Studio System callback.
  * 
  * Callbacks are called from the Studio Update Thread in default / async mode and the main (calling) thread in synchronous mode.
  * 
@@ -1920,7 +1913,7 @@
  *
  * <br />
  *
- * This constant specifies the FMOD Studio event callback types.
+ * This enum specifies the FMOD Studio event callback types.
  * 
  * Callbacks are called from the Studio Update Thread in default / async mode and the main (calling) thread in synchronous mode.
  * If using `FMOD_STUDIO_INIT.DEFERRED_CALLBACKS`, `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER` and `FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT` are instead called from the main thread.
@@ -1954,7 +1947,7 @@
  *
  * <br />
  *
- * This constant specifies flags to control bank loading.
+ * This enum specifies flags to control bank loading.
  * @member NORMAL Standard behavior.
  * @member NONBLOCKING Bank loading occurs asynchronously rather than occurring immediately.
  * @member DECOMPRESS_SAMPLES Force samples to decompress into memory when they are loaded, rather than staying compressed.
@@ -1968,7 +1961,7 @@
  *
  * <br />
  *
- * This constant specifies flags controling command capture.
+ * This enum specifies flags controling command capture.
  * @member NORMAL Use default options.
  * @member FILEFLUSH Call file flush on every command.
  * @member SKIP_INITIAL_STATE Normally the initial state of banks and instances is captured, unless this flag is set.
@@ -1981,7 +1974,7 @@
  *
  * <br />
  *
- * This constant specifies flags controlling command replay.
+ * This enum specifies flags controlling command replay.
  * @member NORMAL Use default options.
  * @member SKIP_CLEANUP Do not free resources at the end of playback.
  * @member FAST_FORWARD Play back at maximum speed, ignoring the timing of the original replay.
@@ -1995,7 +1988,7 @@
  *
  * <br />
  *
- * This constant specifies the loading state of various objects.
+ * This enum specifies the loading state of various objects.
  * @member UNLOADING Currently unloading.
  * @member UNLOADED Not loaded.
  * @member LOADING Loading in progress.
@@ -2010,7 +2003,7 @@
  *
  * <br />
  *
- * This constant specifies how to use the memory buffer passed to ${function.fmod_studio_system_load_bank_memory}.
+ * This enum specifies how to use the memory buffer passed to ${function.fmod_studio_system_load_bank_memory}.
  * @member MEMORY Memory buffer is copied internally.
  * @member MEMORY_POINT Memory buffer is used directly in user memory.
  * @const_end
@@ -2022,7 +2015,7 @@
  *
  * <br />
  *
- * This constant specifies event parameter types.
+ * This enum specifies event parameter types.
  * 
  * `FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED` type parameters may have their values set using the API. All other parameter types have their values automatically set by FMOD Studio when the system is updated.
  * 
@@ -2047,7 +2040,7 @@
  *
  * <br />
  *
- * This constant specifies user property types.
+ * This enum specifies user property types.
  * @member INTEGER Integer.
  * @member BOOLEAN Boolean.
  * @member FLOAT Floating point number.
@@ -2061,7 +2054,7 @@
  *
  * <br />
  *
- * This constant holds the definitions that describe built-in event properties.
+ * This enum holds the definitions that describe built-in event properties.
  * 
  * A property that returns a value of -1 from ${function.fmod_studio_event_instance_get_property} means it will use the values set in Studio, use ${function.fmod_studio_event_instance_set_property} to override these values. You can revert the properties value to default by setting it to -1.
  * 
@@ -2080,7 +2073,7 @@
  *
  * <br />
  *
- * This constant specifies the playback state of various objects.
+ * This enum specifies the playback state of various objects.
  * @member PLAYING Playing.
  * @member SUSTAINING The timeline cursor is paused on a sustain point. ([Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html) only.)
  * @member STOPPED Stopped.
@@ -2095,7 +2088,7 @@
  *
  * <br />
  *
- * This constant specifies stop modes.
+ * This enum specifies stop modes.
  * @member ALLOWFADEOUT Allows AHDSR modulators to complete their release, and DSP effect tails to play out.
  * @member IMMEDIATE Stops the event instance immediately.
  * @const_end
@@ -2107,7 +2100,7 @@
  *
  * <br />
  *
- * This constant specifies command replay command instance handle types.
+ * This enum specifies command replay command instance handle types.
  * @member NONE No type, handle is unused.
  * @member SYSTEM [Studio::System](https://www.fmod.com/docs/2.02/api/studio-api-system.html).
  * @member EVENTDESCRIPTION [Studio::EventDescription](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html).
@@ -2211,6 +2204,7 @@
  * @ref FMOD_DSP_TRANSCEIVER
  * @ref FMOD_DSP_OBJECTPAN
  * @ref FMOD_OUTPUT_METHOD
+ * @ref FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT
  * @ref FMOD_STUDIO_INIT
  * @ref FMOD_STUDIO_PARAMETER_FLAGS
  * @ref FMOD_STUDIO_SYSTEM_CALLBACK
