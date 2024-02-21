@@ -9116,7 +9116,7 @@ function fmod_last_result() {}
  * * FMOD Studio
  * 
  * @section Guides
- * 
+ * @ref page.GettingStarted
  * @section_end
  * 
  * @section FMOD Core Modules
