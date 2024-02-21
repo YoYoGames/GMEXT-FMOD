@@ -12,9 +12,9 @@ For **Studio**, download the package for the platform you are developing on.
 
 For **Engine**, download packages for the platforms you want to publish your game to.
 
-After installing the Engine API, open the installation and remember the location of the "api" folder:
+After installing the Engine API, open the installation and remember the location of the folder, which should contain the following folders in it ("api", "doc", etc.)
 
-![The api folder](fmod_api_location.jpg)
+![The engine folder](fmod_api_location.jpg)
 
 # Setting Up GameMaker
 
@@ -38,7 +38,7 @@ The parameters you need to set are the SDK locations for the platforms the game 
 
 ![FMOD Extension Options](ext_options.jpg)
 
-Here the Mac API is entered as the IDE is running on a Mac. Use the Browse [...] button to find and select your FMOD Engine's "api" folder.
+Here the Mac API is entered as the IDE is running on a Mac. Use the Browse [...] button to find and select your FMOD Engine directory (the folder that *contains* the "api" folder, not the "api" folder itself).
 
 FMOD set-up is now complete. Let's look at how you can import banks from your FMOD Project and play events.
 
