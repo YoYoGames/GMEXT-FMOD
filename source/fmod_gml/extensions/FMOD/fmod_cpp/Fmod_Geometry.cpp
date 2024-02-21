@@ -17,7 +17,7 @@ func double fmod_geometry_set_polygon_attributes(double geometry_ref,
 	FMOD::Geometry* geometry;
 	validate_fmod_geometry(geometry_ref, geometry);
 
-	fmod_last_result = geometry->setPolygonAttributes((int)polygon_index, (float)direct_occlusion, (float)reverb_occlusion, double_sided >= 0.5);
+	g_fmod_last_result = geometry->setPolygonAttributes((int)polygon_index, (float)direct_occlusion, (float)reverb_occlusion, double_sided >= 0.5);
 
 	return 0;
 }
@@ -29,9 +29,9 @@ func double fmod_geometry_get_polygon_attributes_multiplatform(double geometry_r
 
 	float directocclusion = 0, reverbocclusion = 0;
 	bool doublesided = false;
-	fmod_last_result = geometry->getPolygonAttributes((int)polygon_index, &directocclusion, &reverbocclusion, &doublesided);
+	g_fmod_last_result = geometry->getPolygonAttributes((int)polygon_index, &directocclusion, &reverbocclusion, &doublesided);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -46,13 +46,13 @@ func double fmod_geometry_get_polygon_attributes_multiplatform(double geometry_r
 	return 0;
 }
 
-func double fmod_geometry_get_polygon_mum_vertices(double geometry_ref, double polygon_index)
+func double fmod_geometry_get_polygon_num_vertices(double geometry_ref, double polygon_index)
 {
 	FMOD::Geometry* geometry;
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	int num = 0;
-	fmod_last_result = geometry->getPolygonNumVertices((int)polygon_index, &num);
+	g_fmod_last_result = geometry->getPolygonNumVertices((int)polygon_index, &num);
 
 	return 0;
 }
@@ -67,7 +67,7 @@ func double fmod_geometry_set_polygon_vertex_multiplatform(double geometry_ref, 
 
 	FMOD_VECTOR vector = FmodVectorFromMap(map_position);
 
-	fmod_last_result = geometry->setPolygonVertex((int)polygon_index, (int)vertex_index, &vector);
+	g_fmod_last_result = geometry->setPolygonVertex((int)polygon_index, (int)vertex_index, &vector);
 
 	return 0;
 }
@@ -78,9 +78,9 @@ func double fmod_geometry_get_polygon_vertex_multiplatform(double geometry_ref, 
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	FMOD_VECTOR vertex;
-	fmod_last_result = geometry->getPolygonVertex((int)polygon_index, (int)vertex_index, &vertex);
+	g_fmod_last_result = geometry->getPolygonVertex((int)polygon_index, (int)vertex_index, &vertex);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -104,7 +104,7 @@ func double fmod_geometry_set_position_multiplatform(double geometry_ref, char* 
 
 	FMOD_VECTOR vec_position = FmodVectorFromMap(map_position);
 
-	fmod_last_result = geometry->setPosition(&vec_position);
+	g_fmod_last_result = geometry->setPosition(&vec_position);
 
 	return 0;
 }
@@ -115,9 +115,9 @@ func double fmod_geometry_get_position_multiplatform(double geometry_ref, char* 
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	FMOD_VECTOR vec_position;
-	fmod_last_result = geometry->getPosition(&vec_position);
+	g_fmod_last_result = geometry->getPosition(&vec_position);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -141,7 +141,7 @@ func double fmod_geometry_set_rotation_multiplatform(double geometry_ref, char* 
 	FMOD_VECTOR vec_forward = FmodVectorFromMap(map_forward);
 	FMOD_VECTOR vec_up = FmodVectorFromMap(map_up);
 
-	fmod_last_result = geometry->setRotation(&vec_forward, &vec_up);
+	g_fmod_last_result = geometry->setRotation(&vec_forward, &vec_up);
 
 	return 0;
 }
@@ -152,12 +152,12 @@ func double fmod_geometry_get_rotation_multiplatform(double geometry_ref, char* 
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	FMOD_VECTOR forward{}, up{};
-	fmod_last_result = geometry->getRotation(&forward, &up);
+	g_fmod_last_result = geometry->getRotation(&forward, &up);
 
 	StructStream map_forward = FmodVectorToGMStruct(forward);
 	StructStream map_up = FmodVectorToGMStruct(up);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -181,7 +181,7 @@ func double fmod_geometry_set_scale_multiplatform(double geometry_ref, char* buf
 
 	FMOD_VECTOR vec_scale = FmodVectorFromMap(map_scale);
 
-	fmod_last_result = geometry->setScale(&vec_scale);
+	g_fmod_last_result = geometry->setScale(&vec_scale);
 
 	return 0;
 }
@@ -192,9 +192,9 @@ func double fmod_geometry_get_scale_multiplatform(double geometry_ref, char* buf
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	FMOD_VECTOR vec_scale;
-	fmod_last_result = geometry->getScale(&vec_scale);
+	g_fmod_last_result = geometry->getScale(&vec_scale);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -229,7 +229,7 @@ func double fmod_geometry_add_polygon_multiplatform(double geometry_ref, char* b
 	}
 
 	int polygonindex = 0;
-	fmod_last_result = geometry->addPolygon(directocclusion, reverbocclusion, doublesided, (int)numvertices, vertices, &polygonindex);
+	g_fmod_last_result = geometry->addPolygon(directocclusion, reverbocclusion, doublesided, (int)numvertices, vertices, &polygonindex);
 
 	return polygonindex;
 }
@@ -239,7 +239,7 @@ func double fmod_geometry_set_active(double geometry_ref, double active)
 	FMOD::Geometry* geometry;
 	validate_fmod_geometry(geometry_ref, geometry);
 
-	fmod_last_result = geometry->setActive(active >= 0.5);
+	g_fmod_last_result = geometry->setActive(active >= 0.5);
 
 	return 0;
 }
@@ -250,21 +250,21 @@ func double fmod_geometry_get_active(double geometry_ref)
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	bool active;
-	fmod_last_result = geometry->getActive(&active);
+	g_fmod_last_result = geometry->getActive(&active);
 
 	return active ? 1.0 : 0.0;
 }
 
-func double fmod_geometry_get_max_polygons(double geometry_ref, char* buff_return)
+func double fmod_geometry_get_max_polygons_multiplatform(double geometry_ref, char* buff_return)
 {
 	FMOD::Geometry* geometry;
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	int maxpolygons;
 	int maxvertices;
-	fmod_last_result = geometry->getMaxPolygons(&maxpolygons, &maxvertices);
+	g_fmod_last_result = geometry->getMaxPolygons(&maxpolygons, &maxvertices);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -284,7 +284,7 @@ func double fmod_geometry_get_num_polygons(double geometry_ref)
 	validate_fmod_geometry(geometry_ref, geometry);
 
 	int num;
-	fmod_last_result = geometry->getNumPolygons(&num);
+	g_fmod_last_result = geometry->getNumPolygons(&num);
 
 	return num;
 }
@@ -313,18 +313,30 @@ func double fmod_geometry_release(double geometry_ref)
 
 	unregisterResource(geometry, map_geometries);
 
-	fmod_last_result = geometry->release();
+	g_fmod_last_result = geometry->release();
 
 	return 0;
 }
 
-func double fmod_geometry_save(double geometry_ref, char* buff)
+func double fmod_geometry_save_multiplatform(double geometry_ref, char* buff_args)
 {
 	FMOD::Geometry* geometry;
 	validate_fmod_geometry(geometry_ref, geometry);
 
+	auto args = buffer_unpack((uint8_t*)buff_args);
+
+	uint32_t length = 0;
+	auto buff = YYGetBuffer(args[0], length);
+
 	int datasize;
-	fmod_last_result = geometry->save(&buff, &datasize);
+	g_fmod_last_result = geometry->save(nullptr, &datasize);
+
+	if (length < (uint32_t)datasize) {
+		g_fmod_last_result = (FMOD_RESULT)FMOD_ERROR_BUFFER_OVERFLOW;
+		return datasize;
+	}
+
+	g_fmod_last_result = geometry->save(&buff, &datasize);
 
 	return datasize;
 }

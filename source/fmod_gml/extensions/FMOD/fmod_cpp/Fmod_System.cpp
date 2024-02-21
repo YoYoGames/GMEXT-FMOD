@@ -13,9 +13,9 @@ uint32_t index_systems = 0;
 func double fmod_system_create()
 {
 	FMOD::System* fmod_system = nullptr;
-	fmod_last_result = FMOD::System_Create(&fmod_system);
+	g_fmod_last_result = FMOD::System_Create(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -46,21 +46,21 @@ func double fmod_system_init(double max_channels, double flags)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	void* extradriverdata = 0;
-	fmod_last_result = fmod_system->init((int)max_channels, (FMOD_INITFLAGS)flags, extradriverdata);
+	g_fmod_last_result = fmod_system->init((int)max_channels, (FMOD_INITFLAGS)flags, extradriverdata);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
 
 	// Adding the master channel group
 	FMOD::ChannelGroup* channel_group;
-	fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
+	g_fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
 	registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
 
 	// Adding the master sound group
 	FMOD::SoundGroup* sound_group;
-	fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
+	g_fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
 	registerOrFindResource(sound_group, index_sound_groups, map_sound_groups);
 
 	return 0;
@@ -75,7 +75,7 @@ func double fmod_system_release(double system_ref)
 	unregisterMasterGroups(fmod_system);
 
 	unregisterResource(fmod_system, map_systems);
-	fmod_last_result = fmod_system->release();
+	g_fmod_last_result = fmod_system->release();
 
 	return 0;
 }
@@ -97,7 +97,7 @@ func double fmod_system_update_multiplatform()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->update();
+	g_fmod_last_result = fmod_system->update();
 	return 0;
 }
 
@@ -106,7 +106,7 @@ func double fmod_system_mixer_suspend()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->mixerSuspend();
+	g_fmod_last_result = fmod_system->mixerSuspend();
 
 	return 0;
 }
@@ -116,7 +116,7 @@ func double fmod_system_mixer_resume()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->mixerResume();
+	g_fmod_last_result = fmod_system->mixerResume();
 
 	return 0;
 }
@@ -128,7 +128,7 @@ func double fmod_system_set_output(double output)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setOutput((FMOD_OUTPUTTYPE)output);
+	g_fmod_last_result = fmod_system->setOutput((FMOD_OUTPUTTYPE)output);
 	return 0;
 }
 
@@ -138,7 +138,7 @@ func double fmod_system_get_output()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD_OUTPUTTYPE output;
-	fmod_last_result = fmod_system->getOutput(&output);
+	g_fmod_last_result = fmod_system->getOutput(&output);
 
 	return (double)output;
 }
@@ -149,7 +149,7 @@ func double fmod_system_get_num_drivers()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	int num;
-	fmod_last_result = fmod_system->getNumDrivers(&num);
+	g_fmod_last_result = fmod_system->getNumDrivers(&num);
 	return (double)num;
 }
 
@@ -164,9 +164,9 @@ func double fmod_system_get_driver_info_multiplatform(double driver_index, char*
 	FMOD_SPEAKERMODE speaker_mode;
 	int speaker_mode_channels;
 
-	fmod_last_result = fmod_system->getDriverInfo((int)driver_index, name, 128, &guid, &system_rate, &speaker_mode, &speaker_mode_channels);
+	g_fmod_last_result = fmod_system->getDriverInfo((int)driver_index, name, 128, &guid, &system_rate, &speaker_mode, &speaker_mode_channels);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -189,7 +189,7 @@ func double fmod_system_set_driver(double driver)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setDriver((int)driver);
+	g_fmod_last_result = fmod_system->setDriver((int)driver);
 	return 0;
 }
 
@@ -199,7 +199,7 @@ func double fmod_system_get_driver()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	int driver;
-	fmod_last_result = fmod_system->getDriver(&driver);
+	g_fmod_last_result = fmod_system->getDriver(&driver);
 
 	return (double)driver;
 }
@@ -211,7 +211,7 @@ func double fmod_system_set_software_channels(double software_channels)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setSoftwareChannels((int)software_channels);
+	g_fmod_last_result = fmod_system->setSoftwareChannels((int)software_channels);
 	return 0;
 }
 
@@ -221,7 +221,7 @@ func double fmod_system_get_software_channels()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	int software_channels;
-	fmod_last_result = fmod_system->getSoftwareChannels(&software_channels);
+	g_fmod_last_result = fmod_system->getSoftwareChannels(&software_channels);
 	return software_channels;
 }
 
@@ -230,7 +230,7 @@ func double fmod_system_set_software_format(double sample_rate, double speaker_m
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setSoftwareFormat((int)sample_rate, (FMOD_SPEAKERMODE)speaker_mode, (int)num_raw_speakers);
+	g_fmod_last_result = fmod_system->setSoftwareFormat((int)sample_rate, (FMOD_SPEAKERMODE)speaker_mode, (int)num_raw_speakers);
 	return 0;
 }
 
@@ -243,9 +243,9 @@ func double fmod_system_get_software_format_multiplatform(char* buff_return)
 	FMOD_SPEAKERMODE speaker_mode;
 	int num_raw_speakers;
 
-	fmod_last_result = fmod_system->getSoftwareFormat(&sample_rate, &speaker_mode, &num_raw_speakers);
+	g_fmod_last_result = fmod_system->getSoftwareFormat(&sample_rate, &speaker_mode, &num_raw_speakers);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -265,7 +265,7 @@ func double fmod_system_set_dsp_buffer_size(double buff_size, double num_buffers
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setDSPBufferSize((uint32_t)buff_size, (int32_t)num_buffers);
+	g_fmod_last_result = fmod_system->setDSPBufferSize((uint32_t)buff_size, (int32_t)num_buffers);
 
 	return 0;
 }
@@ -277,9 +277,9 @@ func double fmod_system_get_dsp_buffer_size_multiplatform(char* buff_return)
 
 	unsigned int buff_size;
 	int num_buffers;
-	fmod_last_result = fmod_system->getDSPBufferSize(&buff_size, &num_buffers);
+	g_fmod_last_result = fmod_system->getDSPBufferSize(&buff_size, &num_buffers);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -298,7 +298,7 @@ func double fmod_system_set_stream_buffer_size(double file_buffer_size, double f
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setStreamBufferSize((uint32_t)file_buffer_size, (FMOD_TIMEUNIT)file_buffer_size_type);
+	g_fmod_last_result = fmod_system->setStreamBufferSize((uint32_t)file_buffer_size, (FMOD_TIMEUNIT)file_buffer_size_type);
 	return 0;
 }
 
@@ -310,9 +310,9 @@ func double fmod_system_get_stream_buffer_size_multiplatform(char* buff_return)
 	unsigned int file_buffer_size;
 	FMOD_TIMEUNIT file_buffer_size_type;
 
-	fmod_last_result = fmod_system->getStreamBufferSize(&file_buffer_size, &file_buffer_size_type);
+	g_fmod_last_result = fmod_system->getStreamBufferSize(&file_buffer_size, &file_buffer_size_type);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -414,7 +414,7 @@ func double fmod_system_set_advanced_settings_multiplatform(char* buff_args)
 		exinfo.maxOpusCodecs = YYGetInt32(search->second);
 	};
 
-	fmod_last_result = fmod_system->setAdvancedSettings(&exinfo);
+	g_fmod_last_result = fmod_system->setAdvancedSettings(&exinfo);
 
 	return 0;
 }
@@ -425,9 +425,9 @@ func double fmod_system_get_advanced_settings_multiplatform(char* buff_return)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD_ADVANCEDSETTINGS exinfo;
-	fmod_last_result = fmod_system->getAdvancedSettings(&exinfo);
+	g_fmod_last_result = fmod_system->getAdvancedSettings(&exinfo);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -465,7 +465,7 @@ func double fmod_system_set_speaker_position(double speaker, double x, double y,
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setSpeakerPosition((FMOD_SPEAKER)speaker, (float)x, (float)y, active >= 0.5);
+	g_fmod_last_result = fmod_system->setSpeakerPosition((FMOD_SPEAKER)speaker, (float)x, (float)y, active >= 0.5);
 	return 0;
 }
 
@@ -477,9 +477,9 @@ func double fmod_system_get_speaker_position_multiplatform(double speaker, char*
 	float x;
 	float y;
 	bool active;
-	fmod_last_result = fmod_system->getSpeakerPosition((FMOD_SPEAKER)speaker, &x, &y, &active);
+	g_fmod_last_result = fmod_system->getSpeakerPosition((FMOD_SPEAKER)speaker, &x, &y, &active);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -499,7 +499,7 @@ func double fmod_system_set_3d_settings(double doppler_scale, double distance_fa
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->set3DSettings((float)doppler_scale, (float)distance_factor, (float)rolloff_scale);
+	g_fmod_last_result = fmod_system->set3DSettings((float)doppler_scale, (float)distance_factor, (float)rolloff_scale);
 	return 0;
 }
 
@@ -512,9 +512,9 @@ func double fmod_system_get_3d_settings_multiplatform(char* buff_return)
 	float distance_factor;
 	float rolloff_scale;
 
-	fmod_last_result = fmod_system->get3DSettings(&doppler_scale, &distance_factor, &rolloff_scale);
+	g_fmod_last_result = fmod_system->get3DSettings(&doppler_scale, &distance_factor, &rolloff_scale);
 	
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -534,7 +534,7 @@ func double fmod_system_set_3d_num_listeners(double num)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->set3DNumListeners((int)num);
+	g_fmod_last_result = fmod_system->set3DNumListeners((int)num);
 	return 0;
 }
 
@@ -544,7 +544,7 @@ func double fmod_system_get_3d_num_listeners()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	int num;
-	fmod_last_result = fmod_system->get3DNumListeners(&num);
+	g_fmod_last_result = fmod_system->get3DNumListeners(&num);
 	return (double)num;
 }
 
@@ -572,7 +572,7 @@ func double fmod_system_set_3d_rolloff_callback()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->set3DRolloffCallback(CALLBACK_fmod_system_3d_rolloff);
+	g_fmod_last_result = fmod_system->set3DRolloffCallback(CALLBACK_fmod_system_3d_rolloff);
 	return 0;
 }
 
@@ -610,7 +610,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //
 // func double fmod_system_set_file_system(double blockalign)
 //{
-//     fmod_last_result = map_system.at(system_selected_ref)->setFileSystem(CALLBACK_fmod_file_open, CALLBACK_fmod_file_close, CALLBACK_fmod_file_read,
+//     g_fmod_last_result = map_system.at(system_selected_ref)->setFileSystem(CALLBACK_fmod_file_open, CALLBACK_fmod_file_close, CALLBACK_fmod_file_read,
 //     CALLBACK_fmod_file_seek, CALLBACK_fmod_file_asyncread, CALLBACK_fmod_file_asynccancel,(int)blockalign); return 0;
 // }
 //
@@ -635,7 +635,7 @@ func double fmod_system_set_3d_rolloff_callback()
 // }
 // func double fmod_system_attach_file_system()
 //{
-//     fmod_last_result = map_system.at(system_selected_ref)->attachFileSystem(CALLBACK_fmod_file_open_attach, CALLBACK_fmod_file_close_attach,
+//     g_fmod_last_result = map_system.at(system_selected_ref)->attachFileSystem(CALLBACK_fmod_file_open_attach, CALLBACK_fmod_file_close_attach,
 //     CALLBACK_fmod_file_read_attach, CALLBACK_fmod_file_seek_attach); return 0;
 // }
 
@@ -644,7 +644,7 @@ func double fmod_system_set_3d_rolloff_callback()
 // Plugin support it's necesary?... ignore for this version
 // func double fmod_system_set_plugin_path(char* path)
 //{
-//     fmod_last_result = map_system.at(system_selected_ref)->setPluginPath(path);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->setPluginPath(path);
 //     return 0;
 // }
 //
@@ -653,21 +653,21 @@ func double fmod_system_set_3d_rolloff_callback()
 //     unsigned int priority = (unsigned int)priority_;
 //     unsigned int handle;
 //
-//     fmod_last_result = map_system.at(system_selected_ref)->loadPlugin(filename, &handle, priority);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->loadPlugin(filename, &handle, priority);
 //
 //     return (double)handle;
 // }
 //
 // func double fmod_system_unload_plugin(double handle)
 //{
-//     fmod_last_result = map_system.at(system_selected_ref)->unloadPlugin((unsigned int)handle);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->unloadPlugin((unsigned int)handle);
 //     return 0;
 // }
 //
 // func double fmod_system_get_num_nested_plugins(double handle)
 //{
 //     int num;
-//     fmod_last_result = map_system.at(system_selected_ref)->getNumNestedPlugins((unsigned int)handle,&num);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getNumNestedPlugins((unsigned int)handle,&num);
 //     return (double)num;
 // }
 //
@@ -679,7 +679,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //     unsigned int handle;
 //
 //     int num;
-//     fmod_last_result = map_system.at(system_selected_ref)->getNestedPlugin(type, index, &handle);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getNestedPlugin(type, index, &handle);
 //
 //     return (double)handle;
 // }
@@ -689,7 +689,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //     FMOD_PLUGINTYPE type = (FMOD_PLUGINTYPE)type_;
 //
 //     int num;
-//     fmod_last_result = map_system.at(system_selected_ref)->getNumPlugins(type, &num);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getNumPlugins(type, &num);
 //     return (double)num;
 // }
 //
@@ -701,7 +701,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //     unsigned int handle;
 //
 //     int num;
-//     fmod_last_result = map_system.at(system_selected_ref)->getPluginHandle(type, index,&handle);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getPluginHandle(type, index,&handle);
 //
 //     return (double) handle;
 // }
@@ -717,7 +717,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //     unsigned int version;
 //
 //     int num;
-//     fmod_last_result = map_system.at(system_selected_ref)->getPluginInfo(handle, &type, name, 100, &version);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getPluginInfo(handle, &type, name, 100, &version);
 //
 //     StructStream map_return = { };
 //     map_return.addKeyValue( "type", (int)type );
@@ -735,7 +735,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //{
 //     FMOD_OUTPUTTYPE type = (FMOD_OUTPUTTYPE)type_;
 //
-//     fmod_last_result = map_system.at(system_selected_ref)->setOutput(type);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->setOutput(type);
 //
 //     return 0;
 // }
@@ -744,7 +744,7 @@ func double fmod_system_set_3d_rolloff_callback()
 //{
 //     unsigned int handle;
 //
-//     fmod_last_result = map_system.at(system_selected_ref)->getOutputByPlugin(&handle);
+//     g_fmod_last_result = map_system.at(system_selected_ref)->getOutputByPlugin(&handle);
 //
 //     return (double)handle;
 // }
@@ -781,7 +781,7 @@ func double fmod_system_set_network_proxy(char* proxy)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setNetworkProxy(proxy);
+	g_fmod_last_result = fmod_system->setNetworkProxy(proxy);
 
 	return 0;
 }
@@ -791,7 +791,7 @@ func char* fmod_system_get_network_proxy()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->getNetworkProxy(gStringBuffer, sizeof(gStringBuffer));
+	g_fmod_last_result = fmod_system->getNetworkProxy(gStringBuffer, sizeof(gStringBuffer));
 
 	return gStringBuffer;
 }
@@ -801,7 +801,7 @@ func double fmod_system_set_network_timeout(double timeout)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setNetworkTimeout((int)timeout);
+	g_fmod_last_result = fmod_system->setNetworkTimeout((int)timeout);
 
 	return 0;
 }
@@ -813,7 +813,7 @@ func double fmod_system_get_network_timeout()
 
 	int timeout;
 
-	fmod_last_result = fmod_system->getNetworkTimeout(&timeout);
+	g_fmod_last_result = fmod_system->getNetworkTimeout(&timeout);
 
 	return timeout;
 }
@@ -827,14 +827,14 @@ func double fmod_system_get_version()
 
 	unsigned int version;
 
-	fmod_last_result = fmod_system->getVersion(&version);
+	g_fmod_last_result = fmod_system->getVersion(&version);
 
 	return version;
 }
 
 // func double fmod_system_get_output_handle()
 //{
-//     //fmod_last_result = map_system.at(system_selected_ref)->getOutputHandle(double index_);
+//     //g_fmod_last_result = map_system.at(system_selected_ref)->getOutputHandle(double index_);
 //
 //     //return 0;
 //     return 0;
@@ -848,9 +848,9 @@ func double fmod_system_get_channels_playing_multiplatform(char* buff_return)
 	int channels;
 	int real_channels;
 
-	fmod_last_result = fmod_system->getChannelsPlaying(&channels, &real_channels);
+	g_fmod_last_result = fmod_system->getChannelsPlaying(&channels, &real_channels);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -871,9 +871,9 @@ func double fmod_system_get_cpu_usage_multiplatform(char* buff_return)
 
 	FMOD_CPU_USAGE cpu_usage_struct;
 
-	fmod_last_result = fmod_system->getCPUUsage(&cpu_usage_struct);
+	g_fmod_last_result = fmod_system->getCPUUsage(&cpu_usage_struct);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -900,9 +900,9 @@ func double fmod_system_get_file_usage_multiplatform(char* buff_return)
 	long long stream_bytes_read;
 	long long other_bytes_read;
 
-	fmod_last_result = fmod_system->getFileUsage(&sample_bytes_read, &stream_bytes_read, &other_bytes_read);
+	g_fmod_last_result = fmod_system->getFileUsage(&sample_bytes_read, &stream_bytes_read, &other_bytes_read);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -917,15 +917,30 @@ func double fmod_system_get_file_usage_multiplatform(char* buff_return)
 	return 0;
 }
 
-func double fmod_system_get_default_mix_matrix(double source_speaker_mode, double target_speaker_mode, double matrix_hop)
+func double fmod_system_get_default_mix_matrix_multiplatform(double source_speaker_mode, double target_speaker_mode, double matrix_hop, char* buff_return)
 {
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	float matrix;
-	fmod_last_result = fmod_system->getDefaultMixMatrix((FMOD_SPEAKERMODE)source_speaker_mode, (FMOD_SPEAKERMODE)target_speaker_mode, &matrix, (int)matrix_hop);
+	int num_source_channels = static_cast<int>(matrix_hop);
+	if (num_source_channels == 0) {
+		fmod_system->getSpeakerModeChannels((FMOD_SPEAKERMODE)source_speaker_mode, &num_source_channels);
+	}
+	int num_target_channels = 0;
+	fmod_system->getSpeakerModeChannels((FMOD_SPEAKERMODE)target_speaker_mode, &num_target_channels);
 
-	return (double)matrix;
+	int size = num_source_channels * num_target_channels;
+	std::vector<float> matrix(size);
+
+	g_fmod_last_result = fmod_system->getDefaultMixMatrix((FMOD_SPEAKERMODE)source_speaker_mode, (FMOD_SPEAKERMODE)target_speaker_mode, matrix.data(), (int)matrix_hop);
+
+	ArrayStream return_array;
+	for (const auto& f : matrix) {
+		return_array << f;
+	}
+	return_array.writeTo(buff_return);
+
+	return 0;
 }
 
 func double fmod_system_get_speaker_mode_channels(double mode)
@@ -934,7 +949,7 @@ func double fmod_system_get_speaker_mode_channels(double mode)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	int channels;
-	fmod_last_result = fmod_system->getSpeakerModeChannels((FMOD_SPEAKERMODE)mode, &channels);
+	g_fmod_last_result = fmod_system->getSpeakerModeChannels((FMOD_SPEAKERMODE)mode, &channels);
 
 	return (double)channels;
 }
@@ -952,11 +967,11 @@ func double fmod_system_create_sound_multiplatform(char* name_or_data, double mo
 	FMOD_CREATESOUNDEXINFO exinfo = FmodCreateSoundExInfoFromMap(map_extra);
 
 	FMOD::Sound* sound = nullptr;
-	fmod_last_result = fmod_system->createSound(name_or_data, (FMOD_MODE)mode, &exinfo, &sound);
+	g_fmod_last_result = fmod_system->createSound(name_or_data, (FMOD_MODE)mode, &exinfo, &sound);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -975,11 +990,11 @@ func double fmod_system_create_stream_multiplatform(char* name_or_data, double m
 	FMOD_CREATESOUNDEXINFO exinfo = FmodCreateSoundExInfoFromMap(map_extra);
 
 	FMOD::Sound* sound = nullptr;
-	fmod_last_result = fmod_system->createStream(name_or_data, (FMOD_MODE)mode, &exinfo, &sound);
+	g_fmod_last_result = fmod_system->createStream(name_or_data, (FMOD_MODE)mode, &exinfo, &sound);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -992,14 +1007,14 @@ func double fmod_system_create_dsp()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	FMOD_DSP_DESCRIPTION description;
+	FMOD_DSP_DESCRIPTION description{};
 	FMOD::DSP* dsp;
 
-	fmod_last_result = fmod_system->createDSP(&description, &dsp);
+	g_fmod_last_result = fmod_system->createDSP(&description, &dsp);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -1013,11 +1028,11 @@ func double fmod_system_create_dsp_by_type(double type)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::DSP* dsp;
-	fmod_last_result = fmod_system->createDSPByType((FMOD_DSP_TYPE)type, &dsp);
+	g_fmod_last_result = fmod_system->createDSPByType((FMOD_DSP_TYPE)type, &dsp);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -1031,11 +1046,11 @@ func double fmod_system_create_channel_group(char* name)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	fmod_last_result = fmod_system->createChannelGroup(name, &channel_group);
+	g_fmod_last_result = fmod_system->createChannelGroup(name, &channel_group);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -1049,11 +1064,11 @@ func double fmod_system_create_sound_group(char* name)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::SoundGroup* sound_group;
-	fmod_last_result = fmod_system->createSoundGroup(name, &sound_group);
+	g_fmod_last_result = fmod_system->createSoundGroup(name, &sound_group);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -1067,11 +1082,11 @@ func double fmod_system_create_reverb_3d()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::Reverb3D* reverb_3d;
-	fmod_last_result = fmod_system->createReverb3D(&reverb_3d);
+	g_fmod_last_result = fmod_system->createReverb3D(&reverb_3d);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -1091,9 +1106,9 @@ func double fmod_system_play_sound_multiplatform(double sound_ref, double channe
 	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	FMOD::Channel* channel;
-	fmod_last_result = fmod_system->playSound(sound, channel_group, pause >= 0.5, &channel);
+	g_fmod_last_result = fmod_system->playSound(sound, channel_group, pause >= 0.5, &channel);
 
-	if (fmod_last_result != FMOD_OK) {
+	if (g_fmod_last_result != FMOD_OK) {
 		return 0;
 	}
 
@@ -1112,9 +1127,9 @@ func double fmod_system_play_dsp_multiplatform(double dsp_ref, double channel_gr
 	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	FMOD::Channel* channel;
-	fmod_last_result = fmod_system->playDSP(dsp, channel_group, pause >= 0.5, &channel);
+	g_fmod_last_result = fmod_system->playDSP(dsp, channel_group, pause >= 0.5, &channel);
 
-	if (fmod_last_result != FMOD_OK) {
+	if (g_fmod_last_result != FMOD_OK) {
 		return 0;
 	}
 
@@ -1127,9 +1142,9 @@ func double fmod_system_get_channel(double index)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::Channel* channel;
-	fmod_last_result = fmod_system->getChannel((int)index, &channel);
+	g_fmod_last_result = fmod_system->getChannel((int)index, &channel);
 
-	if (fmod_last_result != FMOD_OK) {
+	if (g_fmod_last_result != FMOD_OK) {
 		return 0;
 	}
 
@@ -1144,9 +1159,9 @@ func double fmod_system_get_master_channel_group()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::ChannelGroup* channel_group;
-	fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
+	g_fmod_last_result = fmod_system->getMasterChannelGroup(&channel_group);
 
-	if (fmod_last_result != FMOD_OK) {
+	if (g_fmod_last_result != FMOD_OK) {
 		return 0;
 	}
 
@@ -1161,9 +1176,9 @@ func double fmod_system_get_master_sound_group()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::SoundGroup* sound_group;
-	fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
+	g_fmod_last_result = fmod_system->getMasterSoundGroup(&sound_group);
 
-	if (fmod_last_result != FMOD_OK) {
+	if (g_fmod_last_result != FMOD_OK) {
 		return 0;
 	}
 
@@ -1190,7 +1205,7 @@ func double fmod_system_set_3d_listener_attributes_multiplatform(double listener
 	FMOD_VECTOR vec_forward = FmodVectorFromMap(map_forward);
 	FMOD_VECTOR vec_up = FmodVectorFromMap(map_up);
 
-	fmod_last_result = fmod_system->set3DListenerAttributes((int)listener_index, &vec_pos, &vec_vel, &vec_forward, &vec_up);
+	g_fmod_last_result = fmod_system->set3DListenerAttributes((int)listener_index, &vec_pos, &vec_vel, &vec_forward, &vec_up);
 
 	return 0;
 }
@@ -1205,9 +1220,9 @@ func double fmod_system_get_3d_listener_attributes_multiplatform(double listener
 	FMOD_VECTOR vec_forward;
 	FMOD_VECTOR vec_up;
 
-	fmod_last_result = fmod_system->get3DListenerAttributes((int)listener_index, &vec_pos, &vec_vel, &vec_forward, &vec_up);
+	g_fmod_last_result = fmod_system->get3DListenerAttributes((int)listener_index, &vec_pos, &vec_vel, &vec_forward, &vec_up);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1286,7 +1301,7 @@ func double fmod_system_set_reverb_properties_multiplatform(double instance_inde
 		prop.WetLevel = YYGetFloat(search->second);
 	}
 
-	fmod_last_result = fmod_system->setReverbProperties((int)instance_index, &prop);
+	g_fmod_last_result = fmod_system->setReverbProperties((int)instance_index, &prop);
 
 	return 0;
 }
@@ -1297,9 +1312,9 @@ func double fmod_system_get_reverb_properties_multiplatform(double instance_inde
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD_REVERB_PROPERTIES prop{};
-	fmod_last_result = fmod_system->getReverbProperties((int)instance_index, &prop);
+	g_fmod_last_result = fmod_system->getReverbProperties((int)instance_index, &prop);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1337,7 +1352,7 @@ func double fmod_system_attach_channel_group_to_port_multiplatform(char* buff_ar
 	FMOD::ChannelGroup* channel_group = nullptr;
 	validate_fmod_channel_group(channel_group_ref, channel_group);
 
-	fmod_last_result = fmod_system->attachChannelGroupToPort(portType, portIndex, channel_group, pass_thru);
+	g_fmod_last_result = fmod_system->attachChannelGroupToPort(portType, portIndex, channel_group, pass_thru);
 
 	return 0;
 }
@@ -1350,7 +1365,7 @@ func double fmod_system_detach_channel_group_from_port(double channel_group_ref)
 	FMOD::ChannelGroup* channel_group = nullptr;
 	validate_fmod_channel_group(channel_group_ref, channel_group);
 
-	fmod_last_result = fmod_system->detachChannelGroupFromPort(channel_group);
+	g_fmod_last_result = fmod_system->detachChannelGroupFromPort(channel_group);
 
 	return 0;
 }
@@ -1364,9 +1379,9 @@ func double fmod_system_get_record_num_drivers_multiplatform(char* buff_return)
 
 	int num_drivers;
 	int num_connected;
-	fmod_last_result = fmod_system->getRecordNumDrivers(&num_drivers, &num_connected);
+	g_fmod_last_result = fmod_system->getRecordNumDrivers(&num_drivers, &num_connected);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1392,9 +1407,9 @@ func double fmod_system_get_record_driver_info_multiplatform(double recording_de
 	int speakermodechannels;
 	FMOD_DRIVER_STATE state;
 
-	fmod_last_result = fmod_system->getRecordDriverInfo((int)recording_device_index, name, 100, &guid, &systemrate, &speakermode, &speakermodechannels, &state);
+	g_fmod_last_result = fmod_system->getRecordDriverInfo((int)recording_device_index, name, 100, &guid, &systemrate, &speakermode, &speakermodechannels, &state);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1418,7 +1433,7 @@ func double fmod_system_get_record_position(double device_index)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	uint32_t position;
-	fmod_last_result = fmod_system->getRecordPosition((int)device_index, &position);
+	g_fmod_last_result = fmod_system->getRecordPosition((int)device_index, &position);
 
 	return (double)position;
 }
@@ -1431,7 +1446,7 @@ func double fmod_system_record_start(double device_index, double sound_ref, doub
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = fmod_system->recordStart((int)device_index, sound, loop >= 0.5);
+	g_fmod_last_result = fmod_system->recordStart((int)device_index, sound, loop >= 0.5);
 
 	return 0;
 }
@@ -1441,7 +1456,7 @@ func double fmod_system_record_stop(double device_index)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->recordStop((int)device_index);
+	g_fmod_last_result = fmod_system->recordStop((int)device_index);
 
 	return 0;
 }
@@ -1452,7 +1467,7 @@ func double fmod_system_is_recording(double device_index)
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	bool recording;
-	fmod_last_result = fmod_system->isRecording((int)device_index, &recording);
+	g_fmod_last_result = fmod_system->isRecording((int)device_index, &recording);
 
 	return recording ? 1.0 : 0.0;
 }
@@ -1465,9 +1480,9 @@ func double fmod_system_create_geometry(double max_polygons, double max_vertices
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	FMOD::Geometry* geometry = nullptr;
-	fmod_last_result = fmod_system->createGeometry((int)max_polygons, (int)max_vertices, &geometry);
+	g_fmod_last_result = fmod_system->createGeometry((int)max_polygons, (int)max_vertices, &geometry);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1481,7 +1496,7 @@ func double fmod_system_set_geometry_settings(double max_world_size)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setGeometrySettings((float)max_world_size);
+	g_fmod_last_result = fmod_system->setGeometrySettings((float)max_world_size);
 	return 0;
 }
 
@@ -1491,20 +1506,30 @@ func double fmod_system_get_geometry_settings()
 	validate_fmod_system(system_selected_ref, fmod_system);
 
 	float max_world_size;
-	fmod_last_result = fmod_system->getGeometrySettings(&max_world_size);
+	g_fmod_last_result = fmod_system->getGeometrySettings(&max_world_size);
 
 	return (double)max_world_size;
 }
 
-func double fmod_system_load_geometry(char* buff, double length)
+func double fmod_system_load_geometry_multiplatform(char* buff_args, double length)
 {
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	FMOD::Geometry* geometry = nullptr;
-	fmod_last_result = fmod_system->loadGeometry((void*)buff, (int)length, &geometry);
+	auto args = buffer_unpack((uint8_t*)buff_args);
+	uint32_t size = 0;
+	void* buff = YYGetBuffer(args[0], size);
 
-	if (fmod_last_result != FMOD_OK)
+	if (size < length) {
+		g_fmod_last_result = (FMOD_RESULT)FMOD_ERROR_BUFFER_OVERFLOW;
+		LOG_WARNING("buffer size is smaller than provided length argument");
+	}
+
+
+	FMOD::Geometry* geometry = nullptr;
+	g_fmod_last_result = fmod_system->loadGeometry(buff, (int)length, &geometry);
+
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1521,9 +1546,9 @@ func double fmod_system_get_geometry_occlusion_multiplatform(char* buff_return)
 	FMOD_VECTOR listener{}, source{};
 	float direct = 0, reverb = 0;
 
-	fmod_last_result = fmod_system->getGeometryOcclusion(&listener, &source, &direct, &reverb);
+	g_fmod_last_result = fmod_system->getGeometryOcclusion(&listener, &source, &direct, &reverb);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -1549,7 +1574,7 @@ func double fmod_system_lock_dsp()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->lockDSP();
+	g_fmod_last_result = fmod_system->lockDSP();
 	return 0;
 }
 
@@ -1558,7 +1583,7 @@ func double fmod_system_unlock_dsp()
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->unlockDSP();
+	g_fmod_last_result = fmod_system->unlockDSP();
 	return 0;
 }
 
@@ -1620,7 +1645,7 @@ func double fmod_system_set_callback(double type)
 	FMOD::System* fmod_system = nullptr;
 	validate_fmod_system(system_selected_ref, fmod_system);
 
-	fmod_last_result = fmod_system->setCallback(CALLBACK_fmod_system, (FMOD_SYSTEM_CALLBACK_TYPE)type);
+	g_fmod_last_result = fmod_system->setCallback(CALLBACK_fmod_system, (FMOD_SYSTEM_CALLBACK_TYPE)type);
 
 	return 0;
 }

@@ -8,14 +8,14 @@
 func double fmod_file_get_disk_busy()
 {
 	int busy;
-	fmod_last_result = FMOD::File_GetDiskBusy(&busy);
+	g_fmod_last_result = FMOD::File_GetDiskBusy(&busy);
 
 	return (double)busy;
 }
 
 func double fmod_file_set_disk_busy(double busy)
 {
-	fmod_last_result = FMOD::File_SetDiskBusy((int)busy);
+	g_fmod_last_result = FMOD::File_SetDiskBusy((int)busy);
 
 	return 0;
 }
@@ -25,9 +25,9 @@ func double fmod_file_set_disk_busy(double busy)
 func double fmod_memory_get_stats_multiplatform(double blocking, char* buff_return)
 {
 	int currentalloced = 0, maxalloced = 0;
-	fmod_last_result = FMOD::Memory_GetStats(&currentalloced, &maxalloced, blocking >= 0.5);
+	g_fmod_last_result = FMOD::Memory_GetStats(&currentalloced, &maxalloced, blocking >= 0.5);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -68,7 +68,7 @@ static FMOD_RESULT CALLBACK_fmod_debug(FMOD_DEBUG_FLAGS flags, const char* file,
 
 func double fmod_debug_initialize_multiplatform(double flags, double mode, char* filename)
 {
-	fmod_last_result = FMOD::Debug_Initialize((FMOD_DEBUG_FLAGS)flags, (FMOD_DEBUG_MODE)mode, CALLBACK_fmod_debug, filename);
+	g_fmod_last_result = FMOD::Debug_Initialize((FMOD_DEBUG_FLAGS)flags, (FMOD_DEBUG_MODE)mode, CALLBACK_fmod_debug, filename);
 	return 0;
 }
 
@@ -76,7 +76,7 @@ func double fmod_debug_initialize_multiplatform(double flags, double mode, char*
 
 func double fmod_thread_set_attributes(double type, double affinity, double priority, double stacksize)
 {
-	fmod_last_result =
+	g_fmod_last_result =
 		FMOD::Thread_SetAttributes((FMOD_THREAD_TYPE)type, (FMOD_THREAD_AFFINITY)affinity, (FMOD_THREAD_PRIORITY)priority, (FMOD_THREAD_STACK_SIZE)stacksize);
 
 	return 0;

@@ -17,7 +17,7 @@ func double fmod_reverb_3d_set_3d_attributes_multiplatform(double reverb_3d_ref,
 	auto map_position = YYGetStruct(args[0]);
 
 	FMOD_VECTOR vec_position = FmodVectorFromMap(map_position);
-	fmod_last_result = reverb_3d->set3DAttributes(&vec_position, (float)min_distance, (float)max_distance);
+	g_fmod_last_result = reverb_3d->set3DAttributes(&vec_position, (float)min_distance, (float)max_distance);
 
 	return 0;
 }
@@ -30,9 +30,9 @@ func double fmod_reverb_3d_get_3d_attributes_multiplatform(double reverb_3d_ref,
 	FMOD_VECTOR vec_position;
 	float mindistance;
 	float maxdistance;
-	fmod_last_result = reverb_3d->get3DAttributes(&vec_position, &mindistance, &maxdistance);
+	g_fmod_last_result = reverb_3d->get3DAttributes(&vec_position, &mindistance, &maxdistance);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -80,7 +80,7 @@ func double fmod_reverb_3d_set_properties(double reverb_3d_ref,
 	exinfo.EarlyLateMix = (float)early_late_mix;
 	exinfo.WetLevel = (float)wet_level;
 
-	fmod_last_result = reverb_3d->setProperties(&exinfo);
+	g_fmod_last_result = reverb_3d->setProperties(&exinfo);
 
 	return 0;
 }
@@ -91,7 +91,7 @@ func double fmod_reverb_3d_get_properties_multiplatform(double reverb_3d_ref, ch
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	FMOD_REVERB_PROPERTIES exinfo = {0};
-	fmod_last_result = reverb_3d->getProperties(&exinfo);
+	g_fmod_last_result = reverb_3d->getProperties(&exinfo);
 
 	StructStream map_return = {};
 	map_return.addKeyValue("decay_time", exinfo.DecayTime);
@@ -117,7 +117,7 @@ func double fmod_reverb_3d_set_active(double reverb_3d_ref, double active)
 	FMOD::Reverb3D* reverb_3d = nullptr;
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
-	fmod_last_result = reverb_3d->setActive(active >= 0.5);
+	g_fmod_last_result = reverb_3d->setActive(active >= 0.5);
 
 	return 0;
 }
@@ -128,7 +128,7 @@ func double fmod_reverb_3d_get_active(double reverb_3d_ref)
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	bool active;
-	fmod_last_result = reverb_3d->getActive(&active);
+	g_fmod_last_result = reverb_3d->getActive(&active);
 
 	return active;
 }
@@ -140,7 +140,7 @@ func double fmod_reverb_3d_release(double reverb_3d_ref)
 
 	unregisterResource(reverb_3d, map_reverbs);
 
-	fmod_last_result = reverb_3d->release();
+	g_fmod_last_result = reverb_3d->release();
 
 	return 0;
 }

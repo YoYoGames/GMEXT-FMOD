@@ -8,7 +8,7 @@ func double fmod_studio_command_replay_set_bank_path(double command_replay_ref, 
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->setBankPath((const char*)path);
+	g_fmod_last_result = command_replay->setBankPath((const char*)path);
 	return 0;
 }
 
@@ -53,7 +53,7 @@ func double fmod_studio_command_replay_set_create_instance_callback(double comma
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->setCreateInstanceCallback(CALLBACK_fmod_studio_command_replay_create_instance);
+	g_fmod_last_result = command_replay->setCreateInstanceCallback(CALLBACK_fmod_studio_command_replay_create_instance);
 	return 0;
 }
 
@@ -79,7 +79,7 @@ func double fmod_studio_command_replay_set_frame_callback(double command_replay_
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->setFrameCallback(CALLBACK_fmod_studio_command_replay_frame);
+	g_fmod_last_result = command_replay->setFrameCallback(CALLBACK_fmod_studio_command_replay_frame);
 	return 0;
 }
 
@@ -111,7 +111,7 @@ func double fmod_studio_command_replay_set_load_bank_callback(double command_rep
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->setLoadBankCallback(CALLBACK_fmod_studio_command_replay_load_bank);
+	g_fmod_last_result = command_replay->setLoadBankCallback(CALLBACK_fmod_studio_command_replay_load_bank);
 	return 0;
 }
 
@@ -122,7 +122,7 @@ func double fmod_studio_command_replay_start(double command_replay_ref)
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->start();
+	g_fmod_last_result = command_replay->start();
 	return 0;
 }
 
@@ -131,7 +131,7 @@ func double fmod_studio_command_replay_stop(double command_replay_ref)
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->stop();
+	g_fmod_last_result = command_replay->stop();
 	return 0;
 }
 
@@ -143,9 +143,9 @@ func double fmod_studio_command_replay_get_current_command_multiplatform(double 
 	int commandindex;
 	float currenttime;
 
-	fmod_last_result = command_replay->getCurrentCommand(&commandindex, &currenttime);
+	g_fmod_last_result = command_replay->getCurrentCommand(&commandindex, &currenttime);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -165,7 +165,7 @@ func double fmod_studio_command_replay_get_playback_state(double command_replay_
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	FMOD_STUDIO_PLAYBACK_STATE state;
-	fmod_last_result = command_replay->getPlaybackState(&state);
+	g_fmod_last_result = command_replay->getPlaybackState(&state);
 
 	return (double)state;
 }
@@ -175,7 +175,7 @@ func double fmod_studio_command_replay_set_paused(double command_replay_ref, dou
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->setPaused(pause >= 0.5);
+	g_fmod_last_result = command_replay->setPaused(pause >= 0.5);
 
 	return 0;
 }
@@ -186,7 +186,7 @@ func double fmod_studio_command_replay_get_paused(double command_replay_ref)
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	bool pause;
-	fmod_last_result = command_replay->getPaused(&pause);
+	g_fmod_last_result = command_replay->getPaused(&pause);
 
 	return pause ? 1.0 : 0.0;
 }
@@ -196,7 +196,7 @@ func double fmod_studio_command_replay_seek_to_command(double command_replay_ref
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->seekToCommand((int)command_index);
+	g_fmod_last_result = command_replay->seekToCommand((int)command_index);
 
 	return 0;
 }
@@ -206,7 +206,7 @@ func double fmod_studio_command_replay_seek_to_time(double command_replay_ref, d
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->seekToTime((float)time);
+	g_fmod_last_result = command_replay->seekToTime((float)time);
 
 	return 0;
 }
@@ -219,7 +219,7 @@ func double fmod_studio_command_replay_get_command_at_time(double command_replay
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	int command_index;
-	fmod_last_result = command_replay->getCommandAtTime((float)time, &command_index);
+	g_fmod_last_result = command_replay->getCommandAtTime((float)time, &command_index);
 
 	return (double)command_index;
 }
@@ -230,7 +230,7 @@ func double fmod_studio_command_replay_get_command_count(double command_replay_r
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	int count;
-	fmod_last_result = command_replay->getCommandCount(&count);
+	g_fmod_last_result = command_replay->getCommandCount(&count);
 
 	return (double)count;
 }
@@ -241,9 +241,9 @@ func double fmod_studio_command_replay_get_command_info_multiplatform(double com
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	FMOD_STUDIO_COMMAND_INFO info;
-	fmod_last_result = command_replay->getCommandInfo((int)command_index, &info);
+	g_fmod_last_result = command_replay->getCommandInfo((int)command_index, &info);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -268,7 +268,7 @@ func char* fmod_studio_command_replay_get_command_string(double command_replay_r
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	gStringBuffer[0] = '\0';
-	fmod_last_result = command_replay->getCommandString((int)command_index, gStringBuffer, sizeof(gStringBuffer));
+	g_fmod_last_result = command_replay->getCommandString((int)command_index, gStringBuffer, sizeof(gStringBuffer));
 
 	return gStringBuffer;
 }
@@ -279,7 +279,7 @@ func double fmod_studio_command_replay_get_length(double command_replay_ref)
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	float length = 0;
-	fmod_last_result = command_replay->getLength(&length);
+	g_fmod_last_result = command_replay->getLength(&length);
 
 	return (double)length;
 }
@@ -290,9 +290,9 @@ func double fmod_studio_command_replay_get_system_object(double command_replay_r
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
 	FMOD::Studio::System* fmod_studio_system = nullptr;
-	fmod_last_result = command_replay->getSystem(&fmod_studio_system);
+	g_fmod_last_result = command_replay->getSystem(&fmod_studio_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -338,7 +338,7 @@ func double fmod_studio_command_replay_release(double command_replay_ref)
 	FMOD::Studio::CommandReplay* command_replay = nullptr;
 	validate_fmod_studio_command_replay(command_replay_ref, command_replay);
 
-	fmod_last_result = command_replay->release();
+	g_fmod_last_result = command_replay->release();
 
 	return 0;
 }

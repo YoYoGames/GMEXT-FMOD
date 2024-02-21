@@ -17,9 +17,9 @@ func double fmod_dsp_add_input_multiplatform(double dsp_ref, double dsp_input_re
 	validate_fmod_dsp(dsp_input_ref, dsp_input);
 
 	FMOD::DSPConnection* dsp_connection = nullptr;
-	fmod_last_result = dsp->addInput(dsp_input, &dsp_connection, (FMOD_DSPCONNECTION_TYPE)dsp_connection_type);
+	g_fmod_last_result = dsp->addInput(dsp_input, &dsp_connection, (FMOD_DSPCONNECTION_TYPE)dsp_connection_type);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -36,9 +36,9 @@ func double fmod_dsp_get_input_multiplatform(double dsp_ref, double dsp_input_in
 
 	FMOD::DSP* dsp_input = nullptr;
 	FMOD::DSPConnection* dsp_connection = nullptr;
-	fmod_last_result = dsp->getInput((int)dsp_input_index, &dsp_input, &dsp_connection);
+	g_fmod_last_result = dsp->getInput((int)dsp_input_index, &dsp_input, &dsp_connection);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -62,9 +62,9 @@ func double fmod_dsp_get_output_multiplatform(double dsp_ref, double dsp_output_
 
 	FMOD::DSP* dsp_output;
 	FMOD::DSPConnection* dsp_connection;
-	fmod_last_result = dsp->getOutput((int)dsp_output_index, &dsp_output, &dsp_connection);
+	g_fmod_last_result = dsp->getOutput((int)dsp_output_index, &dsp_output, &dsp_connection);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -87,7 +87,7 @@ func double fmod_dsp_get_num_inputs(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	int num;
-	fmod_last_result = dsp->getNumInputs(&num);
+	g_fmod_last_result = dsp->getNumInputs(&num);
 
 	return num;
 }
@@ -98,7 +98,7 @@ func double fmod_dsp_get_num_outputs(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	int num;
-	fmod_last_result = dsp->getNumOutputs(&num);
+	g_fmod_last_result = dsp->getNumOutputs(&num);
 
 	return num;
 }
@@ -144,7 +144,7 @@ func double fmod_dsp_disconnect_all(double dsp_ref, double inputs, double output
 		}
 	}
 
-	fmod_last_result = dsp->disconnectAll(inputs >= 0.5, outputs >= 0.5);
+	g_fmod_last_result = dsp->disconnectAll(inputs >= 0.5, outputs >= 0.5);
 
 	return 0;
 }
@@ -191,7 +191,7 @@ func double fmod_dsp_disconnect_from_mutliplatform(double dsp_ref, double dsp_ot
 		}
 	}
 
-	fmod_last_result = dsp->disconnectFrom(dsp_other, dsp_connection);
+	g_fmod_last_result = dsp->disconnectFrom(dsp_other, dsp_connection);
 
 	return 0;
 }
@@ -204,7 +204,7 @@ func double fmod_dsp_get_data_parameter_index(double dsp_ref, double data_type)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	int return_index;
-	fmod_last_result = dsp->getDataParameterIndex((int)data_type, &return_index);
+	g_fmod_last_result = dsp->getDataParameterIndex((int)data_type, &return_index);
 
 	return return_index;
 }
@@ -215,7 +215,7 @@ func double fmod_dsp_get_num_parameters(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	int num;
-	fmod_last_result = dsp->getNumParameters(&num);
+	g_fmod_last_result = dsp->getNumParameters(&num);
 
 	return num;
 }
@@ -225,7 +225,7 @@ func double fmod_dsp_set_parameter_bool(double dsp_ref, double parameter_index, 
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setParameterBool((int)parameter_index, value >= 0.5);
+	g_fmod_last_result = dsp->setParameterBool((int)parameter_index, value >= 0.5);
 
 	return 0;
 }
@@ -236,7 +236,7 @@ func double fmod_dsp_get_parameter_bool(double dsp_ref, double parameter_index)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	bool value;
-	fmod_last_result = dsp->getParameterBool((int)parameter_index, &value, nullptr, 0);
+	g_fmod_last_result = dsp->getParameterBool((int)parameter_index, &value, nullptr, 0);
 
 	return value;
 }
@@ -246,7 +246,7 @@ func double fmod_dsp_set_parameter_data_multiplatform(double dsp_ref, double par
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setParameterData((int)parameter_index, (void*)buff, (int)length);
+	g_fmod_last_result = dsp->setParameterData((int)parameter_index, (void*)buff, (int)length);
 
 	return 0;
 }
@@ -258,9 +258,9 @@ func double fmod_dsp_get_parameter_data_multiplatform(double dsp_ref, double par
 
 	void* data;
 	uint32_t data_length;
-	fmod_last_result = dsp->getParameterData((int)parameter_index, &data, &data_length, nullptr, 0);
+	g_fmod_last_result = dsp->getParameterData((int)parameter_index, &data, &data_length, nullptr, 0);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -278,7 +278,7 @@ func double fmod_dsp_set_parameter_float(double dsp_ref, double parameter_index,
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setParameterFloat((int)parameter_index, (float)value);
+	g_fmod_last_result = dsp->setParameterFloat((int)parameter_index, (float)value);
 
 	return 0;
 }
@@ -289,7 +289,7 @@ func double fmod_dsp_get_parameter_float(double dsp_ref, double parameter_index)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	float value;
-	fmod_last_result = dsp->getParameterFloat((int)parameter_index, &value, nullptr, 0);
+	g_fmod_last_result = dsp->getParameterFloat((int)parameter_index, &value, nullptr, 0);
 
 	return (double)value;
 }
@@ -299,7 +299,7 @@ func double fmod_dsp_set_parameter_int(double dsp_ref, double parameter_index, d
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setParameterInt((int)parameter_index, (int)value);
+	g_fmod_last_result = dsp->setParameterInt((int)parameter_index, (int)value);
 
 	return 0;
 }
@@ -310,7 +310,7 @@ func double fmod_dsp_get_parameter_int(double dsp_ref, double parameter_index)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	int value;
-	fmod_last_result = dsp->getParameterInt((int)parameter_index, &value, nullptr, 0);
+	g_fmod_last_result = dsp->getParameterInt((int)parameter_index, &value, nullptr, 0);
 
 	return (double)value;
 }
@@ -322,9 +322,9 @@ func double fmod_dsp_get_parameter_info_multiplatform(double dsp_ref, double par
 
 	FMOD_DSP_PARAMETER_DESC* info;
 
-	fmod_last_result = dsp->getParameterInfo((int)parameter_index, &info);
+	g_fmod_last_result = dsp->getParameterInfo((int)parameter_index, &info);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -340,17 +340,17 @@ func double fmod_dsp_get_parameter_info_multiplatform(double dsp_ref, double par
 	map_int.addKeyValue("default", (double)info->intdesc.defaultval);
 	map_int.addKeyValue("max", (double)info->intdesc.max);
 	map_int.addKeyValue("min", (double)info->intdesc.min);
-	map_return.addKeyValue("int", map_int);
+	map_return.addKeyValue("int_value", map_int);
 
 	StructStream map_float = {};
 	map_float.addKeyValue("default", (double)info->floatdesc.defaultval);
 	map_float.addKeyValue("max", (double)info->floatdesc.max);
 	map_float.addKeyValue("min", (double)info->floatdesc.min);
-	map_return.addKeyValue("float", map_float);
+	map_return.addKeyValue("float_value", map_float);
 
 	StructStream map_bool = {};
 	map_bool.addKeyValue("default", (double)info->booldesc.defaultval);
-	map_return.addKeyValue("bool", map_bool);
+	map_return.addKeyValue("bool_value", map_bool);
 
 	map_return.writeTo(buff_return);
 
@@ -364,7 +364,7 @@ func double fmod_dsp_set_channel_format(double dsp_ref, double channel_mask, dou
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)channel_mask, (int)num_channels, (FMOD_SPEAKERMODE)speaker_mode);
+	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)channel_mask, (int)num_channels, (FMOD_SPEAKERMODE)speaker_mode);
 
 	return 0;
 }
@@ -378,9 +378,9 @@ func double fmod_dsp_get_channel_format_multiplatform(double dsp_ref, char* buff
 	int num_channels;
 	FMOD_SPEAKERMODE speaker_mode;
 
-	fmod_last_result = dsp->getChannelFormat(&channel_mask, &num_channels, &speaker_mode);
+	g_fmod_last_result = dsp->getChannelFormat(&channel_mask, &num_channels, &speaker_mode);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -409,9 +409,9 @@ func double fmod_dsp_get_output_channel_format_multiplatform(double dsp_ref, cha
 	int num_channels_out;
 	FMOD_SPEAKERMODE speaker_mode_out;
 
-	fmod_last_result = dsp->getOutputChannelFormat(channel_mask_in, num_channels_in, speaker_mode_in, &channel_mask_out, &num_channels_out, &speaker_mode_out);
+	g_fmod_last_result = dsp->getOutputChannelFormat(channel_mask_in, num_channels_in, speaker_mode_in, &channel_mask_out, &num_channels_out, &speaker_mode_out);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -454,9 +454,9 @@ func double fmod_dsp_get_metering_info_multiplatform(double dsp_ref, char* buff_
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	FMOD_DSP_METERING_INFO in, out;
-	fmod_last_result = dsp->getMeteringInfo(&in, &out);
+	g_fmod_last_result = dsp->getMeteringInfo(&in, &out);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -478,7 +478,7 @@ func double fmod_dsp_set_metering_enabled(double dsp_ref, double enabled_in, dou
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setMeteringEnabled(enabled_in >= 0.5, enabled_out >= 0.5);
+	g_fmod_last_result = dsp->setMeteringEnabled(enabled_in >= 0.5, enabled_out >= 0.5);
 	return 0;
 }
 
@@ -489,9 +489,9 @@ func double fmod_dsp_get_metering_enabled_multiplatform(double dsp_ref, char* bu
 
 	bool enabled_in;
 	bool enabled_out;
-	fmod_last_result = dsp->getMeteringEnabled(&enabled_in, &enabled_out);
+	g_fmod_last_result = dsp->getMeteringEnabled(&enabled_in, &enabled_out);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -512,7 +512,7 @@ func double fmod_dsp_set_active(double dsp_ref, double active)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setActive(active >= 0.5);
+	g_fmod_last_result = dsp->setActive(active >= 0.5);
 
 	return 0;
 }
@@ -523,7 +523,7 @@ func double fmod_dsp_get_active(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	bool active;
-	fmod_last_result = dsp->getActive(&active);
+	g_fmod_last_result = dsp->getActive(&active);
 
 	return active ? 1.0 : 0.0;
 }
@@ -533,7 +533,7 @@ func double fmod_dsp_set_bypass(double dsp_ref, double bypass)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setBypass(bypass >= 0.5);
+	g_fmod_last_result = dsp->setBypass(bypass >= 0.5);
 
 	return 0;
 }
@@ -544,7 +544,7 @@ func double fmod_dsp_get_bypass(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	bool bypass;
-	fmod_last_result = dsp->getBypass(&bypass);
+	g_fmod_last_result = dsp->getBypass(&bypass);
 
 	return bypass ? 1.0 : 0.0;
 }
@@ -554,7 +554,7 @@ func double fmod_dsp_set_wet_dry_mix(double dsp_ref, double prewet, double postw
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setWetDryMix((float)prewet, (float)postwet, (float)dry);
+	g_fmod_last_result = dsp->setWetDryMix((float)prewet, (float)postwet, (float)dry);
 
 	return 0;
 }
@@ -567,9 +567,9 @@ func double fmod_dsp_get_wet_dry_mix_multiplatform(double dsp_ref, char* buff_re
 	float prewet;
 	float postwet;
 	float dry;
-	fmod_last_result = dsp->getWetDryMix(&prewet, &postwet, &dry);
+	g_fmod_last_result = dsp->getWetDryMix(&prewet, &postwet, &dry);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -590,7 +590,7 @@ func double fmod_dsp_get_idle(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	bool idle;
-	fmod_last_result = dsp->getIdle(&idle);
+	g_fmod_last_result = dsp->getIdle(&idle);
 
 	return idle ? 1.0 : 0.0;
 }
@@ -604,7 +604,7 @@ func double fmod_dsp_reset(double dsp_ref)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->reset();
+	g_fmod_last_result = dsp->reset();
 
 	return 0;
 }
@@ -646,7 +646,7 @@ func double fmod_dsp_release(double dsp_ref)
 
 	unregisterResource(dsp, map_dsps);
 
-	fmod_last_result = dsp->release();
+	g_fmod_last_result = dsp->release();
 
 	return 0;
 }
@@ -657,7 +657,7 @@ func double fmod_dsp_get_type(double dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	FMOD_DSP_TYPE type;
-	fmod_last_result = dsp->getType(&type);
+	g_fmod_last_result = dsp->getType(&type);
 
 	return (int)type;
 }
@@ -673,9 +673,9 @@ func double fmod_dsp_get_info_multiplatform(double dsp_ref, char* buff_return)
 	int configwidth;
 	int configheight;
 
-	fmod_last_result = dsp->getInfo(name, &version, &channels, &configwidth, &configheight);
+	g_fmod_last_result = dsp->getInfo(name, &version, &channels, &configwidth, &configheight);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -699,9 +699,9 @@ func double fmod_dsp_get_cpu_usage_multiplatform(double dsp_ref, char* buff_retu
 
 	unsigned int exclusive;
 	unsigned int inclusive;
-	fmod_last_result = dsp->getCPUUsage(&exclusive, &inclusive);
+	g_fmod_last_result = dsp->getCPUUsage(&exclusive, &inclusive);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -746,8 +746,8 @@ static FMOD_RESULT CALLBACK_fmod_dsp(FMOD_DSP* fmod_dsp, FMOD_DSP_CALLBACK_TYPE 
 	{
 		case FMOD_DSP_CALLBACK_DATAPARAMETERRELEASE:
 		{
-			FMOD_DSP_DATA_PARAMETER_INFO* paramter_info = (FMOD_DSP_DATA_PARAMETER_INFO*)data;
-			async_map.addKeyValue( "paramater_index", paramter_info->index );
+			FMOD_DSP_DATA_PARAMETER_INFO* parameter_info = (FMOD_DSP_DATA_PARAMETER_INFO*)data;
+			async_map.addKeyValue( "parameter_index", parameter_info->index );
 			// paramter_info->data;	// ignore..
 			// paramter_info->length;	// ignore...
 			break;
@@ -766,7 +766,7 @@ func double fmod_dsp_set_callback(double dsp_ref)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = dsp->setCallback(CALLBACK_fmod_dsp);
+	g_fmod_last_result = dsp->setCallback(CALLBACK_fmod_dsp);
 
 	return 0;
 }
@@ -777,9 +777,9 @@ func double fmod_dsp_get_system_object(double dsp_ref) {
 	validate_fmod_dsp(dsp_ref, dsp);
 
 	FMOD::System* fmod_system = nullptr;
-	fmod_last_result = dsp->getSystemObject(&fmod_system);
+	g_fmod_last_result = dsp->getSystemObject(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}

@@ -8,7 +8,7 @@ switch(state.open_state)
 	case FMOD_OPENSTATE.BUFFERING: open_state_str = "BUFFERING" break;
 	case FMOD_OPENSTATE.CONNECTING: open_state_str = "CONNECTING" break;
 	case FMOD_OPENSTATE.ERROR: open_state_str = "ERROR" break;
-	case FMOD_OPENSTATE.FORCEINT: open_state_str = "FORCEINT" break;
+	//case FMOD_OPENSTATE.FORCEINT: open_state_str = "FORCEINT" break;
 	case FMOD_OPENSTATE.LOADING: open_state_str = "LOADING" break;
 	case FMOD_OPENSTATE.MAX: open_state_str = "MAX" break;
 	case FMOD_OPENSTATE.PLAYING: open_state_str = "PLAYING" break;

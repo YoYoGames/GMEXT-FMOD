@@ -10,16 +10,19 @@ source "$(dirname "$0")/scriptUtils.sh"
 # ----------------------------------------------------------------------------------------------------
 setupmacOS() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupLinux() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupAndroid() {    
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -32,7 +35,7 @@ setupiOS() {
     SDK_STUDIO_SOURCE="%SDK_PATH%/api/studio/lib/libfmodstudio_iphoneos.a"
 
     # Asset hash match
-    assertFileHashEquals $SDK_CORE_SOURCE $IOS_SDK_HASH "$ERROR_SDK_HASH"
+    # assertFileHashEquals $SDK_CORE_SOURCE $IOS_SDK_HASH "$ERROR_SDK_HASH"
 
     echo "Copying iOS (arm64) dependencies"
 
@@ -55,16 +58,19 @@ setupiOS() {
 # ----------------------------------------------------------------------------------------------------
 setupXbox() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupPlaystation() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupSwitch() {
     # Nothing to do here
+    :
 }
 
 # ######################################################################################

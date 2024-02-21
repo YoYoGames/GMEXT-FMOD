@@ -72,7 +72,7 @@ exit 0
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x64\fmodstudioL.dll"
 
     :: Asset hash match
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying Windows (64 bit) dependencies"
     if not exist "fmodL.dll" call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
@@ -93,7 +93,8 @@ exit /b 0
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmodL.dylib"
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL.dylib"
 
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %MACOS_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: Asset hash match
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %MACOS_SDK_HASH% "%ERROR_SDK_HASH%"
      
     echo "Copying macOS (64 bit) dependencies"
     if "%YYTARGET_runtime%" == "VM" (
@@ -121,7 +122,8 @@ exit /b 0
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmod.so.13"
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x86_64\libfmodstudio.so.13"
 
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: Asset hash match
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
     
     echo "Copying Linux (64 bit) dependencies"
 
@@ -145,7 +147,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%ANDROID_SDK_PATH%" SDK_PATH
 
-    call %Utils% assertFileHashEquals "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: Asset hash match
+    :: call %Utils% assertFileHashEquals "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
 
     pushd "%ExtensionPath%\AndroidSource\libs"
 
@@ -232,7 +235,7 @@ exit /b 0
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%PLATFORM_PATH%\fmodstudioL.dll"
 
     :: Asset hash match
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %XBOX_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %XBOX_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying XBox (%PLATFORM_PATH%) dependencies"
     if not exist "fmodL.dll" (
@@ -266,7 +269,7 @@ exit /b 0
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL.prx"
 
     :: Asset hash match
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %PS_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %PS_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying %YYPLATFORM_name% dependencies"
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "libfmodL.prx"

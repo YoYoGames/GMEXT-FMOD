@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B7DB2EB2B0604FC00FF88AD /* YYRValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2CF2B0604FC00FF88AD /* YYRValue.h */; };
 		2B7DB2EC2B0604FC00FF88AD /* Fmod_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D02B0604FC00FF88AD /* Fmod_DSP.cpp */; };
 		2B7DB2ED2B0604FC00FF88AD /* Fmod_Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D12B0604FC00FF88AD /* Fmod_Common.cpp */; };
 		2B7DB2EE2B0604FC00FF88AD /* Fmod_ChannelControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D22B0604FC00FF88AD /* Fmod_ChannelControl.cpp */; };
@@ -16,9 +15,7 @@
 		2B7DB2F12B0604FC00FF88AD /* Fmod_Studio_Bus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D52B0604FC00FF88AD /* Fmod_Studio_Bus.cpp */; };
 		2B7DB2F22B0604FC00FF88AD /* Fmod_Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D62B0604FC00FF88AD /* Fmod_Tools.cpp */; };
 		2B7DB2F32B0604FC00FF88AD /* Fmod_Studio_VCA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D72B0604FC00FF88AD /* Fmod_Studio_VCA.cpp */; };
-		2B7DB2F42B0604FC00FF88AD /* Ref.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2D82B0604FC00FF88AD /* Ref.h */; };
 		2B7DB2F52B0604FC00FF88AD /* Fmod_Studio_EventDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2D92B0604FC00FF88AD /* Fmod_Studio_EventDescription.cpp */; };
-		2B7DB2F62B0604FC00FF88AD /* Extension_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2DA2B0604FC00FF88AD /* Extension_Interface.h */; };
 		2B7DB2F72B0604FC00FF88AD /* pch.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2DB2B0604FC00FF88AD /* pch.h */; };
 		2B7DB2F82B0604FC00FF88AD /* Fmod_Studio_EventInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2DC2B0604FC00FF88AD /* Fmod_Studio_EventInstance.cpp */; };
 		2B7DB2F92B0604FC00FF88AD /* Fmod_Studio_System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2DD2B0604FC00FF88AD /* Fmod_Studio_System.cpp */; };
@@ -29,7 +26,6 @@
 		2B7DB2FE2B0604FC00FF88AD /* Fmod_ChannelGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2E22B0604FC00FF88AD /* Fmod_ChannelGroup.cpp */; };
 		2B7DB2FF2B0604FC00FF88AD /* Fmod_Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2E32B0604FC00FF88AD /* Fmod_Sound.cpp */; };
 		2B7DB3002B0604FC00FF88AD /* ExtBufferIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2E42B0604FC00FF88AD /* ExtBufferIO.h */; };
-		2B7DB3012B0604FC00FF88AD /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DB2E52B0604FC00FF88AD /* framework.h */; };
 		2B7DB3022B0604FC00FF88AD /* ExtBufferIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2E62B0604FC00FF88AD /* ExtBufferIO.cpp */; };
 		2B7DB3032B0604FC00FF88AD /* Fmod_DSPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2E72B0604FC00FF88AD /* Fmod_DSPConnection.cpp */; };
 		2B7DB3042B0604FC00FF88AD /* Fmod_Channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B7DB2E82B0604FC00FF88AD /* Fmod_Channel.cpp */; };
@@ -66,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		2B7821DA278CE36400EE6530 /* libYYFMOD.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libYYFMOD.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B7DB2CF2B0604FC00FF88AD /* YYRValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRValue.h; sourceTree = "<group>"; };
 		2B7DB2D02B0604FC00FF88AD /* Fmod_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSP.cpp; sourceTree = "<group>"; };
 		2B7DB2D12B0604FC00FF88AD /* Fmod_Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Common.cpp; sourceTree = "<group>"; };
 		2B7DB2D22B0604FC00FF88AD /* Fmod_ChannelControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelControl.cpp; sourceTree = "<group>"; };
@@ -75,9 +70,7 @@
 		2B7DB2D52B0604FC00FF88AD /* Fmod_Studio_Bus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_Bus.cpp; sourceTree = "<group>"; };
 		2B7DB2D62B0604FC00FF88AD /* Fmod_Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Tools.cpp; sourceTree = "<group>"; };
 		2B7DB2D72B0604FC00FF88AD /* Fmod_Studio_VCA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_VCA.cpp; sourceTree = "<group>"; };
-		2B7DB2D82B0604FC00FF88AD /* Ref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ref.h; sourceTree = "<group>"; };
 		2B7DB2D92B0604FC00FF88AD /* Fmod_Studio_EventDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_EventDescription.cpp; sourceTree = "<group>"; };
-		2B7DB2DA2B0604FC00FF88AD /* Extension_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Extension_Interface.h; sourceTree = "<group>"; };
 		2B7DB2DB2B0604FC00FF88AD /* pch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pch.h; sourceTree = "<group>"; };
 		2B7DB2DC2B0604FC00FF88AD /* Fmod_Studio_EventInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_EventInstance.cpp; sourceTree = "<group>"; };
 		2B7DB2DD2B0604FC00FF88AD /* Fmod_Studio_System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_System.cpp; sourceTree = "<group>"; };
@@ -88,7 +81,6 @@
 		2B7DB2E22B0604FC00FF88AD /* Fmod_ChannelGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelGroup.cpp; sourceTree = "<group>"; };
 		2B7DB2E32B0604FC00FF88AD /* Fmod_Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Sound.cpp; sourceTree = "<group>"; };
 		2B7DB2E42B0604FC00FF88AD /* ExtBufferIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtBufferIO.h; sourceTree = "<group>"; };
-		2B7DB2E52B0604FC00FF88AD /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		2B7DB2E62B0604FC00FF88AD /* ExtBufferIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtBufferIO.cpp; sourceTree = "<group>"; };
 		2B7DB2E72B0604FC00FF88AD /* Fmod_DSPConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSPConnection.cpp; sourceTree = "<group>"; };
 		2B7DB2E82B0604FC00FF88AD /* Fmod_Channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Channel.cpp; sourceTree = "<group>"; };
@@ -151,7 +143,6 @@
 			children = (
 				2B7DB2E62B0604FC00FF88AD /* ExtBufferIO.cpp */,
 				2B7DB2E42B0604FC00FF88AD /* ExtBufferIO.h */,
-				2B7DB2DA2B0604FC00FF88AD /* Extension_Interface.h */,
 				2B7DB2E82B0604FC00FF88AD /* Fmod_Channel.cpp */,
 				2B7DB2D22B0604FC00FF88AD /* Fmod_ChannelControl.cpp */,
 				2B7DB2E22B0604FC00FF88AD /* Fmod_ChannelGroup.cpp */,
@@ -172,11 +163,8 @@
 				2B7DB2E92B0604FC00FF88AD /* Fmod_System.cpp */,
 				2B7DB2D62B0604FC00FF88AD /* Fmod_Tools.cpp */,
 				2B7DB2DE2B0604FC00FF88AD /* Fmod_Tools.h */,
-				2B7DB2E52B0604FC00FF88AD /* framework.h */,
 				2B7DB2E12B0604FC00FF88AD /* pch.cpp */,
 				2B7DB2DB2B0604FC00FF88AD /* pch.h */,
-				2B7DB2D82B0604FC00FF88AD /* Ref.h */,
-				2B7DB2CF2B0604FC00FF88AD /* YYRValue.h */,
 			);
 			name = fmod_cpp;
 			path = ../fmod_cpp;
@@ -223,18 +211,14 @@
 				2B7DB3002B0604FC00FF88AD /* ExtBufferIO.h in Headers */,
 				2B7DB2FA2B0604FC00FF88AD /* Fmod_Tools.h in Headers */,
 				2BEADAE72B066AE3001E9F08 /* fmod_dsp_effects.h in Headers */,
-				2B7DB2F42B0604FC00FF88AD /* Ref.h in Headers */,
 				2BEADAE42B066AE3001E9F08 /* fmod_codec.h in Headers */,
 				2BEADAE32B066AE3001E9F08 /* fmod_dsp.h in Headers */,
-				2B7DB3012B0604FC00FF88AD /* framework.h in Headers */,
 				2BEADAE22B066AE3001E9F08 /* fmod.hpp in Headers */,
 				2BEADAF02B066AFF001E9F08 /* fmod_studio.h in Headers */,
 				2BEADAE62B066AE3001E9F08 /* fmod_common.h in Headers */,
-				2B7DB2F62B0604FC00FF88AD /* Extension_Interface.h in Headers */,
 				2BEADAE92B066AE3001E9F08 /* fmod.h in Headers */,
 				2B7DB2F72B0604FC00FF88AD /* pch.h in Headers */,
 				2BEADAE52B066AE3001E9F08 /* fmod_errors.h in Headers */,
-				2B7DB2EB2B0604FC00FF88AD /* YYRValue.h in Headers */,
 				2BEADAE82B066AE3001E9F08 /* fmod_output.h in Headers */,
 				2BEADAEE2B066AFF001E9F08 /* fmod_studio_common.h in Headers */,
 				2BEADAEF2B066AFF001E9F08 /* fmod_studio.hpp in Headers */,
@@ -455,6 +439,8 @@
 					OS_MacOs,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API macOS/api/core/lib\"",
@@ -478,6 +464,8 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = OS_MacOs;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API macOS/api/core/lib\"",

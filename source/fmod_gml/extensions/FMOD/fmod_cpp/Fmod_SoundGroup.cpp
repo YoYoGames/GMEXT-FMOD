@@ -13,7 +13,7 @@ func double fmod_sound_group_set_max_audible(double sound_group_ref, double max_
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->setMaxAudible((int)max_audible);
+	g_fmod_last_result = sound_group->setMaxAudible((int)max_audible);
 
 	return 0;
 }
@@ -24,7 +24,7 @@ func double fmod_sound_group_get_max_audible(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	int max_audible;
-	fmod_last_result = sound_group->getMaxAudible(&max_audible);
+	g_fmod_last_result = sound_group->getMaxAudible(&max_audible);
 
 	return (double)max_audible;
 }
@@ -34,7 +34,7 @@ func double fmod_sound_group_set_max_audible_behavior(double sound_group_ref, do
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->setMaxAudibleBehavior((FMOD_SOUNDGROUP_BEHAVIOR)behavior);
+	g_fmod_last_result = sound_group->setMaxAudibleBehavior((FMOD_SOUNDGROUP_BEHAVIOR)behavior);
 
 	return 0;
 }
@@ -45,7 +45,7 @@ func double fmod_sound_group_get_max_audible_behavior(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	FMOD_SOUNDGROUP_BEHAVIOR behavior;
-	fmod_last_result = sound_group->getMaxAudibleBehavior(&behavior);
+	g_fmod_last_result = sound_group->getMaxAudibleBehavior(&behavior);
 
 	return (double)behavior;
 }
@@ -55,7 +55,7 @@ func double fmod_sound_group_set_mute_fade_speed(double sound_group_ref, double 
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->setMuteFadeSpeed((float)speed);
+	g_fmod_last_result = sound_group->setMuteFadeSpeed((float)speed);
 
 	return 0;
 }
@@ -66,7 +66,7 @@ func double fmod_sound_group_get_mute_fade_speed(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	float speed;
-	fmod_last_result = sound_group->getMuteFadeSpeed(&speed);
+	g_fmod_last_result = sound_group->getMuteFadeSpeed(&speed);
 
 	return (double)speed;
 }
@@ -76,7 +76,7 @@ func double fmod_sound_group_set_volume(double sound_group_ref, double volume)
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->setVolume((float)volume);
+	g_fmod_last_result = sound_group->setVolume((float)volume);
 
 	return 0;
 }
@@ -87,7 +87,7 @@ func double fmod_sound_group_get_volume(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	float volume;
-	fmod_last_result = sound_group->getVolume(&volume);
+	g_fmod_last_result = sound_group->getVolume(&volume);
 
 	return volume;
 }
@@ -100,7 +100,7 @@ func double fmod_sound_group_get_num_sounds(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	int numsounds = 0;
-	fmod_last_result = sound_group->getNumSounds(&numsounds);
+	g_fmod_last_result = sound_group->getNumSounds(&numsounds);
 
 	return (double)numsounds;
 }
@@ -111,9 +111,9 @@ func double fmod_sound_group_get_sound(double sound_group_ref, double sound_inde
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	FMOD::Sound* sound = nullptr;
-	fmod_last_result = sound_group->getSound((int)sound_index, &sound);
+	g_fmod_last_result = sound_group->getSound((int)sound_index, &sound);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -129,7 +129,7 @@ func double fmod_sound_group_get_num_playing(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	int numplaying = 0;
-	fmod_last_result = sound_group->getNumPlaying(&numplaying);
+	g_fmod_last_result = sound_group->getNumPlaying(&numplaying);
 
 	return (double)numplaying;
 }
@@ -139,7 +139,7 @@ func double fmod_sound_group_stop(double sound_group_ref)
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->stop();
+	g_fmod_last_result = sound_group->stop();
 
 	return 0;
 }
@@ -151,7 +151,7 @@ func char* fmod_sound_group_get_name(double sound_group_ref)
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound_group->getName(gStringBuffer, sizeof(gStringBuffer));
+	g_fmod_last_result = sound_group->getName(gStringBuffer, sizeof(gStringBuffer));
 
 	return gStringBuffer;
 }
@@ -164,7 +164,7 @@ func double fmod_sound_group_release(double sound_group_ref)
 	// Make sure we free the user data
 	unregisterResource(sound_group, map_sound_groups);
 
-	fmod_last_result = sound_group->release();
+	g_fmod_last_result = sound_group->release();
 
 	return 0;
 }
@@ -175,9 +175,9 @@ func double fmod_sound_group_get_system_object(double sound_group_ref)
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	FMOD::System* fmod_system = nullptr;
-	fmod_last_result = sound_group->getSystemObject(&fmod_system);
+	g_fmod_last_result = sound_group->getSystemObject(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}

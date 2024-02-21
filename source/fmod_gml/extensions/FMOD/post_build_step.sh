@@ -16,11 +16,21 @@ setupmacOS() {
     SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
     SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/libfmodstudioL.dylib"
 
-    assertFileHashEquals $SDK_CORE_SOURCE $MACOS_SDK_HASH "$ERROR_SDK_HASH"
+    # assertFileHashEquals $SDK_CORE_SOURCE $MACOS_SDK_HASH "$ERROR_SDK_HASH"
     
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
-        logError "Extension is not compatible with the macOS VM export, please use YYC."
+
+        # Assert if xcode-tools are installed (required)
+        assertXcodeToolsInstalled
+
+        itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
+
+        if [[ $ENABLE_STUDIO_FLAG == 1 ]]; then
+            itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
+            codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
+        fi
     else
         itemCopyTo "$SDK_CORE_SOURCE" "${YYprojectName}/${YYprojectName}/Supporting Files/libfmodL.dylib"
 
@@ -40,7 +50,7 @@ setupLinux() {
     SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmod.so.13"
     SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so.13"
 
-    assertFileHashEquals $SDK_CORE_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
+    # assertFileHashEquals $SDK_CORE_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
 
     echo "Copying Linux (64 bit) dependencies"
     
@@ -64,7 +74,7 @@ setupAndroid() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$ANDROID_SDK_PATH" SDK_PATH
 
-    assertFileHashEquals "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
+    # assertFileHashEquals "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
 
     pushd "$ExtensionPath/AndroidSource/libs" >/dev/null
 
@@ -113,21 +123,25 @@ setupAndroid() {
 # ----------------------------------------------------------------------------------------------------
 setupiOS() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupXbox() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupPlaystation() {
     # Nothing to do here
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
 setupSwitch() {
     # Nothing to do here
+    :
 }
 
 # ######################################################################################

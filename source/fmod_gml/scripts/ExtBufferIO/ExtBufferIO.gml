@@ -114,7 +114,7 @@ function ext_buffer_pack(_buffer, _value, _type = undefined)
 		buffer_write(_buffer, buffer_u8, _type);
 	
 		// Encode buffer as <<type><size><address>>
-		if (_type = BUFFER_BUFFER)
+		if (_type == BUFFER_BUFFER)
 		{
 			// Allow optional
 			var _length = is_undefined(_value) ? 0 : buffer_get_size(_value);
@@ -124,7 +124,7 @@ function ext_buffer_pack(_buffer, _value, _type = undefined)
 			buffer_write(_buffer, buffer_u64, _address);
 		}
 		// Encode buffer as <<type><address>>
-		else if (_type = BUFFER_POINTER)
+		else if (_type == BUFFER_POINTER)
 		{
 			// Allow optional
 			var _address = is_undefined(_value) ? 0 : _value;

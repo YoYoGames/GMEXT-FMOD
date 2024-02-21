@@ -21,7 +21,7 @@ func double fmod_channel_control_stop(double channel_control_ref)
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->stop();
+	g_fmod_last_result = control->stop();
 
 	return 0;
 }
@@ -31,7 +31,7 @@ func double fmod_channel_control_set_paused(double channel_control_ref, double p
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setPaused(paused >= 0.5);
+	g_fmod_last_result = control->setPaused(paused >= 0.5);
 
 	return 0;
 }
@@ -43,7 +43,7 @@ func double fmod_channel_control_get_paused(double channel_control_ref)
 
 	bool paused;
 
-	fmod_last_result = control->getPaused(&paused);
+	g_fmod_last_result = control->getPaused(&paused);
 
 	return paused ? 1.0 : 0.0;
 }
@@ -53,7 +53,7 @@ func double fmod_channel_control_set_mode(double channel_control_ref, double mod
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setMode((FMOD_MODE)mode);
+	g_fmod_last_result = control->setMode((FMOD_MODE)mode);
 
 	return 0;
 }
@@ -65,7 +65,7 @@ func double fmod_channel_control_get_mode(double channel_control_ref)
 
 	FMOD_MODE mode;
 
-	fmod_last_result = control->getMode(&mode);
+	g_fmod_last_result = control->getMode(&mode);
 
 	return (double)mode;
 }
@@ -75,7 +75,7 @@ func double fmod_channel_control_set_pitch(double channel_control_ref, double pi
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setPitch((float)pitch);
+	g_fmod_last_result = control->setPitch((float)pitch);
 
 	return 0;
 }
@@ -87,7 +87,7 @@ func double fmod_channel_control_get_pitch(double channel_control_ref)
 
 	float pitch;
 
-	fmod_last_result = control->getPitch(&pitch);
+	g_fmod_last_result = control->getPitch(&pitch);
 
 	return (double)pitch;
 }
@@ -101,7 +101,7 @@ func double fmod_channel_control_get_audibility(double channel_control_ref)
 
 	float audibility;
 
-	fmod_last_result = control->getAudibility(&audibility);
+	g_fmod_last_result = control->getAudibility(&audibility);
 
 	return (double)audibility;
 }
@@ -111,7 +111,7 @@ func double fmod_channel_control_set_volume(double channel_control_ref, double v
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setVolume((float)volume);
+	g_fmod_last_result = control->setVolume((float)volume);
 
 	return 0;
 }
@@ -123,7 +123,7 @@ func double fmod_channel_control_get_volume(double channel_control_ref)
 
 	float volumen;
 
-	fmod_last_result = control->getVolume(&volumen);
+	g_fmod_last_result = control->getVolume(&volumen);
 
 	return (double)volumen;
 }
@@ -133,7 +133,7 @@ func double fmod_channel_control_set_volume_ramp(double channel_control_ref, dou
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setVolumeRamp(ramp >= 0.5);
+	g_fmod_last_result = control->setVolumeRamp(ramp >= 0.5);
 
 	return 0;
 }
@@ -144,7 +144,7 @@ func double fmod_channel_control_get_volume_ramp(double channel_control_ref)
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	bool ramp = false;
-	fmod_last_result = control->getVolumeRamp(&ramp);
+	g_fmod_last_result = control->getVolumeRamp(&ramp);
 
 	return ramp;
 }
@@ -154,7 +154,7 @@ func double fmod_channel_control_set_mute(double channel_control_ref, double mut
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setMute(mute >= 0.5);
+	g_fmod_last_result = control->setMute(mute >= 0.5);
 
 	return 0;
 }
@@ -165,7 +165,7 @@ func double fmod_channel_control_get_mute(double channel_control_ref)
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	bool mute;
-	fmod_last_result = control->getMute(&mute);
+	g_fmod_last_result = control->getMute(&mute);
 
 	return mute ? 1.0 : 0.0;
 }
@@ -184,7 +184,7 @@ func double fmod_channel_control_set_3d_attributes_multiplatform(double channel_
 	FMOD_VECTOR vec_pos = FmodVectorFromMap(map_pos);
 	FMOD_VECTOR vec_vel = FmodVectorFromMap(map_vel);
 
-	fmod_last_result = control->set3DAttributes(&vec_pos, &vec_vel);
+	g_fmod_last_result = control->set3DAttributes(&vec_pos, &vec_vel);
 
 	return 0;
 }
@@ -197,9 +197,9 @@ func double fmod_channel_control_get_3d_attributes_multiplatform(double channel_
 	FMOD_VECTOR vec_pos;
 	FMOD_VECTOR vec_vel;
 
-	fmod_last_result = control->get3DAttributes(&vec_pos, &vec_vel);
+	g_fmod_last_result = control->get3DAttributes(&vec_pos, &vec_vel);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -226,7 +226,7 @@ func double fmod_channel_control_set_3d_cone_orientation_multiplatform(double ch
 
 	FMOD_VECTOR vec_orientation = FmodVectorFromMap(map_orientation);
 
-	fmod_last_result = control->set3DConeOrientation(&vec_orientation);
+	g_fmod_last_result = control->set3DConeOrientation(&vec_orientation);
 
 	return 0;
 }
@@ -237,9 +237,9 @@ func double fmod_channel_control_get_3d_cone_orientation_multiplatform(double ch
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	FMOD_VECTOR vec_orientation;
-	fmod_last_result = control->get3DConeOrientation(&vec_orientation);
+	g_fmod_last_result = control->get3DConeOrientation(&vec_orientation);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -256,7 +256,7 @@ func double fmod_channel_control_set_3d_cone_settings(double channel_control_ref
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DConeSettings((float)inside_cone_angle, (float)outside_cone_angle, (float)outside_volume);
+	g_fmod_last_result = control->set3DConeSettings((float)inside_cone_angle, (float)outside_cone_angle, (float)outside_volume);
 
 	return 0;
 }
@@ -267,9 +267,9 @@ func double fmod_channel_control_get_3d_cone_settings_multiplatform(double chann
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	float insideconeangle = 0, outsideconeangle = 0, outsidevolume = 0;
-	fmod_last_result = control->get3DConeSettings(&insideconeangle, &outsideconeangle, &outsidevolume);
+	g_fmod_last_result = control->get3DConeSettings(&insideconeangle, &outsideconeangle, &outsidevolume);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -301,7 +301,7 @@ func double fmod_channel_control_set_3d_custom_rolloff_multiplatform(double chan
 		points[i] = FmodVectorFromMap(map_point);
 	}
 
-	fmod_last_result = control->set3DCustomRolloff(points, (int)numpoints);
+	g_fmod_last_result = control->set3DCustomRolloff(points, (int)numpoints);
 
 	return 0;
 }
@@ -315,9 +315,9 @@ func double fmod_channel_control_get_3d_custom_rolloff_multiplatform(double chan
 	FMOD_VECTOR* points = nullptr;
 
 	int numpoints = 0;
-	fmod_last_result = control->get3DCustomRolloff(&points, &numpoints);
+	g_fmod_last_result = control->get3DCustomRolloff(&points, &numpoints);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -338,7 +338,7 @@ func double fmod_channel_control_set_3d_distance_filter(double channel_control_r
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DDistanceFilter(custom >= 0.5, (float)custom_level, (float)center_freq);
+	g_fmod_last_result = control->set3DDistanceFilter(custom >= 0.5, (float)custom_level, (float)center_freq);
 
 	return 0;
 }
@@ -350,9 +350,9 @@ func double fmod_channel_control_get_3d_distance_filter_multiplatform(double cha
 
 	bool custom = false;
 	float customLevel = 0, centerFreq = 0;
-	fmod_last_result = control->get3DDistanceFilter(&custom, &customLevel, &centerFreq);
+	g_fmod_last_result = control->get3DDistanceFilter(&custom, &customLevel, &centerFreq);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -371,7 +371,7 @@ func double fmod_channel_control_set_3d_doppler_level(double channel_control_ref
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DDopplerLevel((float)level);
+	g_fmod_last_result = control->set3DDopplerLevel((float)level);
 
 	return 0;
 }
@@ -383,7 +383,7 @@ func double fmod_channel_control_get_3d_doppler_level(double channel_control_ref
 
 	float level;
 
-	fmod_last_result = control->get3DDopplerLevel(&level);
+	g_fmod_last_result = control->get3DDopplerLevel(&level);
 
 	return (double)level;
 }
@@ -393,7 +393,7 @@ func double fmod_channel_control_set_3d_level(double channel_control_ref, double
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DLevel((float)level);
+	g_fmod_last_result = control->set3DLevel((float)level);
 
 	return 0;
 }
@@ -404,7 +404,7 @@ func double fmod_channel_control_get_3d_level(double channel_control_ref)
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	float level;
-	fmod_last_result = control->get3DLevel(&level);
+	g_fmod_last_result = control->get3DLevel(&level);
 
 	return (double)level;
 }
@@ -414,7 +414,7 @@ func double fmod_channel_control_set_3d_min_max_distance(double channel_control_
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DMinMaxDistance((float)min, (float)max);
+	g_fmod_last_result = control->set3DMinMaxDistance((float)min, (float)max);
 
 	return 0;
 }
@@ -427,9 +427,9 @@ func double fmod_channel_control_get_3d_min_max_distance_multiplatform(double ch
 	float min;
 	float max;
 
-	fmod_last_result = control->get3DMinMaxDistance(&min, &max);
+	g_fmod_last_result = control->get3DMinMaxDistance(&min, &max);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -448,7 +448,7 @@ func double fmod_channel_control_set_3d_occlusion(double channel_control_ref, do
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DOcclusion((float)direct_occlusion, (float)reverb_occlusion);
+	g_fmod_last_result = control->set3DOcclusion((float)direct_occlusion, (float)reverb_occlusion);
 
 	return 0;
 }
@@ -461,9 +461,9 @@ func double fmod_channel_control_get_3d_occlusion_multiplatform(double channel_c
 	float directocclusion;
 	float reverbocclusion;
 
-	fmod_last_result = control->get3DOcclusion(&directocclusion, &reverbocclusion);
+	g_fmod_last_result = control->get3DOcclusion(&directocclusion, &reverbocclusion);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -481,7 +481,7 @@ func double fmod_channel_control_set_3d_spread(double channel_control_ref, doubl
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->set3DSpread((float)angle);
+	g_fmod_last_result = control->set3DSpread((float)angle);
 
 	return 0;
 }
@@ -493,7 +493,7 @@ func double fmod_channel_control_get_3d_spread(double channel_control_ref)
 
 	float angle;
 
-	fmod_last_result = control->get3DSpread(&angle);
+	g_fmod_last_result = control->get3DSpread(&angle);
 
 	return (double)angle;
 }
@@ -505,7 +505,7 @@ func double fmod_channel_control_set_pan(double channel_control_ref, double pan)
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setPan((float)pan);
+	g_fmod_last_result = control->setPan((float)pan);
 
 	return 0;
 }
@@ -525,7 +525,7 @@ func double fmod_channel_control_set_mix_levels_input_multiplatform(double chann
 		levels[i] = YYGetFloat(array_levels[0]);
 	}
 
-	fmod_last_result = control->setMixLevelsInput(levels, (int)numlevels);
+	g_fmod_last_result = control->setMixLevelsInput(levels, (int)numlevels);
 
 	return 0;
 }
@@ -543,7 +543,7 @@ func double fmod_channel_control_set_mix_levels_output(double channel_control_re
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setMixLevelsOutput((float)front_left, (float)front_right, (float)center, (float)lfe, (float)surround_left,
+	g_fmod_last_result = control->setMixLevelsOutput((float)front_left, (float)front_right, (float)center, (float)lfe, (float)surround_left,
 												   (float)surround_right, (float)back_left, (float)back_right);
 
 	return 0;
@@ -573,7 +573,7 @@ func double fmod_channel_control_set_mix_matrix_multiplatform(double channel_con
 		pMatrix = matrix;
 	}
 
-	fmod_last_result = control->setMixMatrix(pMatrix, outchannels, inchannels, inchannel_hop);
+	g_fmod_last_result = control->setMixMatrix(pMatrix, outchannels, inchannels, inchannel_hop);
 
 	return 0;
 }
@@ -583,21 +583,22 @@ func double fmod_channel_control_get_mix_matrix_multiplatform(double channel_con
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	float matrix[100]{};
 	int outchannels;
 	int inchannels;
+	g_fmod_last_result = control->getMixMatrix(nullptr, &outchannels, &inchannels, (int)in_channel_hop);
 
-	fmod_last_result = control->getMixMatrix(matrix, &outchannels, &inchannels, (int)in_channel_hop);
+	std::vector<float> matrix(outchannels * inchannels);
+	g_fmod_last_result = control->getMixMatrix(matrix.data(), &outchannels, &inchannels, (int)in_channel_hop);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
 
-	ArrayStream vec_matrix(outchannels * inchannels * sizeof(float));
-	for (int i = 0; i < outchannels * inchannels; i++)
+	ArrayStream vec_matrix(matrix.size() * sizeof(float));
+	for (const auto& value : matrix)
 	{
-		vec_matrix << matrix[i];
+		vec_matrix << value;
 	}
 
 	StructStream map_return = {};
@@ -616,7 +617,7 @@ func double fmod_channel_control_set_reverb_properties(double channel_control_re
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setReverbProperties((int)reverb_instance, (float)wet);
+	g_fmod_last_result = control->setReverbProperties((int)reverb_instance, (float)wet);
 
 	return 0;
 }
@@ -627,7 +628,7 @@ func double fmod_channel_control_get_reverb_properties(double channel_control_re
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	float wet = 0;
-	fmod_last_result = control->getReverbProperties((int)reverb_instance, &wet);
+	g_fmod_last_result = control->getReverbProperties((int)reverb_instance, &wet);
 
 	return wet;
 }
@@ -637,18 +638,18 @@ func double fmod_channel_control_set_low_pass_gain(double channel_control_ref, d
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setLowPassGain((float)gain);
+	g_fmod_last_result = control->setLowPassGain((float)gain);
 
 	return 0;
 }
 
-func double fmod_channel_control_get_low_Pass_gain(double channel_control_ref)
+func double fmod_channel_control_get_low_pass_gain(double channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	float gain = 0;
-	fmod_last_result = control->getLowPassGain(&gain);
+	g_fmod_last_result = control->getLowPassGain(&gain);
 
 	return gain;
 }
@@ -663,7 +664,7 @@ func double fmod_channel_control_add_dsp(double channel_control_ref, double dsp_
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = control->addDSP((int)dsp_chain_offset, dsp);
+	g_fmod_last_result = control->addDSP((int)dsp_chain_offset, dsp);
 
 	return 0;
 }
@@ -676,7 +677,7 @@ func double fmod_channel_control_remove_dsp(double channel_control_ref, double d
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = control->removeDSP(dsp);
+	g_fmod_last_result = control->removeDSP(dsp);
 
 	return 0;
 }
@@ -687,7 +688,7 @@ func double fmod_channel_control_get_num_dsps(double channel_control_ref)
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	int num;
-	fmod_last_result = control->getNumDSPs(&num);
+	g_fmod_last_result = control->getNumDSPs(&num);
 
 	return num;
 }
@@ -698,11 +699,11 @@ func double fmod_channel_control_get_dsp(double channel_control_ref, double inde
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	FMOD::DSP* dsp;
-	fmod_last_result = control->getDSP((int)index, &dsp);
+	g_fmod_last_result = control->getDSP((int)index, &dsp);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -718,7 +719,7 @@ func double fmod_channel_control_set_dsp_index(double channel_control_ref, doubl
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 
-	fmod_last_result = control->setDSPIndex(dsp, (int)chain_index);
+	g_fmod_last_result = control->setDSPIndex(dsp, (int)chain_index);
 
 	return 0;
 }
@@ -747,9 +748,9 @@ func double fmod_channel_control_get_dsp_clock_multiplatform(double channel_cont
 	unsigned long long dspclock;
 	unsigned long long parentclock;
 
-	fmod_last_result = control->getDSPClock(&dspclock, &parentclock);
+	g_fmod_last_result = control->getDSPClock(&dspclock, &parentclock);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -772,7 +773,7 @@ func double fmod_channel_control_set_delay_multiplatform(double channel_control_
 	auto dspclock_end = YYGetUint64(args[1]);
 	auto stopchannels = YYGetBool(args[2]);
 
-	fmod_last_result = control->setDelay(dspclock_start, dspclock_end, stopchannels);
+	g_fmod_last_result = control->setDelay(dspclock_start, dspclock_end, stopchannels);
 
 	return 0;
 }
@@ -786,9 +787,9 @@ func double fmod_channel_control_get_delay_multiplatform(double channel_control_
 	unsigned long long dspclock_end;
 	bool stopchannels;
 
-	fmod_last_result = control->getDelay(&dspclock_start, &dspclock_end, &stopchannels);
+	g_fmod_last_result = control->getDelay(&dspclock_start, &dspclock_end, &stopchannels);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -811,7 +812,7 @@ func double fmod_channel_control_add_fade_point_multiplatform(double channel_con
 	auto dspclock = YYGetUint64(args[0]);
 	auto volume = YYGetFloat(args[1]);
 
-	fmod_last_result = control->addFadePoint(dspclock, (float)volume);
+	g_fmod_last_result = control->addFadePoint(dspclock, (float)volume);
 
 	return 0;
 }
@@ -825,7 +826,7 @@ func double fmod_channel_control_set_fade_point_ramp_multiplatform(double channe
 	auto dspclock = YYGetUint64(args[0]);
 	auto volume = YYGetFloat(args[1]);
 
-	fmod_last_result = control->setFadePointRamp(dspclock, (float)volume);
+	g_fmod_last_result = control->setFadePointRamp(dspclock, (float)volume);
 
 	return 0;
 }
@@ -839,7 +840,7 @@ func double fmod_channel_control_remove_fade_points_multiplatform(double channel
 	auto dspclock_start = YYGetUint64(args[0]);
 	auto dspclock_end = YYGetUint64(args[1]);
 
-	fmod_last_result = control->removeFadePoints(dspclock_start, dspclock_end);
+	g_fmod_last_result = control->removeFadePoints(dspclock_start, dspclock_end);
 
 	return 0;
 }
@@ -850,9 +851,9 @@ func double fmod_channel_control_get_fade_points_multiplatform(double channel_co
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	uint32_t numpoints;
-	fmod_last_result = control->getFadePoints(&numpoints, nullptr, nullptr);
+	g_fmod_last_result = control->getFadePoints(&numpoints, nullptr, nullptr);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -941,7 +942,7 @@ func double fmod_channel_control_set_callback(double channel_control_ref)
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 
-	fmod_last_result = control->setCallback(CALLBACK_fmod_channel_control);
+	g_fmod_last_result = control->setCallback(CALLBACK_fmod_channel_control);
 	return 0;
 }
 
@@ -951,9 +952,9 @@ func double fmod_channel_control_get_system_object(double channel_control_ref)
 	validate_fmod_channel_control(channel_control_ref, control);
 
 	FMOD::System* fmod_system = nullptr;
-	fmod_last_result = control->getSystemObject(&fmod_system);
+	g_fmod_last_result = control->getSystemObject(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}

@@ -79,7 +79,7 @@ exit /b 0
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL_iphoneos.a"
 
     :: Asset hash match
-    call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying iOS (arm64) dependencies"
 

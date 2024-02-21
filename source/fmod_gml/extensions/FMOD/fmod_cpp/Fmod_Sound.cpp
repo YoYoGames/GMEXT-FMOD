@@ -14,7 +14,7 @@ func char* fmod_sound_get_name(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	gStringBuffer[0] = '\0';
-	fmod_last_result = sound->getName(gStringBuffer, sizeof(gStringBuffer));
+	g_fmod_last_result = sound->getName(gStringBuffer, sizeof(gStringBuffer));
 
 	return gStringBuffer;
 }
@@ -29,9 +29,9 @@ func double fmod_sound_get_format_multiplatform(double sound_ref, char* buff_ret
 	int channels;
 	int bits;
 
-	fmod_last_result = sound->getFormat(&type, &format, &channels, &bits);
+	g_fmod_last_result = sound->getFormat(&type, &format, &channels, &bits);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -53,7 +53,7 @@ func double fmod_sound_get_length(double sound_ref, double length_type)
 	validate_fmod_sound(sound_ref, sound);
 
 	unsigned int length;
-	fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)length_type);
+	g_fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)length_type);
 
 	return (double)length;
 }
@@ -66,9 +66,9 @@ func double fmod_sound_get_num_tags_multiplatform(double sound_ref, char* buff_r
 	int numtags;
 	int numtagsupdated;
 
-	fmod_last_result = sound->getNumTags(&numtags, &numtagsupdated);
+	g_fmod_last_result = sound->getNumTags(&numtags, &numtagsupdated);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -93,9 +93,9 @@ func double fmod_sound_get_tag_multiplatform(double sound_ref, double tag_index,
 	auto buffer_data = YYGetBuffer(args[0], length);
 
 	FMOD_TAG tag;
-	fmod_last_result = sound->getTag(nullptr, (int)tag_index, &tag);
+	g_fmod_last_result = sound->getTag(nullptr, (int)tag_index, &tag);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -123,7 +123,7 @@ func double fmod_sound_set_3d_cone_settings(double sound_ref, double inside_cone
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->set3DConeSettings((float)inside_cone_angle, (float)outside_cone_angle, (float)outside_volume);
+	g_fmod_last_result = sound->set3DConeSettings((float)inside_cone_angle, (float)outside_cone_angle, (float)outside_volume);
 
 	return 0;
 }
@@ -137,9 +137,9 @@ func double fmod_sound_get_3d_cone_settings_multiplatform(double sound_ref, char
 	float outsideconeangle;
 	float outsidevolume;
 
-	fmod_last_result = sound->get3DConeSettings(&insideconeangle, &outsideconeangle, &outsidevolume);
+	g_fmod_last_result = sound->get3DConeSettings(&insideconeangle, &outsideconeangle, &outsidevolume);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -170,7 +170,7 @@ func double fmod_sound_set_3d_custom_rolloff_multiplatform(double sound_ref, cha
 		points[i] = FmodVectorFromMap(map);
 	}
 
-	fmod_last_result = sound->set3DCustomRolloff(points, (int)vector_points.size());
+	g_fmod_last_result = sound->set3DCustomRolloff(points, (int)vector_points.size());
 
 	return 0;
 }
@@ -183,9 +183,9 @@ func double fmod_sound_get_3d_custom_rolloff_multiplatform(double sound_ref, cha
 	FMOD_VECTOR* points = nullptr;
 	int numpoints;
 
-	fmod_last_result = sound->get3DCustomRolloff(&points, &numpoints);
+	g_fmod_last_result = sound->get3DCustomRolloff(&points, &numpoints);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -206,7 +206,7 @@ func double fmod_sound_set_3d_min_max_distance(double sound_ref, double min, dou
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->set3DMinMaxDistance((float)min, (float)max);
+	g_fmod_last_result = sound->set3DMinMaxDistance((float)min, (float)max);
 
 	return 0;
 }
@@ -219,9 +219,9 @@ func double fmod_sound_get_3d_min_max_distance_multiplatform(double sound_ref, c
 	float min;
 	float max;
 
-	fmod_last_result = sound->get3DMinMaxDistance(&min, &max);
+	g_fmod_last_result = sound->get3DMinMaxDistance(&min, &max);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -240,7 +240,7 @@ func double fmod_sound_set_defaults(double sound_ref, double frequency, double p
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setDefaults((float)frequency, (int)priority);
+	g_fmod_last_result = sound->setDefaults((float)frequency, (int)priority);
 
 	return 0;
 }
@@ -253,9 +253,9 @@ func double fmod_sound_get_defaults_multiplatform(double sound_ref, char* buff_r
 	float frequency;
 	int priority;
 
-	fmod_last_result = sound->getDefaults(&frequency, &priority);
+	g_fmod_last_result = sound->getDefaults(&frequency, &priority);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -274,7 +274,7 @@ func double fmod_sound_set_mode(double sound_ref, double mode)
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setMode((FMOD_MODE)mode);
+	g_fmod_last_result = sound->setMode((FMOD_MODE)mode);
 
 	return 0;
 }
@@ -286,7 +286,7 @@ func double fmod_sound_get_mode(double sound_ref)
 
 	FMOD_MODE mode;
 
-	fmod_last_result = sound->getMode(&mode);
+	g_fmod_last_result = sound->getMode(&mode);
 
 	return (double)mode;
 }
@@ -296,7 +296,7 @@ func double fmod_sound_set_loop_count(double sound_ref, double count)
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setLoopCount((int)count);
+	g_fmod_last_result = sound->setLoopCount((int)count);
 
 	return 0;
 }
@@ -308,7 +308,7 @@ func double fmod_sound_get_loop_count(double sound_ref)
 
 	int count;
 
-	fmod_last_result = sound->getLoopCount(&count);
+	g_fmod_last_result = sound->getLoopCount(&count);
 
 	return count;
 }
@@ -318,7 +318,7 @@ func double fmod_sound_set_loop_points(double sound_ref, double loop_start, doub
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setLoopPoints((uint32_t)loop_start, (FMOD_TIMEUNIT)loop_start_type, (uint32_t)loop_end, (FMOD_TIMEUNIT)loop_end_type);
+	g_fmod_last_result = sound->setLoopPoints((uint32_t)loop_start, (FMOD_TIMEUNIT)loop_start_type, (uint32_t)loop_end, (FMOD_TIMEUNIT)loop_end_type);
 
 	return 0;
 }
@@ -330,9 +330,9 @@ func double fmod_sound_get_loop_points_multiplatform(double sound_ref, double lo
 
 	unsigned int loopstart;
 	unsigned int loopend;
-	fmod_last_result = sound->getLoopPoints(&loopstart, (FMOD_TIMEUNIT)loop_start_type, &loopend, (FMOD_TIMEUNIT)loop_end_type);
+	g_fmod_last_result = sound->getLoopPoints(&loopstart, (FMOD_TIMEUNIT)loop_start_type, &loopend, (FMOD_TIMEUNIT)loop_end_type);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -356,7 +356,7 @@ func double fmod_sound_set_sound_group(double sound_ref, double sound_group_ref)
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
-	fmod_last_result = sound->setSoundGroup(sound_group);
+	g_fmod_last_result = sound->setSoundGroup(sound_group);
 
 	return 0;
 }
@@ -367,9 +367,9 @@ func double fmod_sound_get_sound_group(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD::SoundGroup* sound_group = nullptr;
-	fmod_last_result = sound->getSoundGroup(&sound_group);
+	g_fmod_last_result = sound->getSoundGroup(&sound_group);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -384,7 +384,7 @@ func double fmod_sound_get_num_sub_sounds(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	int num;
-	fmod_last_result = sound->getNumSubSounds(&num);
+	g_fmod_last_result = sound->getNumSubSounds(&num);
 
 	return num;
 }
@@ -395,11 +395,11 @@ func double fmod_sound_get_sub_sound(double sound_ref, double sub_sound_index)
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD::Sound* sub_sound = nullptr;
-	fmod_last_result = sound->getSubSound((int)sub_sound_index, &sub_sound);
+	g_fmod_last_result = sound->getSubSound((int)sub_sound_index, &sub_sound);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -413,11 +413,11 @@ func double fmod_sound_get_sub_sound_parent(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD::Sound* parent_sound = nullptr;
-	fmod_last_result = sound->getSubSoundParent(&parent_sound);
+	g_fmod_last_result = sound->getSubSoundParent(&parent_sound);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
-		TRACE(fmodResultToString(fmod_last_result));
+		TRACE(fmodResultToString(g_fmod_last_result));
 		return 0;
 	}
 
@@ -437,7 +437,7 @@ func double fmod_sound_get_open_state_multiplatform(double sound_ref, char* buff
 	bool starving = false;
 	bool diskbusy = false;
 
-	fmod_last_result = sound->getOpenState(&open_state, &percentbuffered, &starving, &diskbusy);
+	g_fmod_last_result = sound->getOpenState(&open_state, &percentbuffered, &starving, &diskbusy);
 
 	StructStream map_return = {};
 	map_return.addKeyValue("open_state", (int)open_state);
@@ -475,7 +475,7 @@ func double fmod_sound_read_data_multiplatform(double sound_ref, char* buff_args
 	}
 
 	uint32_t read = 0;
-	fmod_last_result = sound->readData(pBuffer, length, &read);
+	g_fmod_last_result = sound->readData(pBuffer, length, &read);
 
 	return (double)read;
 }
@@ -485,7 +485,7 @@ func double fmod_sound_seek_data(double sound_ref, double pcm)
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->seekData((int)pcm);
+	g_fmod_last_result = sound->seekData((int)pcm);
 
 	return 0;
 }
@@ -519,9 +519,9 @@ func double fmod_sound_lock_multiplatform(double sound_ref, char* buff_args, cha
 	void* buffer1 = nullptr;
 	void* buffer2 = nullptr;
 	uint32_t len1 = 0, len2 = 0;
-	fmod_last_result = sound->lock(offset, length, &buffer1, &buffer2, &len1, &len2);
+	g_fmod_last_result = sound->lock(offset, length, &buffer1, &buffer2, &len1, &len2);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -579,7 +579,7 @@ func double fmod_sound_unlock_multiplatform(double sound_ref, char* buff_args)
 		memcpy(address2, buffer2, len2);
 	}
 
-	fmod_last_result = sound->unlock(address1, address2, len1, len2);
+	g_fmod_last_result = sound->unlock(address1, address2, len1, len2);
 
 	return 0;
 }
@@ -592,7 +592,7 @@ func double fmod_sound_get_music_num_channels(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	int num;
-	fmod_last_result = sound->getMusicNumChannels(&num);
+	g_fmod_last_result = sound->getMusicNumChannels(&num);
 
 	return (double)num;
 }
@@ -602,7 +602,7 @@ func double fmod_sound_set_music_channel_volume(double sound_ref, double channel
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setMusicChannelVolume((int)channel_index, (float)volume);
+	g_fmod_last_result = sound->setMusicChannelVolume((int)channel_index, (float)volume);
 
 	return 0;
 }
@@ -613,7 +613,7 @@ func double fmod_sound_get_music_channel_volume(double sound_ref, double channel
 	validate_fmod_sound(sound_ref, sound);
 
 	float volume;
-	fmod_last_result = sound->getMusicChannelVolume((int)channel_index, &volume);
+	g_fmod_last_result = sound->getMusicChannelVolume((int)channel_index, &volume);
 
 	return (double)volume;
 }
@@ -623,7 +623,7 @@ func double fmod_sound_set_music_speed(double sound_ref, double speed)
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
-	fmod_last_result = sound->setMusicSpeed((float)speed);
+	g_fmod_last_result = sound->setMusicSpeed((float)speed);
 
 	return 0;
 }
@@ -634,7 +634,7 @@ func double fmod_sound_get_music_speed(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	float speed;
-	fmod_last_result = sound->getMusicSpeed(&speed);
+	g_fmod_last_result = sound->getMusicSpeed(&speed);
 
 	return (double)speed;
 }
@@ -647,9 +647,9 @@ func double fmod_sound_get_sync_point_multiplatform(double sound_ref, double poi
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD_SYNCPOINT* sync_point;
-	fmod_last_result = sound->getSyncPoint((int)point_index, &sync_point);
+	g_fmod_last_result = sound->getSyncPoint((int)point_index, &sync_point);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -658,9 +658,9 @@ func double fmod_sound_get_sync_point_multiplatform(double sound_ref, double poi
 	char name[100]{};
 
 	uint32_t offset = 0;
-	fmod_last_result = sound->getSyncPointInfo(sync_point, name, 100, &offset, (FMOD_TIMEUNIT)offset_type);
+	g_fmod_last_result = sound->getSyncPointInfo(sync_point, name, 100, &offset, (FMOD_TIMEUNIT)offset_type);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -679,7 +679,7 @@ func double fmod_sound_get_num_sync_points(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	int num;
-	fmod_last_result = sound->getNumSyncPoints(&num);
+	g_fmod_last_result = sound->getNumSyncPoints(&num);
 
 	return (double)num;
 }
@@ -690,7 +690,7 @@ func double fmod_sound_add_sync_point(double sound_ref, double offset, double of
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD_SYNCPOINT* sync_point;	 // just declare it, we wont use it :)
-	fmod_last_result = sound->addSyncPoint((uint32_t)offset, (FMOD_TIMEUNIT)offset_type, name, &sync_point);
+	g_fmod_last_result = sound->addSyncPoint((uint32_t)offset, (FMOD_TIMEUNIT)offset_type, name, &sync_point);
 
 	return 0;
 }
@@ -701,14 +701,14 @@ func double fmod_sound_delete_sync_point(double sound_ref, double point_index)
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD_SYNCPOINT* sync_point;
-	fmod_last_result = sound->getSyncPoint((int)point_index, &sync_point);
+	g_fmod_last_result = sound->getSyncPoint((int)point_index, &sync_point);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
 
-	fmod_last_result = sound->deleteSyncPoint(sync_point);
+	g_fmod_last_result = sound->deleteSyncPoint(sync_point);
 
 	return 0;
 }
@@ -721,13 +721,13 @@ func double fmod_sound_release(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	int num_sub_sounds = 0;
-	fmod_last_result = sound->getNumSubSounds(&num_sub_sounds);
+	g_fmod_last_result = sound->getNumSubSounds(&num_sub_sounds);
 
 	// Check if we need to clean the `map_sounds` of any of the sub sounds.
 	for (int sub_sound_index = 0; sub_sound_index < num_sub_sounds; ++sub_sound_index)
 	{
 		FMOD::Sound* sub_sound;
-		fmod_last_result = sound->getSubSound(sub_sound_index, &sub_sound);
+		g_fmod_last_result = sound->getSubSound(sub_sound_index, &sub_sound);
 
 		unregisterResource(sub_sound, map_sounds);
 	}
@@ -735,7 +735,7 @@ func double fmod_sound_release(double sound_ref)
 	unregisterResource(sound, map_sounds);
 
 	// This will also release all the sub-sounds
-	fmod_last_result = sound->release();
+	g_fmod_last_result = sound->release();
 
 	return 0;
 }
@@ -746,9 +746,9 @@ func double fmod_sound_get_system_object(double sound_ref)
 	validate_fmod_sound(sound_ref, sound);
 
 	FMOD::System* fmod_system = nullptr;
-	fmod_last_result = sound->getSystemObject(&fmod_system);
+	g_fmod_last_result = sound->getSystemObject(&fmod_system);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}

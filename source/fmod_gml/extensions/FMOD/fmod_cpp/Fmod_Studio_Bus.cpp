@@ -10,7 +10,7 @@ func double fmod_studio_bus_set_paused(double bus_ref, double pause)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->setPaused(pause >= 0.5);
+	g_fmod_last_result = bus->setPaused(pause >= 0.5);
 	return 0;
 }
 
@@ -20,7 +20,7 @@ func double fmod_studio_bus_get_paused(double bus_ref)
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	bool pause = false;
-	fmod_last_result = bus->getPaused(&pause);
+	g_fmod_last_result = bus->getPaused(&pause);
 
 	return pause ? 1.0 : 0.0;
 }
@@ -30,7 +30,7 @@ func double fmod_studio_bus_stop_all_events(double bus_ref, double stop_mode)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->stopAllEvents((FMOD_STUDIO_STOP_MODE)stop_mode);
+	g_fmod_last_result = bus->stopAllEvents((FMOD_STUDIO_STOP_MODE)stop_mode);
 	return 0;
 }
 
@@ -41,7 +41,7 @@ func double fmod_studio_bus_set_volume(double bus_ref, double volumen)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->setVolume((float)volumen);
+	g_fmod_last_result = bus->setVolume((float)volumen);
 
 	return 0;
 }
@@ -52,7 +52,7 @@ func double fmod_studio_bus_get_volume(double bus_ref)
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	float volume;
-	fmod_last_result = bus->getVolume(&volume);
+	g_fmod_last_result = bus->getVolume(&volume);
 
 	return (double)volume;
 }
@@ -62,7 +62,7 @@ func double fmod_studio_bus_set_mute(double bus_ref, double mute)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->setMute(mute >= 0.5);
+	g_fmod_last_result = bus->setMute(mute >= 0.5);
 
 	return 0;
 }
@@ -73,7 +73,7 @@ func double fmod_studio_bus_get_mute(double bus_ref)
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	bool mute;
-	fmod_last_result = bus->getMute(&mute);
+	g_fmod_last_result = bus->getMute(&mute);
 
 	return mute ? 1.0 : 0.0;
 }
@@ -86,7 +86,7 @@ func double fmod_studio_bus_set_port_index_multiplatform(double bus_ref, char* b
 	auto args = buffer_unpack((uint8_t*)buff_args);
 	auto port_index = YYGetUint64(args[0]);
 
-	fmod_last_result = bus->setPortIndex((FMOD_PORT_INDEX)port_index);
+	g_fmod_last_result = bus->setPortIndex((FMOD_PORT_INDEX)port_index);
 	return 0;
 }
 
@@ -97,9 +97,9 @@ func double fmod_studio_bus_get_port_index_multiplatform(double bus_ref, char* b
 
 	FMOD_PORT_INDEX port_index;
 
-	fmod_last_result = bus->getPortIndex(&port_index);
+	g_fmod_last_result = bus->getPortIndex(&port_index);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -119,9 +119,9 @@ func double fmod_studio_bus_get_channel_group(double bus_ref)
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	FMOD::ChannelGroup* channel_group;
-	fmod_last_result = bus->getChannelGroup(&channel_group);
+	g_fmod_last_result = bus->getChannelGroup(&channel_group);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -135,7 +135,7 @@ func double fmod_studio_bus_lock_channel_group(double bus_ref)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->lockChannelGroup();
+	g_fmod_last_result = bus->lockChannelGroup();
 
 	return 0;
 }
@@ -145,7 +145,7 @@ func double fmod_studio_bus_unlock_channel_group(double bus_ref)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
-	fmod_last_result = bus->unlockChannelGroup();
+	g_fmod_last_result = bus->unlockChannelGroup();
 
 	return 0;
 }
@@ -159,9 +159,9 @@ func double fmod_studio_bus_get_cpu_usage_multiplatform(double bus_ref, char* bu
 
 	unsigned int exclusive;
 	unsigned int inclusive;
-	fmod_last_result = bus->getCPUUsage(&exclusive, &inclusive);
+	g_fmod_last_result = bus->getCPUUsage(&exclusive, &inclusive);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -175,15 +175,15 @@ func double fmod_studio_bus_get_cpu_usage_multiplatform(double bus_ref, char* bu
 	return 0;
 }
 
-func double fmod_studio_bus_get_memory_usage(double bus_ref, char* buff_return)
+func double fmod_studio_bus_get_memory_usage_multiplatform(double bus_ref, char* buff_return)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	FMOD_STUDIO_MEMORY_USAGE memory_usage{};
-	fmod_last_result = bus->getMemoryUsage(&memory_usage);
+	g_fmod_last_result = bus->getMemoryUsage(&memory_usage);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -206,10 +206,10 @@ func char* fmod_studio_bus_get_id(double bus_ref)
 	validate_fmod_studio_bus(bus_ref, bus);
 
 	FMOD_GUID id{};
-	fmod_last_result = bus->getID(&id);
+	g_fmod_last_result = bus->getID(&id);
 
 	gStringBuffer[0] = '\0';
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return gStringBuffer;
 	}
@@ -227,7 +227,7 @@ func char* fmod_studio_bus_get_path(double bus_ref)
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = bus->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = bus->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }

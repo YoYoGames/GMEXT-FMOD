@@ -10,7 +10,7 @@ func double fmod_studio_event_instance_start(double event_instance_ref)
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->start();
+	g_fmod_last_result = event_instance->start();
 	return 0;
 }
 
@@ -19,7 +19,7 @@ func double fmod_studio_event_instance_stop(double event_instance_ref, double mo
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->stop((FMOD_STUDIO_STOP_MODE)mode);
+	g_fmod_last_result = event_instance->stop((FMOD_STUDIO_STOP_MODE)mode);
 	return 0;
 }
 
@@ -29,7 +29,7 @@ func double fmod_studio_event_instance_get_playback_state(double event_instance_
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	FMOD_STUDIO_PLAYBACK_STATE state;
-	fmod_last_result = event_instance->getPlaybackState(&state);
+	g_fmod_last_result = event_instance->getPlaybackState(&state);
 	return (double)state;
 }
 
@@ -38,7 +38,7 @@ func double fmod_studio_event_instance_set_paused(double event_instance_ref, dou
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setPaused(pause >= 0.5);
+	g_fmod_last_result = event_instance->setPaused(pause >= 0.5);
 	return 0;
 }
 
@@ -48,7 +48,7 @@ func double fmod_studio_event_instance_get_paused(double event_instance_ref)
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	bool pause;
-	fmod_last_result = event_instance->getPaused(&pause);
+	g_fmod_last_result = event_instance->getPaused(&pause);
 	return pause ? 1.0 : 0.0;
 }
 
@@ -57,7 +57,7 @@ func double fmod_studio_event_instance_keyoff(double event_instance_ref)
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->keyOff();
+	g_fmod_last_result = event_instance->keyOff();
 	return 0;
 }
 
@@ -68,7 +68,7 @@ func double fmod_studio_event_instance_set_pitch(double event_instance_ref, doub
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setPitch((float)pitch);
+	g_fmod_last_result = event_instance->setPitch((float)pitch);
 	return 0;
 }
 
@@ -78,7 +78,7 @@ func double fmod_studio_event_instance_get_pitch(double event_instance_ref)
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	float pitch;
-	fmod_last_result = event_instance->getPitch(&pitch);
+	g_fmod_last_result = event_instance->getPitch(&pitch);
 	return (double)pitch;
 }
 
@@ -87,7 +87,7 @@ func double fmod_studio_event_instance_set_property(double event_instance_ref, d
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setProperty((FMOD_STUDIO_EVENT_PROPERTY)property, (float)value);
+	g_fmod_last_result = event_instance->setProperty((FMOD_STUDIO_EVENT_PROPERTY)property, (float)value);
 	return 0;
 }
 
@@ -97,7 +97,7 @@ func double fmod_studio_event_instance_get_property(double event_instance_ref, d
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	float value;
-	fmod_last_result = event_instance->getProperty((FMOD_STUDIO_EVENT_PROPERTY)property, &value);
+	g_fmod_last_result = event_instance->getProperty((FMOD_STUDIO_EVENT_PROPERTY)property, &value);
 	return value;
 }
 
@@ -106,7 +106,7 @@ func double fmod_studio_event_instance_set_timeline_position(double event_instan
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setTimelinePosition((int)position);
+	g_fmod_last_result = event_instance->setTimelinePosition((int)position);
 	return 0;
 }
 
@@ -116,7 +116,7 @@ func double fmod_studio_event_instance_get_timeline_position(double event_instan
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	int position;
-	fmod_last_result = event_instance->getTimelinePosition(&position);
+	g_fmod_last_result = event_instance->getTimelinePosition(&position);
 	return (double)position;
 }
 
@@ -125,7 +125,7 @@ func double fmod_studio_event_instance_set_volume(double event_instance_ref, dou
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setVolume((float)volume);
+	g_fmod_last_result = event_instance->setVolume((float)volume);
 	return 0;
 }
 
@@ -137,9 +137,9 @@ func double fmod_studio_event_instance_get_volume_multiplatform(double event_ins
 	float volume;
 	float final_volume;
 
-	fmod_last_result = event_instance->getVolume(&volume, &final_volume);
+	g_fmod_last_result = event_instance->getVolume(&volume, &final_volume);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -159,7 +159,7 @@ func double fmod_studio_event_instance_is_virtual(double event_instance_ref)
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	bool is_virtual;
-	fmod_last_result = event_instance->isVirtual(&is_virtual);
+	g_fmod_last_result = event_instance->isVirtual(&is_virtual);
 
 	return is_virtual ? 1.0 : 0.0;
 }
@@ -174,7 +174,7 @@ func double fmod_studio_event_instance_set_3d_attributes_multiplatform(double ev
 	auto map_attributes = YYGetStruct(args[0]);
 	FMOD_3D_ATTRIBUTES attributes = Fmod3DAttributesFromMap(map_attributes);
 
-	fmod_last_result = event_instance->set3DAttributes(&attributes);
+	g_fmod_last_result = event_instance->set3DAttributes(&attributes);
 	return 0;
 }
 
@@ -184,9 +184,9 @@ func double fmod_studio_event_instance_get_3d_attributes_multiplatform(double ev
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	FMOD_3D_ATTRIBUTES attributes;
-	fmod_last_result = event_instance->get3DAttributes(&attributes);
+	g_fmod_last_result = event_instance->get3DAttributes(&attributes);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -202,7 +202,7 @@ func double fmod_studio_event_instance_set_listener_mask(double event_instance_r
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setListenerMask((unsigned int)mask);
+	g_fmod_last_result = event_instance->setListenerMask((unsigned int)mask);
 	return 0;
 }
 
@@ -212,7 +212,7 @@ func double fmod_studio_event_instance_get_listener_mask(double event_instance_r
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	unsigned int mask;
-	fmod_last_result = event_instance->getListenerMask(&mask);
+	g_fmod_last_result = event_instance->getListenerMask(&mask);
 	return (double)mask;
 }
 
@@ -224,9 +224,9 @@ func double fmod_studio_event_instance_get_min_max_distance_multiplatform(double
 	float min;
 	float max;
 
-	fmod_last_result = event_instance->getMinMaxDistance(&min, &max);
+	g_fmod_last_result = event_instance->getMinMaxDistance(&min, &max);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -247,7 +247,7 @@ func double fmod_studio_event_instance_set_parameter_by_name_multiplatform(doubl
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setParameterByName(name, (float)value, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = event_instance->setParameterByName(name, (float)value, ignore_seek_speed >= 0.5);
 	return 0;
 }
 
@@ -256,7 +256,7 @@ func double fmod_studio_event_instance_set_parameter_by_name_with_label(double e
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setParameterByNameWithLabel(name, label, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = event_instance->setParameterByNameWithLabel(name, label, ignore_seek_speed >= 0.5);
 	return 0;
 }
 
@@ -268,9 +268,9 @@ func double fmod_studio_event_instance_get_parameter_by_name_multiplatform(doubl
 	float value;
 	float final_value;
 
-	fmod_last_result = event_instance->getParameterByName(name, &value, &final_value);
+	g_fmod_last_result = event_instance->getParameterByName(name, &value, &final_value);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -294,7 +294,7 @@ func double fmod_studio_event_instance_set_parameter_by_id_multiplatform(double 
 
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
 
-	fmod_last_result = event_instance->setParameterByID(parameter_id, (float)value, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = event_instance->setParameterByID(parameter_id, (float)value, ignore_seek_speed >= 0.5);
 	return 0;
 }
 
@@ -310,7 +310,7 @@ func double fmod_studio_event_instance_set_parameter_by_id_with_label_multiplatf
 	auto map_paramaters = YYGetStruct(args[0]);
 
 	FMOD_STUDIO_PARAMETER_ID parameter_id = FmodParamaterIdFromMap(map_paramaters);
-	fmod_last_result = event_instance->setParameterByIDWithLabel(parameter_id, label, ignore_seek_speed >= 0.5);
+	g_fmod_last_result = event_instance->setParameterByIDWithLabel(parameter_id, label, ignore_seek_speed >= 0.5);
 
 	return 0;
 }
@@ -327,9 +327,9 @@ func double fmod_studio_event_instance_get_parameter_by_id_multiplatform(double 
 
 	float value;
 	float final_value;
-	fmod_last_result = event_instance->getParameterByID(parameter_id, &value, &final_value);
+	g_fmod_last_result = event_instance->getParameterByID(parameter_id, &value, &final_value);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -355,9 +355,9 @@ func double fmod_studio_event_instance_get_channel_group(double event_instance_r
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	fmod_last_result = event_instance->getChannelGroup(&channel_group);
+	g_fmod_last_result = event_instance->getChannelGroup(&channel_group);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -372,7 +372,7 @@ func double fmod_studio_event_instance_set_reverb_level(double event_instance_re
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setReverbLevel((int)index, (float)level);
+	g_fmod_last_result = event_instance->setReverbLevel((int)index, (float)level);
 	return 0;
 }
 
@@ -382,7 +382,7 @@ func double fmod_studio_event_instance_get_reverb_level(double event_instance_re
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	float level;
-	fmod_last_result = event_instance->getReverbLevel((int)index, &level);
+	g_fmod_last_result = event_instance->getReverbLevel((int)index, &level);
 
 	return level;
 }
@@ -397,9 +397,9 @@ func double fmod_studio_event_instance_get_cpu_usage_multiplatform(double event_
 	unsigned int exclusive;
 	unsigned int inclusive;
 
-	fmod_last_result = event_instance->getCPUUsage(&exclusive, &inclusive);
+	g_fmod_last_result = event_instance->getCPUUsage(&exclusive, &inclusive);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -419,7 +419,7 @@ func double fmod_studio_event_instance_get_memory_usage_multiplatform(double eve
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	FMOD_STUDIO_MEMORY_USAGE memory_usage;
-	fmod_last_result = event_instance->getMemoryUsage(&memory_usage);
+	g_fmod_last_result = event_instance->getMemoryUsage(&memory_usage);
 
 	StructStream map_return = FmodStudioMemoryUsageToGMStruct(memory_usage);
 
@@ -546,7 +546,7 @@ func double fmod_studio_event_instance_set_callback(double event_instance_ref, d
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->setCallback(CALLBACK_fmod_studio_event_instance, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)type);
+	g_fmod_last_result = event_instance->setCallback(CALLBACK_fmod_studio_event_instance, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)type);
 
 	return 0;
 }
@@ -574,15 +574,15 @@ func double fmod_studio_event_instance_get_user_data(double event_instance_ref)
 
 // General
 
-func double fmod_studio_event_intance_get_description(double event_instance_ref)
+func double fmod_studio_event_instance_get_description(double event_instance_ref)
 {
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
 	FMOD::Studio::EventDescription* event_description = nullptr;
-	fmod_last_result = event_instance->getDescription(&event_description);
+	g_fmod_last_result = event_instance->getDescription(&event_description);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -595,7 +595,7 @@ func double fmod_studio_event_instance_release(double event_instance_ref)
 	FMOD::Studio::EventInstance* event_instance = nullptr;
 	validate_fmod_studio_event_instance(event_instance_ref, event_instance);
 
-	fmod_last_result = event_instance->release();
+	g_fmod_last_result = event_instance->release();
 	return 0;
 }
 

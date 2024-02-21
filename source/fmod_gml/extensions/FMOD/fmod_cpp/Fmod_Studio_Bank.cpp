@@ -11,7 +11,7 @@ func double fmod_studio_bank_get_loading_state(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	FMOD_STUDIO_LOADING_STATE state;
-	fmod_last_result = bank->getLoadingState(&state);
+	g_fmod_last_result = bank->getLoadingState(&state);
 
 	return (double)state;
 }
@@ -21,7 +21,7 @@ func double fmod_studio_bank_load_sample_data(double bank_ref)
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 
-	fmod_last_result = bank->loadSampleData();
+	g_fmod_last_result = bank->loadSampleData();
 	return 0;
 }
 
@@ -30,7 +30,7 @@ func double fmod_studio_bank_unload_sample_data(double bank_ref)
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 
-	fmod_last_result = bank->unloadSampleData();
+	g_fmod_last_result = bank->unloadSampleData();
 	return 0;
 }
 
@@ -40,7 +40,7 @@ func double fmod_studio_bank_get_sample_loading_state(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	FMOD_STUDIO_LOADING_STATE state;
-	fmod_last_result = bank->getSampleLoadingState(&state);
+	g_fmod_last_result = bank->getSampleLoadingState(&state);
 	return (double)state;
 }
 
@@ -49,7 +49,7 @@ func double fmod_studio_bank_unload(double bank_ref)
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 
-	fmod_last_result = bank->unload();
+	g_fmod_last_result = bank->unload();
 
 	return 0;
 }
@@ -62,7 +62,7 @@ func double fmod_studio_bank_get_bus_count(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	int count;
-	fmod_last_result = bank->getBusCount(&count);
+	g_fmod_last_result = bank->getBusCount(&count);
 
 	return (double)count;
 }
@@ -75,9 +75,9 @@ func double fmod_studio_bank_get_bus_list_multiplatform(double bank_ref, char* b
 	int count = 0;
 	constexpr int list_capacity = 512;
 	FMOD::Studio::Bus* buses[list_capacity];
-	fmod_last_result = bank->getBusList(buses, list_capacity, &count);
+	g_fmod_last_result = bank->getBusList(buses, list_capacity, &count);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -102,7 +102,7 @@ func double fmod_studio_bank_get_event_count(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	int count;
-	fmod_last_result = bank->getEventCount(&count);
+	g_fmod_last_result = bank->getEventCount(&count);
 
 	return (double)count;
 }
@@ -115,9 +115,9 @@ func double fmod_studio_bank_get_event_description_list_multiplatform(double ban
 	int count = 0;
 	constexpr int list_capacity = 512;
 	FMOD::Studio::EventDescription* event_descriptions[list_capacity];
-	fmod_last_result = bank->getEventList(event_descriptions, list_capacity, &count);
+	g_fmod_last_result = bank->getEventList(event_descriptions, list_capacity, &count);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -142,7 +142,7 @@ func double fmod_studio_bank_get_string_count(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	int count;
-	fmod_last_result = bank->getStringCount(&count);
+	g_fmod_last_result = bank->getStringCount(&count);
 
 	return (double)count;
 }
@@ -156,9 +156,9 @@ func double fmod_studio_bank_get_string_info_multiplatform(double bank_ref, doub
 	char path[512] = {};
 	int retrieved = 0;
 
-	fmod_last_result = bank->getStringInfo((int)string_index, &id, path, sizeof(path), &retrieved);
+	g_fmod_last_result = bank->getStringInfo((int)string_index, &id, path, sizeof(path), &retrieved);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -180,7 +180,7 @@ func double fmod_studio_bank_get_vca_count(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	int count;
-	fmod_last_result = bank->getVCACount(&count);
+	g_fmod_last_result = bank->getVCACount(&count);
 
 	return (double)count;
 }
@@ -193,9 +193,9 @@ func double fmod_studio_bank_get_vca_list_multiplatform(double bank_ref, char* b
 	int count = 0;
 	constexpr int list_capacity = 512;
 	FMOD::Studio::VCA* vcas[list_capacity];
-	fmod_last_result = bank->getVCAList(vcas, list_capacity, &count);
+	g_fmod_last_result = bank->getVCAList(vcas, list_capacity, &count);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -220,11 +220,11 @@ func char* fmod_studio_bank_get_id(double bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 
 	FMOD_GUID id;
-	fmod_last_result = bank->getID(&id);
+	g_fmod_last_result = bank->getID(&id);
 
 	gStringBuffer[0] = '\0';
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return gStringBuffer;
 	}
@@ -242,7 +242,7 @@ func char* fmod_studio_bank_get_path(double bank_ref)
 
 	int retrieved;
 	gStringBuffer[0] = '\0';
-	fmod_last_result = bank->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
+	g_fmod_last_result = bank->getPath(gStringBuffer, sizeof(gStringBuffer), &retrieved);
 
 	return gStringBuffer;
 }

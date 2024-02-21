@@ -17,10 +17,10 @@ if (USE_FMOD_STUDIO) {
 		If you are only using Studio you need this.
 	*/
 	fmod_studio_system_create();	
-	show_debug_message("fmod_studio_system_create: " + string(fmod_last_error()));
+	show_debug_message("fmod_studio_system_create: " + string(fmod_last_result()));
 	
 	fmod_studio_system_init(_max_channels, _flags_studio, _flags_core);
-	show_debug_message("fmod_studio_system_init: " + string(fmod_last_error()));
+	show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
 	
 	/*
 		FMOD Studio will create an initialize an underlying core system to work with.
@@ -32,7 +32,7 @@ else {
 		If you are only using Core you only need this.
 	*/
 	fmod_main_system = fmod_system_create()
-	show_debug_message("fmod_system_create: " + string(fmod_last_error()))
+	show_debug_message("fmod_system_create: " + string(fmod_last_result()))
 	fmod_system_init(_max_channels, _flags_core)
-	show_debug_message("fmod_system_init: " + string(fmod_last_error()))
+	show_debug_message("fmod_system_init: " + string(fmod_last_result()))
 }

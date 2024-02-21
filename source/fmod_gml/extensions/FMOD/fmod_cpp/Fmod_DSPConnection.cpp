@@ -13,7 +13,7 @@ func double fmod_dsp_connection_set_mix(double dsp_connection_ref, double volume
 	FMOD::DSPConnection* dsp_connection = nullptr;
 	validate_fmod_dsp_connection(dsp_connection_ref, dsp_connection);
 
-	fmod_last_result = dsp_connection->setMix((float)volume);
+	g_fmod_last_result = dsp_connection->setMix((float)volume);
 
 	return 0;
 }
@@ -24,7 +24,7 @@ func double fmod_dsp_connection_get_mix(double dsp_connection_ref)
 	validate_fmod_dsp_connection(dsp_connection_ref, dsp_connection);
 
 	float volume;
-	fmod_last_result = dsp_connection->getMix(&volume);
+	g_fmod_last_result = dsp_connection->getMix(&volume);
 
 	return volume;
 }
@@ -46,7 +46,7 @@ func double fmod_dsp_connection_set_mix_matrix_multiplatform(double dsp_connecti
 		matrix[i] = YYGetFloat(array_matrix[i]);
 	}
 
-	fmod_last_result = dsp_connection->setMixMatrix(matrix, outchannels, inchannels, inchannel_hop);
+	g_fmod_last_result = dsp_connection->setMixMatrix(matrix, outchannels, inchannels, inchannel_hop);
 
 	return 0;
 }
@@ -59,9 +59,9 @@ func double fmod_dsp_connection_get_mix_matrix_multiplatform(double dsp_connecti
 	float matrix[255]{};
 	int outchannels;
 	int inchannels;
-	fmod_last_result = dsp_connection->getMixMatrix(matrix, &outchannels, &inchannels, (int)inchannel_hop);
+	g_fmod_last_result = dsp_connection->getMixMatrix(matrix, &outchannels, &inchannels, (int)inchannel_hop);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -90,9 +90,9 @@ func double fmod_dsp_connection_get_input(double dsp_connection_ref)
 	validate_fmod_dsp_connection(dsp_connection_ref, dsp_connection);
 
 	FMOD::DSP* dsp;
-	fmod_last_result = dsp_connection->getInput(&dsp);
+	g_fmod_last_result = dsp_connection->getInput(&dsp);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -108,9 +108,9 @@ func double fmod_dsp_connection_get_output(double dsp_connection_ref)
 	validate_fmod_dsp_connection(dsp_connection_ref, dsp_connection);
 
 	FMOD::DSP* dsp;
-	fmod_last_result = dsp_connection->getOutput(&dsp);
+	g_fmod_last_result = dsp_connection->getOutput(&dsp);
 
-	if (fmod_last_result != FMOD_OK)
+	if (g_fmod_last_result != FMOD_OK)
 	{
 		return 0;
 	}
@@ -126,7 +126,7 @@ func double fmod_dsp_connection_get_type(double dsp_connection_ref)
 	validate_fmod_dsp_connection(dsp_connection_ref, dsp_connection);
 
 	FMOD_DSPCONNECTION_TYPE type;
-	fmod_last_result = dsp_connection->getType(&type);
+	g_fmod_last_result = dsp_connection->getType(&type);
 
 	return type;
 }

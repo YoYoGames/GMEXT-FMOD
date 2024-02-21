@@ -2,8 +2,8 @@
 event_inherited();
 
 state = fmod_sound_get_open_state(sound_index);
-if (fmod_last_error() != FMOD_RESULT.OK) {
-	show_debug_message(fmod_error_string(fmod_last_error()));
+if (fmod_last_result() != FMOD_RESULT.OK) {
+	show_debug_message(fmod_error_string(fmod_last_result()));
 }
 
 if (channel_index != 0)
@@ -27,7 +27,7 @@ else
 */
 
 var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
-while (fmod_last_error() == FMOD_RESULT.OK)
+while (fmod_last_result() == FMOD_RESULT.OK)
 {
 	// Move cursor to the begining of the buffer
 	buffer_seek(tag_data_buff, buffer_seek_start, 0);
