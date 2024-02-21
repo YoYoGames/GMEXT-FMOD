@@ -760,6 +760,17 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 /**
  * @module structs
  * @title Structs
+ * @desc This module contains the structs used by the FMOD extension.
+ * 
+ * When a function of the FMOD extension returns multiple values, it returns them as a ${type.struct} or as an ${type.array} of structs.
+ * This happens in two situations: 
+ * 
+ * * The original FMOD function returns multiple values through [Out](https://www.fmod.com/docs/2.02/api/glossary.html#documentation-conventions) parameters. The extension groups these values into a ${type.struct} of which you can access variables by name. For example: ${function.fmod_system_get_record_driver_info} returns a ${struct.FmodSystemRecordDriverInfo}.
+ * * The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a ${type.struct}, which has the same variables as the corresponding FMOD "struct". For example: ${function.fmod_studio_system_get_sound_info} returns a ${struct.FmodStudioSoundInfo}, which maps to FMOD's [FMOD_STUDIO_SOUND_INFO](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info) struct.
+ * 
+ * The returned ${type.struct}s are not actually created using the constructor function of their type. They do, however, have identical variable names.
+ * 
+ * [[Note: The FMOD extension is able to return these more complex data types (i.e. other than ${type.real} and ${type.string}) by packing the values received from FMOD into a ${type.buffer} and unpacking them on the other side.]]
  * 
  * @section_struct
  * @ref FmodVector

@@ -6,7 +6,7 @@ Go to [FMOD Downloads](https://www.fmod.com/download).
 
 Download **FMOD Studio** and **FMOD Engine**. As of writing this guide, the latest version is 2.02.20, which is supported.
 
-![Download FMOD Studio and FMOD Engine](fmod_download.jpg)
+![Download FMOD Studio and FMOD Engine](assets/fmod_download.jpg)
 
 For **Studio**, download the package for the platform you are developing on.
 
@@ -14,7 +14,7 @@ For **Engine**, download packages for the platforms you want to publish your gam
 
 After installing the Engine API, open the installation and remember the location of the folder, which should contain the following folders in it ("api", "doc", etc.)
 
-![The engine folder](fmod_api_location.jpg)
+![The engine folder](assets/fmod_api_location.jpg)
 
 # Setting Up GameMaker
 
@@ -24,19 +24,19 @@ Open your GameMaker project or create a new one.
 
 Drag the `.yymps` file from the downloaded package into your GameMaker window, or go into **Tools -> Import Local Package** to select the `.yymps` file.
 
-![Select Add All and Import](ext_import.jpg)
+![Select Add All and Import](assets/ext_import.jpg)
 
 In the window that opens, select **Add All** and then **Import**.
 
 In your Asset Browser, expand the "Fmod" folder, expand "Extensions", and double-click on **FMOD**.
 
-![Select the FMOD Extension under Fmod -> Extensions](ext_fmod.jpg)
+![Select the FMOD Extension under Fmod -> Extensions](assets/ext_fmod.jpg)
 
 This will open the Extension Editor which contains the extension's parameters.
 
 Here you need to set the SDK locations for the platforms the game will be exported to. This needs the location of the FMOD Engine folder.
 
-![FMOD Extension Options](ext_options.jpg)
+![FMOD Extension Options](assets/ext_options.jpg)
 
 Here the Mac API is entered as the IDE is running on a Mac. Use the Browse `[...]` button to find and select your FMOD Engine directory (the folder that *contains* the "api" folder, not the "api" folder itself).
 

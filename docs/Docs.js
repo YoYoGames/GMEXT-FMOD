@@ -9106,7 +9106,7 @@ function fmod_last_result() {}
 
 /**
  * @func fmod_path_bundle
- * @desc Since FMOD uses direct C++ access to the file system, it doesn't know anything about the user path automatically. This function returns returns the full bundle path to an [Included File](https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm) in the `datafiles` folder.
+ * @desc Since FMOD uses direct C++ access to the file system, it doesn't know anything about the user path automatically. This function returns the full bundle path to an [Included File](https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm) in the `datafiles` folder.
  * 
  * @returns {string}
  * @func_end
@@ -9131,7 +9131,9 @@ function fmod_last_result() {}
  * * FMOD Studio
  * 
  * @section Guides
+ * @desc This section contains guides to get started with the FMOD extension.
  * @ref page.GettingStarted
+ * @ref page.GeneralInformation
  * @section_end
  * 
  * @section FMOD Core Modules

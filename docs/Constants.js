@@ -2114,7 +2114,7 @@
  * @title Constants
  * @description These are the constants that you can use in the FMOD extension.
  * 
- * [[Note: Although all items on this page are [Constants](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm), some are defined as macros in the extension, others as enums. See a constant's description to learn its type.]]
+ * [[Note: All items on this page are [Constants](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm). However, some are defined as macros in the extension, others as enums. See a constant's description to know its type.]]
  * 
  * @section_const
  * @ref FMOD_VERSION
