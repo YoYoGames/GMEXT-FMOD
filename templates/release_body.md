@@ -1,5 +1,8 @@
 ## IMPORTANT
 
+* This extension is compatible with GameMaker 2023.11.
+* This extension requires the user to download the FMOD SDKs (v2.02). (requires registration)
+* This extension is compatible with all targets except: HTML5 and WASM.
 * The FMOD plugin system is not implemented in this extension.
 
 ## CHANGES SINCE ${releaseOldVersion}
