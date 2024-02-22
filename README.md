@@ -27,6 +27,7 @@ In order to use this extension you will require to [download the FMOD SDK v2.02]
 
 > [!IMPORTANT]
 > You will need setup to FMOD extension asset in the IDE, by double clicking it and fill in the [Extension Options](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Extensions.htm).
+>
 > Check the [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for detailed information.
 
 If you are compiling this extension locally you will need to place the SDKs inside `source/fmod_sdk/` following the given folder structure:
