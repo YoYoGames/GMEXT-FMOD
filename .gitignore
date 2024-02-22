@@ -43,3 +43,5 @@ xcuserdata/
 !source/fmod_gml/extensions/FMOD/libfmodL.dylib
 !source/fmod_gml/extensions/FMOD/libfmodstudioL.dylib
 *.sh-e
+
+output/
