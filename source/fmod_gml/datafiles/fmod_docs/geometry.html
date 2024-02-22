@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Geometry - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Geometry";
+        var mkdocs_page_input_path = "geometry.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Geometry</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/geometry.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="geometry"><strong>Geometry</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds the functionality for the setup and modification of geometry for occlusion.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="geometry.html#fmod_geometry_set_polygon_attributes">fmod_geometry_set_polygon_attributes</a></li>
+<li><a href="geometry.html#fmod_geometry_get_polygon_attributes">fmod_geometry_get_polygon_attributes</a></li>
+<li><a href="geometry.html#fmod_geometry_get_polygon_num_vertices">fmod_geometry_get_polygon_num_vertices</a></li>
+<li><a href="geometry.html#fmod_geometry_set_polygon_vertex">fmod_geometry_set_polygon_vertex</a></li>
+<li><a href="geometry.html#fmod_geometry_get_polygon_vertex">fmod_geometry_get_polygon_vertex</a></li>
+<li><a href="geometry.html#fmod_geometry_set_position">fmod_geometry_set_position</a></li>
+<li><a href="geometry.html#fmod_geometry_get_position">fmod_geometry_get_position</a></li>
+<li><a href="geometry.html#fmod_geometry_set_rotation">fmod_geometry_set_rotation</a></li>
+<li><a href="geometry.html#fmod_geometry_get_rotation">fmod_geometry_get_rotation</a></li>
+<li><a href="geometry.html#fmod_geometry_set_scale">fmod_geometry_set_scale</a></li>
+<li><a href="geometry.html#fmod_geometry_get_scale">fmod_geometry_get_scale</a></li>
+<li><a href="geometry.html#fmod_geometry_add_polygon">fmod_geometry_add_polygon</a></li>
+<li><a href="geometry.html#fmod_geometry_set_active">fmod_geometry_set_active</a></li>
+<li><a href="geometry.html#fmod_geometry_get_active">fmod_geometry_get_active</a></li>
+<li><a href="geometry.html#fmod_geometry_get_max_polygons">fmod_geometry_get_max_polygons</a></li>
+<li><a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a></li>
+<li><a href="geometry.html#fmod_geometry_set_user_data">fmod_geometry_set_user_data</a></li>
+<li><a href="geometry.html#fmod_geometry_get_user_data">fmod_geometry_get_user_data</a></li>
+<li><a href="geometry.html#fmod_geometry_release">fmod_geometry_release</a></li>
+<li><a href="geometry.html#fmod_geometry_save">fmod_geometry_save</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_polygon_attributes">fmod_geometry_set_polygon_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setpolygonattributes">Geometry::setPolygonAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets individual attributes for a polygon inside a geometry object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direct_occlusion, reverb_occlusion, double_sided)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>polygon_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a>].</td>
+</tr>
+<tr>
+<td>direct_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion.</td>
+</tr>
+<tr>
+<td>reverb_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion.</td>
+</tr>
+<tr>
+<td>double_sided</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td><code>true</code>: The polygon is double-sided. <code>false</code>: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_polygon_attributes">fmod_geometry_get_polygon_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonattributes">Geometry::getPolygonAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the attributes for a polygon.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>polygon_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodgeometrypolygonattributes">FmodGeometryPolygonAttributes</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_polygon_num_vertices">fmod_geometry_get_polygon_num_vertices</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonnumvertices">Geometry::getPolygonNumVertices</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function gets the number of vertices in a polygon.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>polygon_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_polygon_vertex">fmod_geometry_set_polygon_vertex</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setpolygonvertex">Geometry::setPolygonVertex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function alters the position of a polygon's vertex inside a geometry object.</p>
+<p>Vertices are relative to the position of the object. See <a href="geometry.html#fmod_geometry_set_position">fmod_geometry_set_position</a>.</p>
+<p>There may be some significant overhead with this function as it may cause some reconfiguration of internal data structures used to speed up sound-ray testing.</p>
+<p>You may get better results if you want to modify your object by using <a href="geometry.html#fmod_geometry_set_position">fmod_geometry_set_position</a>, <a href="geometry.html#fmod_geometry_set_scale">fmod_geometry_set_scale</a> and <a href="geometry.html#fmod_geometry_set_rotation">fmod_geometry_set_rotation</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_index, position)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>polygon_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a>].</td>
+</tr>
+<tr>
+<td>vertex_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon vertex index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_polygon_num_vertices">fmod_geometry_get_polygon_num_vertices</a>].</td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_polygon_vertex">fmod_geometry_get_polygon_vertex</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonvertex">Geometry::getPolygonVertex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the position of a vertex.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>polygon_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</a>].</td>
+</tr>
+<tr>
+<td>vertex_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The polygon vertex index. A value in the range [0, <a href="geometry.html#fmod_geometry_get_polygon_num_vertices">fmod_geometry_get_polygon_num_vertices</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_position">fmod_geometry_set_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setposition">Geometry::setPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D position of the object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The position is in world space.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_position(geometry_ref, position)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The 3D position. Default is <code>{x: 0, y: 0, z: 0}</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_position">fmod_geometry_get_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getposition">Geometry::getPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D position of the object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The position is in world space.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_position(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_rotation">fmod_geometry_set_rotation</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setrotation">Geometry::setRotation</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D orientation of the object.</p>
+<p>See remarks in <a href="system.html#fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</a> for a more elaborate description on forward and up vectors.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_rotation(geometry_ref, forward, up)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>forward</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The forwards orientation. This vector must be of unit length and perpendicular to the up vector. Default is <code>{x: 0, y: 0, z: 1}</code>.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The upwards orientation. This vector must be of unit length and perpendicular to the forwards vector. Default is <code>{x: 0, y: 1, z: 0}</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_rotation">fmod_geometry_get_rotation</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getrotation">Geometry::getRotation</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D orientation of the object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_rotation(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodgeometryrotation">FmodGeometryRotation</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_scale">fmod_geometry_set_scale</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setscale">Geometry::setScale</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D scale of the object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_scale(geometry_ref, scale)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>scale</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The scale value. Default is <code>{x: 1, y: 1, z: 1}</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_scale">fmod_geometry_get_scale</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getscale">Geometry::getScale</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D scale of the object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_scale(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_add_polygon">fmod_geometry_add_polygon</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_addpolygon">Geometry::addPolygon</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a polygon.</p>
+<p>It returns the polygon index that you can use with other per polygon based functions as a handle.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All vertices must lay in the same plane otherwise behavior may be unpredictable. The polygon is assumed to be convex. A non convex polygon will produce unpredictable behavior. Polygons with zero area will be ignored.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Polygons cannot be added if already at the maximum number of polygons or if the addition of their vertices would result in exceeding the maximum number of vertices.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vertices of an object are in object space, not world space, and so are relative to the position, or center of the object. See <a href="geometry.html#fmod_geometry_set_position">fmod_geometry_set_position</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlusion, double_sided, vertices)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>direct_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+<tr>
+<td>reverb_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+<tr>
+<td>double_sided</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td><code>true</code>: The polygon is double-sided. <code>false</code>: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.</td>
+</tr>
+<tr>
+<td>vertices</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodvector">FmodVector</a></td>
+<td>An array of vertices located in object space.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_active">fmod_geometry_set_active</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setactive">Geometry::setActive</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets whether an object is processed by the geometry engine.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_active(geometry_ref, active)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>active</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Whether to allow this object to be processed by the geometry engine. Default is true.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_active">fmod_geometry_get_active</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getactive">Geometry::getActive</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves whether an object is processed by the geometry engine.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_active(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_max_polygons">fmod_geometry_get_max_polygons</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getmaxpolygons">Geometry::getMaxPolygons</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the maximum number of polygons and vertices allocatable for this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The maximum number is set with <a href="system.html#fmod_system_create_geometry">fmod_system_create_geometry</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_max_polygons(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_num_polygons">fmod_geometry_get_num_polygons</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getnumpolygons">Geometry::getNumPolygons</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of polygons in this object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_num_polygons(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_set_user_data">fmod_geometry_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setuserdata">Geometry::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a floating-point user value associated with this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_set_user_data(geometry_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The value to be stored on this object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_get_user_data">fmod_geometry_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getuserdata">Geometry::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a user value associated with this object, as set with an earlier call to <a href="geometry.html#fmod_geometry_set_user_data">fmod_geometry_set_user_data</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_get_user_data(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_release">fmod_geometry_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_release">Geometry::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function frees a geometry object and releases its memory.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_release(geometry_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_geometry_save">fmod_geometry_save</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_save">Geometry::save</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function saves the geometry object as a serialized binary block to a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>.</p>
+<p>The function returns the size of the data written to the buffer, in bytes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The data can be saved to a file if required and loaded later with <a href="system.html#fmod_system_load_geometry">fmod_system_load_geometry</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_geometry_save(geometry_ref, buff)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geometry_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a geometry.</td>
+</tr>
+<tr>
+<td>buff</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The address of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> to write the data to.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

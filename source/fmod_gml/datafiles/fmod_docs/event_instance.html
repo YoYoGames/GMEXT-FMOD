@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Event Instance - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Event Instance";
+        var mkdocs_page_input_path = "event_instance.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="event_instance.html">Event Instance</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Event Instance</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/event_instance.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="event-instance"><strong>Event Instance</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html">Studio::EventInstance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds functionality related to instances of an FMOD Studio Event.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_stop">fmod_studio_event_instance_stop</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_playback_state">fmod_studio_event_instance_get_playback_state</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_paused">fmod_studio_event_instance_set_paused</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_paused">fmod_studio_event_instance_get_paused</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_keyoff">fmod_studio_event_instance_keyoff</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_pitch">fmod_studio_event_instance_set_pitch</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_pitch">fmod_studio_event_instance_get_pitch</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_property">fmod_studio_event_instance_set_property</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_property">fmod_studio_event_instance_get_property</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_timeline_position">fmod_studio_event_instance_set_timeline_position</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_timeline_position">fmod_studio_event_instance_get_timeline_position</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_volume">fmod_studio_event_instance_set_volume</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_volume">fmod_studio_event_instance_get_volume</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_is_virtual">fmod_studio_event_instance_is_virtual</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_3d_attributes">fmod_studio_event_instance_set_3d_attributes</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_listener_mask">fmod_studio_event_instance_set_listener_mask</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_listener_mask">fmod_studio_event_instance_get_listener_mask</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_min_max_distance">fmod_studio_event_instance_get_min_max_distance</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_name">fmod_studio_event_instance_set_parameter_by_name</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_name_with_label">fmod_studio_event_instance_set_parameter_by_name_with_label</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_name">fmod_studio_event_instance_get_parameter_by_name</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id">fmod_studio_event_instance_set_parameter_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_channel_group">fmod_studio_event_instance_get_channel_group</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_reverb_level">fmod_studio_event_instance_set_reverb_level</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_reverb_level">fmod_studio_event_instance_get_reverb_level</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_cpu_usage">fmod_studio_event_instance_get_cpu_usage</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_user_data">fmod_studio_event_instance_set_user_data</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_user_data">fmod_studio_event_instance_get_user_data</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_description">fmod_studio_event_instance_get_description</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_release">fmod_studio_event_instance_release</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_is_valid">fmod_studio_event_instance_is_valid</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_start">fmod_studio_event_instance_start</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_start">Studio::EventInstance::start</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function starts playback.</p>
+<p>If the instance was already playing then calling this function will restart the event.</p>
+<p>Generally it is a best practice to call <a href="event_instance.html#fmod_studio_event_instance_release">fmod_studio_event_instance_release</a> on event instances immediately after starting them, unless you want to play the event instance multiple times or explicitly stop it and start it again later.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_start(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_stop">fmod_studio_event_instance_stop</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_stop">Studio::EventInstance::stop</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function stops playback.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_stop(event_instance_ref, mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_studio_stop_mode">FMOD_STUDIO_STOP_MODE</a></td>
+<td>The stop mode to use.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_playback_state">fmod_studio_event_instance_get_playback_state</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getplaybackstate">Studio::EventInstance::getPlaybackState</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the playback state of the EventInstance.</p>
+<p>If the instance is invalid, this will return <code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_playback_state(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_studio_playback_state">FMOD_STUDIO_PLAYBACK_STATE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_paused">fmod_studio_event_instance_set_paused</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setpaused">Studio::EventInstance::setPaused</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the pause state of the EventInstance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_paused(event_instance_ref, pause)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>pause</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><code>true</code> to pause, <code>false</code> to unpause</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_paused">fmod_studio_event_instance_get_paused</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getpaused">Studio::EventInstance::getPaused</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function returns the pause state of the EventInstance (<code>true</code> if paused, otherwise <code>false</code>).</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_paused(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_keyoff">fmod_studio_event_instance_keyoff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_keyoff">Studio::EventInstance::keyOff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows an event to continue past a sustain point.</p>
+<p>Multiple sustain points may be bypassed ahead of time and the key off count will be decremented each time the timeline cursor passes a sustain point.</p>
+<p>This results in <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> (in the next call to <a href="misc.html#fmod_last_result">fmod_last_result</a>) if the event has no sustain points.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_keyoff(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_pitch">fmod_studio_event_instance_set_pitch</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setpitch">Studio::EventInstance::setPitch</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the pitch multiplier.</p>
+<p>The pitch multiplier is used to modulate the event instance's pitch. The pitch multiplier can be set to any value greater than or equal to zero but the final combined pitch is clamped to the range [0, 100] before being applied.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_pitch(event_instance_ref, pitch)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>pitch</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Pitch multiplier, range: (0, inf), default: 1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_pitch">fmod_studio_event_instance_get_pitch</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getpitch">Studio::EventInstance::getPitch</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the pitch multiplier assigned to the EventInstance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_pitch(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_property">fmod_studio_event_instance_set_property</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setproperty">Studio::EventInstance::setProperty</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the value of a built-in property.</p>
+<p>This will override the value set in Studio. Using the default <a href="constants.html#fmod_studio_event_property">FMOD_STUDIO_EVENT_PROPERTY</a> value (e.g. -1) will revert back to the default values set in Studio.</p>
+<p>An FMOD spatializer or object spatializer may override the values set for <code>FMOD_STUDIO_EVENT_PROPERTY.MINIMUM_DISTANCE</code> and <code>FMOD_STUDIO_EVENT_PROPERTY.MAXIMUM_DISTANCE</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_property(event_instance_ref, property, value)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>property</td>
+<td><a href="constants.html#fmod_studio_event_property">FMOD_STUDIO_EVENT_PROPERTY</a></td>
+<td>Property type to set.</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Property value to set.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_property">fmod_studio_event_instance_get_property</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getproperty">Studio::EventInstance::getProperty</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the value of a built-in property.</p>
+<p>A default <a href="constants.html#fmod_studio_event_property">FMOD_STUDIO_EVENT_PROPERTY</a> value means that the Instance is using the value set in Studio and it has not been overridden using <a href="event_instance.html#fmod_studio_event_instance_set_property">fmod_studio_event_instance_set_property</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_property(event_instance_ref, property)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>property</td>
+<td><a href="constants.html#fmod_studio_event_property">FMOD_STUDIO_EVENT_PROPERTY</a></td>
+<td>Property type to get the value of.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_timeline_position">fmod_studio_event_instance_set_timeline_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_settimelineposition">Studio::EventInstance::setTimelinePosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the timeline cursor position.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_timeline_position(event_instance_ref, position)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The timeline position in milliseconds.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_timeline_position">fmod_studio_event_instance_get_timeline_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_gettimelineposition">Studio::EventInstance::getTimelinePosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the timeline cursor position.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_timeline_position(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_volume">fmod_studio_event_instance_set_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setvolume">Studio::EventInstance::setVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the volume level.</p>
+<p>This volume is applied as a scaling factor for the event volume. It does not override the volume level set in FMOD Studio, nor any internal volume automation or modulation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_volume(event_instance_ref, volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Volume, Range: (0, inf), Default: 1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_volume">fmod_studio_event_instance_get_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getvolume">Studio::EventInstance::getVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the volume level.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_volume(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioeventinstancevolume">FmodStudioEventInstanceVolume</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_is_virtual">fmod_studio_event_instance_is_virtual</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_isvirtual">Studio::EventInstance::isVirtual</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded (<code>true</code> or <code>false</code>).</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_is_virtual(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_3d_attributes">fmod_studio_event_instance_set_3d_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_set3dattributes">Studio::EventInstance::set3DAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D attributes for the given EventInstance.</p>
+<p>An event's 3D attributes specify its position, velocity and orientation. The 3D attributes are used to calculate 3D panning, doppler and the values of automatic distance and angle parameters.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attributes)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></td>
+<td>The 3D attributes struct.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_get3dattributes">Studio::EventInstance::get3DAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D attributes struct for the given EventInstance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_3d_attributes(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_listener_mask">fmod_studio_event_instance_set_listener_mask</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setlistenermask">Studio::EventInstance::setListenerMask</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the listener mask.</p>
+<p>The listener mask controls which listeners are considered when calculating 3D panning and the values of listener relative <a href="https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter">automatic parameters</a>.</p>
+<p>To create the mask you must perform bitwise OR and shift operations, the basic form is <code>1 &lt;&lt; listener_index</code> OR'd together with other required listener indices.
+For example to create a mask for listener index 0 and 2 the calculation would be <code>mask = (1 &lt;&lt; 0) | (1 &lt;&lt; 2)</code>, to include all listeners use the default mask of <code>0xFFFFFFFF</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>mask</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Listener mask (default: 0xFFFFFFFF)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_listener_mask">fmod_studio_event_instance_get_listener_mask</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getlistenermask">Studio::EventInstance::getListenerMask</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the listener mask.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_listener_mask(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_min_max_distance">fmod_studio_event_instance_get_min_max_distance</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getminmaxdistance">Studio::EventInstance::getMinMaxDistance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the minimum and maximum distances for 3D attenuation as an <a href="structs.html#fmodminmaxdistance">FmodMinMaxDistance</a> struct.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_min_max_distance(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodminmaxdistance">FmodMinMaxDistance</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_parameter_by_name">fmod_studio_event_instance_set_parameter_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyname">Studio::EventInstance::setParameterByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a parameter value by name.</p>
+<p>The value will be set instantly regardless of <code>ignoreseekspeed</code> when the Event playback state is <code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>.</p>
+<p>If the specified parameter is read only, is an automatic parameter or is not of type <code>FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED</code> then <code>FMOD_RESULT.ERR_INVALID_PARAM</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p>If the event has no parameter matching name then <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, name, value, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive, UTF-8 string).</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Value for given name.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_parameter_by_name_with_label">fmod_studio_event_instance_set_parameter_by_name_with_label</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbynamewithlabel">Studio::EventInstance::setParameterByNameWithLabel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a parameter value by name, looking up the value label.</p>
+<p>The value will be set instantly regardless of <code>ignoreseekspeed</code> when the Event playback state is <code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>.</p>
+<p>If the specified parameter is read only, is an automatic parameter or is not of type <code>FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED</code> then <code>FMOD_RESULT.ERR_INVALID_PARAM</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p>If the event has no parameter matching name then <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p>If the specified label is not found, <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call. This lookup is case sensitive.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_parameter_by_name_with_label(event_instance_ref, name, label, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive, UTF-8 string).</td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Labeled value for the given name.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_parameter_by_name">fmod_studio_event_instance_get_parameter_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyname">Studio::EventInstance::getParameterByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a parameter value by name.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive, UTF-8 string).</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameter">FmodStudioParameter</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_parameter_by_id">fmod_studio_event_instance_set_parameter_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyid">Studio::EventInstance::setParameterByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a parameter value by unique identifier.</p>
+<p>The value will be set instantly regardless of <code>ignoreseekspeed</code> when the Event playback state is <code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>.</p>
+<p>If the specified parameter is read only, is an automatic parameter or is not of type <code>FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED</code> then <code>FMOD_RESULT.ERR_INVALID_PARAM</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, parameter_id, value, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter identifier.</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Value for given identifier.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyidwithlabel">Studio::EventInstance::setParameterByIDWithLabel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a parameter value by unique identifier, looking up the value label.</p>
+<p>The value will be set instantly regardless of <code>ignoreseekspeed</code> when the Event playback state is <code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>.</p>
+<p>If the specified parameter is read only, is an automatic parameter or is not of type <code>FMOD_STUDIO_PARAMETER_TYPE.GAME_CONTROLLED</code> then <code>FMOD_RESULT.ERR_INVALID_PARAM</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p>If the specified label is not found, <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call. This lookup is case sensitive.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_parameter_by_id_with_label(event_instance_ref, parameter_id, label, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter identifier.</td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Labeled value for given name.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyid">Studio::EventInstance::getParameterByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a parameter value by unique identifier.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, parameter_id)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>The parameter identifier.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameter">FmodStudioParameter</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_channel_group">fmod_studio_event_instance_get_channel_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup">Studio::EventInstance::getChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the core <code>ChannelGroup</code> corresponding to the master track.</p>
+<p>Until the event instance has been fully created this function will result in <code>FMOD_RESULT.ERR_STUDIO_NOT_LOADED</code> (in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call).</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_channel_group(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_reverb_level">fmod_studio_event_instance_set_reverb_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setreverblevel">Studio::EventInstance::setReverbLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the core reverb send level.</p>
+<p>This controls the send level for the signal from the event instance to a core reverb instance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, level)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Core reverb instance index, Range: [0, 3]</td>
+</tr>
+<tr>
+<td>level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Reverb send level, Linear, Range: [0, 1], Default: 0|</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_reverb_level">fmod_studio_event_instance_get_reverb_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getreverblevel">Studio::EventInstance::getReverbLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the core reverb send level.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_reverb_level(event_instance_ref, index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Core reverb instance index, Range: [0, 3]</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_cpu_usage">fmod_studio_event_instance_get_cpu_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getcpuusage">Studio::EventInstance::getCPUUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the event CPU usage data.</p>
+<p><code>FMOD_INIT.PROFILE_ENABLE</code> with <a href="system.html#fmod_system_init">fmod_system_init</a> is required to call this function.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_cpu_usage(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcpuusage">FmodCPUUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getmemoryusage">Studio::EventInstance::getMemoryUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves memory usage statistics.</p>
+<p>Memory usage statistics are only available in logging builds, in release builds the struct will contain zero for all values.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_memory_usage(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiomemoryusage">FmodStudioMemoryUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setcallback">Studio::EventInstance::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables the user callback in the Async Social event.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_callback(event_instance_ref, type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_studio_event_callback">FMOD_STUDIO_EVENT_CALLBACK</a></td>
+<td>Bitfield specifying which callback types are required.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The value <code>"fmod_studio_event_description_set_callback"</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_studio_event_callback">FMOD_STUDIO_EVENT_CALLBACK</a></td>
+<td>The callback type passed into the original function.</td>
+</tr>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Handle of the EventInstance that has changed state.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER</code></td>
+</tr>
+<tr>
+<td>sub_sound_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND</code></td>
+</tr>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT_CALLBACK.CREATE_PROGRAMMER_SOUND</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.DESTROY_PROGRAMMER_SOUND</code></td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>bar</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>beat</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>tempo</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>time_signature_lower</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>time_signature_upper</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT.CALLBACK_TIMELINE_BEAT</code> or <code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+<tr>
+<td>event_id</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Valid when kind=<code>FMOD_STUDIO_EVENT_CALLBACK.NESTED_TIMELINE_BEAT</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_user_data">fmod_studio_event_instance_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setuserdata">Studio::EventInstance::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_user_data(event_instance_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The real value to attach.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_user_data">fmod_studio_event_instance_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getuserdata">Studio::EventInstance::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the real value attached to this object in <a href="event_instance.html#fmod_studio_event_instance_set_user_data">fmod_studio_event_instance_set_user_data</a>.</p>
+<p>Returns <code>NaN</code> if no attached user data is found.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_user_data(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_description">fmod_studio_event_instance_get_description</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getdescription">Studio::EventInstance::getDescription</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a handle to the EventDescription for the given EventInstance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_description(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_release">fmod_studio_event_instance_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_release">Studio::EventInstance::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function marks the event instance to be released. Event instances marked for release are destroyed by the asynchronous update when they are in the stopped state (<code>FMOD_STUDIO_PLAYBACK_STATE.STOPPED</code>).</p>
+<p>Generally it is a best practice to release event instances immediately after calling <a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a>, unless you want to play the event instance multiple times or explicitly stop it and start it again later. It is possible to interact with the instance after calling release(), however if the sound has stopped <code>FMOD_RESULT.ERR_INVALID_HANDLE</code> will be returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_release(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_is_valid">fmod_studio_event_instance_is_valid</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_isvalid">Studio::EventInstance::isValid</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function checks whether the EventInstance reference is valid (<code>true</code>) or not (<code>false</code>).</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_is_valid(event_instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="event_description.html" class="btn btn-neutral float-left" title="Event Description"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="studio_system.html" class="btn btn-neutral float-right" title="FMOD Studio System">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="event_description.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="studio_system.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

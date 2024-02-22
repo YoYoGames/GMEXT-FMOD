@@ -1,0 +1,18 @@
+{
+    "gitHubUrl": "https://github.com/YoYoGames/GMEXT-FMOD",
+    "projectFile": "source/fmod_gml/FMOD.yyp",
+    "projectVersion": "LTS22",
+    "releaseTemplate": "templates/release_body.md",
+    "extensionMetaData": [
+        {
+            "extensionFile": "source/fmod_gml/extensions/FMOD/FMOD.yy",
+            "packageId": "com.yoyogames.fmodext",
+            "packageName": "FMOD Ext",
+            "packageVersion": "0.0.1",
+            "packageFormat": "LTS22",
+            "includeFolders": null,
+            "includeResources": null,
+            "excludeResources": null
+        }
+    ]
+}

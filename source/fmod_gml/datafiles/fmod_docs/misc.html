@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Miscellaneous - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Miscellaneous";
+        var mkdocs_page_input_path = "misc.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="misc.html">Miscellaneous</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Miscellaneous</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/misc.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="miscellaneous"><strong>Miscellaneous</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> N/A</p>
+</blockquote>
+<p><br /></p>
+<p>This module contains a number of miscellaneous functions relating to the FMOD extension.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="misc.html#fmod_last_result">fmod_last_result</a></li>
+<li><a href="misc.html#fmod_memory_get_stats">fmod_memory_get_stats</a></li>
+<li><a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a></li>
+<li><a href="misc.html#fmod_thread_set_attributes">fmod_thread_set_attributes</a></li>
+<li><a href="misc.html#fmod_path_bundle">fmod_path_bundle</a></li>
+<li><a href="misc.html#fmod_path_user">fmod_path_user</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_memory_get_stats">fmod_memory_get_stats</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#memory_getstats">Memory_GetStats</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function returns information on the memory usage of FMOD.</p>
+<p>This information is byte accurate and counts all allocs and frees internally. This is useful for determining a fixed memory size to make FMOD work within for fixed-memory machines such as consoles.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_memory_get_stats(blocking)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blocking</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>This is a flag to indicate whether to favour speed or accuracy. Specifying <code>true</code> for this parameter will flush the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> network to make sure all queued allocations happen immediately, which can be costly.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodmemorystats">FmodMemoryStats</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_debug_initialize">fmod_debug_initialize</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#debug_initialize">Debug_Initialize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function specifies the level and delivery method of log messages when using the logging version of FMOD.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_UNSUPPORTED</code> when using the non-logging (release) versions of FMOD.</p>
+<p>Note that:</p>
+<ul>
+<li><code>FMOD_DEBUG_FLAGS.LEVEL_LOG</code> produces informational, warning and error messages.</li>
+<li><code>FMOD_DEBUG_FLAGS.LEVEL_WARNING</code> produces warnings and error messages.</li>
+<li><code>FMOD_DEBUG_FLAGS.LEVEL_ERROR</code> produces error messages only.</li>
+</ul>
+<p>See Also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior">Callback Behavior</a></p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_debug_initialize(flags, mode, filename)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_debug_flags">FMOD_DEBUG_FLAGS</a></td>
+<td>The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_debug_mode">FMOD_DEBUG_MODE</a></td>
+<td>The destination for log messages. The default is <code>FMOD_DEBUG_MODE.TTY</code>.</td>
+</tr>
+<tr>
+<td>filename</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The filename to use when mode is set to file, only required when using that mode. The default is <code>pointer_null</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_thread_set_attributes">fmod_thread_set_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#thread_setattributes">Thread_SetAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function specifies the affinity, priority and stack size for all FMOD created threads.</p>
+<p>You must call this function for the chosen thread before that thread is created for the settings to take effect.</p>
+<p>Affinity can be specified using one (or more) of the <a href="constants.html#fmod_thread_affinity">FMOD_THREAD_AFFINITY</a> constants or by providing the bits explicitly, i.e. (1&lt;&lt;3) for logical core three (core affinity is zero based). See platform documentation for details on the available cores for a given device.</p>
+<p>Priority can be specified using one of the <a href="constants.html#fmod_thread_priority">FMOD_THREAD_PRIORITY</a> constants or by providing the value explicitly, i.e. (-2) for the lowest thread priority on Windows. See platform documentation for details on the available priority values for a given operating system.</p>
+<p>The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_thread_set_attributes(type, affinity, priority, stacksize)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_thread_type">FMOD_THREAD_TYPE</a></td>
+<td>The identifier for an FMOD thread.</td>
+</tr>
+<tr>
+<td>affinity</td>
+<td><a href="constants.html#fmod_thread_affinity">FMOD_THREAD_AFFINITY</a></td>
+<td>A bitfield of desired CPU cores to assign the given thread to.</td>
+</tr>
+<tr>
+<td>priority</td>
+<td><a href="constants.html#fmod_thread_priority">FMOD_THREAD_PRIORITY</a></td>
+<td>The scheduling priority to assign the given thread to.</td>
+</tr>
+<tr>
+<td>stacksize</td>
+<td><a href="constants.html#fmod_thread_stack_size">FMOD_THREAD_STACK_SIZE</a></td>
+<td>The amount of stack space available to the given thread.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_last_result">fmod_last_result</h1>
+<p>This function returns the result of the last call to any of FMOD's functions.</p>
+<p>The extension functions themselves don't return a value indicating if a function call was succesful or not.
+You should therefore use this function if you want to get the result of the last function that you called.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_last_result()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_result">FMOD_RESULT</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_path_bundle">fmod_path_bundle</h1>
+<p>Since FMOD uses direct C++ access to the file system, it doesn't know anything about the user path automatically. This function returns the full bundle path to an <a href="https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm">Included File</a> in the <code>datafiles</code> folder.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_path_bundle()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_path_user">fmod_path_user</h1>
+<p>Since FMOD uses direct C++ access to the file system, it doesn't know anything about the bundle path automatically. This function returns the full path to a file stored in the save path.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_path_user()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="sound_group.html" class="btn btn-neutral float-left" title="Sound Group"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="bank.html" class="btn btn-neutral float-right" title="Bank">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="sound_group.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="bank.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

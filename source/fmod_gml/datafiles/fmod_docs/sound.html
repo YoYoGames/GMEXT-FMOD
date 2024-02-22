@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Sound - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Sound";
+        var mkdocs_page_input_path = "sound.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="sound.html">Sound</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Sound</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/sound.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="sound"><strong>Sound</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds the functionality related to FMOD sounds, which store <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sample-data">sample data</a> that can be played on a <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a>.</p>
+<p>You can create sounds with <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> or <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_name">fmod_sound_get_name</a></li>
+<li><a href="sound.html#fmod_sound_get_format">fmod_sound_get_format</a></li>
+<li><a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a></li>
+<li><a href="sound.html#fmod_sound_get_num_tags">fmod_sound_get_num_tags</a></li>
+<li><a href="sound.html#fmod_sound_get_tag">fmod_sound_get_tag</a></li>
+<li><a href="sound.html#fmod_sound_set_3d_cone_settings">fmod_sound_set_3d_cone_settings</a></li>
+<li><a href="sound.html#fmod_sound_get_3d_cone_settings">fmod_sound_get_3d_cone_settings</a></li>
+<li><a href="sound.html#fmod_sound_set_3d_custom_rolloff">fmod_sound_set_3d_custom_rolloff</a></li>
+<li><a href="sound.html#fmod_sound_get_3d_custom_rolloff">fmod_sound_get_3d_custom_rolloff</a></li>
+<li><a href="sound.html#fmod_sound_set_3d_min_max_distance">fmod_sound_set_3d_min_max_distance</a></li>
+<li><a href="sound.html#fmod_sound_get_3d_min_max_distance">fmod_sound_get_3d_min_max_distance</a></li>
+<li><a href="sound.html#fmod_sound_set_defaults">fmod_sound_set_defaults</a></li>
+<li><a href="sound.html#fmod_sound_get_defaults">fmod_sound_get_defaults</a></li>
+<li><a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a></li>
+<li><a href="sound.html#fmod_sound_get_mode">fmod_sound_get_mode</a></li>
+<li><a href="sound.html#fmod_sound_set_loop_count">fmod_sound_set_loop_count</a></li>
+<li><a href="sound.html#fmod_sound_get_loop_count">fmod_sound_get_loop_count</a></li>
+<li><a href="sound.html#fmod_sound_set_loop_points">fmod_sound_set_loop_points</a></li>
+<li><a href="sound.html#fmod_sound_get_loop_points">fmod_sound_get_loop_points</a></li>
+<li><a href="sound.html#fmod_sound_set_sound_group">fmod_sound_set_sound_group</a></li>
+<li><a href="sound.html#fmod_sound_get_sound_group">fmod_sound_get_sound_group</a></li>
+<li><a href="sound.html#fmod_sound_get_num_sub_sounds">fmod_sound_get_num_sub_sounds</a></li>
+<li><a href="sound.html#fmod_sound_get_sub_sound">fmod_sound_get_sub_sound</a></li>
+<li><a href="sound.html#fmod_sound_get_sub_sound_parent">fmod_sound_get_sub_sound_parent</a></li>
+<li><a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a></li>
+<li><a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a></li>
+<li><a href="sound.html#fmod_sound_seek_data">fmod_sound_seek_data</a></li>
+<li><a href="sound.html#fmod_sound_lock">fmod_sound_lock</a></li>
+<li><a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a></li>
+<li><a href="sound.html#fmod_sound_get_music_num_channels">fmod_sound_get_music_num_channels</a></li>
+<li><a href="sound.html#fmod_sound_set_music_channel_volume">fmod_sound_set_music_channel_volume</a></li>
+<li><a href="sound.html#fmod_sound_get_music_channel_volume">fmod_sound_get_music_channel_volume</a></li>
+<li><a href="sound.html#fmod_sound_set_music_speed">fmod_sound_set_music_speed</a></li>
+<li><a href="sound.html#fmod_sound_get_music_speed">fmod_sound_get_music_speed</a></li>
+<li><a href="sound.html#fmod_sound_get_sync_point">fmod_sound_get_sync_point</a></li>
+<li><a href="sound.html#fmod_sound_get_num_sync_points">fmod_sound_get_num_sync_points</a></li>
+<li><a href="sound.html#fmod_sound_add_sync_point">fmod_sound_add_sync_point</a></li>
+<li><a href="sound.html#fmod_sound_delete_sync_point">fmod_sound_delete_sync_point</a></li>
+<li><a href="sound.html#fmod_sound_release">fmod_sound_release</a></li>
+<li><a href="sound.html#fmod_sound_get_system_object">fmod_sound_get_system_object</a></li>
+<li><a href="sound.html#fmod_sound_set_user_data">fmod_sound_set_user_data</a></li>
+<li><a href="sound.html#fmod_sound_get_user_data">fmod_sound_get_user_data</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_name">fmod_sound_get_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getname">Sound::getName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the name of a sound.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_name(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_format">fmod_sound_get_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getformat">Sound::getFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function returns format information about the sound.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_format(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsoundformat">FmodSoundFormat</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_length">fmod_sound_get_length</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getlength">Sound::getLength</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the length using the specified time unit.</p>
+<p><code>length_type</code> must be valid for the file format. For example, an MP3 file does not support <code>FMOD_TIMEUNIT.MODORDER</code>.</p>
+<p>A length of 0xFFFFFFFF means the sound is of unlimited length, such as an internet radio stream or MOD/S3M/XM/IT file which may loop forever.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as untagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use <code>FMOD_MODE.ACCURATETIME</code> when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_length(sound_ref, length_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>length_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time unit type to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_num_tags">fmod_sound_get_num_tags</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumtags">Sound::getNumTags</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of metadata tags.</p>
+<p>'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value could be periodically checked to see if new tags are available in certain circumstances. This might be the case with internet based streams (i.e. shoutcast or icecast) where the name of the song or other attributes might change.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_num_tags(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsoundnumtags">FmodSoundNumTags</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_tag">fmod_sound_get_tag</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_gettag">Sound::getTag</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a metadata tag.</p>
+<p>'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.</p>
+<p>The number of tags available can be found with <a href="sound.html#fmod_sound_get_num_tags">fmod_sound_get_num_tags</a>.</p>
+<p>Displaying or retrieving tags can be done in 3 different ways:</p>
+<ul>
+<li>All tags can be continuously retrieved by looping from 0 to the <code>num_tags</code> value in <a href="sound.html#fmod_sound_get_num_tags">fmod_sound_get_num_tags</a> - 1. Updated tags will refresh automatically, and the <code>update</code> member of the <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure will be set to <code>true</code> if a tag has been updated, due to something like a netstream changing the song name for example.</li>
+<li>Tags can be retrieved by specifying -1 as the index and only updating tags that are returned. If all tags are retrieved and this function is called <a href="misc.html#fmod_last_result">fmod_last_result</a> will return an error of <code>FMOD_RESULT.ERR_TAGNOTFOUND</code>.</li>
+<li>Specific tags can be retrieved by specifying a name parameter. The index can be 0 based or -1 in the same fashion as described previously.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With netstreams an important consideration must be made between songs, a tag may occur that changes the playback rate of the song. It is up to the user to catch this and reset the playback rate with <a href="channel.html#fmod_channel_set_frequency">fmod_channel_set_frequency</a>. A sample rate change will be signalled with a tag of type <code>FMOD_TAGTYPE.FMOD</code>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_tag(sound_ref, tag_index, data_buffer)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>tag_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index into the tag list.</td>
+</tr>
+<tr>
+<td>data_buffer</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> in which to store the raw, binary tag data.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsoundtag">FmodSoundTag</a></p>
+</blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p>The following example reads any tags that have arrived, this could happen if a radio station switches to a new song. This loop only runs IF there is an update to the tags.</p>
+<div class="highlight"><pre><span></span><code>var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+while (fmod_last_result() == FMOD_RESULT.OK)
+{
+    // Move cursor to the beginning of the buffer
+    buffer_seek(tag_data_buff, buffer_seek_start, 0);
+
+    if (_tag.data_type == FMOD_TAGDATATYPE.STRING)
+    {
+        var _value = buffer_read(tag_data_buff, buffer_string);
+        tag_strings[tag_index] = $&quot;{_tag.name}: {_value}&quot;;
+        tag_index = (tag_index + 1) % tag_count;
+
+        if (_tag.type == FMOD_TAGTYPE.PLAYLIST &amp;&amp; _tag.name == &quot;FILE&quot;)
+        {
+            var _url = _value;
+            fmod_sound_release(sound_index);
+
+            sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING, extra);
+        }
+    }
+    else if (_tag.type == FMOD_TAGTYPE.FMOD)
+    {
+        // When a song changes, the sample rate may also change, so compensate here.
+        if ((_tag.name == &quot;Sample Rate Change&quot;) &amp;&amp; channel_index != -1)
+        {
+            var _frequency = buffer_read(tag_data_buff, buffer_f32);
+            fmod_channel_set_frequency(channel_index, _frequency);
+        }
+    }
+
+    _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+}
+</code></pre></div>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_3d_cone_settings">fmod_sound_set_3d_cone_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dconesettings">Sound::set3DConeSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.</p>
+<p>When <a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a> is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.</p>
+<ul>
+<li>If the relative angle is within the <code>inside_cone_angle</code>, the sound will not have any attenuation applied.</li>
+<li>If the relative angle is between the <code>inside_cone_angle</code> and <code>outside_cone_angle</code>, linear volume attenuation (between 1 and <code>outside_volume</code>) is applied between the two angles until it reaches the <code>outside_cone_angle</code>.</li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>inside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The inside cone angle, expressed in degrees. This is the angle spread within which the sound is unattenuated. A value in the range [0, 360]. The default is 360.</td>
+</tr>
+<tr>
+<td>outside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The outside cone angle, expressed in degrees. This is the angle spread outside of which the sound is attenuated to its <code>outside_volume</code>. A value in the range [0, 360]. The default is 360.</td>
+</tr>
+<tr>
+<td>outside_volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The cone outside volume. A value in the range [0, 1]. The default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_3d_cone_settings">fmod_sound_get_3d_cone_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dconesettings">Sound::get3DConeSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the inside and outside angles of the 3D projection cone and the outside volume.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_cone_settings(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmod3dconesettings">Fmod3DConeSettings</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_3d_custom_rolloff">fmod_sound_set_3d_custom_rolloff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dcustomrolloff">Sound::set3DCustomRolloff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a custom roll-off shape for 3D distance attenuation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function must be used in conjunction with the <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> flag to be activated.</p>
+</div>
+<p>This function does not duplicate the memory for the points internally. The memory you pass to FMOD must remain valid while in use.</p>
+<p>If <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> is set and the roll-off shape is not set, FMOD will revert to <code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code> roll-off mode.</p>
+<p>When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.</p>
+<p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
+<p>If the points are not sorted by distance, an error will result.</p>
+<div class="highlight"><pre><span></span><code>// Defining a custom array of points
+curve =
+[
+    { x: 0,  y:  1, z: 0 },
+    { x: 2,  y: .2, z: 0 },
+    { x: 2,  y:  0, z: 0 }
+];
+</code></pre></div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_custom_rolloff(sound_ref, points)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>points</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodvector">FmodVector</a></td>
+<td>An array of points sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_3d_custom_rolloff">fmod_sound_get_3d_custom_rolloff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dcustomrolloff">Sound::get3DCustomRolloff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current custom roll-off shape for 3D distance attenuation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_custom_rolloff(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_3d_min_max_distance">fmod_sound_set_3d_min_max_distance</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dminmaxdistance">Sound::set3DMinMaxDistance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the minimum and maximum audible distance for a 3D sound.</p>
+<p>The distances are meant to simulate the 'size' of a sound. Reducing the <code>min</code> distance will mean the sound appears smaller in the world, and in some modes makes the volume attenuate faster as the listener moves away from the sound.
+Increasing the <code>min</code> distance simulates a larger sound in the world, and in some modes makes the volume attenuate slower as the listener moves away from the sound.</p>
+<p><code>max</code> will affect attenuation differently based on roll-off mode set in the mode parameter of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>, <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a> or <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a>.</p>
+<p>For these modes the volume will attenuate to 0 volume (silence), when the distance from the sound is equal to or further than the <code>max</code> distance:</p>
+<ul>
+<li><code>FMOD_MODE.AS_3D_LINEARROLLOFF</code></li>
+<li><code>FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF</code></li>
+</ul>
+<p>For these modes the volume will stop attenuating at the point of the <code>max</code> distance, without affecting the rate of attenuation:</p>
+<ul>
+<li><code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code></li>
+<li><code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code></li>
+</ul>
+<p>For this mode the <code>max</code> distance is ignored:</p>
+<ul>
+<li><code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code></li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_min_max_distance(sound_ref, min, max)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>min</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sound's minimum volume distance, or the distance that the sound has no attenuation due to 3D positioning. The default value is 1.</td>
+</tr>
+<tr>
+<td>max</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sound's maximum volume distance, or the distance that no additional attenuation will occur. See the description for notes on different max distance behaviors. The default value is 10000.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_3d_min_max_distance">fmod_sound_get_3d_min_max_distance</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dminmaxdistance">Sound::get3DMinMaxDistance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the minimum and maximum audible distance for a 3D sound.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_min_max_distance(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodminmaxdistance">FmodMinMaxDistance</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_defaults">fmod_sound_set_defaults</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setdefaults">Sound::setDefaults</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a sound's default playback attributes.</p>
+<p>When the Sound is played it will use these values without having to specify them later on a per Channel basis.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_defaults(sound_ref, frequency, priority)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default playback frequency, in Hertz. The default is 48000.</td>
+</tr>
+<tr>
+<td>priority</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default priority where 0 is the highest priority. A value in the range [0, 256]. The default is 128.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_defaults">fmod_sound_get_defaults</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getdefaults">Sound::getDefaults</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a sound's default playback attributes.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_defaults(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsounddefaults">FmodSoundDefaults</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_mode">fmod_sound_set_mode</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmode">Sound::setMode</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets or alters the mode of a sound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When calling this function, note that it will only take effect when the sound is played again with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a>. This is the default for when the sound next plays, not a mode that will suddenly change all currently playing instances of this sound.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing the mode on an already buffered stream may not produced desired output. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues">Streaming Issues</a>.</p>
+</div>
+<p>Flags supported:</p>
+<p><code>FMOD_MODE.LOOP_OFF</code>
+<code>FMOD_MODE.LOOP_NORMAL</code>
+<code>FMOD_MODE.LOOP_BIDI</code>
+<code>FMOD_MODE.AS_3D_HEADRELATIVE</code>
+<code>FMOD_MODE.AS_3D_WORLDRELATIVE</code>
+<code>FMOD_MODE.AS_2D</code>
+ <code>* FMOD_MODE.AS_3D</code>
+<code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code>
+<code>FMOD_MODE.AS_3D_LINEARROLLOFF</code>
+<code>FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF</code>
+<code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code>
+<code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code>
+<code>FMOD_MODE.AS_3D_IGNOREGEOMETRY</code></p>
+<p>If <code>FMOD_MODE.AS_3D_IGNOREGEOMETRY</code> is not specified, the flag will be cleared if it was specified previously.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_mode(sound_ref, mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_mode">FMOD_MODE</a></td>
+<td>The mode bits to set. The default is <code>FMOD_MODE.DEFAULT</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_mode">fmod_sound_get_mode</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmode">Sound::getMode</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the mode of a sound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The mode will be dependent on the mode set by a call to <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>, <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_mode(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_mode">FMOD_MODE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_loop_count">fmod_sound_set_loop_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setloopcount">Sound::setLoopCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the sound to loop a specified number of times before stopping if the playback mode is set to looping.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing the loop count on an already buffered stream may not produced desired output. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues">Streaming Issues</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_loop_count(sound_ref, count)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>count</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of times to loop before final playback where -1 is always loop. 0 means no loop. Default is -1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_loop_count">fmod_sound_get_loop_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getloopcount">Sound::getLoopCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the sound's loop count.</p>
+<p>The value -1 is returned when the sound loops infinitely. The value 0 means don't loop.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike the <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> loop count function, this function simply returns the value set with <a href="sound.html#fmod_sound_set_loop_count">fmod_sound_set_loop_count</a>. It does not decrement as it plays (especially seeing as one sound can be played multiple times).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_loop_count(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_loop_points">fmod_sound_set_loop_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setlooppoints">Sound::setLoopPoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the loop points within a sound.</p>
+<p>The values used for <code>loop_start</code> and <code>loop_end</code> are inclusive, which means these positions will be played.</p>
+<p>If a <code>loop_end</code> is smaller or equal to <code>loop_start</code> an error will be returned. The same will happen for any values that are equal or greater than the length of the sound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing loop points on an already buffered stream may not produced desired output. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues">Streaming Issues</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>'s mode must be set to <code>FMOD_MODE.LOOP_NORMAL</code> or <code>FMOD_MODE.LOOP_BIDI</code> for loop points to affect playback.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>loop_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop start point. A value in the range [0, <code>loop_end</code>].</td>
+</tr>
+<tr>
+<td>loop_start_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time format of <code>loop_start</code>.</td>
+</tr>
+<tr>
+<td>loop_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop end point. A value in the range [<code>loop_start</code>, <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a>].</td>
+</tr>
+<tr>
+<td>loop_end_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time format of <code>loop_end</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_loop_points">fmod_sound_get_loop_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getlooppoints">Sound::getLoopPoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the loop points for a sound.</p>
+<p>The values from <code>loop_start</code> and <code>loop_end</code> are inclusive, which means these positions will be played.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>loop_start_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time format in which to return <code>loop_start</code>.</td>
+</tr>
+<tr>
+<td>loop_end_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time format in which to return <code>loop_end</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodlooppoints">FmodLoopPoints</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_sound_group">fmod_sound_set_sound_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setsoundgroup">Sound::setSoundGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function moves the sound from its existing SoundGroup to the specified sound group.</p>
+<p>By default, a sound is located in the 'master sound group'. This can be retrieved with <a href="system.html#fmod_system_get_master_sound_group">fmod_system_get_master_sound_group</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_sound_group(sound_ref, sound_group_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>sound_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">sound group</a> to move the sound to.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_sound_group">fmod_sound_get_sound_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsoundgroup">Sound::getSoundGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the sound's current <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">sound group</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_sound_group(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_num_sub_sounds">fmod_sound_get_num_sub_sounds</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumsubsounds">Sound::getNumSubSounds</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of subsounds stored within a sound.</p>
+<p>A format that has subsounds is a container format, such as FSB, DLS, MOD, S3M, XM, IT.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_num_sub_sounds(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_sub_sound">fmod_sound_get_sub_sound</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsubsound">Sound::getSubSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a handle to a Sound object that is contained within the parent sound.</p>
+<p>If the sound is a stream and <code>FMOD_MODE.NONBLOCKING</code> was not used, then this call will perform a blocking seek/flush to the specified subsound.</p>
+<p>If <code>FMOD_MODE.NONBLOCKING</code> was used to open this sound and the sound is a stream, FMOD will do a non blocking seek/flush and set the state of the subsound to <code>FMOD_OPENSTATE.SEEKING</code>.</p>
+<p>The sound won't be ready to be used when <code>FMOD_MODE.NONBLOCKING</code> is used, until the state of the sound becomes <code>FMOD_OPENSTATE.READY</code> or <code>FMOD_OPENSTATE.ERROR</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_sub_sound(sound_ref, sub_sound_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>sub_sound_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the subsound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_sub_sound_parent">fmod_sound_get_sub_sound_parent</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsubsoundparent">Sound::getSubSoundParent</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the parent Sound object that contains this subsound.</p>
+<p>If the sound is not a subsound, the value returned will be 0.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_sub_sound_parent(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_open_state">fmod_sound_get_open_state</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getopenstate">Sound::getOpenState</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.</p>
+<p>When a sound is opened with <code>FMOD_MODE.NONBLOCKING</code>, it is opened and prepared in the background, or asynchronously. This allows the main application to execute without stalling on audio loads.
+This function will describe the state of the asynchronous load routine i.e. whether it has succeeded, failed or is still in progress.</p>
+<p>If <code>starving</code> is true, then you will most likely hear a stuttering/repeating sound as the decode buffer loops on itself and replays old data.
+With the ability to detect stream starvation, muting the sound with <a href="channel_control.html#fmod_channel_control_set_mute">fmod_channel_control_set_mute</a> will keep the stream quiet until it is not starving anymore.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always check <code>open_state</code> to determine the state of the sound. Do not assume that if this function returns <code>FMOD_RESULT.OK</code> then the sound has finished loading.</p>
+</div>
+<p>See also: <a href="constants.html#fmod_mode">FMOD_MODE</a></p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_open_state(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_read_data">fmod_sound_read_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_readdata">Sound::readData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function reads data from an opened sound to a specified <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>, using FMOD's internal codecs.</p>
+<p>It returns the actual number of bytes written to the buffer or -1 in case of an error.</p>
+<p>This can be used for decoding data offline in small pieces (or big pieces), rather than playing and capturing it, or loading the whole file at once and having to <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a> / <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> the data.</p>
+<p>If you read too much data, it is possible that <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_FILE_EOF</code>, meaning it is out of data. The returned 'read' parameter will reflect this by returning a smaller number of bytes read than was requested.</p>
+<p>As a non streaming sound reads and decodes the whole file then closes it upon calling <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>, <a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a> will then not work because the file handle is closed. Use <code>FMOD_MODE.OPENONLY</code> to stop FMOD reading/decoding the file.
+If <code>FMOD_MODE.OPENONLY</code> flag is used when opening a sound, it will leave the file handle open, and FMOD will not read/decode any data internally, so the read cursor will stay at position 0. This will allow the user to read the data from the start.</p>
+<p>For streams, the streaming engine will decode a small chunk of data and this will advance the read cursor. You need to either use <code>FMOD_MODE.OPENONLY</code> to stop the stream pre-buffering or call <a href="sound.html#fmod_sound_seek_data">fmod_sound_seek_data</a> to reset the read cursor back to the start of the file, otherwise it will appear as if the start of the stream is missing.
+<a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a> will have the same result. These functions will flush the stream buffer and read in a chunk of audio internally. This is why if you want to read from an absolute position you should use <a href="sound.html#fmod_sound_seek_data">fmod_sound_seek_data</a> and not the previously mentioned functions.</p>
+<p>If you are calling <a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a> and <a href="sound.html#fmod_sound_seek_data">fmod_sound_seek_data</a> on a stream, information functions such as <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> may give misleading results. Calling <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> will cause the streaming engine to reset and flush the stream, leading to the time values returning to their correct position.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_read_data(sound_ref, buff, length, offset)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>buff</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> to read the decoded data into.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data to read into the buffer, in bytes.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset in the buffer, in bytes, to write the data.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_seek_data">fmod_sound_seek_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_seekdata">Sound::seekData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function seeks a sound for use with data reading, using FMOD's internal codecs.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is for use in conjunction with <a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a> and <code>FMOD_MODE.OPENONLY</code>.</p>
+</div>
+<p>For streaming sounds, if this function is called, it will advance the internal file pointer but not update the streaming engine. This can lead to de-synchronization of position information for the stream and audible playback.</p>
+<p>A stream can reset its stream buffer and position synchronization by calling <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. This causes reset and flush of the stream buffer.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_seek_data(sound_ref, pcm)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>pcm</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The seek offset, in samples.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_lock">fmod_sound_lock</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_lock">Sound::lock</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function gives access to a portion or all the sample data of a sound for direct manipulation.</p>
+<p>With this function you get access to the raw audio data. If the data is 8, 16, 24 or 32bit PCM data, mono or stereo data, you must take this into consideration when processing the data. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sample-data">Sample Data</a> for more information.</p>
+<p>The locked data is copied to the buffers that you pass to the function. This can be two buffers as the data may "wrap around" to the start of the sound.
+The first buffer will always store the data up to the end of the sound. The second will store the remainder, starting at the start of the sound.
+If the range of data you want to copy doesn't exceed the length of the sound the second buffer will have no data written to it.</p>
+<p>You can lock multiple regions of data of a sound at the same time, but you should make sure the regions don't overlap.
+If some bytes are locked by multiple calls to this function, they will remain locked after you make all corresponding calls to <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a>.</p>
+<blockquote>
+<p>Important</p>
+<p>You must always unlock the data again after you have finished with it, using <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a>.</p>
+</blockquote>
+<p>If the sound is created with <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> the data retrieved will be the compressed bitstream.</p>
+<p>It is not possible to lock the following:</p>
+<ul>
+<li>A parent sound containing subsounds. A parent sound has no audio data and <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_SUBSOUNDS</code>.</li>
+<li>A stream / sound created with <code>FMOD_MODE.CREATESTREAM</code>. <code>FMOD_RESULT.ERR_BADCOMMAND</code> will be returned by <a href="misc.html#fmod_last_result">fmod_last_result</a> in this case.</li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_lock(sound_ref, offset, length, buff1, buff2)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset into the sound's buffer to be retrieved, in bytes.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data required to be retrieved.</td>
+</tr>
+<tr>
+<td>buff1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The buffer to write the first part of the locked data to.</td>
+</tr>
+<tr>
+<td>buff2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The buffer to write the second part of the locked data to. This will only be written to if the <code>offset</code> + <code>length</code> has exceeded the length of the sample buffer.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsoundlock">FmodSoundLock</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_unlock">fmod_sound_unlock</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_unlock">Sound::unlock</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function finalizes a previous sample data lock and submits it back to the Sound object.</p>
+<p>The data being 'unlocked' must first have been locked with <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If an unlock is not performed on PCM data, then sample loops may produce audible clicks.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>buff1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The first buffer passed to an earlier call to <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>.</td>
+</tr>
+<tr>
+<td>len1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data in the first buffer, in bytes.</td>
+</tr>
+<tr>
+<td>address1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <code>patch_address</code> of <code>buffer1</code>'s corresponding chunck in FMOD memory, as returned by an earlier call to <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>.</td>
+</tr>
+<tr>
+<td>buff2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>OPTIONAL The second buffer passed to an earlier call to <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>.</td>
+</tr>
+<tr>
+<td>len2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>OPTIONAL The length of the data in the second buffer, in bytes.</td>
+</tr>
+<tr>
+<td>address2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>OPTIONAL The <code>patch_address</code> of <code>buffer2</code>'s corresponding chunck in FMOD memory, as returned by an earlier call to <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_music_num_channels">fmod_sound_get_music_num_channels</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicnumchannels">Sound::getMusicNumChannels</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function gets the number of music channels inside a MOD/S3M/XM/IT/MIDI file.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_music_num_channels(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_music_channel_volume">fmod_sound_set_music_channel_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmusicchannelvolume">Sound::setMusicChannelVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the volume of a MOD/S3M/XM/IT/MIDI music channel volume.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>channel_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The MOD/S3M/XM/IT/MIDI music subchannel to set a linear volume for.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume of the channel. A value in the range [0, 1]. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_music_channel_volume">fmod_sound_get_music_channel_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicchannelvolume">Sound::getMusicChannelVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the volume of a MOD/S3M/XM/IT/MIDI music channel volume.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_music_channel_volume(sound_ref, channel_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>channel_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The MOD/S3M/XM/IT/MIDI music subchannel to retrieve the volume for.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_music_speed">fmod_sound_set_music_speed</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmusicspeed">Sound::setMusicSpeed</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the relative speed of MOD/S3M/XM/IT/MIDI music.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_music_speed(sound_ref, speed)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The speed of the song. A value in the range [0.01, 100]. The default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_music_speed">fmod_sound_get_music_speed</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicspeed">Sound::getMusicSpeed</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function gets the relative speed of MOD/S3M/XM/IT/MIDI music.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_music_speed(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_sync_point">fmod_sound_get_sync_point</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsyncpoint">Sound::getSyncPoint</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a sync point.</p>
+<p>For more information on sync points see <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sync-points">Sync Points</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_sync_point(sound_ref, point_index, offset_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>point_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the sync point. A value in the range [0, <a href="sound.html#fmod_sound_get_num_sync_points">fmod_sound_get_num_sync_points</a> - 1].</td>
+</tr>
+<tr>
+<td>offset_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The format in which to return the sync point offset.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsyncpoint">FmodSyncPoint</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_num_sync_points">fmod_sound_get_num_sync_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumsyncpoints">Sound::getNumSyncPoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of sync points stored within a sound.</p>
+<p>For more information on sync points see <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sync-points">Sync Points</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_num_sync_points(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_add_sync_point">fmod_sound_add_sync_point</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_addsyncpoint">Sound::addSyncPoint</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a sync point at a specific time within the sound.</p>
+<p>For more information on sync points see <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sync-points">Sync Points</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_add_sync_point(sound_ref, offset, offset_type, name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset value.</td>
+</tr>
+<tr>
+<td>offset_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The <code>offset</code> unit type.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The sync point name.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_delete_sync_point">fmod_sound_delete_sync_point</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_deletesyncpoint">Sound::deleteSyncPoint</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function deletes a sync point within the sound.</p>
+<p>For more information on sync points see <a href="https://www.fmod.com/docs/2.02/api/glossary.html#sync-points">Sync Points</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_delete_sync_point(sound_ref, point_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>point_index</td>
+<td><a href="structs.html#fmodsyncpoint">FmodSyncPoint</a></td>
+<td>The sync point.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_release">fmod_sound_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_release">Sound::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function frees a sound object.</p>
+<p>This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.</p>
+<p>If the sound was opened with <code>FMOD_MODE.NONBLOCKING</code> and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> and checking the open state for <code>FMOD_OPENSTATE.READY</code> and <code>FMOD_OPENSTATE.ERROR</code> is a good way to avoid stalls.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_release(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_system_object">fmod_sound_get_system_object</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsystemobject">Sound::getSystemObject</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the parent System object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_system_object(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_set_user_data">fmod_sound_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setuserdata">Sound::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a floating-point user value associated with this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_set_user_data(sound_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The value to be stored on this object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_sound_get_user_data">fmod_sound_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getuserdata">Sound::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a user value associated with this object, set with <a href="sound.html#fmod_sound_set_user_data">fmod_sound_set_user_data</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_sound_get_user_data(sound_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="reverb_3d.html" class="btn btn-neutral float-left" title="Reverb3D"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="sound_group.html" class="btn btn-neutral float-right" title="Sound Group">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="reverb_3d.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="sound_group.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

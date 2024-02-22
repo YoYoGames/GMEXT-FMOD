@@ -1,0 +1,3211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>System - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "System";
+        var mkdocs_page_input_path = "system.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="system.html">System</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">System</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/system.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="system"><strong>System</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds functionality related to FMOD's System object, which is a management object from which all resources are created and played.</p>
+<p>Create this object with <a href="system.html#fmod_system_create">fmod_system_create</a>.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="system.html#fmod_system_create">fmod_system_create</a></li>
+<li><a href="system.html#fmod_system_select">fmod_system_select</a></li>
+<li><a href="system.html#fmod_system_count">fmod_system_count</a></li>
+<li><a href="system.html#fmod_system_init">fmod_system_init</a></li>
+<li><a href="system.html#fmod_system_release">fmod_system_release</a></li>
+<li><a href="system.html#fmod_system_close">fmod_system_close</a></li>
+<li><a href="system.html#fmod_system_update">fmod_system_update</a></li>
+<li><a href="system.html#fmod_system_mixer_suspend">fmod_system_mixer_suspend</a></li>
+<li><a href="system.html#fmod_system_mixer_resume">fmod_system_mixer_resume</a></li>
+<li><a href="system.html#fmod_system_set_output">fmod_system_set_output</a></li>
+<li><a href="system.html#fmod_system_get_output">fmod_system_get_output</a></li>
+<li><a href="system.html#fmod_system_get_num_drivers">fmod_system_get_num_drivers</a></li>
+<li><a href="system.html#fmod_system_get_driver_info">fmod_system_get_driver_info</a></li>
+<li><a href="system.html#fmod_system_set_driver">fmod_system_set_driver</a></li>
+<li><a href="system.html#fmod_system_get_driver">fmod_system_get_driver</a></li>
+<li><a href="system.html#fmod_system_set_software_channels">fmod_system_set_software_channels</a></li>
+<li><a href="system.html#fmod_system_get_software_channels">fmod_system_get_software_channels</a></li>
+<li><a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a></li>
+<li><a href="system.html#fmod_system_get_software_format">fmod_system_get_software_format</a></li>
+<li><a href="system.html#fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size</a></li>
+<li><a href="system.html#fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</a></li>
+<li><a href="system.html#fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</a></li>
+<li><a href="system.html#fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size</a></li>
+<li><a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a></li>
+<li><a href="system.html#fmod_system_get_advanced_settings">fmod_system_get_advanced_settings</a></li>
+<li><a href="system.html#fmod_system_set_speaker_position">fmod_system_set_speaker_position</a></li>
+<li><a href="system.html#fmod_system_get_speaker_position">fmod_system_get_speaker_position</a></li>
+<li><a href="system.html#fmod_system_set_3d_settings">fmod_system_set_3d_settings</a></li>
+<li><a href="system.html#fmod_system_get_3d_settings">fmod_system_get_3d_settings</a></li>
+<li><a href="system.html#fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</a></li>
+<li><a href="system.html#fmod_system_get_3d_num_listeners">fmod_system_get_3d_num_listeners</a></li>
+<li><a href="system.html#fmod_system_set_3d_rolloff_callback">fmod_system_set_3d_rolloff_callback</a></li>
+<li><a href="system.html#fmod_system_set_network_proxy">fmod_system_set_network_proxy</a></li>
+<li><a href="system.html#fmod_system_get_network_proxy">fmod_system_get_network_proxy</a></li>
+<li><a href="system.html#fmod_system_set_network_timeout">fmod_system_set_network_timeout</a></li>
+<li><a href="system.html#fmod_system_get_network_timeout">fmod_system_get_network_timeout</a></li>
+<li><a href="system.html#fmod_system_get_version">fmod_system_get_version</a></li>
+<li><a href="system.html#fmod_system_get_channels_playing">fmod_system_get_channels_playing</a></li>
+<li><a href="system.html#fmod_system_get_cpu_usage">fmod_system_get_cpu_usage</a></li>
+<li><a href="system.html#fmod_system_get_file_usage">fmod_system_get_file_usage</a></li>
+<li><a href="system.html#fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix</a></li>
+<li><a href="system.html#fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels</a></li>
+<li><a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a></li>
+<li><a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a></li>
+<li><a href="system.html#fmod_system_create_dsp">fmod_system_create_dsp</a></li>
+<li><a href="system.html#fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</a></li>
+<li><a href="system.html#fmod_system_create_channel_group">fmod_system_create_channel_group</a></li>
+<li><a href="system.html#fmod_system_create_sound_group">fmod_system_create_sound_group</a></li>
+<li><a href="system.html#fmod_system_create_reverb_3d">fmod_system_create_reverb_3d</a></li>
+<li><a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a></li>
+<li><a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a></li>
+<li><a href="system.html#fmod_system_get_channel">fmod_system_get_channel</a></li>
+<li><a href="system.html#fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</a></li>
+<li><a href="system.html#fmod_system_get_master_sound_group">fmod_system_get_master_sound_group</a></li>
+<li><a href="system.html#fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</a></li>
+<li><a href="system.html#fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</a></li>
+<li><a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a></li>
+<li><a href="system.html#fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</a></li>
+<li><a href="system.html#fmod_system_attach_channel_group_to_port">fmod_system_attach_channel_group_to_port</a></li>
+<li><a href="system.html#fmod_system_detach_channel_group_from_port">fmod_system_detach_channel_group_from_port</a></li>
+<li><a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a></li>
+<li><a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a></li>
+<li><a href="system.html#fmod_system_get_record_position">fmod_system_get_record_position</a></li>
+<li><a href="system.html#fmod_system_record_start">fmod_system_record_start</a></li>
+<li><a href="system.html#fmod_system_record_stop">fmod_system_record_stop</a></li>
+<li><a href="system.html#fmod_system_is_recording">fmod_system_is_recording</a></li>
+<li><a href="system.html#fmod_system_create_geometry">fmod_system_create_geometry</a></li>
+<li><a href="system.html#fmod_system_set_geometry_settings">fmod_system_set_geometry_settings</a></li>
+<li><a href="system.html#fmod_system_get_geometry_settings">fmod_system_get_geometry_settings</a></li>
+<li><a href="system.html#fmod_system_load_geometry">fmod_system_load_geometry</a></li>
+<li><a href="system.html#fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</a></li>
+<li><a href="system.html#fmod_system_lock_dsp">fmod_system_lock_dsp</a></li>
+<li><a href="system.html#fmod_system_unlock_dsp">fmod_system_unlock_dsp</a></li>
+<li><a href="system.html#fmod_system_set_callback">fmod_system_set_callback</a></li>
+<li><a href="system.html#fmod_system_set_user_data">fmod_system_set_user_data</a></li>
+<li><a href="system.html#fmod_system_get_user_data">fmod_system_get_user_data</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create">fmod_system_create</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_create">System_Create</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates an instance of the FMOD system.</p>
+<p>It must be called first to create an FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a> object before any other API calls (except for <a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a>). Use this function to create 1 or multiple instances of FMOD System objects.</p>
+<p>If the new FMOD system is created successfully, the function returns a reference to the system and makes it the <em>selected</em> system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All function calls that you make to the <code>fmod_system_*</code> functions work on the selected system. You can call <a href="system.html#fmod_system_select">fmod_system_select</a> to change this.</p>
+</div>
+<p>Use <a href="system.html#fmod_system_release">fmod_system_release</a> to free the system object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_select">fmod_system_select</h1>
+<p>This function selects the FMOD system the <code>fmod_system_*</code> functions work on.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_select(system_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reference to the system to be selected.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_count">fmod_system_count</h1>
+<p>This function returns the number of FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">Systems</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every successful call to <a href="system.html#fmod_system_create">fmod_system_create</a> creates an instance of an FMOD system object that's included in the count.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_count()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_init">fmod_system_init</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_init">System::init</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function initializes the system object and prepares FMOD for playback.</p>
+<blockquote>
+<p>Important</p>
+<p>A system object must first be created with <a href="system.html#fmod_system_create">fmod_system_create</a>.</p>
+</blockquote>
+<p>Most API functions require an initialized System object before they will succeed, otherwise they will return <code>FMOD_RESULT.ERR_UNINITIALIZED</code>. Some can only be called before initialization. These are:</p>
+<ul>
+<li><a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a></li>
+<li><a href="system.html#fmod_system_set_software_channels">fmod_system_set_software_channels</a></li>
+<li><a href="system.html#fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="system.html#fmod_system_set_output">fmod_system_set_output</a> can be called before or after <a href="system.html#fmod_system_init">fmod_system_init</a> on Android, GameCore, UWP, Windows and Mac. Other platforms can only call this before <a href="system.html#fmod_system_init">fmod_system_init</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_init(max_channels, flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_init">FMOD_INIT</a></td>
+<td>The initialization flags. More than one mode can be set at once by combining them with the OR operator.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_release">fmod_system_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_release">System::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function closes and frees the given FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a> object and its resources.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will internally call <a href="system.html#fmod_system_close">fmod_system_close</a>, so calling <a href="system.html#fmod_system_close">fmod_system_close</a> before this function is not necessary.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_release()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_close">fmod_system_close</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_close">System::close</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function close the connections to the output and returns to an uninitialized state without releasing the object.</p>
+<p>Closing renders FMOD objects created with this System invalid. You should make sure any <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a>, <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> objects are released before calling this.</p>
+<p>All pre-initialize configuration settings will remain and the System can be reinitialized as needed.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_close(system_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a system.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_update">fmod_system_update</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_update">System::update</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function updates the FMOD system.</p>
+<blockquote>
+<p>Important</p>
+<p>This function updates the <em>selected</em> system. To update another FMOD system instance use <a href="system.html#fmod_system_select">fmod_system_select</a> to select it and call <a href="system.html#fmod_system_update">fmod_system_update</a> again.</p>
+</blockquote>
+<p>It should be called once per frame in your application (for example in a <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Events.htm">Step event</a>) to perform actions such as:</p>
+<ul>
+<li>Panning and reverb from 3D attributes changes.</li>
+<li>The virtualization of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> based on their audibility.</li>
+<li>Mixing for non-realtime output types. See comment below.</li>
+<li>Streaming if using <code>FMOD_INIT.STREAM_FROM_UPDATE</code>.</li>
+<li>Mixing if using <code>FMOD_INIT.MIX_FROM_UPDATE</code>.</li>
+<li>Firing callbacks that are deferred until update.</li>
+<li>DSP cleanup.</li>
+</ul>
+<p>If <code>FMOD_OUTPUTTYPE.NOSOUND_NRT</code> or <code>FMOD_OUTPUTTYPE.WAVWRITER_NRT</code> output modes are used, this function also drives the software / DSP engine, instead of it running asynchronously in a thread as is the default behavior.
+This can be used for faster than realtime updates to the decoding or DSP engine which might be useful if the output is the wav writer for example.</p>
+<p>If <code>FMOD_INIT.STREAM_FROM_UPDATE</code> is used, this function will update the stream engine. Combining this with the non realtime output will mean smoother captured output.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_update()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_mixer_suspend">fmod_system_mixer_suspend</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixersuspend">System::mixerSuspend</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function suspends the mixer thread and relinquishes usage of audio hardware while maintaining internal state.</p>
+<p>It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.</p>
+<p>All internal state will be maintained, i.e. created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> will stay available in memory.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_mixer_suspend()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_mixer_resume">fmod_system_mixer_resume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixerresume">System::mixerResume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function resumes the mixer thread and reacquires access to audio hardware.</p>
+<p>It is used on mobile platforms when entering the foreground after being suspended.</p>
+<p>All internal state will resume, i.e. created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> are still valid and playback will continue.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_mixer_resume()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_output">fmod_system_set_output</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setoutput">System::setOutput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the type of output interface used to run the mixer.</p>
+<p>The function is typically used to select between different OS-specific audio APIs which may have different features.</p>
+<p>It is only necessary to call this function if you want to specifically switch away from the default output mode for the operating system. The most optimal mode is selected by default for the operating system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>(Windows, UWP, GameCore, Android, MacOS, iOS, Linux Only) This function can be called after <a href="system.html#fmod_system_init">fmod_system_init</a> to perform special handling of driver disconnections, see <code>FMOD_SYSTEM_CALLBACK.DEVICELISTCHANGED</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the Studio API, switching to an NRT (non-realtime) output type after FMOD is already initialized will not behave correctly unless the Studio API was initialized with <code>FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE</code>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_output(output)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>output</td>
+<td><a href="constants.html#fmod_outputtype">FMOD_OUTPUTTYPE</a></td>
+<td>The output type.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_output">fmod_system_get_output</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getoutput">System::getOutput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the type of output interface used to run the mixer.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_output()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_outputtype">FMOD_OUTPUTTYPE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_num_drivers">fmod_system_get_num_drivers</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnumdrivers">System::getNumDrivers</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of output drivers available for the selected output type.</p>
+<p>If <a href="system.html#fmod_system_set_output">fmod_system_set_output</a> has not been called, this function will return the number of drivers available for the default output type.
+A possible use for this function is to iterate through available sound devices for the current output type, and use <a href="system.html#fmod_system_get_driver_info">fmod_system_get_driver_info</a> to get the device's name and other attributes.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_num_drivers()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_driver_info">fmod_system_get_driver_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriverinfo">System::getDriverInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves identification information about a sound device specified by its index, and specific to the selected output mode.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_driver_info(driver_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>driver_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the sound driver device. A value in the range [0, <a href="system.html#fmod_system_get_num_drivers">fmod_system_get_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemdriverinfo">FmodSystemDriverInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_driver">fmod_system_set_driver</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdriver">System::setDriver</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the output driver for the selected output type.</p>
+<p>When an output type has more than one driver available, this function can be used to select between them.</p>
+<p>If this function is called after <a href="system.html#fmod_system_init">fmod_system_init</a>, the current driver will be shutdown and the newly selected driver will be initialized / started.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_driver(driver)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>driver</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The driver index where 0 represents the default for the output type. A value in the range [0, <a href="system.html#fmod_system_get_num_drivers">fmod_system_get_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_driver">fmod_system_get_driver</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriver">System::getDriver</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the output driver for the selected output type.</p>
+<p>It returns the driver index where 0 represents the default for the output type.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_driver()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_software_channels">fmod_system_set_software_channels</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwarechannels">System::setSoftwareChannels</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the maximum number of software mixed <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> possible.</p>
+<p>This function cannot be called after FMOD is already activated, it must be called before <a href="system.html#fmod_system_init">fmod_system_init</a>, or after <a href="system.html#fmod_system_close">fmod_system_close</a>.
+'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_software_channels(software_channels)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>software_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of real Channels to be allocated by FMOD. The default is 64.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_software_channels">fmod_system_get_software_channels</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwarechannels">System::getSoftwareChannels</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the maximum number of software mixed Channels possible.</p>
+<p>'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_software_channels()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_software_format">fmod_system_set_software_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwareformat">System::setSoftwareFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the output format for the software mixer.</p>
+<p>If loading Studio banks, this must be called with <code>speaker_mode</code> corresponding to the project output format if there is a possibility of the output audio device not matching the project format. Any differences between the project format and <code>speaker_mode</code> will cause the mix to sound wrong.</p>
+<p>By default, <code>speaker_mode</code> will assume the setup the OS / output prefers.</p>
+<p>Altering the <code>sample_rate</code> from the OS / output preferred rate may incur extra latency. Altering the <code>speaker_mode</code> from the OS / output preferred mode may cause an upmix/downmix which can alter the sound.</p>
+<p>On lower power platforms such as mobile <code>sample_rate</code> will default to 24kHz to reduce CPU cost.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function must be called before <a href="system.html#fmod_system_init">fmod_system_init</a>, or after <a href="system.html#fmod_system_close">fmod_system_close</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_speakers)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sample_rate</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sample rate of the mixer, in Hertz. A value in the range [8000, 192000]. Default is 48000.</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker setup of the mixer.</td>
+</tr>
+<tr>
+<td>num_raw_speakers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of speakers for <code>FMOD_SPEAKERMODE.RAW</code> mode.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_software_format">fmod_system_get_software_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwareformat">System::getSoftwareFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the output format for the software mixer.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_software_format()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemsoftwareformat">FmodSystemSoftwareFormat</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdspbuffersize">System::setDSPBufferSize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the buffer size for the FMOD software mixing engine.</p>
+<p>This function is used if you need to control mixer latency or granularity. Smaller buffer sizes lead to smaller latency, but can lead to stuttering/skipping/unstable sound on slower machines or soundcards with bad drivers.</p>
+<p>To get the buffer size in milliseconds, divide it by the output rate and multiply the result by 1000. For a <code>buff_size</code> of 1024 and an output rate of 48kHz (see <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>), milliseconds = 1024 / 48000 * 1000 = 21.33ms. This means the mixer updates every 21.33ms.</p>
+<p>To get the total buffer size multiply the <code>buff_size</code> by the <code>num_buffers</code> value. By default this would be 4 * 1024 = 4096 samples, or 4 * 21.33ms = 85.33ms. This would generally be the total latency of the software mixer, but in reality due to one of the buffers being written to constantly, and the cursor position of the buffer that is audible, the latency is typically more like the (number of buffers - 1.5) multiplied by the buffer length.</p>
+<p>To convert from milliseconds back to 'samples', simply multiply the value in milliseconds by the sample rate of the output (i.e. 48000 if that is what it is set to), then divide by 1000.</p>
+<p>The FMOD software mixer mixes to a ringbuffer (a <code>buffer_wrap</code> <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> in GameMaker). The size of this ringbuffer is determined here. It mixes a block of sound data every 'bufferlength' number of samples, and there are <code>num_buffers</code> number of these blocks that make up the entire ringbuffer. Adjusting these values can lead to extremely low latency performance (smaller values), or greater stability in sound output (larger values).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>buff_size</code> is generally best left alone. Making the granularity smaller will just increase CPU usage (cache misses and DSP network overhead). Making it larger affects how often you hear commands update such as volume/pitch/pan changes. Anything above 20ms will be noticeable and sound parameter changes will be obvious instead of smooth.</p>
+</div>
+<p>FMOD chooses the most optimal size by default for best stability, depending on the output type. It is not recommended changing this value unless you really need to. You may get worse performance than the default settings chosen by FMOD. If you do set the size manually, the <code>buff_size</code> argument must be a multiple of four, typically 256, 480, 512, 1024 or 2048 depending on your latency requirements.</p>
+<p>The values in milliseconds and average latency expected from the settings can be calculated using the following code:</p>
+<div class="highlight"><pre><span></span><code>var _dsp_buffer_info = fmod_system_get_dsp_buffer_size();
+var _sw_format_info = fmod_system_get_software_format();
+// Note that you can check for errors here with two calls to fmod_last_result(), one after each function.
+
+var _buff_size = _dsp_buffer_info.buff_size;
+var _num_buffers = _dsp_buffer_info.num_buffers;
+var _sample_rate = _sw_format_info.sample_rate;
+
+var _ms = dsp_buffer_info.buff_size * 1000 / _sample_rate;
+
+show_debug_message(&quot;Mixer buffer size       = {0}&quot;, _ms);
+show_debug_message(&quot;Mixer Total buffer size = {0}&quot;, _ms * _num_buffers);
+show_debug_message(&quot;Mixer Average Latency   = {0}&quot;, _ms * (_num_buffers - 1.5));
+</code></pre></div>
+<ul>
+<li>This function cannot be called after FMOD is already activated with <a href="system.html#fmod_system_init">fmod_system_init</a>.</li>
+<li>The function must be called before <a href="system.html#fmod_system_init">fmod_system_init</a>, or after <a href="system.html#fmod_system_close">fmod_system_close</a>.</li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_dsp_buffer_size(buff_size, num_buffers)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buff_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The mixer engine block size, in samples. The default is 1024. Use this to adjust mixer update granularity. See the description for more information on buffer length vs latency.</td>
+</tr>
+<tr>
+<td>num_buffers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The mixer engine number of buffers used. The default is 4. Use this to adjust mixer latency. See the description for more information on number of buffers vs latency.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdspbuffersize">System::getDSPBufferSize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the buffer size settings for the FMOD software mixing engine.</p>
+<p>To get the <code>buff_size</code> in milliseconds, divide it by the output rate and multiply the result by 1000. For a <code>buff_size</code> of 1024 and an output rate of 48kHz (see <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>), milliseconds = 1024 / 48000 * 1000 = 21.33ms. This means the mixer updates every 21.33ms.</p>
+<p>To get the total buffer size multiply the <code>buff_size</code> by the <code>num_buffers</code> value. By default this would be 41024 = 4096 samples, or 421.33ms = 85.33ms. This would generally be the total latency of the software mixer, but in reality due to one of the buffers being written to constantly, and the cursor position of the buffer that is audible, the latency is typically more like the (number of buffers - 1.5) multiplied by the buffer length.</p>
+<p>To convert from milliseconds back to 'samples', simply multiply the value in milliseconds by the sample rate of the output (i.e. 48000 if that is what it is set to), then divide by 1000.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_dsp_buffer_size()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemdspbuffersize">FmodSystemDSPBufferSize</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setstreambuffersize">System::setStreamBufferSize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the default file buffer size for newly opened streams.</p>
+<p>Valid units for the <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> of <code>file_buffer_size_type</code> are:</p>
+<p><code>FMOD_TIMEUNIT.MS</code>
+<code>FMOD_TIMEUNIT.PCM</code>
+<code>FMOD_TIMEUNIT.PCMBYTES</code>
+<code>FMOD_TIMEUNIT.RAWBYTES</code></p>
+<p>Larger values will consume more memory, whereas smaller values may cause buffer under-run / starvation / stuttering caused by large delays in disk access (i.e. netstream), or CPU usage in slow machines, or by trying to play too many streams at once.</p>
+<p>This does not affect streams created with <code>FMOD_MODE.OPENUSER</code>, as the buffer size is specified in <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>.</p>
+<p>This does not affect latency of playback. All streams are pre-buffered (unless opened with <code>FMOD_MODE.OPENONLY</code>), so they will always start immediately.</p>
+<p>Seek and Play operations can sometimes cause a reflush of this buffer.</p>
+<p>If <code>FMOD_TIMEUNIT.RAWBYTES</code> is used, the memory allocated is two times the size passed in, because FMOD allocates a double buffer.</p>
+<p>If <code>FMOD_TIMEUNIT.MS</code>, <code>FMOD_TIMEUNIT.PCM</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> is used, and the stream is infinite (such as a shoutcast netstream), or VBR, then FMOD cannot calculate an accurate compression ratio to work with when the file is opened. This means it will then base the buffersize on <code>FMOD_TIMEUNIT.PCMBYTES</code>, or in other words the number of PCM bytes, but this will be incorrect for some compressed formats. Use <code>FMOD_TIMEUNIT.RAWBYTES</code> for these type (infinite / undetermined length) of streams for more accurate read sizes.</p>
+<p>To determine the actual memory usage of a stream, including sound buffer and other overhead, use <a href="misc.html#fmod_memory_get_stats">fmod_memory_get_stats</a> before and after creating a sound.</p>
+<p>The stream may still stutter if the codec uses a large amount of cpu time, which impacts the smaller, internal 'decode' buffer. The decode buffer size is changeable via <a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file_buffer_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The file buffer size. The default is 16384.</td>
+</tr>
+<tr>
+<td>file_buffer_size_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The type of units for <code>file_buffer_size</code>. The default is <code>FMOD_TIMEUNIT.RAWBYTES</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getstreambuffersize">System::getStreamBufferSize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the default file buffer size for newly opened streams.</p>
+<p>Valid units for the <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> of <code>file_buffer_size_type</code> are:</p>
+<p><code>FMOD_TIMEUNIT.MS</code>
+<code>FMOD_TIMEUNIT.PCM</code>
+<code>FMOD_TIMEUNIT.PCMBYTES</code>
+<code>FMOD_TIMEUNIT.RAWBYTES</code></p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_stream_buffer_size()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemstreambuffersize">FmodSystemStreamBufferSize</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setadvancedsettings">System::setAdvancedSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_advanced_settings(settings)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>settings</td>
+<td><a href="structs.html#fmodsystemadvancedsettings">FmodSystemAdvancedSettings</a></td>
+<td>The advanced settings to use.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_advanced_settings">fmod_system_get_advanced_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getadvancedsettings">System::getAdvancedSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the advanced settings for the system object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_advanced_settings()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemadvancedsettings">FmodSystemAdvancedSettings</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_speaker_position">fmod_system_set_speaker_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setspeakerposition">System::setSpeakerPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the position of the specified speaker for the current speaker mode.</p>
+<p>This function allows the user to specify the position of their speaker to account for non standard setups.
+It also allows the user to disable speakers from 3D consideration in a game.</p>
+<p>This allows you to customize the position of the speakers for the current <a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a> by giving X (left to right) and Y (front to back) coordinates.
+When disabling a speaker, 3D spatialization will be redistributed around the missing speaker so the signal isn't lost.</p>
+<p>A stereo setup would look like this:</p>
+<div class="highlight"><pre><span></span><code>fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_LEFT, -1, 0, true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_RIGHT, 1, 0, true);
+</code></pre></div>
+<p>A 7.1 setup would look like this:</p>
+<div class="highlight"><pre><span></span><code>fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_LEFT,     dsin( -30), dcos( -30), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_RIGHT,    dsin(  30), dcos(  30), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.FRONT_CENTER,   dsin(   0), dcos(   0), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.LOW_FREQUENCY,  dsin(   0), dcos(   0), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.SURROUND_LEFT,  dsin( -90), dcos( -90), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.SURROUND_RIGHT, dsin(  90), dcos(  90), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_LEFT,      dsin(-150), dcos(-150), true);
+fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_RIGHT,     dsin( 150), dcos( 150), true);
+</code></pre></div>
+<p>Calling <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a> will override any customization made with this function.</p>
+<p>Users of the Studio API should be aware this function does not affect the speaker positions used by the Spatializer DSPs, it is purely for Core API spatialization via <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_speaker_position(speaker, x, y, active)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>speaker</td>
+<td><a href="constants.html#fmod_speaker">FMOD_SPEAKER</a></td>
+<td>The speaker.</td>
+</tr>
+<tr>
+<td>x</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The 2D X position relative to the listener. A value in the range [-1, 1], where: -1 = left, 0 = middle, +1 = right.</td>
+</tr>
+<tr>
+<td>y</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>2D Y position relative to the listener. A value in the range [-1, 1], where: -1 = back, 0 = middle, +1 = front.</td>
+</tr>
+<tr>
+<td>active</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The active state of a speaker. <code>true</code> = included in 3D calculations, <code>false</code> = ignored.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_speaker_position">fmod_system_get_speaker_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakerposition">System::getSpeakerPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the position of the specified speaker for the current speaker mode.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_speaker_position(speaker)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>speaker</td>
+<td><a href="constants.html#fmod_speaker">FMOD_SPEAKER</a></td>
+<td>The speaker.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemspeakerposition">FmodSystemSpeakerPosition</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_3d_settings">fmod_system_set_3d_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dsettings">System::set3DSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the global doppler scale, distance factor and log roll-off scale for all 3D sound in FMOD.</p>
+<p>The <code>doppler_scale</code> is a general scaling factor for how much the pitch varies due to doppler shifting in 3D sound. Doppler is the pitch bending effect when a sound comes towards the listener or moves away from it, much like the effect you hear when a train goes past you with its horn sounding. With "dopplerscale" you can exaggerate or diminish the effect. FMOD's effective speed of sound at a doppler factor of 1.0 is 340 m/s.</p>
+<p>The <code>distance_factor</code> is the FMOD 3D engine relative distance factor, compared to 1.0 meters. Another way to put it is that it equates to "how many units per meter does your engine have". For example, if you are using feet then "scale" would equal 3.28.
+This only affects doppler. If you keep your min/max distance, custom roll-off curves, and positions in scale relative to each other, the volume roll-off will not change. If you set this, the mindistance of a sound will automatically set itself to this value when it is created in case the user forgets to set the mindistance to match the new <code>distance_factor</code>.</p>
+<p>The <code>rolloff_scale</code> is a global factor applied to the roll-off of sounds using roll-off modes other than <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code>. When a sound uses a roll-off mode other than <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula <code>distance = (distance - minDistance) * rolloffscale + minDistance</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_scale)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doppler_scale</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A scaling factor for doppler shift. Default is 1.</td>
+</tr>
+<tr>
+<td>distance_factor</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A factor for converting game distance units to FMOD distance units. Default is 1.</td>
+</tr>
+<tr>
+<td>rolloff_scale</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_3d_settings">fmod_system_get_3d_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dsettings">System::get3DSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the global doppler scale, distance factor and roll-off scale for all 3D sounds.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_3d_settings()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystem3dsettings">FmodSystem3DSettings</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dnumlisteners">System::set3DNumListeners</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the number of 3D 'listeners' in the 3D sound scene.</p>
+<p>This function is useful mainly for split-screen game purposes.</p>
+<p>If the number of listeners is set to more than 1, then panning and doppler are turned off. All sound effects will be mono. FMOD uses a 'closest sound to the listener' method to determine what should be heard in this case.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users of the Studio API should call <a href="studio_system.html#fmod_studio_system_set_num_listeners">fmod_studio_system_set_num_listeners</a> instead of this function.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_3d_num_listeners(num)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of listeners in the scene. A value in the range [1, <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a>]. The default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_3d_num_listeners">fmod_system_get_3d_num_listeners</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dnumlisteners">System::get3DNumListeners</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of 3D listeners.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users of the Studio API should call <a href="studio_system.html#fmod_studio_system_get_num_listeners">fmod_studio_system_get_num_listeners</a> instead of this function.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_3d_num_listeners()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_3d_rolloff_callback">fmod_system_set_3d_rolloff_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3drolloffcallback">System::set3DRolloffCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables callbacks for custom calculation of distance attenuation.</p>
+<p>This function overrides <code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF</code>, <code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code> and <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code>.</p>
+<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior">Callback behavior</a></p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_3d_rolloff_callback()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The string value <code>"fmod_system_set_3d_rolloff_callback"</code>.</td>
+</tr>
+<tr>
+<td>distance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance.</td>
+</tr>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reference to the channel for which this event is triggered.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_network_proxy">fmod_system_set_network_proxy</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworkproxy">System::setNetworkProxy</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a proxy server to use for all subsequent internet connections.</p>
+<p>You should specify the proxy in <code>host:port</code> format e.g. <code>www.fmod.com:8888</code> (defaults to port 80 if no port is specified).</p>
+<p>Basic authentication is supported using <code>user:password@host:port</code> format e.g. <code>bob:sekrit123@www.fmod.com:8888</code></p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_network_proxy(proxy)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proxy</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The proxy server URL. (as a <a href="https://www.fmod.com/docs/2.02/api/glossary.html#string-format">UTF-8 string</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_network_proxy">fmod_system_get_network_proxy</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworkproxy">System::getNetworkProxy</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the URL of the proxy server used in internet streaming.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_network_proxy()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_network_timeout">fmod_system_set_network_timeout</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworktimeout">System::setNetworkTimeout</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the timeout for network streams.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_network_timeout(timeout)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeout</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The timeout value, expressed in milliseconds. Default is 5000.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_network_timeout">fmod_system_get_network_timeout</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworktimeout">System::getNetworkTimeout</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the timeout value (in milliseconds) for network streams.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_network_timeout()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_version">fmod_system_get_version</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getversion">System::getVersion</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the FMOD version number.</p>
+<p>The FMOD version is a 32 bit hexadecimal value formatted as 16:8:8, with the upper 16 bits being the product version, the middle 8 bits being the major version and the bottom 8 bits being the minor version. For example a value of 0x00010203 is equal to 1.02.03.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should compare this against the <code>FMOD_VERSION</code> macro to make sure header and runtime library versions match.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_version()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_channels_playing">fmod_system_get_channels_playing</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannelsplaying">System::getChannelsPlaying</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of currently playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</p>
+<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_channels_playing()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemchannelsplaying">FmodSystemChannelsPlaying</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_cpu_usage">fmod_system_get_cpu_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getcpuusage">System::getCPUUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the amount of CPU used for different parts of the FMOD Core engine.</p>
+<p>For readability, the percentage values are smoothed to provide a more stable output.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_cpu_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcpuusage">FmodCPUUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_file_usage">fmod_system_get_file_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getfileusage">System::getFileUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves information about file reads.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The values returned are running totals that never reset.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_file_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemfileusage">FmodSystemFileUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdefaultmixmatrix">System::getDefaultMixMatrix</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the default matrix used to convert from one speaker mode to another.</p>
+<p>The matrix is returned as an <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a>.</p>
+<p>The gain for source channel 's' to target channel 't' is matrix[t * matrixhop + s].</p>
+<p>If <code>source_speaker_mode</code> or <code>target_speaker_mode</code> is <code>FMOD_SPEAKERMODE.RAW</code>, this function will return <code>FMOD_RESULT.ERR_INVALID_PARAM</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix_hop)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source_speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode being converted from.</td>
+</tr>
+<tr>
+<td>target_speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode being converted to.</td>
+</tr>
+<tr>
+<td>matrix_hop</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of source channels in the matrix. If this is 0, the number of source channels will be derived from <code>source_speaker_mode</code>. A maximum value of <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakermodechannels">System::getSpeakerModeChannels</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the channel count for a given speaker mode.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_speaker_mode_channels(mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode to query.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_sound">fmod_system_create_sound</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsound">System::createSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads a sound into memory, opens it for streaming or sets it up for callback-based sounds.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p><code>FMOD_MODE.CREATESAMPLE</code> will try to load and decompress the whole sound into memory, use <code>FMOD_MODE.CREATESTREAM</code> to open it as a stream and have it play back in realtime from disk or another medium. <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> can also be used for certain formats to play the sound directly in its compressed format from the mixer.</p>
+<ul>
+<li>To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the <code>FMOD_MODE.CREATESTREAM</code> flag.</li>
+<li>To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed sound effects, but not the overhead of disk access.</li>
+<li>To open a sound as 2D, so that it is not affected by 3D processing, use the <code>FMOD_MODE.AS_2D</code> flag. 3D sound commands will be ignored on these types of sounds.</li>
+<li>To open a sound as 3D, so that it is treated as a 3D sound, use the <code>FMOD_MODE.AS_3D</code> flag.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FMOD_MODE.OPENRAW</code>, <code>FMOD_MODE.OPENMEMORY</code>, <code>FMOD_MODE.OPENMEMORY_POINT</code> and <code>FMOD_MODE.OPENUSER</code> will not work here without the exinfo structure present, as more information is needed.</p>
+</div>
+<p>Use <code>FMOD_MODE.NONBLOCKING</code> to have the sound open or load in the background. You can use <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with <code>FMOD_MODE.OPENMEMORY</code> if the sound is not in a ready state, as it will most likely lead to a crash.</p>
+<p>To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with <code>FMOD_MODE.CREATESTREAM</code>, use <a href="system.html#fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</a> to increase read ahead.</p>
+<p>As using <code>FMOD_MODE.OPENUSER</code> causes FMOD to ignore whatever is passed as the first argument <code>name_or_buffer</code>, recommended practice is to pass 0 or equivalent.</p>
+<p>Specifying <code>FMOD_MODE.OPENMEMORY_POINT</code> will POINT to the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you pass as <code>name_or_buff</code>, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called.</p>
+<p>With <code>FMOD_MODE.OPENMEMORY_POINT</code>, only PCM formats and compressed formats using <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> are supported.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use of FMOD_MODE.NONBLOCKING is currently not supported for JavaScript.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_sound(name_or_buff, mode, extra)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name_or_buff</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a> or <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The name of the file or URL to open or a buffer to a preloaded sound memory block if <code>FMOD_MODE.OPENMEMORY</code> / <code>FMOD_MODE.OPENMEMORY_POINT</code> is used.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_mode">FMOD_MODE</a></td>
+<td>The behavior modifier for opening the sound.</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a></td>
+<td>OPTIONAL Extended information for creating the sound. Defaults to an empty struct.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_stream">fmod_system_create_stream</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createstream">System::createStream</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function opens a sound for streaming.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>This is a convenience function for <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with the <code>FMOD_MODE.CREATESTREAM</code> flag added.</p>
+<p>A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_stream(name_or_buff, mode, extra)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name_or_buff</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a> or <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The name of the file or URL to open or a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> storing a preloaded sound memory block if <code>FMOD_MODE.OPENMEMORY</code> / <code>FMOD_MODE.OPENMEMORY_POINT</code> is used.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_mode">FMOD_MODE</a></td>
+<td>The behavior modifier for opening the sound.</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a></td>
+<td>OPTIONAL Extended information while playing the sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_dsp">fmod_system_create_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdsp">System::createDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a DSP object.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit.</p>
+<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>DSPs must be attached to the DSP graph before they become active, either via <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> or <a href="DSP.html#fmod_dsp_add_input">fmod_dsp_add_input</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_dsp()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdspbytype">System::createDSPByType</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a DSP object given a built-in type index.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit.</p>
+<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>DSPs must be attached to the DSP graph before they become active, either via <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> or <a href="DSP.html#fmod_dsp_add_input">fmod_dsp_add_input</a>.</p>
+<p>Using <code>FMOD_DSP_TYPE.VSTPLUGIN</code> or <code>FMOD_DSP_TYPE.WINAMPPLUGIN</code> will return the first loaded plugin of this type.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The extension currently doesn't support plugins.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_dsp_by_type(type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_dsp_type">FMOD_DSP_TYPE</a></td>
+<td>The type of built-in DSP unit to create.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_channel_group">fmod_system_create_channel_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createchannelgroup">System::createChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a ChannelGroup object.</p>
+<p>The function returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a>.</p>
+<p>ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>. See <code>FMOD_CHANNELCONTROL_DSP_INDEX.TAIL</code>.</p>
+<p>If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>All ChannelGroups will initially output directly to the master ChannelGroup (See <a href="system.html#fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</a>). ChannelGroups can be re-parented with <a href="channel_group.html#fmod_channel_group_add_group">fmod_channel_group_add_group</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_channel_group(name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>A label for the ChannelGroup, for identification purposes.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_sound_group">fmod_system_create_sound_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsoundgroup">System::createSoundGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a SoundGroup object.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>A SoundGroup is a way to address multiple <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> at once with group level commands, such as:</p>
+<ul>
+<li>The attributes of Sounds that are playing or about to be played, such as volume. (See <a href="sound_group.html#fmod_sound_group_set_volume">fmod_sound_group_set_volume</a>).</li>
+<li>Control of playback, such as stopping Sounds. (See <a href="sound_group.html#fmod_sound_group_stop">fmod_sound_group_stop</a>).</li>
+<li>Playback behavior such as 'max audible', to limit playback of certain types of Sounds. (See <a href="sound_group.html#fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</a>).</li>
+</ul>
+<p>Once a SoundGroup is created, <a href="sound.html#fmod_sound_set_sound_group">fmod_sound_set_sound_group</a> is used to put a Sound in a SoundGroup.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_sound_group(name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the SoundGroup.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_reverb_3d">fmod_system_create_reverb_3d</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createreverb3d">System::createReverb3D</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a 'virtual reverb' object. This object reacts to 3D location and morphs the reverb environment based on how close it is to the reverb object's center.</p>
+<p>The function returns a reference to the newly created virtual <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html">reverb</a> object.</p>
+<p>Multiple reverb objects can be created to achieve a multi-reverb environment. 1 reverb object is used for all 3D reverb objects (slot 0 by default).</p>
+<p>The 3D reverb object is a sphere having 3D attributes (position, minimum distance, maximum distance) and reverb properties.</p>
+<p>The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+<p>When the listener is within the sphere of effect of one or more 3D reverbs, the listener's 3D reverb properties are a weighted combination of such 3D reverbs.</p>
+<p>When the listener is outside all of the reverbs, no reverb is applied.</p>
+<p><a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> can be used to create an alternative reverb that can be used for 2D and background global reverb.</p>
+<p>To avoid this reverb interfering with the reverb slot used by the 3D reverb, 2D reverb should use a different slot ID with <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a>, otherwise <a href="structs.html#fmodsystemadvancedsettings">FmodSystemAdvancedSettings</a>'s <code>reverb_3d_instance</code> property can also be used to place 3D reverb on a different reverb slot.</p>
+<p>Use <a href="channel_control.html#fmod_channel_control_set_reverb_properties">fmod_channel_control_set_reverb_properties</a> to turn off reverb for 2D sounds (i.e. set wet = 0).</p>
+<p>Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> running that just morphs between the different virtual reverbs.</p>
+<p>Note about reverb DSP unit allocation. To remove the DSP unit and the associated CPU cost, first make sure all 3D reverb objects are released. Then call <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> with the 3D reverb's slot ID (default is 0) with a property point of 0, to signal that the reverb instance should be deleted.</p>
+<p>If a 3D reverb is still present, and <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> function is called to free the reverb, the 3D reverb system will immediately recreate it upon the next <a href="system.html#fmod_system_update">fmod_system_update</a> call.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the 3D reverb system will not affect Studio events unless it is explicitly enabled by calling <a href="event_instance.html#fmod_studio_event_instance_set_reverb_level">fmod_studio_event_instance_set_reverb_level</a> on each event instance.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_reverb_3d()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_play_sound">fmod_system_play_sound</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playsound">System::playSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function plays a Sound on a Channel.</p>
+<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a>.</p>
+<p>When a sound is played, it will use the sound's default frequency and priority. See <a href="sound.html#fmod_sound_set_defaults">fmod_sound_set_defaults</a>.</p>
+<p>A sound defined as <code>FMOD_MODE.AS_3D</code> will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to <code>true</code>, and call <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
+<p>Specifying a <code>channel_group_ref</code> as part of <code>fmod_system_play_sound</code> is more efficient than using <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a> after <code>fmod_system_play_sound</code>, and could avoid audible glitches if the sound is not in a paused state.</p>
+<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_play_sound(sound_ref, channel_group_ref, pause)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the sound to play.</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the ChannelGroup to output to instead of the master.</td>
+</tr>
+<tr>
+<td>pause</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to start in the paused state. Start a Channel paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_play_dsp">fmod_system_play_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playdsp">System::playDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function plays a DSP along with any of its inputs on a Channel.</p>
+<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a>.</p>
+<p>Specifying a channelgroup as part of <code>fmod_system_play_dsp</code> is more efficient than using <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a> after <code>fmod_system_play_dsp</code>, and could avoid audible glitches if the <code>fmod_system_play_dsp</code> is not in a paused state.</p>
+<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> or <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSPs</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_play_dsp(dsp_ref, channel_group_ref, pause)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit to play.</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> to output to instead of the master.</td>
+</tr>
+<tr>
+<td>pause</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to start in the paused state. Start a <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_channel">fmod_system_get_channel</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannel">System::getChannel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a reference to a Channel by ID.</p>
+<p>This function is mainly for getting handles to existing (playing) Channels and setting their attributes. The only way to 'create' an instance of a Channel for playback is to use <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a> or <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_channel(index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The channel's index in the FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> pool. Specify a Channel number from 0 to the <code>max_channels</code> value specified in <a href="system.html#fmod_system_init">fmod_system_init</a> minus 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmasterchannelgroup">System::getMasterChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the master ChannelGroup that all sounds ultimately route to.</p>
+<p>This is the default <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> that <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> play on, unless a different ChannelGroup is specified with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a>, <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a> or <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a>.
+A master ChannelGroup can be used to do things like set the 'master volume' for all playing Channels. See <a href="channel_control.html#fmod_channel_control_set_volume">fmod_channel_control_set_volume</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_master_channel_group()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_master_sound_group">fmod_system_get_master_sound_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmastersoundgroup">System::getMasterSoundGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the default SoundGroup, where all sounds are placed when they are created.</p>
+<p>If a <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a> is released, the <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> in it will be put back into this SoundGroup.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_master_sound_group()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dlistenerattributes">System::set3DListenerAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the position, velocity and orientation of the specified 3D sound listener.</p>
+<p>The <code>forward</code> and <code>up</code> vectors must be perpendicular and be of unit length (magnitude of each vector should be 1).</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+<p>For velocity, remember to use units per <strong>second</strong>, and not units per frame. This is a common mistake and will make the doppler effect sound wrong if velocity is based on movement per frame rather than a fixed time period.
+If velocity per frame is calculated, it can be converted to velocity per second by dividing it by the time taken between frames as a fraction of a second.
+i.e.</p>
+<div class="highlight"><pre><span></span><code>velocity_units_per_second = (position_currentframe - position_lastframe) / time_taken_since_last_frame_in_seconds;
+</code></pre></div>
+<p>At 60 FPS  the formula would look like <code>velocity_units_per_second = (position_currentframe - position_lastframe) / 0.0166667</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users of the Studio API should call <a href="studio_system.html#fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</a> instead of this function.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_3d_listener_attributes(listener_index, position, velocity, forward, up)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the listener to set 3D attributes on. Listeners are indexed from 0, to <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> - 1, in a multi-listener environment.</td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position in 3D world space used for panning and attenuation, in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The velocity in 3D space used for doppler, in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a> per second.</td>
+</tr>
+<tr>
+<td>forward</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The forwards orientation.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The upwards orientation.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dlistenerattributes">System::get3DListenerAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the position, velocity and orientation of the specified 3D sound listener.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users of the Studio API should call <a href="studio_system.html#fmod_studio_system_get_listener_attributes">fmod_studio_system_get_listener_attributes</a> instead of this function.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_3d_listener_attributes(listener_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the listener to get 3D attributes for. Listeners are indexed from 0, to <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> - 1, in a multi-listener environment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setreverbproperties">System::setReverbProperties</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets parameters for the global reverb environment.</p>
+<p>To assist in defining reverb properties there are several presets available, see <a href="constants.html#fmod_reverb_presets">FMOD_REVERB_PRESETS</a>.</p>
+<p>When using each instance for the first time, FMOD will create an SFX reverb DSP unit that takes up several hundred kilobytes of memory and some CPU.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_reverb_properties(reverb_instance_index, properties)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reverb_instance_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the particular reverb instance to target. A value in the range [0, <a href="constants.html#fmod_reverb_maxinstances">FMOD_REVERB_MAXINSTANCES</a>].</td>
+</tr>
+<tr>
+<td>properties</td>
+<td><a href="structs.html#fmodreverbproperties">FmodReverbProperties</a></td>
+<td>The reverb environment description. Passing 0 to this function will delete the reverb.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getreverbproperties">System::getReverbProperties</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current reverb environment for the specified reverb instance.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_reverb_properties(reverb_instance_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reverb_instance_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the particular reverb instance to target.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodreverbproperties">FmodReverbProperties</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_attach_channel_group_to_port">fmod_system_attach_channel_group_to_port</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_attachchannelgrouptoport">System::attachChannelGroupToPort</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function connects the output of the specified ChannelGroup to an audio port on the output driver.</p>
+<p>Ports are additional outputs supported by some <a href="constants.html#fmod_outputtype">FMOD_OUTPUTTYPE</a> plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the <a href="https://www.fmod.com/docs/2.02/api/platforms.html">platform details</a> chapter.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>port_type</td>
+<td><a href="constants.html#fmod_port_type">FMOD_PORT_TYPE</a></td>
+<td>The port type (output mode specific).</td>
+</tr>
+<tr>
+<td>port_index</td>
+<td><a href="constants.html#fmod_port_index">FMOD_PORT_INDEX</a></td>
+<td>The index to specify which instance of the specified <code>port_type</code> to use (output mode specific).</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The ChannelGroup to attach the port to.</td>
+</tr>
+<tr>
+<td>pass_thru</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether the signal should additionally route to the existing ChannelGroup output.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_detach_channel_group_from_port">fmod_system_detach_channel_group_from_port</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_detachchannelgroupfromport">System::detachChannelGroupFromPort</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function disconnects the output of the specified ChannelGroup from an audio port on the output driver.</p>
+<p>Removing a <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> from a port will reroute the audio back to the main mix.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_detach_channel_group_from_port(channel_group_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The ChannelGroup to detach the port from.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordnumdrivers">System::getRecordNumDrivers</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of recording devices available for this output mode. Use this to enumerate all recording devices possible so that the user can select one.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_record_num_drivers()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemrecordnumdrivers">FmodSystemRecordNumDrivers</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecorddriverinfo">System::getRecordDriverInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves identification information about an audio device specified by its index, and specific to the output mode.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_record_driver_info(record_driver_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>record_driver_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the recording device. A value in the range [0, <a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_record_position">fmod_system_get_record_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordposition">System::getRecordPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current recording position of the record buffer in PCM samples.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_RECORD_DISCONNECTED</code> if the driver is unplugged.</p>
+<p>The position will return to 0 when <a href="system.html#fmod_system_record_stop">fmod_system_record_stop</a> is called or when a non-looping recording reaches the end.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FMOD_RESULT.ERR_RECORD_DISCONNECTED</code> for your information though.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_record_position(device_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the recording device. A value in the range [0, <a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_record_start">fmod_system_record_start</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstart">System::recordStart</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function starts the recording engine recording to a pre-created Sound object.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_RECORD_DISCONNECTED</code> if the driver is unplugged.</p>
+<p>The sound must be created as <code>FMOD_MODE.CREATESAMPLE</code>. Raw PCM data can be accessed with <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>, <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> and <a href="system.html#fmod_system_get_record_position">fmod_system_get_record_position</a>.</p>
+<p>Recording from the same driver a second time will stop the first recording.</p>
+<p>For lowest latency set the Sound sample rate to the rate returned by <a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a>, otherwise a resampler will be allocated to handle the difference in frequencies, which adds latency.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_record_start(device_index, sound_ref, loop)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the recording device. A value in the range [0, <a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a>].</td>
+</tr>
+<tr>
+<td>sound_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a user-created sound for the user to record to.</td>
+</tr>
+<tr>
+<td>loop</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>A flag to tell the recording engine whether to continue recording to the provided sound from the start again, after it has reached the end. If this is set to <code>true</code> the data will be continually be overwritten once every loop.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_record_stop">fmod_system_record_stop</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstop">System::recordStop</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function stops the recording engine from recording to a pre-created Sound object.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> returns no error if unplugged or already stopped.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_record_stop(device_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the recording device. A value in the range [0, <a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_is_recording">fmod_system_is_recording</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_isrecording">System::isRecording</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the state of the FMOD recording API, i.e. if it is currently recording or not.</p>
+<p>Recording can be started with <a href="system.html#fmod_system_record_start">fmod_system_record_start</a> and stopped with <a href="system.html#fmod_system_record_stop">fmod_system_record_stop</a>.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_RECORD_DISCONNECTED</code> if the driver is unplugged.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FMOD_RESULT.ERR_RECORD_DISCONNECTED</code> for your information though.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_is_recording(device_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the recording device. A value in the range [0, <a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_geometry">fmod_system_create_geometry</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_creategeometry">System::createGeometry</a></p>
+</blockquote>
+<p><br /></p>
+<p>This is a geometry creation function. This function will create a base geometry object which can then have polygons added to it.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> object.</p>
+<p>Polygons can be added to a geometry object using <a href="geometry.html#fmod_geometry_add_polygon">fmod_geometry_add_polygon</a>. For best efficiency, avoid overlapping of polygons and long thin polygons.</p>
+<p>A geometry object stores its polygons in a group to allow optimization for line testing, insertion and updating of geometry in real-time.
+Geometry objects also allow for efficient rotation, scaling and translation of groups of polygons.</p>
+<p>It is important to set the value of <code>max_world_size</code> to an appropriate value using <a href="system.html#fmod_system_set_geometry_settings">fmod_system_set_geometry_settings</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_geometry(max_polygons, max_vertices)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_polygons</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of polygons within this object.</td>
+</tr>
+<tr>
+<td>max_vertices</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of vertices within this object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_geometry_settings">fmod_system_set_geometry_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setgeometrysettings">System::setGeometrySettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the maximum world size for the geometry engine for performance / precision reasons.</p>
+<p>FMOD uses an efficient spatial partitioning system to store polygons for ray casting purposes.
+The maximum size of the world (<code>max_world_size</code>) should be set to allow processing within a known range.
+Outside of this range, objects and polygons will not be processed as efficiently.
+Excessive world size settings can also cause loss of precision and efficiency.</p>
+<p>Setting <code>max_world_size</code> should be done first before creating any geometry. It can be done any time afterwards but may be slow in this case.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_geometry_settings(max_world_size)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_world_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum size of the world from the centerpoint to the edge using the same units used in other 3D functions.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_geometry_settings">fmod_system_get_geometry_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometrysettings">System::getGeometrySettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the maximum world size for the geometry engine.</p>
+<p>FMOD uses an efficient spatial partitioning system to store polygons for ray casting purposes.
+The maximum size of the world should be set to allow processing within a known range.
+Outside of this range, objects and polygons will not be processed as efficiently.
+Excessive world size settings can also cause loss of precision and efficiency.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_geometry_settings()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_load_geometry">fmod_system_load_geometry</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_loadgeometry">System::loadGeometry</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a geometry object from a block of memory which contains pre-saved geometry data.</p>
+<p>It creates a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> object.</p>
+<p>This function avoids the need to manually create and add geometry for faster start time.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_load_geometry(buff, length)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buff</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>A buffer storing pre-saved geometry data from an earlier call to <a href="geometry.html#fmod_geometry_save">fmod_geometry_save</a>.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size of the data in <code>buff</code>, in bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometryocclusion">System::getGeometryOcclusion</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function calculates geometry occlusion between a listener and a sound source.</p>
+<p>If single-sided polygons have been created, it is important to get the source and listener positions around the right way, as the occlusion from point A to point B may not be the same as the occlusion from point B to point A.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_geometry_occlusion()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodsystemgeometryocclusion">FmodSystemGeometryOcclusion</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_lock_dsp">fmod_system_lock_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_lockdsp">System::lockDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This is a mutual exclusion function to lock the FMOD DSP engine (which runs asynchronously in another thread), so that it will not execute.</p>
+<p>If the FMOD DSP engine is already executing, this function will block until it has completed.</p>
+<p>The function may be used to synchronize DSP network operations carried out.</p>
+<p>An example of using this function may be for when you want to construct a DSP sub-network, without the DSP engine executing in the background while the sub-network is still under construction.</p>
+<p>Once the DSP engine no longer needs to be locked, it must be unlocked with <a href="system.html#fmod_system_unlock_dsp">fmod_system_unlock_dsp</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The DSP engine should not be locked for a significant amount of time, otherwise inconsistency in the audio output may result. (audio skipping / stuttering).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_lock_dsp()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_unlock_dsp">fmod_system_unlock_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_unlockdsp">System::unlockDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This is a mutual exclusion function to unlock the FMOD DSP engine (which runs asynchronously in another thread) and let it continue executing.</p>
+<p>The DSP engine must be locked with <a href="system.html#fmod_system_lock_dsp">fmod_system_lock_dsp</a> before this function is called.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_unlock_dsp()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_callback">fmod_system_set_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setcallback">System::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables callbacks for System level notifications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>FMOD System callbacks will be triggered as a <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a> but the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Builtin_Global_Variables/async_load.htm">async_load</a> DS map won't contain any specific information.</p>
+</div>
+<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior">Callback Behavior</a></p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_callback(type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_system_callback">FMOD_SYSTEM_CALLBACK</a></td>
+<td>A bitfield specifying which callback types are required, to filter out unwanted callbacks. Use <code>FMOD_SYSTEM_CALLBACK.ALL</code> to receive all supported callback kinds.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>the string <code>"fmod_system_set_callback"</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_system_callback">FMOD_SYSTEM_CALLBACK</a></td>
+<td>The kind of callback triggered.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_set_user_data">fmod_system_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a user value associated with the currently selected System object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you've created multiple systems, use <a href="system.html#fmod_system_select">fmod_system_select</a> to select the FMOD system for which you want to set the user data and then call this function. After that, you can switch back using another call to <a href="system.html#fmod_system_select">fmod_system_select</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_set_user_data(data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The user-specified data to be stored within the System object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_user_data">fmod_system_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getuserdata">System::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the user value associated with the currently selected System object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you've created multiple systems, use <a href="system.html#fmod_system_select">fmod_system_select</a> to select the FMOD system of which you want to get the user data and then call this function. After that, you can switch back using another call to <a href="system.html#fmod_system_select">fmod_system_select</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_get_user_data()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="GeneralInformation.html" class="btn btn-neutral float-left" title="General Information"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="channel.html" class="btn btn-neutral float-right" title="Channel">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="GeneralInformation.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="channel.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

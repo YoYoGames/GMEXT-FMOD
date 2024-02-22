@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>FMOD Studio System - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "FMOD Studio System";
+        var mkdocs_page_input_path = "studio_system.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="studio_system.html">FMOD Studio System</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">FMOD Studio System</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/studio_system.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="fmod-studio-system"><strong>FMOD Studio System</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html">Studio::System</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds functionality related to the FMOD Studio system object.</p>
+<p>Create an FMOD Studio system object with <a href="studio_system.html#fmod_studio_system_create">fmod_studio_system_create</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Initializing the FMOD Studio System object will also initialize the core System object.</p>
+</div>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_create">fmod_studio_system_create</a></li>
+<li><a href="studio_system.html#fmod_studio_system_init">fmod_studio_system_init</a></li>
+<li><a href="studio_system.html#fmod_studio_system_release">fmod_studio_system_release</a></li>
+<li><a href="studio_system.html#fmod_studio_system_update">fmod_studio_system_update</a></li>
+<li><a href="studio_system.html#fmod_studio_system_flush_commands">fmod_studio_system_flush_commands</a></li>
+<li><a href="studio_system.html#fmod_studio_system_flush_sample_loading">fmod_studio_system_flush_sample_loading</a></li>
+<li><a href="studio_system.html#fmod_studio_system_load_bank_custom">fmod_studio_system_load_bank_custom</a></li>
+<li><a href="studio_system.html#fmod_studio_system_load_bank_file">fmod_studio_system_load_bank_file</a></li>
+<li><a href="studio_system.html#fmod_studio_system_load_bank_memory">fmod_studio_system_load_bank_memory</a></li>
+<li><a href="studio_system.html#fmod_studio_system_unload_all">fmod_studio_system_unload_all</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bank">fmod_studio_system_get_bank</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bank_by_id">fmod_studio_system_get_bank_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bank_count">fmod_studio_system_get_bank_count</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bank_list">fmod_studio_system_get_bank_list</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_listener_attributes">fmod_studio_system_get_listener_attributes</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_listener_weight">fmod_studio_system_set_listener_weight</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_listener_weight">fmod_studio_system_get_listener_weight</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_num_listeners">fmod_studio_system_set_num_listeners</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_num_listeners">fmod_studio_system_get_num_listeners</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bus">fmod_studio_system_get_bus</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_bus_by_id">fmod_studio_system_get_bus_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_event_by_id">fmod_studio_system_get_event_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id">fmod_studio_system_set_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id_with_label">fmod_studio_system_set_parameter_by_id_with_label</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_name">fmod_studio_system_get_parameter_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_name">fmod_studio_system_set_parameter_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_name_with_label">fmod_studio_system_set_parameter_by_name_with_label</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_name">fmod_studio_system_get_parameter_description_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_count">fmod_studio_system_get_parameter_description_count</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_list">fmod_studio_system_get_parameter_description_list</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_label_by_name">fmod_studio_system_get_parameter_label_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_label_by_id">fmod_studio_system_get_parameter_label_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_vca">fmod_studio_system_get_vca</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_vca_by_id">fmod_studio_system_get_vca_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_advanced_settings">fmod_studio_system_set_advanced_settings</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_advanced_settings">fmod_studio_system_get_advanced_settings</a></li>
+<li><a href="studio_system.html#fmod_studio_system_start_command_capture">fmod_studio_system_start_command_capture</a></li>
+<li><a href="studio_system.html#fmod_studio_system_stop_command_capture">fmod_studio_system_stop_command_capture</a></li>
+<li><a href="studio_system.html#fmod_studio_system_load_command_replay">fmod_studio_system_load_command_replay</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_buffer_usage">fmod_studio_system_get_buffer_usage</a></li>
+<li><a href="studio_system.html#fmod_studio_system_reset_buffer_usage">fmod_studio_system_reset_buffer_usage</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_cpu_usage">fmod_studio_system_get_cpu_usage</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_memory_usage">fmod_studio_system_get_memory_usage</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_user_data">fmod_studio_system_set_user_data</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_user_data">fmod_studio_system_get_user_data</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_core_system">fmod_studio_system_get_core_system</a></li>
+<li><a href="studio_system.html#fmod_studio_system_lookup_id">fmod_studio_system_lookup_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_lookup_path">fmod_studio_system_lookup_path</a></li>
+<li><a href="studio_system.html#fmod_studio_system_is_valid">fmod_studio_system_is_valid</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_create">fmod_studio_system_create</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_create">Studio::System::create</a></p>
+</blockquote>
+<p><br /></p>
+<p>This is the FMOD Studio System creation function.</p>
+<p>Call <a href="studio_system.html#fmod_studio_system_release">fmod_studio_system_release</a> to free the Studio System.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_create()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_init">fmod_studio_system_init</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_initialize">Studio::System::initialize</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function initializes the Studio System.</p>
+<p>The core system used by the studio system is initialized at the same time as the studio system.</p>
+<p>The <code>flags</code> parameter is passed to <a href="system.html#fmod_system_init">fmod_system_init</a> to initialize the core.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_init(max_channels, studio_flags, core_flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>, including both virtual and real, to be used in FMOD.</td>
+</tr>
+<tr>
+<td>studio_flags</td>
+<td><a href="constants.html#fmod_studio_init">FMOD_STUDIO_INIT</a></td>
+<td>Studio system initialization flags.</td>
+</tr>
+<tr>
+<td>core_flags</td>
+<td><a href="constants.html#fmod_init">FMOD_INIT</a></td>
+<td>Core system initialization flags.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_release">fmod_studio_system_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_release">Studio::System::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function shuts down and frees the Studio System object.</p>
+<p>This will free the memory used by the Studio System object and everything created under it.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_release()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_update">fmod_studio_system_update</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_update">Studio::System::update</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function updates the FMOD Studio System.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_update()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_flush_commands">fmod_studio_system_flush_commands</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushcommands">Studio::System::flushCommands</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function blocks the calling thread until all pending commands have been executed and all non-blocking bank loads have been completed.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_flush_commands()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_flush_sample_loading">fmod_studio_system_flush_sample_loading</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushsampleloading">Studio::System::flushSampleLoading</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function blocks until all sample loading and unloading has completed.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_flush_sample_loading()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_load_bank_custom">fmod_studio_system_load_bank_custom</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankcustom">Studio::System::loadBankCustom</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads the metadata of a Studio bank and returns a handle to the Bank.</p>
+<p>Sample data must be loaded separately; see <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for details.</p>
+<p>If you use <code>FMOD_STUDIO_LOAD_BANK.NONBLOCKING</code>, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the <a href="misc.html#fmod_last_result">fmod_last_result</a> value after a function call that uses the Bank handle.</p>
+<p>If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> or <a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_load_bank_custom(flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_load_bank">FMOD_STUDIO_LOAD_BANK</a></td>
+<td>Flags to control bank loading.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_load_bank_file">fmod_studio_system_load_bank_file</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankfile">Studio::System::loadBankFile</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads the metadata of a Studio bank from file, returning a handle to the Bank.</p>
+<p>Sample data must be loaded separately; see <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for details.</p>
+<p>If you use <code>FMOD_STUDIO_LOAD_BANK.NONBLOCKING</code>, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the <a href="misc.html#fmod_last_result">fmod_last_result</a> value after a function call that uses the Bank handle.</p>
+<p>If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> or <a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_load_bank_file(filename, flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Name of the file on the disk.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_load_bank">FMOD_STUDIO_LOAD_BANK</a></td>
+<td>Flags to control bank loading.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_load_bank_memory">fmod_studio_system_load_bank_memory</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankmemory">Studio::System::loadBankMemory</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.</p>
+<p>Sample data must be loaded separately; see <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for details.</p>
+<p>When mode is <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY</code>, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.</p>
+<p>When mode is <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT</code>, FMOD will use the passed memory buffer directly. When using this mode the buffer must be aligned to <a href="constants.html#fmod_studio_load_memory_alignment">FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT</a> and the memory must persist until the bank has been fully unloaded, which can be some time after calling <a href="bank.html#fmod_studio_bank_unload">fmod_studio_bank_unload</a> to unload the bank. You can ensure the memory is not being freed prematurely by only freeing it after receiving the <code>FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD</code> callback (enabled in <a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a>).</p>
+<p>If you use <code>FMOD_STUDIO_LOAD_BANK.NONBLOCKING</code>, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the <a href="misc.html#fmod_last_result">fmod_last_result</a> value after a function call that uses the Bank handle.</p>
+<p>If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> or <a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_load_bank_memory(buff_data, length, mode, flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buff_data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Memory buffer.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Length of the memory buffer.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_studio_load_memory_mode">FMOD_STUDIO_LOAD_MEMORY_MODE</a></td>
+<td>Loading mode to use.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_load_bank">FMOD_STUDIO_LOAD_BANK</a></td>
+<td>Flags to control bank loading.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_unload_all">fmod_studio_system_unload_all</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_unloadall">Studio::System::unloadAll</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function unloads all currently loaded banks.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_unload_all()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bank">fmod_studio_system_get_bank</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbank">Studio::System::getBank</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a loaded bank.</p>
+<p><code>path</code> may be a path, such as <code>bank:/Weapons</code> or an ID string such as <code>{793cddb6-7fa1-4e06-b805-4c74c0fd625b}</code>.</p>
+<p>Note that path lookups will only succeed if the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bank(path)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The bank <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">path</a> or the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">ID string</a> that identifies the bank. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bank_by_id">fmod_studio_system_get_bank_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbankbyid">Studio::System::getBankByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a loaded bank by its GUID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bank_by_id(guid_str)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guid_str</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Bank <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">GUID</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bank_count">fmod_studio_system_get_bank_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbankcount">Studio::System::getBankCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of loaded banks.</p>
+<p>May be used in conjunction with <a href="studio_system.html#fmod_studio_system_get_bank_list">fmod_studio_system_get_bank_list</a> to enumerate the loaded banks.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bank_count()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bank_list">fmod_studio_system_get_bank_list</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbanklist">Studio::System::getBankList</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an array containing the loaded banks.</p>
+<p>May be used in conjunction with <a href="studio_system.html#fmod_studio_system_get_bank_count">fmod_studio_system_get_bank_count</a> to enumerate the loaded banks.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bank_list()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setlistenerattributes">Studio::System::setListenerAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D attributes of the listener.</p>
+<p>If you don't pass a value for <code>attenuation</code>, the listener only uses the position in <code>attributes</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_listener_attributes(listener_index, attributes, attenuation=undefined)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Index of listener to set 3D attributes on. Listeners are indexed from 0, to <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> - 1, in a multi-listener environment.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></td>
+<td>3D attributes.</td>
+</tr>
+<tr>
+<td>attenuation</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>Position used for calculating attenuation.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_listener_attributes">fmod_studio_system_get_listener_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getlistenerattributes">Studio::System::getListenerAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves listener 3D attributes, containing a struct for the attributes, and a struct for the attenuation position.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_listener_attributes(listener_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Index of listener to set 3D attributes on. Listeners are indexed from 0, to <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> - 1, in a multi-listener environment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_listener_weight">fmod_studio_system_set_listener_weight</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setlistenerweight">Studio::System::setListenerWeight</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the listener weighting.</p>
+<p>Listener weighting is a factor which determines how much the listener influences the mix. It is taken into account for 3D panning, doppler, and the automatic distance event parameter. A listener with a weight of 0 has no effect on the mix.</p>
+<p>Listener weighting can be used to fade in and out multiple listeners. For example to do a crossfade, an additional listener can be created with a weighting of 0 that ramps up to 1 while the old listener weight is ramped down to 0. After the crossfade is finished the number of listeners can be reduced to 1 again.</p>
+<p>The sum of all the listener weights should add up to at least 1. It is a user error to set all listener weights to 0.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_listener_weight(listener_index, weight)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Listener index.</td>
+</tr>
+<tr>
+<td>weight</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Weighting value, Range: [0, 1], Default: 1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_listener_weight">fmod_studio_system_get_listener_weight</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getlistenerweight">Studio::System::getListenerWeight</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the weighting value of the listener.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_listener_weight(listener_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listener_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Listener index.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_num_listeners">fmod_studio_system_set_num_listeners</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setnumlisteners">Studio::System::setNumListeners</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the number of listeners in the 3D sound scene.</p>
+<p>If the number of listeners is set to more than 1 then FMOD uses a 'closest sound to the listener' method to determine what should be heard.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-studio-3d-events.html#multiple-listeners">Studio 3D Events</a> white paper for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_num_listeners(num)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Number of listeners, Range: [1, <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a>], Default: 1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_num_listeners">fmod_studio_system_get_num_listeners</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getnumlisteners">Studio::System::getNumListeners</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of listeners.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_num_listeners()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bus">fmod_studio_system_get_bus</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbus">Studio::System::getBus</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle for any bus in the global mixer.</p>
+<p><code>path</code> may be a path, such as <code>bus:/SFX/Ambience</code> or an ID string such as <code>{793cddb6-7fa1-4e06-b805-4c74c0fd625b}</code>.</p>
+<p>Note that path lookups will only succeed if the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bus(path)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The bank <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">path</a> or the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">ID string</a> that identifies the bus. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_bus_by_id">fmod_studio_system_get_bus_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbusbyid">Studio::System::getBusByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle for any bus in the global mixer using its GUID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_bus_by_id(guid)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Bus GUID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_event">fmod_studio_system_get_event</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getevent">Studio::System::getEvent</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle to any loaded event description.</p>
+<p><code>path</code> may be a path, such as <code>event:/UI/Cancel</code> or an ID string such as <code>{793cddb6-7fa1-4e06-b805-4c74c0fd625b}</code>.</p>
+<p>Note that path lookups will only succeed if the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_event(path)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">path or the ID string</a> that identifies the event or snapshot. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_event_by_id">fmod_studio_system_get_event_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_geteventbyid">Studio::System::getEventByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle to any loaded event description by its GUID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_event_by_id(guid_str)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guid_str</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Event or snapshot GUID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterbyid">Studio::System::getParameterByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter value struct by its unique identifier.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_by_id(parameter_id)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter identifier.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameter">FmodStudioParameter</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_parameter_by_id">fmod_studio_system_set_parameter_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyid">Studio::System::setParameterByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a global parameter value by unique identifier.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter identifier.</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Value for given identifier.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Specifies whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_parameter_by_id_with_label">fmod_studio_system_set_parameter_by_id_with_label</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyidwithlabel">Studio::System::setParameterByIDWithLabel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a global parameter value by unique identifier, looking up the value label.</p>
+<p>If the specified label is not found, <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call. This lookup is case sensitive.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter identifier.</td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Labeled value for given identifier.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Specifies whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_by_name">fmod_studio_system_get_parameter_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterbyname">Studio::System::getParameterByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter value struct by name.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_by_name(name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive). (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameter">FmodStudioParameter</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_parameter_by_name">fmod_studio_system_set_parameter_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyname">Studio::System::setParameterByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a global parameter value by name.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive). (UTF-8 string)</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Value for given name.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Specifies whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_parameter_by_name_with_label">fmod_studio_system_set_parameter_by_name_with_label</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbynamewithlabel">Studio::System::setParameterByNameWithLabel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a global parameter value by name, looking up the value label.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed=false)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name (case-insensitive). (UTF-8 string)</td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Labeled value for given name.</td>
+</tr>
+<tr>
+<td>ignore_seek_speed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Specifies whether to ignore the parameter's seek speed and set the value immediately.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_description_by_name">fmod_studio_system_get_parameter_description_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionbyname">Studio::System::getParameterDescriptionByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter by name or path.</p>
+<p><code>name</code> can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_description_by_name(name)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionbyid">Studio::System::getParameterDescriptionByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter by ID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_description_by_id(parameter_id)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter ID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_description_count">fmod_studio_system_get_parameter_description_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptioncount">Studio::System::getParameterDescriptionCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of global parameters.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_description_count()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_description_list">fmod_studio_system_get_parameter_description_list</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionlist">Studio::System::getParameterDescriptionList</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an array of global parameters.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_description_list()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_label_by_name">fmod_studio_system_get_parameter_label_by_name</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterlabelbyname">Studio::System::getParameterLabelByName</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter label by name or path.</p>
+<p><code>name</code> can be the short name (such as 'Wind') or the full path (such as 'parameter:/Ambience/Wind'). Path lookups will only succeed if the strings bank has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_label_by_name(name, labelindex)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Parameter name. (UTF-8 string)</td>
+</tr>
+<tr>
+<td>labelindex</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Label index to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_parameter_label_by_id">fmod_studio_system_get_parameter_label_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterlabelbyid">Studio::System::getParameterLabelByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a global parameter label by ID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>Parameter ID.</td>
+</tr>
+<tr>
+<td>label_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Label index to retrieve.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_vca">fmod_studio_system_get_vca</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getvca">Studio::System::getVCA</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle for any VCA in the global mixer.</p>
+<p><code>path</code> may be a path, such as <code>vca:/MyVCA</code>, or an ID string, such as <code>{d9982c58-a056-4e6c-b8e3-883854b4bffb}</code>.</p>
+<p>Note that path lookups will only succeed if the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> has been loaded.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_vca(path)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The path or the ID string that identifies the VCA. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_vca_by_id">fmod_studio_system_get_vca_by_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getvcabyid">Studio::System::getVCAByID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to retrieve a handle for any VCA in the global mixer by its GUID.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_vca_by_id(guid_str)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guid_str</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>VCA GUID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_advanced_settings">fmod_studio_system_set_advanced_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setadvancedsettings">Studio::System::setAdvancedSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets advanced settings. This must be called prior to Studio initialization.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_advanced_settings(settings)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>settings</td>
+<td><a href="structs.html#fmodstudioadvancedsettings">FmodStudioAdvancedSettings</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code>var _adv_settings = new FmodStudioAdvancedSettings();
+_adv_settings.studio_update_period = 40;
+_adv_settings.streaming_schedule_delay = -1;
+fmod_studio_system_set_advanced_settings(_adv_settings);
+</code></pre></div>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_advanced_settings">fmod_studio_system_get_advanced_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getadvancedsettings">Studio::System::getAdvancedSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves advanced settings.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_advanced_settings()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudioadvancedsettings">FmodStudioAdvancedSettings</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_start_command_capture">fmod_studio_system_start_command_capture</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_startcommandcapture">Studio::System::startCommandCapture</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function starts recording Studio commands to a file.</p>
+<p>The commands generated by the FMOD Studio API can be captured and later replayed for debug and profiling purposes.</p>
+<p>Unless the <code>FMOD_STUDIO_COMMANDCAPTURE.SKIP_INITIAL_STATE</code> flag is specified, the command capture will first record the set of all banks and event instances that currently exist.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_start_command_capture(filename, flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the file to which the recorded commands are written. (UTF-8 string)</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_commandcapture">FMOD_STUDIO_COMMANDCAPTURE</a></td>
+<td>Flags that control command capturing.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_stop_command_capture">fmod_studio_system_stop_command_capture</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_stopcommandcapture">Studio::System::stopCommandCapture</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function stops recording Studio commands.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_stop_command_capture()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_load_command_replay">fmod_studio_system_load_command_replay</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadcommandreplay">Studio::System::loadCommandReplay</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads a command replay and returns its handle.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_load_command_replay(filename, flags)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the file from which to load the command replay. (UTF-8 string)</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_commandcapture">FMOD_STUDIO_COMMANDCAPTURE</a></td>
+<td>Flags that control command capturing.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_buffer_usage">fmod_studio_system_get_buffer_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbufferusage">Studio::System::getBufferUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves buffer usage information in a struct.</p>
+<p>Stall count and time values are cumulative. They can be reset by calling <a href="studio_system.html#fmod_studio_system_reset_buffer_usage">fmod_studio_system_reset_buffer_usage</a>.</p>
+<p>Stalls due to the studio command queue overflowing can be avoided by setting a larger command queue size with <a href="studio_system.html#fmod_studio_system_set_advanced_settings">fmod_studio_system_set_advanced_settings</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_buffer_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiobufferusage">FmodStudioBufferUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_reset_buffer_usage">fmod_studio_system_reset_buffer_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_resetbufferusage">Studio::System::resetBufferUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function resets the memory buffer usage statistics tracked by the FMOD Studio System.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_reset_buffer_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_cpu_usage">fmod_studio_system_get_cpu_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcpuusage">Studio::System::getCPUUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the amount of CPU used for different parts of the Studio engine.</p>
+<p>For readability, the percentage values are smoothed to provide a more stable output.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_cpu_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiocpuusage">FmodStudioCPUUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_memory_usage">fmod_studio_system_get_memory_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getmemoryusage">Studio::System::getMemoryUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves memory usage statistics.</p>
+<p>The memory usage <code>sample_data</code> value for the system is the total size of non-streaming sample data currently loaded.</p>
+<p>Memory usage statistics are only available in logging builds, in release builds the returned struct will contain zero for all values after calling this function.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_memory_usage()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiomemoryusage">FmodStudioMemoryUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_callback">fmod_studio_system_set_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setcallback">Studio::System::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables a callback for the FMOD Studio System. The callbacks will be received in the Async Social event.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_callback(type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_studio_system_callback">FMOD_STUDIO_SYSTEM_CALLBACK</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The value <code>"fmod_studio_system_set_callback"</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_studio_system_callback">FMOD_STUDIO_SYSTEM_CALLBACK</a></td>
+<td>The callback type</td>
+</tr>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Handle of the bank. Only valid when kind=<code>FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_set_user_data">fmod_studio_system_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setuserdata">Studio::System::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows you to attach a real value to this object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_user_data(data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The real value to attach.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_user_data">fmod_studio_system_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getuserdata">Studio::System::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the real value attached to this object. Returns <code>NaN</code> if no value is attached.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_user_data()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getsoundinfo">Studio::System::getSoundInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves information for loading a sound from the audio table.</p>
+<p>The returned struct contains information to be passed to <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> (which will create a parent sound), along with a subsound index to be passed to <a href="sound.html#fmod_sound_get_sub_sound">fmod_sound_get_sub_sound</a> once the parent sound is loaded.</p>
+<p>The user is expected to call <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with the given information. It is up to the user to combine in any desired loading flags, such as <code>FMOD_MODE.CREATESTREAM</code>, <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> or <code>FMOD_MODE.NONBLOCKING</code> with the flags in <code>mode</code> (in the returned struct).</p>
+<p>When the banks have been loaded via <a href="studio_system.html#fmod_studio_system_load_bank_memory">fmod_studio_system_load_bank_memory</a>, the mode will be returned as <code>FMOD_MODE.OPENMEMORY_POINT</code>. This won't work with the default <code>FMOD_MODE.CREATESAMPLE</code> mode. For memory banks, you should add in the <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> or FMOD_CREATESTREAM flag, or remove <code>FMOD_MODE.OPENMEMORY_POINT</code> and add <code>FMOD_MODE.OPENMEMORY</code> to decompress the sample into a new allocation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_sound_info(key)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The key that identifies the sound. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_get_core_system">fmod_studio_system_get_core_system</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcoresystem">Studio::System::getCoreSystem</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the Core System.</p>
+<p>The Core System object can be retrieved before initializing the Studio System object to call additional core configuration functions.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_get_core_system()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_lookup_id">fmod_studio_system_lookup_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_lookupid">Studio::System::lookupID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the GUID for a bank, event, snapshot, bus or VCA.</p>
+<p>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> must be loaded prior to calling this function, otherwise <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p>The path can be copied to the system clipboard from FMOD Studio using the "Copy Path" context menu command.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_lookup_id(path)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Path. (UTF-8 string)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_lookup_path">fmod_studio_system_lookup_path</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_lookuppath">Studio::System::lookupPath</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the path for a bank, event, snapshot, bus or VCA.</p>
+<p>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank">strings bank</a> must be loaded prior to calling this function, otherwise <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_lookup_path(str_guid)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str_guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>GUID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_system_is_valid">fmod_studio_system_is_valid</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_isvalid">Studio::System::isValid</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function checks that the System reference is valid and has been initialized.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_system_is_valid()
+</code></pre></div>
+</blockquote>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="event_instance.html" class="btn btn-neutral float-left" title="Event Instance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="studio_vca.html" class="btn btn-neutral float-right" title="VCA">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="event_instance.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="studio_vca.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

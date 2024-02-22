@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Structs - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Structs";
+        var mkdocs_page_input_path = "structs.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Structs</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/structs.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="structs"><strong>Structs</strong></h1>
+<p>This module contains the structs used by the FMOD extension.</p>
+<p>When a function of the FMOD extension returns multiple values, it returns them as a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a> or as an <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of structs.
+This happens in two situations:</p>
+<ul>
+<li>The original FMOD function returns multiple values through <a href="https://www.fmod.com/docs/2.02/api/glossary.html#documentation-conventions">Out</a> parameters. The extension groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a> of which you can access variables by name. For example: <a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a> returns a <a href="structs.html#fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</a>.</li>
+<li>The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>, which has the same variables as the corresponding FMOD "struct". For example: <a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a> returns a <a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a>, which maps to FMOD's <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a> struct.</li>
+</ul>
+<p>The returned <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>s are not actually created using the constructor function of their type. They do, however, have identical variable names.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The FMOD extension is able to return these more complex data types (i.e. other than <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a> and <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a>) by packing the values received from FMOD into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> and unpacking them on the other side.</p>
+</div>
+<h2 id="structs_1">Structs</h2>
+<p>This module offers a collection of structs, which serve as custom data models for organizing and structuring data. Explore the provided structs to better understand the relationships between data elements and simplify your data manipulation tasks.</p>
+<ul>
+<li><a href="structs.html#fmodvector">FmodVector</a></li>
+<li><a href="structs.html#fmodcpuusage">FmodCPUUsage</a></li>
+<li><a href="structs.html#fmodcputimeusage">FmodCPUTimeUsage</a></li>
+<li><a href="structs.html#fmodlooppoints">FmodLoopPoints</a></li>
+<li><a href="structs.html#fmodminmaxdistance">FmodMinMaxDistance</a></li>
+<li><a href="structs.html#fmodreverbproperties">FmodReverbProperties</a></li>
+<li><a href="structs.html#fmod3dconesettings">Fmod3DConeSettings</a></li>
+<li><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></li>
+<li><a href="structs.html#fmodmemorystats">FmodMemoryStats</a></li>
+<li><a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a></li>
+<li><a href="structs.html#fmodsystemadvancedsettings">FmodSystemAdvancedSettings</a></li>
+<li><a href="structs.html#fmodsystemdriverinfo">FmodSystemDriverInfo</a></li>
+<li><a href="structs.html#fmodsystemsoftwareformat">FmodSystemSoftwareFormat</a></li>
+<li><a href="structs.html#fmodsystemdspbuffersize">FmodSystemDSPBufferSize</a></li>
+<li><a href="structs.html#fmodsystemstreambuffersize">FmodSystemStreamBufferSize</a></li>
+<li><a href="structs.html#fmodsystemspeakerposition">FmodSystemSpeakerPosition</a></li>
+<li><a href="structs.html#fmodsystem3dsettings">FmodSystem3DSettings</a></li>
+<li><a href="structs.html#fmodsystemchannelsplaying">FmodSystemChannelsPlaying</a></li>
+<li><a href="structs.html#fmodsystemfileusage">FmodSystemFileUsage</a></li>
+<li><a href="structs.html#fmodsystemrecordnumdrivers">FmodSystemRecordNumDrivers</a></li>
+<li><a href="structs.html#fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</a></li>
+<li><a href="structs.html#fmodsystemgeometryocclusion">FmodSystemGeometryOcclusion</a></li>
+<li><a href="structs.html#fmodcontrol3dattributes">FmodControl3DAttributes</a></li>
+<li><a href="structs.html#fmodcontrol3ddistancefilter">FmodControl3DDistanceFilter</a></li>
+<li><a href="structs.html#fmodcontrol3dminmaxdistance">FmodControl3DMinMaxDistance</a></li>
+<li><a href="structs.html#fmodcontrol3docclusion">FmodControl3DOcclusion</a></li>
+<li><a href="structs.html#fmodcontrolmixmatrix">FmodControlMixMatrix</a></li>
+<li><a href="structs.html#fmodcontroldspclock">FmodControlDSPClock</a></li>
+<li><a href="structs.html#fmodcontroldelay">FmodControlDelay</a></li>
+<li><a href="structs.html#fmodcontrolfadepoints">FmodControlFadePoints</a></li>
+<li><a href="structs.html#fmoddspconnectiondata">FmodDSPConnectionData</a></li>
+<li><a href="structs.html#fmoddspchannelformat">FmodDSPChannelFormat</a></li>
+<li><a href="structs.html#fmoddspmeteringinfo">FmodDSPMeteringInfo</a></li>
+<li><a href="structs.html#fmoddspinoutmeteringinfo">FmodDSPInOutMeteringInfo</a></li>
+<li><a href="structs.html#fmoddspmeteringenableinfo">FmodDSPMeteringEnableInfo</a></li>
+<li><a href="structs.html#fmoddspwetdrymixinfo">FmodDSPWetDryMixInfo</a></li>
+<li><a href="structs.html#fmoddspinfo">FmodDSPInfo</a></li>
+<li><a href="structs.html#fmoddspconnectionmixmatrix">FmodDSPConnectionMixMatrix</a></li>
+<li><a href="structs.html#fmoddspparameterdesc">FmodDspParameterDesc</a></li>
+<li><a href="structs.html#fmoddspparameterdescvalue">FmodDspParameterDescValue</a></li>
+<li><a href="structs.html#fmodgeometrypolygonattributes">FmodGeometryPolygonAttributes</a></li>
+<li><a href="structs.html#fmodgeometryrotation">FmodGeometryRotation</a></li>
+<li><a href="structs.html#fmodreverb3dattributes">FmodReverb3DAttributes</a></li>
+<li><a href="structs.html#fmodsoundformat">FmodSoundFormat</a></li>
+<li><a href="structs.html#fmodsoundnumtags">FmodSoundNumTags</a></li>
+<li><a href="structs.html#fmodsoundtag">FmodSoundTag</a></li>
+<li><a href="structs.html#fmodsounddefaults">FmodSoundDefaults</a></li>
+<li><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></li>
+<li><a href="structs.html#fmodsoundlockchunck">FmodSoundLockChunck</a></li>
+<li><a href="structs.html#fmodsoundlock">FmodSoundLock</a></li>
+<li><a href="structs.html#fmodsyncpoint">FmodSyncPoint</a></li>
+<li><a href="structs.html#fmodstudiomemoryusage">FmodStudioMemoryUsage</a></li>
+<li><a href="structs.html#fmodstudioparameter">FmodStudioParameter</a></li>
+<li><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></li>
+<li><a href="structs.html#fmodcommandreplaycurrentcommand">FmodCommandReplayCurrentCommand</a></li>
+<li><a href="structs.html#fmodcommandreplaycommandinfo">FmodCommandReplayCommandInfo</a></li>
+<li><a href="structs.html#fmodstudioeventinstancevolume">FmodStudioEventInstanceVolume</a></li>
+<li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
+<li><a href="structs.html#fmodstudiobufferinfo">FmodStudioBufferInfo</a></li>
+<li><a href="structs.html#fmodstudiobufferusage">FmodStudioBufferUsage</a></li>
+<li><a href="structs.html#fmodstudiocpuusage">FmodStudioCPUUsage</a></li>
+<li><a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a></li>
+<li><a href="structs.html#fmodstudiostringinfo">FmodStudioStringInfo</a></li>
+<li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
+<li><a href="structs.html#fmodstudiouserproperty">FmodStudioUserProperty</a></li>
+<li><a href="structs.html#fmodstudioadvancedsettings">FmodStudioAdvancedSettings</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodvector">FmodVector</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_vector">FMOD_VECTOR</a></p>
+</blockquote>
+<p>This struct describes a vector in 3D space.</p>
+<blockquote>
+<p>Important</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+</blockquote>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_cone_orientation">fmod_channel_control_get_3d_cone_orientation</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</a></li>
+<li><a href="geometry.html#fmod_geometry_set_polygon_vertex">fmod_geometry_set_polygon_vertex</a></li>
+<li><a href="geometry.html#fmod_geometry_get_polygon_vertex">fmod_geometry_get_polygon_vertex</a></li>
+<li><a href="geometry.html#fmod_geometry_set_position">fmod_geometry_set_position</a></li>
+<li><a href="geometry.html#fmod_geometry_get_position">fmod_geometry_get_position</a></li>
+<li><a href="geometry.html#fmod_geometry_set_rotation">fmod_geometry_set_rotation</a></li>
+<li><a href="geometry.html#fmod_geometry_set_scale">fmod_geometry_set_scale</a></li>
+<li><a href="geometry.html#fmod_geometry_get_scale">fmod_geometry_get_scale</a></li>
+<li><a href="geometry.html#fmod_geometry_add_polygon">fmod_geometry_add_polygon</a></li>
+<li><a href="reverb_3d.html#fmod_reverb_3d_set_3d_attributes">fmod_reverb_3d_set_3d_attributes</a></li>
+<li><a href="sound.html#fmod_sound_set_3d_custom_rolloff">fmod_sound_set_3d_custom_rolloff</a></li>
+<li><a href="sound.html#fmod_sound_get_3d_custom_rolloff">fmod_sound_get_3d_custom_rolloff</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</a></li>
+<li><a href="system.html#fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></li>
+<li><a href="structs.html#fmodsystemgeometryocclusion">FmodSystemGeometryOcclusion</a></li>
+<li><a href="structs.html#fmodcontrol3dattributes">FmodControl3DAttributes</a></li>
+<li><a href="structs.html#fmodgeometryrotation">FmodGeometryRotation</a></li>
+<li><a href="structs.html#fmodreverb3dattributes">FmodReverb3DAttributes</a></li>
+<li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The x coordinate of the 3D vector.</td>
+</tr>
+<tr>
+<td>y</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The y coordinate of the 3D vector.</td>
+</tr>
+<tr>
+<td>z</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The z coordinate of the 3D vector.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcpuusage">FmodCPUUsage</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_cpu_usage">FMOD_CPU_USAGE</a></p>
+</blockquote>
+<p>This struct stores performance information for FMOD's Core API functionality.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="bus.html#fmod_studio_bus_get_cpu_usage">fmod_studio_bus_get_cpu_usage</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_cpu_usage">fmod_studio_event_instance_get_cpu_usage</a></li>
+<li><a href="system.html#fmod_system_get_cpu_usage">fmod_system_get_cpu_usage</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiocpuusage">FmodStudioCPUUsage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP mixing engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.MIXER</code>, or main thread if <code>FMOD_INIT.MIX_FROM_UPDATE</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+<tr>
+<td>stream</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The streaming engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.STREAM</code>, or main thread if <code>FMOD_INIT.STREAM_FROM_UPDATE</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+<tr>
+<td>geometry</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The geometry engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.GEOMETRY</code>.</td>
+</tr>
+<tr>
+<td>update</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <a href="system.html#fmod_system_update">fmod_system_update</a> CPU usage. A percentage of the main thread.</td>
+</tr>
+<tr>
+<td>convolution1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The convolution reverb processing thread #1 CPU usage. A percentage of <code>FMOD_THREAD_TYPE.CONVOLUTION1</code>.</td>
+</tr>
+<tr>
+<td>convolution2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The convolution reverb processing thread #2 CPU usage. A percentage of <code>FMOD_THREAD_TYPE.CONVOLUTION2</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcputimeusage">FmodCPUTimeUsage</h1>
+<p>This struct stores information about CPU time spent.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_cpu_usage">fmod_dsp_get_cpu_usage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inclusive</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The CPU time spent processing just this unit during the last mixer update. Expressed in microseconds.</td>
+</tr>
+<tr>
+<td>exclusive</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The CPU time spent processing this unit and all of its input during the last mixer update. Expressed in microseconds.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodlooppoints">FmodLoopPoints</h1>
+<p>This struct stores a loop start and end point.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel.html#fmod_channel_get_loop_points">fmod_channel_get_loop_points</a></li>
+<li><a href="sound.html#fmod_sound_get_loop_points">fmod_sound_get_loop_points</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loop_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop start point. A value in the range [0, <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> - 1].</td>
+</tr>
+<tr>
+<td>loop_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop end point. A value in the range [0, <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> - 1].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodminmaxdistance">FmodMinMaxDistance</h1>
+<p>This struct stores a minimum and maximum volume distance.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_3d_min_max_distance">fmod_sound_get_3d_min_max_distance</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_min_max_distance">fmod_studio_event_description_get_min_max_distance</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_min_max_distance">fmod_studio_event_instance_get_min_max_distance</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min_distance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The minimum volume distance for the sound.</td>
+</tr>
+<tr>
+<td>max_distance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum volume distance for the sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodreverbproperties">FmodReverbProperties</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_reverb_properties">FMOD_REVERB_PROPERTIES</a></p>
+</blockquote>
+<p>This struct defines a reverb environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Several presets for these properties are defined as <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#macros">macros</a> in GameMaker, which you can find under <a href="constants.html#fmod_reverb_presets">FMOD_REVERB_PRESETS</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the default reverb properties are the same as the <code>FMOD_PRESET_GENERIC</code> preset.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="reverb_3d.html#fmod_reverb_3d_get_properties">fmod_reverb_3d_get_properties</a></li>
+<li><a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a></li>
+<li><a href="system.html#fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>decay_time</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reverberation decay time, in milliseconds. A value in the range [0, 20000].</td>
+</tr>
+<tr>
+<td>early_delay</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The initial reflection delay time, in milliseconds. A value in the range [0, 300].</td>
+</tr>
+<tr>
+<td>late_delay</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The late reverberation delay time relative to initial reflection, in milliseconds. A value in the range [0, 100].</td>
+</tr>
+<tr>
+<td>hf_reference</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reference high frequency, in Hertz. A value in the range [20, 20000].</td>
+</tr>
+<tr>
+<td>hf_decay_ratio</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The high-frequency to mid-frequency decay time ratio, in percent. A value in the range [10, 100].Value that controls the modal density in the late reverberation decay.</td>
+</tr>
+<tr>
+<td>diffusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A (percent) value that controls the echo density in the late reverberation decay. A value in the range [10, 100].</td>
+</tr>
+<tr>
+<td>density</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A (percent) value that controls the modal density in the late reverberation decay. A value in the range [0, 100].</td>
+</tr>
+<tr>
+<td>low_shelf_frequency</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reference low frequency, in Hertz. A value in the range [20, 1000].</td>
+</tr>
+<tr>
+<td>low_shelf_gain</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The relative room effect level at low frequencies, in decibels (dB). A value in the range [-36, 12].</td>
+</tr>
+<tr>
+<td>high_cut</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The relative room effect level at high frequencies, in Hertz. A value in the range [0, 20000].</td>
+</tr>
+<tr>
+<td>early_late_mix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The early reflections level relative to room effect, as a percentage. A value in the range [0, 100].</td>
+</tr>
+<tr>
+<td>wet_level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The room effect level at mid frequencies, in decibels (dB). A value in the range [-80, 20].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod3dconesettings">Fmod3DConeSettings</h1>
+<p>This struct stores the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_cone_settings">fmod_channel_control_get_3d_cone_settings</a></li>
+<li><a href="sound.html#fmod_sound_get_3d_cone_settings">fmod_sound_get_3d_cone_settings</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The inside cone angle, in degrees. This is the angle spread within which the sound is unattenuated. Default is 360.</td>
+</tr>
+<tr>
+<td>outside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The outside cone angle, in degrees. This is the angle spread outside of which the sound is attenuated to its <code>outsidevolume</code>. Default is 360.</td>
+</tr>
+<tr>
+<td>outside_volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The cone outside volume. A value in the range [0, 1]. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod3dattributes">Fmod3DAttributes</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
+</blockquote>
+<p>This structure describes a position, velocity and orientation.</p>
+<blockquote>
+<p>Important</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+</blockquote>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_3d_attributes">fmod_studio_event_instance_set_3d_attributes</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</a></li>
+<li><a href="system.html#fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position in 3D space used for panning and attenuation.</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The velocity in 3D space used for doppler.</td>
+</tr>
+<tr>
+<td>forward</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The "forward" vector as the first vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to <code>up</code>.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The "up" vector as the second vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to <code>forward</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodmemorystats">FmodMemoryStats</h1>
+<p>This struct stores on the memory usage of FMOD.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_memory_get_stats">fmod_memory_get_stats</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>current_alloced</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The currently allocated memory at the time of the call.</td>
+</tr>
+<tr>
+<td>max_alloced</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum allocated memory since <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a></p>
+</blockquote>
+<p>This struct holds additional options for creating a Sound.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a></li>
+<li><a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bytes to read starting at <code>file_offset</code>, or the length of the Sound to create for <code>FMOD_MODE.OPENUSER</code>, or the length of <code>name_or_buff</code> for <code>FMOD_MODE.OPENMEMORY</code> / <code>FMOD_MODE.OPENMEMORY_POINT</code>.</td>
+</tr>
+<tr>
+<td>file_offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The file offset (in bytes) to start reading from.</td>
+</tr>
+<tr>
+<td>num_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels in sound data for <code>FMOD_MODE.OPENUSER</code> / <code>FMOD_MODE.OPENRAW</code>. A value in the range [0, <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>].</td>
+</tr>
+<tr>
+<td>default_frequency</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default frequency (in Hertz) of sound data for <code>FMOD_MODE.OPENUSER</code> / <code>FMOD_MODE.OPENRAW</code>.</td>
+</tr>
+<tr>
+<td>format</td>
+<td><a href="constants.html#fmod_sound_format">FMOD_SOUND_FORMAT</a></td>
+<td>The format of sound data for <code>FMOD_MODE.OPENUSER</code> / <code>FMOD_MODE.OPENRAW</code>.</td>
+</tr>
+<tr>
+<td>decode_buffer_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size (in samples) of the decoded buffer for <code>FMOD_MODE.CREATESTREAM</code>, or the block size used for <code>FMOD_MODE.OPENUSER</code>.</td>
+</tr>
+<tr>
+<td>initial_subsound</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The initial subsound to seek to for <code>FMOD_MODE.CREATESTREAM</code>.</td>
+</tr>
+<tr>
+<td>num_subsounds</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Number of subsounds available for <code>FMOD_MODE.OPENUSER</code>, or the maximum subsounds to load from file.</td>
+</tr>
+<tr>
+<td>inclusion_list_num</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The list of subsound indices to load from file.</td>
+</tr>
+<tr>
+<td>dls_name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The file path to a <code>FMOD_SOUND_TYPE.DLS</code> sample set to use when loading a <code>FMOD_SOUND_TYPE.MIDI</code> file, see the description for defaults.</td>
+</tr>
+<tr>
+<td>encryption_key</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Key for encrypted <code>FMOD_SOUND_TYPE.FSB</code> file, cannot be used in conjunction with <code>FMOD_MODE.OPENMEMORY_POINT</code>.</td>
+</tr>
+<tr>
+<td>max_polyphony</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum voice count for <code>FMOD_SOUND_TYPE.MIDI</code> / <code>FMOD_SOUND_TYPE.IT</code>. Default is 64.</td>
+</tr>
+<tr>
+<td>suggested_sound_type</td>
+<td><a href="constants.html#fmod_sound_type">FMOD_SOUND_TYPE</a></td>
+<td>Attempt to load using the specified type first instead of loading in codec priority order.</td>
+</tr>
+<tr>
+<td>file_buffer_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The buffer size for reading the file, use -1 to disable buffering.</td>
+</tr>
+<tr>
+<td>channel_order</td>
+<td><a href="constants.html#fmod_channelorder">FMOD_CHANNELORDER</a></td>
+<td>Custom ordering of speakers for this sound data.</td>
+</tr>
+<tr>
+<td>initial_seek_position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The initial position to seek to for <code>FMOD_MODE.CREATESTREAM</code>.</td>
+</tr>
+<tr>
+<td>initial_seek_pos_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units for <code>initial_seek_position</code>.</td>
+</tr>
+<tr>
+<td>ignore_set_filesystem</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Ignore <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setfilesystem">System::setFileSystem</a> and <code>FMOD_CREATESOUNDEXINFO</code> file callbacks. Not implemented.</td>
+</tr>
+<tr>
+<td>audio_queue_policy</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The hardware / software decoding policy for <code>FMOD_SOUND_TYPE.AUDIOQUEUE</code>, see <code>FMOD_AUDIOQUEUE_CODECPOLICY</code>.</td>
+</tr>
+<tr>
+<td>min_midi_granularity</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The mixer granularity for <code>FMOD_SOUND_TYPE.MIDI</code> sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.</td>
+</tr>
+<tr>
+<td>non_block_thread_id</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The thread index to execute <code>FMOD_MODE.NONBLOCKING</code> loads on for parallel Sound loading.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemadvancedsettings">FmodSystemAdvancedSettings</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_advancedsettings">FMOD_ADVANCEDSETTINGS</a></p>
+</blockquote>
+<p>This struct stores advanced configuration settings.</p>
+<p>This is a structure to allow configuration of lesser used system level settings. These tweaks generally allow the user to set resource limits and customize settings to better fit their application.</p>
+<p>Specifying one of the codec maximums will help determine the maximum CPU usage of playing <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during <a href="system.html#fmod_system_init">fmod_system_init</a>) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if <code>max_mpeg_codecs</code> is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.</p>
+<p>Setting <code>dsp_buffer_pool_size</code> will pre-allocate memory for the FMOD DSP network. See <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a>. By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a></li>
+<li><a href="system.html#fmod_system_get_advanced_settings">fmod_system_get_advanced_settings</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_mpeg_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of MPEG Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_adpcm_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of IMA-ADPCM Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_xma_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of XMA Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_vorbis_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of Vorbis Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_at9_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of AT9 Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_fadpcm_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of FADPCM Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+<tr>
+<td>max_pcm_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>asio_num_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of elements in the <code>ASIOSpeakerList</code> on input, the number of elements in <code>ASIOChannelList</code> on output. A value in the range [0, <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>].</td>
+</tr>
+<tr>
+<td>vol0_virtual_vol</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with <code>FMOD_INIT.VOL0_BECOMES_VIRTUAL</code>, Channels with audibility below this will become virtual. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
+</tr>
+<tr>
+<td>default_decode_buffer_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with Streams, the default size of the double buffer. A value in the range [0, 30000].</td>
+</tr>
+<tr>
+<td>profile_port</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with <code>FMOD_INIT.PROFILE_ENABLE</code>, specify the port to listen on for connections by FMOD Studio or FMOD Profiler.</td>
+</tr>
+<tr>
+<td>geometry_max_fade_time</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a>, the maximum time it takes for a <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> to fade to the new volume level when its occlusion changes.</td>
+</tr>
+<tr>
+<td>distance_filter_center_freq</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with <code>FMOD_INIT.CHANNEL_DISTANCEFILTER</code>, the default center frequency for the distance filtering effect. A value in the range [10, 22050].</td>
+</tr>
+<tr>
+<td>reverb_3d_instance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>For use with <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html">Reverb3D</a>, selects which global reverb instance to use. A value in the range [0, <a href="constants.html#fmod_reverb_maxinstances">FMOD_REVERB_MAXINSTANCES</a>].</td>
+</tr>
+<tr>
+<td>dsp_buffer_pool_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be <code>buffer_length</code> (See <a href="system.html#fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</a>) * sizeof(float) * output mode speaker count (See <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode">FMOD_SPEAKERMODE</a>). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.</td>
+</tr>
+<tr>
+<td>resampler_method</td>
+<td><a href="constants.html#fmod_dsp_resampler">FMOD_DSP_RESAMPLER</a></td>
+<td>The resampling method used by <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</td>
+</tr>
+<tr>
+<td>random_seed</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The seed value to initialize the internal random number generator.</td>
+</tr>
+<tr>
+<td>max_convolution_threads</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of CPU threads to use for <code>FMOD_DSP_TYPE.CONVOLUTIONREVERB</code> effect. 1 = effect is entirely processed inside the <code>FMOD_THREAD_TYPE.MIXER</code> thread. 2 and 3 offloads different parts of the convolution processing into different threads (<code>FMOD_THREAD_TYPE.CONVOLUTION1</code> and <code>FMOD_THREAD_TYPE.CONVOLUTION2</code> to increase throughput. A value in the range [0, 3].</td>
+</tr>
+<tr>
+<td>max_opus_codecs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum number of Opus Sounds created as <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>. A value in the range [0, 256].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemdriverinfo">FmodSystemDriverInfo</h1>
+<p>This struct holds identification information about a sound device specified by its index, and specific to a given output mode.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_driver_info">fmod_system_get_driver_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the sound driver device. A value in the range [0, <a href="system.html#fmod_system_get_num_drivers">fmod_system_get_num_drivers</a>].</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the device.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The GUID that uniquely identifies the device.</td>
+</tr>
+<tr>
+<td>system_rate</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sample rate this device operates at.</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker setup this device is currently using.</td>
+</tr>
+<tr>
+<td>speaker_mode_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels in the current speaker setup.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemsoftwareformat">FmodSystemSoftwareFormat</h1>
+<p>This struct stores the output format for the software mixer.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_software_format">fmod_system_get_software_format</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sample_rate</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sample rate of the mixer.</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker setup of the mixer.</td>
+</tr>
+<tr>
+<td>num_raw_speakers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of speakers for <code>FMOD_SPEAKERMODE.RAW</code> mode.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemdspbuffersize">FmodSystemDSPBufferSize</h1>
+<p>This struct stores the buffer size settings for the FMOD software mixing engine.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buff_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The mixer engine block size, in samples. The default value is 1024.</td>
+</tr>
+<tr>
+<td>num_buffers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of buffers used by the mixer engine. The default value is 4.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemstreambuffersize">FmodSystemStreamBufferSize</h1>
+<p>This struct stores the default file buffer size for newly opened streams.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file_buffer_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The buffer size.</td>
+</tr>
+<tr>
+<td>file_buffer_size_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The type of units for <code>file_buffer_size</code>. The default is <code>FMOD_TIMEUNIT.RAWBYTES</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemspeakerposition">FmodSystemSpeakerPosition</h1>
+<p>This struct stores the position of a speaker and its active state.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_speaker_position">fmod_system_get_speaker_position</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The speaker's 2D X position relative to the listener. -1 = left, 0 = middle, +1 = right.</td>
+</tr>
+<tr>
+<td>y</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The speaker's 2D Y position relative to the listener. -1 = back, 0 = middle, +1 = front.</td>
+</tr>
+<tr>
+<td>active</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The active state of the speaker. <code>true</code> = included in 3D calculations, <code>false</code> = ignored.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystem3dsettings">FmodSystem3DSettings</h1>
+<p>This struct stores the global doppler scale, distance factor and roll-off scale for all 3D sounds.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_3d_settings">fmod_system_get_3d_settings</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doppler_scale</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>This is a scaling factor for doppler shift.</td>
+</tr>
+<tr>
+<td>distance_factor</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>This is a factor for converting game distance units to FMOD distance units.</td>
+</tr>
+<tr>
+<td>rolloff_scale</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemchannelsplaying">FmodSystemChannelsPlaying</h1>
+<p>This struct holds information on the number of playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</p>
+<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_channels_playing">fmod_system_get_channels_playing</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of playing Channels (both real and virtual).</td>
+</tr>
+<tr>
+<td>real_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of playing real (non-virtual) Channels.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemfileusage">FmodSystemFileUsage</h1>
+<p>This struct holds information about file reads.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_file_usage">fmod_system_get_file_usage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sample_bytes_read</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Total bytes read from file for loading sample data.</td>
+</tr>
+<tr>
+<td>stream_bytes_read</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Total bytes read from file for streaming sounds.</td>
+</tr>
+<tr>
+<td>other_bytes_read</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Total bytes read for non-audio data such as FMOD Studio banks.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemrecordnumdrivers">FmodSystemRecordNumDrivers</h1>
+<p>This struct holds the number of recording devices available in a certain output mode.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_drivers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of recording drivers available for this output mode.</td>
+</tr>
+<tr>
+<td>num_connected</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of recording drivers currently plugged in.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</h1>
+<p>This struct holds identification information about an audio device, specific to an output mode.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the device.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>A GUID that uniquely identifies the device.</td>
+</tr>
+<tr>
+<td>system_rate</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The sample rate the device operates at.</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker configuration the device is currently using.</td>
+</tr>
+<tr>
+<td>speaker_mode_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels in the current speaker setup.</td>
+</tr>
+<tr>
+<td>state</td>
+<td><a href="constants.html#fmod_driver_state">FMOD_DRIVER_STATE</a></td>
+<td>Flags that provide additional information about the driver.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsystemgeometryocclusion">FmodSystemGeometryOcclusion</h1>
+<p>This struct stores geometry occlusion values between a listener and a sound source.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>direct</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The direct occlusion value. 0 = not occluded at all / full volume, 1 = fully occluded / silent.</td>
+</tr>
+<tr>
+<td>reverb</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The reverb occlusion value. 0 = not occluded at all / wet, 1 = fully occluded / dry.</td>
+</tr>
+<tr>
+<td>listener</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The listener position.</td>
+</tr>
+<tr>
+<td>source</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The source position.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrol3dattributes">FmodControl3DAttributes</h1>
+<p>This struct stores the 3D position and velocity used to apply panning, attenuation and doppler.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_attributes">fmod_channel_control_get_3d_attributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pos</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position in 3D space used for panning and attenuation. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+</tr>
+<tr>
+<td>vel</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The velocity in 3D space used for doppler. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a> per second.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrol3ddistancefilter">FmodControl3DDistanceFilter</h1>
+<p>This struct holds override values for the 3D distance filter.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_distance_filter">fmod_channel_control_get_3d_distance_filter</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>custom</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to override automatic distance filtering and use <code>custom_level</code> instead.</td>
+</tr>
+<tr>
+<td>custom_level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation.</td>
+</tr>
+<tr>
+<td>center_freq</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The center frequency of the band-pass filter used to simulate distance attenuation. A value in the range [10, 22050]. 0 for default of <code>FmodSystemAdvancedSettings.distance_filter_center_freq</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrol3dminmaxdistance">FmodControl3DMinMaxDistance</h1>
+<p>This struct holds the minimum and maximum distances used to calculate the 3D roll-off attenuation.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_min_max_distance">fmod_channel_control_get_3d_min_max_distance</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min_dist</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the source where attenuation begins, expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>. A value in the range [0, <code>infinity</code>]. Default is 1.</td>
+</tr>
+<tr>
+<td>max_dist</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the source where attenuation ends, expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>. A value in the range [<code>min_dist</code>, <code>infinity</code>]. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrol3docclusion">FmodControl3DOcclusion</h1>
+<p>This struct stores 3D attenuation factors for the direct and reverb paths.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_occlusion">fmod_channel_control_get_3d_occlusion</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>direct</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+<tr>
+<td>reverb</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrolmixmatrix">FmodControlMixMatrix</h1>
+<p>This struct stores a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_mix_matrix">fmod_channel_control_get_mix_matrix</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
+<td>A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
+</tr>
+<tr>
+<td>out_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
+<td>The number of valid output channels (rows) in <code>matrix</code>. A value in the range [0, <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>].</td>
+</tr>
+<tr>
+<td>in_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
+<td>Number of valid input channels (columns) in <code>matrix</code>. A value in the range [0, <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontroldspclock">FmodControlDSPClock</h1>
+<p>This struct holds the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock values at a point in time.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_clock</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP clock value for the tail DSP (<code>FMOD_CHANNELCONTROL_DSP_INDEX.TAIL</code>) node. Expressed in samples.</td>
+</tr>
+<tr>
+<td>parent_clock</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>DSP clock value for the tail DSP (<code>FMOD_CHANNELCONTROL_DSP_INDEX.TAIL</code>) node of the parent ChannelGroup. Expressed in samples.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontroldelay">FmodControlDelay</h1>
+<p>This struct holds a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_delay">fmod_channel_control_get_delay</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_clock_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> to audibly start playing sound at, expressed in samples.</td>
+</tr>
+<tr>
+<td>dsp_clock_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>DSP clock of the parent ChannelGroup to audibly stop playing sound at, expressed in samples.</td>
+</tr>
+<tr>
+<td>stop_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>True: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_stop">fmod_channel_control_stop</a> has been called.<br>False: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> has been called, a subsequent <code>dspclock_start</code> allows it to resume.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcontrolfadepoints">FmodControlFadePoints</h1>
+<p>This struct holds information about stored fade points.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_points</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of fade points.</td>
+</tr>
+<tr>
+<td>point_dsp_clock</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a></td>
+<td>An array of <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock values that represent the fade point times. Expressed in samples.</td>
+</tr>
+<tr>
+<td>point_volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a></td>
+<td>An array of volume levels that represent the fade point values.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspconnectiondata">FmodDSPConnectionData</h1>
+<p>This struct holds the DSP unit at a specified index in a DSP's input list and the DSPConnection to it.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_input">fmod_dsp_get_input</a></li>
+<li><a href="DSP.html#fmod_dsp_get_output">fmod_dsp_get_output</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP unit at a specific index in a DSP's input list.</td>
+</tr>
+<tr>
+<td>dsp_connection_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html">DSPConnection</a> through which the two are connected.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspchannelformat">FmodDSPChannelFormat</h1>
+<p>This struct holds the PCM input format a DSP will receive when processing.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_channel_format">fmod_dsp_get_channel_format</a></li>
+<li><a href="DSP.html#fmod_dsp_get_output_channel_format">fmod_dsp_get_output_channel_format</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_mask</td>
+<td><a href="constants.html#fmod_channelmask">FMOD_CHANNELMASK</a></td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>num_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels to be processed.</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode to describe the channel mapping.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmeteringinfo">FmodDSPMeteringInfo</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_metering_info">FMOD_DSP_METERING_INFO</a></p>
+</blockquote>
+<p>This struct stores DSP metering information.</p>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmoddspinoutmeteringinfo">FmodDSPInOutMeteringInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_samples</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of samples considered for this metering info.</td>
+</tr>
+<tr>
+<td>peak_level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a></td>
+<td>The peak level per channel.</td>
+</tr>
+<tr>
+<td>rms_level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a></td>
+<td>The RMS level per channel.</td>
+</tr>
+<tr>
+<td>num_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspinoutmeteringinfo">FmodDSPInOutMeteringInfo</h1>
+<p>This struct stores input and output signal metering information.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_metering_info">fmod_dsp_get_metering_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in</td>
+<td><a href="structs.html#fmoddspmeteringinfo">FmodDSPMeteringInfo</a></td>
+<td>Input metering information before the DSP has processed.</td>
+</tr>
+<tr>
+<td>out</td>
+<td><a href="structs.html#fmoddspmeteringinfo">FmodDSPMeteringInfo</a></td>
+<td>Output metering information after the DSP has processed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmeteringenableinfo">FmodDSPMeteringEnableInfo</h1>
+<p>This struct holds information on whether input/output signal metering is enabled for a given <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_metering_enabled">fmod_dsp_get_metering_enabled</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled_in</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether metering is enabled for the input signal.</td>
+</tr>
+<tr>
+<td>enabled_out</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether metering is enabled for the output signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspwetdrymixinfo">FmodDSPWetDryMixInfo</h1>
+<p>This struct stores the scale of the wet and dry signal components.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_wet_dry_mix">fmod_dsp_get_wet_dry_mix</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre_wet</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Dry' (pre-processed signal) mix that is processed by the DSP. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+<tr>
+<td>post_wet</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+<tr>
+<td>dry</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspinfo">FmodDSPInfo</h1>
+<p>This struct stores information about a DSP unit.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_info">fmod_dsp_get_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of this unit will be written (null-terminated) to the provided 32 byte buffer.</td>
+</tr>
+<tr>
+<td>version</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The version number of this unit, usually formated as hex AAAABBBB where the AAAA is the major version number and the BBBB is the minor version number.</td>
+</tr>
+<tr>
+<td>channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels this unit processes where 0 represents "any".</td>
+</tr>
+<tr>
+<td>config_width</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The configuration dialog box width where 0 represents "no dialog box".</td>
+</tr>
+<tr>
+<td>config_height</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The configuration dialog box height where 0 represents "no dialog box".</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspconnectionmixmatrix">FmodDSPConnectionMixMatrix</h1>
+<p>This struct stores a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
+<p>A matrix element is referenced from the incoming matrix data as <code>outchannel * inchannel_hop + inchannel</code>.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="dsp_connection.html#fmod_dsp_connection_get_mix_matrix">fmod_dsp_connection_get_mix_matrix</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
+</tr>
+<tr>
+<td>out_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of valid output channels (rows) in <code>matrix</code>.</td>
+</tr>
+<tr>
+<td>in_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of valid input channels (columns) in <code>matrix</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspparameterdesc">FmodDspParameterDesc</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a></p>
+</blockquote>
+<p>This struct is a base structure for DSP parameter descriptions.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_parameter_info">fmod_dsp_get_parameter_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter type (<a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_type">FMOD_DSP_PARAMETER_TYPE</a>).</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter name.</td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The unit type label.</td>
+</tr>
+<tr>
+<td>description</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The description of the parameter.</td>
+</tr>
+<tr>
+<td>int_value</td>
+<td><a href="structs.html#fmoddspparameterdescvalue">FmodDspParameterDescValue</a></td>
+<td>The integer value in case of an integer.</td>
+</tr>
+<tr>
+<td>float_value</td>
+<td><a href="structs.html#fmoddspparameterdescvalue">FmodDspParameterDescValue</a></td>
+<td>The floating-point value in case of a float.</td>
+</tr>
+<tr>
+<td>bool_value</td>
+<td><a href="structs.html#fmoddspparameterdescvalue">FmodDspParameterDescValue</a></td>
+<td>The boolean value in case of a boolean.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspparameterdescvalue">FmodDspParameterDescValue</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool">FMOD_DSP_PARAMETER_DESC_*</a></p>
+</blockquote>
+<p>This struct stores a parameter description.</p>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmoddspparameterdesc">FmodDspParameterDesc</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default_val</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default value.</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The minimum value.</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum value.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodgeometrypolygonattributes">FmodGeometryPolygonAttributes</h1>
+<p>This struct stores the attributes for a polygon.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="geometry.html#fmod_geometry_get_polygon_attributes">fmod_geometry_get_polygon_attributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>direct_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion.</td>
+</tr>
+<tr>
+<td>reverb_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion.</td>
+</tr>
+<tr>
+<td>double_sided</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether the polygon is double-sided. True: Polygon is double-sided.<br>False: Polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodgeometryrotation">FmodGeometryRotation</h1>
+<p>This struct stores the 3D orientation of and FMOD object, as a forward and up vector.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="geometry.html#fmod_geometry_get_rotation">fmod_geometry_get_rotation</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>forward</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The "forward" vector as the first vector that defines orientation in 3D space. This vector must be of unit length and perpendicular to the up vector.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The "up" vector as the second vector that defines orientation in 3D space.This vector must be of unit length and perpendicular to the forward vector.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodreverb3dattributes">FmodReverb3DAttributes</h1>
+<p>This struct stores the 3D attributes of a reverb sphere.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="reverb_3d.html#fmod_reverb_3d_get_3d_attributes">fmod_reverb_3d_get_3d_attributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position in 3D space representing the center of the reverb.</td>
+</tr>
+<tr>
+<td>min_distance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the centerpoint within which the reverb will have full effect.</td>
+</tr>
+<tr>
+<td>max_distance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the centerpoint beyond which the reverb will have no effect.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundformat">FmodSoundFormat</h1>
+<p>This struct stores format information about a <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_format">fmod_sound_get_format</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_sound_type">FMOD_SOUND_TYPE</a></td>
+<td>The type of sound.</td>
+</tr>
+<tr>
+<td>format</td>
+<td><a href="constants.html#fmod_sound_format">FMOD_SOUND_FORMAT</a></td>
+<td>The format of the sound.</td>
+</tr>
+<tr>
+<td>channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels.</td>
+</tr>
+<tr>
+<td>bits</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bits per sample, corresponding to <code>format</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundnumtags">FmodSoundNumTags</h1>
+<p>This struct stores the number of metadata tags of a particular <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_num_tags">fmod_sound_get_num_tags</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_tags</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of tags.</td>
+</tr>
+<tr>
+<td>num_tags_updated</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of tags updated since this function was last called.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundtag">FmodSoundTag</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tag">FMOD_TAG</a></p>
+</blockquote>
+<p>This struct holds tag data / metadata description.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_tag">fmod_sound_get_tag</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The tag name.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_tagtype">FMOD_TAGTYPE</a></td>
+<td>The tag type.</td>
+</tr>
+<tr>
+<td>update</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>True if this tag has been updated since last being accessed with <a href="sound.html#fmod_sound_get_tag">fmod_sound_get_tag</a>.</td>
+</tr>
+<tr>
+<td>data_len</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size of the binary tag data, in bytes. For example, an <a href="https://en.wikipedia.org/wiki/ID3">ID3v1</a> tag always consists of 128 bytes. Other tag types store more data and can have a variable size.</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td><a href="constants.html#fmod_tagdatatype">FMOD_TAGDATATYPE</a></td>
+<td>Tge tag data type.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsounddefaults">FmodSoundDefaults</h1>
+<p>This struct stores a sound's default playback attributes.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_defaults">fmod_sound_get_defaults</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>frequency</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default playback frequency, in Hertz. Default is 48000.</td>
+</tr>
+<tr>
+<td>priority</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default priority where 0 is the highest priority. A value in the range [0, 256]. Default is 128.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundopenstate">FmodSoundOpenState</h1>
+<p>This struct holds the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>open_state</td>
+<td><a href="constants.html#fmod_openstate">FMOD_OPENSTATE</a></td>
+<td>The open state of a sound.</td>
+</tr>
+<tr>
+<td>percent_buffered</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The filled percentage of a stream's file buffer.</td>
+</tr>
+<tr>
+<td>starving</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The starving state. <code>true</code> if a stream has decoded more than the stream file buffer has ready.</td>
+</tr>
+<tr>
+<td>disk_busy</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether the disk is currently being accessed for this sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundlockchunck">FmodSoundLockChunck</h1>
+<p>This struct holds information about a data chunck in an FMOD sound.</p>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodsoundlock">FmodSoundLock</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data chunk, in bytes.</td>
+</tr>
+<tr>
+<td>patch_address</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Pointer</a></td>
+<td>The address of the data chunk in FMOD's memory (required in the later call to <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a>).</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundlock">FmodSoundLock</h1>
+<p>This struct holds information about a sound lock.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_lock">fmod_sound_lock</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buffer1</td>
+<td><a href="structs.html#fmodsoundlockchunck">FmodSoundLockChunck</a></td>
+<td>The first chunk of the sound's data in FMOD memory that's been locked.</td>
+</tr>
+<tr>
+<td>buffer2</td>
+<td><a href="structs.html#fmodsoundlockchunck">FmodSoundLockChunck</a></td>
+<td>The second chunk of the sound's data in FMOD memory that's been locked. Can be zero-length.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsyncpoint">FmodSyncPoint</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_syncpoint">FMOD_SYNCPOINT</a></p>
+</blockquote>
+<p>This struct stores information about a sync point.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_sync_point">fmod_sound_get_sync_point</a></li>
+<li><a href="sound.html#fmod_sound_delete_sync_point">fmod_sound_delete_sync_point</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the sync point.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset of the sync point (expressed in the units as passed to <a href="sound.html#fmod_sound_get_sync_point">fmod_sound_get_sync_point</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiomemoryusage">FmodStudioMemoryUsage</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_memory_usage">FMOD_STUDIO_MEMORY_USAGE</a></p>
+</blockquote>
+<p>This struct stores FMOD Studio memory usage statistics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Memory usage <code>exclusive</code> and <code>inclusive</code> values do not include sample data loaded in memory because sample data is a shared resource. Streaming sample data is not a shared resource and is included in the <code>exclusive</code> and <code>inclusive</code> values.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="bus.html#fmod_studio_bus_get_memory_usage">fmod_studio_bus_get_memory_usage</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_memory_usage">fmod_studio_system_get_memory_usage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inclusive</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size of memory belonging exclusively to the bus or event plus the inclusive memory sizes of all buses and event instances which route into it.</td>
+</tr>
+<tr>
+<td>exclusive</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size of memory belonging to the bus or event instance.</td>
+</tr>
+<tr>
+<td>sample_data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The size of shared sample memory referenced by the bus or event instance, inclusive of all sample memory referenced by all buses and event instances which route into it.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioparameter">FmodStudioParameter</h1>
+<p>This struct stores an FMOD Studio parameter value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter">Automatic parameters</a> always return value as 0 since they can never have their value set from the public API.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>final_value</code> is the final value of the parameter after applying adjustments due to automation, modulation, seek speed, and parameter velocity to <code>value</code>. This is calculated asynchronously when the Studio system updates.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_name">fmod_studio_event_instance_get_parameter_by_name</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_name">fmod_studio_system_get_parameter_by_name</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter value as set from the public API.</td>
+</tr>
+<tr>
+<td>final_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The final combined parameter value.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioparameterid">FmodStudioParameterId</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_id">FMOD_STUDIO_PARAMETER_ID</a></p>
+</blockquote>
+<p>This struct holds an event parameter identifier.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_id">fmod_studio_event_description_get_parameter_description_by_id</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_label_by_id">fmod_studio_event_description_get_parameter_label_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id">fmod_studio_event_instance_set_parameter_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id">fmod_studio_system_set_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id_with_label">fmod_studio_system_set_parameter_by_id_with_label</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_label_by_id">fmod_studio_system_get_parameter_label_by_id</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data1</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The first half of the ID.</td>
+</tr>
+<tr>
+<td>data2</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The second half of the ID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcommandreplaycurrentcommand">FmodCommandReplayCurrentCommand</h1>
+<p>This struct stores the progress through a command replay.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="command_replay.html#fmod_studio_command_replay_get_current_command">fmod_studio_command_replay_get_current_command</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The current command index.</td>
+</tr>
+<tr>
+<td>command_time</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The current playback time.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodcommandreplaycommandinfo">FmodCommandReplayCommandInfo</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#fmod_studio_command_info">FMOD_STUDIO_COMMAND_INFO</a></p>
+</blockquote>
+<p>This struct describes a command replay command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The handle values in the <code>instance_handle</code> and <code>output_handle</code> are from the recorded session and are not valid handles during playback.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="command_replay.html#fmod_studio_command_replay_get_command_info">fmod_studio_command_replay_get_command_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command_name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The fully qualified C++ name of the API function for this command.</td>
+</tr>
+<tr>
+<td>parent_command_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the command that created the instance this command operates on, or -1 if the command does not operate on any instance.</td>
+</tr>
+<tr>
+<td>frame_time</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The playback time at which this command will be executed.</td>
+</tr>
+<tr>
+<td>instance_type</td>
+<td><a href="constants.html#fmod_studio_instancetype">FMOD_STUDIO_INSTANCETYPE</a></td>
+<td>The type of object that this command uses as an instance.</td>
+</tr>
+<tr>
+<td>output_type</td>
+<td><a href="constants.html#fmod_studio_instancetype">FMOD_STUDIO_INSTANCETYPE</a></td>
+<td>The type of object that this command outputs.</td>
+</tr>
+<tr>
+<td>instance_handle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The original handle value of the instance.</td>
+</tr>
+<tr>
+<td>output_handle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The original handle value of the command output.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioeventinstancevolume">FmodStudioEventInstanceVolume</h1>
+<p>This struct stores a volume level.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The final combined value returned in <code>final_volume</code> combines the volume set using the public API with the result of any automation or modulation. The final combined volume is calculated asynchronously when the Studio system updates.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_volume">fmod_studio_event_instance_get_volume</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume as set from the public API.</td>
+</tr>
+<tr>
+<td>final_volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The final combined volume.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiolistenerattributes">FmodStudioListenerAttributes</h1>
+<p>This struct stores listener 3D attributes.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_get_listener_attributes">fmod_studio_system_get_listener_attributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attributes</td>
+<td><a href="structs.html#fmod3dattributes">Fmod3DAttributes</a></td>
+<td>The 3D attributes.</td>
+</tr>
+<tr>
+<td>attenuation</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position used for calculating attenuation.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiobufferinfo">FmodStudioBufferInfo</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_info">FMOD_STUDIO_BUFFER_INFO</a></p>
+</blockquote>
+<p>This struct stores information for a single buffer in FMOD Studio.</p>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiobufferusage">FmodStudioBufferUsage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>current_usage</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The current buffer usage in bytes.</td>
+</tr>
+<tr>
+<td>peak_usage</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The peak buffer usage in bytes.</td>
+</tr>
+<tr>
+<td>capacity</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The buffer capacity in bytes.</td>
+</tr>
+<tr>
+<td>stall_count</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The cumulative number of stalls due to buffer overflow.</td>
+</tr>
+<tr>
+<td>stall_time</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The cumulative amount of time stalled due to buffer overflow, in seconds.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiobufferusage">FmodStudioBufferUsage</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_usage">FMOD_STUDIO_BUFFER_USAGE</a></p>
+</blockquote>
+<p>This struct stores information for FMOD Studio buffer usage.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_get_buffer_usage">fmod_studio_system_get_buffer_usage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command_queue</td>
+<td><a href="structs.html#fmodstudiobufferinfo">FmodStudioBufferInfo</a></td>
+<td>Information for the Studio Async Command buffer.</td>
+</tr>
+<tr>
+<td>handle</td>
+<td><a href="structs.html#fmodstudiobufferinfo">FmodStudioBufferInfo</a></td>
+<td>Information for the Studio handle table.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiocpuusage">FmodStudioCPUUsage</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_cpu_usage">FMOD_STUDIO_CPU_USAGE</a></p>
+</blockquote>
+<p>This struct stores performance information for Studio API functionality.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_get_cpu_usage">fmod_studio_system_get_cpu_usage</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td><a href="structs.html#fmodcpuusage">FmodCPUUsage</a></td>
+<td>The CPU usage of FMOD Core.</td>
+</tr>
+<tr>
+<td>studio</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a></td>
+<td>The CPU usage of FMOD Studio. A struct that contains a single variable <code>update</code>. This is the <a href="studio_system.html#fmod_studio_system_update">fmod_studio_system_update</a> CPU usage. Percentage of main thread, or main thread if <code>FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE</code> flag is used with <a href="studio_system.html#fmod_studio_system_init">fmod_studio_system_init</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiosoundinfo">FmodStudioSoundInfo</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a></p>
+</blockquote>
+<p>This struct describes a sound in the audio table.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ext_info</td>
+<td><a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a></td>
+<td>Extra information required for loading the sound.</td>
+</tr>
+<tr>
+<td>name_or_data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The filename or memory buffer that contains the sound.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_mode">FMOD_MODE</a></td>
+<td>The mode flags required for loading the sound. Default is <code>FMOD_MODE.DEFAULT</code>.</td>
+</tr>
+<tr>
+<td>sub_sound_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The subsound index for loading the sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiostringinfo">FmodStudioStringInfo</h1>
+<p>This struct stores a string table entry.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="bank.html#fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">Path</a> to an object.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">GUID</a> of an object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioparameterdescription">FmodStudioParameterDescription</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
+</blockquote>
+<p>This struct describes an event parameter.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_name">fmod_studio_event_description_get_parameter_description_by_name</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_id">fmod_studio_event_description_get_parameter_description_by_id</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_index">fmod_studio_event_description_get_parameter_description_by_index</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_name">fmod_studio_system_get_parameter_description_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_list">fmod_studio_system_get_parameter_description_list</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter name.</td>
+</tr>
+<tr>
+<td>parameter_id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>The parameter ID.</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The minimum parameter value.</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum parameter value.</td>
+</tr>
+<tr>
+<td>default_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default parameter value.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_studio_parameter_type">FMOD_STUDIO_PARAMETER_TYPE</a></td>
+<td>The parameter type.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmod_studio_parameter_flags">FMOD_STUDIO_PARAMETER_FLAGS</a></td>
+<td>The parameter behavior flags.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter GUID.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiouserproperty">FmodStudioUserProperty</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#fmod_studio_user_property">FMOD_STUDIO_USER_PROPERTY</a></p>
+</blockquote>
+<p>This struct describes a user property object.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_description.html#fmod_studio_event_description_get_user_property">fmod_studio_event_description_get_user_property</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_user_property_by_index">fmod_studio_event_description_get_user_property_by_index</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter name.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmod_studio_user_property_type">FMOD_STUDIO_USER_PROPERTY_TYPE</a></td>
+<td>The user property type.</td>
+</tr>
+<tr>
+<td>string_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>String value. Only valid when type is <code>FMOD_STUDIO_USER_PROPERTY_TYPE.STRING</code>.</td>
+</tr>
+<tr>
+<td>int_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Integer (real) value. Only valid when type is <code>FMOD_STUDIO_USER_PROPERTY_TYPE.INTEGER</code>.</td>
+</tr>
+<tr>
+<td>bool_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Boolean value. Only valid when type is <code>FMOD_STUDIO_USER_PROPERTY_TYPE.BOOLEAN</code>.</td>
+</tr>
+<tr>
+<td>float_value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Float (real) value. Only valid when type is <code>FMOD_STUDIO_USER_PROPERTY_TYPE.FLOAT</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioadvancedsettings">FmodStudioAdvancedSettings</h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_advancedsettings">FMOD_STUDIO_ADVANCEDSETTINGS</a></p>
+</blockquote>
+<p>This struct describes a Studio advanced settings object.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_set_advanced_settings">fmod_studio_system_set_advanced_settings</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_advanced_settings">fmod_studio_system_get_advanced_settings</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command_queue_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Command queue size for studio async processing. Default: 32768</td>
+</tr>
+<tr>
+<td>handle_initial_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Initial size to allocate for handles. Memory for handles will grow as needed in pages. Default: <code>8192 * 8</code></td>
+</tr>
+<tr>
+<td>studio_update_period</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Update period of Studio when in async mode, in milliseconds. Will be quantized to the nearest multiple of mixer duration. Default: 20</td>
+</tr>
+<tr>
+<td>idle_sampledata_pool_size</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Size in bytes of sample data to retain in memory when no longer used, to avoid repeated disk I/O. Use -1 to disable. Default: 262144</td>
+</tr>
+<tr>
+<td>streaming_schedule_delay</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Specify the schedule delay for streams, in samples. Lower values can reduce latency when scheduling events containing streams but may cause scheduling issues if too small. Default: 8192</td>
+</tr>
+<tr>
+<td>encryption_key</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>Specify the key for loading sounds from encrypted banks. (UTF-8 string). Default: <code>pointer_null</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,3243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Channel Control - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Channel Control";
+        var mkdocs_page_input_path = "channel_control.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="channel_control.html">Channel Control</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Channel Control</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/channel_control.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="channel-control"><strong>Channel Control</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html">ChannelControl</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds functionality related to the shared APIs between Channel and ChannelGroup.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_is_playing">fmod_channel_control_is_playing</a></li>
+<li><a href="channel_control.html#fmod_channel_control_stop">fmod_channel_control_stop</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_paused">fmod_channel_control_get_paused</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_mode">fmod_channel_control_get_mode</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_pitch">fmod_channel_control_set_pitch</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_pitch">fmod_channel_control_get_pitch</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_volume">fmod_channel_control_set_volume</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_volume">fmod_channel_control_get_volume</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_volume_ramp">fmod_channel_control_set_volume_ramp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_volume_ramp">fmod_channel_control_get_volume_ramp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mute">fmod_channel_control_set_mute</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_mute">fmod_channel_control_get_mute</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_attributes">fmod_channel_control_get_3d_attributes</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_cone_orientation">fmod_channel_control_get_3d_cone_orientation</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_cone_settings">fmod_channel_control_set_3d_cone_settings</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_cone_settings">fmod_channel_control_get_3d_cone_settings</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_distance_filter">fmod_channel_control_set_3d_distance_filter</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_distance_filter">fmod_channel_control_get_3d_distance_filter</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_doppler_level">fmod_channel_control_set_3d_doppler_level</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_doppler_level">fmod_channel_control_get_3d_doppler_level</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_level">fmod_channel_control_set_3d_level</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_level">fmod_channel_control_get_3d_level</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_min_max_distance">fmod_channel_control_set_3d_min_max_distance</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_min_max_distance">fmod_channel_control_get_3d_min_max_distance</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_occlusion">fmod_channel_control_set_3d_occlusion</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_occlusion">fmod_channel_control_get_3d_occlusion</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_spread">fmod_channel_control_set_3d_spread</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_spread">fmod_channel_control_get_3d_spread</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_matrix">fmod_channel_control_set_mix_matrix</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_mix_matrix">fmod_channel_control_get_mix_matrix</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_reverb_properties">fmod_channel_control_set_reverb_properties</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_reverb_properties">fmod_channel_control_get_reverb_properties</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_low_pass_gain">fmod_channel_control_set_low_pass_gain</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_low_pass_gain">fmod_channel_control_get_low_pass_gain</a></li>
+<li><a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_num_dsps">fmod_channel_control_get_num_dsps</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_dsp">fmod_channel_control_get_dsp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_dsp_index">fmod_channel_control_set_dsp_index</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_dsp_index">fmod_channel_control_get_dsp_index</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_delay">fmod_channel_control_set_delay</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_delay">fmod_channel_control_get_delay</a></li>
+<li><a href="channel_control.html#fmod_channel_control_add_fade_point">fmod_channel_control_add_fade_point</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_fade_point_ramp">fmod_channel_control_set_fade_point_ramp</a></li>
+<li><a href="channel_control.html#fmod_channel_control_remove_fade_points">fmod_channel_control_remove_fade_points</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_callback">fmod_channel_control_set_callback</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_system_object">fmod_channel_control_get_system_object</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_user_data">fmod_channel_control_set_user_data</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_user_data">fmod_channel_control_get_user_data</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_is_playing">fmod_channel_control_is_playing</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_isplaying">ChannelControl::isPlaying</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the playing state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A channel is considered playing after <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a> or <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>, even if it is paused.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A channelgroup is considered playing if it has any playing channels.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_is_playing(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channelcontrol.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_stop">fmod_channel_control_stop</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_stop">ChannelControl::stop</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function stops the channel (or all channels in nested channelgroups) from playing.</p>
+<p>This will free up internal resources for reuse by the virtual voice system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return <code>FMOD_RESULT.ERR_INVALID_HANDLE</code>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_stop(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channelcontrol.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_paused">fmod_channel_control_set_paused</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpaused">ChannelControl::setPaused</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the paused state.</p>
+<p>Pause halts playback which effectively freezes <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> and <a href="channel_control.html#fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</a> values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_paused(channel_control_ref, paused)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channelcontrol.</td>
+</tr>
+<tr>
+<td>paused</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Paused state. A value of <code>true</code> indicates playback halted. A value of <code>false</code> indicates playback active.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_paused">fmod_channel_control_get_paused</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getpaused">ChannelControl::getPaused</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the paused state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_paused(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_mode">fmod_channel_control_set_mode</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmode">ChannelControl::setMode</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the playback mode that controls how this object behaves.</p>
+<p>The supported modes are:</p>
+<ul>
+<li><code>FMOD_MODE.LOOP_OFF</code></li>
+<li><code>FMOD_MODE.LOOP_NORMAL</code></li>
+<li><code>FMOD_MODE.LOOP_BIDI</code></li>
+<li><code>FMOD_MODE.2D</code></li>
+<li><code>FMOD_MODE.3D</code></li>
+<li><code>FMOD_MODE.3D_HEADRELATIVE</code></li>
+<li><code>FMOD_MODE.3D_WORLDRELATIVE</code></li>
+<li><code>FMOD_MODE.3D_INVERSEROLLOFF</code></li>
+<li><code>FMOD_MODE.3D_LINEARROLLOFF</code></li>
+<li><code>FMOD_MODE.3D_LINEARSQUAREROLLOFF</code></li>
+<li><code>FMOD_MODE.3D_INVERSETAPEREDROLLOFF</code></li>
+<li><code>FMOD_MODE.3D_CUSTOMROLLOFF</code></li>
+<li><code>FMOD_MODE.3D_IGNOREGEOMETRY</code></li>
+<li><code>FMOD_MODE.VIRTUAL_PLAYFROMSTART</code></li>
+</ul>
+<p>When changing the loop mode, sounds created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FMOD_MODE.CREATESTREAM</code> may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see <a href="structs.html#fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</a>). If this happens, you may need to reflush the stream buffer by calling <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.</p>
+<p>When changing the loop mode of sounds created with <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> or <code>FMOD_MODE.CREATESAMPLE</code>, if the sound was set up as <code>FMOD_MODE.LOOP_OFF</code>, then set to <code>FMOD_MODE.LOOP_NORMAL</code> with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>), to let it prepare the data as if it was looping so that it does not click whenever <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> is used to turn looping on.</p>
+<p>If <code>FMOD_MODE.3D_IGNOREGEOMETRY</code> or <code>FMOD_MODE.VIRTUAL_PLAYFROMSTART</code> is not specified, the flag will be cleared if it was specified previously.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_mode(channel_control_ref, mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="constants.html#fmod_mode">FMOD_MODE</a></td>
+<td>The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is <code>FMOD_MODE.DEFAULT</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_mode">fmod_channel_control_get_mode</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmode">ChannelControl::getMode</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the playback mode bits that control how this object behaves.</p>
+<p>You can test the playback mode bitfield against a specific <a href="constants.html#fmod_mode">FMOD_MODE</a> with the AND operator.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_mode(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_pitch">fmod_channel_control_set_pitch</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpitch">ChannelControl::setPitch</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the relative pitch / playback rate.</p>
+<p>It scales the playback frequency of a Channel or if issued on a ChannelGroup it scales the frequencies of all Channels contained in the ChannelGroup.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual pitch value is kept for each object, changing the pitch of a parent ChannelGroup will effectively alter the pitch of this object however when queried the individual pitch value is returned.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_pitch(channel_control_ref, pitch)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>pitch</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The pitch value where 0.5 represents half pitch (one octave down), 1.0 represents unmodified pitch and 2.0 represents double pitch (one octave up).</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_pitch">fmod_channel_control_get_pitch</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getpitch">ChannelControl::getPitch</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the relative pitch / playback rate.</p>
+<p>The pitch is a value where 0.5 represents half pitch (one octave down), 1 represents unmodified pitch and 2 represents double pitch (one octave up).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual pitch value is kept for each object, a parent ChannelGroup pitch will effectively scale the pitch of this object however when queried the individual pitch value is returned.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_pitch(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getaudibility">ChannelControl::getAudibility</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an estimation of the output volume.</p>
+<p>The estimated volume is calculated based on 3D spatialization, occlusion, API volume levels and DSPs used.</p>
+<p>While this does not represent the actual waveform, Channels playing FSB files will take into consideration the overall peak level of the file (if available).</p>
+<p>This value is used to determine which Channels should be audible and which Channels to virtualize when resources are limited.</p>
+<p>See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html#audibility-calculation">Virtual Voice System</a> white paper for more details about how audibility is calculated.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_audibility(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_volume">fmod_channel_control_set_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setvolume">ChannelControl::setVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the volume level.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To define the volume per Sound use <a href="sound.html#fmod_sound_set_defaults">fmod_sound_set_defaults</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting <code>volume</code> at a level higher than 1 can lead to distortion/clipping.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_volume(channel_control_ref, volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The (linear) volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_volume">fmod_channel_control_get_volume</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getvolume">ChannelControl::getVolume</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the (linear) volume level.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_volume(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_volume_ramp">fmod_channel_control_set_volume_ramp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setvolumeramp">ChannelControl::setVolumeRamp</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets whether volume changes are ramped or instantaneous.</p>
+<p>Volume changes when not paused will be ramped to the target value to avoid a pop sound, this function allows that setting to be overridden and volume changes to be applied immediately.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_volume_ramp(channel_control_ref, ramp)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>ramp</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The ramp state. A value of <code>true</code> means volume change is ramped. A value of <code>false</code> means volume change is instantaneous. Default is <code>true</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_volume_ramp">fmod_channel_control_get_volume_ramp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getvolumeramp">ChannelControl::getVolumeRamp</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves whether volume changes are ramped or instantaneous.</p>
+<p>It returns the ramp state. A value of <code>true</code> means volume change is ramped. A value of <code>false</code> means volume change is instantaneous.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_volume_ramp(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_mute">fmod_channel_control_set_mute</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmute">ChannelControl::setMute</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the mute state.</p>
+<p>Mute is an additional control for volume, the effect of which is equivalent to setting the volume to zero.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. <a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a> can be used to calculate overall audibility for a Channel or ChannelGroup.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_mute(channel_control_ref, mute)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>mute</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The mute state to set. A value of <code>true</code> means silent. A value of <code>false</code> means audible.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_mute">fmod_channel_control_get_mute</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmute">ChannelControl::getMute</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the mute state.</p>
+<p>The mute state is a value where <code>true</code> indicates silent and <code>false</code> indicates audible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. <a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a> can be used to calculate overall audibility for a Channel or ChannelGroup.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_mute(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dattributes">ChannelControl::set3DAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D position and velocity used to apply panning, attenuation and doppler.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <code>FMOD_RESULT.ERR_NEEDS3D</code> is returned.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a stereo 3D sound, you can set the spread of the left/right parts in speaker space by using <a href="channel_control.html#fmod_channel_control_set_3d_spread">fmod_channel_control_set_3d_spread</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_attributes(control_ref, pos, vel)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>pos</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The position in 3D space used for panning and attenuation. The values are expressed in FMOD <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance Units</a>.</td>
+</tr>
+<tr>
+<td>vel</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The velocity in 3D space used for doppler. The values are expressed in FMOD <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance Units</a> per second.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_attributes">fmod_channel_control_get_3d_attributes</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dattributes">ChannelControl::get3DAttributes</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D position and velocity used to apply panning, attenuation and doppler.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_attributes(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrol3dattributes">FmodControl3DAttributes</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dconeorientation">ChannelControl::set3DConeOrientation</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the orientation of a 3D cone shape, used for simulated occlusion.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <code>FMOD_RESULT.ERR_NEEDS3D</code> is returned.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function has no effect unless <a href="channel_control.html#fmod_channel_control_set_3d_cone_settings">fmod_channel_control_set_3d_cone_settings</a> has been used to change the cone inside/outside angles from the default.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_cone_orientation(control_ref, orientation)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>orientation</td>
+<td><a href="structs.html#fmodvector">FmodVector</a></td>
+<td>The normalized orientation vector, which represents the direction of the sound cone. Default is [0, 0, 1].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_cone_orientation">fmod_channel_control_get_3d_cone_orientation</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dconeorientation">ChannelControl::get3DConeOrientation</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the orientation of a 3D cone shape, used for simulated occlusion.</p>
+<p>The orientation is returned as a normalized orientation vector, which represents the direction of the sound cone.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_cone_orientation(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_cone_settings">fmod_channel_control_set_3d_cone_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dconesettings">ChannelControl::set3DConeSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.</p>
+<p>When <a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a> is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.</p>
+<ul>
+<li>If the relative angle is within the <code>inside_cone_angle</code>, the sound will not have any attenuation applied.</li>
+<li>If the relative angle is between the <code>inside_cone_angle</code> and <code>outside_cone_angle</code>, linear volume attenuation (between 1 and <code>outsidevolume</code>) is applied between the two angles until it reaches the <code>outside_cone_angle</code>.</li>
+<li>If the relative angle is outside of the <code>outside_cone_angle</code> the volume does not attenuate any further.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_NEEDS3D</code>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_cone_angle, outside_cone_angle, outside_volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>inside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The inside cone angle. This is the angle spread within which the sound is unattenuated, expressed in degrees. The default value is 360.</td>
+</tr>
+<tr>
+<td>outside_cone_angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The outside cone angle. This is the angle spread outside of which the sound is attenuated to its <code>outside_volume</code>, expressed in degrees. The default value is 360.</td>
+</tr>
+<tr>
+<td>outside_volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The cone outside volume. A (linear) value in the range [0, 1]. Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_cone_settings">fmod_channel_control_get_3d_cone_settings</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dconesettings">ChannelControl::get3DConeSettings</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the angles and attenuation levels of a 3D cone shape, for simulated occlusion which is based on direction.</p>
+<p>When <a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a> is used and a 3D 'cone' is set up, attenuation will automatically occur for a sound based on the relative angle of the direction the cone is facing, vs the angle between the sound and the listener.</p>
+<ul>
+<li>If the relative angle is within the <code>inside_cone_angle</code>, the sound will not have any attenuation applied.</li>
+<li>If the relative angle is between the <code>inside_cone_angle</code> and <code>outside_cone_angle</code>, linear volume attenuation (between 1 and <code>outsidevolume</code>) is applied between the two angles until it reaches the <code>outside_cone_angle</code>.</li>
+<li>If the relative angle is outside of the <code>outside_cone_angle</code> the volume does not attenuate any further.</li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_cone_settings(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmod3dconesettings">Fmod3DConeSettings</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dcustomrolloff">ChannelControl::set3DCustomRolloff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a custom roll-off shape for 3D distance attenuation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function must be used in conjunction with <code>FMOD_MODE._AS_3D_CUSTOMROLLOFF</code> flag to be activated.</p>
+</div>
+<p>If <code>FMOD_MODE._AS_3D_CUSTOMROLLOFF</code> is set and the roll-off shape is not set, FMOD will revert to <code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code> roll-off mode.</p>
+<p>When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.</p>
+<p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
+<p>If the points are not sorted by distance, an error will result.</p>
+<div class="highlight"><pre><span></span><code>// Defining a custom array of points
+curve =
+{
+    { x:  0, y: 1, z: 0 },
+    { x:  2, y: 2, z: 0 },
+    { x: 20, y: 0, z: 0 }
+};
+</code></pre></div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_custom_rolloff(control_ref, points)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>points</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodvector">FmodVector</a></td>
+<td>An array of vectors sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0. Pass an empty array to disable custom rolloff.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dcustomrolloff">ChannelControl::get3DCustomRolloff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current custom roll-off shape for 3D distance attenuation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_custom_rolloff(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodvector">FmodVector</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_distance_filter">fmod_channel_control_set_3d_distance_filter</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3ddistancefilter">ChannelControl::set3DDistanceFilter</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets an override value for the 3D distance filter.</p>
+<p>If distance filtering is enabled, by default the FMOD 3D engine will automatically attenuate frequencies using a lowpass and a highpass filter, based on 3D distance.
+This function allows the distance filter effect to be set manually, or to be set back to 'automatic' mode.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom, custom_level, center_freq)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>custom</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether to override automatic distance filtering and use <code>custom_level</code> instead. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td>custom_level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation. The default value is 1.</td>
+</tr>
+<tr>
+<td>center_freq</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The center frequency, in Hertz, of the band-pass filter used to simulate distance attenuation, 0 for default. This must be a value in the range [10, 22050].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_distance_filter">fmod_channel_control_get_3d_distance_filter</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3ddistancefilter">ChannelControl::get3DDistanceFilter</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the override values for the 3D distance filter.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_distance_filter(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrol3ddistancefilter">FmodControl3DDistanceFilter</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_doppler_level">fmod_channel_control_set_3d_doppler_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3ddopplerlevel">ChannelControl::set3DDopplerLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the amount by which doppler is scaled.</p>
+<p>The doppler effect will be disabled if <a href="system.html#fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</a> is given a value greater than 1.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <code>FMOD_RESULT.ERR_NEEDS3D</code> is returned.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_doppler_level(channel_control_ref, level)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Doppler scale where 0 represents no doppler, 1 represents natural doppler and 5 represents exaggerated doppler. The default value is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_doppler_level">fmod_channel_control_get_3d_doppler_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3ddopplerlevel">ChannelControl::get3DDopplerLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the amount by which doppler is scaled.</p>
+<p>The value returned is the doppler level, on a scale where 0 represents no doppler, 1 represents natural doppler and 5 represents exaggerated doppler.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_doppler_level(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_level">fmod_channel_control_set_3d_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dlevel">ChannelControl::set3DLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the blend between 3D panning and 2D panning.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_level(channel_control_ref, level)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>level</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The 3D pan level where 0 represents panning/attenuating solely with 2D panning functions and 1 represents solely 3D.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_level">fmod_channel_control_get_3d_level</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dlevel">ChannelControl::get3DLevel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the blend between 3D panning and 2D panning.</p>
+<p>The value returned is the (linear) 3D pan level where 0 represents panning/attenuating solely with 2D panning functions and 1 represents solely 3D.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <code>FMOD_RESULT.ERR_NEEDS3D</code> is returned.</p>
+</div>
+<p>The 2D functions include:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_mix_matrix">fmod_channel_control_set_mix_matrix</a></li>
+</ul>
+<p>The 3D functions include:</p>
+<ul>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_cone_orientation">fmod_channel_control_set_3d_cone_orientation</a></li>
+<li><a href="channel_control.html#fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</a></li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_level(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_min_max_distance">fmod_channel_control_set_3d_min_max_distance</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dminmaxdistance">ChannelControl::set3DMinMaxDistance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the minimum and maximum distances used to calculate the 3D roll-off attenuation.</p>
+<p>When the listener is within the minimum distance of the sound source the 3D volume will be at its maximum. As the listener moves from the minimum distance to the maximum distance the sound will attenuate following the roll-off curve set. When outside the maximum distance the sound will no longer attenuate.</p>
+<p>Attenuation in 3D space is controlled by the roll-off mode, which can be one of <code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF</code>, <code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code>, <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code>.</p>
+<p>Minimum distance is useful to give the impression that the sound is loud or soft in 3D space.
+A sound with a small 3D minimum distance in a typical (non custom) roll-off mode will make the sound appear small, and the sound will attenuate quickly.
+A sound with a large minimum distance will make the sound appear larger.</p>
+<p>The <code>FMOD_MODE.AS_3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_NEEDS3D</code>.</p>
+<p>To define the min and max distance per Sound instead of Channel or ChannelGroup use <a href="sound.html#fmod_sound_set_3d_min_max_distance">fmod_sound_set_3d_min_max_distance</a>.</p>
+<p>If <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code> has been set on this object these values are stored, but ignored in 3D processing.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, max)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>min</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the source where attenuation begins. A value in the range [0, <code>max</code>]. Default is 1.</td>
+</tr>
+<tr>
+<td>max</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The distance from the source where attenuation ends. A value in the range [<code>min</code>, <code>infinity</code>]. Default is 10000.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_min_max_distance">fmod_channel_control_get_3d_min_max_distance</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dminmaxdistance">ChannelControl::get3DMinMaxDistance</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the minimum and maximum distances used to calculate the 3D roll-off attenuation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_min_max_distance(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrol3dminmaxdistance">FmodControl3DMinMaxDistance</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_occlusion">fmod_channel_control_set_3d_occlusion</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3docclusion">ChannelControl::set3DOcclusion</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the 3D attenuation factors for the direct and reverb paths.</p>
+<p>There is a reverb path/send when <a href="channel_control.html#fmod_channel_control_set_reverb_properties">fmod_channel_control_set_reverb_properties</a> has been used, <code>reverb_occlusion</code> controls its attenuation.</p>
+<p>If the System has been initialized with <code>FMOD_INIT.CHANNEL_DISTANCEFILTER</code> or <code>FMOD_INIT.CHANNEL_LOWPASS</code> the <code>direct_occlusion</code> is applied as frequency filtering rather than volume attenuation.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlusion, reverb_occlusion)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>direct_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+<tr>
+<td>reverb_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>Occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_occlusion">fmod_channel_control_get_3d_occlusion</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3docclusion">ChannelControl::get3DOcclusion</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the 3D attenuation factors for the direct and reverb paths.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_occlusion(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrol3docclusion">FmodControl3DOcclusion</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_3d_spread">fmod_channel_control_set_3d_spread</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dspread">ChannelControl::set3DSpread</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the spread of a 3D sound in speaker space.</p>
+<p>When the spread angle is 0 (default) a multi-channel signal will collapse to mono and be spatialized to a single point based on <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a> calculations. As the angle is increased, each channel within a multi-channel signal will be rotated away from that point. For 2, 4, 6, 8, and 12 channel signals, the spread is arranged from leftmost speaker to rightmost speaker intelligently, for example in 5.1 the leftmost speaker is rear left, followed by front left, center, front right then finally rear right as the rightmost speaker (LFE is not spread). For other channel counts the individual channels are spread evenly in the order of the signal. As the signal is spread the power will be preserved.</p>
+<p>For a stereo signal given different spread angles:</p>
+<ul>
+<li>0: Sound is collapsed to mono and spatialized to a single point.</li>
+<li>90: Left channel is rotated 45 degrees to the left compared with angle=0 and the right channel 45 degrees to the right.</li>
+<li>180: Left channel is rotated 90 degrees to the left compared with angle=0 and the right channel 90 degrees to the right.</li>
+<li>360: Left channel is rotated 180 degrees to the left and the right channel 180 degrees to the right. This means the sound is collapsed to mono and spatialized to a single point in the opposite direction compared with (angle=0).</li>
+</ul>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_3d_spread(channel_control_ref, angle)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>angle</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The angle (in degrees) over which the sound is spread. The default value is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_spread">fmod_channel_control_get_3d_spread</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dspread">ChannelControl::get3DSpread</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the spread of a 3D sound in speaker space.</p>
+<p>It returns the angle (in degrees) over which the sound is spread.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_spread(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_pan">fmod_channel_control_set_pan</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpan">ChannelControl::setPan</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the left/right pan level.</p>
+<p>This is a convenience function to avoid passing a matrix, it will overwrite values set via <a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a>, <a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a> and <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>.</p>
+<p>Mono inputs are panned from left to right using constant power panning (non linear fade). Stereo and greater inputs will isolate the front left and right input channels and fade them up and down based on the pan value (silencing other channels). The output channel count will always match the System speaker mode set via <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the System is initialized with <code>FMOD_SPEAKERMODE.RAW</code> calling this function will produce silence.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_pan(channel_control_ref, pan)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>pan</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The pan level where -1 represents full left, 0 represents center and 1 represents full right. Default is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsinput">ChannelControl::setMixLevelsInput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the incoming volume level for each channel of a multi-channel signal.</p>
+<p>This is a convenience function to avoid passing a matrix, it will overwrite values set via <a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a>, <a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a> and <a href="channel_control.html#fmod_channel_control_set_mix_matrix">fmod_channel_control_set_mix_matrix</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is currently only supported for Channel, not ChannelGroup.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_mix_levels_input(control_ref, levels)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>levels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>An array of volume levels for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsoutput">ChannelControl::setMixLevelsOutput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the outgoing volume levels for each speaker.</p>
+<p>Specify the level for a given output speaker, if the channel count of the input and output do not match, channels will be up/down mixed as appropriate to approximate the given speaker values. For example stereo input with 5.1 output will use the <code>center</code> parameter to distribute signal to the center speaker from front left and front right channels.</p>
+<p>This is a convenience function to avoid passing a matrix, it will overwrite values set via <a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a>, <a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a> and <a href="channel_control.html#fmod_channel_control_set_mix_matrix">fmod_channel_control_set_mix_matrix</a>.</p>
+<p>The output channel count will always match the System speaker mode set via <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the System is initialized with <code>FMOD_SPEAKERMODE.RAW</code> calling this function will produce silence.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_mix_levels_output(channel_control_ref, front_left, front_right, center, lfe, surround_left, surround_right, back_left, back_right)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>front_left</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.FRONT_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>front_right</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.FRONT_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>center</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.FRONT_CENTER</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>lfe</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.LOW_FREQUENCY</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>surround_left</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.SURROUND_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>surround_right</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.SURROUND_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>back_left</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.BACK_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+<tr>
+<td>back_right</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level for <code>FMOD_SPEAKER.BACK_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_mix_matrix">fmod_channel_control_set_mix_matrix</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixmatrix">ChannelControl::setMixMatrix</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
+<p>This will overwrite values set via <a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a>, <a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a> and <a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a>.</p>
+<p>If no matrix is passed in via matrix a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.</p>
+<p>Example 5.1 unit matrix:</p>
+<div class="highlight"><pre><span></span><code>1 0 0 0 0 0
+0 1 0 0 0 0
+0 0 1 0 0 0
+0 0 0 1 0 0
+0 0 0 0 1 0
+0 0 0 0 0 1
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_mix_matrix(control_ref, matrix, out_channels, in_channels, in_channel_hop)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
+</tr>
+<tr>
+<td>out_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of output channels (rows) in <code>matrix</code>.</td>
+</tr>
+<tr>
+<td>in_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of input channels (columns) in <code>matrix</code>.</td>
+</tr>
+<tr>
+<td>in_channel_hop</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The width (total number of columns) in the source <code>matrix</code>. A matrix element is referenced as 'outchannel * inchannel_hop + inchannel'. The default value is <code>in_channels</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_mix_matrix">fmod_channel_control_get_mix_matrix</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmixmatrix">ChannelControl::getMixMatrix</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_mix_matrix(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrolmixmatrix">FmodControlMixMatrix</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_reverb_properties">fmod_channel_control_set_reverb_properties</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setreverbproperties">ChannelControl::setReverbProperties</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the wet / send level for a particular reverb instance.</p>
+<p>Channels are automatically connected to all existing reverb instances due to the default wet level of 1. ChannelGroups however will not send to any reverb by default requiring an explicit call to this function.</p>
+<p>ChannelGroup reverb is optimal for the case where you want to send 1 mixed signal to the reverb, rather than a lot of individual Channel reverb sends. It is advisable to do this to reduce CPU if you have many Channels inside a ChannelGroup.</p>
+<p>When setting a wet level for a ChannelGroup, any Channels under that ChannelGroup will still have their existing sends to the reverb. To avoid this doubling up you should explicitly set the Channel wet levels to 0.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_instance, wet)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>reverb_instance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reverb instance index.</td>
+</tr>
+<tr>
+<td>wet</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The send level for the signal to the reverb. 0 = none, 1 = full. A negative level inverts the signal. Default is 1 for Channel, 0 for ChannelGroup.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_reverb_properties">fmod_channel_control_get_reverb_properties</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getreverbproperties">ChannelControl::getReverbProperties</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the wet / send level for a particular reverb instance.</p>
+<p>It returns the send level for the signal to the reverb. 0 = none, 1 = full.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_reverb_properties(channel_control_ref, reverb_instance)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>reverb_instance</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reverb instance index.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_low_pass_gain">fmod_channel_control_set_low_pass_gain</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setlowpassgain">ChannelControl::setLowPassGain</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the gain of the dry signal when built-in lowpass / distance filtering is applied.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This requires the built-in lowpass to be created with <code>FMOD_INIT.CHANNEL_LOWPASS</code> or <code>FMOD_INIT.CHANNEL_DISTANCEFILTER</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is currently only supported for Channel, not ChannelGroup.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_low_pass_gain(channel_control_ref, gain)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>gain</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The gain level where 0 represents silent (full filtering) and 1 represents full volume (no filtering). Default is 1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_low_pass_gain">fmod_channel_control_get_low_pass_gain</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getlowpassgain">ChannelControl::getLowPassGain</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the gain of the dry signal when built-in lowpass / distance filtering is applied.</p>
+<p>The function returns the gain level where 0 represents silent (full filtering) and 1 represents full volume (no filtering).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This requires the built-in lowpass to be created with <code>FMOD_INIT.CHANNEL_LOWPASS</code> or <code>FMOD_INIT.CHANNEL_DISTANCEFILTER</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently only supported for Channel, not ChannelGroup.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_low_pass_gain(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_adddsp">ChannelControl::addDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a DSP unit to the specified index in the DSP chain.</p>
+<p>If <code>dsp_ref</code> is already added to an existing object it will be removed and then added to this object.</p>
+<p>For detailed information on FMOD's <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> network, read the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP Architecture and Usage</a> white paper.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>dsp_chain_offset</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset into the DSP chain, see <a href="constants.html#fmod_channelcontrol_dsp_index">FMOD_CHANNELCONTROL_DSP_INDEX</a> for special named offsets for 'head' and 'tail' and 'fader' units.</td>
+</tr>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP unit to be added.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_removedsp">ChannelControl::removeDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function removes the specified DSP unit from the DSP chain.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP unit to be removed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_num_dsps">fmod_channel_control_get_num_dsps</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getnumdsps">ChannelControl::getNumDSPs</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> units in the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</p>
+<p>See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_num_dsps(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_dsp">fmod_channel_control_get_dsp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdsp">ChannelControl::getDSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the DSP unit at the specified index in the DSP chain.</p>
+<p>It returns the DSP unit at the specified <code>index</code>.</p>
+<p>See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_dsp(channel_control_ref, index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset into the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>, see <a href="constants.html#fmod_channelcontrol_dsp_index">FMOD_CHANNELCONTROL_DSP_INDEX</a> for special named offsets for 'head' and 'tail' and 'fader' units.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_dsp_index">fmod_channel_control_set_dsp_index</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setdspindex">ChannelControl::setDSPIndex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the index in the DSP chain of the specified DSP.</p>
+<p>See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_dsp_index(channel_control_ref, dsp_ref, chain_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP unit that exists in the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</td>
+</tr>
+<tr>
+<td>chain_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset into the DSP chain to move the DSP to, see <a href="constants.html#fmod_channelcontrol_dsp_index">FMOD_CHANNELCONTROL_DSP_INDEX</a> for special named offsets.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_dsp_index">fmod_channel_control_get_dsp_index</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdspindex">ChannelControl::getDSPIndex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the index of a DSP inside the Channel or ChannelGroup's DSP chain.</p>
+<p>See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A DSP unit that exists in the <a href="https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain">DSP chain</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdspclock">ChannelControl::getDSPClock</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the DSP clock values at this point in time.</p>
+<p>To perform sample accurate scheduling in conjunction with <a href="channel_control.html#fmod_channel_control_set_delay">fmod_channel_control_set_delay</a> and <a href="channel_control.html#fmod_channel_control_add_fade_point">fmod_channel_control_add_fade_point</a> query the <code>parent_clock</code> value.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_dsp_clock(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontroldspclock">FmodControlDSPClock</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_delay">fmod_channel_control_set_delay</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setdelay">ChannelControl::setDelay</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_delay(control_ref, dsp_clock_start, dsp_clock_end, stop_channels)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>dsp_clock_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP clock of the parent ChannelGroup to audibly start playing sound at. Default is 0.</td>
+</tr>
+<tr>
+<td>dsp_clock_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>DSP clock of the parent ChannelGroup to audibly stop playing sound at. Default is 0.</td>
+</tr>
+<tr>
+<td>stop_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>True: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_stop">fmod_channel_control_stop</a> has been called.<br>False: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> has been called, a subsequent <code>dspclock_start</code> allows it to resume.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_delay">fmod_channel_control_get_delay</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdelay">ChannelControl::getDelay</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_delay(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontroldelay">FmodControlDelay</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_add_fade_point">fmod_channel_control_add_fade_point</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_addfadepoint">ChannelControl::addFadePoint</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a sample accurate fade point at a time relative to the parent ChannelGroup DSP clock.</p>
+<p>Fade points are scaled against other volume settings and in-between each fade point the volume will be linearly ramped.</p>
+<p>To perform sample accurate fading use <a href="channel_control.html#fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</a> to query the parent clock value. If a parent ChannelGroup changes its pitch, the fade points will still be correct as the parent clock rate is adjusted by that pitch.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_add_fade_point(control_ref, dsp_clock, volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>dsp_clock</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP clock of the parent ChannelGroup to set the fade point volume. Expressed in samples.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The (linear) volume level at the given <code>dsp_clock</code>. Values above 1.0 amplify the signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p><div class="highlight"><pre><span></span><code>// Example. Ramp from full volume to half volume over the next 4096 samples
+var _dsp_clock = FMOD_ChannelControl_GetDSPClock(target);
+var _clock_val = _dsp_clock.parent_clock;
+FMOD_ChannelControl_AddFadePoint(target, _clock_val, 1);
+FMOD_ChannelControl_AddFadePoint(target, _clock_val + 4096, 0.5);
+</code></pre></div>
+The above code shows how to perform sample accurate fading. It ramps from full volume to half volume over the next 4096 samples.</p>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_fade_point_ramp">fmod_channel_control_set_fade_point_ramp</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setfadepointramp">ChannelControl::setFadePointRamp</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a volume ramp at the specified time in the future using fade points.</p>
+<p>This is a convenience function that creates a scheduled 64 sample fade point ramp from the current volume level to volume arriving at <code>dsp_clock</code> time.</p>
+<p>Can be use in conjunction with <a href="channel_control.html#fmod_channel_control_set_delay">fmod_channel_control_set_delay</a>.</p>
+<p>All fade points after <code>dsp_clock</code> will be removed.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_fade_point_ramp(control_ref, dsp_clock, volume)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>dsp_clock</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The time (in samples) at which the ramp will end, as measured by the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a>.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The volume level at the given <code>dsp_clock</code>. 0 = silent, 1 = full.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_remove_fade_points">fmod_channel_control_remove_fade_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_removefadepoints">ChannelControl::removeFadePoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function removes all fade points between the two specified clock values (inclusive).</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_remove_fade_points(control_ref, dsp_clock_start, dsp_clock_end)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>dsp_clock_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> at which to begin removing fade points. Expressed in samples.</td>
+</tr>
+<tr>
+<td>dsp_clock_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> at which to stop removing fade points. Expressed in samples.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getfadepoints">ChannelControl::getFadePoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves information about all stored fade points.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_fade_points(control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcontrolfadepoints">FmodControlFadePoints</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_callback">fmod_channel_control_set_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setcallback">ChannelControl::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables the callback for ChannelControl level notifications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>'s <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Builtin_Global_Variables/async_load.htm">async_load</a> will either hold a <code>channel_ref</code> or a <code>channel_group_ref</code>.</p>
+</div>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_callback(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<p>When kind is one of <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.END</code>, <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.VIRTUALVOICE</code> or <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.SYNCPOINT</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The string <code>"fmod_channel_control_set_callback"</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_channelcontrol_callback_type">FMOD_CHANNELCONTROL_CALLBACK_TYPE</a></td>
+<td>The kind of callback.</td>
+</tr>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the channel.</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel group.</td>
+</tr>
+<tr>
+<td>point_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>If kind is <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.VIRTUALVOICE</code>, this is a value where 0 represents 'virtual to real' and 1 represents 'real to virtual'. If kind is <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.SYNCPOINT</code>, this is a value representing the index of the sync point for use with <a href="sound.html#fmod_sound_get_sync_point">fmod_sound_get_sync_point</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>When kind is <code>FMOD_CHANNELCONTROL_CALLBACK_TYPE.OCCLUSION</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The string <code>"fmod_channel_control_set_callback"</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_channelcontrol_callback_type">FMOD_CHANNELCONTROL_CALLBACK_TYPE</a></td>
+<td>The kind of callback.</td>
+</tr>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the channel.</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel group.</td>
+</tr>
+<tr>
+<td>direct_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A value that represents the calculated direct occlusion value.</td>
+</tr>
+<tr>
+<td>reverb_occlusion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A value that represents the calculated reverb occlusion value.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_system_object">fmod_channel_control_get_system_object</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the System that created this object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_system_object(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_set_user_data">fmod_channel_control_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setuserdata">ChannelControl::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a floating-point user value associated with this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_set_user_data(channel_control_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The value to store on this object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_user_data">fmod_channel_control_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getuserdata">ChannelControl::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the user value associated with this object, as set with <a href="channel_control.html#fmod_channel_control_set_user_data">fmod_channel_control_set_user_data</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_user_data(channel_control_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a ChannelControl.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="channel.html" class="btn btn-neutral float-left" title="Channel"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="channel_group.html" class="btn btn-neutral float-right" title="Channel Group">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="channel.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="channel_group.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

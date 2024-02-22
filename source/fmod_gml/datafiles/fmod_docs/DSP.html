@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>DSP - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DSP";
+        var mkdocs_page_input_path = "DSP.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="DSP.html">DSP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">DSP</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/DSP.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="dsp"><strong>DSP</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module contains functionality related to DSPs (Digital Signal Processors), which are nodes within a graph that transforms input audio signals to an output stream.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP Architecture Guide</a> for more information.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_add_input">fmod_dsp_add_input</a></li>
+<li><a href="DSP.html#fmod_dsp_get_input">fmod_dsp_get_input</a></li>
+<li><a href="DSP.html#fmod_dsp_get_output">fmod_dsp_get_output</a></li>
+<li><a href="DSP.html#fmod_dsp_get_num_inputs">fmod_dsp_get_num_inputs</a></li>
+<li><a href="DSP.html#fmod_dsp_get_num_outputs">fmod_dsp_get_num_outputs</a></li>
+<li><a href="DSP.html#fmod_dsp_disconnect_all">fmod_dsp_disconnect_all</a></li>
+<li><a href="DSP.html#fmod_dsp_disconnect_from">fmod_dsp_disconnect_from</a></li>
+<li><a href="DSP.html#fmod_dsp_get_data_parameter_index">fmod_dsp_get_data_parameter_index</a></li>
+<li><a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a></li>
+<li><a href="DSP.html#fmod_dsp_set_parameter_bool">fmod_dsp_set_parameter_bool</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_bool">fmod_dsp_get_parameter_bool</a></li>
+<li><a href="DSP.html#fmod_dsp_set_parameter_data">fmod_dsp_set_parameter_data</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_data">fmod_dsp_get_parameter_data</a></li>
+<li><a href="DSP.html#fmod_dsp_set_parameter_float">fmod_dsp_set_parameter_float</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a></li>
+<li><a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_info">fmod_dsp_get_parameter_info</a></li>
+<li><a href="DSP.html#fmod_dsp_set_channel_format">fmod_dsp_set_channel_format</a></li>
+<li><a href="DSP.html#fmod_dsp_get_channel_format">fmod_dsp_get_channel_format</a></li>
+<li><a href="DSP.html#fmod_dsp_get_output_channel_format">fmod_dsp_get_output_channel_format</a></li>
+<li><a href="DSP.html#fmod_dsp_get_metering_info">fmod_dsp_get_metering_info</a></li>
+<li><a href="DSP.html#fmod_dsp_set_metering_enabled">fmod_dsp_set_metering_enabled</a></li>
+<li><a href="DSP.html#fmod_dsp_get_metering_enabled">fmod_dsp_get_metering_enabled</a></li>
+<li><a href="DSP.html#fmod_dsp_set_active">fmod_dsp_set_active</a></li>
+<li><a href="DSP.html#fmod_dsp_get_active">fmod_dsp_get_active</a></li>
+<li><a href="DSP.html#fmod_dsp_set_bypass">fmod_dsp_set_bypass</a></li>
+<li><a href="DSP.html#fmod_dsp_get_bypass">fmod_dsp_get_bypass</a></li>
+<li><a href="DSP.html#fmod_dsp_set_wet_dry_mix">fmod_dsp_set_wet_dry_mix</a></li>
+<li><a href="DSP.html#fmod_dsp_get_wet_dry_mix">fmod_dsp_get_wet_dry_mix</a></li>
+<li><a href="DSP.html#fmod_dsp_get_idle">fmod_dsp_get_idle</a></li>
+<li><a href="DSP.html#fmod_dsp_reset">fmod_dsp_reset</a></li>
+<li><a href="DSP.html#fmod_dsp_release">fmod_dsp_release</a></li>
+<li><a href="DSP.html#fmod_dsp_get_type">fmod_dsp_get_type</a></li>
+<li><a href="DSP.html#fmod_dsp_get_info">fmod_dsp_get_info</a></li>
+<li><a href="DSP.html#fmod_dsp_get_cpu_usage">fmod_dsp_get_cpu_usage</a></li>
+<li><a href="DSP.html#fmod_dsp_set_user_data">fmod_dsp_set_user_data</a></li>
+<li><a href="DSP.html#fmod_dsp_get_user_data">fmod_dsp_get_user_data</a></li>
+<li><a href="DSP.html#fmod_dsp_set_callback">fmod_dsp_set_callback</a></li>
+<li><a href="DSP.html#fmod_dsp_get_system_object">fmod_dsp_get_system_object</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_add_input">fmod_dsp_add_input</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_addinput">DSP::addInput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function adds a <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit as an input to this object and returns the new <a href="https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html">DSPConnection</a> between the two units.</p>
+<p>The returned connection will remain valid until the units are disconnected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a DSP has multiple inputs the signals are automatically mixed together, sent to the unit's output(s).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</td>
+</tr>
+<tr>
+<td>dsp_input_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the DSP unit to be added to <code>dsp_ref</code>.</td>
+</tr>
+<tr>
+<td>dsp_connection_type</td>
+<td><a href="constants.html#fmod_dspconnection_type">FMOD_DSPCONNECTION_TYPE</a></td>
+<td>The type of connection between the two units. Optional. Default is <code>FMOD_DSPCONNECTION_TYPE.STANDARD</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_input">fmod_dsp_get_input</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getinput">DSP::getInput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the DSP unit at the specified index in the input list.</p>
+<p>The returned connection will remain valid until the units are disconnected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time-sensitive operations.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_input(dsp_ref, dsp_chain_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>dsp_chain_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The offset into <code>dsp_ref</code>'s input list. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_inputs">fmod_dsp_get_num_inputs</a>]</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspconnectiondata">FmodDSPConnectionData</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_output">fmod_dsp_get_output</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getoutput">DSP::getOutput</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the DSP unit at the specified index in the output list.</p>
+<p>The returned connection will remain valid until the units are disconnected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_output(dsp_ref, dsp_chain_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>dsp_chain_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_inputs">fmod_dsp_get_num_inputs</a>]</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspconnectiondata">FmodDSPConnectionData</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_num_inputs">fmod_dsp_get_num_inputs</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnuminputs">DSP::getNumInputs</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of DSP units in the given DSP's input list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_inputs(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_num_outputs">fmod_dsp_get_num_outputs</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnumoutputs">DSP::getNumOutputs</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of DSP units in the given DSP's output list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will flush the DSP queue (which blocks against the mixer) to ensure the input list is correct, avoid this during time sensitive operations.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_outputs(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_disconnect_all">fmod_dsp_disconnect_all</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_disconnectall">DSP::disconnectAll</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function disconnects all inputs and/or outputs.</p>
+<p>This is a convenience function that is faster than disconnecting all inputs and outputs individually.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_disconnect_all(dsp_ref, inputs, outputs)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>inputs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether all inputs should be disconnected.</td>
+</tr>
+<tr>
+<td>outputs</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>Whether all outputs should be disconnected.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_disconnect_from">fmod_dsp_disconnect_from</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_disconnectfrom">DSP::disconnectFrom</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function disconnects the specified input DSP.</p>
+<p>If <code>dsp_other_ref</code> had only one output, after this operation that entire subgraph will no longer be connected to the DSP network.</p>
+<p>After this operation <code>dsp_connection_ref</code> is no longer valid.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>dsp_other_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The input unit to disconnect, if not specified all inputs and outputs are disconnected from this unit.</td>
+</tr>
+<tr>
+<td>dsp_connection_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>When there is more than one connection between two units this can be used to define which of the connections should be disconnected. Defaults to the value 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_data_parameter_index">fmod_dsp_get_data_parameter_index</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getdataparameterindex">DSP::getDataParameterIndex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the index of the first data parameter of a particular data type.</p>
+<p>The function returns the index of the first data parameter of type <code>data_type</code> after the function is called. This will be -1 if no matches were found.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FMOD_RESULT.OK</code> if a parameter of matching type is found and <code>FMOD_RESULT.ERR_INVALID_PARAM</code> if no matches were found.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_data_parameter_index(dsp_ref, data_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The type of data to find. Typically of type <code>FMOD_DSP_PARAMETER_DATA_TYPE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnumparameters">DSP::getNumParameters</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of parameters exposed by this unit.</p>
+<p>You can use this value to enumerate all parameters of a DSP unit with <a href="DSP.html#fmod_dsp_get_parameter_info">fmod_dsp_get_parameter_info</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_parameters(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_parameter_bool">fmod_dsp_set_parameter_bool</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterbool">DSP::setParameterBool</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a boolean parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The parameter value.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_parameter_bool">fmod_dsp_get_parameter_bool</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterbool">DSP::getParameterBool</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a boolean parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_bool(dsp_ref, parameter_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_parameter_data">fmod_dsp_set_parameter_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterdata">DSP::setParameterData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a binary data parameter by index.</p>
+<p>You write the binary data for the parameter to a buffer using the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer functions</a> and then pass the buffer and the length of the data, in bytes, to this function. The first byte of the buffer is the first byte of the data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function doesn't take an offset, so the first byte of data is at the start of the buffer (at an offset of 0 bytes).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buffer, length)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that stores the data.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data in the buffer, in bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_parameter_data">fmod_dsp_get_parameter_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterdata">DSP::getParameterData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a binary data parameter by index.</p>
+<p>The binary data is copied to the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you specify. A total number of <code>length</code> bytes are written.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function doesn't take an offset, so the data is written to the start of the buffer (at an offset of 0 bytes).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the data should be large enough to hold the parameter value, as this function doesn't resize the buffer. Any parameter data beyond the length of the buffer will not be included.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buffer, length)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the data.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data to copy into the buffer, in bytes.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_parameter_float">fmod_dsp_set_parameter_float</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterfloat">DSP::setParameterFloat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a floating point parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter floating point data.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterfloat">DSP::getParameterFloat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a floating point parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_float(dsp_ref, parameter_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterint">DSP::setParameterInt</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets an integer parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter integer data.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterint">DSP::getParameterInt</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an integer parameter by index.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_int(dsp_ref, parameter_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The parameter index. A value in the range [0, <a href="DSP.html#fmod_dsp_get_num_parameters">fmod_dsp_get_num_parameters</a> - 1].</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_parameter_info">fmod_dsp_get_parameter_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterinfo">DSP::getParameterInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves information about a specified parameter.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_info(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspparameterdesc">FmodDspParameterDesc</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_channel_format">fmod_dsp_set_channel_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setchannelformat">DSP::setChannelFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the PCM input format this DSP will receive when processing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting the number of channels on a unit will force either a down or up mix to that channel count before processing the DSP read/process callback.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>channel_mask</td>
+<td><a href="constants.html#fmod_channelmask">FMOD_CHANNELMASK</a></td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>num_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels to be processed. A value in the range [0, <a href="constants.html#fmod_max_channel_width">FMOD_MAX_CHANNEL_WIDTH</a>fmod_dsp_get_output_channel_format].</td>
+</tr>
+<tr>
+<td>speaker_mode</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode to describe the channel mapping.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_channel_format">fmod_dsp_get_channel_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getchannelformat">DSP::getChannelFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the PCM input format this DSP will receive when processing.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_channel_format(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspchannelformat">FmodDSPChannelFormat</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_output_channel_format">fmod_dsp_get_output_channel_format</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getoutputchannelformat">DSP::getOutputChannelFormat</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the output format this DSP will produce when processing based on the input specified.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channels_in, speaker_mode_in)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>channel_mask_in</td>
+<td><a href="constants.html#fmod_channelmask">FMOD_CHANNELMASK</a></td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>num_channels_in</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels for the input signal.</td>
+</tr>
+<tr>
+<td>speaker_mode_in</td>
+<td><a href="constants.html#fmod_speakermode">FMOD_SPEAKERMODE</a></td>
+<td>The speaker mode for the input signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspchannelformat">FmodDSPChannelFormat</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_metering_info">fmod_dsp_get_metering_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getmeteringinfo">DSP::getMeteringInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the signal metering information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requesting metering information when it hasn't been enabled will result in <code>FMOD_RESULT.ERR_BADCOMMAND</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FMOD_INIT.PROFILE_METER_ALL</code> with <a href="system.html#fmod_system_init">fmod_system_init</a> will automatically enable metering for all DSP units inside the mixer graph.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_metering_info(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspinoutmeteringinfo">FmodDSPInOutMeteringInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_metering_enabled">fmod_dsp_set_metering_enabled</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setmeteringenabled">DSP::setMeteringEnabled</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the input and output signal metering enabled states.</p>
+<p>Input metering is pre-processing, while output metering is post-processing.</p>
+<p>Enabled metering allows <a href="DSP.html#fmod_dsp_get_metering_info">fmod_dsp_get_metering_info</a> to return metering information and allows FMOD profiling tools to visualize the levels.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FMOD_INIT.PROFILE_METER_ALL</code> with <a href="system.html#fmod_system_init">fmod_system_init</a> will automatically enable metering for all DSP units inside the mixer graph.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>enabled_in</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The metering enabled state for the input signal.</td>
+</tr>
+<tr>
+<td>enabled_out</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The metering enabled state for the output signal.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_metering_enabled">fmod_dsp_get_metering_enabled</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getmeteringenabled">DSP::getMeteringEnabled</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the input and output signal metering enabled states.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_metering_enabled(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspmeteringenableinfo">FmodDSPMeteringEnableInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_active">fmod_dsp_set_active</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setactive">DSP::setActive</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the processing active state.</p>
+<p>If <code>active</code> is false, processing of this unit and its inputs are stopped.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When created, a DSP is inactive. If <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> is used it will automatically be activated, otherwise it must be set to active manually.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_active(dsp_ref, active)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>active</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The active state. Default is <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_active">fmod_dsp_get_active</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getactive">DSP::getActive</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the processing active state.</p>
+<p>If <code>active</code> is false, processing of this unit and its inputs are stopped.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When created, a DSP is inactive. If <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> is used it will automatically be activated, otherwise it must be set to active manually.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_active(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_bypass">fmod_dsp_set_bypass</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setbypass">DSP::setBypass</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the processing bypass state.</p>
+<p>If <code>bypass</code> is <code>true</code>, processing of this unit is skipped but it continues to process its inputs.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_bypass(dsp_ref, bypass)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>bypass</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
+<td>The bypass state. Default is <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_bypass">fmod_dsp_get_bypass</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getbypass">DSP::getBypass</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the processing bypass state.</p>
+<p>If the returned value is <code>true</code>, processing of this unit is skipped but it continues to process its inputs.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_bypass(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_wet_dry_mix">fmod_dsp_set_wet_dry_mix</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setwetdrymix">DSP::setWetDryMix</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the scale of the wet and dry signal components.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>prewet</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Dry' (pre-processed signal) mix that is processed by the DSP. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+<tr>
+<td>postwet</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.</td>
+</tr>
+<tr>
+<td>dry</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal. The default is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_wet_dry_mix">fmod_dsp_get_wet_dry_mix</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getwetdrymix">DSP::getWetDryMix</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the scale of the wet and dry signal components.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_wet_dry_mix(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspwetdrymixinfo">FmodDSPWetDryMixInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_idle">fmod_dsp_get_idle</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getidle">DSP::getIdle</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the idle state.</p>
+<p>A DSP is considered idle when it stops receiving input signal and all internal processing of stored input has been exhausted.</p>
+<p>Each DSP type has the potential to have differing idle behaviour based on the type of effect. A reverb or echo may take a longer time to go idle after it stops receiving a valid signal, compared to an effect with a shorter tail length like an EQ filter.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_idle(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_reset">fmod_dsp_reset</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_reset">DSP::reset</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function resets a DSP's internal state ready for new input signal.</p>
+<p>This will clear all internal state derived from input signal while retaining any set parameter values. The intended use of the function is to avoid audible artifacts if moving the DSP from one part of the DSP network to another.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_reset(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_release">fmod_dsp_release</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_release">DSP::release</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function frees a DSP object.</p>
+<p>If the DSP is not removed from the network with <a href="channel_control.html#fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</a> after being added with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a>, it will not release and <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FMOD_RESULT.ERR_DSP_INUSE</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_release(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_type">fmod_dsp_get_type</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_gettype">DSP::getType</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the pre-defined type of an FMOD registered DSP unit.</p>
+<p>This is only valid for built-in FMOD effects. Any user plugins will simply return <code>FMOD_DSP_TYPE.UNKNOWN</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_type(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_dsp_type">FMOD_DSP_TYPE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_info">fmod_dsp_get_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getinfo">DSP::getInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves information about this DSP unit.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_info(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspinfo">FmodDSPInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_cpu_usage">fmod_dsp_get_cpu_usage</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getcpuusage">DSP::getCPUUsage</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves statistics on the mixer thread CPU usage for this unit.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FMOD_INIT.PROFILE_ENABLE</code> with <a href="system.html#fmod_system_init">fmod_system_init</a> is required to call this function.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_cpu_usage(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodcputimeusage">FmodCPUTimeUsage</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_user_data">fmod_dsp_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setuserdata">DSP::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets a floating-point user value associated with this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_user_data(dsp_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The floating point value stored on this object.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_user_data">fmod_dsp_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getuserdata">DSP::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a floating point user value associated with this object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_user_data(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_set_callback">fmod_dsp_set_callback</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setcallback">DSP::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function enables DSP notifications for the given DSP.</p>
+<p>When enabled, callbacks for this DSP will be triggered as an <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_set_callback(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The string <code>"fmod_dsp_set_callback"</code>.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="constants.html#fmod_dsp_callback_type">FMOD_DSP_CALLBACK_TYPE</a></td>
+<td>The kind of DSP callback.</td>
+</tr>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The DSP for which this callback is triggered.</td>
+</tr>
+<tr>
+<td>parameter_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>OPTIONAL The index of the DSP parameter that's released (only included when <code>kind</code> is <code>FMOD_DSP_CALLBACK_TYPE.DATAPARAMETERRELEASE</code>).</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_dsp_get_system_object">fmod_dsp_get_system_object</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getsystemobject">DSP::getSystemObject</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the parent System object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_dsp_get_system_object(dsp_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a DSP.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="channel_group.html" class="btn btn-neutral float-left" title="Channel Group"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="dsp_connection.html" class="btn btn-neutral float-right" title="DSP Connection">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="channel_group.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="dsp_connection.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

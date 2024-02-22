@@ -40,9 +40,9 @@ call %Utils% optionGetValue "ps4SdkPath" PS4_SDK_PATH
 call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
 call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 
-:: Enable Studio?
+:: Enable Studio? 
 call %Utils% optionGetValue "enableStudio" ENABLE_STUDIO
-set "ENABLE_STUDIO_FLAG=0"
+set "ENABLE_STUDIO_FLAG=1"
 if "%ENABLE_STUDIO%"=="True" set "ENABLE_STUDIO_FLAG=1"
 
 :: Error String
