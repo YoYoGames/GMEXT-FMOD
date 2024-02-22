@@ -26,4 +26,3 @@
  * ${module.event_instance}
  * ${module.studio_system}
  * ${module.studio_vca}
- * ${module.channel}

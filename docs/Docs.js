@@ -9159,7 +9159,6 @@ function fmod_last_result() {}
  * @ref module.event_instance
  * @ref module.studio_system
  * @ref module.studio_vca
- * @ref module.channel
  * @section_end
  * 
  * @module_end
