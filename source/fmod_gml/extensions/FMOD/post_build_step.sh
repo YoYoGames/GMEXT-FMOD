@@ -184,7 +184,7 @@ optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 
 # Enable Studio?
 optionGetValue "enableStudio" ENABLE_STUDIO
-ENABLE_STUDIO_FLAG=0
+ENABLE_STUDIO_FLAG=1
 if [[ "$ENABLE_STUDIO" == "True" ]]; then 
     ENABLE_STUDIO_FLAG=1
 fi

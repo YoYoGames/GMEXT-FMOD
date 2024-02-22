@@ -18,6 +18,8 @@ function fmod_path_bundle(_file)
 		return $"{working_directory}{_file}"
 }
 
+/// @param {string} file
+/// @returns {string}
 function fmod_path_user(_file) {
 	return $"{game_save_id}{_file}";
 }
