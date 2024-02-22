@@ -23,7 +23,13 @@ After compilation the exported dll/dylib/so files is automatically copied into t
 
 ## Requirements
 
-In order to use this extension you will require to [download the FMOD SDK v2.02](https://www.fmod.com/download) and install it on your local machine. 
+In order to use this extension you will require to [download the FMOD SDK v2.02](https://www.fmod.com/download) and install it on your local machine.
+
+> [!IMPORTANT]
+> To set up the FMOD extension asset in the IDE, double-click on it and complete the necessary information in the [Extension Options](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Extensions.htm).
+>
+> Check the [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for detailed information.
+
 If you are compiling this extension locally you will need to place the SDKs inside `source/fmod_sdk/` following the given folder structure:
 
 * Windows: `FMOD Studio API Windows/`
