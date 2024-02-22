@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Bank - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Bank";
+        var mkdocs_page_input_path = "bank.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="bank.html">Bank</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Bank</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/bank.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="bank"><strong>Bank</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html">Studio::Bank</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds the functionality for FMOD Studio banks, which contain the metadata and audio sample data required for runtime mixing and playback. Audio sample data may be packed into the same bank as the events which reference it, or it may be packed into separate banks.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="bank.html#fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</a></li>
+<li><a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a></li>
+<li><a href="bank.html#fmod_studio_bank_unload_sample_data">fmod_studio_bank_unload_sample_data</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_sample_loading_state">fmod_studio_bank_get_sample_loading_state</a></li>
+<li><a href="bank.html#fmod_studio_bank_unload">fmod_studio_bank_unload</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_bus_list">fmod_studio_bank_get_bus_list</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_event_description_list">fmod_studio_bank_get_event_description_list</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_vca_list">fmod_studio_bank_get_vca_list</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_id">fmod_studio_bank_get_id</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_path">fmod_studio_bank_get_path</a></li>
+<li><a href="bank.html#fmod_studio_bank_is_valid">fmod_studio_bank_is_valid</a></li>
+<li><a href="bank.html#fmod_studio_bank_set_user_data">fmod_studio_bank_set_user_data</a></li>
+<li><a href="bank.html#fmod_studio_bank_get_user_data">fmod_studio_bank_get_user_data</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getloadingstate">Studio::Bank::getLoadingState</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function is used to check the loading state of a bank which has been loaded asynchronously using the <code>FMOD_STUDIO_LOAD_BANK.NONBLOCKING</code> flag, or is pending unload following a call to <a href="bank.html#fmod_studio_bank_unload">fmod_studio_bank_unload</a>.</p>
+<p>If an asynchronous load failed due to a file error, state will contain <code>FMOD_STUDIO_LOADING_STATE.ERROR</code> and the return code from the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call will be the error code of the bank load function.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_loading_state(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_studio_loading_state">FMOD_STUDIO_LOADING_STATE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_loadsampledata">Studio::Bank::loadSampleData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function loads non-streaming sample data for all events in the bank.</p>
+<p>Use this function to preload sample data ahead of time so that the events in the bank can play immediately when started.</p>
+<p>This function is equivalent to calling <a href="event_description.html#fmod_studio_event_description_load_sample_data">fmod_studio_event_description_load_sample_data</a> for all events in the bank, including referenced events.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_load_sample_data(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_unload_sample_data">fmod_studio_bank_unload_sample_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unloadsampledata">Studio::Bank::unloadSampleData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function unloads non-streaming sample data for all events in the bank.</p>
+<p>Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">see Sample Data Loading</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_unload_sample_data(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_sample_loading_state">fmod_studio_bank_get_sample_loading_state</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getsampleloadingstate">Studio::Bank::getSampleLoadingState</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the loading state of the samples in the bank.</p>
+<p>May be used for tracking the status of the <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> operation.</p>
+<p>If <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> has not been called for the bank then this function will return <code>FMOD_STUDIO_LOADING_STATE.UNLOADED</code> even though sample data may have been loaded by other API calls.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_sample_loading_state(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="constants.html#fmod_studio_loading_state">FMOD_STUDIO_LOADING_STATE</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_unload">fmod_studio_bank_unload</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unload">Studio::Bank::unload</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function unloads the bank.</p>
+<p>This will destroy all objects created from the bank, unload all sample data inside the bank, and invalidate all API handles referring to the bank.</p>
+<p>If the bank was loaded from user-managed memory, e.g. by <a href="studio_system.html#fmod_studio_system_load_bank_memory">fmod_studio_system_load_bank_memory</a> with the <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT</code> mode, then the memory must not be freed until the unload has completed. Poll the loading state using <a href="bank.html#fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</a> or use the <code>FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD</code> system callback (see <a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a>) to determine when it is safe to free the memory.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_unload(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuscount">Studio::Bank::getBusCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of buses in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_bus_list">fmod_studio_bank_get_bus_list</a> to enumerate the buses in the bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_bus_count(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_bus_list">fmod_studio_bank_get_bus_list</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuslist">Studio::Bank::getBusList</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an array containing the buses in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count</a> to enumerate the buses in the bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_bus_list(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventcount">Studio::Bank::getEventCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of event descriptions in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_event_description_list">fmod_studio_bank_get_event_description_list</a> to enumerate the events in the bank.</p>
+<p>This function counts the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not counted.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_event_count(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_event_description_list">fmod_studio_bank_get_event_description_list</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventlist">Studio::Bank::getEventList</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an array containing the event descriptions in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count</a> to enumerate the events in the bank.</p>
+<p>This function retrieves the events which were added to the bank by the sound designer. The bank may contain additional events which are referenced by event instruments but were not added to the bank, and those referenced events are not retrieved.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_event_description_list(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringcount">Studio::Bank::getStringCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of string table entries in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</a> to enumerate the string table in a bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_string_count(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringinfo">Studio::Bank::getStringInfo</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves a string table entry.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count</a> to enumerate the string table in a bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_string_info(bank_ref, string_index)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+<tr>
+<td>string_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>String table entry index.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodstudiostringinfo">FmodStudioStringInfo</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcacount">Studio::Bank::getVCACount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of VCAs in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_vca_list">fmod_studio_bank_get_vca_list</a> to enumerate the VCAs in a bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_vca_count(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_vca_list">fmod_studio_bank_get_vca_list</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcalist">Studio::Bank::getVCAList</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves an array containing the VCAs in the bank.</p>
+<p>May be used in conjunction with <a href="bank.html#fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count</a> to enumerate the VCAs in a bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_vca_list(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_id">fmod_studio_bank_get_id</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getid">Studio::Bank::getID</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the GUID of the given bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_id(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_path">fmod_studio_bank_get_path</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getpath">Studio::Bank::getPath</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the path of the given bank.</p>
+<p>The strings bank must be loaded prior to calling this function, otherwise <code>FMOD_RESULT.ERR_EVENT_NOTFOUND</code> is returned in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_path(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_is_valid">fmod_studio_bank_is_valid</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_isvalid">Studio::Bank::isValid</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function checks whether the given Bank reference is valid, returning <code>true</code> or <code>false</code>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_is_valid(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_set_user_data">fmod_studio_bank_set_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_setuserdata">Studio::Bank::setUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_set_user_data(bank_ref, data)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The real value to attach.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_bank_get_user_data">fmod_studio_bank_get_user_data</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getuserdata">Studio::Bank::getUserData</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function allows arbitrary user data to be retrieved from this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p>The function returns <code>NaN</code> if there is no user data attached to the bank.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_user_data(bank_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bank_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a bank.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="misc.html" class="btn btn-neutral float-left" title="Miscellaneous"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="bus.html" class="btn btn-neutral float-right" title="Bus">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="misc.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="bus.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -59,7 +59,7 @@
  * 
  * This struct defines a reverb environment.
  * 
- * [[Note: Several presets for these properties are defined as [macros](manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#macros) in GameMaker, which you can find under ${constant.FMOD_REVERB_PRESETS}.]]
+ * [[Note: Several presets for these properties are defined as [macros](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#macros) in GameMaker, which you can find under ${constant.FMOD_REVERB_PRESETS}.]]
  * 
  * [[Note: the default reverb properties are the same as the `FMOD_PRESET_GENERIC` preset.]]
  * 

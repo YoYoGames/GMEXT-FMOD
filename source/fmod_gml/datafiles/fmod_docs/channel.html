@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Channel - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Channel";
+        var mkdocs_page_input_path = "channel.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Home.html">FMOD Extension</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started with FMOD in GameMaker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="GeneralInformation.html">General Information</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="DSP.html">DSP</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="channel.html">Channel</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Channel</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/channel.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="channel"><strong>Channel</strong></h1>
+<blockquote>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a></p>
+</blockquote>
+<p><br /></p>
+<p>This module holds functionality related to Channels, which are a source of audio signal that connects to the <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> mixing hierarchy.</p>
+<p>Create a channel with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a> or <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>.</p>
+<h2 id="functions">Functions</h2>
+<p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
+<ul>
+<li><a href="channel.html#fmod_channel_set_frequency">fmod_channel_set_frequency</a></li>
+<li><a href="channel.html#fmod_channel_get_frequency">fmod_channel_get_frequency</a></li>
+<li><a href="channel.html#fmod_channel_set_priority">fmod_channel_set_priority</a></li>
+<li><a href="channel.html#fmod_channel_get_priority">fmod_channel_get_priority</a></li>
+<li><a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a></li>
+<li><a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a></li>
+<li><a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a></li>
+<li><a href="channel_group.html#fmod_channel_get_channel_group">fmod_channel_get_channel_group</a></li>
+<li><a href="channel.html#fmod_channel_set_loop_count">fmod_channel_set_loop_count</a></li>
+<li><a href="channel.html#fmod_channel_get_loop_count">fmod_channel_get_loop_count</a></li>
+<li><a href="channel.html#fmod_channel_set_loop_points">fmod_channel_set_loop_points</a></li>
+<li><a href="channel.html#fmod_channel_get_loop_points">fmod_channel_get_loop_points</a></li>
+<li><a href="channel.html#fmod_channel_is_virtual">fmod_channel_is_virtual</a></li>
+<li><a href="channel.html#fmod_channel_get_current_sound">fmod_channel_get_current_sound</a></li>
+<li><a href="channel.html#fmod_channel_get_index">fmod_channel_get_index</a></li>
+<li><a href="channel.html#fmod_channel_get_system_object">fmod_channel_get_system_object</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_frequency">fmod_channel_set_frequency</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setfrequency">Channel::setFrequency</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the frequency or playback rate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default frequency is determined by the audio format of the <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a> or <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sounds opened as <code>FMOD_MODE.CREATESAMPLE</code> (not <code>FMOD_MODE.CREATESTREAM</code> or <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code>) can be played backwards by giving a negative frequency.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_frequency(channel_ref, frequency)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The playback rate, expressed in Hertz.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_frequency">fmod_channel_get_frequency</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getfrequency">Channel::getFrequency</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the playback frequency or playback rate.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_frequency(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_priority">fmod_channel_set_priority</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setpriority">Channel::setPriority</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the priority used for virtual voice ordering.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest <a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a> value will be stolen first.</p>
+</div>
+<p>See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_priority(channel_ref, priority)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>priority</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The priority value where 0 represents most important and 256 represents least important. The default is 128.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_priority">fmod_channel_get_priority</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getpriority">Channel::getPriority</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the priority used for virtual voice ordering.</p>
+<p>The function returns the priority value where 0 represents most important and 256 represents least important.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest <a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a> value will be stolen first.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_priority(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_position">fmod_channel_set_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setposition">Channel::setPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the current playback position.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Certain <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> types are always available: <code>FMOD_TIMEUNIT.PCM</code>, <code>FMOD_TIMEUNIT.PCMBYTES</code> and <code>FMOD_TIMEUNIT.MS</code>. The others are format specific such as <code>FMOD_TIMEUNIT.MODORDER</code> / <code>FMOD_TIMEUNIT.MODROW</code> / <code>FMOD_TIMEUNIT.MODPATTERN</code> which is specific to files of type MOD / S3M / XM / IT.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If playing a Sound created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FMOD_MODE.CREATESTREAM</code> changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with <code>FMOD_MODE.NONBLOCKING</code>. This will cause the stream to go into <code>FMOD_OPENSTATE.SETPOSITION</code> state (see <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a>) and Sound commands will return <code>FMOD_RESULT.ERR_NOTREADY</code>. <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> will also not update until this non-blocking set position operation has completed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCM</code>. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify <code>FMOD_MODE.ACCURATETIME</code> when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_position(channel_ref, position, time_unit)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The playback position.</td>
+</tr>
+<tr>
+<td>time_unit</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which the <code>position</code> parameter is expressed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_position">fmod_channel_get_position</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getposition">Channel::getPosition</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current playback position.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Certain <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> types are always available: <code>FMOD_TIMEUNIT.PCM</code>, <code>FMOD_TIMEUNIT.PCMBYTES</code> and <code>FMOD_TIMEUNIT.MS</code>. The others are format specific such as <code>FMOD_TIMEUNIT.MODORDER</code> / <code>FMOD_TIMEUNIT.MODROW</code> / <code>FMOD_TIMEUNIT.MODPATTERN</code> which is specific to files of type MOD / S3M / XM / IT.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used, the value is internally converted from <code>FMOD_TIMEUNIT.PCM</code>, so the retrieved value may not exactly match the set value.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_position(channel_ref, time_unit)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>time_unit</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which the <code>position</code> parameter is expressed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_channel_group">fmod_channel_set_channel_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the channelgroup this object outputs to.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A channelgroup may contain many channels.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Channels may only output to a single channelgroup. This operation will remove it from the previous group first.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_channel_group(channel_ref, channel_group_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>channel_group_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the channelgroup to use as the output group.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_channel_group">fmod_channel_get_channel_group</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getchannelgroup">Channel::getChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the ChannelGroup this object outputs to.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_channel_group(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_loop_count">fmod_channel_set_loop_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setloopcount">Channel::setLoopCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the number of times to loop before stopping.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The 'mode' of the sound or channel must be <code>FMOD_MODE.LOOP_NORMAL</code> or <code>FMOD_MODE.LOOP_BIDI</code> for this function to work.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_loop_count(channel_ref, loop_count)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>loop_count</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of times to loop before stopping where 0 represents "oneshot", 1 represents "loop once then stop" and -1 represents "loop forever".</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_loop_count">fmod_channel_get_loop_count</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getloopcount">Channel::getLoopCount</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the number of times to loop before stopping.</p>
+<p>The returned value is the times to loop before stopping where 0 represents "oneshot", 1 represents "loop once then stop" and -1 represents "loop forever".</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is the current loop countdown value that will decrement as it plays until reaching 0. You can reset it with <a href="channel.html#fmod_channel_set_loop_count">fmod_channel_set_loop_count</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_loop_count(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_set_loop_points">fmod_channel_set_loop_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setlooppoints">Channel::setLoopPoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the loop start and end points.</p>
+<p>Loop points may only be set on a channel playing a sound, not a channel playing a DSP (See <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Valid <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> types are <code>FMOD_TIMEUNIT.PCM</code>, <code>FMOD_TIMEUNIT.MS</code>, <code>FMOD_TIMEUNIT.PCMBYTES</code>. Any other time units return <code>FMOD_RESULT.ERR_FORMAT</code>.
+If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used, the value is internally converted from <code>FMOD_TIMEUNIT.PCM</code>, so the retrieved value may not exactly match the set value.</p>
+</div>
+<p>The Channel's mode must be set to <code>FMOD_MODE.LOOP_NORMAL</code> or <code>FMOD_MODE.LOOP_BIDI</code> for loop points to affect playback.</p>
+<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues">Streaming Issues</a></p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, loop_end, loop_end_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>loop_start</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop start point.</td>
+</tr>
+<tr>
+<td>loop_start_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which the <code>loop_start</code> parameter is expressed.</td>
+</tr>
+<tr>
+<td>loop_end</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The loop end point.</td>
+</tr>
+<tr>
+<td>loop_end_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which the <code>loop_end</code> parameter is expressed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p>N/A</p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_loop_points">fmod_channel_get_loop_points</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getlooppoints">Channel::getLoopPoints</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the loop start and end points.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Valid <a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a> types are <code>FMOD_TIMEUNIT.PCM</code>, <code>FMOD_TIMEUNIT.MS</code>, <code>FMOD_TIMEUNIT.PCMBYTES</code>. For all other time units <a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FMOD_RESULT.ERR_FORMAT</code>.
+If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used, the value is internally converted from <code>FMOD_TIMEUNIT.PCM</code>, so the retrieved value may not exactly match the set value.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_type)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+<tr>
+<td>loop_start_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which to return <code>loop_start</code></td>
+</tr>
+<tr>
+<td>loop_end_type</td>
+<td><a href="constants.html#fmod_timeunit">FMOD_TIMEUNIT</a></td>
+<td>The time units in which to return <code>loop_end</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodlooppoints">FmodLoopPoints</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_is_virtual">fmod_channel_is_virtual</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_isvirtual">Channel::isVirtual</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves whether the channel is being emulated by the virtual voice system.</p>
+<p>If <code>true</code> is returned, the channel is silent / emulated. If <code>false</code> is returned, the channel is audible / real.</p>
+<p>See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_is_virtual(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_current_sound">fmod_channel_get_current_sound</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getcurrentsound">Channel::getCurrentSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the currently playing sound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function may return 0 if no sound is playing.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_current_sound(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_index">fmod_channel_get_index</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getindex">Channel::getIndex</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the index of this object in the system channel pool.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value is in the range [0, <code>max_channels</code> value passed to <a href="system.html#fmod_system_init">fmod_system_init</a> - 1].</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_index(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_get_system_object">fmod_channel_get_system_object</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the system that created this object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_get_system_object(channel_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><br></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="studio_vca.html" class="btn btn-neutral float-left" title="VCA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>YoYoGames 2024</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="studio_vca.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
