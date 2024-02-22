@@ -81,7 +81,7 @@ for (var count = 0; count < numsounds; count++)
 		var struct = fmod_channel_control_get_dsp_clock(channel)//Soemthing wrong here? sound fine but long delay comapration with the example
         clock_start = struct.parent_clock
 		clock_start += outputrate.sample_rate*2;
-            clock_start += (dsp_block_len * 2);	/* Start the sound into the future, by 2 mixer blocks worth. */
+            clock_start += (dsp_block_len.buff_size * 2);	/* Start the sound into the future, by 2 mixer blocks worth. */
                                                 /* Should be enough to avoid the mixer catching up and hitting the clock value before we've finished setting up everything. */
                                                 /* Alternatively the channelgroup we're basing the clock on could be paused to stop it ticking. */
     }
