@@ -44,6 +44,89 @@ Here the Mac API is entered as the IDE is running on a Mac. Use the Browse `[...
 
 FMOD set-up is now complete. Let's look at how you can import banks from your FMOD Project and play events.
 
+# FMOD Systems
+
+There are functions for initialising the FMOD Core System, and the FMOD Studio System.
+
+If you are making use of FMOD Studio, you only need to initialise that, which also initialises the FMOD Core system underneath.
+
+If you are only making use of FMOD Core, you will only need to initialise that. The code examples below show how to do both.
+
+# FMOD Init & Loop
+
+Your game needs to run some initialisation code (e.g. in a Create event) and loop code (in a Step event) for FMOD to work.
+
+The following Create event code can be placed in an "FMOD manager" object, which initialises the system:
+
+```gml
+var _max_channels = 1024
+var _flags_core = FMOD_INIT.NORMAL;
+var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
+
+#macro USE_FMOD_STUDIO true // Are we using FMOD studio (true) or just core (false)?
+#macro USE_DEBUG_CALLBACKS false // Should debugging be initialised?
+
+/* If we enable debug callbacks in the macro above set them ON */
+if (USE_DEBUG_CALLBACKS)
+{
+    fmod_debug_initialize(FMOD_DEBUG_FLAGS.LEVEL_LOG, FMOD_DEBUG_MODE.CALLBACK);
+}
+
+/* If we want to use FMOD_STUDIO */
+if (USE_FMOD_STUDIO)
+{
+	/*
+		If you are only using Studio you need this.
+        It creates the Studio System and prints its result to the Output Log.
+        It then initialises the system with the previously set variables, printing the result of that function.
+
+        The FMOD Studio System function also initialises the core FMOD system, which is why you do not need to call fmod_system_create() here.
+	*/
+	fmod_studio_system_create();	
+	show_debug_message("fmod_studio_system_create: " + string(fmod_last_result()));
+	
+	fmod_studio_system_init(_max_channels, _flags_studio, _flags_core);
+	show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
+	
+	/*
+		FMOD Studio will create an initialize an underlying core system to work with.
+	*/
+	fmod_main_system = fmod_studio_system_get_core_system();
+}
+// If we want to use FMOD Core only
+else
+{
+	/*
+		If you are only using Core you only need this.
+
+        It creates and initialises the core FMOD system, printing the result of each call to the Output Log.
+	*/
+	fmod_main_system = fmod_system_create()
+	show_debug_message("fmod_system_create: " + string(fmod_last_result()))
+
+	fmod_system_init(_max_channels, _flags_core)
+	show_debug_message("fmod_system_init: " + string(fmod_last_result()))
+}
+```
+
+Your manager object should also have a Step event with the following code in it:
+
+```gml
+if (USE_FMOD_STUDIO) {
+	/*
+		If you are only using Studio you need this.
+        This call will update the STUDIO system and the underlying CORE system.
+	*/
+	fmod_studio_system_update(); 
+}
+else {
+	/*
+		If you are only using Core you only need this.
+	*/
+	fmod_system_update();
+}
+```
+
 # Playing Events
 
 > If you are not familiar with FMOD, [watch this tutorial](https://www.youtube.com/watch?v=7A1HMOsD2eU).
