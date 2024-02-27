@@ -15,6 +15,7 @@
  * ${module.reverb_3d}
  * ${module.sound}
  * ${module.sound_group}
+ * ${module.geometry}
  * ${module.misc}
 
 ### FMOD Studio Reference
@@ -26,3 +27,8 @@
  * ${module.event_instance}
  * ${module.studio_system}
  * ${module.studio_vca}
+
+### Extras
+
+ * [Constants](constants)
+ * [Structs](structs)
