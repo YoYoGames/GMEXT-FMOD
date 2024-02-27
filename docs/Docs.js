@@ -9155,6 +9155,7 @@ function fmod_last_result() {}
  * @ref module.reverb_3d
  * @ref module.sound
  * @ref module.sound_group
+ * @ref module.geometry
  * @ref module.misc
  * @section_end
  * 

@@ -91,6 +91,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
                 </li>
               </ul>
@@ -120,6 +124,14 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="structs.html">Structs</a>
                 </li>
               </ul>
       </div>
@@ -343,6 +355,7 @@
 <p class="admonition-title">Note</p>
 <p><a href="system.html#fmod_system_set_output">fmod_system_set_output</a> can be called before or after <a href="system.html#fmod_system_init">fmod_system_init</a> on Android, GameCore, UWP, Windows and Mac. Other platforms can only call this before <a href="system.html#fmod_system_init">fmod_system_init</a>.</p>
 </div>
+<p>See <a href="https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted">Getting Started</a> for examples on initialising and updating FMOD systems.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -469,6 +482,7 @@
 <p>If <code>FMOD_OUTPUTTYPE.NOSOUND_NRT</code> or <code>FMOD_OUTPUTTYPE.WAVWRITER_NRT</code> output modes are used, this function also drives the software / DSP engine, instead of it running asynchronously in a thread as is the default behavior.
 This can be used for faster than realtime updates to the decoding or DSP engine which might be useful if the output is the wav writer for example.</p>
 <p>If <code>FMOD_INIT.STREAM_FROM_UPDATE</code> is used, this function will update the stream engine. Combining this with the non realtime output will mean smoother captured output.</p>
+<p>See <a href="https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted">Getting Started</a> for examples on initialising and updating FMOD systems.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
