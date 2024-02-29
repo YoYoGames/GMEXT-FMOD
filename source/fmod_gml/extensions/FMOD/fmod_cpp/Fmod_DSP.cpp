@@ -293,7 +293,8 @@ func double fmod_dsp_get_parameter_data_multiplatform(double dsp_ref, double par
 		FMOD_DSP_PARAMETER_FFT* fft = (FMOD_DSP_PARAMETER_FFT*)data;
 
 		// Check the size required to write the data
-		uint32_t required_size = sizeof(float) * (2 + static_cast<unsigned long long>(32) * fft->length);
+		uint32_t required_size = sizeof(int) * 2 // For length and numchannels
+                         + sizeof(float) * static_cast<unsigned long long>(fft->numchannels) * fft->length;
 		if ((uint32_t)length < required_size)
 			return required_size;
 
