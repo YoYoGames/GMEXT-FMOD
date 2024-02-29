@@ -173,13 +173,15 @@
 <p>Open your GameMaker project or create a new one.</p>
 <p>Drag the <code>.yymps</code> file from the downloaded package into your GameMaker window, or go into <strong>Tools -&gt; Import Local Package</strong> to select the <code>.yymps</code> file.</p>
 <p><img alt="Select Add All and Import" src="assets/ext_import.jpg" /></p>
-<p>In the window that opens, select <strong>Add All</strong> and then <strong>Import</strong>.</p>
+<p>The only folder required to use FMOD is "Fmod". Click on it and select <strong>Add</strong>.</p>
+<p>This package also includes a demo of FMOD, for which you need to import everything (<strong>Add All</strong>).</p>
+<p>Finally, select <strong>Import</strong>.</p>
 <p>In your Asset Browser, expand the "Fmod" folder, expand "Extensions", and double-click on <strong>FMOD</strong>.</p>
 <p><img alt="Select the FMOD Extension under Fmod -&gt; Extensions" src="assets/ext_fmod.jpg" /></p>
 <p>This will open the Extension Editor which contains the extension's parameters.</p>
 <p>Here you need to set the SDK locations for the platforms the game will be exported to. This needs the location of the FMOD Engine folder.</p>
 <p><img alt="FMOD Extension Options" src="assets/ext_options.jpg" /></p>
-<p>Here the Mac API is entered as the IDE is running on a Mac. Use the Browse <code>[...]</code> button to find and select your FMOD Engine directory (the folder that <em>contains</em> the "api" folder, not the "api" folder itself).</p>
+<p>Here the macOS API is entered as the intended target here is macOS. Use the Browse <code>[...]</code> button to find and select your FMOD Engine directory (the folder that <em>contains</em> the "api" folder, not the "api" folder itself).</p>
 <p>FMOD set-up is now complete. Let's look at how you can import banks from your FMOD Project and play events.</p>
 <h1 id="fmod-systems">FMOD Systems</h1>
 <p>There are functions for initialising the FMOD Core System, and the FMOD Studio System.</p>
@@ -187,7 +189,7 @@
 <p>If you are only making use of FMOD Core, you will only need to initialise that. The code examples below show how to do both.</p>
 <h1 id="fmod-init-loop">FMOD Init &amp; Loop</h1>
 <p>Your game needs to run some initialisation code (e.g. in a Create event) and loop code (in a Step event) for FMOD to work.</p>
-<p>The following Create event code can be placed in an "FMOD manager" object, which initialises the system:</p>
+<p>The following example code can be placed in an "FMOD manager" object's Create event, which initialises the system:</p>
 <div class="highlight"><pre><span></span><code>var _max_channels = 1024
 var _flags_core = FMOD_INIT.NORMAL;
 var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
