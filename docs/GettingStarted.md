@@ -28,7 +28,11 @@ Drag the `.yymps` file from the downloaded package into your GameMaker window, o
 
 ![Select Add All and Import](assets/ext_import.jpg)
 
-In the window that opens, select **Add All** and then **Import**.
+The only folder required to use FMOD is "Fmod". Click on it and select **Add**.
+
+This package also includes a demo of FMOD, for which you need to import everything (**Add All**).
+
+Finally, select **Import**.
 
 In your Asset Browser, expand the "Fmod" folder, expand "Extensions", and double-click on **FMOD**.
 
@@ -40,7 +44,7 @@ Here you need to set the SDK locations for the platforms the game will be export
 
 ![FMOD Extension Options](assets/ext_options.jpg)
 
-Here the Mac API is entered as the IDE is running on a Mac. Use the Browse `[...]` button to find and select your FMOD Engine directory (the folder that *contains* the "api" folder, not the "api" folder itself).
+Here the macOS API is entered as the intended target here is macOS. Use the Browse `[...]` button to find and select your FMOD Engine directory (the folder that *contains* the "api" folder, not the "api" folder itself).
 
 FMOD set-up is now complete. Let's look at how you can import banks from your FMOD Project and play events.
 
@@ -56,7 +60,7 @@ If you are only making use of FMOD Core, you will only need to initialise that. 
 
 Your game needs to run some initialisation code (e.g. in a Create event) and loop code (in a Step event) for FMOD to work.
 
-The following Create event code can be placed in an "FMOD manager" object, which initialises the system:
+The following example code can be placed in an "FMOD manager" object's Create event, which initialises the system:
 
 ```gml
 var _max_channels = 1024
