@@ -251,6 +251,13 @@ func double fmod_dsp_set_parameter_data_multiplatform(double dsp_ref, double par
 	return 0;
 }
 
+template<typename T>
+void writeDataToBuffer(char* buff, T data, int &offset) {
+	constexpr size_t size = sizeof(T);
+	memcpy(buff + offset, &data, size);
+	offset += size;
+}
+
 func double fmod_dsp_get_parameter_data_multiplatform(double dsp_ref, double parameter_index, char* buff, double length)
 {
 	FMOD::DSP* dsp = nullptr;
@@ -265,9 +272,47 @@ func double fmod_dsp_get_parameter_data_multiplatform(double dsp_ref, double par
 		return 0;
 	}
 
-	if (data_length > length)
-		data_length = (uint32_t)length;
+	// We will used the return value as a way to specify overflow
+	// A return value != than 0 means that the input buffer needs to be resized
+	if (data_length > (uint32_t)length) {
+		return data_length;
+	}
 
+	FMOD_DSP_TYPE dsp_type;
+	g_fmod_last_result = dsp->getType(&dsp_type);
+
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		return 0;
+	}
+
+	// We need to handle FFT manually (there are pointers involved)
+	if (dsp_type == FMOD_DSP_TYPE::FMOD_DSP_TYPE_FFT && ((int)parameter_index == FMOD_DSP_FFT::FMOD_DSP_FFT_SPECTRUMDATA)) {
+
+		int offset = 0, size = 0;
+		FMOD_DSP_PARAMETER_FFT* fft = (FMOD_DSP_PARAMETER_FFT*)data;
+
+		// Check the size required to write the data
+		uint32_t required_size = sizeof(float) * (2 + static_cast<unsigned long long>(32) * fft->length);
+		if ((uint32_t)length < required_size)
+			return required_size;
+
+		// Write the length of the window (int)
+		writeDataToBuffer(buff, fft->length, offset);
+
+		// Write the number of channels (int)
+		writeDataToBuffer(buff, fft->numchannels, offset);
+
+		// Write the spectrum data (float[32][length])
+		for (int channel_idx = 0; channel_idx < fft->numchannels; channel_idx++) {
+			size = sizeof(float) * fft->length;
+			memcpy(buff + offset, fft->spectrum[channel_idx], size);
+			offset += size;
+		}
+		return 0;
+	}
+	
+	// By default just copy the data
 	memcpy(buff, data, data_length);
 
 	return 0;

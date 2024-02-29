@@ -1227,7 +1227,7 @@ function fmod_dsp_set_parameter_data(_dsp_ref, _parameter_index, _buffer, _lengt
 function fmod_dsp_get_parameter_data(_dsp_ref, _parameter_index, _buffer, _length = undefined)
 {
 	_length ??= buffer_get_size(_buffer);
-	fmod_dsp_get_parameter_data_multiplatform(_dsp_ref, _parameter_index, buffer_get_address(_buffer), _length);
+	return fmod_dsp_get_parameter_data_multiplatform(_dsp_ref, _parameter_index, buffer_get_address(_buffer), _length);
 }
 
 function FmodDspParameterDescValue() constructor {
