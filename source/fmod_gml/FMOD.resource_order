@@ -1,5 +1,5 @@
 {
-  "FolderOrderSettings": [
+  "FolderOrderSettings":[
     {"name":"Fmod Demo","order":1,"path":"folders/Fmod Demo.yy",},
     {"name":"Core","order":4,"path":"folders/Fmod Demo/Core.yy",},
     {"name":"ChannelGroups","order":11,"path":"folders/Fmod Demo/Core/ChannelGroups.yy",},
@@ -27,7 +27,7 @@
     {"name":"Objects","order":2,"path":"folders/GM Extensions Assets/Objects.yy",},
     {"name":"Sprites","order":3,"path":"folders/GM Extensions Assets/Sprites.yy",},
   ],
-  "ResourceOrderSettings": [
+  "ResourceOrderSettings":[
     {"name":"obj_fmod_channel_groups","order":1,"path":"objects/obj_fmod_channel_groups/obj_fmod_channel_groups.yy",},
     {"name":"rm_fmod_studio_menu","order":6,"path":"rooms/rm_fmod_studio_menu/rm_fmod_studio_menu.yy",},
     {"name":"obj_fmod_speaker_back_left","order":8,"path":"objects/obj_fmod_speaker_back_left/obj_fmod_speaker_back_left.yy",},

@@ -1,15 +1,15 @@
 {
-  "$GMProject": "",
-  "%Name": "FMOD",
-  "AudioGroups": [
+  "$GMProject":"",
+  "%Name":"FMOD",
+  "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
-  "configs": {
-    "children": [],
-    "name": "Default",
+  "configs":{
+    "children":[],
+    "name":"Default",
   },
-  "defaultScriptType": 1,
-  "Folders": [
+  "defaultScriptType":1,
+  "Folders":[
     {"$GMFolder":"","%Name":"Fmod Demo","folderPath":"folders/Fmod Demo.yy","name":"Fmod Demo","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Core","folderPath":"folders/Fmod Demo/Core.yy","name":"Core","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"3D","folderPath":"folders/Fmod Demo/Core/3D.yy","name":"3D","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -41,7 +41,7 @@
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/GM Extensions Assets/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/GM Extensions Assets/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "IncludedFiles": [
+  "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"c.ogg","CopyToMask":-1,"filePath":"datafiles","name":"c.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"d.ogg","CopyToMask":-1,"filePath":"datafiles","name":"d.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Dialogue_CN.bank","CopyToMask":-1,"filePath":"datafiles","name":"Dialogue_CN.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -128,13 +128,13 @@
     {"$GMIncludedFile":"","%Name":"Vehicles.bank","CopyToMask":-1,"filePath":"datafiles","name":"Vehicles.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"wave_vorbis.fsb","CopyToMask":-1,"filePath":"datafiles","name":"wave_vorbis.fsb","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
-  "isEcma": false,
-  "LibraryEmitters": [],
-  "MetaData": {
-    "IDEVersion":"2024.200.0.494",
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2024.200.0.505",
   },
-  "name": "FMOD",
-  "resources": [
+  "name":"FMOD",
+  "resources":[
     {"id":{"name":"rm_fmod_studio_recording_playback","path":"rooms/rm_fmod_studio_recording_playback/rm_fmod_studio_recording_playback.yy",},},
     {"id":{"name":"obj_fmod_channel_groups","path":"objects/obj_fmod_channel_groups/obj_fmod_channel_groups.yy",},},
     {"id":{"name":"rm_fmod_studio_menu","path":"rooms/rm_fmod_studio_menu/rm_fmod_studio_menu.yy",},},
@@ -241,9 +241,9 @@
     {"id":{"name":"obj_fmod_multi_system_next","path":"objects/obj_fmod_multi_system_next/obj_fmod_multi_system_next.yy",},},
     {"id":{"name":"rm_fmod_init","path":"rooms/rm_fmod_init/rm_fmod_init.yy",},},
   ],
-  "resourceType": "GMProject",
-  "resourceVersion": "2.0",
-  "RoomOrderNodes": [
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
     {"roomId":{"name":"rm_fmod_init","path":"rooms/rm_fmod_init/rm_fmod_init.yy",},},
     {"roomId":{"name":"rm_fmod_core_menu","path":"rooms/rm_fmod_core_menu/rm_fmod_core_menu.yy",},},
     {"roomId":{"name":"rm_fmod_efects","path":"rooms/rm_fmod_efects/rm_fmod_efects.yy",},},
@@ -268,8 +268,8 @@
     {"roomId":{"name":"rm_fmod_granular","path":"rooms/rm_fmod_granular/rm_fmod_granular.yy",},},
     {"roomId":{"name":"rm_fmod_studio_menu","path":"rooms/rm_fmod_studio_menu/rm_fmod_studio_menu.yy",},},
   ],
-  "templateType": null,
-  "TextureGroups": [
+  "templateType":null,
+  "TextureGroups":[
     {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
   ],
 }
