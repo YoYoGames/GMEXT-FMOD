@@ -9,3 +9,5 @@ fmod_dsp_set_parameter_int(dsp_index,FMOD_DSP_OSCILLATOR.TYPE, 0);
 
 channel_index = fmod_system_play_dsp(dsp_index, false);
 
+frequency = 0
+volume = 0

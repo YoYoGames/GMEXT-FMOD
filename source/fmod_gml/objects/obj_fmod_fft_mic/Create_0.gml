@@ -47,6 +47,7 @@ music = fmod_system_play_sound(sound, false);
 dsp_fft = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.FFT);
 fmod_channel_control_add_dsp(music, FMOD_CHANNELCONTROL_DSP_INDEX.FADER, dsp_fft);
 fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWTYPE, FMOD_DSP_FFT_WINDOW.RECT);
+windows_size = 16384
 fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 16384);
 
 // Create buffer for parameter data

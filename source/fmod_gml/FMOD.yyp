@@ -17,12 +17,12 @@
     {"$GMFolder":"","%Name":"Convolution Reverb","folderPath":"folders/Fmod Demo/Core/Convolution Reverb.yy","name":"Convolution Reverb","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"DSP Speaker","folderPath":"folders/Fmod Demo/Core/DSP Speaker.yy","name":"DSP Speaker","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Effects","folderPath":"folders/Fmod Demo/Core/Effects.yy","name":"Effects","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"FFT","folderPath":"folders/Fmod Demo/Core/FFT.yy","name":"FFT","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"FFT Mic","folderPath":"folders/Fmod Demo/Core/FFT/FFT Mic.yy","name":"FFT Mic","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"FFT Sound","folderPath":"folders/Fmod Demo/Core/FFT/FFT Sound.yy","name":"FFT Sound","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Gapless_Playback","folderPath":"folders/Fmod Demo/Core/Gapless_Playback.yy","name":"Gapless_Playback","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Generate Tone","folderPath":"folders/Fmod Demo/Core/Generate Tone.yy","name":"Generate Tone","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Granular Synth","folderPath":"folders/Fmod Demo/Core/Granular Synth.yy","name":"Granular Synth","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"FFT","folderPath":"folders/Fmod Demo/Core/FFT.yy","name":"FFT","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"MultiSystem","folderPath":"folders/Fmod Demo/Core/MultiSystem.yy","name":"MultiSystem","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Net Stream","folderPath":"folders/Fmod Demo/Core/Net Stream.yy","name":"Net Stream","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Play Sound","folderPath":"folders/Fmod Demo/Core/Play Sound.yy","name":"Play Sound","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -77,7 +77,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.200.0.505",
+    "IDEVersion":"2024.2.0.132",
   },
   "name":"FMOD",
   "resources":[
