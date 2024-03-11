@@ -127,6 +127,11 @@ exit /b 0
     
     echo "Copying Linux (64 bit) dependencies"
 
+    :: When running from CLI 'YYprojectName' will not be set, use 'YYprojectPath' instead.
+    if "%YYprojectName%"=="" (
+        for %%A in ("%YYprojectPath%") do set "YYprojectName=%%~nA"
+    )
+
     call %Utils% fileExtract "%YYprojectName%.zip" "_temp\"
 
     if not exist "_temp\assets\libfmod.so.13" (

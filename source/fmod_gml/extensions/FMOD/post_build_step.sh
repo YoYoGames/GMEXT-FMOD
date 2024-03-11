@@ -54,6 +54,11 @@ setupLinux() {
 
     echo "Copying Linux (64 bit) dependencies"
     
+    # When running from CLI 'YYprojectName' will not be set, use 'YYprojectPath' instead.
+    if [ -z "$YYprojectName" ]; then
+        YYprojectName=$(basename "${YYprojectPath%.*}")
+    fi
+
     fileExtract "${YYprojectName}.zip" "_temp"
 
     if [[ ! -f "_temp/assets/libfmod.so.13" ]]; then 
