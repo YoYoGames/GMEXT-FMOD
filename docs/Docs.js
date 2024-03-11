@@ -2016,8 +2016,6 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
  *
  * This function retrieves a binary data parameter by index.
  * 
- * It returns 0 if the function succeeds or a value greater than 0 that's the buffer size needed to store the parameter data. In this case you should resize the buffer to the return value using ${function.buffer_resize}.
- * 
  * The binary data is copied to the ${type.buffer} that you specify. A total number of `length` bytes are written.
  * 
  * [[Note: This function doesn't take an offset, so the data is written to the start of the buffer (at an offset of 0 bytes).]]
@@ -2028,20 +2026,6 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
  * @param {real} parameter_index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters} - 1].
  * @param {buffer} buffer The ${type.buffer} that receives the data.
  * @param {real} length The length of the data to copy into the buffer, in bytes.
- * @returns {real}
- * 
- * @example
- * ```gml
- * /// Step Event
- * var _required_size = fmod_dsp_get_parameter_data(dsp_fft, FMOD_DSP_FFT.SPECTRUMDATA, fft_buffer);
- * if (buffer_get_size(fft_buffer) < _required_size)
- * {
- *     buffer_resize(fft_buffer, _required_size);
- * }
- * ```
- * The code example above attempts to get the spectrum data of an FFT DSP and store it in a buffer `fft_buffer`.
- * If the size of the buffer is less than the size returned, the buffer is resized.
- * Note that no new call to the function is made since this code executes in the Step event and will be executed again in the next step anyway.
  * @func_end
  */
 function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
