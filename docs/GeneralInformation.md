@@ -233,7 +233,7 @@ _numlisteners = buffer_read(pan_buffer, buffer_s32);
 for(var i = 0;i < FMOD_MAX_LISTENERS;i++)
 {
     _relative = read_3d_attributes(pan_buffer);
-    if (i < FMOD_MAX_LISTENERS)
+    if (i < _numlisteners)
     {
         // Valid listener index
         _pan_per_listener[i] = {relative: _relative};
@@ -242,7 +242,7 @@ for(var i = 0;i < FMOD_MAX_LISTENERS;i++)
 for(var i = 0;i < FMOD_MAX_LISTENERS;i++)
 {
     _weight = buffer_read(pan_buffer, buffer_f32);
-    if (i < FMOD_MAX_LISTENERS)
+    if (i < _numlisteners)
     {
         // Valid listener index
         _pan_per_listener[i].weight = _weight;
