@@ -190,7 +190,7 @@
 <h1 id="fmod-init-loop">FMOD Init &amp; Loop</h1>
 <p>Your game needs to run some initialisation code (e.g. in a Create event) and loop code (in a Step event) for FMOD to work.</p>
 <p>The following example code can be placed in an "FMOD manager" object's Create event, which initialises the system:</p>
-<div class="highlight"><pre><span></span><code>var _max_channels = 1024
+<pre class="highlight"><code class="language-gml">var _max_channels = 1024
 var _flags_core = FMOD_INIT.NORMAL;
 var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
 
@@ -214,10 +214,10 @@ if (USE_FMOD_STUDIO)
         The FMOD Studio System function also initialises the core FMOD system, which is why you do not need to call fmod_system_create() here.
     */
     fmod_studio_system_create();
-    show_debug_message(&quot;fmod_studio_system_create: &quot; + string(fmod_last_result()));
+    show_debug_message("fmod_studio_system_create: " + string(fmod_last_result()));
 
     fmod_studio_system_init(_max_channels, _flags_studio, _flags_core);
-    show_debug_message(&quot;fmod_studio_system_init: &quot; + string(fmod_last_result()));
+    show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
 
     /*
         FMOD Studio will create an initialize an underlying core system to work with.
@@ -233,14 +233,13 @@ else
         It creates and initialises the core FMOD system, printing the result of each call to the Output Log.
     */
     fmod_main_system = fmod_system_create()
-    show_debug_message(&quot;fmod_system_create: &quot; + string(fmod_last_result()))
+    show_debug_message("fmod_system_create: " + string(fmod_last_result()))
 
     fmod_system_init(_max_channels, _flags_core)
-    show_debug_message(&quot;fmod_system_init: &quot; + string(fmod_last_result()))
-}
-</code></pre></div>
+    show_debug_message("fmod_system_init: " + string(fmod_last_result()))
+}</code></pre>
 <p>Your manager object should also have a Step event with the following code in it:</p>
-<div class="highlight"><pre><span></span><code>if (USE_FMOD_STUDIO) {
+<pre class="highlight"><code class="language-gml">if (USE_FMOD_STUDIO) {
     /*
         If you are only using Studio you need this.
         This call will update the STUDIO system and the underlying CORE system.
@@ -252,8 +251,7 @@ else {
         If you are only using Core you only need this.
     */
     fmod_system_update();
-}
-</code></pre></div>
+}</code></pre>
 <h1 id="playing-events">Playing Events</h1>
 <blockquote>
 <p>If you are not familiar with FMOD, <a href="https://www.youtube.com/watch?v=7A1HMOsD2eU">watch this tutorial</a>.</p>
@@ -262,20 +260,15 @@ else {
 <p>Once you have set up your FMOD project, go to <strong>File -&gt; Build</strong> to export the banks.</p>
 <p>Copy the banks into the <code>datafiles</code> folder of your GameMaker project, to add them to your <a href="https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm">Included Files</a>.</p>
 <p>In your game code, load your bank with <a href="studio_system.html#fmod_studio_system_load_bank_file">fmod_studio_system_load_bank_file</a>:</p>
-<div class="highlight"><pre><span></span><code>bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle(&quot;master.bank&quot;), FMOD_STUDIO_LOAD_BANK.NORMAL);
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"), FMOD_STUDIO_LOAD_BANK.NORMAL);</code></pre>
 <p>Then load your strings bank with <a href="studio_system.html#fmod_studio_system_load_bank_file">fmod_studio_system_load_bank_file</a> so you can look-up events in the bank:</p>
-<div class="highlight"><pre><span></span><code>strings_bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle(&quot;master.strings.bank&quot;), FMOD_STUDIO_LOAD_BANK.NORMAL);
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">strings_bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"), FMOD_STUDIO_LOAD_BANK.NORMAL);</code></pre>
 <p>Load the event description, using its name defined in FMOD Studio with the <a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a> function:</p>
-<div class="highlight"><pre><span></span><code>event_description_ref = fmod_studio_system_get_event(&quot;event:/Ambience/Country&quot;);
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">event_description_ref = fmod_studio_system_get_event("event:/Ambience/Country");</code></pre>
 <p>Create an instance of the event description before playing it, using <a href="event_description.html#fmod_studio_event_description_create_instance">fmod_studio_event_description_create_instance</a>:</p>
-<div class="highlight"><pre><span></span><code>event_description_instance_ref = fmod_studio_event_description_create_instance(event_description_ref);
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">event_description_instance_ref = fmod_studio_event_description_create_instance(event_description_ref);</code></pre>
 <p>Finally, play the instance so you hear sound using <a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a>:</p>
-<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_start(event_description_instance_ref);
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_event_instance_start(event_description_instance_ref);</code></pre>
               
             </div>
           </div><footer>

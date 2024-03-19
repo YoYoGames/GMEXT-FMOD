@@ -192,8 +192,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_set_mix(dsp_connection_ref, volume)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_set_mix(dsp_connection_ref, volume)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -236,8 +235,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_mix(dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_mix(dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -274,13 +272,12 @@
 <p>A matrix element is referenced from the incoming matrix data as <code>out_channel * in_channel_hop + in_channel</code>.</p>
 <p>If 0 or equivalent is passed in via <code>matrix</code> a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.</p>
 <p>Example 5.1 unit matrix:</p>
-<div class="highlight"><pre><span></span><code>1 0 0 0 0 0
+<pre class="highlight"><code>1 0 0 0 0 0
 0 1 0 0 0 0
 0 0 1 0 0 0
 0 0 0 1 0 0
 0 0 0 0 1 0
-0 0 0 0 0 1
-</code></pre></div>
+0 0 0 0 0 1</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
@@ -288,8 +285,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_channels, in_channels, in_channel_hop)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_channels, in_channels, in_channel_hop)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -347,8 +343,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -391,8 +386,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_input(dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_input(dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -430,8 +424,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_output(dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_output(dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -468,8 +461,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_type(dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_type(dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -510,8 +502,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_set_user_data(dsp_connection_ref, data)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_set_user_data(dsp_connection_ref, data)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -557,8 +548,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_user_data(dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_connection_get_user_data(dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>

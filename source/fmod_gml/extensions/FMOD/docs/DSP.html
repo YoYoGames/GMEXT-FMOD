@@ -228,8 +228,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -281,8 +280,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_input(dsp_ref, dsp_chain_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_input(dsp_ref, dsp_chain_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -329,8 +327,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_output(dsp_ref, dsp_chain_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_output(dsp_ref, dsp_chain_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -376,8 +373,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_inputs(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_num_inputs(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -418,8 +414,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_outputs(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_num_outputs(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -457,8 +452,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_disconnect_all(dsp_ref, inputs, outputs)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_disconnect_all(dsp_ref, inputs, outputs)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -507,8 +501,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -557,8 +550,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_data_parameter_index(dsp_ref, data_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_data_parameter_index(dsp_ref, data_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -601,8 +593,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_num_parameters(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_num_parameters(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -639,8 +630,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -687,8 +677,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_bool(dsp_ref, parameter_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_bool(dsp_ref, parameter_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -735,8 +724,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buffer, length)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buffer, length)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -785,6 +773,7 @@
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a binary data parameter by index.</p>
+<p>It returns 0 if the function succeeds or a value greater than 0 that's the buffer size needed to store the parameter data. In this case you should resize the buffer to the return value using <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_resize.htm">buffer_resize</a>.</p>
 <p>The binary data is copied to the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you specify. A total number of <code>length</code> bytes are written.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -797,8 +786,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buffer, length)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buffer, length)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -834,8 +822,19 @@
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p>N/A</p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
 </blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p><pre class="highlight"><code class="language-gml">/// Step Event
+var _required_size = fmod_dsp_get_parameter_data(dsp_fft, FMOD_DSP_FFT.SPECTRUMDATA, fft_buffer);
+if (buffer_get_size(fft_buffer) &lt; _required_size)
+{
+    buffer_resize(fft_buffer, _required_size);
+}</code></pre>
+The code example above attempts to get the spectrum data of an FFT DSP and store it in a buffer <code>fft_buffer</code>.
+If the size of the buffer is less than the size returned, the buffer is resized.
+Note that no new call to the function is made since this code executes in the Step event and will be executed again in the next step anyway.</p>
 <p><br></p>
 <p><br></p>
 <hr />
@@ -850,8 +849,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -898,8 +896,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_float(dsp_ref, parameter_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_float(dsp_ref, parameter_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -941,8 +938,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -989,8 +985,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_int(dsp_ref, parameter_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_int(dsp_ref, parameter_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1032,8 +1027,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_parameter_info(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_info(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1074,8 +1068,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speaker_mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1127,8 +1120,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_channel_format(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_channel_format(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1165,8 +1157,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channels_in, speaker_mode_in)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channels_in, speaker_mode_in)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1226,8 +1217,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_metering_info(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_metering_info(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1270,8 +1260,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1318,8 +1307,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_metering_enabled(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_metering_enabled(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1361,8 +1349,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_active(dsp_ref, active)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_active(dsp_ref, active)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1409,8 +1396,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_active(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_active(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1448,8 +1434,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_bypass(dsp_ref, bypass)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_bypass(dsp_ref, bypass)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1492,8 +1477,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_bypass(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_bypass(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1530,8 +1514,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1583,8 +1566,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_wet_dry_mix(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_wet_dry_mix(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1623,8 +1605,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_idle(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_idle(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1662,8 +1643,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_reset(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_reset(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1701,8 +1681,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_release(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_release(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1740,8 +1719,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_type(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_type(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1778,8 +1756,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_info(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_info(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1820,8 +1797,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_cpu_usage(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_cpu_usage(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1862,8 +1838,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_user_data(dsp_ref, data)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_user_data(dsp_ref, data)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1909,8 +1884,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_user_data(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_user_data(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1949,8 +1923,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_set_callback(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_callback(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2023,8 +1996,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_get_system_object(dsp_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_system_object(dsp_ref)</code></pre>
 </blockquote>
 <table>
 <thead>

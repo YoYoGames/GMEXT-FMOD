@@ -225,8 +225,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_name(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_name(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -263,8 +262,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_format(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_format(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -307,8 +305,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_length(sound_ref, length_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_length(sound_ref, length_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -355,8 +352,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_num_tags(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_num_tags(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -405,8 +401,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_tag(sound_ref, tag_index, data_buffer)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_tag(sound_ref, tag_index, data_buffer)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -442,7 +437,7 @@
 <p><br></p>
 <p><strong>Example:</strong></p>
 <p>The following example reads any tags that have arrived, this could happen if a radio station switches to a new song. This loop only runs IF there is an update to the tags.</p>
-<div class="highlight"><pre><span></span><code>var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+<pre class="highlight"><code class="language-gml">var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
 while (fmod_last_result() == FMOD_RESULT.OK)
 {
     // Move cursor to the beginning of the buffer
@@ -451,10 +446,10 @@ while (fmod_last_result() == FMOD_RESULT.OK)
     if (_tag.data_type == FMOD_TAGDATATYPE.STRING)
     {
         var _value = buffer_read(tag_data_buff, buffer_string);
-        tag_strings[tag_index] = $&quot;{_tag.name}: {_value}&quot;;
+        tag_strings[tag_index] = $"{_tag.name}: {_value}";
         tag_index = (tag_index + 1) % tag_count;
 
-        if (_tag.type == FMOD_TAGTYPE.PLAYLIST &amp;&amp; _tag.name == &quot;FILE&quot;)
+        if (_tag.type == FMOD_TAGTYPE.PLAYLIST &amp;&amp; _tag.name == "FILE")
         {
             var _url = _value;
             fmod_sound_release(sound_index);
@@ -465,7 +460,7 @@ while (fmod_last_result() == FMOD_RESULT.OK)
     else if (_tag.type == FMOD_TAGTYPE.FMOD)
     {
         // When a song changes, the sample rate may also change, so compensate here.
-        if ((_tag.name == &quot;Sample Rate Change&quot;) &amp;&amp; channel_index != -1)
+        if ((_tag.name == "Sample Rate Change") &amp;&amp; channel_index != -1)
         {
             var _frequency = buffer_read(tag_data_buff, buffer_f32);
             fmod_channel_set_frequency(channel_index, _frequency);
@@ -473,8 +468,7 @@ while (fmod_last_result() == FMOD_RESULT.OK)
     }
 
     _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
-}
-</code></pre></div>
+}</code></pre>
 <p><br></p>
 <p><br></p>
 <hr />
@@ -494,8 +488,7 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_cone_angle, outside_volume)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -547,8 +540,7 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_cone_settings(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_3d_cone_settings(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -591,19 +583,17 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 <p>When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.</p>
 <p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
 <p>If the points are not sorted by distance, an error will result.</p>
-<div class="highlight"><pre><span></span><code>// Defining a custom array of points
+<pre class="highlight"><code class="language-gml">// Defining a custom array of points
 curve =
 [
     { x: 0,  y:  1, z: 0 },
     { x: 2,  y: .2, z: 0 },
     { x: 2,  y:  0, z: 0 }
-];
-</code></pre></div>
+];</code></pre>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_custom_rolloff(sound_ref, points)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_3d_custom_rolloff(sound_ref, points)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -645,8 +635,7 @@ curve =
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_custom_rolloff(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_3d_custom_rolloff(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -700,8 +689,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_3d_min_max_distance(sound_ref, min, max)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_3d_min_max_distance(sound_ref, min, max)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -748,8 +736,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_min_max_distance(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_3d_min_max_distance(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -787,8 +774,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_defaults(sound_ref, frequency, priority)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_defaults(sound_ref, frequency, priority)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -835,8 +821,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_defaults(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_defaults(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -896,8 +881,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_mode(sound_ref, mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_mode(sound_ref, mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -943,8 +927,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_mode(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_mode(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -985,8 +968,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_loop_count(sound_ref, count)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_loop_count(sound_ref, count)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1033,8 +1015,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_loop_count(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_loop_count(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1081,8 +1062,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1140,8 +1120,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1189,8 +1168,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_sound_group(sound_ref, sound_group_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_sound_group(sound_ref, sound_group_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1232,8 +1210,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_sound_group(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_sound_group(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1271,8 +1248,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_num_sub_sounds(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_num_sub_sounds(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1312,8 +1288,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_sub_sound(sound_ref, sub_sound_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_sub_sound(sound_ref, sub_sound_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1356,8 +1331,7 @@ Increasing the <code>min</code> distance simulates a larger sound in the world, 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_sub_sound_parent(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_sub_sound_parent(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1403,8 +1377,7 @@ With the ability to detect stream starvation, muting the sound with <a href="cha
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_open_state(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_open_state(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1449,8 +1422,7 @@ If <code>FMOD_MODE.OPENONLY</code> flag is used when opening a sound, it will le
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_read_data(sound_ref, buff, length, offset)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_read_data(sound_ref, buff, length, offset)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1508,8 +1480,7 @@ If <code>FMOD_MODE.OPENONLY</code> flag is used when opening a sound, it will le
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_seek_data(sound_ref, pcm)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_seek_data(sound_ref, pcm)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1567,8 +1538,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_lock(sound_ref, offset, length, buff1, buff2)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_lock(sound_ref, offset, length, buff1, buff2)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1630,8 +1600,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, address2)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1698,8 +1667,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_music_num_channels(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_music_num_channels(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1736,8 +1704,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1784,8 +1751,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_music_channel_volume(sound_ref, channel_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_music_channel_volume(sound_ref, channel_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1827,8 +1793,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_music_speed(sound_ref, speed)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_music_speed(sound_ref, speed)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1870,8 +1835,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_music_speed(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_music_speed(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1909,8 +1873,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_sync_point(sound_ref, point_index, offset_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_sync_point(sound_ref, point_index, offset_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1958,8 +1921,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_num_sync_points(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_num_sync_points(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1997,8 +1959,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_add_sync_point(sound_ref, offset, offset_type, name)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_add_sync_point(sound_ref, offset, offset_type, name)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2051,8 +2012,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_delete_sync_point(sound_ref, point_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_delete_sync_point(sound_ref, point_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2096,8 +2056,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_release(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_release(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2134,8 +2093,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_system_object(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_system_object(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2176,8 +2134,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_set_user_data(sound_ref, data)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_set_user_data(sound_ref, data)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2223,8 +2180,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_user_data(sound_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_sound_get_user_data(sound_ref)</code></pre>
 </blockquote>
 <table>
 <thead>

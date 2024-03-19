@@ -166,10 +166,9 @@
 <li>The last 10 bits identify the extension.</li>
 </ul>
 <p>To create an instance of an FMOD object and get its handle, you call an extension function that returns a handle. Many FMOD objects can be created using the <code>fmod_system_create_*</code> functions. For example:</p>
-<div class="highlight"><pre><span></span><code>system = fmod_system_create();
-sound_group = fmod_system_create_sound_group(&quot;SoundGroup&quot;);
-// Etc.
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">system = fmod_system_create();
+sound_group = fmod_system_create_sound_group("SoundGroup");
+// Etc.</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>While these handles are internally represented in the same way as GameMaker's built-in handles, they are <em>not</em> true handles from GameMaker's perspective.</p>
@@ -177,16 +176,210 @@ sound_group = fmod_system_create_sound_group(&quot;SoundGroup&quot;);
 <h1 id="error-handling">Error Handling</h1>
 <p>In FMOD, functions always return whether they executed successfully. If not, they return an error code explaining the error that occurred.</p>
 <p>Most functions of the FMOD extension don't return this FMOD result directly. Instead, when you call a function of the FMOD extension, the result of the last called function is stored internally with the extension. You can retrieve this value using the function <a href="misc.html#fmod_last_result">fmod_last_result</a>. For example:</p>
-<div class="highlight"><pre><span></span><code>system = fmod_system_create();
+<pre class="highlight"><code class="language-gml">system = fmod_system_create();
 result = fmod_last_result();
-show_debug_message(&quot;Result of fmod_system_create: {0}&quot;, result);
-</code></pre></div>
+show_debug_message("Result of fmod_system_create: {0}", result);</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FMOD_RESULT.OK</code> in case there were no errors.</p>
 </div>
 <h1 id="bug-reports">Bug Reports</h1>
 <p>If you experience a crash when using the FMOD extension, please create a <a href="https://github.com/YoYoGames/GMEXT-FMOD/issues/new?assignees=&amp;labels=extension-bug&amp;projects=&amp;template=extension_bug_report.yml">bug report</a>. This allows the GameMaker team to look into the issue and improve the FMOD extension.</p>
+<h1 id="working-with-dsp-parameters">Working with DSP Parameters</h1>
+<p>The FMOD extension allows you to get and set <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> parameters. The different parameters that you can get and set can be found on the <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html">Effect Parameters</a> page as well as in the extension's <code>Fmod_Definitions</code> script asset.</p>
+<p>The FMOD extension has the following functions to get and set DSP parameters:</p>
+<ul>
+<li><a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a> / <a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a> / <a href="DSP.html#fmod_dsp_set_parameter_float">fmod_dsp_set_parameter_float</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_bool">fmod_dsp_get_parameter_bool</a> / <a href="DSP.html#fmod_dsp_set_parameter_bool">fmod_dsp_set_parameter_bool</a></li>
+<li><a href="DSP.html#fmod_dsp_get_parameter_data">fmod_dsp_get_parameter_data</a> / <a href="DSP.html#fmod_dsp_set_parameter_data">fmod_dsp_set_parameter_data</a></li>
+</ul>
+<p>You should make sure to always use the extension function that corresponds to the data type that you want to get or set.</p>
+<h2 id="simple-parameters">Simple Parameters</h2>
+<p>These are the integer, float and boolean DSP parameters. You can get or set them with a single function call.</p>
+<p>For example, to set the type and size of an FFT DSP's window:</p>
+<pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWTYPE, FMOD_DSP_FFT_WINDOW.RECT);
+fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 16384);</code></pre>
+<p>Since the <code>FMOD_DSP_FFT_WINDOWTYPE</code> and <code>FMOD_DSP_FFT_WINDOWSIZE</code> variables of the <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_fft">FMOD_DSP_FFT</a> struct are both of type <code>int</code>, you should get them with <a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a> and set them with <a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a>.</p>
+<p>Similarly, a <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_highpass">FMOD_DSP_HIGHPASS</a> DSP's parameters are of type <code>float</code>. So you should get the parameters with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a> and set them with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a>:</p>
+<pre class="highlight"><code class="language-gml">// Set
+fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.CUTOFF, 10000);
+fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONANCE, 4);
+
+// Get
+var _cutoff = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.CUTOFF);
+var _resonance = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONANCE);</code></pre>
+<h2 id="data-parameters">Data Parameters</h2>
+<p>The more complex DSP parameters are of a type that's referred to in the FMOD documentation as <code>data</code>. The FMOD extension allows you to set and get this data by writing to and reading from a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the function <a href="DSP.html#fmod_dsp_get_parameter_data">fmod_dsp_get_parameter_data</a> returns the size of the data (in bytes). You need to resize the buffer if it's not large enough to store the data.</p>
+</div>
+<p>The mapping between FMOD's data structs and the same data in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> may not be straightforward, however. This section explains how you can read from and write to a buffer in the format that FMOD uses.</p>
+<p>We'll have a look at two particular cases:</p>
+<ul>
+<li>FMOD structs with a pointer variable: <code>FMOD_DSP_FFT</code>. The extension copies the data the pointer points to into the buffer.</li>
+<li>FMOD structs that contain other FMOD structs, i.e. nested structs. In the buffer this nested data is "flattened".</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a href="https://manual.gamemaker.io/monthly/en/Additional_Information/Guide_To_Using_Buffers.htm">Guide_To_Using_Buffers</a> for more information on how to work with buffers.</p>
+</div>
+<h3 id="fmod_dsp_fft">FMOD_DSP_FFT</h3>
+<p>The <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_FFT</a> DSP is an example of a DSP type that has a <code>data</code> parameter with a pointer variable: <code>FMOD_DSP_FFT_SPECTRUMDATA</code>. This is shown in the FMOD documentation as:</p>
+<p><img alt="Parameter of type data in docs" src="assets/fmod_docs_data_type.png" /></p>
+<p>You get the data of this parameter as follows:</p>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_data(dsp_fft, FMOD_DSP_FFT.SPECTRUMDATA, fft_buffer);</code></pre>
+<p>The FMOD extension will write the data to the buffer <code>fft_buffer</code> that you pass it.</p>
+<p>How this data looks can be found under <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_fft"><code>FMOD_DSP_PARAMETER_FFT</code></a>, which is defined like this:</p>
+<pre class="highlight"><code class="language-C++">typedef struct FMOD_DSP_PARAMETER_FFT {
+  int     length;
+  int     numchannels;
+  float   *spectrum[32];
+} FMOD_DSP_PARAMETER_FFT;</code></pre>
+<p>Here, <code>length</code> stores the length of the <code>spectrum</code> array of a single channel (i.e. the number of values included in the spectrum). <code>numchannels</code> stores the number of channels for which there is spectrum data.</p>
+<p>If you read these variable definitions line by line, you have:</p>
+<p>An <code>int</code> followed by an <code>int</code>, followed by <em>at most</em> 32 times <code>length</code> <code>float</code>s. <code>spectrum</code> is an array of pointers (the asterisk <code>*</code> refers to a pointer), which indicates that the memory for each array is not included in the <code>FMOD_DSP_PARAMETER_FFT</code> struct itself, but rather in the memory that the pointer to that array <em>points to</em>. You don't need to do any buffer copying yourself however, as the extension copies these blocks of data to the buffer one after the other.</p>
+<p>Looking at the <a href="#data-type-mapping-table.md">Data Type Mapping Table</a>, you see that this corresponds to 2 times a <code>buffer_s32</code>, followed by <code>numchannels</code> blocks of spectrum data consisting of <code>length</code> <code>buffer_f32</code> values. So the layout of the data in the buffer will be the following:</p>
+<pre class="highlight"><code>|Channel |                      |Channel 0                                                |Channel 1                                                | ... |
+|FMOD    |int       |int        |float         |float         | ... |float                |float         |float         | ... |float                | ... |
+|Buffer  |buffer_s32|buffer_s32 |buffer_f32    |buffer_f32    | ... |buffer_f32           |buffer_f32    |buffer_f32    | ... |buffer_f32           | ... |
+|Variable|length    |numchannels|spectrum[0][0]|spectrum[0][1]| ... |spectrum[0][length-1]|spectrum[1][0]|spectrum[1][1]| ... |spectrum[1][length-1]| ... |
+|Offset  |0         |4          |8             |12            | ... |8 + (length-1)*4     |...           |              |     |                     | ... |</code></pre>
+<p>To read this data from the buffer, you'd do:</p>
+<pre class="highlight"><code class="language-gml">buffer_seek(fft_buffer, buffer_seek_start, 0);
+var _length = buffer_read(fft_buffer, buffer_s32);
+var _numchannels = buffer_read(fft_buffer, buffer_s32);
+var _spectrum = array_create(_numchannels), _channel_index = 0, _bin_index;
+repeat(_numchannels)
+{
+    _spectrum[_channel_index] = array_create(_length);
+    _bin_index = 0;
+    repeat(_length)
+    {
+        _spectrum[_channel_index][_bin_index++] = buffer_read(fft_buffer, buffer_f32);
+    }
+    _channel_index++;
+}</code></pre>
+<h3 id="fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</h3>
+<p>The <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</a> DSP is a second example of a DSP type that has a <code>data</code> parameter. It actually has a number of <code>data</code> parameters: <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code>, <code>FMOD_DSP_OBJECTPAN_OVERALL_GAIN</code>, and <code>FMOD_DSP_OBJECTPAN_ATTENUATION_RANGE</code>.</p>
+<p>In this example we'll look at the <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code> parameter, since it has nested structs. This parameter is of type <code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code>:</p>
+<p>You get the data of this parameter as follows:</p>
+<pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_data(dsp_pan, FMOD_DSP_OBJECTPAN._3D_POSITION, pan_buffer);</code></pre>
+<p>The FMOD extension will write the data to the buffer <code>pan_buffer</code> that you pass it.</p>
+<p>The struct <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_3dattributes_multi"><code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code></a> is defined as follows:</p>
+<pre class="highlight"><code class="language-C++">typedef struct FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI {
+  int                  numlisteners;
+  FMOD_3D_ATTRIBUTES   relative[FMOD_MAX_LISTENERS];
+  float                weight[FMOD_MAX_LISTENERS];
+  FMOD_3D_ATTRIBUTES   absolute;
+} FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI;</code></pre>
+<p>Here, <code>relative</code> and <code>weight</code> are arrays. <code>relative</code> is an array of structs of type <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_3d_attributes"><code>FMOD_3D_ATTRIBUTES</code></a>:</p>
+<pre class="highlight"><code class="language-C++">typedef struct FMOD_3D_ATTRIBUTES {
+  FMOD_VECTOR position;
+  FMOD_VECTOR velocity;
+  FMOD_VECTOR forward;
+  FMOD_VECTOR up;
+} FMOD_3D_ATTRIBUTES;</code></pre>
+<p>All variables in this struct are also structs. Each variable is of type <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_vector"><code>FMOD_VECTOR</code></a>:</p>
+<pre class="highlight"><code class="language-C++">typedef struct FMOD_VECTOR {
+  float   x;
+  float   y;
+  float   z;
+} FMOD_VECTOR;</code></pre>
+<p>Bringing all that together, an <code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code> struct looks as follows:</p>
+<p>An <code>int</code>, followed by <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> times the following: 4 times 3 <code>float</code>s in a row (<code>x</code>, <code>y</code> and <code>z</code>), followed by <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> times a <code>float</code> that stores a weight, followed by another 4 times 3 <code>float</code>s (each also <code>x</code>, <code>y</code> and <code>z</code>).</p>
+<p>To get and read the data from the buffer, you'd do:</p>
+<p><pre class="highlight"><code class="language-gml">function read_vector(_buffer)
+{
+    var _x = buffer_read(_buffer, buffer_f32);
+    var _y = buffer_read(_buffer, buffer_f32);
+    var _z = buffer_read(_buffer, buffer_f32);
+
+    return {x: _x, y: _y, z: _z};
+}
+
+function read_3d_attributes(_buffer)
+{
+    var _position = read_vector(_buffer);
+    var _velocity = read_vector(_buffer);
+    var _forward = read_vector(_buffer);
+    var _up = read_vector(_buffer);
+
+    return {position: _position, velocity: _velocity, forward: _forward, up: _up};
+}
+
+buffer_seek(pan_buffer, buffer_seek_start, 0);
+
+var _numlisteners, _relative, _weight, _absolute;
+var _pan_per_listener = array_create(_numlisteners);
+
+_numlisteners = buffer_read(pan_buffer, buffer_s32);
+for(var i = 0;i &lt; FMOD_MAX_LISTENERS;i++)
+{
+    _relative = read_3d_attributes(pan_buffer);
+    if (i &lt; FMOD_MAX_LISTENERS)
+    {
+        // Valid listener index
+        _pan_per_listener[i] = {relative: _relative};
+    }
+}
+for(var i = 0;i &lt; FMOD_MAX_LISTENERS;i++)
+{
+    _weight = buffer_read(pan_buffer, buffer_f32);
+    if (i &lt; FMOD_MAX_LISTENERS)
+    {
+        // Valid listener index
+        _pan_per_listener[i].weight = _weight;
+    }
+}
+_absolute = read_3d_attributes(pan_buffer);</code></pre>
+The code example above shows how to read the <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code> parameter, which is of type <code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code>.
+First, two functions <code>read_vector</code> and <code>read_3d_attributes</code> are defined to read a <code>FMOD_VECTOR</code> and a <code>FMOD_3D_ATTRIBUTES</code> from the buffer and return them as a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>.
+Then, the number of listeners is read and two <code>for</code> loops are executed, each loop executes <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a> times. The first loop assigns a struct to the variable <code>_pan_per_listener</code> at the current listener index. The second loop assigns that struct the weight as an additional attribute <code>weight</code>.
+Note that you always have to execute the loop this number of times. If <code>_numlisteners</code> is less than <a href="constants.html#fmod_max_listeners">FMOD_MAX_LISTENERS</a>, the required calls to <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_read.htm">buffer_read</a> to "skip" the remaining unused listener data won't happen and subsequent reads will give wrong results.
+Also note that you cannot read <code>relative</code> and <code>weight</code> in the same <code>for</code> loop. This is because the buffer stores all relative data, followed by all weights.
+Finally, the absolute pan properties are read with another call to <code>read_3d_attributes</code>.</p>
+<h3 id="data-type-mapping-table">Data Type Mapping Table</h3>
+<p>The following table provides the mapping of FMOD (C++) data types to GameMaker's buffer data types.</p>
+<table>
+<thead>
+<tr>
+<th>FMOD C++ data type</th>
+<th>Buffer data type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>buffer_s32</code></td>
+</tr>
+<tr>
+<td><code>unsigned int</code></td>
+<td><code>buffer_u32</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>buffer_f32</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>buffer_f64</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>buffer_bool</code></td>
+</tr>
+<tr>
+<td>struct</td>
+<td>See the FMOD docs</td>
+</tr>
+<tr>
+<td><code>type[num]</code> (array)</td>
+<td><code>num</code> times data of <code>type</code></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
