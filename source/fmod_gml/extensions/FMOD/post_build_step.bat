@@ -101,14 +101,23 @@ exit /b 0
         :: This is used for VM compilation
         call %Utils% logError "Extension is not compatible with the macOS VM export, please use YYC."
     ) else (
+        setlocal enabledelayedexpansion
+
+        :: When running from CI the 'YYprojectName' will not be set use 'YYprojectPath' instead.
+        if "%YYprojectName%"=="" (
+            for %%A in ("%YYprojectPath%") do set "YYprojectName=%%~nA"
+        )
+        :: Replace spaces with underscores (this matches the assetcompiler output)
+        set YYfixedProjectName=!YYprojectName: =_!
+
         :: This is used for YYC compilation
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%YYprojectName: =_%\%YYprojectName: =_%\Supporting Files\libfmodL.dylib"
+        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmodL.dylib"
 
         :: Copy studio libs if enabled
         if %ENABLE_STUDIO_FLAG% == 1 (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%YYprojectName: =_%\%YYprojectName: =_%\Supporting Files\libfmodstudioL.dylib"
+            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmodstudioL.dylib"
         )
-
+        endlocal
     )
 exit /b 0
 
@@ -127,24 +136,24 @@ exit /b 0
     
     echo "Copying Linux (64 bit) dependencies"
 
+    setlocal enabledelayedexpansion
+
     :: When running from CLI 'YYprojectName' will not be set, use 'YYprojectPath' instead.
     if "%YYprojectName%"=="" (
         for %%A in ("%YYprojectPath%") do set "YYprojectName=%%~nA"
     )
 
-    call %Utils% fileExtract "%YYprojectName%.zip" "_temp\"
-
-    if not exist "_temp\assets\libfmod.so.13" (
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmod.so.13"
-
-        :: Copy studio libs if enabled
-        if %ENABLE_STUDIO_FLAG% == 1 (
-            if not exist "_temp\assets\libfmodstudio.so.13" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "_temp\assets\libfmodstudio.so.13"
-        )
-
-        call %Utils% folderCompress "_temp" "%YYprojectName%.zip"
+    :: Update the zip file with the required SDKs
+    mkdir _temp\assets
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmod.so.13"
+    if %ENABLE_STUDIO_FLAG% == 1 (
+        if not exist "_temp\assets\libfmodstudio.so.13" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "_temp\assets\libfmodstudio.so.13"
     )
+    call %Utils% zipUpdate "_temp" "!YYprojectName!.zip"
     rmdir /s /q _temp
+
+    setlocal enabledelayedexpansion
+
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
