@@ -118,23 +118,22 @@ function fmod_error_string(_error_code = fmod_last_result())
 /// @ignore
 function fmod_handle_async_events() 
 {
-	static _async_buffer = buffer_create(2048, buffer_fixed, 1);
+	static _async_buffer = buffer_create(2024, buffer_grow, 1);
 	
 	var _buffer_address = buffer_get_address(_async_buffer);
 	var _buffer_size = buffer_get_size(_async_buffer);
+	
 	var _size = fmod_fetch_callbacks(_buffer_address, _buffer_size);
 	
 	// This is a special case that signals the runner that the buffer size needs to be increased.
 	if (_size < 0) {
-		_buffer_size = -_size;
-		buffer_resize(_async_buffer, _buffer_size);
-		_buffer_address = buffer_get_address(_async_buffer);
-		fmod_fetch_callbacks(_buffer_address, _buffer_size);
+		// Scale by a factor of 2
+		return buffer_resize(_async_buffer, -_size * 2);
 	}
 	
 	buffer_seek(_async_buffer, buffer_seek_start, 0);
-	
 	var _map_array = ext_buffer_unpack(_async_buffer, true);
+	
 	var _array_size = array_length(_map_array);
 	for (var _i = 0; _i < _array_size; _i++) {
 		event_perform_async(ev_async_social, _map_array[_i]);

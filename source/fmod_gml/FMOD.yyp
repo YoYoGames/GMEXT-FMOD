@@ -77,7 +77,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.2.0.132",
+    "IDEVersion":"2024.400.0.556",
   },
   "name":"FMOD",
   "resources":[
@@ -167,6 +167,7 @@
     {"id":{"name":"rm_fmod_efects","path":"rooms/rm_fmod_efects/rm_fmod_efects.yy",},},
     {"id":{"name":"rm_fmod_fft_mic","path":"rooms/rm_fmod_fft_mic/rm_fmod_fft_mic.yy",},},
     {"id":{"name":"rm_fmod_fft_sound","path":"rooms/rm_fmod_fft_sound/rm_fmod_fft_sound.yy",},},
+    {"id":{"name":"rm_fmod_fft","path":"rooms/rm_fmod_fft/rm_fmod_fft.yy",},},
     {"id":{"name":"rm_fmod_gapless","path":"rooms/rm_fmod_gapless/rm_fmod_gapless.yy",},},
     {"id":{"name":"rm_fmod_generate_tone","path":"rooms/rm_fmod_generate_tone/rm_fmod_generate_tone.yy",},},
     {"id":{"name":"rm_fmod_granular","path":"rooms/rm_fmod_granular/rm_fmod_granular.yy",},},
@@ -184,7 +185,6 @@
     {"id":{"name":"rm_fmod_studio_object_pan","path":"rooms/rm_fmod_studio_object_pan/rm_fmod_studio_object_pan.yy",},},
     {"id":{"name":"rm_fmod_studio_recording_playback","path":"rooms/rm_fmod_studio_recording_playback/rm_fmod_studio_recording_playback.yy",},},
     {"id":{"name":"rm_fmod_studio_simple_event","path":"rooms/rm_fmod_studio_simple_event/rm_fmod_studio_simple_event.yy",},},
-    {"id":{"name":"rm_fmod_fft","path":"rooms/rm_fmod_fft/rm_fmod_fft.yy",},},
     {"id":{"name":"ExtBufferIO","path":"scripts/ExtBufferIO/ExtBufferIO.yy",},},
     {"id":{"name":"Fmod_Definitions","path":"scripts/Fmod_Definitions/Fmod_Definitions.yy",},},
     {"id":{"name":"Fmod_Functions","path":"scripts/Fmod_Functions/Fmod_Functions.yy",},},
