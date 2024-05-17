@@ -26,6 +26,8 @@ source/fmod_gml/extensions/FMOD/*.nrr
 source/fmod_gml/extensions/FMOD/**/fmod.jar
 source/fmod_gml/extensions/FMOD/**/*fmodL*.*
 source/fmod_gml/extensions/FMOD/**/*fmodstudioL*.*
+source/fmod_gml/extensions/FMOD/**/Fmod Core/
+source/fmod_gml/extensions/FMOD/**/Fmod Studio/
 
 # YYFMOD build solutions (temp & output)
 source/fmod_gml/extensions/FMOD/fmod_android/out/
@@ -45,3 +47,4 @@ xcuserdata/
 *.sh-e
 
 output/
+
