@@ -3,6 +3,8 @@
 
 #include "Fmod_Tools.h"
 
+extern "C" const char* extOptGetString(char* _ext, char* _opt);
+
 @implementation Fmod_iOS
 
 bool gIsSuspended;
@@ -79,13 +81,16 @@ void gSuspendCallback(bool value)
 
     BOOL success = [session setPreferredSampleRate:rate error:nil];
     assert(success);
-
-    success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
-    assert(success);
     
     success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
     assert(success);
 
+    if (strcmp(extOptGetString((char*)"FMOD", (char*)"micAccess"), "True") == 0) {
+        // Add playback and record category to allow microphone access (NOT DYNAMIC)
+        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
+        assert(success);
+    }
+    
     success = [session setActive:TRUE error:nil];
     assert(success);
     
