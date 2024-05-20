@@ -80,6 +80,9 @@ void gSuspendCallback(bool value)
     BOOL success = [session setPreferredSampleRate:rate error:nil];
     assert(success);
 
+    success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
+    assert(success);
+    
     success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
     assert(success);
 
