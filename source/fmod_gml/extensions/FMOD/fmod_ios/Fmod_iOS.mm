@@ -4,6 +4,7 @@
 #include "Fmod_Tools.h"
 
 extern "C" const char* extOptGetString(char* _ext, char* _opt);
+extern "C" const char* extGetVersion(char* _ext);
 
 @implementation Fmod_iOS
 
@@ -86,6 +87,7 @@ void gSuspendCallback(bool value)
     assert(success);
 
     LOG("ERROR", "############################: %s", extOptGetString((char*)"FMOD", (char*)"iosMicAccess"));
+    LOG("ERROR", "############################: %s", extGetVersion((char*)"FMOD"));
     
     if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
         // Add playback and record category to allow microphone access (NOT DYNAMIC)
