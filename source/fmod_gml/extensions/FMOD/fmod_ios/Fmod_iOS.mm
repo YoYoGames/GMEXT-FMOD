@@ -85,6 +85,8 @@ void gSuspendCallback(bool value)
     success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
     assert(success);
 
+    LOG("ERROR", "############################: %s", extOptGetString((char*)"FMOD", (char*)"iosMicAccess"));
+    
     if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
         // Add playback and record category to allow microphone access (NOT DYNAMIC)
         success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
