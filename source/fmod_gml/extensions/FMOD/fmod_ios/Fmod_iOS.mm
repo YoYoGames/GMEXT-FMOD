@@ -1884,6 +1884,9 @@ func double fmod_studio_system_init(double max_channels, double studio_flags, do
     AVAudioSession *session = [AVAudioSession sharedInstance];
     BOOL success;
     
+    LOG("sadsfas", "################### %s", extOptGetString((char*)"FMOD", (char*)"iosMicAccess"));
+    LOG("sadsfas", "################### %s", extGetVersion((char*)"FMOD"));
+    
     success = [session setActive:FALSE error:nil];
     if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
         // Add playback and record category to allow microphone access (NOT DYNAMIC)
