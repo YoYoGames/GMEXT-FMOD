@@ -72,8 +72,6 @@ void gSuspendCallback(bool value)
         }];
     }
     
-    
-    
     //Latency
     //https://www.fmod.com/docs/2.02/api/platforms-ios.html
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -85,21 +83,10 @@ void gSuspendCallback(bool value)
     
     success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
     assert(success);
-
-    LOG("ERROR", "############################: %s", extOptGetString((char*)"FMOD", (char*)"iosMicAccess"));
-    LOG("ERROR", "############################: %s", extGetVersion((char*)"FMOD"));
+      
+    //success = [session setActive:TRUE error:nil];
+    //assert(success);
     
-    if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
-        // Add playback and record category to allow microphone access (NOT DYNAMIC)
-        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
-        assert(success);
-    }
-    
-    success = [session setActive:TRUE error:nil];
-    assert(success);
-    
-    
-
     //Multi-channel Output
     //https://www.fmod.com/docs/2.02/api/platforms-ios.html
     
@@ -1893,6 +1880,18 @@ return _return;
 }
 func double fmod_studio_system_init(double max_channels, double studio_flags, double core_flags);
 -(double) fmod_studio_system_init:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 {
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    BOOL success;
+    
+    success = [session setActive:FALSE error:nil];
+    if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
+        // Add playback and record category to allow microphone access (NOT DYNAMIC)
+        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
+        assert(success);
+    }
+    success = [session setActive:TRUE error:nil];
+
 auto _return = (double) fmod_studio_system_init(arg0, arg1, arg2);
 return _return;
 }
@@ -2203,6 +2202,18 @@ return _return;
 }
 func double fmod_system_init(double max_channels, double flags);
 -(double) fmod_system_init:(double) arg0 arg1:(double) arg1 {
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    BOOL success;
+    
+    success = [session setActive:FALSE error:nil];
+    if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "True") == 0) {
+        // Add playback and record category to allow microphone access (NOT DYNAMIC)
+        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
+        assert(success);
+    }
+    success = [session setActive:TRUE error:nil];
+    
 auto _return = (double) fmod_system_init(arg0, arg1);
 return _return;
 }
