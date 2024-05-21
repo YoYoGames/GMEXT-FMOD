@@ -44,7 +44,11 @@ xcuserdata/
 # Allow macOS dylib placeholders 
 !source/fmod_gml/extensions/FMOD/libfmodL.dylib
 !source/fmod_gml/extensions/FMOD/libfmodstudioL.dylib
+
+# Igor artifacts
 *.sh-e
 
+# Output and Build folders
 output/
+source/fmod_gml/Build/
 
