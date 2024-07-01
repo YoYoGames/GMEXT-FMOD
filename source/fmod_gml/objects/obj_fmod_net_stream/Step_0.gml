@@ -55,7 +55,6 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 	        fmod_channel_set_frequency(channel_index, _frequency);
 	    }
 	}
-		
 	_tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
 }
 

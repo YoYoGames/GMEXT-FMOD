@@ -13,12 +13,12 @@
   "androidsourcedir":"",
   "author":"",
   "classname":"Fmod_iOS",
-  "copyToTargets":3035426170322551022,
+  "copyToTargets":3035426153142681806,
   "description":"",
   "exportToGame":true,
   "extensionVersion":"0.0.6",
   "files":[
-    {"$GMExtensionFile":"","%Name":"YYFMOD.dll","constants":[],"copyToTargets":3035426170322550990,"filename":"YYFMOD.dll","final":"","functions":[
+    {"$GMExtensionFile":"","%Name":"YYFMOD.ext","constants":[],"copyToTargets":2458965418019127502,"filename":"YYFMOD.ext","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"fmod_channel_set_frequency","argCount":0,"args":[2,2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @param {real} frequency \n\r/// @returns {real}\n\r","externalName":"fmod_channel_set_frequency","help":"fmod_channel_set_frequency(channel_ref, frequency)","hidden":false,"kind":1,"name":"fmod_channel_set_frequency","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_channel_get_frequency","argCount":0,"args":[2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @returns {real}\n\r","externalName":"fmod_channel_get_frequency","help":"fmod_channel_get_frequency(channel_ref)","hidden":false,"kind":1,"name":"fmod_channel_get_frequency","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_channel_set_priority","argCount":0,"args":[2,2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @param {real} priority \n\r/// @returns {real}\n\r","externalName":"fmod_channel_set_priority","help":"fmod_channel_set_priority(channel_ref, priority)","hidden":false,"kind":1,"name":"fmod_channel_set_priority","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
@@ -511,7 +511,7 @@
         {"$GMExtensionFunction":"","%Name":"fmod_system_get_user_data","argCount":0,"args":[2,],"documentation":"/// @desc\n\r/// @param {real} channel_control_ref \n\r/// @returns {real}\n\r","externalName":"fmod_system_get_user_data","help":"fmod_system_get_user_data(channel_control_ref)","hidden":false,"kind":1,"name":"fmod_system_get_user_data","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_fetch_callbacks","argCount":0,"args":[1,2,],"documentation":"/// @desc\n\r/// @param {Pointer} buffer \n\r/// @param {real} length \n\r/// @returns {real}\n\r","externalName":"fmod_fetch_callbacks","help":"fmod_internal_callback_get(buffer, length)","hidden":true,"kind":1,"name":"fmod_fetch_callbacks","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_last_result","argCount":0,"args":[],"documentation":"/// @desc\r\n/// @returns {enum.FMOD_RESULT}\r\n","externalName":"fmod_last_result","help":"fmod_last_result()","hidden":false,"kind":1,"name":"fmod_last_result","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-      ],"init":"","kind":1,"name":"YYFMOD.dll","order":[
+      ],"init":"","kind":1,"name":"YYFMOD.ext","order":[
         {"name":"fmod_channel_set_frequency","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_get_frequency","path":"extensions/FMOD/FMOD.yy",},
         {"name":"fmod_channel_set_priority","path":"extensions/FMOD/FMOD.yy",},
@@ -967,7 +967,8 @@
         {"$GMProxyFile":"","%Name":"YYFMOD.nrr","name":"YYFMOD.nrr","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":57,},
         {"$GMProxyFile":"","%Name":"YYFMOD_xboxone.dll","name":"YYFMOD_xboxone.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
         {"$GMProxyFile":"","%Name":"YYFMOD_xboxseriesxs.dll","name":"YYFMOD_xboxseriesxs.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
-      ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+        {"$GMProxyFile":"","%Name":"YYFMOD_x64.dll","name":"YYFMOD_x64.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":6,},
+      ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":true,},
     {"$GMExtensionFile":"","%Name":"libfmodL.dylib","constants":[],"copyToTargets":576460756598390786,"filename":"libfmodL.dylib","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__libfmodL_load__","argCount":0,"args":[],"documentation":"","externalName":"__libfmodL_load__","help":"","hidden":true,"kind":1,"name":"__libfmodL_load__","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
       ],"init":"__libfmodL_load__","kind":1,"name":"libfmodL.dylib","order":[],"origname":"","ProxyFiles":[
@@ -1040,6 +1041,7 @@
     {"$GMExtensionOption":"","%Name":"versionBeta","defaultValue":"2023.1100.0.0","description":"","displayName":"","exportToINI":false,"extensionId":null,"guid":"c23a4782-1be6-4006-92d8-fd87750bb481","hidden":true,"listItems":[],"name":"versionBeta","optType":2,"resourceType":"GMExtensionOption","resourceVersion":"2.0",},
     {"$GMExtensionOption":"","%Name":"versionDev","defaultValue":"9.9.1.611","description":"","displayName":"","exportToINI":false,"extensionId":null,"guid":"670daf0c-b9c8-40b6-a8a8-12580e85dd69","hidden":true,"listItems":[],"name":"versionDev","optType":2,"resourceType":"GMExtensionOption","resourceVersion":"2.0",},
     {"$GMExtensionOption":"","%Name":"versionLTS","defaultValue":"2022.0.2.0","description":"","displayName":"","exportToINI":false,"extensionId":null,"guid":"4f8c9c18-886c-4c01-8cd2-f469c38afb87","hidden":true,"listItems":[],"name":"versionLTS","optType":2,"resourceType":"GMExtensionOption","resourceVersion":"2.0",},
+    {"$GMExtensionOption":"","%Name":"gmrtReady","defaultValue":"True","description":"","displayName":"","exportToINI":false,"extensionId":null,"guid":"3b29df9d-1f44-44b6-8dcc-f7d372077750","hidden":true,"listItems":[],"name":"gmrtReady","optType":2,"resourceType":"GMExtensionOption","resourceVersion":"2.0",},
   ],
   "optionsFile":"options.json",
   "packageId":"",

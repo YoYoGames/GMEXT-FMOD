@@ -28,7 +28,7 @@ sound_index_2 = fmod_system_create_sound(fmod_path_bundle("jaguar.wav"),FMOD_MOD
 
 fmod_sound_set_3d_min_max_distance(sound_index_2,DISTANCEFACTOR*0.5,DISTANCEFACTOR*5000)
 
-channel2 =fmod_system_play_sound(sound_index_2,true)
+channel2 = fmod_system_play_sound(sound_index_2,true)
 
 fmod_channel_control_set_3d_attributes(channel2, {x:point_2[0],y:point_2[1],z:point_2[2]},{x:0,y:0,z:0})
 

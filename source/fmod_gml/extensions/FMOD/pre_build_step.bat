@@ -2,6 +2,9 @@
 set Utils="%~dp0scriptUtils.bat"
 set "ExtensionPath=%~dp0"
 
+set
+exit 1
+
 :: ######################################################################################
 :: Script Logic
 
@@ -13,6 +16,8 @@ call %Utils% optionGetValue "versionStable" RUNTIME_VERSION_STABLE
 call %Utils% optionGetValue "versionBeta" RUNTIME_VERSION_BETA
 call %Utils% optionGetValue "versionDev" RUNTIME_VERSION_DEV
 call %Utils% optionGetValue "versionLTS" RUNTIME_VERSION_LTS
+
+call %Utils% optionGetValue "gmrtReady" GMRT_READY
 
 :: SDK Version
 call %Utils% optionGetValue "sdkVersion" SDK_VERSION
@@ -36,7 +41,13 @@ if "%ENABLE_STUDIO%"=="True" set "ENABLE_STUDIO_FLAG=1"
 set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%SDK_VERSION%)."
 
 :: Checks IDE and Runtime versions
-call %Utils% versionLockCheck "%YYruntimeVersion%" %RUNTIME_VERSION_STABLE% %RUNTIME_VERSION_BETA% %RUNTIME_VERSION_DEV% %RUNTIME_VERSION_LTS%
+if "%YYTARGET_runtime%" == "GMRT" (
+    if "%GMRT_READY%" neq "True" (
+        call %Utils% logError "Extension is not compatible with GMRT runtime. Check for updated version."
+    )
+) else (
+    call %Utils% versionLockCheck "%YYruntimeVersion%" %RUNTIME_VERSION_STABLE% %RUNTIME_VERSION_BETA% %RUNTIME_VERSION_DEV% %RUNTIME_VERSION_LTS%
+)
 
 :: Ensure we are on the output path
 pushd "%YYoutputFolder%"
@@ -47,7 +58,7 @@ call :setup%YYPLATFORM_name%
 
 popd
 
-exit 0
+exit %ERRORLEVEL%
 
 :: ----------------------------------------------------------------------------------------------------
 :setupWindows

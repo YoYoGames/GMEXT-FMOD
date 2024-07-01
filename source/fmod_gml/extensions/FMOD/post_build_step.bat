@@ -52,7 +52,11 @@ set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%S
 :: call %Utils% versionLockCheck "%YYruntimeVersion%" %RUNTIME_VERSION_STABLE% %RUNTIME_VERSION_BETA% %RUNTIME_VERSION_DEV% %RUNTIME_VERSION_LTS%
 
 :: Ensure we are on the output path
-pushd "%YYoutputFolder%"
+if "%YYTARGET_runtime%" == "GMRT" (
+    pushd "%YYoutputFolder%\build\assets"
+) else (
+    pushd "%YYoutputFolder%"
+)
 
 :: Call setup method depending on the platform
 :: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS, :setupXbox, :setupPlaystation, :setupSwitch)
@@ -60,7 +64,7 @@ call :setup%YYPLATFORM_name%
 
 popd
 
-exit 0
+exit %ERRORLEVEL%
 
 :: ----------------------------------------------------------------------------------------------------
 :setupWindows
