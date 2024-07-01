@@ -2,9 +2,6 @@
 set Utils="%~dp0scriptUtils.bat"
 set "ExtensionPath=%~dp0"
 
-set
-exit 1
-
 :: ######################################################################################
 :: Script Logic
 
