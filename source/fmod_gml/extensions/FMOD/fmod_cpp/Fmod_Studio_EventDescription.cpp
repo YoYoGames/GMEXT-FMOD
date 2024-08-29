@@ -328,10 +328,12 @@ StructStream FmodStudioUserPropertyToMap(const FMOD_STUDIO_USER_PROPERTY& proper
 
 	map_return.addKeyValue("name", property.name);
 	map_return.addKeyValue("type", (int)property.type);
-	map_return.addKeyValue("string_value", property.stringvalue);
-	map_return.addKeyValue("int_value", property.intvalue);
-	map_return.addKeyValue("bool_value", property.boolvalue);
-	map_return.addKeyValue("float_value", (double)property.floatvalue);
+
+	FMOD_STUDIO_USER_PROPERTY_TYPE type = property.type;
+	map_return.addKeyValue("string_value", type == FMOD_STUDIO_USER_PROPERTY_TYPE::FMOD_STUDIO_USER_PROPERTY_TYPE_STRING ? property.stringvalue : "");
+	map_return.addKeyValue("int_value", type == FMOD_STUDIO_USER_PROPERTY_TYPE::FMOD_STUDIO_USER_PROPERTY_TYPE_INTEGER ? property.intvalue : 0);
+	map_return.addKeyValue("bool_value", type == FMOD_STUDIO_USER_PROPERTY_TYPE::FMOD_STUDIO_USER_PROPERTY_TYPE_BOOLEAN ? property.boolvalue : false);
+	map_return.addKeyValue("float_value", type == FMOD_STUDIO_USER_PROPERTY_TYPE::FMOD_STUDIO_USER_PROPERTY_TYPE_FLOAT ? (double)property.floatvalue: 0.0);
 
 	return map_return;
 }
