@@ -28,11 +28,11 @@ setupAndroid() {
 # ----------------------------------------------------------------------------------------------------
 setupiOS() {
     # Resolve the SDK path (must exist)
-    pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
+    pathResolveExisting "$YYprojectDir" "$IOS_SDK_PATH" SDK_PATH
 
     # Get library file paths
-    SDK_CORE_SOURCE="%SDK_PATH%/api/core/lib/libfmod_iphoneos.a"
-    SDK_STUDIO_SOURCE="%SDK_PATH%/api/studio/lib/libfmodstudio_iphoneos.a"
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmod_iphoneos.a"
+    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/libfmodstudio_iphoneos.a"
 
     # Asset hash match
     # assertFileHashEquals $SDK_CORE_SOURCE $IOS_SDK_HASH "$ERROR_SDK_HASH"
