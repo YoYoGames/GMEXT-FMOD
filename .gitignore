@@ -52,3 +52,7 @@ xcuserdata/
 output/
 source/fmod_gml/Build/
 
+
+source/fmod_gml/extensions/FMOD/scriptUtils.bat.bak
+
+source/fmod_gml/extensions/FMOD/scriptUtils.sh.bak
