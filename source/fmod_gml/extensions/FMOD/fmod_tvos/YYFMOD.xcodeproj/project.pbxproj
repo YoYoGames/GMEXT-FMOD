@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1BE0A62CECE33900D35C29 /* Fmod_tvOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */; };
 		6A592C702B10A854004CA709 /* ExtBufferIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C6F2B10A854004CA709 /* ExtBufferIO.cpp */; };
 		6A592C872B10A89B004CA709 /* Fmod_Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C732B10A89B004CA709 /* Fmod_Tools.cpp */; };
 		6A592C882B10A89B004CA709 /* Fmod_Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C742B10A89B004CA709 /* Fmod_Geometry.cpp */; };
@@ -28,14 +29,13 @@
 		6A592C982B10A89B004CA709 /* Fmod_DSPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */; };
 		6A592C992B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */; };
 		6A592CA22B10AC31004CA709 /* libYYFMOD.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A592C612B10A73C004CA709 /* libYYFMOD.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		6AF0F1B42B10F1D300E60985 /* Fmod_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AF0F1B32B10F1D300E60985 /* Fmod_iOS.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		6A592C5F2B10A73C004CA709 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "${PROJECT_DIR}/../iOSSource";
+			dstPath = "${PROJECT_DIR}/../tvOSSource";
 			dstSubfolderSpec = 0;
 			files = (
 				6A592CA22B10AC31004CA709 /* libYYFMOD.a in CopyFiles */,
@@ -45,6 +45,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6A1BE0A42CECE33900D35C29 /* Fmod_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fmod_tvOS.h; sourceTree = "<group>"; };
+		6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Fmod_tvOS.mm; sourceTree = "<group>"; };
 		6A592C612B10A73C004CA709 /* libYYFMOD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYFMOD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A592C6E2B10A854004CA709 /* ExtBufferIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtBufferIO.h; path = ../fmod_cpp/ExtBufferIO.h; sourceTree = SOURCE_ROOT; };
 		6A592C6F2B10A854004CA709 /* ExtBufferIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExtBufferIO.cpp; path = ../fmod_cpp/ExtBufferIO.cpp; sourceTree = SOURCE_ROOT; };
@@ -68,10 +70,8 @@
 		6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelControl.cpp; sourceTree = "<group>"; };
 		6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSPConnection.cpp; sourceTree = "<group>"; };
 		6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_CommandReplay.cpp; sourceTree = "<group>"; };
-		6A592C9E2B10AADF004CA709 /* libfmodL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodL_iphoneos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/core/lib/libfmodL_iphoneos.a"; sourceTree = "<group>"; };
-		6A592CA02B10AAFA004CA709 /* libfmodstudioL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodstudioL_iphoneos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/studio/lib/libfmodstudioL_iphoneos.a"; sourceTree = "<group>"; };
-		6AF0F1B22B10F1D300E60985 /* Fmod_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fmod_iOS.h; sourceTree = "<group>"; };
-		6AF0F1B32B10F1D300E60985 /* Fmod_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Fmod_iOS.mm; sourceTree = "<group>"; };
+		6A592C9E2B10AADF004CA709 /* libfmodL_appletvos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodL_appletvos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/core/lib/libfmodL_appletvos.a"; sourceTree = "<group>"; };
+		6A592CA02B10AAFA004CA709 /* libfmodstudioL_appletvos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodstudioL_appletvos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/studio/lib/libfmodstudioL_appletvos.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +88,8 @@
 		6A592C582B10A73C004CA709 = {
 			isa = PBXGroup;
 			children = (
-				6AF0F1B22B10F1D300E60985 /* Fmod_iOS.h */,
-				6AF0F1B32B10F1D300E60985 /* Fmod_iOS.mm */,
+				6A1BE0A42CECE33900D35C29 /* Fmod_tvOS.h */,
+				6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */,
 				6A592C722B10A878004CA709 /* Fmod GML */,
 				6A592C6D2B10A833004CA709 /* BufferTool */,
 				6A592C622B10A73C004CA709 /* Products */,
@@ -146,8 +146,8 @@
 		6A592C9D2B10AADF004CA709 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A592CA02B10AAFA004CA709 /* libfmodstudioL_iphoneos.a */,
-				6A592C9E2B10AADF004CA709 /* libfmodL_iphoneos.a */,
+				6A592CA02B10AAFA004CA709 /* libfmodstudioL_appletvos.a */,
+				6A592C9E2B10AADF004CA709 /* libfmodL_appletvos.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,6 +216,7 @@
 				6A592C932B10A89B004CA709 /* Fmod_Sound.cpp in Sources */,
 				6A592C922B10A89B004CA709 /* Fmod_ChannelGroup.cpp in Sources */,
 				6A592C992B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp in Sources */,
+				6A1BE0A62CECE33900D35C29 /* Fmod_tvOS.mm in Sources */,
 				6A592C8A2B10A89B004CA709 /* Fmod_SoundGroup.cpp in Sources */,
 				6A592C882B10A89B004CA709 /* Fmod_Geometry.cpp in Sources */,
 				6A592C912B10A89B004CA709 /* Fmod_DSP.cpp in Sources */,
@@ -229,7 +230,6 @@
 				6A592C872B10A89B004CA709 /* Fmod_Tools.cpp in Sources */,
 				6A592C952B10A89B004CA709 /* Fmod_Common.cpp in Sources */,
 				6A592C8E2B10A89B004CA709 /* Fmod_Reverb3D.cpp in Sources */,
-				6AF0F1B42B10F1D300E60985 /* Fmod_iOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +362,11 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
 		};
@@ -382,7 +386,11 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
 		};

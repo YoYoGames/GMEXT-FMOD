@@ -32,6 +32,7 @@ void gSuspendCallback(bool value)
             {
                 return;
             }
+#if !TARGET_OS_TV
             if (@available(iOS 10.3, *))
             {
                 if (began && [[notification.userInfo valueForKey:AVAudioSessionInterruptionWasSuspendedKey] boolValue])
@@ -39,6 +40,7 @@ void gSuspendCallback(bool value)
                     return;
                 }
             }
+#endif
 
             gIsSuspended = began;
             if (!began)
