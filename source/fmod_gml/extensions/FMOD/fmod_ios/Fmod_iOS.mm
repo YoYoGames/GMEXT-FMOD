@@ -71,32 +71,57 @@ void gSuspendCallback(bool value)
         }];
     }
     
-    //Latency
-    //https://www.fmod.com/docs/2.02/api/platforms-ios.html
+    // Configure the AVAudioSession
     AVAudioSession *session = [AVAudioSession sharedInstance];
-    double rate = 24000.0; // This should match System::setSoftwareFormat 'samplerate' which defaults to 24000
-    int blockSize = 512; // This should match System::setDSPBufferSize 'bufferlength' which defaults to 512
 
-    BOOL success = [session setPreferredSampleRate:rate error:nil];
-    assert(success);
-    
-    success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
-    assert(success);
-      
-    //success = [session setActive:TRUE error:nil];
-    //assert(success);
-    
-    //Multi-channel Output
-    //https://www.fmod.com/docs/2.02/api/platforms-ios.html
-    
-    //AVAudioSession *session = [AVAudioSession sharedInstance];
+    // Set the audio session category with the default to speaker option
+    NSError *error = nil;
+    BOOL success = [session setCategory:AVAudioSessionCategoryPlayAndRecord
+                            withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+                                    error:&error];
+    if (!success)
+    {
+        NSLog(@"Error setting category: %@", error.localizedDescription);
+    }
+
+    // Latency Configuration
+    double rate = 24000.0; // Match with FMOD's sample rate
+    int blockSize = 512;    // Match with FMOD's DSP buffer size
+
+    success = [session setPreferredSampleRate:rate error:&error];
+    if (!success)
+    {
+        NSLog(@"Error setting preferred sample rate: %@", error.localizedDescription);
+    }
+
+    success = [session setPreferredIOBufferDuration:blockSize / rate error:&error];
+    if (!success)
+    {
+        NSLog(@"Error setting preferred IO buffer duration: %@", error.localizedDescription);
+    }
+
+    // Multi-channel Output Configuration
     long maxChannels = [session maximumOutputNumberOfChannels];
 
-    /*BOOL*/ success = [session setPreferredOutputNumberOfChannels:maxChannels error:nil];
-    assert(success);
+    success = [session setPreferredOutputNumberOfChannels:maxChannels error:&error];
+    if (!success)
+    {
+        NSLog(@"Error setting preferred output channels: %@", error.localizedDescription);
+    }
 
-    success = [session setActive:TRUE error:nil];
-    assert(success);
+    // Activate the audio session
+    success = [session setActive:YES error:&error];
+    if (!success)
+    {
+        NSLog(@"Error activating audio session: %@", error.localizedDescription);
+    }
+
+    // Optionally, override the output audio port to ensure loudspeaker output
+    success = [session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+    if (!success)
+    {
+        NSLog(@"Error overriding output audio port: %@", error.localizedDescription);
+    }
     
     
     return self;

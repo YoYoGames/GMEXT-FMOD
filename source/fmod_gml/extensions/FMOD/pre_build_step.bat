@@ -82,25 +82,99 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
 
-    :: Get library file paths
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmodL_iphoneos.a"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL_iphoneos.a"
+    set "SDK_CORE_SOURCE_FILE="
+    set "SDK_STUDIO_SOURCE_FILE="
+
+    :: Check device vs simulator build
+    if "%YYTARGET_type%"=="platformdevice_type_device" (
+        :: Device
+        set "SDK_CORE_SOURCE_FILE=libfmodL_iphoneos.a"
+        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphoneos.a"
+
+        :: Delete the simulator static dependencies (if they exist)
+        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodL_iphonesimulator.a"
+        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodstudioL_iphonesimulator.a"
+    ) else (
+        :: Simulator
+        set "SDK_CORE_SOURCE_FILE=libfmodL_iphonesimulator.a"
+        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphonesimulator.a"
+
+        :: Delete the device static dependecies (if they exist)
+        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodL_iphoneos.a"
+        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodstudioL_iphoneos.a"
+    )
+
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
+    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%SDK_STUDIO_SOURCE_FILE%"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying iOS (arm64) dependencies"
-
     pushd "%ExtensionPath%\iOSSource"
-    if not exist "libfmodL_iphoneos.a" ( 
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "libfmodL_iphoneos.a"
+
+    if not exist "%SDK_CORE_SOURCE_FILE%" ( 
+        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
         call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
     )
 
     :: Copy studio libs if enabled
     if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "libfmodstudioL_iphoneos.a" (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "libfmodstudioL_iphoneos.a"
+        if not exist "%SDK_STUDIO_SOURCE_FILE%" (
+            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
+            call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
+        )
+    )
+
+    popd
+
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setuptvOS
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
+
+    set "SDK_CORE_SOURCE_FILE="
+    set "SDK_STUDIO_SOURCE_FILE="
+
+    :: Check device vs simulator build
+    if "%YYTARGET_type%"=="platformdevice_type_device" (
+        :: Device
+        set "SDK_CORE_SOURCE_FILE=libfmodL_appletvos.a"
+        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvos.a"
+
+        :: Delete the simulator static dependencies (if they exist)
+        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodL_appletvsimulator.a"
+        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodstudioL_appletvsimulator.a"
+    ) else (
+        :: Simulator
+        set "SDK_CORE_SOURCE_FILE=libfmodL_appletvsimulator.a"
+        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvsimulator.a"
+
+        :: Delete the device static dependecies (if they exist)
+        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodL_appletvos.a"
+        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodstudioL_appletvos.a"
+    )
+
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
+    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%SDK_STUDIO_SOURCE_FILE%"
+
+    :: Asset hash match
+    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
+
+    echo "Copying tvOS (arm64) dependencies"
+
+    pushd "%ExtensionPath%\tvOSSource"
+    if not exist "%SDK_CORE_SOURCE_FILE%" ( 
+        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
+    )
+
+    :: Copy studio libs if enabled
+    if %ENABLE_STUDIO_FLAG% == 1 (
+        if not exist "%SDK_STUDIO_SOURCE_NAME%" (
+            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
             call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
         )
     )
