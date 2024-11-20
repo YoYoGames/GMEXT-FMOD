@@ -27,22 +27,8 @@
 		6A592C972B10A89B004CA709 /* Fmod_ChannelControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */; };
 		6A592C982B10A89B004CA709 /* Fmod_DSPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */; };
 		6A592C992B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */; };
-		6A592CA22B10AC31004CA709 /* libYYFMOD.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A592C612B10A73C004CA709 /* libYYFMOD.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6AF0F1B42B10F1D300E60985 /* Fmod_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AF0F1B32B10F1D300E60985 /* Fmod_iOS.mm */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6A592C5F2B10A73C004CA709 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "${PROJECT_DIR}/../iOSSource";
-			dstSubfolderSpec = 0;
-			files = (
-				6A592CA22B10AC31004CA709 /* libYYFMOD.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6A592C612B10A73C004CA709 /* libYYFMOD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYFMOD.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +143,6 @@
 			buildPhases = (
 				6A592C5D2B10A73C004CA709 /* Sources */,
 				6A592C5E2B10A73C004CA709 /* Frameworks */,
-				6A592C5F2B10A73C004CA709 /* CopyFiles */,
 			);
 			buildRules = (
 			);
