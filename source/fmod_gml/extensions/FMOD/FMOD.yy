@@ -993,7 +993,7 @@
   "iosCocoaPods":"",
   "ioscodeinjection":"<YYIosPlist>\r\n\r\n\r\n\r\n</YYIosPlist>",
   "iosdelegatename":"",
-  "iosplistinject":"\r\n<key>NSMicrophoneUsageDescription</key>\r\n<string>${YYEXTOPT_FMOD_iosMicAccessDesc}</string>\r\n",
+  "iosplistinject":"\r\n\r\n\r\n\r\n",
   "iosProps":true,
   "iosSystemFrameworkEntries":[],
   "iosThirdPartyFrameworkEntries":[
