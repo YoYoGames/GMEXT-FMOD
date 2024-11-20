@@ -68,8 +68,6 @@
 		6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelControl.cpp; sourceTree = "<group>"; };
 		6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSPConnection.cpp; sourceTree = "<group>"; };
 		6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_CommandReplay.cpp; sourceTree = "<group>"; };
-		6A592C9E2B10AADF004CA709 /* libfmodL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodL_iphoneos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/core/lib/libfmodL_iphoneos.a"; sourceTree = "<group>"; };
-		6A592CA02B10AAFA004CA709 /* libfmodstudioL_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodstudioL_iphoneos.a; path = "../../../../fmod_sdk/FMOD Studio API iOS/api/studio/lib/libfmodstudioL_iphoneos.a"; sourceTree = "<group>"; };
 		6AF0F1B22B10F1D300E60985 /* Fmod_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fmod_iOS.h; sourceTree = "<group>"; };
 		6AF0F1B32B10F1D300E60985 /* Fmod_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Fmod_iOS.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,8 +144,6 @@
 		6A592C9D2B10AADF004CA709 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A592CA02B10AAFA004CA709 /* libfmodstudioL_iphoneos.a */,
-				6A592C9E2B10AADF004CA709 /* libfmodL_iphoneos.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
