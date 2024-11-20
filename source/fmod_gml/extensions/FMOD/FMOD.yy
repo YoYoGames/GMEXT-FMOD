@@ -991,7 +991,7 @@
   "installdir":"",
   "iosCocoaPodDependencies":"",
   "iosCocoaPods":"",
-  "ioscodeinjection":"<YYIosPlist>\r\n\r\n\r\n\r\n</YYIosPlist>",
+  "ioscodeinjection":"<YYIosPlist>\r\n\r\n<key>NSMicrophoneUsageDescription</key>\n<string>${YYEXTOPT_FMOD_iosMicAccessDesc}</string>\n\r\n</YYIosPlist>",
   "iosdelegatename":"",
   "iosplistinject":"\r\n\r\n\r\n\r\n",
   "iosProps":true,
@@ -1068,5 +1068,7 @@
   "tvosplistinject":"",
   "tvosProps":true,
   "tvosSystemFrameworkEntries":[],
-  "tvosThirdPartyFrameworkEntries":[],
+  "tvosThirdPartyFrameworkEntries":[
+    {"$GMExtensionFrameworkEntry":"","%Name":"libYYFMOD.xcframework","embed":0,"name":"libYYFMOD.xcframework","resourceType":"GMExtensionFrameworkEntry","resourceVersion":"2.0","weakReference":false,},
+  ],
 }
