@@ -1,6 +1,6 @@
 @echo off
 set Utils="%~dp0scriptUtils.bat"
-set "ExtensionPath=%~dp0"
+set "EXTENSION_DIR=%~dp0"
 
 :: ######################################################################################
 :: Script Logic
@@ -92,16 +92,16 @@ exit /b 0
         set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphoneos.a"
 
         :: Delete the simulator static dependencies (if they exist)
-        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodL_iphonesimulator.a"
-        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodstudioL_iphonesimulator.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphonesimulator.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodstudioL_iphonesimulator.a"
     ) else (
         :: Simulator
         set "SDK_CORE_SOURCE_FILE=libfmodL_iphonesimulator.a"
         set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphonesimulator.a"
 
         :: Delete the device static dependecies (if they exist)
-        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodL_iphoneos.a"
-        call %Utils% itemDelete "%ExtensionPath%\iOSSource\libfmodstudioL_iphoneos.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphoneos.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodstudioL_iphoneos.a"
     )
 
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
@@ -113,7 +113,7 @@ exit /b 0
     echo "Copying iOS (arm64) dependencies"
 
     :: Always copy to avoid version mismatch
-    pushd "%ExtensionPath%\iOSSource"
+    pushd "%EXTENSION_DIR%\iOSSource"
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
     call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
     call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
@@ -137,16 +137,16 @@ exit /b 0
         set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvos.a"
 
         :: Delete the simulator static dependencies (if they exist)
-        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodL_appletvsimulator.a"
-        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodstudioL_appletvsimulator.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvsimulator.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodstudioL_appletvsimulator.a"
     ) else (
         :: Simulator
         set "SDK_CORE_SOURCE_FILE=libfmodL_appletvsimulator.a"
         set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvsimulator.a"
 
         :: Delete the device static dependecies (if they exist)
-        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodL_appletvos.a"
-        call %Utils% itemDelete "%ExtensionPath%\tvOSSource\libfmodstudioL_appletvos.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvos.a"
+        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodstudioL_appletvos.a"
     )
 
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
@@ -158,7 +158,7 @@ exit /b 0
     echo "Copying tvOS (arm64) dependencies"
 
     :: Always copy to avoid version mismatch
-    pushd "%ExtensionPath%\tvOSSource"
+    pushd "%EXTENSION_DIR%\tvOSSource"
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
     call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
     call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
@@ -200,7 +200,7 @@ exit /b 0
 
     :: Resolve the Solution path (must exist)
     set "GDK_VS_PATH=.\fmod_gdk\FMOD.sln"
-    call %Utils% pathResolveExisting "%ExtensionPath%" "%GDK_VS_PATH%" SOLUTION_PATH
+    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%GDK_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
     call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
@@ -210,7 +210,7 @@ exit /b 0
     call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
 
     :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%ExtensionPath%\%LIBRARY_NAME%"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ exit /b 0
 
     :: Resolve the Solution path (must exist)
     set "PS_VS_PATH=.\fmod_playstation\FMOD.sln"
-    call %Utils% pathResolveExisting "%ExtensionPath%" "%PS_VS_PATH%" SOLUTION_PATH
+    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%PS_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
     call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
@@ -247,7 +247,7 @@ exit /b 0
     call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
 
     :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%ExtensionPath%\%LIBRARY_NAME%"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ exit /b 0
 
     :: Resolve the Solution path (must exist)
     set "SWITCH_VS_PATH=.\fmod_switch\FMOD.sln"
-    call %Utils% pathResolveExisting "%ExtensionPath%" "%SWITCH_VS_PATH%" SOLUTION_PATH
+    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
     call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
@@ -272,7 +272,7 @@ exit /b 0
     call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
 
     :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%ExtensionPath%\YYFMOD.nro"
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%ExtensionPath%\YYFMOD.nrr"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%EXTENSION_DIR%\YYFMOD.nro"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%EXTENSION_DIR%\YYFMOD.nrr"
 
 exit /b 0

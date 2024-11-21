@@ -4,6 +4,8 @@ sed -i -e 's/\r$//' "$(dirname "$0")/scriptUtils.sh"
 chmod +x "$(dirname "$0")/scriptUtils.sh"
 source "$(dirname "$0")/scriptUtils.sh"
 
+EXTENSION_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+
 # ######################################################################################
 # Script Functions
 
@@ -41,16 +43,16 @@ setupiOS() {
         SDK_STUDIO_SOURCE_FILE="libfmodstudioL_iphoneos.a"
 
         # Delete simulator static dependencies if they exist
-        itemDelete "$ExtensionPath/iOSSource/libfmodL_iphonesimulator.a"
-        itemDelete "$ExtensionPath/iOSSource/libfmodstudioL_iphonesimulator.a"
+        itemDelete "$EXTENSION_DIR/iOSSource/libfmodL_iphonesimulator.a"
+        itemDelete "$EXTENSION_DIR/iOSSource/libfmodstudioL_iphonesimulator.a"
     else
         # Simulator-specific source files
         SDK_CORE_SOURCE_FILE="libfmodL_iphonesimulator.a"
         SDK_STUDIO_SOURCE_FILE="libfmodstudioL_iphonesimulator.a"
 
         # Delete device static dependencies if they exist
-        itemDelete "$ExtensionPath/iOSSource/libfmodL_iphoneos.a"
-        itemDelete "$ExtensionPath/iOSSource/libfmodstudioL_iphoneos.a"
+        itemDelete "$EXTENSION_DIR/iOSSource/libfmodL_iphoneos.a"
+        itemDelete "$EXTENSION_DIR/iOSSource/libfmodstudioL_iphoneos.a"
     fi
 
     # Define full source paths
@@ -63,10 +65,10 @@ setupiOS() {
     echo "Copying iOS (arm64) dependencies"
 
     # Always copy to avoid version mismatch
-    pushd "$ExtensionPath/iOSSource" >/dev/null
-    itemCopyTo $SDK_CORE_SOURCE $SDK_CORE_SOURCE_FILE
+    pushd "$EXTENSION_DIR/iOSSource" >/dev/null
+    itemCopyTo "$SDK_CORE_SOURCE" $SDK_CORE_SOURCE_FILE
     itemCopyTo "$SDK_PATH/api/core/inc" "Fmod Core/"
-    itemCopyTo $SDK_STUDIO_SOURCE $SDK_STUDIO_SOURCE_FILE
+    itemCopyTo "$SDK_STUDIO_SOURCE" $SDK_STUDIO_SOURCE_FILE
     itemCopyTo "$SDK_PATH/api/studio/inc" "Fmod Studio/"
     popd >/dev/null
 
@@ -88,16 +90,16 @@ setuptvOS() {
         SDK_STUDIO_SOURCE_FILE="libfmodstudioL_appletvos.a"
 
         # Delete simulator static dependencies if they exist
-        itemDelete "$ExtensionPath/tvOSSource/libfmodL_appletvsimulator.a"
-        itemDelete "$ExtensionPath/tvOSSource/libfmodstudioL_appletvsimulator.a"
+        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodL_appletvsimulator.a"
+        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodstudioL_appletvsimulator.a"
     else
         # Simulator-specific source files
         SDK_CORE_SOURCE_FILE="libfmodL_appletvsimulator.a"
         SDK_STUDIO_SOURCE_FILE="libfmodstudioL_appletvsimulator.a"
 
         # Delete device static dependencies if they exist
-        itemDelete "$ExtensionPath/tvOSSource/libfmodL_appletvos.a"
-        itemDelete "$ExtensionPath/tvOSSource/libfmodstudioL_appletvos.a"
+        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodL_appletvos.a"
+        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodstudioL_appletvos.a"
     fi
 
     # Define full source paths
@@ -110,10 +112,10 @@ setuptvOS() {
     echo "Copying tvOS (arm64) dependencies"
 
     # Always copy to avoid version mismatch
-    pushd "$ExtensionPath/tvOSSource" >/dev/null
-    itemCopyTo $SDK_CORE_SOURCE $SDK_CORE_SOURCE_FILE
+    pushd "$EXTENSION_DIR/tvOSSource" >/dev/null
+    itemCopyTo "$SDK_CORE_SOURCE" $SDK_CORE_SOURCE_FILE
     itemCopyTo "$SDK_PATH/api/core/inc" "Fmod Core/"
-    itemCopyTo $SDK_STUDIO_SOURCE $SDK_STUDIO_SOURCE_FILE
+    itemCopyTo "$SDK_STUDIO_SOURCE" $SDK_STUDIO_SOURCE_FILE
     itemCopyTo "$SDK_PATH/api/studio/inc" "Fmod Studio/"
     popd >/dev/null
     
