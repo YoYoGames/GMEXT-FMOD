@@ -71,35 +71,59 @@ void gSuspendCallback(bool value)
 
             gIsSuspended = false;
         }];
+        
+        
+        
+        // Configure the AVAudioSession
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+
+        NSError *error = nil;
+        BOOL success = NO;
+
+        // Set the audio session category to PlayAndRecord with DefaultToSpeaker option
+        success = [session setCategory:AVAudioSessionCategoryPlayback
+                                withOptions:AVAudioSessionCategoryOptionAllowBluetooth |
+                                            AVAudioSessionCategoryOptionAllowBluetoothA2DP |
+                                            AVAudioSessionCategoryOptionAllowAirPlay
+                                      error:&error];
+        if (!success) {
+            NSLog(@"Error setting category: %@", error.localizedDescription);
+        }
+
+        // Set the mode to Default (you can adjust this if needed)
+        success = [session setMode:AVAudioSessionModeDefault error:&error];
+        if (!success) {
+            NSLog(@"Error setting mode: %@", error.localizedDescription);
+        }
+
+        // Set preferred sample rate to a standard value
+        double rate = 24000.0;
+        success = [session setPreferredSampleRate:rate error:&error];
+        if (!success) {
+            NSLog(@"Error setting preferred sample rate: %@", error.localizedDescription);
+        }
+
+        // Set preferred IO buffer duration
+        double blockSize = 512.0 / rate; // Calculate buffer duration based on sample rate
+        success = [session setPreferredIOBufferDuration:blockSize error:&error];
+        if (!success) {
+            NSLog(@"Error setting preferred IO buffer duration: %@", error.localizedDescription);
+        }
+
+        // Set preferred output number of channels to maximum available
+        long maxChannels = [session maximumOutputNumberOfChannels];
+        success = [session setPreferredOutputNumberOfChannels:maxChannels error:&error];
+        if (!success) {
+            NSLog(@"Error setting preferred output channels: %@", error.localizedDescription);
+        }
+
+        // Activate the audio session
+        success = [session setActive:YES error:&error];
+        if (!success) {
+            NSLog(@"Error activating audio session: %@", error.localizedDescription);
+        }
+        
     }
-    
-    //Latency
-    //https://www.fmod.com/docs/2.02/api/platforms-ios.html
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    double rate = 24000.0; // This should match System::setSoftwareFormat 'samplerate' which defaults to 24000
-    int blockSize = 512; // This should match System::setDSPBufferSize 'bufferlength' which defaults to 512
-
-    BOOL success = [session setPreferredSampleRate:rate error:nil];
-    assert(success);
-    
-    success = [session setPreferredIOBufferDuration:blockSize / rate error:nil];
-    assert(success);
-      
-    //success = [session setActive:TRUE error:nil];
-    //assert(success);
-    
-    //Multi-channel Output
-    //https://www.fmod.com/docs/2.02/api/platforms-ios.html
-    
-    //AVAudioSession *session = [AVAudioSession sharedInstance];
-    long maxChannels = [session maximumOutputNumberOfChannels];
-
-    /*BOOL*/ success = [session setPreferredOutputNumberOfChannels:maxChannels error:nil];
-    assert(success);
-
-    success = [session setActive:TRUE error:nil];
-    assert(success);
-    
     
     return self;
 }
@@ -1883,13 +1907,20 @@ func double fmod_studio_system_init(double max_channels, double studio_flags, do
 -(double) fmod_studio_system_init:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 {
     
     AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *error = nil;
     BOOL success;
     
     success = [session setActive:FALSE error:nil];
-    if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "1") == 0) {
+    if (strcmp(extOptGetString((char*)"FMOD", (char*)"tvosMicAccess"), "1") == 0) {
         // Add playback and record category to allow microphone access (NOT DYNAMIC)
-        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
-        assert(success);
+        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord
+                                withOptions:AVAudioSessionCategoryOptionAllowBluetooth |
+                                            AVAudioSessionCategoryOptionAllowBluetoothA2DP |
+                                            AVAudioSessionCategoryOptionAllowAirPlay
+                                 error:&error];
+        if (!success) {
+            NSLog(@"Error setting category: %@", error.localizedDescription);
+        }
     }
     success = [session setActive:TRUE error:nil];
 
@@ -2205,13 +2236,20 @@ func double fmod_system_init(double max_channels, double flags);
 -(double) fmod_system_init:(double) arg0 arg1:(double) arg1 {
     
     AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *error = nil;
     BOOL success;
     
     success = [session setActive:FALSE error:nil];
-    if (strcmp(extOptGetString((char*)"FMOD", (char*)"iosMicAccess"), "1") == 0) {
+    if (strcmp(extOptGetString((char*)"FMOD", (char*)"tvosMicAccess"), "1") == 0) {
         // Add playback and record category to allow microphone access (NOT DYNAMIC)
-        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:0 error:nil];
-        assert(success);
+        success = [session setCategory:AVAudioSessionCategoryPlayAndRecord
+                                withOptions:AVAudioSessionCategoryOptionAllowBluetooth |
+                                            AVAudioSessionCategoryOptionAllowBluetoothA2DP |
+                                            AVAudioSessionCategoryOptionAllowAirPlay
+                                 error:&error];
+        if (!success) {
+            NSLog(@"Error setting category: %@", error.localizedDescription);
+        }
     }
     success = [session setActive:TRUE error:nil];
     
@@ -2285,6 +2323,15 @@ return _return;
 }
 func double fmod_system_set_software_format(double sample_rate, double speaker_mode, double num_raw_speakers);
 -(double) fmod_system_set_software_format:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 {
+    
+    NSError *error = nil;
+    BOOL success = NO;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    success = [session setPreferredSampleRate:arg0 error:&error];
+    if (!success) {
+        NSLog(@"Error setting preferred sample rate: %@", error.localizedDescription);
+    }
+    
 auto _return = (double) fmod_system_set_software_format(arg0, arg1, arg2);
 return _return;
 }
@@ -2295,6 +2342,19 @@ return _return;
 }
 func double fmod_system_set_dsp_buffer_size(double buff_size, double num_buffers);
 -(double) fmod_system_set_dsp_buffer_size:(double) arg0 arg1:(double) arg1 {
+    
+    NSError *error = nil;
+    BOOL success = NO;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    double currentSampleRate = session.sampleRate;
+    
+    // Set preferred IO buffer duration
+    double blockSize = arg0 / currentSampleRate; // Calculate buffer duration based on sample rate
+    success = [session setPreferredIOBufferDuration:blockSize error:&error];
+    if (!success) {
+        NSLog(@"Error setting preferred IO buffer duration: %@", error.localizedDescription);
+    }
+    
 auto _return = (double) fmod_system_set_dsp_buffer_size(arg0, arg1);
 return _return;
 }

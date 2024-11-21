@@ -1903,6 +1903,7 @@ func double fmod_studio_system_init(double max_channels, double studio_flags, do
 -(double) fmod_studio_system_init:(double) arg0 arg1:(double) arg1 arg2:(double) arg2 {
     
     AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *error = nil;
     BOOL success;
     
     success = [session setActive:FALSE error:nil];
@@ -1913,8 +1914,10 @@ func double fmod_studio_system_init(double max_channels, double studio_flags, do
                                             AVAudioSessionCategoryOptionAllowBluetooth |
                                             AVAudioSessionCategoryOptionAllowBluetoothA2DP |
                                             AVAudioSessionCategoryOptionAllowAirPlay
-                                      error:nil];
-        assert(success);
+                                      error:&error];
+        if (!success) {
+            NSLog(@"Error setting category: %@", error.localizedDescription);
+        }
     }
     success = [session setActive:TRUE error:nil];
 
@@ -2230,6 +2233,7 @@ func double fmod_system_init(double max_channels, double flags);
 -(double) fmod_system_init:(double) arg0 arg1:(double) arg1 {
     
     AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *error = nil;
     BOOL success;
     
     success = [session setActive:FALSE error:nil];
@@ -2240,8 +2244,10 @@ func double fmod_system_init(double max_channels, double flags);
                                             AVAudioSessionCategoryOptionAllowBluetooth |
                                             AVAudioSessionCategoryOptionAllowBluetoothA2DP |
                                             AVAudioSessionCategoryOptionAllowAirPlay
-                                      error:nil];
-        assert(success);
+                                      error:&error];
+        if (!success) {
+            NSLog(@"Error setting category: %@", error.localizedDescription);
+        }
     }
     success = [session setActive:TRUE error:nil];
     
