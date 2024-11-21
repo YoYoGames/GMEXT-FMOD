@@ -111,21 +111,13 @@ exit /b 0
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying iOS (arm64) dependencies"
+
+    :: Always copy to avoid version mismatch
     pushd "%ExtensionPath%\iOSSource"
-
-    if not exist "%SDK_CORE_SOURCE_FILE%" ( 
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    )
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "%SDK_STUDIO_SOURCE_FILE%" (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
-            call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
-        )
-    )
-
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
+    call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
+    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
+    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
     popd
 
 exit /b 0
@@ -165,20 +157,14 @@ exit /b 0
 
     echo "Copying tvOS (arm64) dependencies"
 
+    :: Always copy to avoid version mismatch
     pushd "%ExtensionPath%\tvOSSource"
-    if not exist "%SDK_CORE_SOURCE_FILE%" ( 
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    )
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "%SDK_STUDIO_SOURCE_NAME%" (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
-            call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
-        )
-    )
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
+    call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
+    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
+    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
     popd
+    
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
