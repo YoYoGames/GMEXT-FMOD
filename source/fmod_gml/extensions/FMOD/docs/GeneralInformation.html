@@ -47,7 +47,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="GeneralInformation.html">General Information</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">General Information</a>
     <ul class="current">
     </ul>
                 </li>
@@ -240,7 +240,7 @@ var _resonance = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONAN
 <p>Here, <code>length</code> stores the length of the <code>spectrum</code> array of a single channel (i.e. the number of values included in the spectrum). <code>numchannels</code> stores the number of channels for which there is spectrum data.</p>
 <p>If you read these variable definitions line by line, you have:</p>
 <p>An <code>int</code> followed by an <code>int</code>, followed by <em>at most</em> 32 times <code>length</code> <code>float</code>s. <code>spectrum</code> is an array of pointers (the asterisk <code>*</code> refers to a pointer), which indicates that the memory for each array is not included in the <code>FMOD_DSP_PARAMETER_FFT</code> struct itself, but rather in the memory that the pointer to that array <em>points to</em>. You don't need to do any buffer copying yourself however, as the extension copies these blocks of data to the buffer one after the other.</p>
-<p>Looking at the <a href="#data-type-mapping-table.md">Data Type Mapping Table</a>, you see that this corresponds to 2 times a <code>buffer_s32</code>, followed by <code>numchannels</code> blocks of spectrum data consisting of <code>length</code> <code>buffer_f32</code> values. So the layout of the data in the buffer will be the following:</p>
+<p>Looking at the <a href="#data-type-mapping-table">Data Type Mapping Table</a>, you see that this corresponds to 2 times a <code>buffer_s32</code>, followed by <code>numchannels</code> blocks of spectrum data consisting of <code>length</code> <code>buffer_f32</code> values. So the layout of the data in the buffer will be the following:</p>
 <pre class="highlight"><code>|Channel |                      |Channel 0                                                |Channel 1                                                | ... |
 |FMOD    |int       |int        |float         |float         | ... |float                |float         |float         | ... |float                | ... |
 |Buffer  |buffer_s32|buffer_s32 |buffer_f32    |buffer_f32    | ... |buffer_f32           |buffer_f32    |buffer_f32    | ... |buffer_f32           | ... |
