@@ -1,5 +1,5 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"FMOD",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -44,6 +44,7 @@
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/GM Extensions Assets/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/GM Extensions Assets/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"c.ogg","CopyToMask":-1,"filePath":"datafiles","name":"c.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"d.ogg","CopyToMask":-1,"filePath":"datafiles","name":"d.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -76,7 +77,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1100.0.686",
+    "IDEVersion":"9.9.1.907",
   },
   "name":"FMOD",
   "resources":[
