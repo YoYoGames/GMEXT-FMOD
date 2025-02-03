@@ -24,6 +24,10 @@ setupmacOS() {
         # Assert if xcode-tools are installed (required)
         assertXcodeToolsInstalled
 
+        # Code sign the original library binary
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libYYFMOD.dylib"
+
+        # Copy and code sign dependencies
         itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
         codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
 
