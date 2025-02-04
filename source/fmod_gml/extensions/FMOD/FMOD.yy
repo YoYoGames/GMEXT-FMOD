@@ -16,7 +16,7 @@
   "copyToTargets":3035426153142681806,
   "description":"",
   "exportToGame":true,
-  "extensionVersion":"1.0.3",
+  "extensionVersion":"1.0.4",
   "files":[
     {"$GMExtensionFile":"","%Name":"YYFMOD.ext","constants":[],"copyToTargets":2458965418019127502,"filename":"YYFMOD.ext","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"fmod_channel_set_frequency","argCount":0,"args":[2,2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @param {real} frequency \n\r/// @returns {real}\n\r","externalName":"fmod_channel_set_frequency","help":"fmod_channel_set_frequency(channel_ref, frequency)","hidden":false,"kind":1,"name":"fmod_channel_set_frequency","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
