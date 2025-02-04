@@ -27,7 +27,7 @@ void async_create_event(const StructStream& async_map);
 #if defined(OS_Windows) || defined(OS_PS4) || defined(OS_PS5) || defined(OS_GDK)
 #define func extern "C" __declspec(dllexport)
 #else
-#define func extern "C"
+#define func extern "C" __attribute__((visibility("default")))
 #define strncpy_s strncpy
 #define sscanf_s sscanf
 #endif
