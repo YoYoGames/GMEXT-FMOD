@@ -135,7 +135,7 @@ bool YYGetBool(const uint8_t* buff)
 	GMValueType kind = YYGetKind(buff);
 	if (kind == GMValueType::Bool)
 	{
-		return (bool)&buff[1];
+		return (bool)buff[1];
 	}
 	return YYGetNumber<double>(buff);
 }
