@@ -361,10 +361,6 @@ func double fmod_system_set_advanced_settings_multiplatform(char* buff_args)
 	{
 		exinfo.maxFADPCMCodecs = YYGetInt32(search->second);
 	};
-	if (auto search = settings.find("max_pcm_codecs"); search != settings.end())
-	{
-		exinfo.maxPCMCodecs = YYGetInt32(search->second);
-	};
 	if (auto search = settings.find("asio_num_channels"); search != settings.end())
 	{
 		exinfo.ASIONumChannels = YYGetInt32(search->second);
@@ -439,7 +435,6 @@ func double fmod_system_get_advanced_settings_multiplatform(char* buff_return)
 	map_return.addKeyValue("max_vorbis_codecs", exinfo.maxVorbisCodecs);
 	map_return.addKeyValue("max_at9_codecs", exinfo.maxAT9Codecs);
 	map_return.addKeyValue("max_fadpcm_codecs", exinfo.maxFADPCMCodecs);
-	map_return.addKeyValue("max_pcm_codecs", exinfo.maxPCMCodecs);
 	map_return.addKeyValue("asio_num_channels", exinfo.ASIONumChannels);
 	map_return.addKeyValue("vol0_virtual_vol", exinfo.vol0virtualvol);
 	map_return.addKeyValue("default_decode_buffer_size", exinfo.defaultDecodeBufferSize);
@@ -1612,8 +1607,6 @@ static FMOD_RESULT CALLBACK_fmod_system(FMOD_SYSTEM* system, FMOD_SYSTEM_CALLBAC
 		case FMOD_SYSTEM_CALLBACK_POSTMIX:
 			break;
 		case FMOD_SYSTEM_CALLBACK_ERROR:
-			break;
-		case FMOD_SYSTEM_CALLBACK_MIDMIX:
 			break;
 		case FMOD_SYSTEM_CALLBACK_THREADDESTROYED:
 			break;

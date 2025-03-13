@@ -7,7 +7,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/android/${presetName}",
       "installDir": "${sourceDir}/out/install/android/${presetName}",
-      "toolchainFile": "C:/AndroidSdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake", //The NDK android.toolchain.cmake
+      "toolchainFile": "D:/Android/Sdk/ndk/28.0.12674087/build/cmake/android.toolchain.cmake", //The NDK android.toolchain.cmake
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
