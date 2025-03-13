@@ -2,11 +2,11 @@
 
 /**
  * @struct FmodVector
- * @desc > **FMOD Struct:** [FMOD_VECTOR](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_vector)
+ * @desc > **FMOD Struct:** [FMOD_VECTOR](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector)
  * 
  * This struct describes a vector in 3D space.
  * 
- * [[Important: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
+ * [[Important: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).]]
  * 
  * @member {real} x The x coordinate of the 3D vector.
  * @member {real} y The y coordinate of the 3D vector.
@@ -16,7 +16,7 @@
 
 /**
  * @struct FmodCPUUsage
- * @desc > **FMOD Struct:** [FMOD_CPU_USAGE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_cpu_usage)
+ * @desc > **FMOD Struct:** [FMOD_CPU_USAGE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_cpu_usage)
  * 
  * This struct stores performance information for FMOD's Core API functionality.
  * 
@@ -55,7 +55,7 @@
 
 /**
  * @struct FmodReverbProperties
- * @desc > **FMOD Struct:** [FMOD_REVERB_PROPERTIES](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_reverb_properties)
+ * @desc > **FMOD Struct:** [FMOD_REVERB_PROPERTIES](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_reverb_properties)
  * 
  * This struct defines a reverb environment.
  * 
@@ -89,11 +89,11 @@
 
 /**
  * @struct Fmod3DAttributes
- * @desc > **FMOD Struct:** [FMOD_3D_ATTRIBUTES](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_3d_attributes)
+ * @desc > **FMOD Struct:** [FMOD_3D_ATTRIBUTES](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes)
  * 
  * This structure describes a position, velocity and orientation.
  * 
- * [[Important: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
+ * [[Important: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).]]
  * 
  * @member {struct.FmodVector} position The position in 3D space used for panning and attenuation.
  * @member {struct.FmodVector} velocity The velocity in 3D space used for doppler.
@@ -112,7 +112,7 @@
 
 /**
  * @struct FmodSystemCreateSoundExInfo
- * @desc > **FMOD Struct:** [FMOD_CREATESOUNDEXINFO](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_createsoundexinfo)
+ * @desc > **FMOD Struct:** [FMOD_CREATESOUNDEXINFO](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_createsoundexinfo)
  * 
  * This struct holds additional options for creating a Sound.
  * 
@@ -133,7 +133,7 @@
  * @member {constant.FMOD_CHANNELORDER} channel_order Custom ordering of speakers for this sound data.
  * @member {real} initial_seek_position The initial position to seek to for `FMOD_MODE.CREATESTREAM`.
  * @member {constant.FMOD_TIMEUNIT} initial_seek_pos_type The time units for `initial_seek_position`.
- * @member {boolean} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
+ * @member {boolean} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
  * @member {real} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
  * @member {real} min_midi_granularity The mixer granularity for `FMOD_SOUND_TYPE.MIDI` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {real} non_block_thread_id The thread index to execute `FMOD_MODE.NONBLOCKING` loads on for parallel Sound loading.
@@ -142,7 +142,7 @@
 
 /**
  * @struct FmodSystemAdvancedSettings
- * @desc > **FMOD Struct:** [FMOD_ADVANCEDSETTINGS](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_advancedsettings)
+ * @desc > **FMOD Struct:** [FMOD_ADVANCEDSETTINGS](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_advancedsettings)
  * 
  * This struct stores advanced configuration settings.
  * 
@@ -150,7 +150,7 @@
  * 
  * Specifying one of the codec maximums will help determine the maximum CPU usage of playing `FMOD_MODE.CREATECOMPRESSEDSAMPLE` Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during ${func.fmod_system_init}) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if `max_mpeg_codecs` is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.
  * 
- * Setting `dsp_buffer_pool_size` will pre-allocate memory for the FMOD DSP network. See [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html). By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.
+ * Setting `dsp_buffer_pool_size` will pre-allocate memory for the FMOD DSP network. See [DSP architecture guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html). By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.
  * 
  * @member {real} max_mpeg_codecs The maximum number of MPEG Sounds created as `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. A value in the range [0, 256].
  * @member {real} max_adpcm_codecs The maximum number of IMA-ADPCM Sounds created as `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. A value in the range [0, 256].
@@ -160,14 +160,14 @@
  * @member {real} max_fadpcm_codecs The maximum number of FADPCM Sounds created as `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. A value in the range [0, 256].
  * @member {real} max_pcm_codecs Deprecated.
  * @member {real} asio_num_channels The number of elements in the `ASIOSpeakerList` on input, the number of elements in `ASIOChannelList` on output. A value in the range [0, ${constant.FMOD_MAX_CHANNEL_WIDTH}].
- * @member {real} vol0_virtual_vol For use with `FMOD_INIT.VOL0_BECOMES_VIRTUAL`, Channels with audibility below this will become virtual. See the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * @member {real} vol0_virtual_vol For use with `FMOD_INIT.VOL0_BECOMES_VIRTUAL`, Channels with audibility below this will become virtual. See the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * @member {real} default_decode_buffer_size For use with Streams, the default size of the double buffer. A value in the range [0, 30000].
  * @member {real} profile_port For use with `FMOD_INIT.PROFILE_ENABLE`, specify the port to listen on for connections by FMOD Studio or FMOD Profiler.
- * @member {real} geometry_max_fade_time For use with [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html), the maximum time it takes for a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) to fade to the new volume level when its occlusion changes.
+ * @member {real} geometry_max_fade_time For use with [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html), the maximum time it takes for a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) to fade to the new volume level when its occlusion changes.
  * @member {real} distance_filter_center_freq For use with `FMOD_INIT.CHANNEL_DISTANCEFILTER`, the default center frequency for the distance filtering effect. A value in the range [10, 22050].
- * @member {real} reverb_3d_instance For use with [Reverb3D](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html), selects which global reverb instance to use. A value in the range [0, ${constant.FMOD_REVERB_MAXINSTANCES}].
- * @member {real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `buffer_length` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode)). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.
- * @member {constant.FMOD_DSP_RESAMPLER} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * @member {real} reverb_3d_instance For use with [Reverb3D](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html), selects which global reverb instance to use. A value in the range [0, ${constant.FMOD_REVERB_MAXINSTANCES}].
+ * @member {real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `buffer_length` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode)). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.
+ * @member {constant.FMOD_DSP_RESAMPLER} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * @member {real} random_seed The seed value to initialize the internal random number generator.
  * @member {real} max_convolution_threads The maximum number of CPU threads to use for `FMOD_DSP_TYPE.CONVOLUTIONREVERB` effect. 1 = effect is entirely processed inside the `FMOD_THREAD_TYPE.MIXER` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FMOD_THREAD_TYPE.CONVOLUTION1` and `FMOD_THREAD_TYPE.CONVOLUTION2` to increase throughput. A value in the range [0, 3].
  * @member {real} max_opus_codecs The maximum number of Opus Sounds created as `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. A value in the range [0, 256].
@@ -232,9 +232,9 @@
 
 /**
  * @struct FmodSystemChannelsPlaying
- * @desc This struct holds information on the number of playing [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * @desc This struct holds information on the number of playing [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
- * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * 
  * @member {real} channels The number of playing Channels (both real and virtual).
  * @member {real} real_channels The number of playing real (non-virtual) Channels.
@@ -285,8 +285,8 @@
  * @struct FmodControl3DAttributes
  * @desc This struct stores the 3D position and velocity used to apply panning, attenuation and doppler.
  * 
- * @member {struct.FmodVector} pos The position in 3D space used for panning and attenuation. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
- * @member {struct.FmodVector} vel The velocity in 3D space used for doppler. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units) per second.
+ * @member {struct.FmodVector} pos The position in 3D space used for panning and attenuation. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
+ * @member {struct.FmodVector} vel The velocity in 3D space used for doppler. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
  * @struct_end
  */
 
@@ -302,8 +302,8 @@
 /**
  * @struct FmodControl3DMinMaxDistance
  * @desc This struct holds the minimum and maximum distances used to calculate the 3D roll-off attenuation.
- * @member {real} min_dist The distance from the source where attenuation begins, expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units). A value in the range [0, `infinity`]. Default is 1.
- * @member {real} max_dist The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units). A value in the range [`min_dist`, `infinity`]. Default is 1.
+ * @member {real} min_dist The distance from the source where attenuation begins, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [0, `infinity`]. Default is 1.
+ * @member {real} max_dist The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [`min_dist`, `infinity`]. Default is 1.
  * @struct_end
  */
 
@@ -329,7 +329,7 @@
 
 /**
  * @struct FmodControlDSPClock
- * @desc This struct holds the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock values at a point in time.
+ * @desc This struct holds the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock values at a point in time.
  * @member {real} dsp_clock The DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`) node. Expressed in samples.
  * @member {real} parent_clock DSP clock value for the tail DSP (`FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`) node of the parent ChannelGroup. Expressed in samples.
  * @struct_end
@@ -338,7 +338,7 @@
 /**
  * @struct FmodControlDelay
  * @desc This struct holds a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.
- * @member {real} dsp_clock_start [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) to audibly start playing sound at, expressed in samples.
+ * @member {real} dsp_clock_start [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) to audibly start playing sound at, expressed in samples.
  * @member {real} dsp_clock_end DSP clock of the parent ChannelGroup to audibly stop playing sound at, expressed in samples.
  * @member {boolean} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
 False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
@@ -349,7 +349,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @struct FmodControlFadePoints
  * @desc This struct holds information about stored fade points.
  * @member {real} num_points The number of fade points.
- * @member {array} point_dsp_clock An array of [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock values that represent the fade point times. Expressed in samples.
+ * @member {array} point_dsp_clock An array of [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock values that represent the fade point times. Expressed in samples.
  * @member {array} point_volume An array of volume levels that represent the fade point values.
  * @struct_end
  */
@@ -358,7 +358,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @struct FmodDSPConnectionData
  * @desc This struct holds the DSP unit at a specified index in a DSP's input list and the DSPConnection to it.
  * @member {real} dsp_ref The DSP unit at a specific index in a DSP's input list.
- * @member {real} dsp_connection_ref The [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) through which the two are connected.
+ * @member {real} dsp_connection_ref The [DSPConnection](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html) through which the two are connected.
  * @struct_end
  */
 
@@ -373,7 +373,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 
 /**
  * @struct FmodDSPMeteringInfo
- * @desc > **FMOD Struct:** [FMOD_DSP_METERING_INFO](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_metering_info)
+ * @desc > **FMOD Struct:** [FMOD_DSP_METERING_INFO](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_metering_info)
  * 
  * This struct stores DSP metering information.
  * 
@@ -394,7 +394,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 
 /**
  * @struct FmodDSPMeteringEnableInfo
- * @desc This struct holds information on whether input/output signal metering is enabled for a given [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * @desc This struct holds information on whether input/output signal metering is enabled for a given [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
  * @member {boolean} enabled_in Whether metering is enabled for the input signal.
  * @member {boolean} enabled_out Whether metering is enabled for the output signal.
  * @struct_end
@@ -434,11 +434,11 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 
 /**
  * @struct FmodDspParameterDesc
- * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc)
+ * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_desc)
  * 
  * This struct is a base structure for DSP parameter descriptions.
  * 
- * @member {real} type The parameter type ([FMOD_DSP_PARAMETER_TYPE](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_type)).
+ * @member {real} type The parameter type ([FMOD_DSP_PARAMETER_TYPE](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_type)).
  * @member {string} name The parameter name.
  * @member {string} label The unit type label.
  * @member {string} description The description of the parameter.
@@ -450,7 +450,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 
 /**
  * @struct FmodDspParameterDescValue
- * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC_*](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool)
+ * @desc > **FMOD Struct:** [FMOD_DSP_PARAMETER_DESC_*](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool)
  * 
  * This struct stores a parameter description.
  * 
@@ -482,7 +482,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @struct FmodReverb3DAttributes
  * @desc This struct stores the 3D attributes of a reverb sphere.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @member {struct.FmodVector} position The position in 3D space representing the center of the reverb.
  * @member {real} min_distance The distance from the centerpoint within which the reverb will have full effect.
@@ -492,7 +492,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodSoundFormat
- * @desc This struct stores format information about a [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * @desc This struct stores format information about a [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
  * @member {constant.FMOD_SOUND_TYPE} type The type of sound.
  * @member {constant.FMOD_SOUND_FORMAT} format The format of the sound.
@@ -503,7 +503,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodSoundNumTags
- * @desc This struct stores the number of metadata tags of a particular [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * @desc This struct stores the number of metadata tags of a particular [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
  * [[Note: 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.]]
  * 
@@ -514,7 +514,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodSoundTag
- * @desc > **FMOD Struct:** [FMOD_TAG](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tag)
+ * @desc > **FMOD Struct:** [FMOD_TAG](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tag)
  * 
  * This struct holds tag data / metadata description.
  * @member {string} name The tag name.
@@ -561,7 +561,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodSyncPoint
- * @desc > **FMOD Struct:** [FMOD_SYNCPOINT](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_syncpoint)
+ * @desc > **FMOD Struct:** [FMOD_SYNCPOINT](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_syncpoint)
  * 
  * This struct stores information about a sync point.
  * 
@@ -572,7 +572,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioMemoryUsage
- * @desc > **FMOD Struct:** [FMOD_STUDIO_MEMORY_USAGE](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_memory_usage)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_MEMORY_USAGE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_memory_usage)
  * 
  * This struct stores FMOD Studio memory usage statistics.
  * 
@@ -588,7 +588,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @struct FmodStudioParameter
  * @desc This struct stores an FMOD Studio parameter value.
  * 
- * [[Note: [Automatic parameters](https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter) always return value as 0 since they can never have their value set from the public API.]]
+ * [[Note: [Automatic parameters](https://www.fmod.com/docs/2.03/api/glossary.html#automatic-parameter) always return value as 0 since they can never have their value set from the public API.]]
  * 
  * [[Note: `final_value` is the final value of the parameter after applying adjustments due to automation, modulation, seek speed, and parameter velocity to `value`. This is calculated asynchronously when the Studio system updates.]]
  * 
@@ -599,7 +599,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioParameterId
- * @desc > **FMOD Struct:** [FMOD_STUDIO_PARAMETER_ID](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_id)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_PARAMETER_ID](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_id)
  * 
  * This struct holds an event parameter identifier.
  * 
@@ -618,7 +618,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodCommandReplayCommandInfo
- * @desc > **FMOD Struct:** [FMOD_STUDIO_COMMAND_INFO](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#fmod_studio_command_info)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_COMMAND_INFO](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#fmod_studio_command_info)
  * 
  * This struct describes a command replay command.
  * 
@@ -655,7 +655,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioBufferInfo
- * @desc > **FMOD Struct:** [FMOD_STUDIO_BUFFER_INFO](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_info)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_BUFFER_INFO](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_buffer_info)
  * 
  * This struct stores information for a single buffer in FMOD Studio.
  * 
@@ -669,7 +669,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioBufferUsage
- * @desc > **FMOD Struct:** [FMOD_STUDIO_BUFFER_USAGE](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_usage)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_BUFFER_USAGE](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_buffer_usage)
  * 
  * This struct stores information for FMOD Studio buffer usage.
  * 
@@ -680,7 +680,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioCPUUsage
- * @desc > **FMOD Struct:** [FMOD_STUDIO_CPU_USAGE](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_cpu_usage)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_CPU_USAGE](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_cpu_usage)
  * 
  * This struct stores performance information for Studio API functionality.
  * 
@@ -691,7 +691,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioSoundInfo
- * @desc > **FMOD Struct:** [FMOD_STUDIO_SOUND_INFO](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_SOUND_INFO](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_sound_info)
  * 
  * This struct describes a sound in the audio table.
  * 
@@ -705,14 +705,14 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 /**
  * @struct FmodStudioStringInfo
  * @desc This struct stores a string table entry.
- * @member {string} path The [Path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) to an object.
- * @member {string} guid The [GUID](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) of an object.
+ * @member {string} path The [Path](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) to an object.
+ * @member {string} guid The [GUID](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) of an object.
  * @struct_end
  */
 
 /**
  * @struct FmodStudioParameterDescription
- * @desc > **FMOD Struct:** [FMOD_STUDIO_PARAMETER_DESCRIPTION](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_description)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_PARAMETER_DESCRIPTION](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_description)
  * 
  * This struct describes an event parameter.
  * 
@@ -729,7 +729,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioUserProperty
- * @desc > **FMOD Struct:** [FMOD_STUDIO_USER_PROPERTY](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#fmod_studio_user_property)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_USER_PROPERTY](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#fmod_studio_user_property)
  * 
  * This struct describes a user property object.
  * 
@@ -744,7 +744,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 
 /**
  * @struct FmodStudioAdvancedSettings
- * @desc > **FMOD Struct:** [FMOD_STUDIO_ADVANCEDSETTINGS](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_advancedsettings)
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_ADVANCEDSETTINGS](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_advancedsettings)
  * 
  * This struct describes a Studio advanced settings object.
  * 
@@ -765,8 +765,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * When a function of the FMOD extension returns multiple values, it returns them as a ${type.struct} or as an ${type.array} of structs.
  * This happens in two situations: 
  * 
- * * The original FMOD function returns multiple values through [Out](https://www.fmod.com/docs/2.02/api/glossary.html#documentation-conventions) parameters. The extension groups these values into a ${type.struct} of which you can access variables by name. For example: ${function.fmod_system_get_record_driver_info} returns a ${struct.FmodSystemRecordDriverInfo}.
- * * The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a ${type.struct}, which has the same variables as the corresponding FMOD "struct". For example: ${function.fmod_studio_system_get_sound_info} returns a ${struct.FmodStudioSoundInfo}, which maps to FMOD's [FMOD_STUDIO_SOUND_INFO](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info) struct.
+ * * The original FMOD function returns multiple values through [Out](https://www.fmod.com/docs/2.03/api/glossary.html#documentation-conventions) parameters. The extension groups these values into a ${type.struct} of which you can access variables by name. For example: ${function.fmod_system_get_record_driver_info} returns a ${struct.FmodSystemRecordDriverInfo}.
+ * * The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a ${type.struct}, which has the same variables as the corresponding FMOD "struct". For example: ${function.fmod_studio_system_get_sound_info} returns a ${struct.FmodStudioSoundInfo}, which maps to FMOD's [FMOD_STUDIO_SOUND_INFO](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_sound_info) struct.
  * 
  * The returned ${type.struct}s are not actually created using the constructor function of their type. They do, however, have identical variable names.
  * 

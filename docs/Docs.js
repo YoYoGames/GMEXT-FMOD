@@ -2,13 +2,13 @@
 
 /**
  * @func fmod_channel_set_frequency
- * @desc > **FMOD Function:** [Channel::setFrequency](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setfrequency)
+ * @desc > **FMOD Function:** [Channel::setFrequency](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setfrequency)
  *
  * <br />
  *
  * This function sets the frequency or playback rate.
  * 
- * [[Note: The default frequency is determined by the audio format of the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) or [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).]]
+ * [[Note: The default frequency is determined by the audio format of the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) or [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).]]
  *
  * [[Note: Sounds opened as `FMOD_MODE.CREATESAMPLE` (not `FMOD_MODE.CREATESTREAM` or `FMOD_MODE.CREATECOMPRESSEDSAMPLE`) can be played backwards by giving a negative frequency.]]
  * 
@@ -21,7 +21,7 @@ function fmod_channel_set_frequency(channel_ref, frequency) {}
 
 /**
  * @func fmod_channel_get_frequency
- * @desc > **FMOD Function:** [Channel::getFrequency](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getfrequency)
+ * @desc > **FMOD Function:** [Channel::getFrequency](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getfrequency)
  *
  * <br />
  *
@@ -36,7 +36,7 @@ function fmod_channel_get_frequency(channel_ref) {}
 
 /**
  * @func fmod_channel_set_priority
- * @desc > **FMOD Function:** [Channel::setPriority](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setpriority)
+ * @desc > **FMOD Function:** [Channel::setPriority](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setpriority)
  *
  * <br />
  *
@@ -44,7 +44,7 @@ function fmod_channel_get_frequency(channel_ref) {}
  * 
  * [[Note: Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest ${func.fmod_channel_control_get_audibility} value will be stolen first.]]
  * 
- * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * 
  * @param {real} channel_ref A reference to a channel.
  * @param {real} priority The priority value where 0 represents most important and 256 represents least important. The default is 128.
@@ -55,7 +55,7 @@ function fmod_channel_set_priority(channel_ref, priority) {}
 
 /**
  * @func fmod_channel_get_priority
- * @desc > **FMOD Function:** [Channel::getPriority](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getpriority)
+ * @desc > **FMOD Function:** [Channel::getPriority](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getpriority)
  *
  * <br />
  *
@@ -74,7 +74,7 @@ function fmod_channel_get_priority(channel_ref) {}
 
 /**
  * @func fmod_channel_set_position
- * @desc > **FMOD Function:** [Channel::setPosition](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setposition)
+ * @desc > **FMOD Function:** [Channel::setPosition](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setposition)
  *
  * <br />
  *
@@ -96,7 +96,7 @@ function fmod_channel_set_position(channel_ref, position, time_unit) {}
 
 /**
  * @func fmod_channel_get_position
- * @desc > **FMOD Function:** [Channel::getPosition](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getposition)
+ * @desc > **FMOD Function:** [Channel::getPosition](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getposition)
  *
  * <br />
  *
@@ -116,7 +116,7 @@ function fmod_channel_get_position(channel_ref, time_unit) {}
 
 /**
  * @func fmod_channel_set_channel_group
- * @desc > **FMOD Function:** [Channel::setChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setchannelgroup)
+ * @desc > **FMOD Function:** [Channel::setChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setchannelgroup)
  *
  * <br />
  *
@@ -135,7 +135,7 @@ function fmod_channel_set_channel_group(channel_ref, channel_group_ref) {}
 
 /**
  * @func fmod_channel_get_channel_group
- * @desc > **FMOD Function:** [Channel::getChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getchannelgroup)
+ * @desc > **FMOD Function:** [Channel::getChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getchannelgroup)
  *
  * <br />
  *
@@ -150,7 +150,7 @@ function fmod_channel_get_channel_group(channel_ref) {}
 
 /**
  * @func fmod_channel_set_loop_count
- * @desc > **FMOD Function:** [Channel::setLoopCount](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setloopcount)
+ * @desc > **FMOD Function:** [Channel::setLoopCount](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setloopcount)
  *
  * <br />
  *
@@ -167,7 +167,7 @@ function fmod_channel_set_loop_count(channel_ref, loop_count) {}
 
 /**
  * @func fmod_channel_get_loop_count
- * @desc > **FMOD Function:** [Channel::getLoopCount](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getloopcount)
+ * @desc > **FMOD Function:** [Channel::getLoopCount](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getloopcount)
  *
  * <br />
  *
@@ -186,7 +186,7 @@ function fmod_channel_get_loop_count(channel_ref) {}
 
 /**
  * @func fmod_channel_set_loop_points
- * @desc > **FMOD Function:** [Channel::setLoopPoints](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setlooppoints)
+ * @desc > **FMOD Function:** [Channel::setLoopPoints](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setlooppoints)
  *
  * <br />
  *
@@ -199,7 +199,7 @@ function fmod_channel_get_loop_count(channel_ref) {}
  * 
  * The Channel's mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.
  * 
- * See also: [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues)
+ * See also: [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues)
  * 
  * @param {real} channel_ref A reference to a channel.
  * @param {real} loop_start The loop start point.
@@ -213,7 +213,7 @@ function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, 
 
 /**
  * @func fmod_channel_get_loop_points
- * @desc > **FMOD Function:** [Channel::getLoopPoints](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getlooppoints)
+ * @desc > **FMOD Function:** [Channel::getLoopPoints](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getlooppoints)
  *
  * <br />
  *
@@ -233,7 +233,7 @@ function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_typ
 
 /**
  * @func fmod_channel_is_virtual
- * @desc > **FMOD Function:** [Channel::isVirtual](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_isvirtual)
+ * @desc > **FMOD Function:** [Channel::isVirtual](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_isvirtual)
  *
  * <br />
  *
@@ -241,7 +241,7 @@ function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_typ
  * 
  * If `true` is returned, the channel is silent / emulated. If `false` is returned, the channel is audible / real.
  * 
- * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * 
  * @param {real} channel_ref A reference to a channel.
  * @returns {boolean}
@@ -252,7 +252,7 @@ function fmod_channel_is_virtual(channel_ref) {}
 
 /**
  * @func fmod_channel_get_current_sound
- * @desc > **FMOD Function:** [Channel::getCurrentSound](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getcurrentsound)
+ * @desc > **FMOD Function:** [Channel::getCurrentSound](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getcurrentsound)
  *
  * <br />
  *
@@ -269,7 +269,7 @@ function fmod_channel_get_current_sound(channel_ref) {}
 
 /**
  * @func fmod_channel_get_index
- * @desc > **FMOD Function:** [Channel::getIndex](https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getindex)
+ * @desc > **FMOD Function:** [Channel::getIndex](https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getindex)
  *
  * <br />
  *
@@ -286,7 +286,7 @@ function fmod_channel_get_index(channel_ref) {}
 
 /**
  * @func fmod_channel_get_system_object
- * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
+ * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
  * 
  * <br />
  * 
@@ -302,7 +302,7 @@ function fmod_channel_get_system_object(channel_ref) {}
 
 /**
  * @func fmod_channel_control_is_playing
- * @desc > **FMOD Function:** [ChannelControl::isPlaying](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_isplaying)
+ * @desc > **FMOD Function:** [ChannelControl::isPlaying](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_isplaying)
  *
  * <br />
  *
@@ -321,7 +321,7 @@ function fmod_channel_control_is_playing(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_stop
- * @desc > **FMOD Function:** [ChannelControl::stop](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_stop)
+ * @desc > **FMOD Function:** [ChannelControl::stop](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_stop)
  *
  * <br />
  *
@@ -339,7 +339,7 @@ function fmod_channel_control_stop(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_paused
- * @desc > **FMOD Function:** [ChannelControl::setPaused](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpaused)
+ * @desc > **FMOD Function:** [ChannelControl::setPaused](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setpaused)
  *
  * <br />
  *
@@ -358,7 +358,7 @@ function fmod_channel_control_set_paused(channel_control_ref, paused) {}
 
 /**
  * @func fmod_channel_control_get_paused
- * @desc > **FMOD Function:** [ChannelControl::getPaused](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getpaused)
+ * @desc > **FMOD Function:** [ChannelControl::getPaused](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getpaused)
  *
  * <br />
  *
@@ -375,7 +375,7 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_mode
- * @desc > **FMOD Function:** [ChannelControl::setMode](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmode)
+ * @desc > **FMOD Function:** [ChannelControl::setMode](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setmode)
  *
  * <br />
  *
@@ -413,7 +413,7 @@ function fmod_channel_control_set_mode(channel_control_ref, mode) {}
 
 /**
  * @func fmod_channel_control_get_mode
- * @desc > **FMOD Function:** [ChannelControl::getMode](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmode)
+ * @desc > **FMOD Function:** [ChannelControl::getMode](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getmode)
  *
  * <br />
  *
@@ -430,7 +430,7 @@ function fmod_channel_control_get_mode(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_pitch
- * @desc > **FMOD Function:** [ChannelControl::setPitch](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpitch)
+ * @desc > **FMOD Function:** [ChannelControl::setPitch](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setpitch)
  *
  * <br />
  *
@@ -449,7 +449,7 @@ function fmod_channel_control_set_pitch(channel_control_ref, pitch) {}
 
 /**
  * @func fmod_channel_control_get_pitch
- * @desc > **FMOD Function:** [ChannelControl::getPitch](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getpitch)
+ * @desc > **FMOD Function:** [ChannelControl::getPitch](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getpitch)
  *
  * <br />
  *
@@ -468,7 +468,7 @@ function fmod_channel_control_get_pitch(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_get_audibility
- * @desc > **FMOD Function:** [ChannelControl::getAudibility](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getaudibility)
+ * @desc > **FMOD Function:** [ChannelControl::getAudibility](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getaudibility)
  *
  * <br />
  *
@@ -480,7 +480,7 @@ function fmod_channel_control_get_pitch(channel_control_ref) {}
  * 
  * This value is used to determine which Channels should be audible and which Channels to virtualize when resources are limited.
  * 
- * See the FMOD [Virtual Voice System](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html#audibility-calculation) white paper for more details about how audibility is calculated.
+ * See the FMOD [Virtual Voice System](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html#audibility-calculation) white paper for more details about how audibility is calculated.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -491,7 +491,7 @@ function fmod_channel_control_get_audibility(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_volume
- * @desc > **FMOD Function:** [ChannelControl::setVolume](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setvolume)
+ * @desc > **FMOD Function:** [ChannelControl::setVolume](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setvolume)
  *
  * <br />
  *
@@ -510,7 +510,7 @@ function fmod_channel_control_set_volume(channel_control_ref, volume) {}
 
 /**
  * @func fmod_channel_control_get_volume
- * @desc > **FMOD Function:** [ChannelControl::getVolume](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getvolume)
+ * @desc > **FMOD Function:** [ChannelControl::getVolume](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getvolume)
  *
  * <br />
  *
@@ -525,7 +525,7 @@ function fmod_channel_control_get_volume(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_volume_ramp
- * @desc > **FMOD Function:** [ChannelControl::setVolumeRamp](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setvolumeramp)
+ * @desc > **FMOD Function:** [ChannelControl::setVolumeRamp](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setvolumeramp)
  *
  * <br />
  *
@@ -542,7 +542,7 @@ function fmod_channel_control_set_volume_ramp(channel_control_ref, ramp) {}
 
 /**
  * @func fmod_channel_control_get_volume_ramp
- * @desc > **FMOD Function:** [ChannelControl::getVolumeRamp](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getvolumeramp)
+ * @desc > **FMOD Function:** [ChannelControl::getVolumeRamp](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getvolumeramp)
  *
  * <br />
  *
@@ -559,7 +559,7 @@ function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_mute
- * @desc > **FMOD Function:** [ChannelControl::setMute](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmute)
+ * @desc > **FMOD Function:** [ChannelControl::setMute](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setmute)
  *
  * <br />
  *
@@ -578,7 +578,7 @@ function fmod_channel_control_set_mute(channel_control_ref, mute) {}
 
 /**
  * @func fmod_channel_control_get_mute
- * @desc > **FMOD Function:** [ChannelControl::getMute](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmute)
+ * @desc > **FMOD Function:** [ChannelControl::getMute](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getmute)
  *
  * <br />
  *
@@ -597,7 +597,7 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_attributes
- * @desc > **FMOD Function:** [ChannelControl::set3DAttributes](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dattributes)
+ * @desc > **FMOD Function:** [ChannelControl::set3DAttributes](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dattributes)
  *
  * <br />
  *
@@ -605,13 +605,13 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
  * 
  * [[Note: The `FMOD_MODE.AS_3D` flag must be set on this object otherwise `FMOD_RESULT.ERR_NEEDS3D` is returned.]]
  * 
- * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
+ * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).]]
  * 
  * [[Note: For a stereo 3D sound, you can set the spread of the left/right parts in speaker space by using ${function.fmod_channel_control_set_3d_spread}.]]
  * 
  * @param {real} control_ref A reference to a channel control.
- * @param {struct.FmodVector} pos The position in 3D space used for panning and attenuation. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
- * @param {struct.FmodVector} vel The velocity in 3D space used for doppler. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units) per second.
+ * @param {struct.FmodVector} pos The position in 3D space used for panning and attenuation. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
+ * @param {struct.FmodVector} vel The velocity in 3D space used for doppler. The values are expressed in FMOD [Distance Units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
  * @func_end
  */
 function fmod_channel_control_set_3d_attributes(channel_control_ref, pos, vel) {}
@@ -619,7 +619,7 @@ function fmod_channel_control_set_3d_attributes(channel_control_ref, pos, vel) {
 
 /**
  * @func fmod_channel_control_get_3d_attributes
- * @desc > **FMOD Function:** [ChannelControl::get3DAttributes](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dattributes)
+ * @desc > **FMOD Function:** [ChannelControl::get3DAttributes](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dattributes)
  *
  * <br />
  *
@@ -634,7 +634,7 @@ function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_cone_orientation
- * @desc > **FMOD Function:** [ChannelControl::set3DConeOrientation](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dconeorientation)
+ * @desc > **FMOD Function:** [ChannelControl::set3DConeOrientation](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dconeorientation)
  *
  * <br />
  *
@@ -644,7 +644,7 @@ function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
  * 
  * [[Note: This function has no effect unless ${function.fmod_channel_control_set_3d_cone_settings} has been used to change the cone inside/outside angles from the default.]]
  * 
- * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).]]
+ * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).]]
  * 
  * @param {real} control_ref A reference to a channel control.
  * @param {struct.FmodVector} orientation The normalized orientation vector, which represents the direction of the sound cone. Default is [0, 0, 1].
@@ -655,7 +655,7 @@ function fmod_channel_control_set_3d_cone_orientation(channel_control_ref, orien
 
 /**
  * @func fmod_channel_control_get_3d_cone_orientation
- * @desc > **FMOD Function:** [ChannelControl::get3DConeOrientation](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dconeorientation)
+ * @desc > **FMOD Function:** [ChannelControl::get3DConeOrientation](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dconeorientation)
  *
  * <br />
  *
@@ -672,7 +672,7 @@ function fmod_channel_control_get_3d_cone_orientation(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_cone_settings
- * @desc > **FMOD Function:** [ChannelControl::set3DConeSettings](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dconesettings)
+ * @desc > **FMOD Function:** [ChannelControl::set3DConeSettings](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dconesettings)
  *
  * <br />
  *
@@ -697,7 +697,7 @@ function fmod_channel_control_set_3d_cone_settings(channel_control_ref, inside_c
 
 /**
  * @func fmod_channel_control_get_3d_cone_settings
- * @desc > **FMOD Function:** [ChannelControl::get3DConeSettings](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dconesettings)
+ * @desc > **FMOD Function:** [ChannelControl::get3DConeSettings](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dconesettings)
  *
  * <br />
  *
@@ -718,7 +718,7 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_custom_rolloff
- * @desc > **FMOD Function:** [ChannelControl::set3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dcustomrolloff)
+ * @desc > **FMOD Function:** [ChannelControl::set3DCustomRolloff](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dcustomrolloff)
  *
  * <br />
  *
@@ -753,7 +753,7 @@ function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points)
 
 /**
  * @func fmod_channel_control_get_3d_custom_rolloff
- * @desc > **FMOD Function:** [ChannelControl::get3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dcustomrolloff)
+ * @desc > **FMOD Function:** [ChannelControl::get3DCustomRolloff](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dcustomrolloff)
  *
  * <br />
  *
@@ -768,7 +768,7 @@ function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_distance_filter
- * @desc > **FMOD Function:** [ChannelControl::set3DDistanceFilter](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3ddistancefilter)
+ * @desc > **FMOD Function:** [ChannelControl::set3DDistanceFilter](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3ddistancefilter)
  *
  * <br />
  *
@@ -788,7 +788,7 @@ function fmod_channel_control_set_3d_distance_filter(channel_control_ref, custom
 
 /**
  * @func fmod_channel_control_get_3d_distance_filter
- * @desc > **FMOD Function:** [ChannelControl::get3DDistanceFilter](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3ddistancefilter)
+ * @desc > **FMOD Function:** [ChannelControl::get3DDistanceFilter](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3ddistancefilter)
  *
  * <br />
  *
@@ -803,7 +803,7 @@ function fmod_channel_control_get_3d_distance_filter(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_doppler_level
- * @desc > **FMOD Function:** [ChannelControl::set3DDopplerLevel](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3ddopplerlevel)
+ * @desc > **FMOD Function:** [ChannelControl::set3DDopplerLevel](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3ddopplerlevel)
  *
  * <br />
  *
@@ -822,7 +822,7 @@ function fmod_channel_control_set_3d_doppler_level(channel_control_ref, level) {
 
 /**
  * @func fmod_channel_control_get_3d_doppler_level
- * @desc > **FMOD Function:** [ChannelControl::get3DDopplerLevel](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3ddopplerlevel)
+ * @desc > **FMOD Function:** [ChannelControl::get3DDopplerLevel](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3ddopplerlevel)
  *
  * <br />
  *
@@ -839,7 +839,7 @@ function fmod_channel_control_get_3d_doppler_level(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_level
- * @desc > **FMOD Function:** [ChannelControl::set3DLevel](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dlevel)
+ * @desc > **FMOD Function:** [ChannelControl::set3DLevel](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dlevel)
  *
  * <br />
  *
@@ -854,7 +854,7 @@ function fmod_channel_control_set_3d_level(channel_control_ref, level) {}
 
 /**
  * @func fmod_channel_control_get_3d_level
- * @desc > **FMOD Function:** [ChannelControl::get3DLevel](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dlevel)
+ * @desc > **FMOD Function:** [ChannelControl::get3DLevel](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dlevel)
  *
  * <br />
  *
@@ -886,7 +886,7 @@ function fmod_channel_control_get_3d_level(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_min_max_distance
- * @desc > **FMOD Function:** [ChannelControl::set3DMinMaxDistance](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dminmaxdistance)
+ * @desc > **FMOD Function:** [ChannelControl::set3DMinMaxDistance](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dminmaxdistance)
  *
  * <br />
  *
@@ -916,7 +916,7 @@ function fmod_channel_control_set_3d_min_max_distance(channel_control_ref, min, 
 
 /**
  * @func fmod_channel_control_get_3d_min_max_distance
- * @desc > **FMOD Function:** [ChannelControl::get3DMinMaxDistance](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dminmaxdistance)
+ * @desc > **FMOD Function:** [ChannelControl::get3DMinMaxDistance](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dminmaxdistance)
  *
  * <br />
  *
@@ -931,7 +931,7 @@ function fmod_channel_control_get_3d_min_max_distance(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_occlusion
- * @desc > **FMOD Function:** [ChannelControl::set3DOcclusion](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3docclusion)
+ * @desc > **FMOD Function:** [ChannelControl::set3DOcclusion](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3docclusion)
  *
  * <br />
  *
@@ -951,7 +951,7 @@ function fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlu
 
 /**
  * @func fmod_channel_control_get_3d_occlusion
- * @desc > **FMOD Function:** [ChannelControl::get3DOcclusion](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3docclusion)
+ * @desc > **FMOD Function:** [ChannelControl::get3DOcclusion](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3docclusion)
  *
  * <br />
  *
@@ -966,7 +966,7 @@ function fmod_channel_control_get_3d_occlusion(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_3d_spread
- * @desc > **FMOD Function:** [ChannelControl::set3DSpread](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_set3dspread)
+ * @desc > **FMOD Function:** [ChannelControl::set3DSpread](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_set3dspread)
  *
  * <br />
  *
@@ -990,7 +990,7 @@ function fmod_channel_control_set_3d_spread(channel_control_ref, angle) {}
 
 /**
  * @func fmod_channel_control_get_3d_spread
- * @desc > **FMOD Function:** [ChannelControl::get3DSpread](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_get3dspread)
+ * @desc > **FMOD Function:** [ChannelControl::get3DSpread](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dspread)
  *
  * <br />
  *
@@ -1007,7 +1007,7 @@ function fmod_channel_control_get_3d_spread(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_pan
- * @desc > **FMOD Function:** [ChannelControl::setPan](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setpan)
+ * @desc > **FMOD Function:** [ChannelControl::setPan](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setpan)
  *
  * <br />
  *
@@ -1028,7 +1028,7 @@ function fmod_channel_control_set_pan(channel_control_ref, pan) {}
 
 /**
  * @func fmod_channel_control_set_mix_levels_input
- * @desc > **FMOD Function:** [ChannelControl::setMixLevelsInput](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsinput)
+ * @desc > **FMOD Function:** [ChannelControl::setMixLevelsInput](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsinput)
  *
  * <br />
  *
@@ -1047,7 +1047,7 @@ function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) 
 
 /**
  * @func fmod_channel_control_set_mix_levels_output
- * @desc > **FMOD Function:** [ChannelControl::setMixLevelsOutput](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsoutput)
+ * @desc > **FMOD Function:** [ChannelControl::setMixLevelsOutput](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setmixlevelsoutput)
  *
  * <br />
  *
@@ -1077,7 +1077,7 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
 
 /**
  * @func fmod_channel_control_set_mix_matrix
- * @desc > **FMOD Function:** [ChannelControl::setMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setmixmatrix)
+ * @desc > **FMOD Function:** [ChannelControl::setMixMatrix](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setmixmatrix)
  *
  * <br />
  *
@@ -1112,7 +1112,7 @@ function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_ch
 
 /**
  * @func fmod_channel_control_get_mix_matrix
- * @desc > **FMOD Function:** [ChannelControl::getMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getmixmatrix)
+ * @desc > **FMOD Function:** [ChannelControl::getMixMatrix](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getmixmatrix)
  *
  * <br />
  *
@@ -1129,7 +1129,7 @@ function fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop
 
 /**
  * @func fmod_channel_control_set_reverb_properties
- * @desc > **FMOD Function:** [ChannelControl::setReverbProperties](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setreverbproperties)
+ * @desc > **FMOD Function:** [ChannelControl::setReverbProperties](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setreverbproperties)
  *
  * <br />
  *
@@ -1151,7 +1151,7 @@ function fmod_channel_control_set_reverb_properties(channel_control_ref, reverb_
 
 /**
  * @func fmod_channel_control_get_reverb_properties
- * @desc > **FMOD Function:** [ChannelControl::getReverbProperties](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getreverbproperties)
+ * @desc > **FMOD Function:** [ChannelControl::getReverbProperties](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getreverbproperties)
  *
  * <br />
  *
@@ -1170,7 +1170,7 @@ function fmod_channel_control_get_reverb_properties(channel_control_ref, reverb_
 
 /**
  * @func fmod_channel_control_set_low_pass_gain
- * @desc > **FMOD Function:** [ChannelControl::setLowPassGain](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setlowpassgain)
+ * @desc > **FMOD Function:** [ChannelControl::setLowPassGain](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setlowpassgain)
  *
  * <br />
  *
@@ -1189,7 +1189,7 @@ function fmod_channel_control_set_low_pass_gain(channel_control_ref, gain) {}
 
 /**
  * @func fmod_channel_control_get_low_pass_gain
- * @desc > **FMOD Function:** [ChannelControl::getLowPassGain](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getlowpassgain)
+ * @desc > **FMOD Function:** [ChannelControl::getLowPassGain](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getlowpassgain)
  *
  * <br />
  *
@@ -1210,7 +1210,7 @@ function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_add_dsp
- * @desc > **FMOD Function:** [ChannelControl::addDSP](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_adddsp)
+ * @desc > **FMOD Function:** [ChannelControl::addDSP](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_adddsp)
  *
  * <br />
  *
@@ -1218,7 +1218,7 @@ function fmod_channel_control_get_low_pass_gain(channel_control_ref) {}
  * 
  * If `dsp_ref` is already added to an existing object it will be removed and then added to this object.
  * 
- * For detailed information on FMOD's [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) network, read the [DSP Architecture and Usage](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) white paper.
+ * For detailed information on FMOD's [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) network, read the [DSP Architecture and Usage](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) white paper.
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @param {real} dsp_chain_offset The offset into the DSP chain, see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets for 'head' and 'tail' and 'fader' units.
@@ -1230,7 +1230,7 @@ function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp
 
 /**
  * @func fmod_channel_control_remove_dsp
- * @desc > **FMOD Function:** [ChannelControl::removeDSP](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_removedsp)
+ * @desc > **FMOD Function:** [ChannelControl::removeDSP](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_removedsp)
  *
  * <br />
  *
@@ -1245,13 +1245,13 @@ function fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref) {}
 
 /**
  * @func fmod_channel_control_get_num_dsps
- * @desc > **FMOD Function:** [ChannelControl::getNumDSPs](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getnumdsps)
+ * @desc > **FMOD Function:** [ChannelControl::getNumDSPs](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getnumdsps)
  *
  * <br />
  *
- * This function retrieves the number of [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) units in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * This function retrieves the number of [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) units in the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * 
- * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * See [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1262,7 +1262,7 @@ function fmod_channel_control_get_num_dsps(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_get_dsp
- * @desc > **FMOD Function:** [ChannelControl::getDSP](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdsp)
+ * @desc > **FMOD Function:** [ChannelControl::getDSP](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getdsp)
  *
  * <br />
  *
@@ -1270,10 +1270,10 @@ function fmod_channel_control_get_num_dsps(channel_control_ref) {}
  * 
  * It returns the DSP unit at the specified `index`.
  * 
- * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * See [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} index The offset into the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain), see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets for 'head' and 'tail' and 'fader' units.
+ * @param {real} index The offset into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain), see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets for 'head' and 'tail' and 'fader' units.
  * @returns {real}
  * @func_end
  */
@@ -1282,16 +1282,16 @@ function fmod_channel_control_get_dsp(channel_control_ref, index) {}
 
 /**
  * @func fmod_channel_control_set_dsp_index
- * @desc > **FMOD Function:** [ChannelControl::setDSPIndex](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setdspindex)
+ * @desc > **FMOD Function:** [ChannelControl::setDSPIndex](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setdspindex)
  *
  * <br />
  *
  * This function sets the index in the DSP chain of the specified DSP.
  * 
- * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * See [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_ref A reference to a DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * @param {real} dsp_ref A reference to a DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * @param {real} chain_index The offset into the DSP chain to move the DSP to, see ${constant.FMOD_CHANNELCONTROL_DSP_INDEX} for special named offsets.
  * @returns {real}
  * @func_end
@@ -1301,16 +1301,16 @@ function fmod_channel_control_set_dsp_index(channel_control_ref, dsp_ref, chain_
 
 /**
  * @func fmod_channel_control_get_dsp_index
- * @desc > **FMOD Function:** [ChannelControl::getDSPIndex](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdspindex)
+ * @desc > **FMOD Function:** [ChannelControl::getDSPIndex](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getdspindex)
  *
  * <br />
  *
  * This function retrieves the index of a DSP inside the Channel or ChannelGroup's DSP chain.
  * 
- * See [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * See [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
- * @param {real} dsp_ref A DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain).
+ * @param {real} dsp_ref A DSP unit that exists in the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain).
  * @returns {real}
  * @func_end
  */
@@ -1319,7 +1319,7 @@ function fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref) {}
 
 /**
  * @func fmod_channel_control_get_dsp_clock
- * @desc > **FMOD Function:** [ChannelControl::getDSPClock](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdspclock)
+ * @desc > **FMOD Function:** [ChannelControl::getDSPClock](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getdspclock)
  *
  * <br />
  *
@@ -1336,7 +1336,7 @@ function fmod_channel_control_get_dsp_clock(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_delay
- * @desc > **FMOD Function:** [ChannelControl::setDelay](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setdelay)
+ * @desc > **FMOD Function:** [ChannelControl::setDelay](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setdelay)
  *
  * <br />
  *
@@ -1354,7 +1354,7 @@ function fmod_channel_control_set_delay(channel_control_ref, dsp_clock_start, ds
 
 /**
  * @func fmod_channel_control_get_delay
- * @desc > **FMOD Function:** [ChannelControl::getDelay](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getdelay)
+ * @desc > **FMOD Function:** [ChannelControl::getDelay](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getdelay)
  *
  * <br />
  *
@@ -1369,7 +1369,7 @@ function fmod_channel_control_get_delay(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_add_fade_point
- * @desc > **FMOD Function:** [ChannelControl::addFadePoint](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_addfadepoint)
+ * @desc > **FMOD Function:** [ChannelControl::addFadePoint](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_addfadepoint)
  *
  * <br />
  *
@@ -1399,7 +1399,7 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
 
 /**
  * @func fmod_channel_control_set_fade_point_ramp
- * @desc > **FMOD Function:** [ChannelControl::setFadePointRamp](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setfadepointramp)
+ * @desc > **FMOD Function:** [ChannelControl::setFadePointRamp](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setfadepointramp)
  *
  * <br />
  *
@@ -1412,7 +1412,7 @@ function fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, vol
  * All fade points after `dsp_clock` will be removed.
  * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock The time (in samples) at which the ramp will end, as measured by the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
+ * @param {real} dsp_clock The time (in samples) at which the ramp will end, as measured by the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html).
  * @param {real} volume The volume level at the given `dsp_clock`. 0 = silent, 1 = full.
  * @func_end
  */
@@ -1421,15 +1421,15 @@ function fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock
 
 /**
  * @func fmod_channel_control_remove_fade_points
- * @desc > **FMOD Function:** [ChannelControl::removeFadePoints](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_removefadepoints)
+ * @desc > **FMOD Function:** [ChannelControl::removeFadePoints](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_removefadepoints)
  *
  * <br />
  *
  * This function removes all fade points between the two specified clock values (inclusive).
  * 
  * @param {real} control_ref A reference to a channel control.
- * @param {real} dsp_clock_start The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to begin removing fade points. Expressed in samples.
- * @param {real} dsp_clock_end The [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) at which to stop removing fade points. Expressed in samples.
+ * @param {real} dsp_clock_start The [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) at which to begin removing fade points. Expressed in samples.
+ * @param {real} dsp_clock_end The [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) at which to stop removing fade points. Expressed in samples.
  * @func_end
  */
 function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_start, dsp_clock_end) {}
@@ -1437,7 +1437,7 @@ function fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_
 
 /**
  * @func fmod_channel_control_get_fade_points
- * @desc > **FMOD Function:** [ChannelControl::getFadePoints](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getfadepoints)
+ * @desc > **FMOD Function:** [ChannelControl::getFadePoints](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getfadepoints)
  *
  * <br />
  *
@@ -1452,7 +1452,7 @@ function fmod_channel_control_get_fade_points(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_callback
- * @desc > **FMOD Function:** [ChannelControl::setCallback](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setcallback)
+ * @desc > **FMOD Function:** [ChannelControl::setCallback](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setcallback)
  *
  * <br />
  *
@@ -1488,7 +1488,7 @@ function fmod_channel_control_set_callback(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_get_system_object
- * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
+ * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
  *
  * <br />
  *
@@ -1503,13 +1503,13 @@ function fmod_channel_control_get_system_object(channel_control_ref) {}
 
 /**
  * @func fmod_channel_control_set_user_data
- * @desc > **FMOD Function:** [ChannelControl::setUserData](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_setuserdata)
+ * @desc > **FMOD Function:** [ChannelControl::setUserData](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @param {real} data The value to store on this object.
@@ -1520,13 +1520,13 @@ function fmod_channel_control_set_user_data(channel_control_ref, data) {}
 
 /**
  * @func fmod_channel_control_get_user_data
- * @desc > **FMOD Function:** [ChannelControl::getUserData](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getuserdata)
+ * @desc > **FMOD Function:** [ChannelControl::getUserData](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getuserdata)
  *
  * <br />
  *
  * This function retrieves the user value associated with this object, as set with ${function.fmod_channel_control_set_user_data}.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} channel_control_ref A reference to a ChannelControl.
  * @returns {real}
@@ -1538,7 +1538,7 @@ function fmod_channel_control_get_user_data(channel_control_ref) {}
 
 /**
  * @func fmod_channel_group_get_num_channels
- * @desc > **FMOD Function:** [ChannelGroup::getNumChannels](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getnumchannels)
+ * @desc > **FMOD Function:** [ChannelGroup::getNumChannels](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getnumchannels)
  *
  * <br />
  *
@@ -1553,7 +1553,7 @@ function fmod_channel_group_get_num_channels(channel_group_ref) {}
 
 /**
  * @func fmod_channel_group_get_channel
- * @desc > **FMOD Function:** [ChannelGroup::getChannel](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getchannel)
+ * @desc > **FMOD Function:** [ChannelGroup::getChannel](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getchannel)
  *
  * <br />
  *
@@ -1562,7 +1562,7 @@ function fmod_channel_group_get_num_channels(channel_group_ref) {}
  * The function returns a reference to the Channel.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
- * @param {real} index The offset into the list of [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) inputs.
+ * @param {real} index The offset into the list of [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) inputs.
  * @returns {real}
  * @func_end
  */
@@ -1571,13 +1571,13 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
 
 /**
  * @func fmod_channel_group_add_group
- * @desc > **FMOD Function:** [ChannelGroup::addGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_addgroup)
+ * @desc > **FMOD Function:** [ChannelGroup::addGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_addgroup)
  *
  * <br />
  *
  * This function adds a ChannelGroup as an input to this group.
  * 
- * The function returns a reference to the [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) created between the head DSP of `child_channel_group_ref` and the tail DSP of `channel_group_ref`.
+ * The function returns a reference to the [DSPConnection](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html) created between the head DSP of `child_channel_group_ref` and the tail DSP of `channel_group_ref`.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @param {real} child_channel_group_ref The ChannelGroup to add.
@@ -1590,7 +1590,7 @@ function fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref
 
 /**
  * @func fmod_channel_group_get_num_groups
- * @desc > **FMOD Function:** [ChannelGroup::getNumGroups](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getnumgroups)
+ * @desc > **FMOD Function:** [ChannelGroup::getNumGroups](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getnumgroups)
  *
  * <br />
  *
@@ -1605,7 +1605,7 @@ function fmod_channel_group_get_num_groups(channel_group_ref) {}
 
 /**
  * @func fmod_channel_group_get_group
- * @desc > **FMOD Function:** [ChannelGroup::getGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getgroup)
+ * @desc > **FMOD Function:** [ChannelGroup::getGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getgroup)
  *
  * <br />
  *
@@ -1621,7 +1621,7 @@ function fmod_channel_group_get_group(channel_group_ref, group_index) {}
 
 /**
  * @func fmod_channel_group_get_parent_group
- * @desc > **FMOD Function:** [ChannelGroup::getParentGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getparentgroup)
+ * @desc > **FMOD Function:** [ChannelGroup::getParentGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getparentgroup)
  *
  * <br />
  *
@@ -1636,7 +1636,7 @@ function fmod_channel_group_get_parent_group(channel_group_ref) {}
 
 /**
  * @func fmod_channel_group_get_name
- * @desc > **FMOD Function:** [ChannelGroup::getName](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getname)
+ * @desc > **FMOD Function:** [ChannelGroup::getName](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getname)
  *
  * <br />
  *
@@ -1651,13 +1651,13 @@ function fmod_channel_group_get_name(channel_group_ref) {}
 
 /**
  * @func fmod_channel_group_release
- * @desc > **FMOD Function:** [ChannelGroup::release](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_release)
+ * @desc > **FMOD Function:** [ChannelGroup::release](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_release)
  *
  * <br />
  *
  * This function frees the memory for the group.
  * 
- * [[Note: Any [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) or [ChannelGroups](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) feeding into this group are moved to the master ChannelGroup.]]
+ * [[Note: Any [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) or [ChannelGroups](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) feeding into this group are moved to the master ChannelGroup.]]
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
@@ -1668,11 +1668,11 @@ function fmod_channel_group_release(channel_group_ref) {}
 
 /**
  * @func fmod_channel_group_get_system_object
- * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
+ * @desc > **FMOD Function:** [ChannelControl::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getsystemobject)
  *
  * <br />
  *
- * This function retrieves the [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) that created this object.
+ * This function retrieves the [System](https://www.fmod.com/docs/2.03/api/core-api-system.html) that created this object.
  * 
  * @param {real} channel_group_ref A reference to a ChannelGroup.
  * @returns {real}
@@ -1683,7 +1683,7 @@ function fmod_channel_group_get_system_object(channel_group_ref) {}
 
 /**
  * @func fmod_file_get_disk_busy
- * @desc > **FMOD Function:** [File_GetDiskBusy](https://www.fmod.com/docs/2.02/api/core-api-common.html#file_getdiskbusy)
+ * @desc > **FMOD Function:** [File_GetDiskBusy](https://www.fmod.com/docs/2.03/api/core-api-common.html#file_getdiskbusy)
  *
  * <br />
  *
@@ -1699,7 +1699,7 @@ function fmod_file_get_disk_busy() {}
 
 /**
  * @func fmod_file_set_disk_busy
- * @desc > **FMOD Function:** [File_SetDiskBusy](https://www.fmod.com/docs/2.02/api/core-api-common.html#file_setdiskbusy)
+ * @desc > **FMOD Function:** [File_SetDiskBusy](https://www.fmod.com/docs/2.03/api/core-api-common.html#file_setdiskbusy)
  *
  * <br />
  *
@@ -1718,7 +1718,7 @@ function fmod_file_set_disk_busy(busy) {}
 
 /**
  * @func fmod_memory_get_stats
- * @desc > **FMOD Function:** [Memory_GetStats](https://www.fmod.com/docs/2.02/api/core-api-common.html#memory_getstats)
+ * @desc > **FMOD Function:** [Memory_GetStats](https://www.fmod.com/docs/2.03/api/core-api-common.html#memory_getstats)
  *
  * <br />
  *
@@ -1726,7 +1726,7 @@ function fmod_file_set_disk_busy(busy) {}
  * 
  * This information is byte accurate and counts all allocs and frees internally. This is useful for determining a fixed memory size to make FMOD work within for fixed-memory machines such as consoles.
  * 
- * @param {boolean} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
+ * @param {boolean} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
  * @returns {struct.FmodMemoryStats}
  * @func_end
  */
@@ -1735,7 +1735,7 @@ function fmod_memory_get_stats(blocking) {}
 
 /**
  * @func fmod_debug_initialize
- * @desc > **FMOD Function:** [Debug_Initialize](https://www.fmod.com/docs/2.02/api/core-api-common.html#debug_initialize)
+ * @desc > **FMOD Function:** [Debug_Initialize](https://www.fmod.com/docs/2.03/api/core-api-common.html#debug_initialize)
  *
  * <br />
  *
@@ -1749,7 +1749,7 @@ function fmod_memory_get_stats(blocking) {}
  * * `FMOD_DEBUG_FLAGS.LEVEL_WARNING` produces warnings and error messages.
  * * `FMOD_DEBUG_FLAGS.LEVEL_ERROR` produces error messages only.
  * 
- * See Also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * See Also: [Callback Behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
  * 
  * @param {constant.FMOD_DEBUG_FLAGS} flags The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.
  * @param {constant.FMOD_DEBUG_MODE} mode The destination for log messages. The default is `FMOD_DEBUG_MODE.TTY`.
@@ -1761,7 +1761,7 @@ function fmod_debug_initialize(flags, mode=FMOD_DEBUG_MODE.TTY, filename=pointer
 
 /**
  * @func fmod_thread_set_attributes
- * @desc > **FMOD Function:** [Thread_SetAttributes](https://www.fmod.com/docs/2.02/api/core-api-common.html#thread_setattributes)
+ * @desc > **FMOD Function:** [Thread_SetAttributes](https://www.fmod.com/docs/2.03/api/core-api-common.html#thread_setattributes)
  *
  * <br />
  *
@@ -1787,17 +1787,17 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
 
 /**
  * @func fmod_dsp_add_input
- * @desc > **FMOD Function:** [DSP::addInput](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_addinput)
+ * @desc > **FMOD Function:** [DSP::addInput](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_addinput)
  *
  * <br />
  *
- * This function adds a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit as an input to this object and returns the new [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html) between the two units.
+ * This function adds a [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) unit as an input to this object and returns the new [DSPConnection](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html) between the two units.
  * 
  * The returned connection will remain valid until the units are disconnected.
  * 
  * [[Note: When a DSP has multiple inputs the signals are automatically mixed together, sent to the unit's output(s).]]
  * 
- * @param {real} dsp_ref A reference to a [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * @param {real} dsp_ref A reference to a [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
  * @param {real} dsp_input_ref A reference to the DSP unit to be added to `dsp_ref`.
  * @param {constant.FMOD_DSPCONNECTION_TYPE} dsp_connection_type The type of connection between the two units. Optional. Default is `FMOD_DSPCONNECTION_TYPE.STANDARD`.
  * @returns {real}
@@ -1808,7 +1808,7 @@ function fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type) {}
 
 /**
  * @func fmod_dsp_get_input
- * @desc > **FMOD Function:** [DSP::getInput](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getinput)
+ * @desc > **FMOD Function:** [DSP::getInput](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getinput)
  *
  * <br />
  *
@@ -1828,7 +1828,7 @@ function fmod_dsp_get_input(dsp_ref, dsp_input_index) {}
 
 /**
  * @func fmod_dsp_get_output
- * @desc > **FMOD Function:** [DSP::getOutput](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getoutput)
+ * @desc > **FMOD Function:** [DSP::getOutput](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getoutput)
  *
  * <br />
  *
@@ -1848,7 +1848,7 @@ function fmod_dsp_get_output(dsp_ref, dsp_output_index) {}
 
 /**
  * @func fmod_dsp_get_num_inputs
- * @desc > **FMOD Function:** [DSP::getNumInputs](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnuminputs)
+ * @desc > **FMOD Function:** [DSP::getNumInputs](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getnuminputs)
  *
  * <br />
  *
@@ -1865,7 +1865,7 @@ function fmod_dsp_get_num_inputs(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_num_outputs
- * @desc > **FMOD Function:** [DSP::getNumOutputs](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnumoutputs)
+ * @desc > **FMOD Function:** [DSP::getNumOutputs](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getnumoutputs)
  *
  * <br />
  *
@@ -1882,7 +1882,7 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
 
 /**
  * @func fmod_dsp_disconnect_all
- * @desc > **FMOD Function:** [DSP::disconnectAll](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_disconnectall)
+ * @desc > **FMOD Function:** [DSP::disconnectAll](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_disconnectall)
  *
  * <br />
  *
@@ -1900,7 +1900,7 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
 
 /**
  * @func fmod_dsp_disconnect_from
- * @desc > **FMOD Function:** [DSP::disconnectFrom](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_disconnectfrom)
+ * @desc > **FMOD Function:** [DSP::disconnectFrom](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_disconnectfrom)
  *
  * <br />
  *
@@ -1920,7 +1920,7 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
 
 /**
  * @func fmod_dsp_get_data_parameter_index
- * @desc > **FMOD Function:** [DSP::getDataParameterIndex](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getdataparameterindex)
+ * @desc > **FMOD Function:** [DSP::getDataParameterIndex](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getdataparameterindex)
  *
  * <br />
  *
@@ -1940,7 +1940,7 @@ function fmod_dsp_get_data_parameter_index(dsp_ref, data_type) {}
 
 /**
  * @func fmod_dsp_get_num_parameters
- * @desc > **FMOD Function:** [DSP::getNumParameters](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getnumparameters)
+ * @desc > **FMOD Function:** [DSP::getNumParameters](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getnumparameters)
  *
  * <br />
  *
@@ -1957,7 +1957,7 @@ function fmod_dsp_get_num_parameters(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_parameter_bool
- * @desc > **FMOD Function:** [DSP::setParameterBool](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterbool)
+ * @desc > **FMOD Function:** [DSP::setParameterBool](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setparameterbool)
  *
  * <br />
  *
@@ -1973,7 +1973,7 @@ function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
 
 /**
  * @func fmod_dsp_get_parameter_bool
- * @desc > **FMOD Function:** [DSP::getParameterBool](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterbool)
+ * @desc > **FMOD Function:** [DSP::getParameterBool](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getparameterbool)
  *
  * <br />
  *
@@ -1989,7 +1989,7 @@ function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
 
 /**
  * @func fmod_dsp_set_parameter_data
- * @desc > **FMOD Function:** [DSP::setParameterData](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterdata)
+ * @desc > **FMOD Function:** [DSP::setParameterData](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setparameterdata)
  *
  * <br />
  *
@@ -2010,7 +2010,7 @@ function fmod_dsp_set_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
 /**
  * @func fmod_dsp_get_parameter_data
- * @desc > **FMOD Function:** [DSP::getParameterData](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterdata)
+ * @desc > **FMOD Function:** [DSP::getParameterData](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getparameterdata)
  *
  * <br />
  *
@@ -2049,7 +2049,7 @@ function fmod_dsp_get_parameter_data(dsp_ref, parameter_index, buff, length) {}
 
 /**
  * @func fmod_dsp_set_parameter_float
- * @desc > **FMOD Function:** [DSP::setParameterFloat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterfloat)
+ * @desc > **FMOD Function:** [DSP::setParameterFloat](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setparameterfloat)
  *
  * <br />
  *
@@ -2065,7 +2065,7 @@ function fmod_dsp_set_parameter_float(dsp_ref, parameter_index, value) {}
 
 /**
  * @func fmod_dsp_get_parameter_float
- * @desc > **FMOD Function:** [DSP::getParameterFloat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterfloat)
+ * @desc > **FMOD Function:** [DSP::getParameterFloat](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getparameterfloat)
  *
  * <br />
  *
@@ -2081,7 +2081,7 @@ function fmod_dsp_get_parameter_float(dsp_ref, parameter_index) {}
 
 /**
  * @func fmod_dsp_set_parameter_int
- * @desc > **FMOD Function:** [DSP::setParameterInt](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setparameterint)
+ * @desc > **FMOD Function:** [DSP::setParameterInt](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setparameterint)
  *
  * <br />
  *
@@ -2097,7 +2097,7 @@ function fmod_dsp_set_parameter_int(dsp_ref, parameter_index, value) {}
 
 /**
  * @func fmod_dsp_get_parameter_int
- * @desc > **FMOD Function:** [DSP::getParameterInt](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterint)
+ * @desc > **FMOD Function:** [DSP::getParameterInt](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getparameterint)
  *
  * <br />
  *
@@ -2113,7 +2113,7 @@ function fmod_dsp_get_parameter_int(dsp_ref, parameter_index) {}
 
 /**
  * @func fmod_dsp_get_parameter_info
- * @desc > **FMOD Function:** [DSP::getParameterInfo](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getparameterinfo)
+ * @desc > **FMOD Function:** [DSP::getParameterInfo](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getparameterinfo)
  *
  * <br />
  *
@@ -2128,7 +2128,7 @@ function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
 
 /**
  * @func fmod_dsp_set_channel_format
- * @desc > **FMOD Function:** [DSP::setChannelFormat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setchannelformat)
+ * @desc > **FMOD Function:** [DSP::setChannelFormat](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setchannelformat)
  *
  * <br />
  *
@@ -2147,7 +2147,7 @@ function fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels, speake
 
 /**
  * @func fmod_dsp_get_channel_format
- * @desc > **FMOD Function:** [DSP::getChannelFormat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getchannelformat)
+ * @desc > **FMOD Function:** [DSP::getChannelFormat](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getchannelformat)
  *
  * <br />
  *
@@ -2162,7 +2162,7 @@ function fmod_dsp_get_channel_format(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_output_channel_format
- * @desc > **FMOD Function:** [DSP::getOutputChannelFormat](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getoutputchannelformat)
+ * @desc > **FMOD Function:** [DSP::getOutputChannelFormat](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getoutputchannelformat)
  *
  * <br />
  *
@@ -2180,7 +2180,7 @@ function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channe
 
 /**
  * @func fmod_dsp_get_metering_info
- * @desc > **FMOD Function:** [DSP::getMeteringInfo](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getmeteringinfo)
+ * @desc > **FMOD Function:** [DSP::getMeteringInfo](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getmeteringinfo)
  *
  * <br />
  *
@@ -2199,7 +2199,7 @@ function fmod_dsp_get_metering_info(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_metering_enabled
- * @desc > **FMOD Function:** [DSP::setMeteringEnabled](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setmeteringenabled)
+ * @desc > **FMOD Function:** [DSP::setMeteringEnabled](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setmeteringenabled)
  *
  * <br />
  *
@@ -2221,7 +2221,7 @@ function fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out) {}
 
 /**
  * @func fmod_dsp_get_metering_enabled
- * @desc > **FMOD Function:** [DSP::getMeteringEnabled](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getmeteringenabled)
+ * @desc > **FMOD Function:** [DSP::getMeteringEnabled](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getmeteringenabled)
  *
  * <br />
  *
@@ -2236,7 +2236,7 @@ function fmod_dsp_get_metering_enabled(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_active
- * @desc > **FMOD Function:** [DSP::setActive](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setactive)
+ * @desc > **FMOD Function:** [DSP::setActive](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setactive)
  *
  * <br />
  *
@@ -2255,7 +2255,7 @@ function fmod_dsp_set_active(dsp_ref, active) {}
 
 /**
  * @func fmod_dsp_get_active
- * @desc > **FMOD Function:** [DSP::getActive](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getactive)
+ * @desc > **FMOD Function:** [DSP::getActive](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getactive)
  *
  * <br />
  *
@@ -2274,7 +2274,7 @@ function fmod_dsp_get_active(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_bypass
- * @desc > **FMOD Function:** [DSP::setBypass](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setbypass)
+ * @desc > **FMOD Function:** [DSP::setBypass](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setbypass)
  *
  * <br />
  *
@@ -2291,7 +2291,7 @@ function fmod_dsp_set_bypass(dsp_ref, bypass) {}
 
 /**
  * @func fmod_dsp_get_bypass
- * @desc > **FMOD Function:** [DSP::getBypass](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getbypass)
+ * @desc > **FMOD Function:** [DSP::getBypass](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getbypass)
  *
  * <br />
  *
@@ -2308,7 +2308,7 @@ function fmod_dsp_get_bypass(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_wet_dry_mix
- * @desc > **FMOD Function:** [DSP::setWetDryMix](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setwetdrymix)
+ * @desc > **FMOD Function:** [DSP::setWetDryMix](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setwetdrymix)
  *
  * <br />
  *
@@ -2325,7 +2325,7 @@ function fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry) {}
 
 /**
  * @func fmod_dsp_get_wet_dry_mix
- * @desc > **FMOD Function:** [DSP::getWetDryMix](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getwetdrymix)
+ * @desc > **FMOD Function:** [DSP::getWetDryMix](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getwetdrymix)
  *
  * <br />
  *
@@ -2340,7 +2340,7 @@ function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_idle
- * @desc > **FMOD Function:** [DSP::getIdle](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getidle)
+ * @desc > **FMOD Function:** [DSP::getIdle](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getidle)
  *
  * <br />
  *
@@ -2359,7 +2359,7 @@ function fmod_dsp_get_idle(dsp_ref) {}
 
 /**
  * @func fmod_dsp_reset
- * @desc > **FMOD Function:** [DSP::reset](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_reset)
+ * @desc > **FMOD Function:** [DSP::reset](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_reset)
  *
  * <br />
  *
@@ -2375,7 +2375,7 @@ function fmod_dsp_reset(dsp_ref) {}
 
 /**
  * @func fmod_dsp_release
- * @desc > **FMOD Function:** [DSP::release](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_release)
+ * @desc > **FMOD Function:** [DSP::release](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_release)
  *
  * <br />
  *
@@ -2391,7 +2391,7 @@ function fmod_dsp_release(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_type
- * @desc > **FMOD Function:** [DSP::getType](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_gettype)
+ * @desc > **FMOD Function:** [DSP::getType](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_gettype)
  *
  * <br />
  *
@@ -2408,7 +2408,7 @@ function fmod_dsp_get_type(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_info
- * @desc > **FMOD Function:** [DSP::getInfo](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getinfo)
+ * @desc > **FMOD Function:** [DSP::getInfo](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getinfo)
  *
  * <br />
  *
@@ -2423,7 +2423,7 @@ function fmod_dsp_get_info(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_cpu_usage
- * @desc > **FMOD Function:** [DSP::getCPUUsage](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getcpuusage)
+ * @desc > **FMOD Function:** [DSP::getCPUUsage](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getcpuusage)
  *
  * <br />
  *
@@ -2440,13 +2440,13 @@ function fmod_dsp_get_cpu_usage(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_user_data
- * @desc > **FMOD Function:** [DSP::setUserData](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setuserdata)
+ * @desc > **FMOD Function:** [DSP::setUserData](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @param {real} data The floating point value stored on this object.
@@ -2457,13 +2457,13 @@ function fmod_dsp_set_user_data(dsp_ref, data) {}
 
 /**
  * @func fmod_dsp_get_user_data
- * @desc > **FMOD Function:** [DSP::getUserData](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getuserdata)
+ * @desc > **FMOD Function:** [DSP::getUserData](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getuserdata)
  *
  * <br />
  *
  * This function retrieves a floating point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} dsp_ref A reference to a DSP.
  * @returns {real}
@@ -2474,7 +2474,7 @@ function fmod_dsp_get_user_data(dsp_ref) {}
 
 /**
  * @func fmod_dsp_set_callback
- * @desc > **FMOD Function:** [DSP::setCallback](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_setcallback)
+ * @desc > **FMOD Function:** [DSP::setCallback](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setcallback)
  *
  * <br />
  *
@@ -2498,7 +2498,7 @@ function fmod_dsp_set_callback(dsp_ref) {}
 
 /**
  * @func fmod_dsp_get_system_object
- * @desc > **FMOD Function:** [DSP::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#dsp_getsystemobject)
+ * @desc > **FMOD Function:** [DSP::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getsystemobject)
  *
  * <br />
  *
@@ -2513,7 +2513,7 @@ function fmod_dsp_get_system_object(dsp_ref) {}
 
 /**
  * @func fmod_dsp_connection_set_mix
- * @desc > **FMOD Function:** [DSPConnection::setMix](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_setmix)
+ * @desc > **FMOD Function:** [DSPConnection::setMix](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_setmix)
  *
  * <br />
  *
@@ -2528,7 +2528,7 @@ function fmod_dsp_connection_set_mix(dsp_connection_ref, volume) {}
 
 /**
  * @func fmod_dsp_connection_get_mix
- * @desc > **FMOD Function:** [DSPConnection::getMix](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_getmix)
+ * @desc > **FMOD Function:** [DSPConnection::getMix](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_getmix)
  *
  * <br />
  *
@@ -2545,7 +2545,7 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
 
 /**
  * @func fmod_dsp_connection_set_mix_matrix
- * @desc > **FMOD Function:** [DSPConnection::setMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_setmixmatrix)
+ * @desc > **FMOD Function:** [DSPConnection::setMixMatrix](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_setmixmatrix)
  *
  * <br />
  *
@@ -2580,7 +2580,7 @@ function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_chan
 
 /**
  * @func fmod_dsp_connection_get_mix_matrix
- * @desc > **FMOD Function:** [DSPConnection::getMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_getmixmatrix)
+ * @desc > **FMOD Function:** [DSPConnection::getMixMatrix](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_getmixmatrix)
  *
  * <br />
  *
@@ -2598,7 +2598,7 @@ function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) 
 
 /**
  * @func fmod_dsp_connection_get_input
- * @desc > **FMOD Function:** [DSPConnection::getInput](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_getinput)
+ * @desc > **FMOD Function:** [DSPConnection::getInput](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_getinput)
  *
  * <br />
  *
@@ -2615,7 +2615,7 @@ function fmod_dsp_connection_get_input(dsp_connection_ref) {}
 
 /**
  * @func fmod_dsp_connection_get_output
- * @desc > **FMOD Function:** [DSPConnection::getOutput](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_getoutput)
+ * @desc > **FMOD Function:** [DSPConnection::getOutput](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_getoutput)
  *
  * <br />
  *
@@ -2632,7 +2632,7 @@ function fmod_dsp_connection_get_output(dsp_connection_ref) {}
 
 /**
  * @func fmod_dsp_connection_get_type
- * @desc > **FMOD Function:** [DSPConnection::getType](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_gettype)
+ * @desc > **FMOD Function:** [DSPConnection::getType](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_gettype)
  *
  * <br />
  *
@@ -2647,13 +2647,13 @@ function fmod_dsp_connection_get_type(dsp_connection_ref) {}
 
 /**
  * @func fmod_dsp_connection_set_user_data
- * @desc > **FMOD Function:** [DSPConnection::setUserData](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_setuserdata)
+ * @desc > **FMOD Function:** [DSPConnection::setUserData](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @param {real} data The floating-point value to set.
@@ -2664,13 +2664,13 @@ function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
 
 /**
  * @func fmod_dsp_connection_get_user_data
- * @desc > **FMOD Function:** [DSPConnection::getUserData](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#dspconnection_getuserdata)
+ * @desc > **FMOD Function:** [DSPConnection::getUserData](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#dspconnection_getuserdata)
  *
  * <br />
  *
  * This function retrieves the floating-point user value associated with this object, as set by an earlier call to ${function.fmod_dsp_connection_set_user_data}.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} dsp_connection_ref A reference to a DSPConnection.
  * @returns {real}
@@ -2682,7 +2682,7 @@ function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
 
 /**
  * @func fmod_geometry_set_polygon_attributes
- * @desc > **FMOD Function:** [Geometry::setPolygonAttributes](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setpolygonattributes)
+ * @desc > **FMOD Function:** [Geometry::setPolygonAttributes](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setpolygonattributes)
  *
  * <br />
  *
@@ -2700,7 +2700,7 @@ function fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direc
 
 /**
  * @func fmod_geometry_get_polygon_attributes
- * @desc > **FMOD Function:** [Geometry::getPolygonAttributes](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonattributes)
+ * @desc > **FMOD Function:** [Geometry::getPolygonAttributes](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getpolygonattributes)
  *
  * <br />
  *
@@ -2716,7 +2716,7 @@ function fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index) {}
 
 /**
  * @func fmod_geometry_get_polygon_num_vertices
- * @desc > **FMOD Function:** [Geometry::getPolygonNumVertices](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonnumvertices)
+ * @desc > **FMOD Function:** [Geometry::getPolygonNumVertices](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getpolygonnumvertices)
  *
  * <br />
  *
@@ -2732,7 +2732,7 @@ function fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index) {}
 
 /**
  * @func fmod_geometry_set_polygon_vertex
- * @desc > **FMOD Function:** [Geometry::setPolygonVertex](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setpolygonvertex)
+ * @desc > **FMOD Function:** [Geometry::setPolygonVertex](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setpolygonvertex)
  *
  * <br />
  *
@@ -2755,7 +2755,7 @@ function fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_in
 
 /**
  * @func fmod_geometry_get_polygon_vertex
- * @desc > **FMOD Function:** [Geometry::getPolygonVertex](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getpolygonvertex)
+ * @desc > **FMOD Function:** [Geometry::getPolygonVertex](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getpolygonvertex)
  *
  * <br />
  *
@@ -2772,7 +2772,7 @@ function fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_in
 
 /**
  * @func fmod_geometry_set_position
- * @desc > **FMOD Function:** [Geometry::setPosition](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setposition)
+ * @desc > **FMOD Function:** [Geometry::setPosition](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setposition)
  *
  * <br />
  *
@@ -2789,7 +2789,7 @@ function fmod_geometry_set_position(geometry_ref, position) {}
 
 /**
  * @func fmod_geometry_get_position
- * @desc > **FMOD Function:** [Geometry::getPosition](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getposition)
+ * @desc > **FMOD Function:** [Geometry::getPosition](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getposition)
  *
  * <br />
  *
@@ -2806,7 +2806,7 @@ function fmod_geometry_get_position(geometry_ref) {}
 
 /**
  * @func fmod_geometry_set_rotation
- * @desc > **FMOD Function:** [Geometry::setRotation](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setrotation)
+ * @desc > **FMOD Function:** [Geometry::setRotation](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setrotation)
  *
  * <br />
  *
@@ -2824,7 +2824,7 @@ function fmod_geometry_set_rotation(geometry_ref, forward, up) {}
 
 /**
  * @func fmod_geometry_get_rotation
- * @desc > **FMOD Function:** [Geometry::getRotation](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getrotation)
+ * @desc > **FMOD Function:** [Geometry::getRotation](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getrotation)
  *
  * <br />
  *
@@ -2839,7 +2839,7 @@ function fmod_geometry_get_rotation(geometry_ref) {}
 
 /**
  * @func fmod_geometry_set_scale
- * @desc > **FMOD Function:** [Geometry::setScale](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setscale)
+ * @desc > **FMOD Function:** [Geometry::setScale](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setscale)
  *
  * <br />
  *
@@ -2854,7 +2854,7 @@ function fmod_geometry_set_scale(geometry_ref, scale) {}
 
 /**
  * @func fmod_geometry_get_scale
- * @desc > **FMOD Function:** [Geometry::getScale](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getscale)
+ * @desc > **FMOD Function:** [Geometry::getScale](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getscale)
  *
  * <br />
  *
@@ -2869,7 +2869,7 @@ function fmod_geometry_get_scale(geometry_ref) {}
 
 /**
  * @func fmod_geometry_add_polygon
- * @desc > **FMOD Function:** [Geometry::addPolygon](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_addpolygon)
+ * @desc > **FMOD Function:** [Geometry::addPolygon](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_addpolygon)
  *
  * <br />
  *
@@ -2896,7 +2896,7 @@ function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlus
 
 /**
  * @func fmod_geometry_set_active
- * @desc > **FMOD Function:** [Geometry::setActive](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setactive)
+ * @desc > **FMOD Function:** [Geometry::setActive](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setactive)
  *
  * <br />
  *
@@ -2912,7 +2912,7 @@ function fmod_geometry_set_active(geometry_ref, active) {}
 
 /**
  * @func fmod_geometry_get_active
- * @desc > **FMOD Function:** [Geometry::getActive](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getactive)
+ * @desc > **FMOD Function:** [Geometry::getActive](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getactive)
  *
  * <br />
  *
@@ -2927,7 +2927,7 @@ function fmod_geometry_get_active(geometry_ref) {}
 
 /**
  * @func fmod_geometry_get_max_polygons
- * @desc > **FMOD Function:** [Geometry::getMaxPolygons](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getmaxpolygons)
+ * @desc > **FMOD Function:** [Geometry::getMaxPolygons](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getmaxpolygons)
  *
  * <br />
  *
@@ -2944,7 +2944,7 @@ function fmod_geometry_get_max_polygons(geometry_ref) {}
 
 /**
  * @func fmod_geometry_get_num_polygons
- * @desc > **FMOD Function:** [Geometry::getNumPolygons](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getnumpolygons)
+ * @desc > **FMOD Function:** [Geometry::getNumPolygons](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getnumpolygons)
  *
  * <br />
  *
@@ -2959,13 +2959,13 @@ function fmod_geometry_get_num_polygons(geometry_ref) {}
 
 /**
  * @func fmod_geometry_set_user_data
- * @desc > **FMOD Function:** [Geometry::setUserData](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_setuserdata)
+ * @desc > **FMOD Function:** [Geometry::setUserData](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @param {real} data The value to be stored on this object.
@@ -2976,13 +2976,13 @@ function fmod_geometry_set_user_data(geometry_ref, data) {}
 
 /**
  * @func fmod_geometry_get_user_data
- * @desc > **FMOD Function:** [Geometry::getUserData](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_getuserdata)
+ * @desc > **FMOD Function:** [Geometry::getUserData](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_getuserdata)
  *
  * <br />
  *
  * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_geometry_set_user_data}.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} geometry_ref A reference to a geometry.
  * @returns {real}
@@ -2993,7 +2993,7 @@ function fmod_geometry_get_user_data(geometry_ref) {}
 
 /**
  * @func fmod_geometry_release
- * @desc > **FMOD Function:** [Geometry::release](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_release)
+ * @desc > **FMOD Function:** [Geometry::release](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_release)
  *
  * <br />
  *
@@ -3007,7 +3007,7 @@ function fmod_geometry_release(geometry_ref) {}
 
 /**
  * @func fmod_geometry_save
- * @desc > **FMOD Function:** [Geometry::save](https://www.fmod.com/docs/2.02/api/core-api-geometry.html#geometry_save)
+ * @desc > **FMOD Function:** [Geometry::save](https://www.fmod.com/docs/2.03/api/core-api-geometry.html#geometry_save)
  *
  * <br />
  *
@@ -3028,7 +3028,7 @@ function fmod_geometry_save(geometry_ref, buff) {}
 
 /**
  * @func fmod_reverb_3d_set_3d_attributes
- * @desc > **FMOD Function:** [Reverb3D::set3DAttributes](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_set3dattributes)
+ * @desc > **FMOD Function:** [Reverb3D::set3DAttributes](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_set3dattributes)
  *
  * <br />
  *
@@ -3036,12 +3036,12 @@ function fmod_geometry_save(geometry_ref, buff) {}
  * 
  * When the position of the listener is less than `max_distance` away from the position of one or more reverb objects, the listener's 3D reverb properties are a weighted combination of those reverb objects. Otherwise, the reverb DSP will use the global reverb settings.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
- * @param {struct.FmodVector} position The position in 3D space representing the center of the reverb. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
- * @param {real} min_distance The distance from the centerpoint within which the reverb will have full effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
- * @param {real} max_distance The distance from the centerpoint beyond which the reverb will have no effect. Expressed in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
+ * @param {struct.FmodVector} position The position in 3D space representing the center of the reverb. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
+ * @param {real} min_distance The distance from the centerpoint within which the reverb will have full effect. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
+ * @param {real} max_distance The distance from the centerpoint beyond which the reverb will have no effect. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
  * @func_end
  */
 function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance, max_distance) {}
@@ -3049,13 +3049,13 @@ function fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance,
 
 /**
  * @func fmod_reverb_3d_get_3d_attributes
- * @desc > **FMOD Function:** [Reverb3D::get3DAttributes](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_get3dattributes)
+ * @desc > **FMOD Function:** [Reverb3D::get3DAttributes](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_get3dattributes)
  *
  * <br />
  *
  * This function retrieves the 3D attributes of a reverb sphere.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverb3DAttributes}
@@ -3066,7 +3066,7 @@ function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
 
 /**
  * @func fmod_reverb_3d_set_properties
- * @desc > **FMOD Function:** [Reverb3D::setProperties](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setproperties)
+ * @desc > **FMOD Function:** [Reverb3D::setProperties](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setproperties)
  *
  * <br />
  *
@@ -3094,13 +3094,13 @@ function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, l
 
 /**
  * @func fmod_reverb_3d_get_properties
- * @desc > **FMOD Function:** [Reverb3D::getProperties](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getproperties)
+ * @desc > **FMOD Function:** [Reverb3D::getProperties](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getproperties)
  *
  * <br />
  *
  * This function retrieves the environmental properties of a reverb sphere.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {struct.FmodReverbProperties}
@@ -3111,13 +3111,13 @@ function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
 
 /**
  * @func fmod_reverb_3d_set_active
- * @desc > **FMOD Function:** [Reverb3D::setActive](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setactive)
+ * @desc > **FMOD Function:** [Reverb3D::setActive](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setactive)
  *
  * <br />
  *
  * This function sets the active state.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @param {boolean} active The active state of the reverb sphere. The default is `true`.
@@ -3128,13 +3128,13 @@ function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
 
 /**
  * @func fmod_reverb_3d_get_active
- * @desc > **FMOD Function:** [Reverb3D::getActive](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getactive)
+ * @desc > **FMOD Function:** [Reverb3D::getActive](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getactive)
  *
  * <br />
  *
  * This function retrieves the active state of a reverb sphere.
  * 
- * See the [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {boolean}
@@ -3145,7 +3145,7 @@ function fmod_reverb_3d_get_active(reverb_3d_ref) {}
 
 /**
  * @func fmod_reverb_3d_release
- * @desc > **FMOD Function:** [Reverb3D::release](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_release)
+ * @desc > **FMOD Function:** [Reverb3D::release](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_release)
  *
  * <br />
  *
@@ -3161,13 +3161,13 @@ function fmod_reverb_3d_release(reverb_3d_ref) {}
 
 /**
  * @func fmod_reverb_3d_set_user_data
- * @desc > **FMOD Function:** [Reverb3D::setUserData](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setuserdata)
+ * @desc > **FMOD Function:** [Reverb3D::setUserData](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setuserdata)
  *
  * <br />
  *
  * This function sets a single floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @param {real} data The value stored on this object.
@@ -3178,13 +3178,13 @@ function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
 
 /**
  * @func fmod_reverb_3d_get_user_data
- * @desc > **FMOD Function:** [Reverb3D::getUserData](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getuserdata)
+ * @desc > **FMOD Function:** [Reverb3D::getUserData](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getuserdata)
  *
  * <br />
  *
  * This function retrieves a floating-point user value associated with this object, as set with an earlier call to ${function.fmod_reverb_3d_set_user_data}.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {real}
@@ -3196,7 +3196,7 @@ function fmod_reverb_3d_get_user_data(reverb_3d_ref) {}
 
 /**
  * @func fmod_sound_get_name
- * @desc > **FMOD Function:** [Sound::getName](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getname)
+ * @desc > **FMOD Function:** [Sound::getName](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getname)
  *
  * <br />
  *
@@ -3211,7 +3211,7 @@ function fmod_sound_get_name(sound_ref) {}
 
 /**
  * @func fmod_sound_get_format
- * @desc > **FMOD Function:** [Sound::getFormat](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getformat)
+ * @desc > **FMOD Function:** [Sound::getFormat](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getformat)
  *
  * <br />
  *
@@ -3226,7 +3226,7 @@ function fmod_sound_get_format(sound_ref) {}
 
 /**
  * @func fmod_sound_get_length
- * @desc > **FMOD Function:** [Sound::getLength](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getlength)
+ * @desc > **FMOD Function:** [Sound::getLength](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getlength)
  *
  * <br />
  *
@@ -3248,7 +3248,7 @@ function fmod_sound_get_length(sound_ref, length_type) {}
 
 /**
  * @func fmod_sound_get_num_tags
- * @desc > **FMOD Function:** [Sound::getNumTags](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumtags)
+ * @desc > **FMOD Function:** [Sound::getNumTags](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getnumtags)
  *
  * <br />
  *
@@ -3267,7 +3267,7 @@ function fmod_sound_get_num_tags(sound_ref) {}
 
 /**
  * @func fmod_sound_get_tag
- * @desc > **FMOD Function:** [Sound::getTag](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_gettag)
+ * @desc > **FMOD Function:** [Sound::getTag](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_gettag)
  *
  * <br />
  *
@@ -3336,7 +3336,7 @@ function fmod_sound_get_tag(sound_ref, tag_index, data_buffer) {}
 
 /**
  * @func fmod_sound_set_3d_cone_settings
- * @desc > **FMOD Function:** [Sound::set3DConeSettings](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dconesettings)
+ * @desc > **FMOD Function:** [Sound::set3DConeSettings](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_set3dconesettings)
  *
  * <br />
  *
@@ -3358,7 +3358,7 @@ function fmod_sound_set_3d_cone_settings(sound_ref, inside_cone_angle, outside_c
 
 /**
  * @func fmod_sound_get_3d_cone_settings
- * @desc > **FMOD Function:** [Sound::get3DConeSettings](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dconesettings)
+ * @desc > **FMOD Function:** [Sound::get3DConeSettings](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_get3dconesettings)
  *
  * <br />
  *
@@ -3373,7 +3373,7 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
 
 /**
  * @func fmod_sound_set_3d_custom_rolloff
- * @desc > **FMOD Function:** [Sound::set3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dcustomrolloff)
+ * @desc > **FMOD Function:** [Sound::set3DCustomRolloff](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_set3dcustomrolloff)
  *
  * <br />
  *
@@ -3410,7 +3410,7 @@ function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
 
 /**
  * @func fmod_sound_get_3d_custom_rolloff
- * @desc > **FMOD Function:** [Sound::get3DCustomRolloff](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dcustomrolloff)
+ * @desc > **FMOD Function:** [Sound::get3DCustomRolloff](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_get3dcustomrolloff)
  *
  * <br />
  *
@@ -3425,7 +3425,7 @@ function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
 
 /**
  * @func fmod_sound_set_3d_min_max_distance
- * @desc > **FMOD Function:** [Sound::set3DMinMaxDistance](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_set3dminmaxdistance)
+ * @desc > **FMOD Function:** [Sound::set3DMinMaxDistance](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_set3dminmaxdistance)
  *
  * <br />
  *
@@ -3460,7 +3460,7 @@ function fmod_sound_set_3d_min_max_distance(sound_ref, min, max) {}
 
 /**
  * @func fmod_sound_get_3d_min_max_distance
- * @desc > **FMOD Function:** [Sound::get3DMinMaxDistance](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_get3dminmaxdistance)
+ * @desc > **FMOD Function:** [Sound::get3DMinMaxDistance](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_get3dminmaxdistance)
  *
  * <br />
  *
@@ -3475,7 +3475,7 @@ function fmod_sound_get_3d_min_max_distance(sound_ref) {}
 
 /**
  * @func fmod_sound_set_defaults
- * @desc > **FMOD Function:** [Sound::setDefaults](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setdefaults)
+ * @desc > **FMOD Function:** [Sound::setDefaults](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setdefaults)
  *
  * <br />
  *
@@ -3494,7 +3494,7 @@ function fmod_sound_set_defaults(sound_ref, frequency, priority) {}
 
 /**
  * @func fmod_sound_get_defaults
- * @desc > **FMOD Function:** [Sound::getDefaults](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getdefaults)
+ * @desc > **FMOD Function:** [Sound::getDefaults](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getdefaults)
  *
  * <br />
  *
@@ -3509,7 +3509,7 @@ function fmod_sound_get_defaults(sound_ref) {}
 
 /**
  * @func fmod_sound_set_mode
- * @desc > **FMOD Function:** [Sound::setMode](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmode)
+ * @desc > **FMOD Function:** [Sound::setMode](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setmode)
  *
  * <br />
  *
@@ -3517,7 +3517,7 @@ function fmod_sound_get_defaults(sound_ref) {}
  * 
  * [[Note: When calling this function, note that it will only take effect when the sound is played again with ${function.fmod_system_play_sound}. This is the default for when the sound next plays, not a mode that will suddenly change all currently playing instances of this sound.]]
  * 
- * [[Note: Changing the mode on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * [[Note: Changing the mode on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues).]]
  * 
  * Flags supported: 
  * 
@@ -3546,7 +3546,7 @@ function fmod_sound_set_mode(sound_ref, mode) {}
 
 /**
  * @func fmod_sound_get_mode
- * @desc > **FMOD Function:** [Sound::getMode](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmode)
+ * @desc > **FMOD Function:** [Sound::getMode](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getmode)
  *
  * <br />
  *
@@ -3563,13 +3563,13 @@ function fmod_sound_get_mode(sound_ref) {}
 
 /**
  * @func fmod_sound_set_loop_count
- * @desc > **FMOD Function:** [Sound::setLoopCount](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setloopcount)
+ * @desc > **FMOD Function:** [Sound::setLoopCount](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setloopcount)
  *
  * <br />
  *
  * This function sets the sound to loop a specified number of times before stopping if the playback mode is set to looping.
  * 
- * [[Note: Changing the loop count on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * [[Note: Changing the loop count on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {real} count The number of times to loop before final playback where -1 is always loop. 0 means no loop. Default is -1.
@@ -3580,7 +3580,7 @@ function fmod_sound_set_loop_count(sound_ref, count) {}
 
 /**
  * @func fmod_sound_get_loop_count
- * @desc > **FMOD Function:** [Sound::getLoopCount](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getloopcount)
+ * @desc > **FMOD Function:** [Sound::getLoopCount](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getloopcount)
  *
  * <br />
  *
@@ -3588,7 +3588,7 @@ function fmod_sound_set_loop_count(sound_ref, count) {}
  * 
  * The value -1 is returned when the sound loops infinitely. The value 0 means don't loop.
  * 
- * [[Note: Unlike the [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) loop count function, this function simply returns the value set with ${function.fmod_sound_set_loop_count}. It does not decrement as it plays (especially seeing as one sound can be played multiple times).]]
+ * [[Note: Unlike the [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) loop count function, this function simply returns the value set with ${function.fmod_sound_set_loop_count}. It does not decrement as it plays (especially seeing as one sound can be played multiple times).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3599,7 +3599,7 @@ function fmod_sound_get_loop_count(sound_ref) {}
 
 /**
  * @func fmod_sound_set_loop_points
- * @desc > **FMOD Function:** [Sound::setLoopPoints](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setlooppoints)
+ * @desc > **FMOD Function:** [Sound::setLoopPoints](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setlooppoints)
  *
  * <br />
  *
@@ -3609,9 +3609,9 @@ function fmod_sound_get_loop_count(sound_ref) {}
  * 
  * If a `loop_end` is smaller or equal to `loop_start` an error will be returned. The same will happen for any values that are equal or greater than the length of the sound.
  * 
- * [[Note: Changing loop points on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues).]]
+ * [[Note: Changing loop points on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues).]]
  * 
- * [[Note: The [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)'s mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.]]
+ * [[Note: The [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html)'s mode must be set to `FMOD_MODE.LOOP_NORMAL` or `FMOD_MODE.LOOP_BIDI` for loop points to affect playback.]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {real} loop_start The loop start point. A value in the range [0, `loop_end`].
@@ -3625,7 +3625,7 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
 
 /**
  * @func fmod_sound_get_loop_points
- * @desc > **FMOD Function:** [Sound::getLoopPoints](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getlooppoints)
+ * @desc > **FMOD Function:** [Sound::getLoopPoints](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getlooppoints)
  *
  * <br />
  *
@@ -3644,7 +3644,7 @@ function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {
 
 /**
  * @func fmod_sound_set_sound_group
- * @desc > **FMOD Function:** [Sound::setSoundGroup](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setsoundgroup)
+ * @desc > **FMOD Function:** [Sound::setSoundGroup](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setsoundgroup)
  *
  * <br />
  *
@@ -3653,7 +3653,7 @@ function fmod_sound_get_loop_points(sound_ref, loop_start_type, loop_end_type) {
  * By default, a sound is located in the 'master sound group'. This can be retrieved with ${function.fmod_system_get_master_sound_group}.
  * 
  * @param {real} sound_ref A reference to a sound.
- * @param {real} sound_group_ref The [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) to move the sound to.
+ * @param {real} sound_group_ref The [sound group](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html) to move the sound to.
  * @func_end
  */
 function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
@@ -3661,11 +3661,11 @@ function fmod_sound_set_sound_group(sound_ref, sound_group_ref) {}
 
 /**
  * @func fmod_sound_get_sound_group
- * @desc > **FMOD Function:** [Sound::getSoundGroup](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsoundgroup)
+ * @desc > **FMOD Function:** [Sound::getSoundGroup](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getsoundgroup)
  *
  * <br />
  *
- * This function retrieves the sound's current [sound group](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
+ * This function retrieves the sound's current [sound group](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3676,7 +3676,7 @@ function fmod_sound_get_sound_group(sound_ref) {}
 
 /**
  * @func fmod_sound_get_num_sub_sounds
- * @desc > **FMOD Function:** [Sound::getNumSubSounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumsubsounds)
+ * @desc > **FMOD Function:** [Sound::getNumSubSounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getnumsubsounds)
  *
  * <br />
  *
@@ -3693,7 +3693,7 @@ function fmod_sound_get_num_sub_sounds(sound_ref) {}
 
 /**
  * @func fmod_sound_get_sub_sound
- * @desc > **FMOD Function:** [Sound::getSubSound](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsubsound)
+ * @desc > **FMOD Function:** [Sound::getSubSound](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getsubsound)
  *
  * <br />
  *
@@ -3715,7 +3715,7 @@ function fmod_sound_get_sub_sound(sound_ref, sub_sound_index) {}
 
 /**
  * @func fmod_sound_get_sub_sound_parent
- * @desc > **FMOD Function:** [Sound::getSubSoundParent](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsubsoundparent)
+ * @desc > **FMOD Function:** [Sound::getSubSoundParent](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getsubsoundparent)
  *
  * <br />
  *
@@ -3732,7 +3732,7 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
 
 /**
  * @func fmod_sound_get_open_state
- * @desc > **FMOD Function:** [Sound::getOpenState](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getopenstate)
+ * @desc > **FMOD Function:** [Sound::getOpenState](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getopenstate)
  *
  * <br />
  *
@@ -3757,7 +3757,7 @@ function fmod_sound_get_open_state(sound_ref) {}
 
 /**
  * @func fmod_sound_read_data
- * @desc > **FMOD Function:** [Sound::readData](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_readdata)
+ * @desc > **FMOD Function:** [Sound::readData](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_readdata)
  *
  * <br />
  *
@@ -3789,7 +3789,7 @@ function fmod_sound_read_data(sound_ref, buff, length, offset) {}
 
 /**
  * @func fmod_sound_seek_data
- * @desc > **FMOD Function:** [Sound::seekData](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_seekdata)
+ * @desc > **FMOD Function:** [Sound::seekData](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_seekdata)
  *
  * <br />
  *
@@ -3810,13 +3810,13 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
 
 /**
  * @func fmod_sound_lock
- * @desc > **FMOD Function:** [Sound::lock](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_lock)
+ * @desc > **FMOD Function:** [Sound::lock](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_lock)
  *
  * <br />
  *
  * This function gives access to a portion or all the sample data of a sound for direct manipulation.
  * 
- * With this function you get access to the raw audio data. If the data is 8, 16, 24 or 32bit PCM data, mono or stereo data, you must take this into consideration when processing the data. See [Sample Data](https://www.fmod.com/docs/2.02/api/glossary.html#sample-data) for more information.
+ * With this function you get access to the raw audio data. If the data is 8, 16, 24 or 32bit PCM data, mono or stereo data, you must take this into consideration when processing the data. See [Sample Data](https://www.fmod.com/docs/2.03/api/glossary.html#sample-data) for more information.
  * 
  * The locked data is copied to the buffers that you pass to the function. This can be two buffers as the data may "wrap around" to the start of the sound.
  * The first buffer will always store the data up to the end of the sound. The second will store the remainder, starting at the start of the sound.
@@ -3847,7 +3847,7 @@ function fmod_sound_lock(sound_ref, offset, length, buff1, buff2) {}
 
 /**
  * @func fmod_sound_unlock
- * @desc > **FMOD Function:** [Sound::unlock](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_unlock)
+ * @desc > **FMOD Function:** [Sound::unlock](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_unlock)
  *
  * <br />
  *
@@ -3871,7 +3871,7 @@ function fmod_sound_unlock(sound_ref, buff1, len1, address1, buff2, len2, addres
 
 /**
  * @func fmod_sound_get_music_num_channels
- * @desc > **FMOD Function:** [Sound::getMusicNumChannels](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicnumchannels)
+ * @desc > **FMOD Function:** [Sound::getMusicNumChannels](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getmusicnumchannels)
  *
  * <br />
  *
@@ -3886,7 +3886,7 @@ function fmod_sound_get_music_num_channels(sound_ref) {}
 
 /**
  * @func fmod_sound_set_music_channel_volume
- * @desc > **FMOD Function:** [Sound::setMusicChannelVolume](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmusicchannelvolume)
+ * @desc > **FMOD Function:** [Sound::setMusicChannelVolume](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setmusicchannelvolume)
  *
  * <br />
  *
@@ -3902,7 +3902,7 @@ function fmod_sound_set_music_channel_volume(sound_ref, channel_index, volume) {
 
 /**
  * @func fmod_sound_get_music_channel_volume
- * @desc > **FMOD Function:** [Sound::getMusicChannelVolume](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicchannelvolume)
+ * @desc > **FMOD Function:** [Sound::getMusicChannelVolume](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getmusicchannelvolume)
  *
  * <br />
  *
@@ -3918,7 +3918,7 @@ function fmod_sound_get_music_channel_volume(sound_ref, channel_index) {}
 
 /**
  * @func fmod_sound_set_music_speed
- * @desc > **FMOD Function:** [Sound::setMusicSpeed](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setmusicspeed)
+ * @desc > **FMOD Function:** [Sound::setMusicSpeed](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setmusicspeed)
  *
  * <br />
  *
@@ -3933,7 +3933,7 @@ function fmod_sound_set_music_speed(sound_ref, speed) {}
 
 /**
  * @func fmod_sound_get_music_speed
- * @desc > **FMOD Function:** [Sound::getMusicSpeed](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getmusicspeed)
+ * @desc > **FMOD Function:** [Sound::getMusicSpeed](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getmusicspeed)
  *
  * <br />
  *
@@ -3948,13 +3948,13 @@ function fmod_sound_get_music_speed(sound_ref) {}
 
 /**
  * @func fmod_sound_get_sync_point
- * @desc > **FMOD Function:** [Sound::getSyncPoint](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsyncpoint)
+ * @desc > **FMOD Function:** [Sound::getSyncPoint](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getsyncpoint)
  *
  * <br />
  *
  * This function retrieves a sync point.
  * 
- * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.03/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {real} point_index The index of the sync point. A value in the range [0, ${function.fmod_sound_get_num_sync_points} - 1].
@@ -3967,13 +3967,13 @@ function fmod_sound_get_sync_point(sound_ref, point_index, offset_type) {}
 
 /**
  * @func fmod_sound_get_num_sync_points
- * @desc > **FMOD Function:** [Sound::getNumSyncPoints](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getnumsyncpoints)
+ * @desc > **FMOD Function:** [Sound::getNumSyncPoints](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getnumsyncpoints)
  *
  * <br />
  *
  * This function retrieves the number of sync points stored within a sound.
  * 
- * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.03/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -3984,13 +3984,13 @@ function fmod_sound_get_num_sync_points(sound_ref) {}
 
 /**
  * @func fmod_sound_add_sync_point
- * @desc > **FMOD Function:** [Sound::addSyncPoint](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_addsyncpoint)
+ * @desc > **FMOD Function:** [Sound::addSyncPoint](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_addsyncpoint)
  *
  * <br />
  *
  * This function adds a sync point at a specific time within the sound.
  * 
- * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.03/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {real} offset The offset value.
@@ -4003,13 +4003,13 @@ function fmod_sound_add_sync_point(sound_ref, offset, offset_type, name) {}
 
 /**
  * @func fmod_sound_delete_sync_point
- * @desc > **FMOD Function:** [Sound::deleteSyncPoint](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_deletesyncpoint)
+ * @desc > **FMOD Function:** [Sound::deleteSyncPoint](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_deletesyncpoint)
  *
  * <br />
  *
  * This function deletes a sync point within the sound.
  * 
- * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.02/api/glossary.html#sync-points).
+ * For more information on sync points see [Sync Points](https://www.fmod.com/docs/2.03/api/glossary.html#sync-points).
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {struct.FmodSyncPoint} point_index The sync point.
@@ -4020,7 +4020,7 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
 
 /**
  * @func fmod_sound_release
- * @desc > **FMOD Function:** [Sound::release](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_release)
+ * @desc > **FMOD Function:** [Sound::release](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_release)
  *
  * <br />
  *
@@ -4038,7 +4038,7 @@ function fmod_sound_release(sound_ref) {}
 
 /**
  * @func fmod_sound_get_system_object
- * @desc > **FMOD Function:** [Sound::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getsystemobject)
+ * @desc > **FMOD Function:** [Sound::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getsystemobject)
  *
  * <br />
  *
@@ -4053,13 +4053,13 @@ function fmod_sound_get_system_object(sound_ref) {}
 
 /**
  * @func fmod_sound_set_user_data
- * @desc > **FMOD Function:** [Sound::setUserData](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_setuserdata)
+ * @desc > **FMOD Function:** [Sound::setUserData](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @param {real} data The value to be stored on this object.
@@ -4070,13 +4070,13 @@ function fmod_sound_set_user_data(sound_ref, data) {}
 
 /**
  * @func fmod_sound_get_user_data
- * @desc > **FMOD Function:** [Sound::getUserData](https://www.fmod.com/docs/2.02/api/core-api-sound.html#sound_getuserdata)
+ * @desc > **FMOD Function:** [Sound::getUserData](https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_getuserdata)
  *
  * <br />
  *
  * This function retrieves a user value associated with this object, set with ${function.fmod_sound_set_user_data}.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} sound_ref A reference to a sound.
  * @returns {real}
@@ -4087,7 +4087,7 @@ function fmod_sound_get_user_data(sound_ref) {}
 
 /**
  * @func fmod_sound_group_set_max_audible
- * @desc > **FMOD Function:** [SoundGroup::setMaxAudible](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmaxaudible)
+ * @desc > **FMOD Function:** [SoundGroup::setMaxAudible](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmaxaudible)
  *
  * <br />
  *
@@ -4107,7 +4107,7 @@ function fmod_sound_group_set_max_audible(sound_group_ref, max_audible) {}
 
 /**
  * @func fmod_sound_group_get_max_audible
- * @desc > **FMOD Function:** [SoundGroup::getMaxAudible](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmaxaudible)
+ * @desc > **FMOD Function:** [SoundGroup::getMaxAudible](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmaxaudible)
  *
  * <br />
  *
@@ -4122,14 +4122,14 @@ function fmod_sound_group_get_max_audible(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_set_max_audible_behavior
- * @desc > **FMOD Function:** [SoundGroup::setMaxAudibleBehavior](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmaxaudiblebehavior)
+ * @desc > **FMOD Function:** [SoundGroup::setMaxAudibleBehavior](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmaxaudiblebehavior)
  *
  * <br />
  *
  * This function changes the way the sound playback behaves when too many sounds are playing in a soundgroup.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
- * @param {constant.FMOD_SOUNDGROUP_BEHAVIOR} behavior The [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html)'s max playbacks behavior. The default is `FMOD_SOUNDGROUP_BEHAVIOR.FAIL`.
+ * @param {constant.FMOD_SOUNDGROUP_BEHAVIOR} behavior The [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html)'s max playbacks behavior. The default is `FMOD_SOUNDGROUP_BEHAVIOR.FAIL`.
  * @func_end
  */
 function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
@@ -4137,7 +4137,7 @@ function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
 
 /**
  * @func fmod_sound_group_get_max_audible_behavior
- * @desc > **FMOD Function:** [SoundGroup::getMaxAudibleBehavior](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmaxaudiblebehavior)
+ * @desc > **FMOD Function:** [SoundGroup::getMaxAudibleBehavior](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmaxaudiblebehavior)
  *
  * <br />
  *
@@ -4152,7 +4152,7 @@ function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_set_mute_fade_speed
- * @desc > **FMOD Function:** [SoundGroup::setMuteFadeSpeed](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmutefadespeed)
+ * @desc > **FMOD Function:** [SoundGroup::setMuteFadeSpeed](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmutefadespeed)
  *
  * <br />
  *
@@ -4160,7 +4160,7 @@ function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
  * 
  * If a mode besides `FMOD_SOUNDGROUP_BEHAVIOR.MUTE` is used, the fade speed is ignored.
  * 
- * When more sounds are playing in a SoundGroup than are specified with ${function.fmod_sound_group_set_max_audible}, the least important [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if `FMOD_SOUNDGROUP_BEHAVIOR.MUTE` is used, and any previous sounds that were silent because of this rule will fade in if they are more important.
+ * When more sounds are playing in a SoundGroup than are specified with ${function.fmod_sound_group_set_max_audible}, the least important [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if `FMOD_SOUNDGROUP_BEHAVIOR.MUTE` is used, and any previous sounds that were silent because of this rule will fade in if they are more important.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @param {real} speed The fade time, in seconds. 0 means no fading (default).
@@ -4171,7 +4171,7 @@ function fmod_sound_group_set_mute_fade_speed(sound_group_ref, speed) {}
 
 /**
  * @func fmod_sound_group_get_mute_fade_speed
- * @desc > **FMOD Function:** [SoundGroup::getMuteFadeSpeed](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmutefadespeed)
+ * @desc > **FMOD Function:** [SoundGroup::getMuteFadeSpeed](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmutefadespeed)
  *
  * <br />
  *
@@ -4186,13 +4186,13 @@ function fmod_sound_group_get_mute_fade_speed(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_set_volume
- * @desc > **FMOD Function:** [SoundGroup::setVolume](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setvolume)
+ * @desc > **FMOD Function:** [SoundGroup::setVolume](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setvolume)
  *
  * <br />
  *
  * This function sets the volume of the sound group.
  * 
- * [[Note: This scales the volume of all [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) playing [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in this [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * [[Note: This scales the volume of all [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) playing [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) in this [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).]]
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @func_end
@@ -4202,7 +4202,7 @@ function fmod_sound_group_set_volume(sound_group_ref, volume) {}
 
 /**
  * @func fmod_sound_group_get_volume
- * @desc > **FMOD Function:** [SoundGroup::getVolume](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getvolume)
+ * @desc > **FMOD Function:** [SoundGroup::getVolume](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getvolume)
  *
  * <br />
  *
@@ -4217,11 +4217,11 @@ function fmod_sound_group_get_volume(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_get_num_sounds
- * @desc > **FMOD Function:** [SoundGroup::getNumSounds](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getnumsounds)
+ * @desc > **FMOD Function:** [SoundGroup::getNumSounds](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getnumsounds)
  *
  * <br />
  *
- * This function retrieves the current number of [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in this SoundGroup.
+ * This function retrieves the current number of [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) in this SoundGroup.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -4232,13 +4232,13 @@ function fmod_sound_group_get_num_sounds(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_get_sound
- * @desc > **FMOD Function:** [SoundGroup::getSound](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getsound)
+ * @desc > **FMOD Function:** [SoundGroup::getSound](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getsound)
  *
  * <br />
  *
  * This function retrieves a sound.
  * 
- * [[Note: Use ${function.fmod_sound_group_get_num_sounds} in conjunction with this function to enumerate all sounds in a [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * [[Note: Use ${function.fmod_sound_group_get_num_sounds} in conjunction with this function to enumerate all sounds in a [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).]]
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @param {real} sound_index The index of the sound in the given SoundGroup.
@@ -4250,13 +4250,13 @@ function fmod_sound_group_get_sound(sound_group_ref, sound_index) {}
 
 /**
  * @func fmod_sound_group_get_num_playing
- * @desc > **FMOD Function:** [SoundGroup::getNumPlaying](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getnumplaying)
+ * @desc > **FMOD Function:** [SoundGroup::getNumPlaying](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getnumplaying)
  *
  * <br />
  *
- * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) for the [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
+ * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) for the [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).
  * 
- * The function returns the number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) playing. If the [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) only has one [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html), and that Sound is playing twice, the figure returned will be two.
+ * The function returns the number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) playing. If the [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html) only has one [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html), and that Sound is playing twice, the figure returned will be two.
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -4267,7 +4267,7 @@ function fmod_sound_group_get_num_playing(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_stop
- * @desc > **FMOD Function:** [SoundGroup::stop](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_stop)
+ * @desc > **FMOD Function:** [SoundGroup::stop](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_stop)
  *
  * <br />
  *
@@ -4281,7 +4281,7 @@ function fmod_sound_group_stop(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_get_name
- * @desc > **FMOD Function:** [SoundGroup::getName](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getname)
+ * @desc > **FMOD Function:** [SoundGroup::getName](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getname)
  *
  * <br />
  *
@@ -4296,13 +4296,13 @@ function fmod_sound_group_get_name(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_release
- * @desc > **FMOD Function:** [SoundGroup::release](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_release)
+ * @desc > **FMOD Function:** [SoundGroup::release](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_release)
  *
  * <br />
  *
  * This function releases a soundgroup object and returns all sounds back to the master sound group.
  * 
- * [[Important: You cannot release the master [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).]]
+ * [[Important: You cannot release the master [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).]]
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @func_end
@@ -4312,7 +4312,7 @@ function fmod_sound_group_release(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_get_system_object
- * @desc > **FMOD Function:** [SoundGroup::getSystemObject](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getsystemobject)
+ * @desc > **FMOD Function:** [SoundGroup::getSystemObject](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getsystemobject)
  *
  * <br />
  *
@@ -4327,13 +4327,13 @@ function fmod_sound_group_get_system_object(sound_group_ref) {}
 
 /**
  * @func fmod_sound_group_set_user_data
- * @desc > **FMOD Function:** [SoundGroup::setUserData](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setuserdata)
+ * @desc > **FMOD Function:** [SoundGroup::setUserData](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setuserdata)
  *
  * <br />
  *
  * This function sets a floating-point user value associated with this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @param {real} data The value to set on the object.
@@ -4344,13 +4344,13 @@ function fmod_sound_group_set_user_data(sound_group_ref, data) {}
 
 /**
  * @func fmod_sound_group_get_user_data
- * @desc > **FMOD Function:** [SoundGroup::getUserData](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getuserdata)
+ * @desc > **FMOD Function:** [SoundGroup::getUserData](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getuserdata)
  *
  * <br />
  *
  * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_sound_group_set_user_data}.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * @param {real} sound_group_ref A reference to a SoundGroup.
  * @returns {real}
@@ -4362,7 +4362,7 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
 
 /**
  * @func fmod_studio_bank_get_loading_state
- * @desc > **FMOD Function:** [Studio::Bank::getLoadingState](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getloadingstate)
+ * @desc > **FMOD Function:** [Studio::Bank::getLoadingState](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getloadingstate)
  *
  * <br />
  *
@@ -4379,7 +4379,7 @@ function fmod_studio_bank_get_loading_state(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_load_sample_data
- * @desc > **FMOD Function:** [Studio::Bank::loadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_loadsampledata)
+ * @desc > **FMOD Function:** [Studio::Bank::loadSampleData](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_loadsampledata)
  *
  * <br />
  *
@@ -4397,13 +4397,13 @@ function fmod_studio_bank_load_sample_data(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_unload_sample_data
- * @desc > **FMOD Function:** [Studio::Bank::unloadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unloadsampledata)
+ * @desc > **FMOD Function:** [Studio::Bank::unloadSampleData](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unloadsampledata)
  *
  * <br />
  *
  * This function unloads non-streaming sample data for all events in the bank.
  * 
- * Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details [see Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading).
+ * Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details [see Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading).
  * 
  * @param {real} bank_ref A reference to a bank.
  * @func_end
@@ -4413,7 +4413,7 @@ function fmod_studio_bank_unload_sample_data(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_sample_loading_state
- * @desc > **FMOD Function:** [Studio::Bank::getSampleLoadingState](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getsampleloadingstate)
+ * @desc > **FMOD Function:** [Studio::Bank::getSampleLoadingState](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getsampleloadingstate)
  *
  * <br />
  *
@@ -4432,7 +4432,7 @@ function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_unload
- * @desc > **FMOD Function:** [Studio::Bank::unload](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unload)
+ * @desc > **FMOD Function:** [Studio::Bank::unload](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unload)
  *
  * <br />
  *
@@ -4450,7 +4450,7 @@ function fmod_studio_bank_unload(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_bus_count
- * @desc > **FMOD Function:** [Studio::Bank::getBusCount](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuscount)
+ * @desc > **FMOD Function:** [Studio::Bank::getBusCount](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuscount)
  *
  * <br />
  *
@@ -4467,7 +4467,7 @@ function fmod_studio_bank_get_bus_count(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_bus_list
- * @desc > **FMOD Function:** [Studio::Bank::getBusList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuslist)
+ * @desc > **FMOD Function:** [Studio::Bank::getBusList](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuslist)
  *
  * <br />
  *
@@ -4484,7 +4484,7 @@ function fmod_studio_bank_get_bus_list(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_event_count
- * @desc > **FMOD Function:** [Studio::Bank::getEventCount](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventcount)
+ * @desc > **FMOD Function:** [Studio::Bank::getEventCount](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventcount)
  *
  * <br />
  *
@@ -4503,7 +4503,7 @@ function fmod_studio_bank_get_event_count(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_event_description_list
- * @desc > **FMOD Function:** [Studio::Bank::getEventList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventlist)
+ * @desc > **FMOD Function:** [Studio::Bank::getEventList](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventlist)
  *
  * <br />
  *
@@ -4522,7 +4522,7 @@ function fmod_studio_bank_get_event_description_list(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_string_count
- * @desc > **FMOD Function:** [Studio::Bank::getStringCount](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringcount)
+ * @desc > **FMOD Function:** [Studio::Bank::getStringCount](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringcount)
  *
  * <br />
  *
@@ -4539,7 +4539,7 @@ function fmod_studio_bank_get_string_count(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_string_info
- * @desc > **FMOD Function:** [Studio::Bank::getStringInfo](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringinfo)
+ * @desc > **FMOD Function:** [Studio::Bank::getStringInfo](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringinfo)
  *
  * <br />
  *
@@ -4557,7 +4557,7 @@ function fmod_studio_bank_get_string_info(bank_ref, string_index) {}
 
 /**
  * @func fmod_studio_bank_get_vca_count
- * @desc > **FMOD Function:** [Studio::Bank::getVCACount](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcacount)
+ * @desc > **FMOD Function:** [Studio::Bank::getVCACount](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcacount)
  *
  * <br />
  *
@@ -4574,7 +4574,7 @@ function fmod_studio_bank_get_vca_count(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_vca_list
- * @desc > **FMOD Function:** [Studio::Bank::getVCAList](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcalist)
+ * @desc > **FMOD Function:** [Studio::Bank::getVCAList](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcalist)
  *
  * <br />
  *
@@ -4591,7 +4591,7 @@ function fmod_studio_bank_get_vca_list(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_id
- * @desc > **FMOD Function:** [Studio::Bank::getID](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getid)
+ * @desc > **FMOD Function:** [Studio::Bank::getID](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getid)
  *
  * <br />
  *
@@ -4606,7 +4606,7 @@ function fmod_studio_bank_get_id(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_get_path
- * @desc > **FMOD Function:** [Studio::Bank::getPath](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getpath)
+ * @desc > **FMOD Function:** [Studio::Bank::getPath](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getpath)
  *
  * <br />
  *
@@ -4623,7 +4623,7 @@ function fmod_studio_bank_get_path(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_is_valid
- * @desc > **FMOD Function:** [Studio::Bank::isValid](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_isvalid)
+ * @desc > **FMOD Function:** [Studio::Bank::isValid](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_isvalid)
  *
  * <br />
  *
@@ -4638,11 +4638,11 @@ function fmod_studio_bank_is_valid(bank_ref) {}
 
 /**
  * @func fmod_studio_bank_set_user_data
- * @desc > **FMOD Function:** [Studio::Bank::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_setuserdata)
+ * @desc > **FMOD Function:** [Studio::Bank::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_setuserdata)
  *
  * <br />
  * 
- * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} bank_ref A reference to a bank.
  * @param {real} data The real value to attach.
@@ -4653,11 +4653,11 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
 
 /**
  * @func fmod_studio_bank_get_user_data
- * @desc > **FMOD Function:** [Studio::Bank::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getuserdata)
+ * @desc > **FMOD Function:** [Studio::Bank::getUserData](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getuserdata)
  *
  * <br />
  *
- * This function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * The function returns `NaN` if there is no user data attached to the bank.
  * 
@@ -4671,7 +4671,7 @@ function fmod_studio_bank_get_user_data(bank_ref) {}
 
 /**
  * @func fmod_studio_bus_set_paused
- * @desc > **FMOD Function:** [Studio::Bus::setPaused](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_setpaused)
+ * @desc > **FMOD Function:** [Studio::Bus::setPaused](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_setpaused)
  *
  * <br />
  *
@@ -4688,7 +4688,7 @@ function fmod_studio_bus_set_paused(bus_ref, pause) {}
 
 /**
  * @func fmod_studio_bus_get_paused
- * @desc > **FMOD Function:** [Studio::Bus::getPaused](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getpaused)
+ * @desc > **FMOD Function:** [Studio::Bus::getPaused](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getpaused)
  *
  * <br />
  *
@@ -4703,7 +4703,7 @@ function fmod_studio_bus_get_paused(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_stop_all_events
- * @desc > **FMOD Function:** [Studio::Bus::stopAllEvents](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_stopallevents)
+ * @desc > **FMOD Function:** [Studio::Bus::stopAllEvents](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_stopallevents)
  *
  * <br />
  *
@@ -4718,7 +4718,7 @@ function fmod_studio_bus_stop_all_events(bus_ref, stop_mode) {}
 
 /**
  * @func fmod_studio_bus_set_volume
- * @desc > **FMOD Function:** [Studio::Bus::setVolume](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_setvolume)
+ * @desc > **FMOD Function:** [Studio::Bus::setVolume](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_setvolume)
  *
  * <br />
  *
@@ -4735,7 +4735,7 @@ function fmod_studio_bus_set_volume(bus_ref, volumen) {}
 
 /**
  * @func fmod_studio_bus_get_volume
- * @desc > **FMOD Function:** [Studio::Bus::getVolume](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getvolume)
+ * @desc > **FMOD Function:** [Studio::Bus::getVolume](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getvolume)
  *
  * <br />
  *
@@ -4750,7 +4750,7 @@ function fmod_studio_bus_get_volume(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_set_mute
- * @desc > **FMOD Function:** [Studio::Bus::setMute](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_setmute)
+ * @desc > **FMOD Function:** [Studio::Bus::setMute](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_setmute)
  *
  * <br />
  *
@@ -4769,7 +4769,7 @@ function fmod_studio_bus_set_mute(bus_ref, mute) {}
 
 /**
  * @func fmod_studio_bus_get_mute
- * @desc > **FMOD Function:** [Studio::Bus::getMute](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getmute)
+ * @desc > **FMOD Function:** [Studio::Bus::getMute](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getmute)
  *
  * <br />
  *
@@ -4784,7 +4784,7 @@ function fmod_studio_bus_get_mute(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_set_port_index
- * @desc > **FMOD Function:** [Studio::Bus::setPortIndex](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_setportindex)
+ * @desc > **FMOD Function:** [Studio::Bus::setPortIndex](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_setportindex)
  *
  * <br />
  *
@@ -4805,7 +4805,7 @@ function fmod_studio_bus_set_port_index(bus_ref, port_index) {}
 
 /**
  * @func fmod_studio_bus_get_port_index
- * @desc > **FMOD Function:** [Studio::Bus::getPortIndex](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getportindex)
+ * @desc > **FMOD Function:** [Studio::Bus::getPortIndex](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getportindex)
  *
  * <br />
  *
@@ -4820,13 +4820,13 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_get_channel_group
- * @desc > **FMOD Function:** [Studio::Bus::getChannelGroup](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getchannelgroup)
+ * @desc > **FMOD Function:** [Studio::Bus::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup)
  *
  * <br />
  *
  * This function retrieves the core ChannelGroup.
  * 
- * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, the next call to ${func.fmod_last_result} will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
+ * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, the next call to ${func.fmod_last_result} will return `FMOD_RESULT.ERR_STUDIO_NOT_LOADED`.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @returns {real}
@@ -4837,13 +4837,13 @@ function fmod_studio_bus_get_channel_group(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_lock_channel_group
- * @desc > **FMOD Function:** [Studio::Bus::lockChannelGroup](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_lockchannelgroup)
+ * @desc > **FMOD Function:** [Studio::Bus::lockChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_lockchannelgroup)
  *
  * <br />
  *
  * This function locks the core ChannelGroup.
  * 
- * This forces the system to create the ChannelGroup and keep it available until ${func.fmod_studio_bus_unlock_channel_group} is called. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * This forces the system to create the ChannelGroup and keep it available until ${func.fmod_studio_bus_unlock_channel_group} is called. See [Signal Paths](https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths) for details.
  * 
  * The ChannelGroup may not be available immediately after calling this function. When Studio has been initialized in asynchronous mode, the ChannelGroup will not be created until the command has been executed in the async thread. When Studio has been initialized with `FMOD_STUDIO_INIT.SYNCHRONOUS_UPDATE`, the ChannelGroup will be created in the next ${func.fmod_studio_system_update} call.
  * 
@@ -4857,13 +4857,13 @@ function fmod_studio_bus_lock_channel_group(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_unlock_channel_group
- * @desc > **FMOD Function:** [Studio::Bus::unlockChannelGroup](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_unlockchannelgroup)
+ * @desc > **FMOD Function:** [Studio::Bus::unlockChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_unlockchannelgroup)
  *
  * <br />
  *
  * This function unlocks the core ChannelGroup.
  * 
- * This allows the system to destroy the ChannelGroup when it is not needed. See [Signal Paths](https://www.fmod.com/docs/2.02/api/studio-guide.html#signal-paths) for details.
+ * This allows the system to destroy the ChannelGroup when it is not needed. See [Signal Paths](https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths) for details.
  * 
  * @param {real} bus_ref A reference to a bus.
  * @func_end
@@ -4873,7 +4873,7 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_get_cpu_usage
- * @desc > **FMOD Function:** [Studio::Bus::getCPUUsage](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getcpuusage)
+ * @desc > **FMOD Function:** [Studio::Bus::getCPUUsage](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getcpuusage)
  *
  * <br />
  *
@@ -4890,7 +4890,7 @@ function fmod_studio_bus_get_cpu_usage(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_get_memory_usage
- * @desc > **FMOD Function:** [Studio::Bus::getMemoryUsage](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getmemoryusage)
+ * @desc > **FMOD Function:** [Studio::Bus::getMemoryUsage](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getmemoryusage)
  *
  * <br />
  *
@@ -4907,7 +4907,7 @@ function fmod_studio_bus_get_memory_usage(bus_ref, buff_return) {}
 
 /**
  * @func fmod_studio_bus_get_id
- * @desc > **FMOD Function:** [Studio::Bus::getID](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getid)
+ * @desc > **FMOD Function:** [Studio::Bus::getID](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getid)
  *
  * <br />
  *
@@ -4922,7 +4922,7 @@ function fmod_studio_bus_get_id(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_get_path
- * @desc > **FMOD Function:** [Studio::Bus::getPath](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_getpath)
+ * @desc > **FMOD Function:** [Studio::Bus::getPath](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getpath)
  *
  * <br />
  *
@@ -4939,7 +4939,7 @@ function fmod_studio_bus_get_path(bus_ref) {}
 
 /**
  * @func fmod_studio_bus_is_valid
- * @desc > **FMOD Function:** [Studio::Bus::isValid](https://www.fmod.com/docs/2.02/api/studio-api-bus.html#studio_bus_isvalid)
+ * @desc > **FMOD Function:** [Studio::Bus::isValid](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_isvalid)
  *
  * <br />
  *
@@ -4955,7 +4955,7 @@ function fmod_studio_bus_is_valid(bus_ref) {}
 
 /**
  * @func fmod_studio_command_replay_set_bank_path
- * @desc > **FMOD Function:** [Studio::CommandReplay::setBankPath](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setbankpath)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setBankPath](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setbankpath)
  *
  * <br />
  *
@@ -4972,7 +4972,7 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
 
 /**
  * @func fmod_studio_command_replay_set_create_instance_callback
- * @desc > **FMOD Function:** [Studio::CommandReplay::setCreateInstanceCallback](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setcreateinstancecallback)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setCreateInstanceCallback](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setcreateinstancecallback)
  *
  * <br />
  *
@@ -5001,7 +5001,7 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
 
 /**
  * @func fmod_studio_command_replay_set_frame_callback
- * @desc > **FMOD Function:** [Studio::CommandReplay::setFrameCallback](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setframecallback)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setFrameCallback](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setframecallback)
  *
  * <br />
  *
@@ -5024,7 +5024,7 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_set_load_bank_callback
- * @desc > **FMOD Function:** [Studio::CommandReplay::setLoadBankCallback](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setloadbankcallback)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setLoadBankCallback](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setloadbankcallback)
  *
  * <br />
  *
@@ -5057,7 +5057,7 @@ function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, p
 
 /**
  * @func fmod_studio_command_replay_start
- * @desc > **FMOD Function:** [Studio::CommandReplay::start](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_start)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::start](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_start)
  *
  * <br />
  *
@@ -5073,7 +5073,7 @@ function fmod_studio_command_replay_start(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_stop
- * @desc > **FMOD Function:** [Studio::CommandReplay::stop](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_stop)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::stop](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_stop)
  *
  * <br />
  *
@@ -5089,7 +5089,7 @@ function fmod_studio_command_replay_stop(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_get_current_command
- * @desc > **FMOD Function:** [Studio::CommandReplay::getCurrentCommand](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getcurrentcommand)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getCurrentCommand](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getcurrentcommand)
  *
  * <br />
  *
@@ -5106,7 +5106,7 @@ function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_get_playback_state
- * @desc > **FMOD Function:** [Studio::CommandReplay::getPlaybackState](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getplaybackstate)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getPlaybackState](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getplaybackstate)
  *
  * <br />
  *
@@ -5121,7 +5121,7 @@ function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_set_paused
- * @desc > **FMOD Function:** [Studio::CommandReplay::setPaused](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setpaused)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setPaused](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setpaused)
  *
  * <br />
  *
@@ -5136,7 +5136,7 @@ function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
 
 /**
  * @func fmod_studio_command_replay_get_paused
- * @desc > **FMOD Function:** [Studio::CommandReplay::getPaused](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getpaused)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getPaused](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getpaused)
  *
  * <br />
  *
@@ -5151,7 +5151,7 @@ function fmod_studio_command_replay_get_paused(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_seek_to_command
- * @desc > **FMOD Function:** [Studio::CommandReplay::seekToCommand](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_seektocommand)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::seekToCommand](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_seektocommand)
  *
  * <br />
  *
@@ -5167,7 +5167,7 @@ function fmod_studio_command_replay_seek_to_command(command_replay_ref, command_
 
 /**
  * @func fmod_studio_command_replay_seek_to_time
- * @desc > **FMOD Function:** [Studio::CommandReplay::seekToTime](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_seektotime)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::seekToTime](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_seektotime)
  *
  * <br />
  * 
@@ -5182,7 +5182,7 @@ function fmod_studio_command_replay_seek_to_time(command_replay_ref, time) {}
 
 /**
  * @func fmod_studio_command_replay_get_command_at_time
- * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandAtTime](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getcommandattime)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandAtTime](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getcommandattime)
  *
  * <br />
  *
@@ -5200,7 +5200,7 @@ function fmod_studio_command_replay_get_command_at_time(command_replay_ref, time
 
 /**
  * @func fmod_studio_command_replay_get_command_count
- * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandCount](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getcommandcount)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandCount](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getcommandcount)
  *
  * <br />
  *
@@ -5217,7 +5217,7 @@ function fmod_studio_command_replay_get_command_count(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_get_command_info
- * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandInfo](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getcommandinfo)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandInfo](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getcommandinfo)
  *
  * <br />
  *
@@ -5235,7 +5235,7 @@ function fmod_studio_command_replay_get_command_info(command_replay_ref, command
 
 /**
  * @func fmod_studio_command_replay_get_command_string
- * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandString](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getcommandstring)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getCommandString](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getcommandstring)
  *
  * <br />
  *
@@ -5253,7 +5253,7 @@ function fmod_studio_command_replay_get_command_string(command_replay_ref, comma
 
 /**
  * @func fmod_studio_command_replay_get_length
- * @desc > **FMOD Function:** [Studio::CommandReplay::getLength](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getlength)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getLength](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getlength)
  *
  * <br />
  *
@@ -5268,7 +5268,7 @@ function fmod_studio_command_replay_get_length(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_get_system_object
- * @desc > **FMOD Function:** [Studio::CommandReplay::getSystem](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getsystem)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getSystem](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getsystem)
  *
  * <br />
  *
@@ -5283,7 +5283,7 @@ function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_is_valid
- * @desc > **FMOD Function:** [Studio::CommandReplay::isValid](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_isvalid)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::isValid](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_isvalid)
  *
  * <br />
  *
@@ -5298,13 +5298,13 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_set_user_data
- * @desc > **FMOD Function:** [Studio::CommandReplay::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_setuserdata)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_setuserdata)
  *
  * <br />
  *
  * This function sets user data.
  * 
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} command_replay_ref A reference to a CommandReplay.
  * @param {real} data The real value to attach.
@@ -5315,7 +5315,7 @@ function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
 
 /**
  * @func fmod_studio_command_replay_get_user_data
- * @desc > **FMOD Function:** [Studio::CommandReplay::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_getuserdata)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::getUserData](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_getuserdata)
  *
  * <br />
  *
@@ -5332,7 +5332,7 @@ function fmod_studio_command_replay_get_user_data(command_replay_ref) {}
 
 /**
  * @func fmod_studio_command_replay_release
- * @desc > **FMOD Function:** [Studio::CommandReplay::release](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#studio_commandreplay_release)
+ * @desc > **FMOD Function:** [Studio::CommandReplay::release](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#studio_commandreplay_release)
  *
  * <br />
  *
@@ -5348,17 +5348,17 @@ function fmod_studio_command_replay_release(command_replay_ref) {}
 
 /**
  * @func fmod_studio_event_description_create_instance
- * @desc > **FMOD Function:** [Studio::EventDescription::createInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_createinstance)
+ * @desc > **FMOD Function:** [Studio::EventDescription::createInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_createinstance)
  *
  * <br />
  *
- * This function creates a playable instance, returning a handle to the new [EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html) object.
+ * This function creates a playable instance, returning a handle to the new [EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html) object.
  * 
  * When an event instance is created, any required non-streaming sample data is loaded asynchronously.
  * 
  * Use ${func.fmod_studio_event_description_get_sample_loading_state} to check the loading status.
  * 
- * Sample data can be loaded ahead of time with ${func.fmod_studio_event_description_load_sample_data} or ${func.fmod_studio_bank_load_sample_data}. See [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for more information.
+ * Sample data can be loaded ahead of time with ${func.fmod_studio_event_description_load_sample_data} or ${func.fmod_studio_bank_load_sample_data}. See [Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading) for more information.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @returns {real}
@@ -5369,7 +5369,7 @@ function fmod_studio_event_description_create_instance(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_get_instance_count
- * @desc > **FMOD Function:** [Studio::EventDescription::getInstanceCount](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getinstancecount)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getInstanceCount](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getinstancecount)
  *
  * <br />
  *
@@ -5386,7 +5386,7 @@ function fmod_studio_event_description_get_instance_count(event_description_ref)
 
 /**
  * @func fmod_studio_event_description_get_instance_list
- * @desc > **FMOD Function:** [Studio::EventDescription::getInstanceList](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getinstancelist)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getInstanceList](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getinstancelist)
  *
  * <br />
  *
@@ -5403,7 +5403,7 @@ function fmod_studio_event_description_get_instance_list(event_description_ref) 
 
 /**
  * @func fmod_studio_event_description_release_all_instances
- * @desc > **FMOD Function:** [Studio::EventDescription::releaseAllInstances](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_releaseallinstances)
+ * @desc > **FMOD Function:** [Studio::EventDescription::releaseAllInstances](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_releaseallinstances)
  *
  * <br />
  *
@@ -5417,7 +5417,7 @@ function fmod_studio_event_description_release_all_instances(event_description_r
 
 /**
  * @func fmod_studio_event_description_load_sample_data
- * @desc > **FMOD Function:** [Studio::EventDescription::loadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata)
+ * @desc > **FMOD Function:** [Studio::EventDescription::loadSampleData](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata)
  *
  * <br />
  * 
@@ -5433,7 +5433,7 @@ function fmod_studio_event_description_load_sample_data(event_description_ref) {
 
 /**
  * @func fmod_studio_event_description_unload_sample_data
- * @desc > **FMOD Function:** [Studio::EventDescription::unloadSampleData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_unloadsampledata)
+ * @desc > **FMOD Function:** [Studio::EventDescription::unloadSampleData](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_unloadsampledata)
  *
  * <br />
  *
@@ -5449,7 +5449,7 @@ function fmod_studio_event_description_unload_sample_data(event_description_ref)
 
 /**
  * @func fmod_studio_event_description_get_sample_loading_state
- * @desc > **FMOD Function:** [Studio::EventDescription::getSampleLoadingState](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getsampleloadingstate)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getSampleLoadingState](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getsampleloadingstate)
  *
  * <br />
  *
@@ -5466,11 +5466,11 @@ function fmod_studio_event_description_get_sample_loading_state(event_descriptio
 
 /**
  * @func fmod_studio_event_description_is_3d
- * @desc > **FMOD Function:** [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d)
+ * @desc > **FMOD Function:** [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_is3d)
  *
  * <br />
  *
- * This function retrieves the event's 3D status. For more info, see [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d).
+ * This function retrieves the event's 3D status. For more info, see [Studio::EventDescription::is3D](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_is3d).
  * 
  * This will return `true` if the event is 3D and `false` if not.
  * 
@@ -5483,7 +5483,7 @@ function fmod_studio_event_description_is_3d(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_is_doppler_enabled
- * @desc > **FMOD Function:** [Studio::EventDescription::isDopplerEnabled](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isdopplerenabled)
+ * @desc > **FMOD Function:** [Studio::EventDescription::isDopplerEnabled](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isdopplerenabled)
  *
  * <br />
  *
@@ -5502,7 +5502,7 @@ function fmod_studio_event_description_is_doppler_enabled(event_description_ref)
 
 /**
  * @func fmod_studio_event_description_is_oneshot
- * @desc > **FMOD Function:** [Studio::EventDescription::isOneshot](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isoneshot)
+ * @desc > **FMOD Function:** [Studio::EventDescription::isOneshot](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isoneshot)
  *
  * <br />
  *
@@ -5523,7 +5523,7 @@ function fmod_studio_event_description_is_oneshot(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_is_snapshot
- * @desc > **FMOD Function:** [Studio::EventDescription::isSnapshot](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_issnapshot)
+ * @desc > **FMOD Function:** [Studio::EventDescription::isSnapshot](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_issnapshot)
  *
  * <br />
  *
@@ -5540,7 +5540,7 @@ function fmod_studio_event_description_is_snapshot(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_is_stream
- * @desc > **FMOD Function:** [Studio::EventDescription::isStream](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isstream)
+ * @desc > **FMOD Function:** [Studio::EventDescription::isStream](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isstream)
  *
  * <br />
  *
@@ -5557,7 +5557,7 @@ function fmod_studio_event_description_is_stream(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_has_sustain_point
- * @desc > **FMOD Function:** [Studio::EventDescription::hasSustainPoint](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_hassustainpoint)
+ * @desc > **FMOD Function:** [Studio::EventDescription::hasSustainPoint](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_hassustainpoint)
  *
  * <br />
  *
@@ -5572,7 +5572,7 @@ function fmod_studio_event_description_has_sustain_point(event_description_ref) 
 
 /**
  * @func fmod_studio_event_description_get_min_max_distance
- * @desc > **FMOD Function:** [Studio::EventDescription::getMinMaxDistance](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getminmaxdistance)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getMinMaxDistance](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getminmaxdistance)
  *
  * <br />
  *
@@ -5587,7 +5587,7 @@ function fmod_studio_event_description_get_min_max_distance(event_description_re
 
 /**
  * @func fmod_studio_event_description_get_sound_size
- * @desc > **FMOD Function:** [Studio::EventDescription::getSoundSize](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getsoundsize)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getSoundSize](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getsoundsize)
  *
  * <br />
  *
@@ -5604,7 +5604,7 @@ function fmod_studio_event_description_get_sound_size(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_get_parameter_description_by_name
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByName](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyname)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByName](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyname)
  *
  * <br />
  *
@@ -5620,7 +5620,7 @@ function fmod_studio_event_description_get_parameter_description_by_name(event_d
 
 /**
  * @func fmod_studio_event_description_get_parameter_description_by_id
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByID](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyid)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByID](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyid)
  *
  * <br />
  *
@@ -5636,7 +5636,7 @@ function fmod_studio_event_description_get_parameter_description_by_id(event_des
 
 /**
  * @func fmod_studio_event_description_get_parameter_description_by_index
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByIndex](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyindex)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionByIndex](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyindex)
  *
  * <br />
  *
@@ -5654,7 +5654,7 @@ function fmod_studio_event_description_get_parameter_description_by_index(event_
 
 /**
  * @func fmod_studio_event_description_get_parameter_description_count
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionCount](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptioncount)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterDescriptionCount](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptioncount)
  *
  * <br />
  *
@@ -5671,7 +5671,7 @@ function fmod_studio_event_description_get_parameter_description_count(event_des
 
 /**
  * @func fmod_studio_event_description_get_parameter_label_by_name
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByName](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyname)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByName](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyname)
  *
  * <br />
  *
@@ -5690,7 +5690,7 @@ function fmod_studio_event_description_get_parameter_label_by_name(event_descrip
 
 /**
  * @func fmod_studio_event_description_get_parameter_label_by_id
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByID](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyid)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByID](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyid)
  *
  * <br />
  *
@@ -5707,7 +5707,7 @@ function fmod_studio_event_description_get_parameter_label_by_id(event_descripti
 
 /**
  * @func fmod_studio_event_description_get_parameter_label_by_index
- * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByIndex](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyindex)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getParameterLabelByIndex](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyindex)
  *
  * <br />
  *
@@ -5726,7 +5726,7 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_descri
 
 /**
  * @func fmod_studio_event_description_get_user_property
- * @desc > **FMOD Function:** [Studio::EventDescription::getUserProperty](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserproperty)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getUserProperty](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserproperty)
  *
  * <br />
  *
@@ -5742,7 +5742,7 @@ function fmod_studio_event_description_get_user_property(event_description_ref, 
 
 /**
  * @func fmod_studio_event_description_get_user_property_by_index
- * @desc > **FMOD Function:** [Studio::EventDescription::getUserPropertyByIndex](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertybyindex)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getUserPropertyByIndex](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertybyindex)
  *
  * <br />
  *
@@ -5760,7 +5760,7 @@ function fmod_studio_event_description_get_user_property_by_index(event_descript
 
 /**
  * @func fmod_studio_event_description_get_user_property_count
- * @desc > **FMOD Function:** [Studio::EventDescription::getUserPropertyCount](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertycount)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getUserPropertyCount](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertycount)
  *
  * <br />
  *
@@ -5777,7 +5777,7 @@ function fmod_studio_event_description_get_user_property_count(event_description
 
 /**
  * @func fmod_studio_event_description_get_id
- * @desc > **FMOD Function:** [Studio::EventDescription::getID](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getid)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getID](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getid)
  *
  * <br />
  *
@@ -5792,7 +5792,7 @@ function fmod_studio_event_description_get_id(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_get_length
- * @desc > **FMOD Function:** [Studio::EventDescription::getLength](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getlength)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getLength](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getlength)
  *
  * <br />
  *
@@ -5809,7 +5809,7 @@ function fmod_studio_event_description_get_length(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_get_path
- * @desc > **FMOD Function:** [Studio::EventDescription::getPath](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getpath)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getPath](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getpath)
  *
  * <br />
  *
@@ -5826,7 +5826,7 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_set_callback
- * @desc > **FMOD Function:** [Studio::EventDescription::setCallback](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_setcallback)
+ * @desc > **FMOD Function:** [Studio::EventDescription::setCallback](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_setcallback)
  *
  * <br />
  *
@@ -5860,11 +5860,11 @@ function fmod_studio_event_description_set_callback(event_description_ref, type)
 
 /**
  * @func fmod_studio_event_description_set_user_data
- * @desc > **FMOD Function:** [Studio::EventDescription::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_setuserdata)
+ * @desc > **FMOD Function:** [Studio::EventDescription::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_setuserdata)
  *
  * <br />
  *
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_description_ref A reference to an EventDescription.
  * @param {real} data The real value to attach.
@@ -5875,7 +5875,7 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
 
 /**
  * @func fmod_studio_event_description_get_user_data
- * @desc > **FMOD Function:** [Studio::EventDescription::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserdata)
+ * @desc > **FMOD Function:** [Studio::EventDescription::getUserData](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserdata)
  *
  * <br />
  *
@@ -5892,7 +5892,7 @@ function fmod_studio_event_description_get_user_data(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_description_is_valid
- * @desc > **FMOD Function:** [Studio::EventDescription::isValid](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isvalid)
+ * @desc > **FMOD Function:** [Studio::EventDescription::isValid](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isvalid)
  *
  * <br />
  *
@@ -5908,7 +5908,7 @@ function fmod_studio_event_description_is_valid(event_description_ref) {}
 
 /**
  * @func fmod_studio_event_instance_start
- * @desc > **FMOD Function:** [Studio::EventInstance::start](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_start)
+ * @desc > **FMOD Function:** [Studio::EventInstance::start](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_start)
  *
  * <br />
  *
@@ -5926,7 +5926,7 @@ function fmod_studio_event_instance_start(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_stop
- * @desc > **FMOD Function:** [Studio::EventInstance::stop](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_stop)
+ * @desc > **FMOD Function:** [Studio::EventInstance::stop](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_stop)
  *
  * <br />
  *
@@ -5941,7 +5941,7 @@ function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
 
 /**
  * @func fmod_studio_event_instance_get_playback_state
- * @desc > **FMOD Function:** [Studio::EventInstance::getPlaybackState](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getplaybackstate)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getPlaybackState](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getplaybackstate)
  *
  * <br />
  *
@@ -5958,7 +5958,7 @@ function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_paused
- * @desc > **FMOD Function:** [Studio::EventInstance::setPaused](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setpaused)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setPaused](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setpaused)
  *
  * <br />
  *
@@ -5973,7 +5973,7 @@ function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
 
 /**
  * @func fmod_studio_event_instance_get_paused
- * @desc > **FMOD Function:** [Studio::EventInstance::getPaused](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getpaused)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getPaused](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getpaused)
  *
  * <br />
  *
@@ -5988,7 +5988,7 @@ function fmod_studio_event_instance_get_paused(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_keyoff
- * @desc > **FMOD Function:** [Studio::EventInstance::keyOff](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_keyoff)
+ * @desc > **FMOD Function:** [Studio::EventInstance::keyOff](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_keyoff)
  *
  * <br />
  *
@@ -6006,7 +6006,7 @@ function fmod_studio_event_instance_keyoff(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_pitch
- * @desc > **FMOD Function:** [Studio::EventInstance::setPitch](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setpitch)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setPitch](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setpitch)
  *
  * <br />
  *
@@ -6023,7 +6023,7 @@ function fmod_studio_event_instance_set_pitch(event_instance_ref, pitch) {}
 
 /**
  * @func fmod_studio_event_instance_get_pitch
- * @desc > **FMOD Function:** [Studio::EventInstance::getPitch](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getpitch)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getPitch](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getpitch)
  *
  * <br />
  *
@@ -6038,7 +6038,7 @@ function fmod_studio_event_instance_get_pitch(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_property
- * @desc > **FMOD Function:** [Studio::EventInstance::setProperty](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setproperty)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setProperty](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setproperty)
  *
  * <br />
  *
@@ -6058,7 +6058,7 @@ function fmod_studio_event_instance_set_property(event_instance_ref, property, v
 
 /**
  * @func fmod_studio_event_instance_get_property
- * @desc > **FMOD Function:** [Studio::EventInstance::getProperty](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getproperty)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getProperty](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getproperty)
  *
  * <br />
  *
@@ -6076,7 +6076,7 @@ function fmod_studio_event_instance_get_property(event_instance_ref, property) {
 
 /**
  * @func fmod_studio_event_instance_set_timeline_position
- * @desc > **FMOD Function:** [Studio::EventInstance::setTimelinePosition](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_settimelineposition)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setTimelinePosition](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_settimelineposition)
  *
  * <br />
  *
@@ -6091,7 +6091,7 @@ function fmod_studio_event_instance_set_timeline_position(event_instance_ref, po
 
 /**
  * @func fmod_studio_event_instance_get_timeline_position
- * @desc > **FMOD Function:** [Studio::EventInstance::getTimelinePosition](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_gettimelineposition)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getTimelinePosition](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_gettimelineposition)
  *
  * <br />
  *
@@ -6106,7 +6106,7 @@ function fmod_studio_event_instance_get_timeline_position(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_volume
- * @desc > **FMOD Function:** [Studio::EventInstance::setVolume](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setvolume)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setVolume](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setvolume)
  *
  * <br />
  *
@@ -6123,7 +6123,7 @@ function fmod_studio_event_instance_set_volume(event_instance_ref, volume) {}
 
 /**
  * @func fmod_studio_event_instance_get_volume
- * @desc > **FMOD Function:** [Studio::EventInstance::getVolume](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getvolume)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getVolume](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getvolume)
  *
  * <br />
  *
@@ -6138,7 +6138,7 @@ function fmod_studio_event_instance_get_volume(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_is_virtual
- * @desc > **FMOD Function:** [Studio::EventInstance::isVirtual](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_isvirtual)
+ * @desc > **FMOD Function:** [Studio::EventInstance::isVirtual](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_isvirtual)
  *
  * <br />
  *
@@ -6153,7 +6153,7 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_3d_attributes
- * @desc > **FMOD Function:** [Studio::EventInstance::set3DAttributes](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_set3dattributes)
+ * @desc > **FMOD Function:** [Studio::EventInstance::set3DAttributes](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_set3dattributes)
  *
  * <br />
  *
@@ -6170,7 +6170,7 @@ function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attrib
 
 /**
  * @func fmod_studio_event_instance_get_3d_attributes
- * @desc > **FMOD Function:** [Studio::EventInstance::get3DAttributes](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_get3dattributes)
+ * @desc > **FMOD Function:** [Studio::EventInstance::get3DAttributes](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_get3dattributes)
  *
  * <br />
  *
@@ -6185,13 +6185,13 @@ function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_listener_mask
- * @desc > **FMOD Function:** [Studio::EventInstance::setListenerMask](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setlistenermask)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setListenerMask](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setlistenermask)
  *
  * <br />
  *
  * This function sets the listener mask.
  * 
- * The listener mask controls which listeners are considered when calculating 3D panning and the values of listener relative [automatic parameters](https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter).
+ * The listener mask controls which listeners are considered when calculating 3D panning and the values of listener relative [automatic parameters](https://www.fmod.com/docs/2.03/api/glossary.html#automatic-parameter).
  * 
  * To create the mask you must perform bitwise OR and shift operations, the basic form is `1 << listener_index` OR'd together with other required listener indices.
  * For example to create a mask for listener index 0 and 2 the calculation would be `mask = (1 << 0) | (1 << 2)`, to include all listeners use the default mask of `0xFFFFFFFF`.
@@ -6205,7 +6205,7 @@ function fmod_studio_event_instance_set_listener_mask(event_instance_ref, mask) 
 
 /**
  * @func fmod_studio_event_instance_get_listener_mask
- * @desc > **FMOD Function:** [Studio::EventInstance::getListenerMask](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getlistenermask)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getListenerMask](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getlistenermask)
  *
  * <br />
  *
@@ -6220,7 +6220,7 @@ function fmod_studio_event_instance_get_listener_mask(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_get_min_max_distance
- * @desc > **FMOD Function:** [Studio::EventInstance::getMinMaxDistance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getminmaxdistance)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getMinMaxDistance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getminmaxdistance)
  *
  * <br />
  *
@@ -6235,7 +6235,7 @@ function fmod_studio_event_instance_get_min_max_distance(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_parameter_by_name
- * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByName](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyname)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByName](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyname)
  *
  * <br />
  *
@@ -6258,7 +6258,7 @@ function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, na
 
 /**
  * @func fmod_studio_event_instance_set_parameter_by_name_with_label
- * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByNameWithLabel](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbynamewithlabel)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByNameWithLabel](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbynamewithlabel)
  *
  * <br />
  *
@@ -6283,7 +6283,7 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(event_insta
 
 /**
  * @func fmod_studio_event_instance_get_parameter_by_name
- * @desc > **FMOD Function:** [Studio::EventInstance::getParameterByName](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyname)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getParameterByName](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyname)
  *
  * <br />
  *
@@ -6299,7 +6299,7 @@ function fmod_studio_event_instance_get_parameter_by_name(event_instance_ref, na
 
 /**
  * @func fmod_studio_event_instance_set_parameter_by_id
- * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByID](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyid)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByID](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyid)
  *
  * <br />
  *
@@ -6320,7 +6320,7 @@ function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, para
 
 /**
  * @func fmod_studio_event_instance_set_parameter_by_id_with_label
- * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByIDWithLabel](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyidwithlabel)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setParameterByIDWithLabel](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setparameterbyidwithlabel)
  *
  * <br />
  *
@@ -6343,7 +6343,7 @@ function fmod_studio_event_instance_set_parameter_by_id_with_label(event_instanc
 
 /**
  * @func fmod_studio_event_instance_get_parameter_by_id
- * @desc > **FMOD Function:** [Studio::EventInstance::getParameterByID](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyid)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getParameterByID](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getparameterbyid)
  *
  * <br />
  *
@@ -6359,7 +6359,7 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
 
 /**
  * @func fmod_studio_event_instance_get_channel_group
- * @desc > **FMOD Function:** [Studio::EventInstance::getChannelGroup](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup)
  *
  * <br />
  *
@@ -6376,7 +6376,7 @@ function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_reverb_level
- * @desc > **FMOD Function:** [Studio::EventInstance::setReverbLevel](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setreverblevel)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setReverbLevel](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setreverblevel)
  *
  * <br />
  *
@@ -6394,7 +6394,7 @@ function fmod_studio_event_instance_set_reverb_level(event_instance_ref, index, 
 
 /**
  * @func fmod_studio_event_instance_get_reverb_level
- * @desc > **FMOD Function:** [Studio::EventInstance::getReverbLevel](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getreverblevel)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getReverbLevel](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getreverblevel)
  *
  * <br />
  *
@@ -6410,7 +6410,7 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
 
 /**
  * @func fmod_studio_event_instance_get_cpu_usage
- * @desc > **FMOD Function:** [Studio::EventInstance::getCPUUsage](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getcpuusage)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getCPUUsage](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getcpuusage)
  *
  * <br />
  *
@@ -6427,7 +6427,7 @@ function fmod_studio_event_instance_get_cpu_usage(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_get_memory_usage
- * @desc > **FMOD Function:** [Studio::EventInstance::getMemoryUsage](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getmemoryusage)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getMemoryUsage](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getmemoryusage)
  *
  * <br />
  *
@@ -6444,7 +6444,7 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_set_callback
- * @desc > **FMOD Function:** [Studio::EventInstance::setCallback](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setcallback)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setCallback](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setcallback)
  *
  * <br />
  *
@@ -6476,11 +6476,11 @@ function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
 
 /**
  * @func fmod_studio_event_instance_set_user_data
- * @desc > **FMOD Function:** [Studio::EventInstance::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_setuserdata)
+ * @desc > **FMOD Function:** [Studio::EventInstance::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setuserdata)
  *
  * <br />
  *
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
  * 
  * @param {real} event_instance_ref A reference to an EventInstance.
  * @param {real} data The real value to attach.
@@ -6491,7 +6491,7 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
 
 /**
  * @func fmod_studio_event_instance_get_user_data
- * @desc > **FMOD Function:** [Studio::EventInstance::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getuserdata)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getUserData](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getuserdata)
  *
  * <br />
  *
@@ -6508,7 +6508,7 @@ function fmod_studio_event_instance_get_user_data(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_get_description
- * @desc > **FMOD Function:** [Studio::EventInstance::getDescription](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_getdescription)
+ * @desc > **FMOD Function:** [Studio::EventInstance::getDescription](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getdescription)
  *
  * <br />
  *
@@ -6523,7 +6523,7 @@ function fmod_studio_event_instance_get_description(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_release
- * @desc > **FMOD Function:** [Studio::EventInstance::release](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_release)
+ * @desc > **FMOD Function:** [Studio::EventInstance::release](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_release)
  *
  * <br />
  *
@@ -6539,7 +6539,7 @@ function fmod_studio_event_instance_release(event_instance_ref) {}
 
 /**
  * @func fmod_studio_event_instance_is_valid
- * @desc > **FMOD Function:** [Studio::EventInstance::isValid](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#studio_eventinstance_isvalid)
+ * @desc > **FMOD Function:** [Studio::EventInstance::isValid](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_isvalid)
  *
  * <br />
  *
@@ -6555,7 +6555,7 @@ function fmod_studio_event_instance_is_valid(event_instance_ref) {}
 
 /**
  * @func fmod_studio_system_create
- * @desc > **FMOD Function:** [Studio::System::create](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_create)
+ * @desc > **FMOD Function:** [Studio::System::create](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_create)
  *
  * <br />
  *
@@ -6570,7 +6570,7 @@ function fmod_studio_system_create() {}
 
 /**
  * @func fmod_studio_system_init
- * @desc > **FMOD Function:** [Studio::System::initialize](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_initialize)
+ * @desc > **FMOD Function:** [Studio::System::initialize](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_initialize)
  *
  * <br />
  *
@@ -6582,7 +6582,7 @@ function fmod_studio_system_create() {}
  * 
  * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
  * 
- * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
+ * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
  * @param {constant.FMOD_STUDIO_INIT} studio_flags Studio system initialization flags.
  * @param {constant.FMOD_INIT} core_flags Core system initialization flags.
  * @func_end
@@ -6592,7 +6592,7 @@ function fmod_studio_system_init(max_channels, studio_flags, core_flags) {}
 
 /**
  * @func fmod_studio_system_release
- * @desc > **FMOD Function:** [Studio::System::release](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_release)
+ * @desc > **FMOD Function:** [Studio::System::release](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_release)
  *
  * <br />
  *
@@ -6607,7 +6607,7 @@ function fmod_studio_system_release() {}
 
 /**
  * @func fmod_studio_system_update
- * @desc > **FMOD Function:** [Studio::System::update](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_update)
+ * @desc > **FMOD Function:** [Studio::System::update](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_update)
  *
  * <br />
  *
@@ -6622,7 +6622,7 @@ function fmod_studio_system_update() {}
 
 /**
  * @func fmod_studio_system_flush_commands
- * @desc > **FMOD Function:** [Studio::System::flushCommands](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushcommands)
+ * @desc > **FMOD Function:** [Studio::System::flushCommands](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_flushcommands)
  *
  * <br />
  *
@@ -6635,7 +6635,7 @@ function fmod_studio_system_flush_commands() {}
 
 /**
  * @func fmod_studio_system_flush_sample_loading
- * @desc > **FMOD Function:** [Studio::System::flushSampleLoading](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_flushsampleloading)
+ * @desc > **FMOD Function:** [Studio::System::flushSampleLoading](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_flushsampleloading)
  *
  * <br />
  *
@@ -6648,13 +6648,13 @@ function fmod_studio_system_flush_sample_loading() {}
 
 /**
  * @func fmod_studio_system_load_bank_custom
- * @desc > **FMOD Function:** [Studio::System::loadBankCustom](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankcustom)
+ * @desc > **FMOD Function:** [Studio::System::loadBankCustom](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_loadbankcustom)
  *
  * <br />
  *
  * This function loads the metadata of a Studio bank and returns a handle to the Bank.
  * 
- * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading) for details.
  * 
  * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result} value after a function call that uses the Bank handle.
  * 
@@ -6669,13 +6669,13 @@ function fmod_studio_system_load_bank_custom(flags) {}
 
 /**
  * @func fmod_studio_system_load_bank_file
- * @desc > **FMOD Function:** [Studio::System::loadBankFile](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankfile)
+ * @desc > **FMOD Function:** [Studio::System::loadBankFile](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_loadbankfile)
  *
  * <br />
  *
  * This function loads the metadata of a Studio bank from file, returning a handle to the Bank.
  * 
- * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading) for details.
  * 
  * If you use `FMOD_STUDIO_LOAD_BANK.NONBLOCKING`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${func.fmod_last_result} value after a function call that uses the Bank handle.
  * 
@@ -6691,13 +6691,13 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
 
 /**
  * @func fmod_studio_system_load_bank_memory
- * @desc > **FMOD Function:** [Studio::System::loadBankMemory](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadbankmemory)
+ * @desc > **FMOD Function:** [Studio::System::loadBankMemory](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_loadbankmemory)
  *
  * <br />
  *
  * This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.
  * 
- * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading) for details.
+ * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading) for details.
  * 
  * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY`, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.
  * 
@@ -6719,7 +6719,7 @@ function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
 
 /**
  * @func fmod_studio_system_unload_all
- * @desc > **FMOD Function:** [Studio::System::unloadAll](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_unloadall)
+ * @desc > **FMOD Function:** [Studio::System::unloadAll](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_unloadall)
  *
  * <br />
  *
@@ -6732,7 +6732,7 @@ function fmod_studio_system_unload_all() {}
 
 /**
  * @func fmod_studio_system_get_bank
- * @desc > **FMOD Function:** [Studio::System::getBank](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbank)
+ * @desc > **FMOD Function:** [Studio::System::getBank](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbank)
  *
  * <br />
  *
@@ -6740,9 +6740,9 @@ function fmod_studio_system_unload_all() {}
  * 
  * `path` may be a path, such as `bank:/Weapons` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
  * 
- * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) has been loaded.
  * 
- * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bank. (UTF-8 string)
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) that identifies the bank. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6751,13 +6751,13 @@ function fmod_studio_system_get_bank(path) {}
 
 /**
  * @func fmod_studio_system_get_bank_by_id
- * @desc > **FMOD Function:** [Studio::System::getBankByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbankbyid)
+ * @desc > **FMOD Function:** [Studio::System::getBankByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbankbyid)
  *
  * <br />
  *
  * This function retrieves a loaded bank by its GUID.
  * 
- * @param {string} guid_str Bank [GUID](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths).
+ * @param {string} guid_str Bank [GUID](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths).
  * @returns {real}
  * @func_end
  */
@@ -6766,7 +6766,7 @@ function fmod_studio_system_get_bank_by_id(guid_str) {}
 
 /**
  * @func fmod_studio_system_get_bank_count
- * @desc > **FMOD Function:** [Studio::System::getBankCount](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbankcount)
+ * @desc > **FMOD Function:** [Studio::System::getBankCount](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbankcount)
  *
  * <br />
  *
@@ -6782,7 +6782,7 @@ function fmod_studio_system_get_bank_count() {}
 
 /**
  * @func fmod_studio_system_get_bank_list
- * @desc > **FMOD Function:** [Studio::System::getBankList](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbanklist)
+ * @desc > **FMOD Function:** [Studio::System::getBankList](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbanklist)
  *
  * <br />
  *
@@ -6798,7 +6798,7 @@ function fmod_studio_system_get_bank_list() {}
 
 /**
  * @func fmod_studio_system_set_listener_attributes
- * @desc > **FMOD Function:** [Studio::System::setListenerAttributes](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setlistenerattributes)
+ * @desc > **FMOD Function:** [Studio::System::setListenerAttributes](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setlistenerattributes)
  *
  * <br />
  *
@@ -6816,7 +6816,7 @@ function fmod_studio_system_set_listener_attributes(listener_index, attributes, 
 
 /**
  * @func fmod_studio_system_get_listener_attributes
- * @desc > **FMOD Function:** [Studio::System::getListenerAttributes](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getlistenerattributes)
+ * @desc > **FMOD Function:** [Studio::System::getListenerAttributes](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getlistenerattributes)
  *
  * <br />
  *
@@ -6831,7 +6831,7 @@ function fmod_studio_system_get_listener_attributes(listener_index) {}
 
 /**
  * @func fmod_studio_system_set_listener_weight
- * @desc > **FMOD Function:** [Studio::System::setListenerWeight](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setlistenerweight)
+ * @desc > **FMOD Function:** [Studio::System::setListenerWeight](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setlistenerweight)
  *
  * <br />
  *
@@ -6852,7 +6852,7 @@ function fmod_studio_system_set_listener_weight(listener_index, weight) {}
 
 /**
  * @func fmod_studio_system_get_listener_weight
- * @desc > **FMOD Function:** [Studio::System::getListenerWeight](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getlistenerweight)
+ * @desc > **FMOD Function:** [Studio::System::getListenerWeight](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getlistenerweight)
  *
  * <br />
  *
@@ -6867,7 +6867,7 @@ function fmod_studio_system_get_listener_weight(listener_index) {}
 
 /**
  * @func fmod_studio_system_set_num_listeners
- * @desc > **FMOD Function:** [Studio::System::setNumListeners](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setnumlisteners)
+ * @desc > **FMOD Function:** [Studio::System::setNumListeners](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setnumlisteners)
  *
  * <br />
  *
@@ -6875,7 +6875,7 @@ function fmod_studio_system_get_listener_weight(listener_index) {}
  * 
  * If the number of listeners is set to more than 1 then FMOD uses a 'closest sound to the listener' method to determine what should be heard.
  * 
- * See the [Studio 3D Events](https://www.fmod.com/docs/2.02/api/white-papers-studio-3d-events.html#multiple-listeners) white paper for more information.
+ * See the [Studio 3D Events](https://www.fmod.com/docs/2.03/api/white-papers-studio-3d-events.html#multiple-listeners) white paper for more information.
  * 
  * @param {real} num Number of listeners, Range: [1, ${constant.FMOD_MAX_LISTENERS}], Default: 1
  * @func_end
@@ -6885,7 +6885,7 @@ function fmod_studio_system_set_num_listeners(num) {}
 
 /**
  * @func fmod_studio_system_get_num_listeners
- * @desc > **FMOD Function:** [Studio::System::getNumListeners](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getnumlisteners)
+ * @desc > **FMOD Function:** [Studio::System::getNumListeners](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getnumlisteners)
  *
  * <br />
  *
@@ -6899,7 +6899,7 @@ function fmod_studio_system_get_num_listeners() {}
 
 /**
  * @func fmod_studio_system_get_bus
- * @desc > **FMOD Function:** [Studio::System::getBus](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbus)
+ * @desc > **FMOD Function:** [Studio::System::getBus](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbus)
  *
  * <br />
  *
@@ -6907,9 +6907,9 @@ function fmod_studio_system_get_num_listeners() {}
  * 
  * `path` may be a path, such as `bus:/SFX/Ambience` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
  * 
- * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) has been loaded.
  * 
- * @param {string} path The bank [path](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the bus. (UTF-8 string)
+ * @param {string} path The bank [path](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) or the [ID string](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) that identifies the bus. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6918,7 +6918,7 @@ function fmod_studio_system_get_bus(path) {}
 
 /**
  * @func fmod_studio_system_get_bus_by_id
- * @desc > **FMOD Function:** [Studio::System::getBusByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbusbyid)
+ * @desc > **FMOD Function:** [Studio::System::getBusByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbusbyid)
  *
  * <br />
  *
@@ -6933,7 +6933,7 @@ function fmod_studio_system_get_bus_by_id(guid) {}
 
 /**
  * @func fmod_studio_system_get_event
- * @desc > **FMOD Function:** [Studio::System::getEvent](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getevent)
+ * @desc > **FMOD Function:** [Studio::System::getEvent](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getevent)
  *
  * <br />
  * 
@@ -6941,9 +6941,9 @@ function fmod_studio_system_get_bus_by_id(guid) {}
  * 
  * `path` may be a path, such as `event:/UI/Cancel` or an ID string such as `{793cddb6-7fa1-4e06-b805-4c74c0fd625b}`.
  * 
- * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) has been loaded.
  * 
- * @param {string} path The [path or the ID string](https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths) that identifies the event or snapshot. (UTF-8 string)
+ * @param {string} path The [path or the ID string](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) that identifies the event or snapshot. (UTF-8 string)
  * @returns {real}
  * @func_end
  */
@@ -6952,7 +6952,7 @@ function fmod_studio_system_get_event(path) {}
 
 /**
  * @func fmod_studio_system_get_event_by_id
- * @desc > **FMOD Function:** [Studio::System::getEventByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_geteventbyid)
+ * @desc > **FMOD Function:** [Studio::System::getEventByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_geteventbyid)
  *
  * <br />
  *
@@ -6967,7 +6967,7 @@ function fmod_studio_system_get_event_by_id(guid_str) {}
 
 /**
  * @func fmod_studio_system_get_parameter_by_id
- * @desc > **FMOD Function:** [Studio::System::getParameterByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterbyid)
+ * @desc > **FMOD Function:** [Studio::System::getParameterByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterbyid)
  *
  * <br />
  *
@@ -6982,7 +6982,7 @@ function fmod_studio_system_get_parameter_by_id(parameter_id) {}
 
 /**
  * @func fmod_studio_system_set_parameter_by_id
- * @desc > **FMOD Function:** [Studio::System::setParameterByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyid)
+ * @desc > **FMOD Function:** [Studio::System::setParameterByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setparameterbyid)
  *
  * <br />
  *
@@ -6998,7 +6998,7 @@ function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek
 
 /**
  * @func fmod_studio_system_set_parameter_by_id_with_label
- * @desc > **FMOD Function:** [Studio::System::setParameterByIDWithLabel](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyidwithlabel)
+ * @desc > **FMOD Function:** [Studio::System::setParameterByIDWithLabel](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setparameterbyidwithlabel)
  *
  * <br />
  *
@@ -7016,7 +7016,7 @@ function fmod_studio_system_set_parameter_by_id_with_label(parameter_id, label, 
 
 /**
  * @func fmod_studio_system_get_parameter_by_name
- * @desc > **FMOD Function:** [Studio::System::getParameterByName](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterbyname)
+ * @desc > **FMOD Function:** [Studio::System::getParameterByName](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterbyname)
  *
  * <br />
  *
@@ -7031,7 +7031,7 @@ function fmod_studio_system_get_parameter_by_name(name) {}
 
 /**
  * @func fmod_studio_system_set_parameter_by_name
- * @desc > **FMOD Function:** [Studio::System::setParameterByName](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbyname)
+ * @desc > **FMOD Function:** [Studio::System::setParameterByName](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setparameterbyname)
  *
  * <br />
  *
@@ -7047,7 +7047,7 @@ function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed
 
 /**
  * @func fmod_studio_system_set_parameter_by_name_with_label
- * @desc > **FMOD Function:** [Studio::System::setParameterByNameWithLabel](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setparameterbynamewithlabel)
+ * @desc > **FMOD Function:** [Studio::System::setParameterByNameWithLabel](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setparameterbynamewithlabel)
  *
  * <br />
  *
@@ -7063,7 +7063,7 @@ function fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore
 
 /**
  * @func fmod_studio_system_get_parameter_description_by_name
- * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionByName](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionbyname)
+ * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionByName](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterdescriptionbyname)
  *
  * <br />
  *
@@ -7080,7 +7080,7 @@ function fmod_studio_system_get_parameter_description_by_name(name) {}
 
 /**
  * @func fmod_studio_system_get_parameter_description_by_id
- * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionbyid)
+ * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterdescriptionbyid)
  *
  * <br />
  *
@@ -7095,7 +7095,7 @@ function fmod_studio_system_get_parameter_description_by_id(parameter_id) {}
 
 /**
  * @func fmod_studio_system_get_parameter_description_count
- * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionCount](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptioncount)
+ * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionCount](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterdescriptioncount)
  *
  * <br />
  *
@@ -7109,7 +7109,7 @@ function fmod_studio_system_get_parameter_description_count() {}
 
 /**
  * @func fmod_studio_system_get_parameter_description_list
- * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionList](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterdescriptionlist)
+ * @desc > **FMOD Function:** [Studio::System::getParameterDescriptionList](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterdescriptionlist)
  *
  * <br />
  *
@@ -7123,7 +7123,7 @@ function fmod_studio_system_get_parameter_description_list() {}
 
 /**
  * @func fmod_studio_system_get_parameter_label_by_name
- * @desc > **FMOD Function:** [Studio::System::getParameterLabelByName](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterlabelbyname)
+ * @desc > **FMOD Function:** [Studio::System::getParameterLabelByName](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterlabelbyname)
  *
  * <br />
  *
@@ -7141,7 +7141,7 @@ function fmod_studio_system_get_parameter_label_by_name(name, labelindex) {}
 
 /**
  * @func fmod_studio_system_get_parameter_label_by_id
- * @desc > **FMOD Function:** [Studio::System::getParameterLabelByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getparameterlabelbyid)
+ * @desc > **FMOD Function:** [Studio::System::getParameterLabelByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getparameterlabelbyid)
  *
  * <br />
  *
@@ -7157,7 +7157,7 @@ function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
 
 /**
  * @func fmod_studio_system_get_vca
- * @desc > **FMOD Function:** [Studio::System::getVCA](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getvca)
+ * @desc > **FMOD Function:** [Studio::System::getVCA](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getvca)
  *
  * <br />
  *
@@ -7165,7 +7165,7 @@ function fmod_studio_system_get_parameter_label_by_id(parameter_id, label_index)
  * 
  * `path` may be a path, such as `vca:/MyVCA`, or an ID string, such as `{d9982c58-a056-4e6c-b8e3-883854b4bffb}`.
  * 
- * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) has been loaded.
+ * Note that path lookups will only succeed if the [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) has been loaded.
  * 
  * @param {string} path The path or the ID string that identifies the VCA. (UTF-8 string)
  * @returns {real}
@@ -7176,7 +7176,7 @@ function fmod_studio_system_get_vca(path) {}
 
 /**
  * @func fmod_studio_system_get_vca_by_id
- * @desc > **FMOD Function:** [Studio::System::getVCAByID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getvcabyid)
+ * @desc > **FMOD Function:** [Studio::System::getVCAByID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getvcabyid)
  *
  * <br />
  *
@@ -7191,7 +7191,7 @@ function fmod_studio_system_get_vca_by_id(guid_str) {}
 
 /**
  * @func fmod_studio_system_set_advanced_settings
- * @desc > **FMOD Function:** [Studio::System::setAdvancedSettings](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setadvancedsettings)
+ * @desc > **FMOD Function:** [Studio::System::setAdvancedSettings](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setadvancedsettings)
  *
  * <br />
  *
@@ -7214,7 +7214,7 @@ function fmod_studio_system_set_advanced_settings(settings) {}
 
 /**
  * @func fmod_studio_system_get_advanced_settings
- * @desc > **FMOD Function:** [Studio::System::getAdvancedSettings](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getadvancedsettings)
+ * @desc > **FMOD Function:** [Studio::System::getAdvancedSettings](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getadvancedsettings)
  *
  * <br />
  *
@@ -7228,7 +7228,7 @@ function fmod_studio_system_get_advanced_settings() {}
 
 /**
  * @func fmod_studio_system_start_command_capture
- * @desc > **FMOD Function:** [Studio::System::startCommandCapture](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_startcommandcapture)
+ * @desc > **FMOD Function:** [Studio::System::startCommandCapture](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_startcommandcapture)
  *
  * <br />
  *
@@ -7247,7 +7247,7 @@ function fmod_studio_system_start_command_capture(filename, flags) {}
 
 /**
  * @func fmod_studio_system_stop_command_capture
- * @desc > **FMOD Function:** [Studio::System::stopCommandCapture](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_stopcommandcapture)
+ * @desc > **FMOD Function:** [Studio::System::stopCommandCapture](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_stopcommandcapture)
  *
  * <br />
  *
@@ -7260,7 +7260,7 @@ function fmod_studio_system_stop_command_capture() {}
 
 /**
  * @func fmod_studio_system_load_command_replay
- * @desc > **FMOD Function:** [Studio::System::loadCommandReplay](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_loadcommandreplay)
+ * @desc > **FMOD Function:** [Studio::System::loadCommandReplay](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_loadcommandreplay)
  *
  * <br />
  *
@@ -7276,7 +7276,7 @@ function fmod_studio_system_load_command_replay(filename, flags) {}
 
 /**
  * @func fmod_studio_system_get_buffer_usage
- * @desc > **FMOD Function:** [Studio::System::getBufferUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getbufferusage)
+ * @desc > **FMOD Function:** [Studio::System::getBufferUsage](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbufferusage)
  *
  * <br />
  *
@@ -7294,7 +7294,7 @@ function fmod_studio_system_get_buffer_usage() {}
 
 /**
  * @func fmod_studio_system_reset_buffer_usage
- * @desc > **FMOD Function:** [Studio::System::resetBufferUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_resetbufferusage)
+ * @desc > **FMOD Function:** [Studio::System::resetBufferUsage](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_resetbufferusage)
  *
  * <br />
  *
@@ -7307,7 +7307,7 @@ function fmod_studio_system_reset_buffer_usage() {}
 
 /**
  * @func fmod_studio_system_get_cpu_usage
- * @desc > **FMOD Function:** [Studio::System::getCPUUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcpuusage)
+ * @desc > **FMOD Function:** [Studio::System::getCPUUsage](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getcpuusage)
  *
  * <br />
  *
@@ -7323,7 +7323,7 @@ function fmod_studio_system_get_cpu_usage() {}
 
 /**
  * @func fmod_studio_system_get_memory_usage
- * @desc > **FMOD Function:** [Studio::System::getMemoryUsage](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getmemoryusage)
+ * @desc > **FMOD Function:** [Studio::System::getMemoryUsage](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getmemoryusage)
  *
  * <br />
  *
@@ -7341,7 +7341,7 @@ function fmod_studio_system_get_memory_usage() {}
 
 /**
  * @func fmod_studio_system_set_callback
- * @desc > **FMOD Function:** [Studio::System::setCallback](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setcallback)
+ * @desc > **FMOD Function:** [Studio::System::setCallback](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setcallback)
  *
  * <br />
  *
@@ -7362,7 +7362,7 @@ function fmod_studio_system_set_callback(type) {}
 
 /**
  * @func fmod_studio_system_set_user_data
- * @desc > **FMOD Function:** [Studio::System::setUserData](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_setuserdata)
+ * @desc > **FMOD Function:** [Studio::System::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_setuserdata)
  *
  * <br />
  *
@@ -7377,7 +7377,7 @@ function fmod_studio_system_set_user_data(data) {}
 
 /**
  * @func fmod_studio_system_get_user_data
- * @desc > **FMOD Function:** [Studio::System::getUserData](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getuserdata)
+ * @desc > **FMOD Function:** [Studio::System::getUserData](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getuserdata)
  *
  * <br />
  *
@@ -7391,7 +7391,7 @@ function fmod_studio_system_get_user_data() {}
 
 /**
  * @func fmod_studio_system_get_sound_info
- * @desc > **FMOD Function:** [Studio::System::getSoundInfo](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getsoundinfo)
+ * @desc > **FMOD Function:** [Studio::System::getSoundInfo](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getsoundinfo)
  *
  * <br />
  *
@@ -7412,7 +7412,7 @@ function fmod_studio_system_get_sound_info(key) {}
 
 /**
  * @func fmod_studio_system_get_core_system
- * @desc > **FMOD Function:** [Studio::System::getCoreSystem](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_getcoresystem)
+ * @desc > **FMOD Function:** [Studio::System::getCoreSystem](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getcoresystem)
  *
  * <br />
  *
@@ -7428,13 +7428,13 @@ function fmod_studio_system_get_core_system() {}
 
 /**
  * @func fmod_studio_system_lookup_id
- * @desc > **FMOD Function:** [Studio::System::lookupID](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_lookupid)
+ * @desc > **FMOD Function:** [Studio::System::lookupID](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_lookupid)
  *
  * <br />
  *
  * This function retrieves the GUID for a bank, event, snapshot, bus or VCA.
  * 
- * The [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * The [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
  * 
  * The path can be copied to the system clipboard from FMOD Studio using the "Copy Path" context menu command.
  * 
@@ -7447,13 +7447,13 @@ function fmod_studio_system_lookup_id(path) {}
 
 /**
  * @func fmod_studio_system_lookup_path
- * @desc > **FMOD Function:** [Studio::System::lookupPath](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_lookuppath)
+ * @desc > **FMOD Function:** [Studio::System::lookupPath](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_lookuppath)
  *
  * <br />
  *
  * This function retrieves the path for a bank, event, snapshot, bus or VCA.
  * 
- * The [strings bank](https://www.fmod.com/docs/2.02/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
+ * The [strings bank](https://www.fmod.com/docs/2.03/api/glossary.html#studio-strings-bank) must be loaded prior to calling this function, otherwise `FMOD_RESULT.ERR_EVENT_NOTFOUND` is returned in the next ${func.fmod_last_result} call.
  * 
  * @param {string} str_guid GUID.
  * @returns {string}
@@ -7464,7 +7464,7 @@ function fmod_studio_system_lookup_path(str_guid) {}
 
 /**
  * @func fmod_studio_system_is_valid
- * @desc > **FMOD Function:** [Studio::System::isValid](https://www.fmod.com/docs/2.02/api/studio-api-system.html#studio_system_isvalid)
+ * @desc > **FMOD Function:** [Studio::System::isValid](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_isvalid)
  *
  * <br />
  *
@@ -7479,7 +7479,7 @@ function fmod_studio_system_is_valid() {}
 
 /**
  * @func fmod_studio_vca_set_volume
- * @desc > **FMOD Function:** [Studio::VCA::setVolume](https://www.fmod.com/docs/2.02/api/studio-api-vca.html#studio_vca_setvolume)
+ * @desc > **FMOD Function:** [Studio::VCA::setVolume](https://www.fmod.com/docs/2.03/api/studio-api-vca.html#studio_vca_setvolume)
  *
  * <br />
  *
@@ -7496,7 +7496,7 @@ function fmod_studio_vca_set_volume(vca_ref, volume) {}
 
 /**
  * @func fmod_studio_vca_get_volume
- * @desc > **FMOD Function:** [Studio::VCA::getVolume](https://www.fmod.com/docs/2.02/api/studio-api-vca.html#studio_vca_getvolume)
+ * @desc > **FMOD Function:** [Studio::VCA::getVolume](https://www.fmod.com/docs/2.03/api/studio-api-vca.html#studio_vca_getvolume)
  *
  * <br />
  *
@@ -7511,7 +7511,7 @@ function fmod_studio_vca_get_volume(vca_ref) {}
 
 /**
  * @func fmod_studio_vca_get_id
- * @desc > **FMOD Function:** [Studio::VCA::getID](https://www.fmod.com/docs/2.02/api/studio-api-vca.html#studio_vca_getid)
+ * @desc > **FMOD Function:** [Studio::VCA::getID](https://www.fmod.com/docs/2.03/api/studio-api-vca.html#studio_vca_getid)
  *
  * <br />
  *
@@ -7526,7 +7526,7 @@ function fmod_studio_vca_get_id(vca_ref) {}
 
 /**
  * @func fmod_studio_vca_get_path
- * @desc > **FMOD Function:** [Studio::VCA::getPath](https://www.fmod.com/docs/2.02/api/studio-api-vca.html#studio_vca_getpath)
+ * @desc > **FMOD Function:** [Studio::VCA::getPath](https://www.fmod.com/docs/2.03/api/studio-api-vca.html#studio_vca_getpath)
  *
  * <br />
  *
@@ -7543,7 +7543,7 @@ function fmod_studio_vca_get_path(vca_ref) {}
 
 /**
  * @func fmod_studio_vca_is_valid
- * @desc > **FMOD Function:** [Studio::VCA::isValid](https://www.fmod.com/docs/2.02/api/studio-api-vca.html#studio_vca_isvalid)
+ * @desc > **FMOD Function:** [Studio::VCA::isValid](https://www.fmod.com/docs/2.03/api/studio-api-vca.html#studio_vca_isvalid)
  *
  * <br />
  *
@@ -7559,13 +7559,13 @@ function fmod_studio_vca_is_valid(vca_ref) {}
 
 /**
  * @func fmod_system_create
- * @desc > **FMOD Function:** [System_Create](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_create)
+ * @desc > **FMOD Function:** [System_Create](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_create)
  *
  * <br />
  *
  * This function creates an instance of the FMOD system.
  * 
- * It must be called first to create an FMOD [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) object before any other API calls (except for ${function.fmod_debug_initialize}). Use this function to create 1 or multiple instances of FMOD System objects.
+ * It must be called first to create an FMOD [System](https://www.fmod.com/docs/2.03/api/core-api-system.html) object before any other API calls (except for ${function.fmod_debug_initialize}). Use this function to create 1 or multiple instances of FMOD System objects.
  * 
  * If the new FMOD system is created successfully, the function returns a reference to the system and makes it the *selected* system.
  * 
@@ -7591,7 +7591,7 @@ function fmod_system_select(system_ref) {}
 
 /**
  * @func fmod_system_count
- * @desc This function returns the number of FMOD [Systems](https://www.fmod.com/docs/2.02/api/core-api-system.html).
+ * @desc This function returns the number of FMOD [Systems](https://www.fmod.com/docs/2.03/api/core-api-system.html).
  * 
  * [[Note: Every successful call to ${function.fmod_system_create} creates an instance of an FMOD system object that's included in the count.]]
  * 
@@ -7603,7 +7603,7 @@ function fmod_system_count() {}
 
 /**
  * @func fmod_system_init
- * @desc > **FMOD Function:** [System::init](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_init)
+ * @desc > **FMOD Function:** [System::init](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_init)
  *
  * <br />
  *
@@ -7621,7 +7621,7 @@ function fmod_system_count() {}
  * 
  * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
  * 
- * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * @param {constant.FMOD_INIT} flags The initialization flags. More than one mode can be set at once by combining them with the OR operator.
  * @returns {real}
  * @func_end
@@ -7631,11 +7631,11 @@ function fmod_system_init(max_channels, flags) {}
 
 /**
  * @func fmod_system_release
- * @desc > **FMOD Function:** [System::release](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_release)
+ * @desc > **FMOD Function:** [System::release](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_release)
  *
  * <br />
  *
- * This function closes and frees the given FMOD [System](https://www.fmod.com/docs/2.02/api/core-api-system.html) object and its resources.
+ * This function closes and frees the given FMOD [System](https://www.fmod.com/docs/2.03/api/core-api-system.html) object and its resources.
  * 
  * [[Note: This will internally call ${function.fmod_system_close}, so calling ${function.fmod_system_close} before this function is not necessary.]]
  * @func_end
@@ -7645,13 +7645,13 @@ function fmod_system_release(system_ref) {}
 
 /**
  * @func fmod_system_close
- * @desc > **FMOD Function:** [System::close](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_close)
+ * @desc > **FMOD Function:** [System::close](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_close)
  *
  * <br />
  *
  * This function close the connections to the output and returns to an uninitialized state without releasing the object.
  * 
- * Closing renders FMOD objects created with this System invalid. You should make sure any [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html), [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html), [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) and [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) objects are released before calling this.
+ * Closing renders FMOD objects created with this System invalid. You should make sure any [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html), [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html), [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) and [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) objects are released before calling this.
  * 
  * All pre-initialize configuration settings will remain and the System can be reinitialized as needed.
  * 
@@ -7663,7 +7663,7 @@ function fmod_system_close(system_ref) {}
 
 /**
  * @func fmod_system_update
- * @desc > **FMOD Function:** [System::update](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_update)
+ * @desc > **FMOD Function:** [System::update](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_update)
  *
  * <br />
  *
@@ -7674,7 +7674,7 @@ function fmod_system_close(system_ref) {}
  * It should be called once per frame in your application (for example in a [Step event](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Events.htm)) to perform actions such as:
  * 
  * * Panning and reverb from 3D attributes changes.
- * * The virtualization of [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) based on their audibility.
+ * * The virtualization of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) based on their audibility.
  * * Mixing for non-realtime output types. See comment below.
  * * Streaming if using `FMOD_INIT.STREAM_FROM_UPDATE`.
  * * Mixing if using `FMOD_INIT.MIX_FROM_UPDATE`.
@@ -7695,7 +7695,7 @@ function fmod_system_update() {}
 
 /**
  * @func fmod_system_mixer_suspend
- * @desc > **FMOD Function:** [System::mixerSuspend](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixersuspend)
+ * @desc > **FMOD Function:** [System::mixerSuspend](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixersuspend)
  *
  * <br />
  *
@@ -7703,7 +7703,7 @@ function fmod_system_update() {}
  * 
  * It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.
  * 
- * All internal state will be maintained, i.e. created [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) will stay available in memory.
+ * All internal state will be maintained, i.e. created [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) will stay available in memory.
  * 
  * @func_end
  */
@@ -7712,7 +7712,7 @@ function fmod_system_mixer_suspend() {}
 
 /**
  * @func fmod_system_mixer_resume
- * @desc > **FMOD Function:** [System::mixerResume](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixerresume)
+ * @desc > **FMOD Function:** [System::mixerResume](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixerresume)
  *
  * <br />
  *
@@ -7720,7 +7720,7 @@ function fmod_system_mixer_suspend() {}
  * 
  * It is used on mobile platforms when entering the foreground after being suspended.
  * 
- * All internal state will resume, i.e. created [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) are still valid and playback will continue.
+ * All internal state will resume, i.e. created [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) are still valid and playback will continue.
  * 
  * [[Note: On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.]]
  * 
@@ -7731,7 +7731,7 @@ function fmod_system_mixer_resume() {}
 
 /**
  * @func fmod_system_set_output
- * @desc > **FMOD Function:** [System::setOutput](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setoutput)
+ * @desc > **FMOD Function:** [System::setOutput](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setoutput)
  *
  * <br />
  *
@@ -7753,7 +7753,7 @@ function fmod_system_set_output(output) {}
 
 /**
  * @func fmod_system_get_output
- * @desc > **FMOD Function:** [System::getOutput](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getoutput)
+ * @desc > **FMOD Function:** [System::getOutput](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getoutput)
  *
  * <br />
  *
@@ -7767,7 +7767,7 @@ function fmod_system_get_output() {}
 
 /**
  * @func fmod_system_get_num_drivers
- * @desc > **FMOD Function:** [System::getNumDrivers](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnumdrivers)
+ * @desc > **FMOD Function:** [System::getNumDrivers](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnumdrivers)
  *
  * <br />
  *
@@ -7784,7 +7784,7 @@ function fmod_system_get_num_drivers() {}
 
 /**
  * @func fmod_system_get_driver_info
- * @desc > **FMOD Function:** [System::getDriverInfo](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriverinfo)
+ * @desc > **FMOD Function:** [System::getDriverInfo](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriverinfo)
  *
  * <br />
  *
@@ -7799,7 +7799,7 @@ function fmod_system_get_driver_info(driver_index) {}
 
 /**
  * @func fmod_system_set_driver
- * @desc > **FMOD Function:** [System::setDriver](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdriver)
+ * @desc > **FMOD Function:** [System::setDriver](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdriver)
  *
  * <br />
  *
@@ -7817,7 +7817,7 @@ function fmod_system_set_driver(driver) {}
 
 /**
  * @func fmod_system_get_driver
- * @desc > **FMOD Function:** [System::getDriver](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriver)
+ * @desc > **FMOD Function:** [System::getDriver](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriver)
  *
  * <br />
  *
@@ -7833,14 +7833,14 @@ function fmod_system_get_driver() {}
 
 /**
  * @func fmod_system_set_software_channels
- * @desc > **FMOD Function:** [System::setSoftwareChannels](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwarechannels)
+ * @desc > **FMOD Function:** [System::setSoftwareChannels](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwarechannels)
  *
  * <br />
  *
- * This function sets the maximum number of software mixed [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) possible.
+ * This function sets the maximum number of software mixed [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) possible.
  * 
  * This function cannot be called after FMOD is already activated, it must be called before ${function.fmod_system_init}, or after ${function.fmod_system_close}.
- * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide.
+ * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide.
  * 
  * @param {real} software_channels The maximum number of real Channels to be allocated by FMOD. The default is 64.
  * @func_end
@@ -7850,13 +7850,13 @@ function fmod_system_set_software_channels(software_channels) {}
 
 /**
  * @func fmod_system_get_software_channels
- * @desc > **FMOD Function:** [System::getSoftwareChannels](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwarechannels)
+ * @desc > **FMOD Function:** [System::getSoftwareChannels](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwarechannels)
  *
  * <br />
  *
  * This function retrieves the maximum number of software mixed Channels possible.
  * 
- * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide.
+ * 'Software Channels' refers to real Channels that will play, with `software_channels` refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide.
  * 
  * @returns {real}
  * @func_end
@@ -7866,7 +7866,7 @@ function fmod_system_get_software_channels() {}
 
 /**
  * @func fmod_system_set_software_format
- * @desc > **FMOD Function:** [System::setSoftwareFormat](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwareformat)
+ * @desc > **FMOD Function:** [System::setSoftwareFormat](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwareformat)
  *
  * <br />
  *
@@ -7892,7 +7892,7 @@ function fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_spea
 
 /**
  * @func fmod_system_get_software_format
- * @desc > **FMOD Function:** [System::getSoftwareFormat](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwareformat)
+ * @desc > **FMOD Function:** [System::getSoftwareFormat](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwareformat)
  *
  * <br />
  *
@@ -7906,7 +7906,7 @@ function fmod_system_get_software_format() {}
 
 /**
  * @func fmod_system_set_dsp_buffer_size
- * @desc > **FMOD Function:** [System::setDSPBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdspbuffersize)
+ * @desc > **FMOD Function:** [System::setDSPBufferSize](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdspbuffersize)
  *
  * <br />
  *
@@ -7956,7 +7956,7 @@ function fmod_system_set_dsp_buffer_size(buff_size, num_buffers) {}
 
 /**
  * @func fmod_system_get_dsp_buffer_size
- * @desc > **FMOD Function:** [System::getDSPBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdspbuffersize)
+ * @desc > **FMOD Function:** [System::getDSPBufferSize](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdspbuffersize)
  *
  * <br />
  *
@@ -7976,7 +7976,7 @@ function fmod_system_get_dsp_buffer_size() {}
 
 /**
  * @func fmod_system_set_stream_buffer_size
- * @desc > **FMOD Function:** [System::setStreamBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setstreambuffersize)
+ * @desc > **FMOD Function:** [System::setStreamBufferSize](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setstreambuffersize)
  *
  * <br />
  *
@@ -8014,7 +8014,7 @@ function fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_t
 
 /**
  * @func fmod_system_get_stream_buffer_size
- * @desc > **FMOD Function:** [System::getStreamBufferSize](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getstreambuffersize)
+ * @desc > **FMOD Function:** [System::getStreamBufferSize](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getstreambuffersize)
  *
  * <br />
  *
@@ -8035,7 +8035,7 @@ function fmod_system_get_stream_buffer_size() {}
 
 /**
  * @func fmod_system_set_advanced_settings
- * @desc > **FMOD Function:** [System::setAdvancedSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setadvancedsettings)
+ * @desc > **FMOD Function:** [System::setAdvancedSettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setadvancedsettings)
  *
  * <br />
  *
@@ -8051,7 +8051,7 @@ function fmod_system_set_advanced_settings(settings) {}
 
 /**
  * @func fmod_system_get_advanced_settings
- * @desc > **FMOD Function:** [System::getAdvancedSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getadvancedsettings)
+ * @desc > **FMOD Function:** [System::getAdvancedSettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getadvancedsettings)
  *
  * <br />
  *
@@ -8065,7 +8065,7 @@ function fmod_system_get_advanced_settings() {}
 
 /**
  * @func fmod_system_set_speaker_position
- * @desc > **FMOD Function:** [System::setSpeakerPosition](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setspeakerposition)
+ * @desc > **FMOD Function:** [System::setSpeakerPosition](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setspeakerposition)
  *
  * <br />
  *
@@ -8112,7 +8112,7 @@ function fmod_system_set_speaker_position(speaker, x, y, active) {}
 
 /**
  * @func fmod_system_get_speaker_position
- * @desc > **FMOD Function:** [System::getSpeakerPosition](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakerposition)
+ * @desc > **FMOD Function:** [System::getSpeakerPosition](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakerposition)
  *
  * <br />
  *
@@ -8127,7 +8127,7 @@ function fmod_system_get_speaker_position(speaker) {}
 
 /**
  * @func fmod_system_set_3d_settings
- * @desc > **FMOD Function:** [System::set3DSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dsettings)
+ * @desc > **FMOD Function:** [System::set3DSettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dsettings)
  *
  * <br />
  *
@@ -8150,7 +8150,7 @@ function fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_sca
 
 /**
  * @func fmod_system_get_3d_settings
- * @desc > **FMOD Function:** [System::get3DSettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dsettings)
+ * @desc > **FMOD Function:** [System::get3DSettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dsettings)
  *
  * <br />
  *
@@ -8164,7 +8164,7 @@ function fmod_system_get_3d_settings() {}
 
 /**
  * @func fmod_system_set_3d_num_listeners
- * @desc > **FMOD Function:** [System::set3DNumListeners](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dnumlisteners)
+ * @desc > **FMOD Function:** [System::set3DNumListeners](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dnumlisteners)
  *
  * <br />
  *
@@ -8184,7 +8184,7 @@ function fmod_system_set_3d_num_listeners(num) {}
 
 /**
  * @func fmod_system_get_3d_num_listeners
- * @desc > **FMOD Function:** [System::get3DNumListeners](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dnumlisteners)
+ * @desc > **FMOD Function:** [System::get3DNumListeners](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dnumlisteners)
  *
  * <br />
  *
@@ -8200,7 +8200,7 @@ function fmod_system_get_3d_num_listeners() {}
 
 /**
  * @func fmod_system_set_3d_rolloff_callback
- * @desc > **FMOD Function:** [System::set3DRolloffCallback](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3drolloffcallback)
+ * @desc > **FMOD Function:** [System::set3DRolloffCallback](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3drolloffcallback)
  *
  * <br />
  *
@@ -8208,7 +8208,7 @@ function fmod_system_get_3d_num_listeners() {}
  * 
  * This function overrides `FMOD_MODE.AS_3D_INVERSEROLLOFF`, `FMOD_MODE.AS_3D_LINEARROLLOFF`, `FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF`, `FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF` and `FMOD_MODE.AS_3D_CUSTOMROLLOFF`.
  * 
- * See also: [Callback behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * See also: [Callback behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
  * 
  * @event social
  * @member {string} type The string value `"fmod_system_set_3d_rolloff_callback"`.
@@ -8223,7 +8223,7 @@ function fmod_system_set_3d_rolloff_callback() {}
 
 /**
  * @func fmod_system_set_network_proxy
- * @desc > **FMOD Function:** [System::setNetworkProxy](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworkproxy)
+ * @desc > **FMOD Function:** [System::setNetworkProxy](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworkproxy)
  *
  * <br />
  *
@@ -8233,7 +8233,7 @@ function fmod_system_set_3d_rolloff_callback() {}
  * 
  * Basic authentication is supported using `user:password@host:port` format e.g. `bob:sekrit123@www.fmod.com:8888`
  * 
- * @param {string} proxy The proxy server URL. (as a [UTF-8 string](https://www.fmod.com/docs/2.02/api/glossary.html#string-format))
+ * @param {string} proxy The proxy server URL. (as a [UTF-8 string](https://www.fmod.com/docs/2.03/api/glossary.html#string-format))
  * @func_end
  */
 function fmod_system_set_network_proxy(proxy) {}
@@ -8241,7 +8241,7 @@ function fmod_system_set_network_proxy(proxy) {}
 
 /**
  * @func fmod_system_get_network_proxy
- * @desc > **FMOD Function:** [System::getNetworkProxy](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworkproxy)
+ * @desc > **FMOD Function:** [System::getNetworkProxy](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworkproxy)
  *
  * <br />
  *
@@ -8255,7 +8255,7 @@ function fmod_system_get_network_proxy() {}
 
 /**
  * @func fmod_system_set_network_timeout
- * @desc > **FMOD Function:** [System::setNetworkTimeout](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworktimeout)
+ * @desc > **FMOD Function:** [System::setNetworkTimeout](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworktimeout)
  *
  * <br />
  *
@@ -8269,7 +8269,7 @@ function fmod_system_set_network_timeout(timeout) {}
 
 /**
  * @func fmod_system_get_network_timeout
- * @desc > **FMOD Function:** [System::getNetworkTimeout](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworktimeout)
+ * @desc > **FMOD Function:** [System::getNetworkTimeout](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworktimeout)
  *
  * <br />
  *
@@ -8283,7 +8283,7 @@ function fmod_system_get_network_timeout() {}
 
 /**
  * @func fmod_system_get_version
- * @desc > **FMOD Function:** [System::getVersion](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getversion)
+ * @desc > **FMOD Function:** [System::getVersion](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getversion)
  *
  * <br />
  *
@@ -8301,13 +8301,13 @@ function fmod_system_get_version() {}
 
 /**
  * @func fmod_system_get_channels_playing
- * @desc > **FMOD Function:** [System::getChannelsPlaying](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannelsplaying)
+ * @desc > **FMOD Function:** [System::getChannelsPlaying](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannelsplaying)
  *
  * <br />
  *
- * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
- * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) guide for more information.
+ * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * 
  * @returns {struct.FmodSystemChannelsPlaying}
  * @func_end
@@ -8317,7 +8317,7 @@ function fmod_system_get_channels_playing() {}
 
 /**
  * @func fmod_system_get_cpu_usage
- * @desc > **FMOD Function:** [System::getCPUUsage](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getcpuusage)
+ * @desc > **FMOD Function:** [System::getCPUUsage](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getcpuusage)
  *
  * <br />
  *
@@ -8333,7 +8333,7 @@ function fmod_system_get_cpu_usage() {}
 
 /**
  * @func fmod_system_get_file_usage
- * @desc > **FMOD Function:** [System::getFileUsage](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getfileusage)
+ * @desc > **FMOD Function:** [System::getFileUsage](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getfileusage)
  *
  * <br />
  *
@@ -8349,7 +8349,7 @@ function fmod_system_get_file_usage() {}
 
 /**
  * @func fmod_system_get_default_mix_matrix
- * @desc > **FMOD Function:** [System::getDefaultMixMatrix](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdefaultmixmatrix)
+ * @desc > **FMOD Function:** [System::getDefaultMixMatrix](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdefaultmixmatrix)
  *
  * <br />
  *
@@ -8372,7 +8372,7 @@ function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_
 
 /**
  * @func fmod_system_get_speaker_mode_channels
- * @desc > **FMOD Function:** [System::getSpeakerModeChannels](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakermodechannels)
+ * @desc > **FMOD Function:** [System::getSpeakerModeChannels](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakermodechannels)
  *
  * <br />
  *
@@ -8387,13 +8387,13 @@ function fmod_system_get_speaker_mode_channels(mode) {}
 
 /**
  * @func fmod_system_create_sound
- * @desc > **FMOD Function:** [System::createSound](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsound)
+ * @desc > **FMOD Function:** [System::createSound](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound)
  *
  * <br />
  *
  * This function loads a sound into memory, opens it for streaming or sets it up for callback-based sounds.
  * 
- * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
  * `FMOD_MODE.CREATESAMPLE` will try to load and decompress the whole sound into memory, use `FMOD_MODE.CREATESTREAM` to open it as a stream and have it play back in realtime from disk or another medium. `FMOD_MODE.CREATECOMPRESSEDSAMPLE` can also be used for certain formats to play the sound directly in its compressed format from the mixer.
  * 
@@ -8427,13 +8427,13 @@ function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
 
 /**
  * @func fmod_system_create_stream
- * @desc > **FMOD Function:** [System::createStream](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createstream)
+ * @desc > **FMOD Function:** [System::createStream](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createstream)
  *
  * <br />
  *
  * This function opens a sound for streaming.
  * 
- * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
  * This is a convenience function for ${function.fmod_system_create_sound} with the `FMOD_MODE.CREATESTREAM` flag added.
  * 
@@ -8450,15 +8450,15 @@ function fmod_system_create_stream(name_or_data, mode, buff_extra) {}
 
 /**
  * @func fmod_system_create_dsp
- * @desc > **FMOD Function:** [System::createDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdsp)
+ * @desc > **FMOD Function:** [System::createDSP](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdsp)
  *
  * <br />
  *
  * This function creates a DSP object.
  * 
- * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit.
+ * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) unit.
  * 
- * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the [DSP architecture guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) for more information.
  * 
  * DSPs must be attached to the DSP graph before they become active, either via ${function.fmod_channel_control_add_dsp} or ${function.fmod_dsp_add_input}.
  * 
@@ -8470,15 +8470,15 @@ function fmod_system_create_dsp() {}
 
 /**
  * @func fmod_system_create_dsp_by_type
- * @desc > **FMOD Function:** [System::createDSPByType](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdspbytype)
+ * @desc > **FMOD Function:** [System::createDSPByType](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdspbytype)
  *
  * <br />
  *
  * This function creates a DSP object given a built-in type index.
  * 
- * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit.
+ * It returns a reference to the newly created [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) unit.
  * 
- * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD [DSP architecture guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) for more information.
  * 
  * DSPs must be attached to the DSP graph before they become active, either via ${function.fmod_channel_control_add_dsp} or ${function.fmod_dsp_add_input}.
  * 
@@ -8495,17 +8495,17 @@ function fmod_system_create_dsp_by_type(type) {}
 
 /**
  * @func fmod_system_create_channel_group
- * @desc > **FMOD Function:** [System::createChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createchannelgroup)
+ * @desc > **FMOD Function:** [System::createChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createchannelgroup)
  *
  * <br />
  *
  * This function creates a ChannelGroup object.
  * 
- * The function returns a reference to the newly created [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
+ * The function returns a reference to the newly created [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html).
  * 
- * ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html). See `FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`.
+ * ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html). See `FMOD_CHANNELCONTROL_DSP_INDEX.TAIL`.
  * 
- * If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the [DSP architecture guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the [DSP architecture guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) for more information.
  * 
  * All ChannelGroups will initially output directly to the master ChannelGroup (See ${function.fmod_system_get_master_channel_group}). ChannelGroups can be re-parented with ${function.fmod_channel_group_add_group}.
  * 
@@ -8518,15 +8518,15 @@ function fmod_system_create_channel_group(name) {}
 
 /**
  * @func fmod_system_create_sound_group
- * @desc > **FMOD Function:** [System::createSoundGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsoundgroup)
+ * @desc > **FMOD Function:** [System::createSoundGroup](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsoundgroup)
  *
  * <br />
  *
  * This function creates a SoundGroup object.
  * 
- * It returns a reference to the newly created [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
+ * It returns a reference to the newly created [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).
  * 
- * A SoundGroup is a way to address multiple [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) at once with group level commands, such as:
+ * A SoundGroup is a way to address multiple [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) at once with group level commands, such as:
  * 
  * * The attributes of Sounds that are playing or about to be played, such as volume. (See ${function.fmod_sound_group_set_volume}).
  * * Control of playback, such as stopping Sounds. (See ${function.fmod_sound_group_stop}).
@@ -8543,19 +8543,19 @@ function fmod_system_create_sound_group(name) {}
 
 /**
  * @func fmod_system_create_reverb_3d
- * @desc > **FMOD Function:** [System::createReverb3D](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createreverb3d)
+ * @desc > **FMOD Function:** [System::createReverb3D](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createreverb3d)
  *
  * <br />
  *
  * This function creates a 'virtual reverb' object. This object reacts to 3D location and morphs the reverb environment based on how close it is to the reverb object's center.
  * 
- * The function returns a reference to the newly created virtual [reverb](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html) object.
+ * The function returns a reference to the newly created virtual [reverb](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html) object.
  * 
  * Multiple reverb objects can be created to achieve a multi-reverb environment. 1 reverb object is used for all 3D reverb objects (slot 0 by default).
  * 
  * The 3D reverb object is a sphere having 3D attributes (position, minimum distance, maximum distance) and reverb properties.
  * 
- * The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
+ * The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
  * 
  * When the listener is within the sphere of effect of one or more 3D reverbs, the listener's 3D reverb properties are a weighted combination of such 3D reverbs.
  * 
@@ -8567,7 +8567,7 @@ function fmod_system_create_sound_group(name) {}
  * 
  * Use ${function.fmod_channel_control_set_reverb_properties} to turn off reverb for 2D sounds (i.e. set wet = 0).
  * 
- * Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) running that just morphs between the different virtual reverbs.
+ * Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) running that just morphs between the different virtual reverbs.
  * 
  * Note about reverb DSP unit allocation. To remove the DSP unit and the associated CPU cost, first make sure all 3D reverb objects are released. Then call ${function.fmod_system_set_reverb_properties} with the 3D reverb's slot ID (default is 0) with a property point of 0, to signal that the reverb instance should be deleted.
  * 
@@ -8583,13 +8583,13 @@ function fmod_system_create_reverb_3d() {}
 
 /**
  * @func fmod_system_play_sound
- * @desc > **FMOD Function:** [System::playSound](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playsound)
+ * @desc > **FMOD Function:** [System::playSound](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playsound)
  *
  * <br />
  *
  * This function plays a Sound on a Channel.
  * 
- * It returns the newly playing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * It returns the newly playing [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
  * When a sound is played, it will use the sound's default frequency and priority. See ${function.fmod_sound_set_defaults}.
  * 
@@ -8597,9 +8597,9 @@ function fmod_system_create_reverb_3d() {}
  * 
  * Specifying a `channel_group_ref` as part of `fmod_system_play_sound` is more efficient than using ${function.fmod_channel_set_channel_group} after `fmod_system_play_sound`, and could avoid audible glitches if the sound is not in a paused state.
  * 
- * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels) for more information.
+ * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.03/api/white-papers-handle-system.html#core-api-channels) for more information.
  * 
- * Playing more [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) for more information.
+ * Playing more [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) for more information.
  * 
  * @param {real} sound_ref A reference to the sound to play.
  * @param {real} channel_group_ref A reference to the ChannelGroup to output to instead of the master.
@@ -8612,23 +8612,23 @@ function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
 
 /**
  * @func fmod_system_play_dsp
- * @desc > **FMOD Function:** [System::playDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playdsp)
+ * @desc > **FMOD Function:** [System::playDSP](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playdsp)
  *
  * <br />
  *
  * This function plays a DSP along with any of its inputs on a Channel.
  * 
- * It returns the newly playing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * It returns the newly playing [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
  * Specifying a channelgroup as part of `fmod_system_play_dsp` is more efficient than using ${function.fmod_channel_set_channel_group} after `fmod_system_play_dsp`, and could avoid audible glitches if the `fmod_system_play_dsp` is not in a paused state.
  * 
- * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels) for more information.
+ * Channels are reference counted to handle dead or stolen Channel handles. See the white paper on [Channel handles](https://www.fmod.com/docs/2.03/api/white-papers-handle-system.html#core-api-channels) for more information.
  * 
- * Playing more [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) or [DSPs](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html) for more information.
+ * Playing more [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) or [DSPs](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) than physical Channels allow is handled with virtual voices. See the white paper on [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) for more information.
  * 
- * @param {real} dsp_ref A reference to the [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) unit to play.
- * @param {real} channel_group_ref A reference to the [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) to output to instead of the master.
- * @param {boolean} pause Whether to start in the paused state. Start a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
+ * @param {real} dsp_ref A reference to the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) unit to play.
+ * @param {real} channel_group_ref A reference to the [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) to output to instead of the master.
+ * @param {boolean} pause Whether to start in the paused state. Start a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
  * @returns {real}
  * @func_end
  */
@@ -8637,7 +8637,7 @@ function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
 
 /**
  * @func fmod_system_get_channel
- * @desc > **FMOD Function:** [System::getChannel](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannel)
+ * @desc > **FMOD Function:** [System::getChannel](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannel)
  *
  * <br />
  *
@@ -8645,7 +8645,7 @@ function fmod_system_play_dsp(dsp_ref, channel_group_ref, pause) {}
  * 
  * This function is mainly for getting handles to existing (playing) Channels and setting their attributes. The only way to 'create' an instance of a Channel for playback is to use ${function.fmod_system_play_sound} or ${function.fmod_system_play_dsp}.
  * 
- * @param {real} index The channel's index in the FMOD [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) pool. Specify a Channel number from 0 to the `max_channels` value specified in ${function.fmod_system_init} minus 1.
+ * @param {real} index The channel's index in the FMOD [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) pool. Specify a Channel number from 0 to the `max_channels` value specified in ${function.fmod_system_init} minus 1.
  * @returns {real}
  * @func_end
  */
@@ -8654,13 +8654,13 @@ function fmod_system_get_channel(index) {}
 
 /**
  * @func fmod_system_get_master_channel_group
- * @desc > **FMOD Function:** [System::getMasterChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmasterchannelgroup)
+ * @desc > **FMOD Function:** [System::getMasterChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmasterchannelgroup)
  *
  * <br />
  *
  * This function retrieves the master ChannelGroup that all sounds ultimately route to.
  * 
- * This is the default [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) that [Channels](https://www.fmod.com/docs/2.02/api/core-api-channel.html) play on, unless a different ChannelGroup is specified with ${function.fmod_system_play_sound}, ${function.fmod_system_play_dsp} or ${function.fmod_channel_set_channel_group}.
+ * This is the default [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) that [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) play on, unless a different ChannelGroup is specified with ${function.fmod_system_play_sound}, ${function.fmod_system_play_dsp} or ${function.fmod_channel_set_channel_group}.
  * A master ChannelGroup can be used to do things like set the 'master volume' for all playing Channels. See ${function.fmod_channel_control_set_volume}.
  * 
  * @returns {real}
@@ -8671,13 +8671,13 @@ function fmod_system_get_master_channel_group() {}
 
 /**
  * @func fmod_system_get_master_sound_group
- * @desc > **FMOD Function:** [System::getMasterSoundGroup](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmastersoundgroup)
+ * @desc > **FMOD Function:** [System::getMasterSoundGroup](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmastersoundgroup)
  *
  * <br />
  *
  * This function retrieves the default SoundGroup, where all sounds are placed when they are created.
  * 
- * If a [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html) is released, the [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html) in it will be put back into this SoundGroup.
+ * If a [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html) is released, the [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) in it will be put back into this SoundGroup.
  * 
  * @returns {real}
  * @func_end
@@ -8687,7 +8687,7 @@ function fmod_system_get_master_sound_group() {}
 
 /**
  * @func fmod_system_set_3d_listener_attributes
- * @desc > **FMOD Function:** [System::set3DListenerAttributes](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dlistenerattributes)
+ * @desc > **FMOD Function:** [System::set3DListenerAttributes](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dlistenerattributes)
  *
  * <br />
  *
@@ -8695,7 +8695,7 @@ function fmod_system_get_master_sound_group() {}
  * 
  * The `forward` and `up` vectors must be perpendicular and be of unit length (magnitude of each vector should be 1).
  * 
- * Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.02/api/glossary.html#handedness).
+ * Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).
  * 
  * For velocity, remember to use units per **second**, and not units per frame. This is a common mistake and will make the doppler effect sound wrong if velocity is based on movement per frame rather than a fixed time period.
  * If velocity per frame is calculated, it can be converted to velocity per second by dividing it by the time taken between frames as a fraction of a second.
@@ -8710,8 +8710,8 @@ function fmod_system_get_master_sound_group() {}
  * [[Note: Users of the Studio API should call ${function.fmod_studio_system_set_listener_attributes} instead of this function.]]
  * 
  * @param {real} listener_index The index of the listener to set 3D attributes on. Listeners are indexed from 0, to ${constant.FMOD_MAX_LISTENERS} - 1, in a multi-listener environment.
- * @param {struct.FmodVector} position The position in 3D world space used for panning and attenuation, in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units).
- * @param {struct.FmodVector} velocity The velocity in 3D space used for doppler, in [Distance units](https://www.fmod.com/docs/2.02/api/glossary.html#distance-units) per second.
+ * @param {struct.FmodVector} position The position in 3D world space used for panning and attenuation, in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
+ * @param {struct.FmodVector} velocity The velocity in 3D space used for doppler, in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
  * @param {struct.FmodVector} forward The forwards orientation.
  * @param {struct.FmodVector} up The upwards orientation.
  * @func_end
@@ -8721,7 +8721,7 @@ function fmod_system_set_3d_listener_attributes(listener_index, position, veloci
 
 /**
  * @func fmod_system_get_3d_listener_attributes
- * @desc > **FMOD Function:** [System::get3DListenerAttributes](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dlistenerattributes)
+ * @desc > **FMOD Function:** [System::get3DListenerAttributes](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dlistenerattributes)
  *
  * <br />
  *
@@ -8738,7 +8738,7 @@ function fmod_system_get_3d_listener_attributes(listener_index) {}
 
 /**
  * @func fmod_system_set_reverb_properties
- * @desc > **FMOD Function:** [System::setReverbProperties](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setreverbproperties)
+ * @desc > **FMOD Function:** [System::setReverbProperties](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setreverbproperties)
  *
  * <br />
  *
@@ -8757,7 +8757,7 @@ function fmod_system_set_reverb_properties(instance_index, properties) {}
 
 /**
  * @func fmod_system_get_reverb_properties
- * @desc > **FMOD Function:** [System::getReverbProperties](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getreverbproperties)
+ * @desc > **FMOD Function:** [System::getReverbProperties](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getreverbproperties)
  *
  * <br />
  *
@@ -8772,13 +8772,13 @@ function fmod_system_get_reverb_properties(instance_index) {}
 
 /**
  * @func fmod_system_attach_channel_group_to_port
- * @desc > **FMOD Function:** [System::attachChannelGroupToPort](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_attachchannelgrouptoport)
+ * @desc > **FMOD Function:** [System::attachChannelGroupToPort](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_attachchannelgrouptoport)
  *
  * <br />
  *
  * This function connects the output of the specified ChannelGroup to an audio port on the output driver.
  * 
- * Ports are additional outputs supported by some ${constant.FMOD_OUTPUTTYPE} plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the [platform details](https://www.fmod.com/docs/2.02/api/platforms.html) chapter.
+ * Ports are additional outputs supported by some ${constant.FMOD_OUTPUTTYPE} plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the [platform details](https://www.fmod.com/docs/2.03/api/platforms.html) chapter.
  * 
  * @param {constant.FMOD_PORT_TYPE} port_type The port type (output mode specific).
  * @param {constant.FMOD_PORT_INDEX} port_index The index to specify which instance of the specified `port_type` to use (output mode specific).
@@ -8791,13 +8791,13 @@ function fmod_system_attach_channel_group_to_port(port_type, port_index, channel
 
 /**
  * @func fmod_system_detach_channel_group_from_port
- * @desc > **FMOD Function:** [System::detachChannelGroupFromPort](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_detachchannelgroupfromport)
+ * @desc > **FMOD Function:** [System::detachChannelGroupFromPort](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_detachchannelgroupfromport)
  *
  * <br />
  *
  * This function disconnects the output of the specified ChannelGroup from an audio port on the output driver.
  * 
- * Removing a [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) from a port will reroute the audio back to the main mix.
+ * Removing a [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) from a port will reroute the audio back to the main mix.
  * 
  * @param {real} channel_group_ref The ChannelGroup to detach the port from.
  * @func_end
@@ -8807,7 +8807,7 @@ function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
 
 /**
  * @func fmod_system_get_record_num_drivers
- * @desc > **FMOD Function:** [System::getRecordNumDrivers](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordnumdrivers)
+ * @desc > **FMOD Function:** [System::getRecordNumDrivers](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordnumdrivers)
  *
  * <br />
  *
@@ -8821,7 +8821,7 @@ function fmod_system_get_record_num_drivers() {}
 
 /**
  * @func fmod_system_get_record_driver_info
- * @desc > **FMOD Function:** [System::getRecordDriverInfo](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecorddriverinfo)
+ * @desc > **FMOD Function:** [System::getRecordDriverInfo](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecorddriverinfo)
  *
  * <br />
  *
@@ -8836,7 +8836,7 @@ function fmod_system_get_record_driver_info(recording_device_index) {}
 
 /**
  * @func fmod_system_get_record_position
- * @desc > **FMOD Function:** [System::getRecordPosition](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordposition)
+ * @desc > **FMOD Function:** [System::getRecordPosition](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordposition)
  *
  * <br />
  *
@@ -8857,7 +8857,7 @@ function fmod_system_get_record_position(device_index) {}
 
 /**
  * @func fmod_system_record_start
- * @desc > **FMOD Function:** [System::recordStart](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstart)
+ * @desc > **FMOD Function:** [System::recordStart](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstart)
  *
  * <br />
  *
@@ -8881,7 +8881,7 @@ function fmod_system_record_start(device_index, sound_ref, loop) {}
 
 /**
  * @func fmod_system_record_stop
- * @desc > **FMOD Function:** [System::recordStop](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstop)
+ * @desc > **FMOD Function:** [System::recordStop](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstop)
  *
  * <br />
  *
@@ -8897,7 +8897,7 @@ function fmod_system_record_stop(device_index) {}
 
 /**
  * @func fmod_system_is_recording
- * @desc > **FMOD Function:** [System::isRecording](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_isrecording)
+ * @desc > **FMOD Function:** [System::isRecording](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_isrecording)
  *
  * <br />
  *
@@ -8918,13 +8918,13 @@ function fmod_system_is_recording(device_index) {}
 
 /**
  * @func fmod_system_create_geometry
- * @desc > **FMOD Function:** [System::createGeometry](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_creategeometry)
+ * @desc > **FMOD Function:** [System::createGeometry](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_creategeometry)
  *
  * <br />
  *
  * This is a geometry creation function. This function will create a base geometry object which can then have polygons added to it.
  * 
- * It returns a reference to the newly created [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) object.
+ * It returns a reference to the newly created [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) object.
  * 
  * Polygons can be added to a geometry object using ${function.fmod_geometry_add_polygon}. For best efficiency, avoid overlapping of polygons and long thin polygons.
  * 
@@ -8943,7 +8943,7 @@ function fmod_system_create_geometry(max_polygons, max_vertices) {}
 
 /**
  * @func fmod_system_set_geometry_settings
- * @desc > **FMOD Function:** [System::setGeometrySettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setgeometrysettings)
+ * @desc > **FMOD Function:** [System::setGeometrySettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setgeometrysettings)
  *
  * <br />
  *
@@ -8964,7 +8964,7 @@ function fmod_system_set_geometry_settings(max_world_size) {}
 
 /**
  * @func fmod_system_get_geometry_settings
- * @desc > **FMOD Function:** [System::getGeometrySettings](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometrysettings)
+ * @desc > **FMOD Function:** [System::getGeometrySettings](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometrysettings)
  *
  * <br />
  *
@@ -8983,13 +8983,13 @@ function fmod_system_get_geometry_settings() {}
 
 /**
  * @func fmod_system_load_geometry
- * @desc > **FMOD Function:** [System::loadGeometry](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_loadgeometry)
+ * @desc > **FMOD Function:** [System::loadGeometry](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_loadgeometry)
  *
  * <br />
  *
  * This function creates a geometry object from a block of memory which contains pre-saved geometry data.
  * 
- * It creates a reference to the newly created [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) object.
+ * It creates a reference to the newly created [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) object.
  * 
  * This function avoids the need to manually create and add geometry for faster start time.
  * 
@@ -9003,7 +9003,7 @@ function fmod_system_load_geometry(buff, length) {}
 
 /**
  * @func fmod_system_get_geometry_occlusion
- * @desc > **FMOD Function:** [System::getGeometryOcclusion](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometryocclusion)
+ * @desc > **FMOD Function:** [System::getGeometryOcclusion](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometryocclusion)
  *
  * <br />
  *
@@ -9019,7 +9019,7 @@ function fmod_system_get_geometry_occlusion() {}
 
 /**
  * @func fmod_system_lock_dsp
- * @desc > **FMOD Function:** [System::lockDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_lockdsp)
+ * @desc > **FMOD Function:** [System::lockDSP](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_lockdsp)
  *
  * <br />
  *
@@ -9042,7 +9042,7 @@ function fmod_system_lock_dsp() {}
 
 /**
  * @func fmod_system_unlock_dsp
- * @desc > **FMOD Function:** [System::unlockDSP](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_unlockdsp)
+ * @desc > **FMOD Function:** [System::unlockDSP](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_unlockdsp)
  *
  * <br />
  *
@@ -9057,7 +9057,7 @@ function fmod_system_unlock_dsp() {}
 
 /**
  * @func fmod_system_set_callback
- * @desc > **FMOD Function:** [System::setCallback](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setcallback)
+ * @desc > **FMOD Function:** [System::setCallback](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setcallback)
  * 
  * <br />
  * 
@@ -9065,7 +9065,7 @@ function fmod_system_unlock_dsp() {}
  * 
  * [[Note: FMOD System callbacks will be triggered as a ${event.social} but the ${var.async_load} DS map won't contain any specific information.]]
  * 
- * See also: [Callback Behavior](https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior)
+ * See also: [Callback Behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
  * 
  * @param {constant.FMOD_SYSTEM_CALLBACK} type A bitfield specifying which callback types are required, to filter out unwanted callbacks. Use `FMOD_SYSTEM_CALLBACK.ALL` to receive all supported callback kinds.
  * 
@@ -9081,13 +9081,13 @@ function fmod_system_set_callback(type) {}
 
 /**
  * @func fmod_system_set_user_data
- * @desc > **FMOD Function:** [System::setUserData](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setuserdata)
+ * @desc > **FMOD Function:** [System::setUserData](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setuserdata)
  *
  * <br />
  *
  * This function sets a user value associated with the currently selected System object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
  * 
  * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system for which you want to set the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
  * 
@@ -9099,13 +9099,13 @@ function fmod_system_set_user_data(data) {}
 
 /**
  * @func fmod_system_get_user_data
- * @desc > **FMOD Function:** [System::getUserData](https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getuserdata)
+ * @desc > **FMOD Function:** [System::getUserData](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getuserdata)
  *
  * <br />
  *
  * This function retrieves the user value associated with the currently selected System object.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.02/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
  * 
  * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system of which you want to get the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
  * 
@@ -9161,7 +9161,7 @@ function fmod_last_result() {}
  * @section_end
  * 
  * @section FMOD Core Modules
- * @desc This section lists the extension modules that belong under the FMOD [Core API](https://www.fmod.com/docs/2.02/api/core-api.html), along with a number of miscellaneous functions that don't fit elsewhere.
+ * @desc This section lists the extension modules that belong under the FMOD [Core API](https://www.fmod.com/docs/2.03/api/core-api.html), along with a number of miscellaneous functions that don't fit elsewhere.
  * @ref module.system
  * @ref module.channel
  * @ref module.channel_control
@@ -9176,7 +9176,7 @@ function fmod_last_result() {}
  * @section_end
  * 
  * @section FMOD Studio Modules
- * @desc This section lists the extension modules that belong under the FMOD [Studio API](https://www.fmod.com/docs/2.02/api/studio-api.html).
+ * @desc This section lists the extension modules that belong under the FMOD [Studio API](https://www.fmod.com/docs/2.03/api/studio-api.html).
  * @ref module.bank
  * @ref module.bus
  * @ref module.command_replay
@@ -9192,11 +9192,11 @@ function fmod_last_result() {}
 /**
  * @module channel
  * @title Channel
- * @desc > **FMOD Object:** [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html)
+ * @desc > **FMOD Object:** [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html)
  * 
  * <br />
  * 
- * This module holds functionality related to Channels, which are a source of audio signal that connects to the [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) mixing hierarchy.
+ * This module holds functionality related to Channels, which are a source of audio signal that connects to the [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) mixing hierarchy.
  * 
  * Create a channel with ${function.fmod_system_play_sound} or ${function.fmod_system_play_dsp}.
  * 
@@ -9225,7 +9225,7 @@ function fmod_last_result() {}
 /**
  * @module channel_control
  * @title Channel Control
- * @desc > **FMOD Object:** [ChannelControl](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html)
+ * @desc > **FMOD Object:** [ChannelControl](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html)
  * 
  * <br />
  * 
@@ -9301,7 +9301,7 @@ function fmod_last_result() {}
 /**
  * @module channel_group
  * @title Channel Group
- * @desc > **FMOD Object:** [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html)
+ * @desc > **FMOD Object:** [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html)
  * 
  * <br />
  * 
@@ -9327,13 +9327,13 @@ function fmod_last_result() {}
 /**
  * @module DSP
  * @title DSP
- * @desc > **FMOD Object:** [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html)
+ * @desc > **FMOD Object:** [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html)
  * 
  * <br />
  * 
  * This module contains functionality related to DSPs (Digital Signal Processors), which are nodes within a graph that transforms input audio signals to an output stream.
  * 
- * See the [DSP Architecture Guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * See the [DSP Architecture Guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) for more information.
  * 
  * @section_func
  * @ref fmod_dsp_add_input
@@ -9384,13 +9384,13 @@ function fmod_last_result() {}
 /**
  * @module dsp_connection
  * @title DSP Connection
- * @desc > **FMOD Object:** [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html)
+ * @desc > **FMOD Object:** [DSPConnection](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html)
  * 
  * <br />
  * 
  * This module holds the functionality related to Digital Signal Processor (DSP) Connections.
  * 
- * See the [DSP Architecture Guide](https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html) for more information.
+ * See the [DSP Architecture Guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html) for more information.
  * 
  * @section_func
  * @ref fmod_dsp_connection_set_mix
@@ -9410,7 +9410,7 @@ function fmod_last_result() {}
 /**
  * @module geometry
  * @title Geometry
- * @desc > **FMOD Object:** [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html)
+ * @desc > **FMOD Object:** [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html)
  * 
  * <br />
  * 
@@ -9445,11 +9445,11 @@ function fmod_last_result() {}
 /**
  * @module reverb_3d
  * @title Reverb3D
- * @desc > **FMOD Object:** [Reverb3D](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html)
+ * @desc > **FMOD Object:** [Reverb3D](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html)
  * 
  * <br />
  * 
- * This module holds functionality related to virtual 3D reverb spheres. See the FMOD [3D Reverb](https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html) guide for more information.
+ * This module holds functionality related to virtual 3D reverb spheres. See the FMOD [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @section_func
  * @ref fmod_reverb_3d_set_3d_attributes
@@ -9469,11 +9469,11 @@ function fmod_last_result() {}
 /**
  * @module sound
  * @title Sound
- * @desc > **FMOD Object:** [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)
+ * @desc > **FMOD Object:** [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html)
  * 
  * <br />
  * 
- * This module holds the functionality related to FMOD sounds, which store [sample data](https://www.fmod.com/docs/2.02/api/glossary.html#sample-data) that can be played on a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * This module holds the functionality related to FMOD sounds, which store [sample data](https://www.fmod.com/docs/2.03/api/glossary.html#sample-data) that can be played on a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
  * You can create sounds with ${function.fmod_system_create_sound} or ${function.fmod_system_create_stream}.
  * 
@@ -9528,7 +9528,7 @@ function fmod_last_result() {}
 /**
  * @module sound_group
  * @title Sound Group
- * @desc > **FMOD Object:** [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html)
+ * @desc > **FMOD Object:** [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html)
  * 
  * <br />
  * 
@@ -9560,7 +9560,7 @@ function fmod_last_result() {}
 /**
  * @module bank
  * @title Bank
- * @desc > **FMOD Object:** [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html)
+ * @desc > **FMOD Object:** [Studio::Bank](https://www.fmod.com/docs/2.03/api/studio-api-bank.html)
  * 
  * <br />
  * 
@@ -9593,7 +9593,7 @@ function fmod_last_result() {}
 /**
  * @module bus
  * @title Bus
- * @desc > **FMOD Object:** [Studio::Bus](https://www.fmod.com/docs/2.02/api/studio-api-bus.html)
+ * @desc > **FMOD Object:** [Studio::Bus](https://www.fmod.com/docs/2.03/api/studio-api-bus.html)
  * 
  * <br />
  * 
@@ -9625,7 +9625,7 @@ function fmod_last_result() {}
 /**
  * @module command_replay
  * @title Command Replay
- * @desc > **FMOD Object:** [Studio::CommandReplay](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html)
+ * @desc > **FMOD Object:** [Studio::CommandReplay](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html)
  * 
  * <br />
  * 
@@ -9662,7 +9662,7 @@ function fmod_last_result() {}
 /**
  * @module event_description
  * @title Event Description
- * @desc > **FMOD Object:** [Studio::EventDescription](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html)
+ * @desc > **FMOD Object:** [Studio::EventDescription](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html)
  * 
  * <br />
  * 
@@ -9711,7 +9711,7 @@ function fmod_last_result() {}
 /**
  * @module event_instance
  * @title Event Instance
- * @desc > **FMOD Object:** [Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html)
+ * @desc > **FMOD Object:** [Studio::EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html)
  * 
  * <br />
  * 
@@ -9763,7 +9763,7 @@ function fmod_last_result() {}
 /**
  * @module studio_system
  * @title FMOD Studio System
- * @desc > **FMOD Object:** [Studio::System](https://www.fmod.com/docs/2.02/api/studio-api-system.html)
+ * @desc > **FMOD Object:** [Studio::System](https://www.fmod.com/docs/2.03/api/studio-api-system.html)
  * 
  * <br />
  * 
@@ -9837,7 +9837,7 @@ function fmod_last_result() {}
 /**
  * @module studio_vca
  * @title VCA
- * @desc > **FMOD Object:** [Studio::VCA](https://www.fmod.com/docs/2.02/api/studio-api-vca.html)
+ * @desc > **FMOD Object:** [Studio::VCA](https://www.fmod.com/docs/2.03/api/studio-api-vca.html)
  * 
  * <br />
  * 
@@ -9857,7 +9857,7 @@ function fmod_last_result() {}
 /**
  * @module system
  * @title System
- * @desc > **FMOD Object:** [System](https://www.fmod.com/docs/2.02/api/core-api-system.html)
+ * @desc > **FMOD Object:** [System](https://www.fmod.com/docs/2.03/api/core-api-system.html)
  * 
  * <br />
  * 

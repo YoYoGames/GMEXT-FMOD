@@ -161,10 +161,10 @@
                 <p><a id="top"></a></p>
 <h1 id="channel"><strong>Channel</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a></p>
 </blockquote>
 <p><br /></p>
-<p>This module holds functionality related to Channels, which are a source of audio signal that connects to the <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> mixing hierarchy.</p>
+<p>This module holds functionality related to Channels, which are a source of audio signal that connects to the <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> mixing hierarchy.</p>
 <p>Create a channel with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a> or <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>.</p>
 <h2 id="functions">Functions</h2>
 <p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
@@ -192,13 +192,13 @@
 
 <h1 id="fmod_channel_set_frequency">fmod_channel_set_frequency</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setfrequency">Channel::setFrequency</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setfrequency">Channel::setFrequency</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the frequency or playback rate.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The default frequency is determined by the audio format of the <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a> or <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+<p>The default frequency is determined by the audio format of the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> or <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -244,7 +244,7 @@
 
 <h1 id="fmod_channel_get_frequency">fmod_channel_get_frequency</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getfrequency">Channel::getFrequency</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getfrequency">Channel::getFrequency</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the playback frequency or playback rate.</p>
@@ -283,7 +283,7 @@
 
 <h1 id="fmod_channel_set_priority">fmod_channel_set_priority</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setpriority">Channel::setPriority</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setpriority">Channel::setPriority</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the priority used for virtual voice ordering.</p>
@@ -291,7 +291,7 @@
 <p class="admonition-title">Note</p>
 <p>Priority is used as a coarse grain control for the virtual voice system, lower priority channels will always be stolen before higher ones. For channels of equal priority, those with the quietest <a href="channel_control.html#fmod_channel_control_get_audibility">fmod_channel_control_get_audibility</a> value will be stolen first.</p>
 </div>
-<p>See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>See the FMOD <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -332,7 +332,7 @@
 
 <h1 id="fmod_channel_get_priority">fmod_channel_get_priority</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getpriority">Channel::getPriority</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getpriority">Channel::getPriority</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the priority used for virtual voice ordering.</p>
@@ -376,7 +376,7 @@
 
 <h1 id="fmod_channel_set_position">fmod_channel_set_position</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setposition">Channel::setPosition</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setposition">Channel::setPosition</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the current playback position.</p>
@@ -437,7 +437,7 @@
 
 <h1 id="fmod_channel_get_position">fmod_channel_get_position</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getposition">Channel::getPosition</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getposition">Channel::getPosition</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current playback position.</p>
@@ -489,7 +489,7 @@
 
 <h1 id="fmod_channel_set_channel_group">fmod_channel_set_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the channelgroup this object outputs to.</p>
@@ -541,7 +541,7 @@
 
 <h1 id="fmod_channel_get_channel_group">fmod_channel_get_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getchannelgroup">Channel::getChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getchannelgroup">Channel::getChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the ChannelGroup this object outputs to.</p>
@@ -580,7 +580,7 @@
 
 <h1 id="fmod_channel_set_loop_count">fmod_channel_set_loop_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setloopcount">Channel::setLoopCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setloopcount">Channel::setLoopCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the number of times to loop before stopping.</p>
@@ -628,7 +628,7 @@
 
 <h1 id="fmod_channel_get_loop_count">fmod_channel_get_loop_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getloopcount">Channel::getLoopCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getloopcount">Channel::getLoopCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of times to loop before stopping.</p>
@@ -672,7 +672,7 @@
 
 <h1 id="fmod_channel_set_loop_points">fmod_channel_set_loop_points</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setlooppoints">Channel::setLoopPoints</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setlooppoints">Channel::setLoopPoints</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the loop start and end points.</p>
@@ -683,7 +683,7 @@
 If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used, the value is internally converted from <code>FMOD_TIMEUNIT.PCM</code>, so the retrieved value may not exactly match the set value.</p>
 </div>
 <p>The Channel's mode must be set to <code>FMOD_MODE.LOOP_NORMAL</code> or <code>FMOD_MODE.LOOP_BIDI</code> for loop points to affect playback.</p>
-<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#streaming-issues">Streaming Issues</a></p>
+<p>See also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues">Streaming Issues</a></p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -739,7 +739,7 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
 <h1 id="fmod_channel_get_loop_points">fmod_channel_get_loop_points</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getlooppoints">Channel::getLoopPoints</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getlooppoints">Channel::getLoopPoints</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the loop start and end points.</p>
@@ -793,12 +793,12 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
 <h1 id="fmod_channel_is_virtual">fmod_channel_is_virtual</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_isvirtual">Channel::isVirtual</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_isvirtual">Channel::isVirtual</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves whether the channel is being emulated by the virtual voice system.</p>
 <p>If <code>true</code> is returned, the channel is silent / emulated. If <code>false</code> is returned, the channel is audible / real.</p>
-<p>See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>See the FMOD <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -834,7 +834,7 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
 <h1 id="fmod_channel_get_current_sound">fmod_channel_get_current_sound</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getcurrentsound">Channel::getCurrentSound</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getcurrentsound">Channel::getCurrentSound</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the currently playing sound.</p>
@@ -877,7 +877,7 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
 <h1 id="fmod_channel_get_index">fmod_channel_get_index</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getindex">Channel::getIndex</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getindex">Channel::getIndex</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the index of this object in the system channel pool.</p>
@@ -920,7 +920,7 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
 <h1 id="fmod_channel_get_system_object">fmod_channel_get_system_object</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the system that created this object.</p>
@@ -966,7 +966,7 @@ If <code>FMOD_TIMEUNIT.MS</code> or <code>FMOD_TIMEUNIT.PCMBYTES</code> are used
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

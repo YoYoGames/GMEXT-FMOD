@@ -161,10 +161,10 @@
                 <p><a id="top"></a></p>
 <h1 id="reverb3d"><strong>Reverb3D</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html">Reverb3D</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html">Reverb3D</a></p>
 </blockquote>
 <p><br /></p>
-<p>This module holds functionality related to virtual 3D reverb spheres. See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>This module holds functionality related to virtual 3D reverb spheres. See the FMOD <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <h2 id="functions">Functions</h2>
 <p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
 <ul>
@@ -184,12 +184,12 @@
 
 <h1 id="fmod_reverb_3d_set_3d_attributes">fmod_reverb_3d_set_3d_attributes</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_set3dattributes">Reverb3D::set3DAttributes</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_set3dattributes">Reverb3D::set3DAttributes</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the 3D attributes of a reverb sphere.</p>
 <p>When the position of the listener is less than <code>max_distance</code> away from the position of one or more reverb objects, the listener's 3D reverb properties are a weighted combination of those reverb objects. Otherwise, the reverb DSP will use the global reverb settings.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -212,17 +212,17 @@
 <tr>
 <td>position</td>
 <td><a href="structs.html#fmodvector">FmodVector</a></td>
-<td>The position in 3D space representing the center of the reverb. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+<td>The position in 3D space representing the center of the reverb. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
 </tr>
 <tr>
 <td>min_distance</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The distance from the centerpoint within which the reverb will have full effect. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+<td>The distance from the centerpoint within which the reverb will have full effect. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
 </tr>
 <tr>
 <td>max_distance</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The distance from the centerpoint beyond which the reverb will have no effect. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+<td>The distance from the centerpoint beyond which the reverb will have no effect. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -240,11 +240,11 @@
 
 <h1 id="fmod_reverb_3d_get_3d_attributes">fmod_reverb_3d_get_3d_attributes</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_get3dattributes">Reverb3D::get3DAttributes</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_get3dattributes">Reverb3D::get3DAttributes</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the 3D attributes of a reverb sphere.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -280,7 +280,7 @@
 
 <h1 id="fmod_reverb_3d_set_properties">fmod_reverb_3d_set_properties</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setproperties">Reverb3D::setProperties</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setproperties">Reverb3D::setProperties</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the environmental properties of a reverb sphere.</p>
@@ -383,11 +383,11 @@
 
 <h1 id="fmod_reverb_3d_get_properties">fmod_reverb_3d_get_properties</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getproperties">Reverb3D::getProperties</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getproperties">Reverb3D::getProperties</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the environmental properties of a reverb sphere.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -423,11 +423,11 @@
 
 <h1 id="fmod_reverb_3d_set_active">fmod_reverb_3d_set_active</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setactive">Reverb3D::setActive</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setactive">Reverb3D::setActive</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the active state.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -468,11 +468,11 @@
 
 <h1 id="fmod_reverb_3d_get_active">fmod_reverb_3d_get_active</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getactive">Reverb3D::getActive</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getactive">Reverb3D::getActive</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the active state of a reverb sphere.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -508,7 +508,7 @@
 
 <h1 id="fmod_reverb_3d_release">fmod_reverb_3d_release</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_release">Reverb3D::release</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_release">Reverb3D::release</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function releases the memory for a reverb object and makes it inactive.</p>
@@ -551,13 +551,13 @@
 
 <h1 id="fmod_reverb_3d_set_user_data">fmod_reverb_3d_set_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_setuserdata">Reverb3D::setUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_setuserdata">Reverb3D::setUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets a single floating-point user value associated with this object.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -599,13 +599,13 @@
 
 <h1 id="fmod_reverb_3d_get_user_data">fmod_reverb_3d_get_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html#reverb3d_getuserdata">Reverb3D::getUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html#reverb3d_getuserdata">Reverb3D::getUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a floating-point user value associated with this object, as set with an earlier call to <a href="reverb_3d.html#fmod_reverb_3d_set_user_data">fmod_reverb_3d_set_user_data</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -649,7 +649,7 @@
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

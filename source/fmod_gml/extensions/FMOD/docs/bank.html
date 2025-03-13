@@ -161,7 +161,7 @@
                 <p><a id="top"></a></p>
 <h1 id="bank"><strong>Bank</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html">Studio::Bank</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html">Studio::Bank</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds the functionality for FMOD Studio banks, which contain the metadata and audio sample data required for runtime mixing and playback. Audio sample data may be packed into the same bank as the events which reference it, or it may be packed into separate banks.</p>
@@ -193,7 +193,7 @@
 
 <h1 id="fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getloadingstate">Studio::Bank::getLoadingState</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getloadingstate">Studio::Bank::getLoadingState</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function is used to check the loading state of a bank which has been loaded asynchronously using the <code>FMOD_STUDIO_LOAD_BANK.NONBLOCKING</code> flag, or is pending unload following a call to <a href="bank.html#fmod_studio_bank_unload">fmod_studio_bank_unload</a>.</p>
@@ -233,7 +233,7 @@
 
 <h1 id="fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_loadsampledata">Studio::Bank::loadSampleData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_loadsampledata">Studio::Bank::loadSampleData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function loads non-streaming sample data for all events in the bank.</p>
@@ -274,11 +274,11 @@
 
 <h1 id="fmod_studio_bank_unload_sample_data">fmod_studio_bank_unload_sample_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unloadsampledata">Studio::Bank::unloadSampleData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unloadsampledata">Studio::Bank::unloadSampleData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function unloads non-streaming sample data for all events in the bank.</p>
-<p>Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">see Sample Data Loading</a>.</p>
+<p>Sample data loading is reference counted and the sample data will remain loaded until unload requests corresponding to all load requests are made, or until the bank is unloaded. For more details <a href="https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading">see Sample Data Loading</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -314,7 +314,7 @@
 
 <h1 id="fmod_studio_bank_get_sample_loading_state">fmod_studio_bank_get_sample_loading_state</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getsampleloadingstate">Studio::Bank::getSampleLoadingState</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getsampleloadingstate">Studio::Bank::getSampleLoadingState</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the loading state of the samples in the bank.</p>
@@ -355,7 +355,7 @@
 
 <h1 id="fmod_studio_bank_unload">fmod_studio_bank_unload</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_unload">Studio::Bank::unload</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unload">Studio::Bank::unload</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function unloads the bank.</p>
@@ -396,7 +396,7 @@
 
 <h1 id="fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuscount">Studio::Bank::getBusCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuscount">Studio::Bank::getBusCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of buses in the bank.</p>
@@ -436,7 +436,7 @@
 
 <h1 id="fmod_studio_bank_get_bus_list">fmod_studio_bank_get_bus_list</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getbuslist">Studio::Bank::getBusList</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuslist">Studio::Bank::getBusList</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an array containing the buses in the bank.</p>
@@ -476,7 +476,7 @@
 
 <h1 id="fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventcount">Studio::Bank::getEventCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventcount">Studio::Bank::getEventCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of event descriptions in the bank.</p>
@@ -517,7 +517,7 @@
 
 <h1 id="fmod_studio_bank_get_event_description_list">fmod_studio_bank_get_event_description_list</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_geteventlist">Studio::Bank::getEventList</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventlist">Studio::Bank::getEventList</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an array containing the event descriptions in the bank.</p>
@@ -558,7 +558,7 @@
 
 <h1 id="fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringcount">Studio::Bank::getStringCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringcount">Studio::Bank::getStringCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of string table entries in the bank.</p>
@@ -598,7 +598,7 @@
 
 <h1 id="fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getstringinfo">Studio::Bank::getStringInfo</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringinfo">Studio::Bank::getStringInfo</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a string table entry.</p>
@@ -643,7 +643,7 @@
 
 <h1 id="fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcacount">Studio::Bank::getVCACount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcacount">Studio::Bank::getVCACount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of VCAs in the bank.</p>
@@ -683,7 +683,7 @@
 
 <h1 id="fmod_studio_bank_get_vca_list">fmod_studio_bank_get_vca_list</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getvcalist">Studio::Bank::getVCAList</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcalist">Studio::Bank::getVCAList</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an array containing the VCAs in the bank.</p>
@@ -723,7 +723,7 @@
 
 <h1 id="fmod_studio_bank_get_id">fmod_studio_bank_get_id</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getid">Studio::Bank::getID</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getid">Studio::Bank::getID</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the GUID of the given bank.</p>
@@ -762,7 +762,7 @@
 
 <h1 id="fmod_studio_bank_get_path">fmod_studio_bank_get_path</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getpath">Studio::Bank::getPath</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getpath">Studio::Bank::getPath</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the path of the given bank.</p>
@@ -802,7 +802,7 @@
 
 <h1 id="fmod_studio_bank_is_valid">fmod_studio_bank_is_valid</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_isvalid">Studio::Bank::isValid</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_isvalid">Studio::Bank::isValid</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function checks whether the given Bank reference is valid, returning <code>true</code> or <code>false</code>.</p>
@@ -841,10 +841,10 @@
 
 <h1 id="fmod_studio_bank_set_user_data">fmod_studio_bank_set_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_setuserdata">Studio::Bank::setUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_setuserdata">Studio::Bank::setUserData</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p>This function allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -885,10 +885,10 @@
 
 <h1 id="fmod_studio_bank_get_user_data">fmod_studio_bank_get_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html#studio_bank_getuserdata">Studio::Bank::getUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getuserdata">Studio::Bank::getUserData</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function allows arbitrary user data to be retrieved from this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p>This function allows arbitrary user data to be retrieved from this object. See <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
 <p>The function returns <code>NaN</code> if there is no user data attached to the bank.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -932,7 +932,7 @@
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

@@ -4,7 +4,7 @@
 
 /**
  * @const FMOD_VERSION
- * @desc > **FMOD Constant:** [FMOD_VERSION](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_version)
+ * @desc > **FMOD Constant:** [FMOD_VERSION](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_version)
  *
  * <br />
  * 
@@ -17,7 +17,7 @@
 
 /**
  * @const FMOD_DEBUG_FLAGS
- * @desc > **FMOD Constant:** [FMOD_DEBUG_FLAGS](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_debug_flags)
+ * @desc > **FMOD Constant:** [FMOD_DEBUG_FLAGS](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_flags)
  *
  * <br />
  *
@@ -38,7 +38,7 @@
 
 /**
  * @const FMOD_MEMORY_TYPE
- * @desc > **FMOD Constant:** [FMOD_MEMORY_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_memory_type)
+ * @desc > **FMOD Constant:** [FMOD_MEMORY_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_memory_type)
  *
  * <br />
  *
@@ -56,7 +56,7 @@
 
 /**
  * @const FMOD_INIT
- * @desc > **FMOD Constant:** [FMOD_INITFLAGS](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_initflags)
+ * @desc > **FMOD Constant:** [FMOD_INITFLAGS](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_initflags)
  *
  * <br />
  *
@@ -66,8 +66,8 @@
  * @member MIX_FROM_UPDATE No mixer thread is created internally. Mixing is driven from ${function.fmod_system_update}. Only applies to polling based output modes such as `FMOD_OUTPUTTYPE.NOSOUND`, `FMOD_OUTPUTTYPE.WAVWRITER`.
  * @member RIGHTHANDED_3D 3D calculations will be performed in right-handed coordinates.
  * @member CLIP_OUTPUT Enables hard clipping of output values greater than `1.0` or less than `-1.0`.
- * @member CHANNEL_LOWPASS Enables usage of ${function.fmod_channel_control_set_low_pass_gain}, ${function.fmod_channel_control_set_3d_occlusion}, or automatic usage by the [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html) API. All voices will add a software lowpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain) which is idle unless one of the previous functions/features are used.
- * @member CHANNEL_DISTANCEFILTER All `FMOD_MODE.AS_3D` based voices will add a software lowpass and highpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.02/api/glossary.html#dsp-chain) which will act as a distance-automated bandpass filter. Use ${function.fmod_system_set_advanced_settings} to adjust the center frequency.
+ * @member CHANNEL_LOWPASS Enables usage of ${function.fmod_channel_control_set_low_pass_gain}, ${function.fmod_channel_control_set_3d_occlusion}, or automatic usage by the [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) API. All voices will add a software lowpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which is idle unless one of the previous functions/features are used.
+ * @member CHANNEL_DISTANCEFILTER All `FMOD_MODE.AS_3D` based voices will add a software lowpass and highpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which will act as a distance-automated bandpass filter. Use ${function.fmod_system_set_advanced_settings} to adjust the center frequency.
  * @member PROFILE_ENABLE Enable TCP/IP based host which allows FMOD Studio or FMOD Profiler to connect to it, and view memory, CPU and the DSP network graph in real-time.
  * @member VOL0_BECOMES_VIRTUAL Any sounds that are 0 volume will go virtual and not be processed except for having their positions updated virtually. Use ${function.fmod_system_set_advanced_settings} to adjust what volume besides zero to switch to virtual at.
  * @member GEOMETRY_USECLOSEST With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects.
@@ -80,7 +80,7 @@
 
 /**
  * @const FMOD_DRIVER_STATE
- * @desc > **FMOD Constant:** [FMOD_DRIVER_STATE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_driver_state)
+ * @desc > **FMOD Constant:** [FMOD_DRIVER_STATE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_driver_state)
  *
  * <br />
  *
@@ -92,7 +92,7 @@
 
 /**
  * @const FMOD_TIMEUNIT
- * @desc > **FMOD Constant:** [FMOD_TIMEUNIT](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_timeunit)
+ * @desc > **FMOD Constant:** [FMOD_TIMEUNIT](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_timeunit)
  *
  * <br />
  *
@@ -101,7 +101,7 @@
  * @member PCM PCM samples, related to milliseconds * samplerate / 1000.
  * @member PCMBYTES Bytes, related to PCM samples * channels * datawidth (i.e. 16bit = 2 bytes).
  * @member RAWBYTES Raw file bytes of (compressed) sound data (does not include headers). Only used by ${function.fmod_sound_get_length} and ${func.fmod_channel_get_position}.
- * @member PCMFRACTION Fractions of 1 PCM sample. Unsigned int range 0 to 0xFFFFFFFF. Used for sub-sample granularity for [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html) purposes.
+ * @member PCMFRACTION Fractions of 1 PCM sample. Unsigned int range 0 to 0xFFFFFFFF. Used for sub-sample granularity for [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) purposes.
  * @member MODORDER MOD/S3M/XM/IT. Order in a sequenced module format. Use ${function.fmod_sound_get_format} to determine the PCM format being decoded to.
  * @member MODROW MOD/S3M/XM/IT. Current row in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of rows in the currently playing or seeked to pattern.
  * @member MODPATTERN MOD/S3M/XM/IT. Current pattern in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of patterns in the song and ${func.fmod_channel_get_position} will return the currently playing pattern.
@@ -110,7 +110,7 @@
 
 /**
  * @const FMOD_SYSTEM_CALLBACK
- * @desc > **FMOD Constant:** [FMOD_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_system_callback_type)
+ * @desc > **FMOD Constant:** [FMOD_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_system_callback_type)
  *
  * <br />
  *
@@ -138,21 +138,21 @@
 
 /**
  * @const FMOD_MODE
- * @desc > **FMOD Constant:** [FMOD_MODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_mode)
+ * @desc > **FMOD Constant:** [FMOD_MODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_mode)
  *
  * <br />
  *
  * This enum specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.
  * @member DEFAULT Default for all modes listed below. `FMOD_MODE.LOOP_OFF`, `FMOD_MODE.AS_2D`, `FMOD_MODE.AS_3D_WORLDRELATIVE`, `FMOD_MODE.AS_3D_INVERSEROLLOFF`
- * @member LOOP_OFF For non looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html). (DEFAULT). Overrides `FMOD_MODE.LOOP_NORMAL` / `FMOD_MODE.LOOP_BIDI`.
- * @member LOOP_NORMAL For forward looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
- * @member LOOP_BIDI For bidirectional looping [Sounds](https://www.fmod.com/docs/2.02/api/core-api-sound.html). (only works on non-streaming, real voices).
+ * @member LOOP_OFF For non looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html). (DEFAULT). Overrides `FMOD_MODE.LOOP_NORMAL` / `FMOD_MODE.LOOP_BIDI`.
+ * @member LOOP_NORMAL For forward looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
+ * @member LOOP_BIDI For bidirectional looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html). (only works on non-streaming, real voices).
  * @member AS_2D Ignores any 3D processing. (DEFAULT).
- * @member AS_3D Makes the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) positionable in 3D. Overrides `FMOD_MODE.AS_2D`.
+ * @member AS_3D Makes the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) positionable in 3D. Overrides `FMOD_MODE.AS_2D`.
  * @member CREATESTREAM Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides `FMOD_MODE.CREATESAMPLE` and `FMOD_MODE.CREATECOMPRESSEDSAMPLE`. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.
  * @member CREATESAMPLE Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.
  * @member CREATECOMPRESSEDSAMPLE Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides `FMOD_MODE.CREATESAMPLE`. If the sound data is not one of the supported formats, it will behave as if it was created with `FMOD_MODE.CREATESAMPLE` and decode the sound into PCM.
- * @member OPENUSER Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * @member OPENUSER Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * @member OPENMEMORY When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. If used with `FMOD_MODE.CREATESAMPLE` or `FMOD_MODE.CREATECOMPRESSEDSAMPLE`, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using `FMOD_MODE.NONBLOCKING` then wait until the Sound is in the `FMOD_OPENSTATE.READY` state. If used with `FMOD_MODE.CREATESTREAM`, FMOD will stream out of the ${type.buffer} that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.
  * @member OPENMEMORY_POINT When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, and length. This differs to `FMOD_MODE.OPENMEMORY` in that it uses the ${type.buffer} memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FMOD_MODE.CREATECOMPRESSEDSAMPLE` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
  * @member OPENRAW Will ignore file format and treat as raw pcm. The following data must be provided using ${struct.FmodSystemCreateSoundExInfo}: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.
@@ -177,7 +177,7 @@
 
 /**
  * @const FMOD_CHANNELMASK
- * @desc > **FMOD Constant:** [FMOD_CHANNELMASK](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_channelmask)
+ * @desc > **FMOD Constant:** [FMOD_CHANNELMASK](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_channelmask)
  *
  * <br />
  *
@@ -205,7 +205,7 @@
 
 /**
  * @const FMOD_PORT_INDEX
- * @desc > **FMOD Constant:** [FMOD_PORT_INDEX](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_port_index)
+ * @desc > **FMOD Constant:** [FMOD_PORT_INDEX](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_port_index)
  *
  * <br />
  *
@@ -217,7 +217,7 @@
 
 /**
  * @const FMOD_THREAD_PRIORITY
- * @desc > **FMOD Constant:** [FMOD_THREAD_PRIORITY](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_thread_priority)
+ * @desc > **FMOD Constant:** [FMOD_THREAD_PRIORITY](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_priority)
  *
  * <br />
  *
@@ -249,7 +249,7 @@
 
 /**
  * @const FMOD_THREAD_STACK_SIZE
- * @desc > **FMOD Constant:** [FMOD_THREAD_STACK_SIZE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_thread_stack_size)
+ * @desc > **FMOD Constant:** [FMOD_THREAD_STACK_SIZE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_stack_size)
  *
  * <br />
  *
@@ -273,7 +273,7 @@
 
 /**
  * @const FMOD_THREAD_AFFINITY
- * @desc > **FMOD Constant:** [FMOD_THREAD_AFFINITY](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_thread_affinity)
+ * @desc > **FMOD Constant:** [FMOD_THREAD_AFFINITY](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_affinity)
  *
  * <br />
  *
@@ -319,7 +319,7 @@
 
 /**
  * @const FMOD_REVERB_PRESETS
- * @desc > **FMOD Constant:** [FMOD_REVERB_PRESETS](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_reverb_presets)
+ * @desc > **FMOD Constant:** [FMOD_REVERB_PRESETS](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_reverb_presets)
  *
  * <br />
  * 
@@ -356,7 +356,7 @@
 
 /**
  * @const FMOD_MAX_CHANNEL_WIDTH
- * > **FMOD Constant:** [FMOD_MAX_CHANNEL_WIDTH](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_max_channel_width)
+ * > **FMOD Constant:** [FMOD_MAX_CHANNEL_WIDTH](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_max_channel_width)
  *
  * <br />
  * 
@@ -367,7 +367,7 @@
 
 /**
  * @const FMOD_MAX_SYSTEMS
- * > **FMOD Constant:** [FMOD_MAX_SYSTEMS](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_max_systems)
+ * > **FMOD Constant:** [FMOD_MAX_SYSTEMS](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_max_systems)
  *
  * <br />
  * 
@@ -378,7 +378,7 @@
 
 /**
  * @const FMOD_MAX_LISTENERS
- * > **FMOD Constant:** [FMOD_MAX_LISTENERS](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_max_listeners)
+ * > **FMOD Constant:** [FMOD_MAX_LISTENERS](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_max_listeners)
  *
  * <br />
  * 
@@ -389,7 +389,7 @@
 
 /**
  * @const FMOD_REVERB_MAXINSTANCES
- * > **FMOD Constant:** [FMOD_REVERB_MAXINSTANCES](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_reverb_maxinstances)
+ * > **FMOD Constant:** [FMOD_REVERB_MAXINSTANCES](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_reverb_maxinstances)
  *
  * <br />
  * 
@@ -402,7 +402,7 @@
 
 /**
  * @const FMOD_THREAD_TYPE
- * @desc > **FMOD Constant:** [FMOD_THREAD_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_thread_type)
+ * @desc > **FMOD Constant:** [FMOD_THREAD_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_type)
  *
  * <br />
  *
@@ -416,8 +416,8 @@
  * @member GEOMETRY Thread used by the Geometry system for performing background calculations.
  * @member PROFILER Thread for network communication when using `FMOD_INIT.PROFILE_ENABLE`.
  * @member STUDIO_UPDATE Thread for processing Studio API commands and scheduling sound playback.
- * @member STUDIO_LOAD_BANK Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html) metadata.
- * @member STUDIO_LOAD_SAMPLE Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html) sample data.
+ * @member STUDIO_LOAD_BANK Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.03/api/studio-api-bank.html) metadata.
+ * @member STUDIO_LOAD_SAMPLE Thread for asynchronously loading [Studio::Bank](https://www.fmod.com/docs/2.03/api/studio-api-bank.html) sample data.
  * @member CONVOLUTION1 Thread for processing medium size delay lines for `FMOD_DSP_TYPE.CONVOLUTIONREVERB`.
  * @member CONVOLUTION2 Thread for processing larger size delay lines for `FMOD_DSP_TYPE.CONVOLUTIONREVERB`.
  * @const_end
@@ -425,14 +425,14 @@
 
 /**
  * @const FMOD_RESULT
- * @desc > **FMOD Constant:** [FMOD_RESULT](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_result)
+ * @desc > **FMOD Constant:** [FMOD_RESULT](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_result)
  *
  * <br />
  *
  * This enum specifies the error codes returned from every function.
  * @member OK No errors.
- * @member ERR_BADCOMMAND Tried to call a function on a data type that does not allow this type of functionality (i.e. calling ${function.fmod_sound_lock} on a streaming [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html)).
- * @member ERR_CHANNEL_ALLOC Error trying to allocate a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
+ * @member ERR_BADCOMMAND Tried to call a function on a data type that does not allow this type of functionality (i.e. calling ${function.fmod_sound_lock} on a streaming [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html)).
+ * @member ERR_CHANNEL_ALLOC Error trying to allocate a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * @member ERR_CHANNEL_STOLEN The specified Channel has been reused to play another Sound.
  * @member ERR_DMA DMA Failure. See debug output for more information.
  * @member ERR_DSP_CONNECTION DSP connection error. Connection possibly caused a cyclic dependency or connected dsps with incompatible buffer counts.
@@ -517,7 +517,7 @@
 
 /**
  * @const FMOD_CHANNELCONTROL_TYPE
- * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_TYPE](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#fmod_channelcontrol_type)
+ * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_TYPE](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#fmod_channelcontrol_type)
  *
  * <br />
  *
@@ -529,7 +529,7 @@
 
 /**
  * @const FMOD_OUTPUTTYPE
- * @desc > **FMOD Constant:** [FMOD_OUTPUTTYPE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_outputtype)
+ * @desc > **FMOD Constant:** [FMOD_OUTPUTTYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_outputtype)
  *
  * <br />
  *
@@ -561,7 +561,7 @@
 
 /**
  * @const FMOD_DEBUG_MODE
- * @desc > **FMOD Constant:** [FMOD_DEBUG_MODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_debug_mode)
+ * @desc > **FMOD Constant:** [FMOD_DEBUG_MODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_mode)
  *
  * <br />
  *
@@ -574,7 +574,7 @@
 
 /**
  * @const FMOD_SPEAKERMODE
- * @desc > **FMOD Constant:** [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode)
+ * @desc > **FMOD Constant:** [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode)
  *
  * <br />
  *
@@ -593,7 +593,7 @@
 
 /**
  * @const FMOD_SPEAKER
- * @desc > **FMOD Constant:** [FMOD_SPEAKER](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speaker)
+ * @desc > **FMOD Constant:** [FMOD_SPEAKER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speaker)
  *
  * <br />
  *
@@ -616,7 +616,7 @@
 
 /**
  * @const FMOD_CHANNELORDER
- * @desc > **FMOD Constant:** [FMOD_CHANNELORDER](https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_channelorder)
+ * @desc > **FMOD Constant:** [FMOD_CHANNELORDER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_channelorder)
  *
  * <br />
  *
@@ -632,7 +632,7 @@
 
 /**
  * @const FMOD_PLUGINTYPE
- * @desc > **FMOD Constant:** [FMOD_PLUGINTYPE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_plugintype)
+ * @desc > **FMOD Constant:** [FMOD_PLUGINTYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_plugintype)
  *
  * <br />
  *
@@ -645,7 +645,7 @@
 
 /**
  * @const FMOD_SOUND_TYPE
- * @desc > **FMOD Constant:** [FMOD_SOUND_TYPE](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_sound_type)
+ * @desc > **FMOD Constant:** [FMOD_SOUND_TYPE](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_type)
  *
  * <br />
  *
@@ -680,7 +680,7 @@
 
 /**
  * @const FMOD_SOUND_FORMAT
- * @desc > **FMOD Constant:** [FMOD_SOUND_FORMAT](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_sound_format)
+ * @desc > **FMOD Constant:** [FMOD_SOUND_FORMAT](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_format)
  *
  * <br />
  *
@@ -697,7 +697,7 @@
 
 /**
  * @const FMOD_OPENSTATE
- * @desc > **FMOD Constant:** [FMOD_OPENSTATE](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_openstate)
+ * @desc > **FMOD Constant:** [FMOD_OPENSTATE](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_openstate)
  *
  * <br />
  *
@@ -715,7 +715,7 @@
 
 /**
  * @const FMOD_SOUNDGROUP_BEHAVIOR
- * @desc > **FMOD Constant:** [FMOD_SOUNDGROUP_BEHAVIOR](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#fmod_soundgroup_behavior)
+ * @desc > **FMOD Constant:** [FMOD_SOUNDGROUP_BEHAVIOR](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#fmod_soundgroup_behavior)
  *
  * <br />
  *
@@ -728,7 +728,7 @@
 
 /**
  * @const FMOD_CHANNELCONTROL_CALLBACK_TYPE
- * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_CALLBACK_TYPE](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#fmod_channelcontrol_callback_type)
+ * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#fmod_channelcontrol_callback_type)
  *
  * <br />
  *
@@ -742,7 +742,7 @@
 
 /**
  * @const FMOD_CHANNELCONTROL_DSP_INDEX
- * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_DSP_INDEX](https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#fmod_channelcontrol_dsp_index)
+ * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_DSP_INDEX](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#fmod_channelcontrol_dsp_index)
  *
  * <br />
  *
@@ -755,36 +755,36 @@
 
 /**
  * @const FMOD_ERRORCALLBACK_INSTANCETYPE
- * @desc > **FMOD Constant:** [FMOD_ERRORCALLBACK_INSTANCETYPE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_errorcallback_instancetype)
+ * @desc > **FMOD Constant:** [FMOD_ERRORCALLBACK_INSTANCETYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_errorcallback_instancetype)
  *
  * <br />
  *
  * This enum specifies identifiers used to represent the different types of instance in the error callback.
  * @member NONE Type representing no known instance type.
- * @member SYSTEM Type representing [System](https://www.fmod.com/docs/2.02/api/core-api-system.html).
- * @member CHANNEL Type representing [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html).
- * @member CHANNELGROUP Type representing [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html).
- * @member CHANNELCONTROL Type representing [ChannelControl]().https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html
- * @member SOUND Type representing [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
- * @member SOUNDGROUP Type representing [SoundGroup](https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html).
- * @member DSP Type representing [DSP](https://www.fmod.com/docs/2.02/api/core-api-dsp.html).
- * @member DSPCONNECTION Type representing [DSPConnection](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html).
- * @member GEOMETRY Type representing [Geometry](https://www.fmod.com/docs/2.02/api/core-api-geometry.html).
- * @member REVERB3D Type representing [Reverb3D](https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html).
- * @member STUDIO_SYSTEM Type representing [Studio::System](https://www.fmod.com/docs/2.02/api/studio-api-system.html).
- * @member STUDIO_EVENTDESCRIPTION Type representing [Studio::EventDescription](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html).
- * @member STUDIO_EVENTINSTANCE Type representing [Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html).
+ * @member SYSTEM Type representing [System](https://www.fmod.com/docs/2.03/api/core-api-system.html).
+ * @member CHANNEL Type representing [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
+ * @member CHANNELGROUP Type representing [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html).
+ * @member CHANNELCONTROL Type representing [ChannelControl]().https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html
+ * @member SOUND Type representing [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
+ * @member SOUNDGROUP Type representing [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html).
+ * @member DSP Type representing [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
+ * @member DSPCONNECTION Type representing [DSPConnection](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html).
+ * @member GEOMETRY Type representing [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html).
+ * @member REVERB3D Type representing [Reverb3D](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html).
+ * @member STUDIO_SYSTEM Type representing [Studio::System](https://www.fmod.com/docs/2.03/api/studio-api-system.html).
+ * @member STUDIO_EVENTDESCRIPTION Type representing [Studio::EventDescription](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html).
+ * @member STUDIO_EVENTINSTANCE Type representing [Studio::EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html).
  * @member STUDIO_PARAMETERINSTANCE Deprecated.
- * @member STUDIO_BUS Type representing [Studio::Bus](https://www.fmod.com/docs/2.02/api/studio-api-bus.html).
- * @member STUDIO_VCA Type representing [Studio::VCA](https://www.fmod.com/docs/2.02/api/studio-api-vca.html).
- * @member STUDIO_BANK Type representing [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html).
- * @member STUDIO_COMMANDREPLAY Type representing [Studio::CommandReplay](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html).
+ * @member STUDIO_BUS Type representing [Studio::Bus](https://www.fmod.com/docs/2.03/api/studio-api-bus.html).
+ * @member STUDIO_VCA Type representing [Studio::VCA](https://www.fmod.com/docs/2.03/api/studio-api-vca.html).
+ * @member STUDIO_BANK Type representing [Studio::Bank](https://www.fmod.com/docs/2.03/api/studio-api-bank.html).
+ * @member STUDIO_COMMANDREPLAY Type representing [Studio::CommandReplay](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html).
  * @const_end
  */
 
 /**
  * @const FMOD_DSP_RESAMPLER
- * @desc > **FMOD Constant:** [FMOD_DSP_RESAMPLER](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_dsp_resampler)
+ * @desc > **FMOD Constant:** [FMOD_DSP_RESAMPLER](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_dsp_resampler)
  *
  * <br />
  *
@@ -799,7 +799,7 @@
 
 /**
  * @const FMOD_DSP_CALLBACK_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_CALLBACK_TYPE](https://www.fmod.com/docs/2.02/api/core-api-dsp.html#fmod_dsp_callback_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#fmod_dsp_callback_type)
  *
  * <br />
  *
@@ -814,7 +814,7 @@
 
 /**
  * @const FMOD_DSPCONNECTION_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSPCONNECTION_TYPE](https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html#fmod_dspconnection_type)
+ * @desc > **FMOD Constant:** [FMOD_DSPCONNECTION_TYPE](https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#fmod_dspconnection_type)
  *
  * <br />
  *
@@ -828,7 +828,7 @@
 
 /**
  * @const FMOD_TAGTYPE
- * @desc > **FMOD Constant:** [FMOD_TAGTYPE](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tagtype)
+ * @desc > **FMOD Constant:** [FMOD_TAGTYPE](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tagtype)
  *
  * <br />
  *
@@ -849,7 +849,7 @@
 
 /**
  * @const FMOD_TAGDATATYPE
- * @desc > **FMOD Constant:** [FMOD_TAGDATATYPE](https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tagdatatype)
+ * @desc > **FMOD Constant:** [FMOD_TAGDATATYPE](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tagdatatype)
  *
  * <br />
  *
@@ -866,7 +866,7 @@
 
 /**
  * @const FMOD_PORT_TYPE
- * @desc > **FMOD Constant:** [FMOD_PORT_TYPE](https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_port_type)
+ * @desc > **FMOD Constant:** [FMOD_PORT_TYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_port_type)
  *
  * <br />
  *
@@ -885,7 +885,7 @@
 
 /**
  * @const FMOD_CODEC_PLUGIN_VERSION
- * @desc > **FMOD Constant:** [FMOD_CODEC_PLUGIN_VERSION](https://www.fmod.com/docs/2.02/api/plugin-api-codec.html#fmod_codec_plugin_version)
+ * @desc > **FMOD Constant:** [FMOD_CODEC_PLUGIN_VERSION](https://www.fmod.com/docs/2.03/api/plugin-api-codec.html#fmod_codec_plugin_version)
  *
  * <br />
  * 
@@ -895,7 +895,7 @@
 
 /**
  * @const FMOD_CODEC_SEEK_METHOD 
- * @desc > **FMOD Constant:** [FMOD_CODEC_SEEK_METHOD](https://www.fmod.com/docs/2.02/api/plugin-api-codec.html#fmod_codec_seek_method)
+ * @desc > **FMOD Constant:** [FMOD_CODEC_SEEK_METHOD](https://www.fmod.com/docs/2.03/api/plugin-api-codec.html#fmod_codec_seek_method)
  *
  * <br />
  *
@@ -910,7 +910,7 @@
 
 /**
  * @const FMOD_PLUGIN_SDK_VERSION
- * @desc > **FMOD Constant:** [FMOD_PLUGIN_SDK_VERSION](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_plugin_sdk_version)
+ * @desc > **FMOD Constant:** [FMOD_PLUGIN_SDK_VERSION](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_plugin_sdk_version)
  *
  * <br />
  * 
@@ -921,7 +921,7 @@
 
 /**
  * @const FMOD_DSP_GETPARAM_VALUESTR_LENGTH
- * @desc > **FMOD Constant:** [FMOD_DSP_GETPARAM_VALUESTR_LENGTH](https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_getparam_valuestr_length)
+ * @desc > **FMOD Constant:** [FMOD_DSP_GETPARAM_VALUESTR_LENGTH](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_getparam_valuestr_length)
  *
  * <br />
  * 
@@ -932,54 +932,54 @@
 
 /**
  * @const FMOD_DSP_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_type)
  *
  * <br />
  *
  * This enum specifies DSP types.
  * @member UNKNOWN Was created via a non-FMOD plugin and has an unknown purpose.
  * @member MIXER Does not process the signal, acts as a unit purely for mixing inputs.
- * @member OSCILLATOR Generates sine/square/saw/triangle or noise tones. See ${constant.FMOD_DSP_OSCILLATOR} for parameter information, [Effect reference - Oscillator](https://www.fmod.com/docs/2.02/api/effects-reference.html#oscillator) for overview.
- * @member LOWPASS Filters sound using a high quality, resonant lowpass filter algorithm but consumes more CPU time. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_LOWPASS} remarks for parameter information, [Effect reference - Low Pass](https://www.fmod.com/docs/2.02/api/effects-reference.html#low-pass) for overview.
- * @member ITLOWPASS Filters sound using a resonant lowpass filter algorithm that is used in Impulse Tracker, but with limited cutoff range (0 to 8060hz). See ${constant.FMOD_DSP_ITLOWPASS} for parameter information, [Effect reference - IT Low Pass](https://www.fmod.com/docs/2.02/api/effects-reference.html#it-low-pass) for overview.
- * @member HIGHPASS Filters sound using a resonant highpass filter algorithm. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_HIGHPASS} remarks for parameter information, [Effect reference - High Pass](https://www.fmod.com/docs/2.02/api/effects-reference.html#high-pass) for overview.
- * @member ECHO Produces an echo on the sound and fades out at the desired rate. See ${constant.FMOD_DSP_ECHO} for parameter information, [Effect reference - Echo](https://www.fmod.com/docs/2.02/api/effects-reference.html#echo) for overview.
- * @member FADER Pans and scales the volume of a unit. See ${constant.FMOD_DSP_FADER} for parameter information, [Effect reference - Fader](https://www.fmod.com/docs/2.02/api/effects-reference.html#fader) for overview.
- * @member FLANGE Produces a flange effect on the sound. See ${constant.FMOD_DSP_FLANGE} for parameter information, [Effect reference - Flange](https://www.fmod.com/docs/2.02/api/effects-reference.html#flange) for overview.
- * @member DISTORTION Distorts the sound. See ${constant.FMOD_DSP_DISTORTION} for parameter information, [Effect reference - Distortion](https://www.fmod.com/docs/2.02/api/effects-reference.html#distortion) for overview.
- * @member NORMALIZE Normalizes or amplifies the sound to a certain level. See ${constant.FMOD_DSP_NORMALIZE} for parameter information, [Effect reference - Normalize](https://www.fmod.com/docs/2.02/api/effects-reference.html#normalize) for overview.
- * @member LIMITER Limits the sound to a certain level. See ${constant.FMOD_DSP_LIMITER} for parameter information, [Effect reference - Limiter](https://www.fmod.com/docs/2.02/api/effects-reference.html#limiter) for overview.
- * @member PARAMEQ Attenuates or amplifies a selected frequency range. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_PARAMEQ} for parameter information, [Effect reference - Parametric EQ](https://www.fmod.com/docs/2.02/api/effects-reference.html#parametric-eq) for overview.
- * @member PITCHSHIFT Bends the pitch of a sound without changing the speed of playback. See ${constant.FMOD_DSP_PITCHSHIFT} for parameter information, [Effect reference - Pitch Shifter](https://www.fmod.com/docs/2.02/api/effects-reference.html#pitch-shifter) for overview.
- * @member CHORUS Produces a chorus effect on the sound. See ${constant.FMOD_DSP_CHORUS} for parameter information, [Effect reference - Chorus](https://www.fmod.com/docs/2.02/api/effects-reference.html#chorus) for overview.
+ * @member OSCILLATOR Generates sine/square/saw/triangle or noise tones. See ${constant.FMOD_DSP_OSCILLATOR} for parameter information, [Effect reference - Oscillator](https://www.fmod.com/docs/2.03/api/effects-reference.html#oscillator) for overview.
+ * @member LOWPASS Filters sound using a high quality, resonant lowpass filter algorithm but consumes more CPU time. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_LOWPASS} remarks for parameter information, [Effect reference - Low Pass](https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass) for overview.
+ * @member ITLOWPASS Filters sound using a resonant lowpass filter algorithm that is used in Impulse Tracker, but with limited cutoff range (0 to 8060hz). See ${constant.FMOD_DSP_ITLOWPASS} for parameter information, [Effect reference - IT Low Pass](https://www.fmod.com/docs/2.03/api/effects-reference.html#it-low-pass) for overview.
+ * @member HIGHPASS Filters sound using a resonant highpass filter algorithm. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_HIGHPASS} remarks for parameter information, [Effect reference - High Pass](https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass) for overview.
+ * @member ECHO Produces an echo on the sound and fades out at the desired rate. See ${constant.FMOD_DSP_ECHO} for parameter information, [Effect reference - Echo](https://www.fmod.com/docs/2.03/api/effects-reference.html#echo) for overview.
+ * @member FADER Pans and scales the volume of a unit. See ${constant.FMOD_DSP_FADER} for parameter information, [Effect reference - Fader](https://www.fmod.com/docs/2.03/api/effects-reference.html#fader) for overview.
+ * @member FLANGE Produces a flange effect on the sound. See ${constant.FMOD_DSP_FLANGE} for parameter information, [Effect reference - Flange](https://www.fmod.com/docs/2.03/api/effects-reference.html#flange) for overview.
+ * @member DISTORTION Distorts the sound. See ${constant.FMOD_DSP_DISTORTION} for parameter information, [Effect reference - Distortion](https://www.fmod.com/docs/2.03/api/effects-reference.html#distortion) for overview.
+ * @member NORMALIZE Normalizes or amplifies the sound to a certain level. See ${constant.FMOD_DSP_NORMALIZE} for parameter information, [Effect reference - Normalize](https://www.fmod.com/docs/2.03/api/effects-reference.html#normalize) for overview.
+ * @member LIMITER Limits the sound to a certain level. See ${constant.FMOD_DSP_LIMITER} for parameter information, [Effect reference - Limiter](https://www.fmod.com/docs/2.03/api/effects-reference.html#limiter) for overview.
+ * @member PARAMEQ Attenuates or amplifies a selected frequency range. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_PARAMEQ} for parameter information, [Effect reference - Parametric EQ](https://www.fmod.com/docs/2.03/api/effects-reference.html#parametric-eq) for overview.
+ * @member PITCHSHIFT Bends the pitch of a sound without changing the speed of playback. See ${constant.FMOD_DSP_PITCHSHIFT} for parameter information, [Effect reference - Pitch Shifter](https://www.fmod.com/docs/2.03/api/effects-reference.html#pitch-shifter) for overview.
+ * @member CHORUS Produces a chorus effect on the sound. See ${constant.FMOD_DSP_CHORUS} for parameter information, [Effect reference - Chorus](https://www.fmod.com/docs/2.03/api/effects-reference.html#chorus) for overview.
  * @member VSTPLUGIN Allows the use of Steinberg VST plugins. Note that plugins are currently not implemented in the extension.
  * @member WINAMPPLUGIN Allows the use of Nullsoft Winamp plugins. Note that plugins are currently not implemented in the extension.
- * @member ITECHO Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See ${constant.FMOD_DSP_ITECHO} for parameter information, [Effect reference - IT Echo](https://www.fmod.com/docs/2.02/api/effects-reference.html#it-echo) for overview.
- * @member COMPRESSOR Dynamic compression (linked/unlinked multi-channel, wideband). See ${constant.FMOD_DSP_COMPRESSOR} for parameter information, [Effect reference - Compressor](https://www.fmod.com/docs/2.02/api/effects-reference.html#compressor) for overview.
- * @member SFXREVERB I3DL2 reverb effect. See ${constant.FMOD_DSP_SFXREVERB} for parameter information, [Effect reference - SFX Reverb](https://www.fmod.com/docs/2.02/api/effects-reference.html#sfx-reverb) for overview.
- * @member LOWPASS_SIMPLE Filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_LOWPASS_SIMPLE} remarks for parameter information, [Effect reference - Low Pass Simple](https://www.fmod.com/docs/2.02/api/effects-reference.html#low-pass-simple) for overview.
- * @member DELAY Produces different delays on individual channels of the sound. See ${constant.FMOD_DSP_DELAY} for parameter information, [Effect reference - Delay](https://www.fmod.com/docs/2.02/api/effects-reference.html#delay) for overview.
- * @member TREMOLO Produces a tremolo / chopper effect on the sound. See ${constant.FMOD_DSP_TREMOLO} for parameter information, [Effect reference - Tremolo](https://www.fmod.com/docs/2.02/api/effects-reference.html#tremolo) for overview.
+ * @member ITECHO Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See ${constant.FMOD_DSP_ITECHO} for parameter information, [Effect reference - IT Echo](https://www.fmod.com/docs/2.03/api/effects-reference.html#it-echo) for overview.
+ * @member COMPRESSOR Dynamic compression (linked/unlinked multi-channel, wideband). See ${constant.FMOD_DSP_COMPRESSOR} for parameter information, [Effect reference - Compressor](https://www.fmod.com/docs/2.03/api/effects-reference.html#compressor) for overview.
+ * @member SFXREVERB I3DL2 reverb effect. See ${constant.FMOD_DSP_SFXREVERB} for parameter information, [Effect reference - SFX Reverb](https://www.fmod.com/docs/2.03/api/effects-reference.html#sfx-reverb) for overview.
+ * @member LOWPASS_SIMPLE Filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_LOWPASS_SIMPLE} remarks for parameter information, [Effect reference - Low Pass Simple](https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass-simple) for overview.
+ * @member DELAY Produces different delays on individual channels of the sound. See ${constant.FMOD_DSP_DELAY} for parameter information, [Effect reference - Delay](https://www.fmod.com/docs/2.03/api/effects-reference.html#delay) for overview.
+ * @member TREMOLO Produces a tremolo / chopper effect on the sound. See ${constant.FMOD_DSP_TREMOLO} for parameter information, [Effect reference - Tremolo](https://www.fmod.com/docs/2.03/api/effects-reference.html#tremolo) for overview.
  * @member LADSPAPLUGIN Unsupported / Deprecated.
- * @member SEND Sends a copy of the signal to a return DSP anywhere in the DSP tree. See ${constant.FMOD_DSP_SEND} for parameter information, [Effect reference - Send](https://www.fmod.com/docs/2.02/api/effects-reference.html#send) for overview.
- * @member RETURN Receives signals from a number of send DSPs. See ${constant.FMOD_DSP_RETURN} for parameter information, [Effect reference - Return](https://www.fmod.com/docs/2.02/api/effects-reference.html#return) for overview.
- * @member HIGHPASS_SIMPLE Filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_HIGHPASS_SIMPLE} remarks for parameter information, [Effect reference - High Pass Simple](https://www.fmod.com/docs/2.02/api/effects-reference.html#high-pass-simple) for overview.
- * @member PAN Pans the signal in 2D or 3D, possibly upmixing or downmixing as well. See ${constant.FMOD_DSP_PAN} for parameter information, [Effect reference - Pan](https://www.fmod.com/docs/2.02/api/effects-reference.html#pan) for overview.
- * @member THREE_EQ Three-band equalizer. See ${constant.FMOD_DSP_THREE_EQ} for parameter information, [Effect reference - Three EQ](https://www.fmod.com/docs/2.02/api/effects-reference.html#three-eq) for overview.
- * @member FFT Analyzes the signal and provides spectrum information back through getParameter. See ${constant.FMOD_DSP_FFT} for parameter information, [Effect reference - FFT](https://www.fmod.com/docs/2.02/api/effects-reference.html#fft) for overview.
+ * @member SEND Sends a copy of the signal to a return DSP anywhere in the DSP tree. See ${constant.FMOD_DSP_SEND} for parameter information, [Effect reference - Send](https://www.fmod.com/docs/2.03/api/effects-reference.html#send) for overview.
+ * @member RETURN Receives signals from a number of send DSPs. See ${constant.FMOD_DSP_RETURN} for parameter information, [Effect reference - Return](https://www.fmod.com/docs/2.03/api/effects-reference.html#return) for overview.
+ * @member HIGHPASS_SIMPLE Filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_HIGHPASS_SIMPLE} remarks for parameter information, [Effect reference - High Pass Simple](https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass-simple) for overview.
+ * @member PAN Pans the signal in 2D or 3D, possibly upmixing or downmixing as well. See ${constant.FMOD_DSP_PAN} for parameter information, [Effect reference - Pan](https://www.fmod.com/docs/2.03/api/effects-reference.html#pan) for overview.
+ * @member THREE_EQ Three-band equalizer. See ${constant.FMOD_DSP_THREE_EQ} for parameter information, [Effect reference - Three EQ](https://www.fmod.com/docs/2.03/api/effects-reference.html#three-eq) for overview.
+ * @member FFT Analyzes the signal and provides spectrum information back through getParameter. See ${constant.FMOD_DSP_FFT} for parameter information, [Effect reference - FFT](https://www.fmod.com/docs/2.03/api/effects-reference.html#fft) for overview.
  * @member LOUDNESS_METER Analyzes the loudness and true peak of the signal.
- * @member ENVELOPEFOLLOWER Tracks the envelope of the input/sidechain signal. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_ENVELOPEFOLLOWER} for parameter information, [Effect reference - Envelope Follower](https://www.fmod.com/docs/2.02/api/effects-reference.html#envelope-follower) for overview.
- * @member CONVOLUTIONREVERB Convolution reverb. See ${constant.FMOD_DSP_TYPE}'s `CONVOLUTION_REVERB` for parameter information, [Effect reference - Convolution Reverb](https://www.fmod.com/docs/2.02/api/effects-reference.html#convolution-reverb) for overview.
- * @member CHANNELMIX Provides per channel gain, channel grouping of the input signal which also sets the speaker format for the output signal, and customizable input to output channel routing. See ${constant.FMOD_DSP_CHANNELMIX} for parameter information, [Effect reference - Channel Mix](https://www.fmod.com/docs/2.02/api/effects-reference.html#channel-mix) for overview.
- * @member TRANSCEIVER 'sends' and 'receives' from a selection of up to 32 different slots. It is like a send/return but it uses global slots rather than returns as the destination. It also has other features. Multiple transceivers can receive from a single channel, or multiple transceivers can send to a single channel, or a combination of both. See ${constant.FMOD_DSP_TRANSCEIVER} for parameter information, [Effect reference - Transceiver](https://www.fmod.com/docs/2.02/api/effects-reference.html#transceiver) for overview.
- * @member OBJECTPAN Spatializes input signal by passing it to an external object mixer. See ${constant.FMOD_DSP_OBJECTPAN} for parameter information, [Effect reference - Object Panner](https://www.fmod.com/docs/2.02/api/effects-reference.html#object-panner) for overview.
- * @member MULTIBAND_EQ Five band parametric equalizer. See ${constant.FMOD_DSP_MULTIBAND_EQ} for parameter information, [Effect reference - Multiband Equalizer](https://www.fmod.com/docs/2.02/api/effects-reference.html#multiband-equalizer) for overview.
+ * @member ENVELOPEFOLLOWER Tracks the envelope of the input/sidechain signal. Deprecated and will be removed in a future release. See ${constant.FMOD_DSP_ENVELOPEFOLLOWER} for parameter information, [Effect reference - Envelope Follower](https://www.fmod.com/docs/2.03/api/effects-reference.html#envelope-follower) for overview.
+ * @member CONVOLUTIONREVERB Convolution reverb. See ${constant.FMOD_DSP_TYPE}'s `CONVOLUTION_REVERB` for parameter information, [Effect reference - Convolution Reverb](https://www.fmod.com/docs/2.03/api/effects-reference.html#convolution-reverb) for overview.
+ * @member CHANNELMIX Provides per channel gain, channel grouping of the input signal which also sets the speaker format for the output signal, and customizable input to output channel routing. See ${constant.FMOD_DSP_CHANNELMIX} for parameter information, [Effect reference - Channel Mix](https://www.fmod.com/docs/2.03/api/effects-reference.html#channel-mix) for overview.
+ * @member TRANSCEIVER 'sends' and 'receives' from a selection of up to 32 different slots. It is like a send/return but it uses global slots rather than returns as the destination. It also has other features. Multiple transceivers can receive from a single channel, or multiple transceivers can send to a single channel, or a combination of both. See ${constant.FMOD_DSP_TRANSCEIVER} for parameter information, [Effect reference - Transceiver](https://www.fmod.com/docs/2.03/api/effects-reference.html#transceiver) for overview.
+ * @member OBJECTPAN Spatializes input signal by passing it to an external object mixer. See ${constant.FMOD_DSP_OBJECTPAN} for parameter information, [Effect reference - Object Panner](https://www.fmod.com/docs/2.03/api/effects-reference.html#object-panner) for overview.
+ * @member MULTIBAND_EQ Five band parametric equalizer. See ${constant.FMOD_DSP_MULTIBAND_EQ} for parameter information, [Effect reference - Multiband Equalizer](https://www.fmod.com/docs/2.03/api/effects-reference.html#multiband-equalizer) for overview.
  * @const_end
  */
 
 /**
  * @const FMOD_DSP_OSCILLATOR
- * @desc > **FMOD Constant:** [FMOD_DSP_OSCILLATOR](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_oscillator)
+ * @desc > **FMOD Constant:** [FMOD_DSP_OSCILLATOR](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_oscillator)
  *
  * <br />
  *
@@ -991,7 +991,7 @@
 
 /**
  * @const FMOD_DSP_LOWPASS
- * @desc > **FMOD Constant:** [FMOD_DSP_LOWPASS](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass)
+ * @desc > **FMOD Constant:** [FMOD_DSP_LOWPASS](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass)
  *
  * <br />
  *
@@ -1006,7 +1006,7 @@
 
 /**
  * @const FMOD_DSP_ITLOWPASS
- * @desc > **FMOD Constant:** [FMOD_DSP_ITLOWPASS](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_itlowpass)
+ * @desc > **FMOD Constant:** [FMOD_DSP_ITLOWPASS](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_itlowpass)
  *
  * <br />
  *
@@ -1018,7 +1018,7 @@
 
 /**
  * @const FMOD_DSP_HIGHPASS
- * @desc > **FMOD Constant:** [FMOD_DSP_HIGHPASS](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_highpass)
+ * @desc > **FMOD Constant:** [FMOD_DSP_HIGHPASS](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass)
  *
  * <br />
  *
@@ -1030,7 +1030,7 @@
 
 /**
  * @const FMOD_DSP_ECHO
- * @desc > **FMOD Constant:** [FMOD_DSP_ECHO](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_echo)
+ * @desc > **FMOD Constant:** [FMOD_DSP_ECHO](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_echo)
  *
  * <br />
  *
@@ -1044,7 +1044,7 @@
 
 /**
  * @const FMOD_DSP_FADER
- * @desc > **FMOD Constant:** [FMOD_DSP_FADER](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_fader)
+ * @desc > **FMOD Constant:** [FMOD_DSP_FADER](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fader)
  *
  * <br />
  *
@@ -1056,7 +1056,7 @@
 
 /**
  * @const FMOD_DSP_FLANGE
- * @desc > **FMOD Constant:** [FMOD_DSP_FLANGE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_flange)
+ * @desc > **FMOD Constant:** [FMOD_DSP_FLANGE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_flange)
  *
  * <br />
  *
@@ -1069,7 +1069,7 @@
 
 /**
  * @const FMOD_DSP_DISTORTION
- * @desc > **FMOD Constant:** [FMOD_DSP_DISTORTION](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_distortion)
+ * @desc > **FMOD Constant:** [FMOD_DSP_DISTORTION](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_distortion)
  *
  * <br />
  *
@@ -1080,7 +1080,7 @@
 
 /**
  * @const FMOD_DSP_NORMALIZE
- * @desc > **FMOD Constant:** [FMOD_DSP_NORMALIZE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_normalize)
+ * @desc > **FMOD Constant:** [FMOD_DSP_NORMALIZE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_normalize)
  *
  * <br />
  *
@@ -1102,7 +1102,7 @@
 
 /**
  * @const FMOD_DSP_LIMITER
- * @desc > **FMOD Constant:** [FMOD_DSP_LIMITER](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_limiter)
+ * @desc > **FMOD Constant:** [FMOD_DSP_LIMITER](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_limiter)
  *
  * <br />
  *
@@ -1116,7 +1116,7 @@
 
 /**
  * @const FMOD_DSP_PARAMEQ
- * @desc > **FMOD Constant:** [FMOD_DSP_PARAMEQ](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_parameq)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PARAMEQ](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_parameq)
  *
  * <br />
  *
@@ -1136,7 +1136,7 @@
 
 /**
  * @const FMOD_DSP_MULTIBAND_EQ
- * @desc > **FMOD Constant:** [FMOD_DSP_MULTIBAND_EQ](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq)
+ * @desc > **FMOD Constant:** [FMOD_DSP_MULTIBAND_EQ](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq)
  *
  * <br />
  *
@@ -1169,7 +1169,7 @@
 
 /**
  * @const FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_filter_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_filter_type)
  *
  * <br />
  *
@@ -1192,7 +1192,7 @@
 
 /**
  * @const FMOD_DSP_PITCHSHIFT
- * @desc > **FMOD Constant:** [FMOD_DSP_PITCHSHIFT](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pitchshift)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PITCHSHIFT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pitchshift)
  *
  * <br />
  *
@@ -1200,11 +1200,11 @@
  * 
  * `FMOD_DSP_PITCHSHIFT.MAXCHANNELS` dictates the amount of memory allocated. By default, the maxchannels value is 0. If FMOD is set to stereo, the pitch shift unit will allocate enough memory for 2 channels. If it is 5.1, it will allocate enough memory for a 6 channel pitch shift, etc.
  * 
- * If the pitch shift effect is only ever applied to the global mix (i.e. with ${function.fmod_channel_control_add_dsp} on a [ChannelGroup](https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html) object), then 0 is the value to set as it will be enough to handle all speaker modes.
+ * If the pitch shift effect is only ever applied to the global mix (i.e. with ${function.fmod_channel_control_add_dsp} on a [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) object), then 0 is the value to set as it will be enough to handle all speaker modes.
  * 
- * When the pitch shift is added to a Channel (i.e. with ${function.fmod_channel_control_add_dsp} on a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) object) then the signal channel count that comes in could be anything from 1 to 8 possibly. It is only in this case where you might want to increase the channel count above the output's channel count.
+ * When the pitch shift is added to a Channel (i.e. with ${function.fmod_channel_control_add_dsp} on a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) object) then the signal channel count that comes in could be anything from 1 to 8 possibly. It is only in this case where you might want to increase the channel count above the output's channel count.
  * 
- * If a [Channel](https://www.fmod.com/docs/2.02/api/core-api-channel.html) pitch shift is set to a lower number than the signal's channel count that is coming in, it will not pitch shift the sound.
+ * If a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) pitch shift is set to a lower number than the signal's channel count that is coming in, it will not pitch shift the sound.
  * 
  * @member PITCH Pitch value. 0.5 = one octave down, 2.0 = one octave up. 1.0 does not change the pitch.
  * @member FFTSIZE FFT window size - 256, 512, 1024, 2048, 4096. Increase this to reduce 'smearing'. This effect is a warbling sound similar to when an mp3 is encoded at very low bitrates.
@@ -1215,7 +1215,7 @@
 
 /**
  * @const FMOD_DSP_CHORUS
- * @desc > **FMOD Constant:** [FMOD_DSP_CHORUS](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_chorus)
+ * @desc > **FMOD Constant:** [FMOD_DSP_CHORUS](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_chorus)
  *
  * <br />
  *
@@ -1231,7 +1231,7 @@
 
 /**
  * @const FMOD_DSP_ITECHO
- * @desc > **FMOD Constant:** [FMOD_DSP_ITECHO](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_itecho)
+ * @desc > **FMOD Constant:** [FMOD_DSP_ITECHO](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_itecho)
  *
  * <br />
  *
@@ -1253,7 +1253,7 @@
 
 /**
  * @const FMOD_DSP_COMPRESSOR
- * @desc > **FMOD Constant:** [FMOD_DSP_COMPRESSOR](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_compressor)
+ * @desc > **FMOD Constant:** [FMOD_DSP_COMPRESSOR](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_compressor)
  *
  * <br />
  *
@@ -1274,7 +1274,7 @@
 
 /**
  * @const FMOD_DSP_SFXREVERB
- * @desc > **FMOD Constant:** [FMOD_DSP_SFXREVERB](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_sfxreverb)
+ * @desc > **FMOD Constant:** [FMOD_DSP_SFXREVERB](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_sfxreverb)
  *
  * <br />
  *
@@ -1300,7 +1300,7 @@
 
 /**
  * @const FMOD_DSP_LOWPASS_SIMPLE
- * @desc > **FMOD Constant:** [FMOD_DSP_LOWPASS_SIMPLE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass_simple)
+ * @desc > **FMOD Constant:** [FMOD_DSP_LOWPASS_SIMPLE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass_simple)
  *
  * <br />
  *
@@ -1318,7 +1318,7 @@
 
 /**
  * @const FMOD_DSP_DELAY
- * @desc > **FMOD Constant:** [FMOD_DSP_DELAY](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_delay)
+ * @desc > **FMOD Constant:** [FMOD_DSP_DELAY](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_delay)
  *
  * <br />
  *
@@ -1345,7 +1345,7 @@
 
 /**
  * @const FMOD_DSP_TREMOLO
- * @desc > **FMOD Constant:** [FMOD_DSP_TREMOLO](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_tremolo)
+ * @desc > **FMOD Constant:** [FMOD_DSP_TREMOLO](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_tremolo)
  *
  * <br />
  *
@@ -1374,7 +1374,7 @@
 
 /**
  * @const FMOD_DSP_SEND
- * @desc > **FMOD Constant:** [FMOD_DSP_SEND](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_send)
+ * @desc > **FMOD Constant:** [FMOD_DSP_SEND](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_send)
  *
  * <br />
  *
@@ -1386,7 +1386,7 @@
 
 /**
  * @const FMOD_DSP_RETURN
- * @desc > **FMOD Constant:** [FMOD_DSP_RETURN](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_return)
+ * @desc > **FMOD Constant:** [FMOD_DSP_RETURN](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_return)
  *
  * <br />
  *
@@ -1398,7 +1398,7 @@
 
 /**
  * @const FMOD_DSP_HIGHPASS_SIMPLE
- * @desc > **FMOD Constant:** [FMOD_DSP_HIGHPASS_SIMPLE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_highpass_simple)
+ * @desc > **FMOD Constant:** [FMOD_DSP_HIGHPASS_SIMPLE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass_simple)
  *
  * <br />
  *
@@ -1409,7 +1409,7 @@
 
 /**
  * @const FMOD_DSP_PAN_2D_STEREO_MODE_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_PAN_2D_STEREO_MODE_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PAN_2D_STEREO_MODE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode_type)
  *
  * <br />
  *
@@ -1421,7 +1421,7 @@
 
 /**
  * @const FMOD_DSP_PAN_MODE_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_PAN_MODE_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pan_mode_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PAN_MODE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_mode_type)
  *
  * <br />
  *
@@ -1434,7 +1434,7 @@
 
 /**
  * @const FMOD_DSP_PAN_3D_ROLLOFF_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_PAN_3D_ROLLOFF_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_rolloff_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PAN_3D_ROLLOFF_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_rolloff_type)
  *
  * <br />
  *
@@ -1452,7 +1452,7 @@
 
 /**
  * @const FMOD_DSP_PAN_3D_EXTENT_MODE_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_PAN_3D_EXTENT_MODE_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_extent_mode_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PAN_3D_EXTENT_MODE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_extent_mode_type)
  *
  * <br />
  *
@@ -1465,7 +1465,7 @@
 
 /**
  * @const FMOD_DSP_PAN
- * @desc > **FMOD Constant:** [FMOD_DSP_PAN](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_pan)
+ * @desc > **FMOD Constant:** [FMOD_DSP_PAN](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan)
  *
  * <br />
  *
@@ -1512,7 +1512,7 @@
 
 /**
  * @const FMOD_DSP_THREE_EQ_CROSSOVERSLOPE_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_THREE_EQ_CROSSOVERSLOPE_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq_crossoverslope_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_THREE_EQ_CROSSOVERSLOPE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq_crossoverslope_type)
  *
  * <br />
  *
@@ -1525,7 +1525,7 @@
 
 /**
  * @const FMOD_DSP_THREE_EQ
- * @desc > **FMOD Constant:** [FMOD_DSP_THREE_EQ](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq)
+ * @desc > **FMOD Constant:** [FMOD_DSP_THREE_EQ](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq)
  *
  * <br />
  *
@@ -1541,7 +1541,7 @@
 
 /**
  * @const FMOD_DSP_FFT_WINDOW
- * @desc > **FMOD Constant:** [FMOD_DSP_FFT_WINDOW](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_fft_window)
+ * @desc > **FMOD Constant:** [FMOD_DSP_FFT_WINDOW](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft_window)
  *
  * <br />
  *
@@ -1564,7 +1564,7 @@
 
 /**
  * @const FMOD_DSP_FFT
- * @desc > **FMOD Constant:** [FMOD_DSP_FFT](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_fft)
+ * @desc > **FMOD Constant:** [FMOD_DSP_FFT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft)
  *
  * <br />
  *
@@ -1592,7 +1592,7 @@
 
 /**
  * @const FMOD_DSP_LOUDNESS_METER
- * @desc > **FMOD Constant:** [FMOD_DSP_LOUDNESS_METER](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter)
+ * @desc > **FMOD Constant:** [FMOD_DSP_LOUDNESS_METER](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter)
  *
  * <br />
  *
@@ -1605,7 +1605,7 @@
 
 /**
  * @const FMOD_DSP_LOUDNESS_METER_STATE_TYPE
- * @desc > **FMOD Constant:** [FMOD_DSP_LOUDNESS_METER_STATE_TYPE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter_state_type)
+ * @desc > **FMOD Constant:** [FMOD_DSP_LOUDNESS_METER_STATE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter_state_type)
  *
  * <br />
  *
@@ -1620,7 +1620,7 @@
 
 /**
  * @const FMOD_DSP_ENVELOPEFOLLOWER
- * @desc > **FMOD Constant:** [FMOD_DSP_ENVELOPEFOLLOWER](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_envelopefollower)
+ * @desc > **FMOD Constant:** [FMOD_DSP_ENVELOPEFOLLOWER](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_envelopefollower)
  *
  * <br />
  *
@@ -1635,7 +1635,7 @@
 
 /**
  * @const FMOD_DSP_CONVOLUTION_REVERB_PARAM
- * @desc > **FMOD Constant:** [FMOD_DSP_CONVOLUTION_REVERB](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_convolution_reverb)
+ * @desc > **FMOD Constant:** [FMOD_DSP_CONVOLUTION_REVERB](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_convolution_reverb)
  *
  * <br />
  *
@@ -1652,7 +1652,7 @@
 
 /**
  * @const FMOD_DSP_CHANNELMIX_OUTPUT
- * @desc > **FMOD Constant:** [FMOD_DSP_CHANNELMIX_OUTPUT](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix_output)
+ * @desc > **FMOD Constant:** [FMOD_DSP_CHANNELMIX_OUTPUT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix_output)
  *
  * <br />
  *
@@ -1670,7 +1670,7 @@
 
 /**
  * @const FMOD_DSP_CHANNELMIX
- * @desc > **FMOD Constant:** [FMOD_DSP_CHANNELMIX](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix)
+ * @desc > **FMOD Constant:** [FMOD_DSP_CHANNELMIX](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix)
  *
  * <br />
  *
@@ -1750,7 +1750,7 @@
 
 /**
  * @const FMOD_DSP_TRANSCEIVER_SPEAKERMODE
- * @desc > **FMOD Constant:** [FMOD_DSP_TRANSCEIVER_SPEAKERMODE](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver_speakermode)
+ * @desc > **FMOD Constant:** [FMOD_DSP_TRANSCEIVER_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver_speakermode)
  *
  * <br />
  *
@@ -1771,7 +1771,7 @@
 
 /**
  * @const FMOD_DSP_TRANSCEIVER
- * @desc > **FMOD Constant:** [FMOD_DSP_TRANSCEIVER](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver)
+ * @desc > **FMOD Constant:** [FMOD_DSP_TRANSCEIVER](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver)
  *
  * <br />
  *
@@ -1785,7 +1785,7 @@
 
 /**
  * @const FMOD_DSP_OBJECTPAN
- * @desc > **FMOD Constant:** [FMOD_DSP_OBJECTPAN](https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan)
+ * @desc > **FMOD Constant:** [FMOD_DSP_OBJECTPAN](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan)
  *
  * <br />
  *
@@ -1815,7 +1815,7 @@
 
 /**
  * @const FMOD_OUTPUT_PLUGIN_VERSION
- * @desc > **FMOD Constant:** [FMOD_OUTPUT_PLUGIN_VERSION](https://www.fmod.com/docs/2.02/api/plugin-api-output.html#fmod_output_plugin_version)
+ * @desc > **FMOD Constant:** [FMOD_OUTPUT_PLUGIN_VERSION](https://www.fmod.com/docs/2.03/api/plugin-api-output.html#fmod_output_plugin_version)
  *
  * <br />
  * 
@@ -1826,7 +1826,7 @@
 
 /**
  * @const FMOD_OUTPUT_METHOD
- * @desc > **FMOD Constant:** [FMOD_OUTPUT_METHOD](https://www.fmod.com/docs/2.02/api/plugin-api-output.html#fmod_output_method)
+ * @desc > **FMOD Constant:** [FMOD_OUTPUT_METHOD](https://www.fmod.com/docs/2.03/api/plugin-api-output.html#fmod_output_method)
  *
  * <br />
  *
@@ -1843,7 +1843,7 @@
 
 /**
  * @const FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT
- * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_load_memory_alignment)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_load_memory_alignment)
  *
  * <br />
  * 
@@ -1854,7 +1854,7 @@
 
 /**
  * @const FMOD_STUDIO_INIT
- * @desc > **FMOD Constant:** [FMOD_STUDIO_INITFLAGS](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_initflags)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_INITFLAGS](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_initflags)
  *
  * <br />
  *
@@ -1871,7 +1871,7 @@
 
 /**
  * @const FMOD_STUDIO_PARAMETER_FLAGS
- * @desc > **FMOD Constant:** [FMOD_STUDIO_PARAMETER_FLAGS](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_flags)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_PARAMETER_FLAGS](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_flags)
  *
  * <br />
  *
@@ -1886,7 +1886,7 @@
 
 /**
  * @const FMOD_STUDIO_SYSTEM_CALLBACK
- * @desc > **FMOD Constant:** [FMOD_STUDIO_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_system_callback_type)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_system_callback_type)
  *
  * <br />
  *
@@ -1905,7 +1905,7 @@
 
 /**
  * @const FMOD_STUDIO_EVENT_CALLBACK
- * @desc > **FMOD Constant:** [FMOD_STUDIO_EVENT_CALLBACK_TYPE](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#fmod_studio_event_callback_type)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_EVENT_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_event_callback_type)
  *
  * <br />
  *
@@ -1921,17 +1921,17 @@
  * @member RESTARTED ${function.fmod_studio_event_instance_start} has been called on an event which was already playing. Parameters = unused.
  * @member STOPPED The event has stopped. Parameters = unused.
  * @member START_FAILED ${function.fmod_studio_event_instance_start} has been called but the polyphony settings did not allow the event to start. In this case none of `FMOD_STUDIO_EVENT_CALLBACK.STARTING`, `FMOD_STUDIO_EVENT_CALLBACK.STARTED` and `FMOD_STUDIO_EVENT_CALLBACK.STOPPED` will be called. Parameters = unused.
- * @member CREATE_PROGRAMMER_SOUND A programmer sound is about to play. FMOD expects the callback to provide a [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) object for it to use. Parameters = `FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES`.
- * @member DESTROY_PROGRAMMER_SOUND A programmer sound has stopped playing. At this point it is safe to release the [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html) object that was used. Parameters = `FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES`.
+ * @member CREATE_PROGRAMMER_SOUND A programmer sound is about to play. FMOD expects the callback to provide a [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) object for it to use. Parameters = `FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES`.
+ * @member DESTROY_PROGRAMMER_SOUND A programmer sound has stopped playing. At this point it is safe to release the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) object that was used. Parameters = `FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES`.
  * @member PLUGIN_CREATED Called when a DSP plugin instance has just been created. Parameters = `FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES`.
  * @member PLUGIN_DESTROYED Called when a DSP plugin instance is about to be destroyed. Parameters = `FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES`.
  * @member TIMELINE_MARKER Called when the timeline passes a named marker. Parameters = `FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES`.
  * @member TIMELINE_BEAT Called when the timeline hits a beat in a tempo section. Parameters = `FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES`.
- * @member SOUND_PLAYED Called when the event plays a sound. Parameters = [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
- * @member SOUND_STOPPED Called when the event finishes playing a sound. Parameters = [Sound](https://www.fmod.com/docs/2.02/api/core-api-sound.html).
+ * @member SOUND_PLAYED Called when the event plays a sound. Parameters = [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
+ * @member SOUND_STOPPED Called when the event finishes playing a sound. Parameters = [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * @member REAL_TO_VIRTUAL Called when the event becomes virtual. Parameters = unused.
  * @member VIRTUAL_TO_REAL Called when the event becomes real. Parameters = unused.
- * @member START_EVENT_COMMAND Called when a new event is started by a start event command. Parameters = [Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html).
+ * @member START_EVENT_COMMAND Called when a new event is started by a start event command. Parameters = [Studio::EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html).
  * @member NESTED_TIMELINE_BEAT Called when the timeline hits a beat in a tempo section of a nested event. Parameters = `FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES`.
  * @member ALL Pass this mask to ${function.fmod_studio_event_description_set_callback} or ${function.fmod_studio_event_instance_set_callback} to receive all callback types.
  * @const_end
@@ -1939,7 +1939,7 @@
 
 /**
  * @const FMOD_STUDIO_LOAD_BANK
- * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_BANK](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_load_bank_flags)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_BANK](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_load_bank_flags)
  *
  * <br />
  *
@@ -1953,7 +1953,7 @@
 
 /**
  * @const FMOD_STUDIO_COMMANDCAPTURE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_COMMANDCAPTURE_FLAGS](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_commandcapture_flags)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_COMMANDCAPTURE_FLAGS](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_commandcapture_flags)
  *
  * <br />
  *
@@ -1966,7 +1966,7 @@
 
 /**
  * @const FMOD_STUDIO_COMMANDREPLAY
- * @desc > **FMOD Constant:** [FMOD_STUDIO_COMMANDREPLAY_FLAGS](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_commandreplay_flags)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_COMMANDREPLAY_FLAGS](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_commandreplay_flags)
  *
  * <br />
  *
@@ -1980,7 +1980,7 @@
 
 /**
  * @const FMOD_STUDIO_LOADING_STATE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_LOADING_STATE](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_loading_state)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_LOADING_STATE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_loading_state)
  *
  * <br />
  *
@@ -1995,7 +1995,7 @@
 
 /**
  * @const FMOD_STUDIO_LOAD_MEMORY_MODE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_MEMORY_MODE](https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_load_memory_mode)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_LOAD_MEMORY_MODE](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_load_memory_mode)
  *
  * <br />
  *
@@ -2007,7 +2007,7 @@
 
 /**
  * @const FMOD_STUDIO_PARAMETER_TYPE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_PARAMETER_TYPE](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_type)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_PARAMETER_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_type)
  *
  * <br />
  *
@@ -2032,7 +2032,7 @@
 
 /**
  * @const FMOD_STUDIO_USER_PROPERTY_TYPE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_USER_PROPERTY_TYPE](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#fmod_studio_user_property_type)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_USER_PROPERTY_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#fmod_studio_user_property_type)
  *
  * <br />
  *
@@ -2046,7 +2046,7 @@
 
 /**
  * @const FMOD_STUDIO_EVENT_PROPERTY
- * @desc > **FMOD Constant:** [FMOD_STUDIO_EVENT_PROPERTY](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#fmod_studio_event_property)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_EVENT_PROPERTY](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_event_property)
  *
  * <br />
  *
@@ -2065,13 +2065,13 @@
 
 /**
  * @const FMOD_STUDIO_PLAYBACK_STATE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_PLAYBACK_STATE](https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_playback_state)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_PLAYBACK_STATE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_playback_state)
  *
  * <br />
  *
  * This enum specifies the playback state of various objects.
  * @member PLAYING Playing.
- * @member SUSTAINING The timeline cursor is paused on a sustain point. ([Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html) only.)
+ * @member SUSTAINING The timeline cursor is paused on a sustain point. ([Studio::EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html) only.)
  * @member STOPPED Stopped.
  * @member STARTING Preparing to start.
  * @member STOPPING Preparing to stop.
@@ -2080,7 +2080,7 @@
 
 /**
  * @const FMOD_STUDIO_STOP_MODE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_STOP_MODE](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html#fmod_studio_stop_mode)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_STOP_MODE](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_stop_mode)
  *
  * <br />
  *
@@ -2092,20 +2092,20 @@
 
 /**
  * @const FMOD_STUDIO_INSTANCETYPE
- * @desc > **FMOD Constant:** [FMOD_STUDIO_INSTANCETYPE](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#fmod_studio_instancetype)
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_INSTANCETYPE](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#fmod_studio_instancetype)
  *
  * <br />
  *
  * This enum specifies command replay command instance handle types.
  * @member NONE No type, handle is unused.
- * @member SYSTEM [Studio::System](https://www.fmod.com/docs/2.02/api/studio-api-system.html).
- * @member EVENTDESCRIPTION [Studio::EventDescription](https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html).
- * @member EVENTINSTANCE [Studio::EventInstance](https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html).
+ * @member SYSTEM [Studio::System](https://www.fmod.com/docs/2.03/api/studio-api-system.html).
+ * @member EVENTDESCRIPTION [Studio::EventDescription](https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html).
+ * @member EVENTINSTANCE [Studio::EventInstance](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html).
  * @member PARAMETERINSTANCE [Studio::ParameterInstance].
- * @member BUS [Studio::Bus](https://www.fmod.com/docs/2.02/api/studio-api-bus.html).
- * @member VCA [Studio::VCA](https://www.fmod.com/docs/2.02/api/studio-api-vca.html).
- * @member BANK [Studio::Bank](https://www.fmod.com/docs/2.02/api/studio-api-bank.html).
- * @member COMMANDREPLAY [Studio::CommandReplay](https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html).
+ * @member BUS [Studio::Bus](https://www.fmod.com/docs/2.03/api/studio-api-bus.html).
+ * @member VCA [Studio::VCA](https://www.fmod.com/docs/2.03/api/studio-api-vca.html).
+ * @member BANK [Studio::Bank](https://www.fmod.com/docs/2.03/api/studio-api-bank.html).
+ * @member COMMANDREPLAY [Studio::CommandReplay](https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html).
  * @const_end
  */
 

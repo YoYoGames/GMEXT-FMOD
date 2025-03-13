@@ -161,7 +161,7 @@
                 <p><a id="top"></a></p>
 <h1 id="system"><strong>System</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds functionality related to FMOD's System object, which is a management object from which all resources are created and played.</p>
@@ -252,11 +252,11 @@
 
 <h1 id="fmod_system_create">fmod_system_create</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_create">System_Create</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_create">System_Create</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates an instance of the FMOD system.</p>
-<p>It must be called first to create an FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a> object before any other API calls (except for <a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a>). Use this function to create 1 or multiple instances of FMOD System objects.</p>
+<p>It must be called first to create an FMOD <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a> object before any other API calls (except for <a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a>). Use this function to create 1 or multiple instances of FMOD System objects.</p>
 <p>If the new FMOD system is created successfully, the function returns a reference to the system and makes it the <em>selected</em> system.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -316,7 +316,7 @@
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmod_system_count">fmod_system_count</h1>
-<p>This function returns the number of FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">Systems</a>.</p>
+<p>This function returns the number of FMOD <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">Systems</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Every successful call to <a href="system.html#fmod_system_create">fmod_system_create</a> creates an instance of an FMOD system object that's included in the count.</p>
@@ -340,7 +340,7 @@
 
 <h1 id="fmod_system_init">fmod_system_init</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_init">System::init</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_init">System::init</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function initializes the system object and prepares FMOD for playback.</p>
@@ -376,7 +376,7 @@
 <tr>
 <td>max_channels</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
+<td>The maximum number of <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
 </tr>
 <tr>
 <td>flags</td>
@@ -399,10 +399,10 @@
 
 <h1 id="fmod_system_release">fmod_system_release</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_release">System::release</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_release">System::release</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function closes and frees the given FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a> object and its resources.</p>
+<p>This function closes and frees the given FMOD <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a> object and its resources.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This will internally call <a href="system.html#fmod_system_close">fmod_system_close</a>, so calling <a href="system.html#fmod_system_close">fmod_system_close</a> before this function is not necessary.</p>
@@ -426,11 +426,11 @@
 
 <h1 id="fmod_system_close">fmod_system_close</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_close">System::close</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_close">System::close</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function close the connections to the output and returns to an uninitialized state without releasing the object.</p>
-<p>Closing renders FMOD objects created with this System invalid. You should make sure any <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a>, <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> objects are released before calling this.</p>
+<p>Closing renders FMOD objects created with this System invalid. You should make sure any <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a>, <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a> and <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> objects are released before calling this.</p>
 <p>All pre-initialize configuration settings will remain and the System can be reinitialized as needed.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -467,7 +467,7 @@
 
 <h1 id="fmod_system_update">fmod_system_update</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_update">System::update</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_update">System::update</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function updates the FMOD system.</p>
@@ -478,7 +478,7 @@
 <p>It should be called once per frame in your application (for example in a <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Events.htm">Step event</a>) to perform actions such as:</p>
 <ul>
 <li>Panning and reverb from 3D attributes changes.</li>
-<li>The virtualization of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> based on their audibility.</li>
+<li>The virtualization of <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> based on their audibility.</li>
 <li>Mixing for non-realtime output types. See comment below.</li>
 <li>Streaming if using <code>FMOD_INIT.STREAM_FROM_UPDATE</code>.</li>
 <li>Mixing if using <code>FMOD_INIT.MIX_FROM_UPDATE</code>.</li>
@@ -508,12 +508,12 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 
 <h1 id="fmod_system_mixer_suspend">fmod_system_mixer_suspend</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixersuspend">System::mixerSuspend</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixersuspend">System::mixerSuspend</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function suspends the mixer thread and relinquishes usage of audio hardware while maintaining internal state.</p>
 <p>It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.</p>
-<p>All internal state will be maintained, i.e. created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> will stay available in memory.</p>
+<p>All internal state will be maintained, i.e. created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> will stay available in memory.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -533,12 +533,12 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 
 <h1 id="fmod_system_mixer_resume">fmod_system_mixer_resume</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_mixerresume">System::mixerResume</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixerresume">System::mixerResume</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function resumes the mixer thread and reacquires access to audio hardware.</p>
 <p>It is used on mobile platforms when entering the foreground after being suspended.</p>
-<p>All internal state will resume, i.e. created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> are still valid and playback will continue.</p>
+<p>All internal state will resume, i.e. created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> are still valid and playback will continue.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.</p>
@@ -562,7 +562,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 
 <h1 id="fmod_system_set_output">fmod_system_set_output</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setoutput">System::setOutput</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setoutput">System::setOutput</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the type of output interface used to run the mixer.</p>
@@ -611,7 +611,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 
 <h1 id="fmod_system_get_output">fmod_system_get_output</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getoutput">System::getOutput</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getoutput">System::getOutput</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the type of output interface used to run the mixer.</p>
@@ -634,7 +634,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 
 <h1 id="fmod_system_get_num_drivers">fmod_system_get_num_drivers</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnumdrivers">System::getNumDrivers</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnumdrivers">System::getNumDrivers</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of output drivers available for the selected output type.</p>
@@ -659,7 +659,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_get_driver_info">fmod_system_get_driver_info</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriverinfo">System::getDriverInfo</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriverinfo">System::getDriverInfo</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves identification information about a sound device specified by its index, and specific to the selected output mode.</p>
@@ -698,7 +698,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_set_driver">fmod_system_set_driver</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdriver">System::setDriver</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdriver">System::setDriver</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the output driver for the selected output type.</p>
@@ -739,7 +739,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_get_driver">fmod_system_get_driver</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdriver">System::getDriver</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriver">System::getDriver</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the output driver for the selected output type.</p>
@@ -763,12 +763,12 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_set_software_channels">fmod_system_set_software_channels</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwarechannels">System::setSoftwareChannels</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwarechannels">System::setSoftwareChannels</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function sets the maximum number of software mixed <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> possible.</p>
+<p>This function sets the maximum number of software mixed <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> possible.</p>
 <p>This function cannot be called after FMOD is already activated, it must be called before <a href="system.html#fmod_system_init">fmod_system_init</a>, or after <a href="system.html#fmod_system_close">fmod_system_close</a>.
-'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
+'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -804,11 +804,11 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_get_software_channels">fmod_system_get_software_channels</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwarechannels">System::getSoftwareChannels</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwarechannels">System::getSoftwareChannels</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the maximum number of software mixed Channels possible.</p>
-<p>'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
+<p>'Software Channels' refers to real Channels that will play, with <code>software_channels</code> refering to the maximum number of Channels before successive Channels start becoming virtual. For differences between real and virtual Channels see the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -828,7 +828,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_set_software_format">fmod_system_set_software_format</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setsoftwareformat">System::setSoftwareFormat</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwareformat">System::setSoftwareFormat</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the output format for the software mixer.</p>
@@ -885,7 +885,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_get_software_format">fmod_system_get_software_format</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getsoftwareformat">System::getSoftwareFormat</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwareformat">System::getSoftwareFormat</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the output format for the software mixer.</p>
@@ -908,7 +908,7 @@ A possible use for this function is to iterate through available sound devices f
 
 <h1 id="fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setdspbuffersize">System::setDSPBufferSize</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdspbuffersize">System::setDSPBufferSize</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the buffer size for the FMOD software mixing engine.</p>
@@ -980,7 +980,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdspbuffersize">System::getDSPBufferSize</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdspbuffersize">System::getDSPBufferSize</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the buffer size settings for the FMOD software mixing engine.</p>
@@ -1006,7 +1006,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setstreambuffersize">System::setStreamBufferSize</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setstreambuffersize">System::setStreamBufferSize</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the default file buffer size for newly opened streams.</p>
@@ -1063,7 +1063,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getstreambuffersize">System::getStreamBufferSize</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getstreambuffersize">System::getStreamBufferSize</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the default file buffer size for newly opened streams.</p>
@@ -1091,7 +1091,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setadvancedsettings">System::setAdvancedSettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setadvancedsettings">System::setAdvancedSettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets advanced settings for the system object, typically to allow adjusting of settings related to resource usage or audio quality.</p>
@@ -1130,7 +1130,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_get_advanced_settings">fmod_system_get_advanced_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getadvancedsettings">System::getAdvancedSettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getadvancedsettings">System::getAdvancedSettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the advanced settings for the system object.</p>
@@ -1153,7 +1153,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 
 <h1 id="fmod_system_set_speaker_position">fmod_system_set_speaker_position</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setspeakerposition">System::setSpeakerPosition</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setspeakerposition">System::setSpeakerPosition</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the position of the specified speaker for the current speaker mode.</p>
@@ -1225,7 +1225,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_RIGHT,     dsin( 
 
 <h1 id="fmod_system_get_speaker_position">fmod_system_get_speaker_position</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakerposition">System::getSpeakerPosition</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakerposition">System::getSpeakerPosition</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the position of the specified speaker for the current speaker mode.</p>
@@ -1264,7 +1264,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKERMODE.BACK_RIGHT,     dsin( 
 
 <h1 id="fmod_system_set_3d_settings">fmod_system_set_3d_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dsettings">System::set3DSettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dsettings">System::set3DSettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the global doppler scale, distance factor and log roll-off scale for all 3D sound in FMOD.</p>
@@ -1317,7 +1317,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_3d_settings">fmod_system_get_3d_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dsettings">System::get3DSettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dsettings">System::get3DSettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the global doppler scale, distance factor and roll-off scale for all 3D sounds.</p>
@@ -1340,7 +1340,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dnumlisteners">System::set3DNumListeners</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dnumlisteners">System::set3DNumListeners</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the number of 3D 'listeners' in the 3D sound scene.</p>
@@ -1385,7 +1385,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_3d_num_listeners">fmod_system_get_3d_num_listeners</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dnumlisteners">System::get3DNumListeners</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dnumlisteners">System::get3DNumListeners</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of 3D listeners.</p>
@@ -1412,12 +1412,12 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_set_3d_rolloff_callback">fmod_system_set_3d_rolloff_callback</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3drolloffcallback">System::set3DRolloffCallback</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3drolloffcallback">System::set3DRolloffCallback</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function enables callbacks for custom calculation of distance attenuation.</p>
 <p>This function overrides <code>FMOD_MODE.AS_3D_INVERSEROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARROLLOFF</code>, <code>FMOD_MODE.AS_3D_LINEARSQUAREROLLOFF</code>, <code>FMOD_MODE.AS_3D_INVERSETAPEREDROLLOFF</code> and <code>FMOD_MODE.AS_3D_CUSTOMROLLOFF</code>.</p>
-<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior">Callback behavior</a></p>
+<p>See also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior">Callback behavior</a></p>
 <p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1469,7 +1469,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_set_network_proxy">fmod_system_set_network_proxy</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworkproxy">System::setNetworkProxy</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworkproxy">System::setNetworkProxy</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets a proxy server to use for all subsequent internet connections.</p>
@@ -1492,7 +1492,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <tr>
 <td>proxy</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The proxy server URL. (as a <a href="https://www.fmod.com/docs/2.02/api/glossary.html#string-format">UTF-8 string</a>)</td>
+<td>The proxy server URL. (as a <a href="https://www.fmod.com/docs/2.03/api/glossary.html#string-format">UTF-8 string</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -1510,7 +1510,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_network_proxy">fmod_system_get_network_proxy</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworkproxy">System::getNetworkProxy</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworkproxy">System::getNetworkProxy</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the URL of the proxy server used in internet streaming.</p>
@@ -1533,7 +1533,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_set_network_timeout">fmod_system_set_network_timeout</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setnetworktimeout">System::setNetworkTimeout</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworktimeout">System::setNetworkTimeout</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the timeout for network streams.</p>
@@ -1572,7 +1572,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_network_timeout">fmod_system_get_network_timeout</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getnetworktimeout">System::getNetworkTimeout</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworktimeout">System::getNetworkTimeout</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the timeout value (in milliseconds) for network streams.</p>
@@ -1595,7 +1595,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_version">fmod_system_get_version</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getversion">System::getVersion</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getversion">System::getVersion</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the FMOD version number.</p>
@@ -1623,11 +1623,11 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_channels_playing">fmod_system_get_channels_playing</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannelsplaying">System::getChannelsPlaying</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannelsplaying">System::getChannelsPlaying</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the number of currently playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</p>
-<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>This function retrieves the number of currently playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a>.</p>
+<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1647,7 +1647,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_cpu_usage">fmod_system_get_cpu_usage</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getcpuusage">System::getCPUUsage</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getcpuusage">System::getCPUUsage</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the amount of CPU used for different parts of the FMOD Core engine.</p>
@@ -1671,7 +1671,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_file_usage">fmod_system_get_file_usage</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getfileusage">System::getFileUsage</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getfileusage">System::getFileUsage</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves information about file reads.</p>
@@ -1698,7 +1698,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getdefaultmixmatrix">System::getDefaultMixMatrix</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdefaultmixmatrix">System::getDefaultMixMatrix</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the default matrix used to convert from one speaker mode to another.</p>
@@ -1750,7 +1750,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getspeakermodechannels">System::getSpeakerModeChannels</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakermodechannels">System::getSpeakerModeChannels</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the channel count for a given speaker mode.</p>
@@ -1789,11 +1789,11 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_sound">fmod_system_create_sound</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsound">System::createSound</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function loads a sound into memory, opens it for streaming or sets it up for callback-based sounds.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
 <p><code>FMOD_MODE.CREATESAMPLE</code> will try to load and decompress the whole sound into memory, use <code>FMOD_MODE.CREATESTREAM</code> to open it as a stream and have it play back in realtime from disk or another medium. <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> can also be used for certain formats to play the sound directly in its compressed format from the mixer.</p>
 <ul>
 <li>To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the <code>FMOD_MODE.CREATESTREAM</code> flag.</li>
@@ -1859,11 +1859,11 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_stream">fmod_system_create_stream</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createstream">System::createStream</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createstream">System::createStream</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function opens a sound for streaming.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
 <p>This is a convenience function for <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with the <code>FMOD_MODE.CREATESTREAM</code> flag added.</p>
 <p>A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.</p>
 <p><br></p>
@@ -1911,12 +1911,12 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_dsp">fmod_system_create_dsp</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdsp">System::createDSP</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdsp">System::createDSP</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a DSP object.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit.</p>
-<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> unit.</p>
+<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> or <a href="DSP.html#fmod_dsp_add_input">fmod_dsp_add_input</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1937,12 +1937,12 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createdspbytype">System::createDSPByType</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdspbytype">System::createDSPByType</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a DSP object given a built-in type index.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit.</p>
-<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> unit.</p>
+<p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> or <a href="DSP.html#fmod_dsp_add_input">fmod_dsp_add_input</a>.</p>
 <p>Using <code>FMOD_DSP_TYPE.VSTPLUGIN</code> or <code>FMOD_DSP_TYPE.WINAMPPLUGIN</code> will return the first loaded plugin of this type.</p>
 <div class="admonition warning">
@@ -1984,13 +1984,13 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_channel_group">fmod_system_create_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createchannelgroup">System::createChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createchannelgroup">System::createChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a ChannelGroup object.</p>
-<p>The function returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a>.</p>
-<p>ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>. See <code>FMOD_CHANNELCONTROL_DSP_INDEX.TAIL</code>.</p>
-<p>If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
+<p>The function returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a>.</p>
+<p>ChannelGroups can be used to assign / group Channels, for things such as volume scaling. ChannelGroups are also used for sub-mixing. Any Channels that are assigned to a ChannelGroup get submixed into that ChannelGroup's 'tail' <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a>. See <code>FMOD_CHANNELCONTROL_DSP_INDEX.TAIL</code>.</p>
+<p>If a ChannelGroup has an effect added to it, the effect is processed post-mix from the Channels and ChannelGroups below it in the mix hierarchy. See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>All ChannelGroups will initially output directly to the master ChannelGroup (See <a href="system.html#fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</a>). ChannelGroups can be re-parented with <a href="channel_group.html#fmod_channel_group_add_group">fmod_channel_group_add_group</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -2027,12 +2027,12 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_sound_group">fmod_system_create_sound_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createsoundgroup">System::createSoundGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsoundgroup">System::createSoundGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a SoundGroup object.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
-<p>A SoundGroup is a way to address multiple <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> at once with group level commands, such as:</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>A SoundGroup is a way to address multiple <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> at once with group level commands, such as:</p>
 <ul>
 <li>The attributes of Sounds that are playing or about to be played, such as volume. (See <a href="sound_group.html#fmod_sound_group_set_volume">fmod_sound_group_set_volume</a>).</li>
 <li>Control of playback, such as stopping Sounds. (See <a href="sound_group.html#fmod_sound_group_stop">fmod_sound_group_stop</a>).</li>
@@ -2074,20 +2074,20 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_create_reverb_3d">fmod_system_create_reverb_3d</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_createreverb3d">System::createReverb3D</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createreverb3d">System::createReverb3D</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a 'virtual reverb' object. This object reacts to 3D location and morphs the reverb environment based on how close it is to the reverb object's center.</p>
-<p>The function returns a reference to the newly created virtual <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html">reverb</a> object.</p>
+<p>The function returns a reference to the newly created virtual <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html">reverb</a> object.</p>
 <p>Multiple reverb objects can be created to achieve a multi-reverb environment. 1 reverb object is used for all 3D reverb objects (slot 0 by default).</p>
 <p>The 3D reverb object is a sphere having 3D attributes (position, minimum distance, maximum distance) and reverb properties.</p>
-<p>The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+<p>The properties and 3D attributes of all reverb objects collectively determine, along with the listener's position, the settings of and input gains into a single 3D reverb <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a>.</p>
 <p>When the listener is within the sphere of effect of one or more 3D reverbs, the listener's 3D reverb properties are a weighted combination of such 3D reverbs.</p>
 <p>When the listener is outside all of the reverbs, no reverb is applied.</p>
 <p><a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> can be used to create an alternative reverb that can be used for 2D and background global reverb.</p>
 <p>To avoid this reverb interfering with the reverb slot used by the 3D reverb, 2D reverb should use a different slot ID with <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a>, otherwise <a href="structs.html#fmodsystemadvancedsettings">FmodSystemAdvancedSettings</a>'s <code>reverb_3d_instance</code> property can also be used to place 3D reverb on a different reverb slot.</p>
 <p>Use <a href="channel_control.html#fmod_channel_control_set_reverb_properties">fmod_channel_control_set_reverb_properties</a> to turn off reverb for 2D sounds (i.e. set wet = 0).</p>
-<p>Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> running that just morphs between the different virtual reverbs.</p>
+<p>Creating multiple reverb objects does not impact performance. These are 'virtual reverbs'. There will still be only one reverb <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> running that just morphs between the different virtual reverbs.</p>
 <p>Note about reverb DSP unit allocation. To remove the DSP unit and the associated CPU cost, first make sure all 3D reverb objects are released. Then call <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> with the 3D reverb's slot ID (default is 0) with a property point of 0, to signal that the reverb instance should be deleted.</p>
 <p>If a 3D reverb is still present, and <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> function is called to free the reverb, the 3D reverb system will immediately recreate it upon the next <a href="system.html#fmod_system_update">fmod_system_update</a> call.</p>
 <div class="admonition note">
@@ -2113,16 +2113,16 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_play_sound">fmod_system_play_sound</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playsound">System::playSound</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playsound">System::playSound</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function plays a Sound on a Channel.</p>
-<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a>.</p>
+<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a>.</p>
 <p>When a sound is played, it will use the sound's default frequency and priority. See <a href="sound.html#fmod_sound_set_defaults">fmod_sound_set_defaults</a>.</p>
 <p>A sound defined as <code>FMOD_MODE.AS_3D</code> will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to <code>true</code>, and call <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
 <p>Specifying a <code>channel_group_ref</code> as part of <code>fmod_system_play_sound</code> is more efficient than using <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a> after <code>fmod_system_play_sound</code>, and could avoid audible glitches if the sound is not in a paused state.</p>
-<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
-<p>Playing more <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
+<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2168,14 +2168,14 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_play_dsp">fmod_system_play_dsp</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_playdsp">System::playDSP</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playdsp">System::playDSP</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function plays a DSP along with any of its inputs on a Channel.</p>
-<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a>.</p>
+<p>It returns the newly playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a>.</p>
 <p>Specifying a channelgroup as part of <code>fmod_system_play_dsp</code> is more efficient than using <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a> after <code>fmod_system_play_dsp</code>, and could avoid audible glitches if the <code>fmod_system_play_dsp</code> is not in a paused state.</p>
-<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
-<p>Playing more <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> or <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSPs</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
+<p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
+<p>Playing more <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> or <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSPs</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2193,17 +2193,17 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <tr>
 <td>dsp_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A reference to the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> unit to play.</td>
+<td>A reference to the <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> unit to play.</td>
 </tr>
 <tr>
 <td>channel_group_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A reference to the <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> to output to instead of the master.</td>
+<td>A reference to the <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> to output to instead of the master.</td>
 </tr>
 <tr>
 <td>pause</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
-<td>Whether to start in the paused state. Start a <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
+<td>Whether to start in the paused state. Start a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -2221,7 +2221,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_channel">fmod_system_get_channel</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getchannel">System::getChannel</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannel">System::getChannel</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a reference to a Channel by ID.</p>
@@ -2243,7 +2243,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <tr>
 <td>index</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The channel's index in the FMOD <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> pool. Specify a Channel number from 0 to the <code>max_channels</code> value specified in <a href="system.html#fmod_system_init">fmod_system_init</a> minus 1.</td>
+<td>The channel's index in the FMOD <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> pool. Specify a Channel number from 0 to the <code>max_channels</code> value specified in <a href="system.html#fmod_system_init">fmod_system_init</a> minus 1.</td>
 </tr>
 </tbody>
 </table>
@@ -2261,11 +2261,11 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 
 <h1 id="fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmasterchannelgroup">System::getMasterChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmasterchannelgroup">System::getMasterChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the master ChannelGroup that all sounds ultimately route to.</p>
-<p>This is the default <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> that <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> play on, unless a different ChannelGroup is specified with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a>, <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a> or <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a>.
+<p>This is the default <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> that <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> play on, unless a different ChannelGroup is specified with <a href="system.html#fmod_system_play_sound">fmod_system_play_sound</a>, <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a> or <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a>.
 A master ChannelGroup can be used to do things like set the 'master volume' for all playing Channels. See <a href="channel_control.html#fmod_channel_control_set_volume">fmod_channel_control_set_volume</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -2286,11 +2286,11 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 
 <h1 id="fmod_system_get_master_sound_group">fmod_system_get_master_sound_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getmastersoundgroup">System::getMasterSoundGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmastersoundgroup">System::getMasterSoundGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the default SoundGroup, where all sounds are placed when they are created.</p>
-<p>If a <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a> is released, the <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> in it will be put back into this SoundGroup.</p>
+<p>If a <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a> is released, the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> in it will be put back into this SoundGroup.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2310,12 +2310,12 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 
 <h1 id="fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_set3dlistenerattributes">System::set3DListenerAttributes</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dlistenerattributes">System::set3DListenerAttributes</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the position, velocity and orientation of the specified 3D sound listener.</p>
 <p>The <code>forward</code> and <code>up</code> vectors must be perpendicular and be of unit length (magnitude of each vector should be 1).</p>
-<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
 <p>For velocity, remember to use units per <strong>second</strong>, and not units per frame. This is a common mistake and will make the doppler effect sound wrong if velocity is based on movement per frame rather than a fixed time period.
 If velocity per frame is calculated, it can be converted to velocity per second by dividing it by the time taken between frames as a fraction of a second.
 i.e.</p>
@@ -2347,12 +2347,12 @@ i.e.</p>
 <tr>
 <td>position</td>
 <td><a href="structs.html#fmodvector">FmodVector</a></td>
-<td>The position in 3D world space used for panning and attenuation, in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+<td>The position in 3D world space used for panning and attenuation, in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
 </tr>
 <tr>
 <td>velocity</td>
 <td><a href="structs.html#fmodvector">FmodVector</a></td>
-<td>The velocity in 3D space used for doppler, in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a> per second.</td>
+<td>The velocity in 3D space used for doppler, in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a> per second.</td>
 </tr>
 <tr>
 <td>forward</td>
@@ -2380,7 +2380,7 @@ i.e.</p>
 
 <h1 id="fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_get3dlistenerattributes">System::get3DListenerAttributes</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dlistenerattributes">System::get3DListenerAttributes</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the position, velocity and orientation of the specified 3D sound listener.</p>
@@ -2423,7 +2423,7 @@ i.e.</p>
 
 <h1 id="fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setreverbproperties">System::setReverbProperties</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setreverbproperties">System::setReverbProperties</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets parameters for the global reverb environment.</p>
@@ -2469,7 +2469,7 @@ i.e.</p>
 
 <h1 id="fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getreverbproperties">System::getReverbProperties</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getreverbproperties">System::getReverbProperties</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current reverb environment for the specified reverb instance.</p>
@@ -2508,11 +2508,11 @@ i.e.</p>
 
 <h1 id="fmod_system_attach_channel_group_to_port">fmod_system_attach_channel_group_to_port</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_attachchannelgrouptoport">System::attachChannelGroupToPort</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_attachchannelgrouptoport">System::attachChannelGroupToPort</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function connects the output of the specified ChannelGroup to an audio port on the output driver.</p>
-<p>Ports are additional outputs supported by some <a href="constants.html#fmod_outputtype">FMOD_OUTPUTTYPE</a> plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the <a href="https://www.fmod.com/docs/2.02/api/platforms.html">platform details</a> chapter.</p>
+<p>Ports are additional outputs supported by some <a href="constants.html#fmod_outputtype">FMOD_OUTPUTTYPE</a> plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the <a href="https://www.fmod.com/docs/2.03/api/platforms.html">platform details</a> chapter.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2563,11 +2563,11 @@ i.e.</p>
 
 <h1 id="fmod_system_detach_channel_group_from_port">fmod_system_detach_channel_group_from_port</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_detachchannelgroupfromport">System::detachChannelGroupFromPort</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_detachchannelgroupfromport">System::detachChannelGroupFromPort</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function disconnects the output of the specified ChannelGroup from an audio port on the output driver.</p>
-<p>Removing a <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> from a port will reroute the audio back to the main mix.</p>
+<p>Removing a <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> from a port will reroute the audio back to the main mix.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2603,7 +2603,7 @@ i.e.</p>
 
 <h1 id="fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordnumdrivers">System::getRecordNumDrivers</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordnumdrivers">System::getRecordNumDrivers</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of recording devices available for this output mode. Use this to enumerate all recording devices possible so that the user can select one.</p>
@@ -2626,7 +2626,7 @@ i.e.</p>
 
 <h1 id="fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecorddriverinfo">System::getRecordDriverInfo</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecorddriverinfo">System::getRecordDriverInfo</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves identification information about an audio device specified by its index, and specific to the output mode.</p>
@@ -2665,7 +2665,7 @@ i.e.</p>
 
 <h1 id="fmod_system_get_record_position">fmod_system_get_record_position</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getrecordposition">System::getRecordPosition</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordposition">System::getRecordPosition</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current recording position of the record buffer in PCM samples.</p>
@@ -2710,7 +2710,7 @@ i.e.</p>
 
 <h1 id="fmod_system_record_start">fmod_system_record_start</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstart">System::recordStart</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstart">System::recordStart</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function starts the recording engine recording to a pre-created Sound object.</p>
@@ -2763,7 +2763,7 @@ i.e.</p>
 
 <h1 id="fmod_system_record_stop">fmod_system_record_stop</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_recordstop">System::recordStop</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstop">System::recordStop</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function stops the recording engine from recording to a pre-created Sound object.</p>
@@ -2803,7 +2803,7 @@ i.e.</p>
 
 <h1 id="fmod_system_is_recording">fmod_system_is_recording</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_isrecording">System::isRecording</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_isrecording">System::isRecording</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the state of the FMOD recording API, i.e. if it is currently recording or not.</p>
@@ -2848,11 +2848,11 @@ i.e.</p>
 
 <h1 id="fmod_system_create_geometry">fmod_system_create_geometry</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_creategeometry">System::createGeometry</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_creategeometry">System::createGeometry</a></p>
 </blockquote>
 <p><br /></p>
 <p>This is a geometry creation function. This function will create a base geometry object which can then have polygons added to it.</p>
-<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> object.</p>
+<p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a> object.</p>
 <p>Polygons can be added to a geometry object using <a href="geometry.html#fmod_geometry_add_polygon">fmod_geometry_add_polygon</a>. For best efficiency, avoid overlapping of polygons and long thin polygons.</p>
 <p>A geometry object stores its polygons in a group to allow optimization for line testing, insertion and updating of geometry in real-time.
 Geometry objects also allow for efficient rotation, scaling and translation of groups of polygons.</p>
@@ -2897,7 +2897,7 @@ Geometry objects also allow for efficient rotation, scaling and translation of g
 
 <h1 id="fmod_system_set_geometry_settings">fmod_system_set_geometry_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setgeometrysettings">System::setGeometrySettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setgeometrysettings">System::setGeometrySettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the maximum world size for the geometry engine for performance / precision reasons.</p>
@@ -2941,7 +2941,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_get_geometry_settings">fmod_system_get_geometry_settings</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometrysettings">System::getGeometrySettings</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometrysettings">System::getGeometrySettings</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the maximum world size for the geometry engine.</p>
@@ -2968,11 +2968,11 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_load_geometry">fmod_system_load_geometry</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_loadgeometry">System::loadGeometry</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_loadgeometry">System::loadGeometry</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function creates a geometry object from a block of memory which contains pre-saved geometry data.</p>
-<p>It creates a reference to the newly created <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a> object.</p>
+<p>It creates a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a> object.</p>
 <p>This function avoids the need to manually create and add geometry for faster start time.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -3014,7 +3014,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getgeometryocclusion">System::getGeometryOcclusion</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometryocclusion">System::getGeometryOcclusion</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function calculates geometry occlusion between a listener and a sound source.</p>
@@ -3038,7 +3038,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_lock_dsp">fmod_system_lock_dsp</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_lockdsp">System::lockDSP</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_lockdsp">System::lockDSP</a></p>
 </blockquote>
 <p><br /></p>
 <p>This is a mutual exclusion function to lock the FMOD DSP engine (which runs asynchronously in another thread), so that it will not execute.</p>
@@ -3069,7 +3069,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_unlock_dsp">fmod_system_unlock_dsp</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_unlockdsp">System::unlockDSP</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_unlockdsp">System::unlockDSP</a></p>
 </blockquote>
 <p><br /></p>
 <p>This is a mutual exclusion function to unlock the FMOD DSP engine (which runs asynchronously in another thread) and let it continue executing.</p>
@@ -3093,7 +3093,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_set_callback">fmod_system_set_callback</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setcallback">System::setCallback</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setcallback">System::setCallback</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function enables callbacks for System level notifications.</p>
@@ -3101,7 +3101,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p class="admonition-title">Note</p>
 <p>FMOD System callbacks will be triggered as a <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a> but the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Builtin_Global_Variables/async_load.htm">async_load</a> DS map won't contain any specific information.</p>
 </div>
-<p>See also: <a href="https://www.fmod.com/docs/2.02/api/glossary.html#callback-behavior">Callback Behavior</a></p>
+<p>See also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior">Callback Behavior</a></p>
 <p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -3164,13 +3164,13 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_set_user_data">fmod_system_set_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets a user value associated with the currently selected System object.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3211,13 +3211,13 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
 <h1 id="fmod_system_get_user_data">fmod_system_get_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_getuserdata">System::getUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getuserdata">System::getUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the user value associated with the currently selected System object.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3249,7 +3249,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

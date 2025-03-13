@@ -1,7 +1,7 @@
 ## IMPORTANT
 
 * This extension is compatible with GameMaker 2023.11.
-* This extension requires the user to download the FMOD SDKs (v2.02). (requires registration)
+* This extension requires the user to download the FMOD SDKs (v2.03). (requires registration)
 * This extension is compatible with all targets except: HTML5 and WASM.
 * The FMOD plugin system is not implemented in this extension.
 
@@ -19,7 +19,7 @@ The extension provides the functionality of the [FMOD Core](https://www.fmod.com
 
 Use basic to advanced features of FMOD Core API in GameMaker, including: 
 
-* Support for over 20 audio [formats](https://www.fmod.com/docs/2.02/api/core-guide.html#file-formats-support-for-over-20-audio-formats-built-in) built in
+* Support for over 20 audio [formats](https://www.fmod.com/docs/2.03/api/core-guide.html#file-formats-support-for-over-20-audio-formats-built-in) built in
 * Support for the most optimal sound format for games (FSB)
 * Modify FMOD sounds at the sample level, copy over sound data to GM buffers and back
 * Detect and work with audio devices
@@ -34,7 +34,7 @@ Use basic to advanced features of FMOD Core API in GameMaker, including:
 * Performance
 * FMOD Studio API features allowing for adaptive audio in games.
 
-For detailed information, see [Core API Features](https://www.fmod.com/docs/2.02/api/core-guide.html#api-features) and [Studio API Guide](https://www.fmod.com/docs/2.02/api/studio-guide.html).
+For detailed information, see [Core API Features](https://www.fmod.com/docs/2.03/api/core-guide.html#api-features) and [Studio API Guide](https://www.fmod.com/docs/2.03/api/studio-guide.html).
 
 ## DOCUMENTATION
 

@@ -158,7 +158,7 @@
               
                 <p>This page contains general information related to working with the FMOD extension.</p>
 <h1 id="handles">Handles</h1>
-<p>Both the <a href="https://www.fmod.com/docs/2.02/api/core-api.html">FMOD Core API</a> and <a href="https://www.fmod.com/docs/2.02/api/studio-api.html">FMOD Studio API</a> are accessed through a number of FMOD <em>objects</em>. Examples of these are: <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a>, <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html">Studio::System</a> and <a href="https://www.fmod.com/docs/2.02/api/studio-api-bank.html">Studio::Bank</a>.</p>
+<p>Both the <a href="https://www.fmod.com/docs/2.03/api/core-api.html">FMOD Core API</a> and <a href="https://www.fmod.com/docs/2.03/api/studio-api.html">FMOD Studio API</a> are accessed through a number of FMOD <em>objects</em>. Examples of these are: <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a>, <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html">Studio::System</a> and <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html">Studio::Bank</a>.</p>
 <p>These objects are represented in the extension by handles, which are largely identical to handles in GameMaker (See <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Data Types</a>). More precisely, handles used by the extension store an instance of an FMOD object as follows:</p>
 <ul>
 <li>The lowest 32 bits store the index of the object <em>instance</em>.</li>
@@ -186,7 +186,7 @@ show_debug_message("Result of fmod_system_create: {0}", result);</code></pre>
 <h1 id="bug-reports">Bug Reports</h1>
 <p>If you experience a crash when using the FMOD extension, please create a <a href="https://github.com/YoYoGames/GMEXT-FMOD/issues/new?assignees=&amp;labels=extension-bug&amp;projects=&amp;template=extension_bug_report.yml">bug report</a>. This allows the GameMaker team to look into the issue and improve the FMOD extension.</p>
 <h1 id="working-with-dsp-parameters">Working with DSP Parameters</h1>
-<p>The FMOD extension allows you to get and set <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> parameters. The different parameters that you can get and set can be found on the <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html">Effect Parameters</a> page as well as in the extension's <code>Fmod_Definitions</code> script asset.</p>
+<p>The FMOD extension allows you to get and set <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> parameters. The different parameters that you can get and set can be found on the <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html">Effect Parameters</a> page as well as in the extension's <code>Fmod_Definitions</code> script asset.</p>
 <p>The FMOD extension has the following functions to get and set DSP parameters:</p>
 <ul>
 <li><a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a> / <a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a></li>
@@ -200,8 +200,8 @@ show_debug_message("Result of fmod_system_create: {0}", result);</code></pre>
 <p>For example, to set the type and size of an FFT DSP's window:</p>
 <pre class="highlight"><code class="language-gml">fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWTYPE, FMOD_DSP_FFT_WINDOW.RECT);
 fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 16384);</code></pre>
-<p>Since the <code>FMOD_DSP_FFT_WINDOWTYPE</code> and <code>FMOD_DSP_FFT_WINDOWSIZE</code> variables of the <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_fft">FMOD_DSP_FFT</a> struct are both of type <code>int</code>, you should get them with <a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a> and set them with <a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a>.</p>
-<p>Similarly, a <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_highpass">FMOD_DSP_HIGHPASS</a> DSP's parameters are of type <code>float</code>. So you should get the parameters with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a> and set them with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a>:</p>
+<p>Since the <code>FMOD_DSP_FFT_WINDOWTYPE</code> and <code>FMOD_DSP_FFT_WINDOWSIZE</code> variables of the <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft">FMOD_DSP_FFT</a> struct are both of type <code>int</code>, you should get them with <a href="DSP.html#fmod_dsp_get_parameter_int">fmod_dsp_get_parameter_int</a> and set them with <a href="DSP.html#fmod_dsp_set_parameter_int">fmod_dsp_set_parameter_int</a>.</p>
+<p>Similarly, a <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass">FMOD_DSP_HIGHPASS</a> DSP's parameters are of type <code>float</code>. So you should get the parameters with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a> and set them with <a href="DSP.html#fmod_dsp_get_parameter_float">fmod_dsp_get_parameter_float</a>:</p>
 <pre class="highlight"><code class="language-gml">// Set
 fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.CUTOFF, 10000);
 fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONANCE, 4);
@@ -226,12 +226,12 @@ var _resonance = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONAN
 <p>See <a href="https://manual.gamemaker.io/monthly/en/Additional_Information/Guide_To_Using_Buffers.htm">Guide_To_Using_Buffers</a> for more information on how to work with buffers.</p>
 </div>
 <h3 id="fmod_dsp_fft">FMOD_DSP_FFT</h3>
-<p>The <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_FFT</a> DSP is an example of a DSP type that has a <code>data</code> parameter with a pointer variable: <code>FMOD_DSP_FFT_SPECTRUMDATA</code>. This is shown in the FMOD documentation as:</p>
+<p>The <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_FFT</a> DSP is an example of a DSP type that has a <code>data</code> parameter with a pointer variable: <code>FMOD_DSP_FFT_SPECTRUMDATA</code>. This is shown in the FMOD documentation as:</p>
 <p><img alt="Parameter of type data in docs" src="assets/fmod_docs_data_type.png" /></p>
 <p>You get the data of this parameter as follows:</p>
 <pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_data(dsp_fft, FMOD_DSP_FFT.SPECTRUMDATA, fft_buffer);</code></pre>
 <p>The FMOD extension will write the data to the buffer <code>fft_buffer</code> that you pass it.</p>
-<p>How this data looks can be found under <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_fft"><code>FMOD_DSP_PARAMETER_FFT</code></a>, which is defined like this:</p>
+<p>How this data looks can be found under <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_fft"><code>FMOD_DSP_PARAMETER_FFT</code></a>, which is defined like this:</p>
 <pre class="highlight"><code class="language-C++">typedef struct FMOD_DSP_PARAMETER_FFT {
   int     length;
   int     numchannels;
@@ -262,26 +262,26 @@ repeat(_numchannels)
     _channel_index++;
 }</code></pre>
 <h3 id="fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</h3>
-<p>The <a href="https://www.fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</a> DSP is a second example of a DSP type that has a <code>data</code> parameter. It actually has a number of <code>data</code> parameters: <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code>, <code>FMOD_DSP_OBJECTPAN_OVERALL_GAIN</code>, and <code>FMOD_DSP_OBJECTPAN_ATTENUATION_RANGE</code>.</p>
+<p>The <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</a> DSP is a second example of a DSP type that has a <code>data</code> parameter. It actually has a number of <code>data</code> parameters: <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code>, <code>FMOD_DSP_OBJECTPAN_OVERALL_GAIN</code>, and <code>FMOD_DSP_OBJECTPAN_ATTENUATION_RANGE</code>.</p>
 <p>In this example we'll look at the <code>FMOD_DSP_OBJECTPAN_3D_POSITION</code> parameter, since it has nested structs. This parameter is of type <code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code>:</p>
 <p>You get the data of this parameter as follows:</p>
 <pre class="highlight"><code class="language-gml">fmod_dsp_get_parameter_data(dsp_pan, FMOD_DSP_OBJECTPAN._3D_POSITION, pan_buffer);</code></pre>
 <p>The FMOD extension will write the data to the buffer <code>pan_buffer</code> that you pass it.</p>
-<p>The struct <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_3dattributes_multi"><code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code></a> is defined as follows:</p>
+<p>The struct <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_3dattributes_multi"><code>FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI</code></a> is defined as follows:</p>
 <pre class="highlight"><code class="language-C++">typedef struct FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI {
   int                  numlisteners;
   FMOD_3D_ATTRIBUTES   relative[FMOD_MAX_LISTENERS];
   float                weight[FMOD_MAX_LISTENERS];
   FMOD_3D_ATTRIBUTES   absolute;
 } FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI;</code></pre>
-<p>Here, <code>relative</code> and <code>weight</code> are arrays. <code>relative</code> is an array of structs of type <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_3d_attributes"><code>FMOD_3D_ATTRIBUTES</code></a>:</p>
+<p>Here, <code>relative</code> and <code>weight</code> are arrays. <code>relative</code> is an array of structs of type <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes"><code>FMOD_3D_ATTRIBUTES</code></a>:</p>
 <pre class="highlight"><code class="language-C++">typedef struct FMOD_3D_ATTRIBUTES {
   FMOD_VECTOR position;
   FMOD_VECTOR velocity;
   FMOD_VECTOR forward;
   FMOD_VECTOR up;
 } FMOD_3D_ATTRIBUTES;</code></pre>
-<p>All variables in this struct are also structs. Each variable is of type <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_vector"><code>FMOD_VECTOR</code></a>:</p>
+<p>All variables in this struct are also structs. Each variable is of type <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector"><code>FMOD_VECTOR</code></a>:</p>
 <pre class="highlight"><code class="language-C++">typedef struct FMOD_VECTOR {
   float   x;
   float   y;
@@ -392,7 +392,7 @@ Finally, the absolute pan properties are read with another call to <code>read_3d
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

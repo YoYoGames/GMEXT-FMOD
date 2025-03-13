@@ -6,7 +6,7 @@ Go to [FMOD Downloads](https://www.fmod.com/download).
 
 [[Note: To access the downloads you need to register first.]]
 
-Download **FMOD Studio** and **FMOD Engine**. As of writing this guide, the latest version is 2.02.20, which is supported.
+Download **FMOD Studio** and **FMOD Engine**. As of writing this guide, the latest version is 2.03.20, which is supported.
 
 ![Download FMOD Studio and FMOD Engine](assets/fmod_download.jpg)
 

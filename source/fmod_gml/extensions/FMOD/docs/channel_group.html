@@ -161,7 +161,7 @@
                 <p><a id="top"></a></p>
 <h1 id="channel-group"><strong>Channel Group</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module contains functionality related to Channel Groups, which are submixes in the mixing hierarchy akin to buses that can contain both Channel and ChannelGroup objects.</p>
@@ -186,7 +186,7 @@
 
 <h1 id="fmod_channel_set_channel_group">fmod_channel_set_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_setchannelgroup">Channel::setChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the channelgroup this object outputs to.</p>
@@ -238,7 +238,7 @@
 
 <h1 id="fmod_channel_get_channel_group">fmod_channel_get_channel_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html#channel_getchannelgroup">Channel::getChannelGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html#channel_getchannelgroup">Channel::getChannelGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the ChannelGroup this object outputs to.</p>
@@ -277,7 +277,7 @@
 
 <h1 id="fmod_channel_group_get_num_channels">fmod_channel_group_get_num_channels</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getnumchannels">ChannelGroup::getNumChannels</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getnumchannels">ChannelGroup::getNumChannels</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of Channels that feed into this group.</p>
@@ -316,7 +316,7 @@
 
 <h1 id="fmod_channel_group_get_channel">fmod_channel_group_get_channel</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getchannel">ChannelGroup::getChannel</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getchannel">ChannelGroup::getChannel</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the Channel at the specified index in the list of Channel inputs.</p>
@@ -343,7 +343,7 @@
 <tr>
 <td>index</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The offset into the list of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> inputs.</td>
+<td>The offset into the list of <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> inputs.</td>
 </tr>
 </tbody>
 </table>
@@ -361,11 +361,11 @@
 
 <h1 id="fmod_channel_group_add_group">fmod_channel_group_add_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_addgroup">ChannelGroup::addGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_addgroup">ChannelGroup::addGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function adds a ChannelGroup as an input to this group.</p>
-<p>The function returns a reference to the <a href="https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html">DSPConnection</a> created between the head DSP of <code>child_channel_group_ref</code> and the tail DSP of <code>channel_group_ref</code>.</p>
+<p>The function returns a reference to the <a href="https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html">DSPConnection</a> created between the head DSP of <code>child_channel_group_ref</code> and the tail DSP of <code>channel_group_ref</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -411,7 +411,7 @@
 
 <h1 id="fmod_channel_group_get_num_groups">fmod_channel_group_get_num_groups</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getnumgroups">ChannelGroup::getNumGroups</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getnumgroups">ChannelGroup::getNumGroups</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of ChannelGroups that feed into to this group.</p>
@@ -450,7 +450,7 @@
 
 <h1 id="fmod_channel_group_get_group">fmod_channel_group_get_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getgroup">ChannelGroup::getGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getgroup">ChannelGroup::getGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the ChannelGroup at the specified index in the list of group inputs.</p>
@@ -494,7 +494,7 @@
 
 <h1 id="fmod_channel_group_get_parent_group">fmod_channel_group_get_parent_group</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getparentgroup">ChannelGroup::getParentGroup</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getparentgroup">ChannelGroup::getParentGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the ChannelGroup this object outputs to.</p>
@@ -533,7 +533,7 @@
 
 <h1 id="fmod_channel_group_get_name">fmod_channel_group_get_name</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_getname">ChannelGroup::getName</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_getname">ChannelGroup::getName</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the name set when the group was created.</p>
@@ -572,13 +572,13 @@
 
 <h1 id="fmod_channel_group_release">fmod_channel_group_release</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html#channelgroup_release">ChannelGroup::release</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html#channelgroup_release">ChannelGroup::release</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function frees the memory for the group.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Any <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> or <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroups</a> feeding into this group are moved to the master ChannelGroup.</p>
+<p>Any <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> or <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroups</a> feeding into this group are moved to the master ChannelGroup.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -615,10 +615,10 @@
 
 <h1 id="fmod_channel_group_get_system_object">fmod_channel_group_get_system_object</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getsystemobject">ChannelControl::getSystemObject</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html">System</a> that created this object.</p>
+<p>This function retrieves the <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a> that created this object.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -661,7 +661,7 @@
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

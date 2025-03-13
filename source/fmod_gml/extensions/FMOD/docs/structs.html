@@ -164,8 +164,8 @@
 <p>When a function of the FMOD extension returns multiple values, it returns them as a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a> or as an <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of structs.
 This happens in two situations:</p>
 <ul>
-<li>The original FMOD function returns multiple values through <a href="https://www.fmod.com/docs/2.02/api/glossary.html#documentation-conventions">Out</a> parameters. The extension groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a> of which you can access variables by name. For example: <a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a> returns a <a href="structs.html#fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</a>.</li>
-<li>The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>, which has the same variables as the corresponding FMOD "struct". For example: <a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a> returns a <a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a>, which maps to FMOD's <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a> struct.</li>
+<li>The original FMOD function returns multiple values through <a href="https://www.fmod.com/docs/2.03/api/glossary.html#documentation-conventions">Out</a> parameters. The extension groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a> of which you can access variables by name. For example: <a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a> returns a <a href="structs.html#fmodsystemrecorddriverinfo">FmodSystemRecordDriverInfo</a>.</li>
+<li>The original FMOD function returns multiple values in an FMOD "struct". The extension also groups these values into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>, which has the same variables as the corresponding FMOD "struct". For example: <a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a> returns a <a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a>, which maps to FMOD's <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a> struct.</li>
 </ul>
 <p>The returned <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a>s are not actually created using the constructor function of their type. They do, however, have identical variable names.</p>
 <div class="admonition note">
@@ -248,12 +248,12 @@ This happens in two situations:</p>
 
 <h1 id="fmodvector">FmodVector</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_vector">FMOD_VECTOR</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector">FMOD_VECTOR</a></p>
 </blockquote>
 <p>This struct describes a vector in 3D space.</p>
 <blockquote>
 <p>Important</p>
-<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
 </blockquote>
 <p>This struct is referenced by the following functions:</p>
 <ul>
@@ -318,7 +318,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodcpuusage">FmodCPUUsage</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_cpu_usage">FMOD_CPU_USAGE</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_cpu_usage">FMOD_CPU_USAGE</a></p>
 </blockquote>
 <p>This struct stores performance information for FMOD's Core API functionality.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -478,7 +478,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodreverbproperties">FmodReverbProperties</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_reverb_properties">FMOD_REVERB_PROPERTIES</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_reverb_properties">FMOD_REVERB_PROPERTIES</a></p>
 </blockquote>
 <p>This struct defines a reverb environment.</p>
 <div class="admonition note">
@@ -611,12 +611,12 @@ This happens in two situations:</p>
 
 <h1 id="fmod3dattributes">Fmod3DAttributes</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
 </blockquote>
 <p>This structure describes a position, velocity and orientation.</p>
 <blockquote>
 <p>Important</p>
-<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.02/api/glossary.html#handedness">handedness</a>.</p>
+<p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
 </blockquote>
 <p>This struct is referenced by the following functions:</p>
 <ul>
@@ -699,7 +699,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodsystemcreatesoundexinfo">FmodSystemCreateSoundExInfo</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_createsoundexinfo">FMOD_CREATESOUNDEXINFO</a></p>
 </blockquote>
 <p>This struct holds additional options for creating a Sound.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -809,7 +809,7 @@ This happens in two situations:</p>
 <tr>
 <td>ignore_set_filesystem</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
-<td>Ignore <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#system_setfilesystem">System::setFileSystem</a> and <code>FMOD_CREATESOUNDEXINFO</code> file callbacks. Not implemented.</td>
+<td>Ignore <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem">System::setFileSystem</a> and <code>FMOD_CREATESOUNDEXINFO</code> file callbacks. Not implemented.</td>
 </tr>
 <tr>
 <td>audio_queue_policy</td>
@@ -834,12 +834,12 @@ This happens in two situations:</p>
 
 <h1 id="fmodsystemadvancedsettings">FmodSystemAdvancedSettings</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-system.html#fmod_advancedsettings">FMOD_ADVANCEDSETTINGS</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_advancedsettings">FMOD_ADVANCEDSETTINGS</a></p>
 </blockquote>
 <p>This struct stores advanced configuration settings.</p>
 <p>This is a structure to allow configuration of lesser used system level settings. These tweaks generally allow the user to set resource limits and customize settings to better fit their application.</p>
 <p>Specifying one of the codec maximums will help determine the maximum CPU usage of playing <code>FMOD_MODE.CREATECOMPRESSEDSAMPLE</code> Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during <a href="system.html#fmod_system_init">fmod_system_init</a>) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if <code>max_mpeg_codecs</code> is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.</p>
-<p>Setting <code>dsp_buffer_pool_size</code> will pre-allocate memory for the FMOD DSP network. See <a href="https://www.fmod.com/docs/2.02/api/white-papers-dsp-architecture.html">DSP architecture guide</a>. By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
+<p>Setting <code>dsp_buffer_pool_size</code> will pre-allocate memory for the FMOD DSP network. See <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a>. By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a></li>
@@ -898,7 +898,7 @@ This happens in two situations:</p>
 <tr>
 <td>vol0_virtual_vol</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>For use with <code>FMOD_INIT.VOL0_BECOMES_VIRTUAL</code>, Channels with audibility below this will become virtual. See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
+<td>For use with <code>FMOD_INIT.VOL0_BECOMES_VIRTUAL</code>, Channels with audibility below this will become virtual. See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</td>
 </tr>
 <tr>
 <td>default_decode_buffer_size</td>
@@ -913,7 +913,7 @@ This happens in two situations:</p>
 <tr>
 <td>geometry_max_fade_time</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>For use with <a href="https://www.fmod.com/docs/2.02/api/core-api-geometry.html">Geometry</a>, the maximum time it takes for a <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channel</a> to fade to the new volume level when its occlusion changes.</td>
+<td>For use with <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a>, the maximum time it takes for a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> to fade to the new volume level when its occlusion changes.</td>
 </tr>
 <tr>
 <td>distance_filter_center_freq</td>
@@ -923,17 +923,17 @@ This happens in two situations:</p>
 <tr>
 <td>reverb_3d_instance</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>For use with <a href="https://www.fmod.com/docs/2.02/api/core-api-reverb3d.html">Reverb3D</a>, selects which global reverb instance to use. A value in the range [0, <a href="constants.html#fmod_reverb_maxinstances">FMOD_REVERB_MAXINSTANCES</a>].</td>
+<td>For use with <a href="https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html">Reverb3D</a>, selects which global reverb instance to use. A value in the range [0, <a href="constants.html#fmod_reverb_maxinstances">FMOD_REVERB_MAXINSTANCES</a>].</td>
 </tr>
 <tr>
 <td>dsp_buffer_pool_size</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be <code>buffer_length</code> (See <a href="system.html#fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</a>) * sizeof(float) * output mode speaker count (See <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_speakermode">FMOD_SPEAKERMODE</a>). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.</td>
+<td>The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be <code>buffer_length</code> (See <a href="system.html#fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</a>) * sizeof(float) * output mode speaker count (See <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode">FMOD_SPEAKERMODE</a>). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.</td>
 </tr>
 <tr>
 <td>resampler_method</td>
 <td><a href="constants.html#fmod_dsp_resampler">FMOD_DSP_RESAMPLER</a></td>
-<td>The resampling method used by <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</td>
+<td>The resampling method used by <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a>.</td>
 </tr>
 <tr>
 <td>random_seed</td>
@@ -1184,8 +1184,8 @@ This happens in two situations:</p>
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmodsystemchannelsplaying">FmodSystemChannelsPlaying</h1>
-<p>This struct holds information on the number of playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a>.</p>
-<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.02/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>This struct holds information on the number of playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a>.</p>
+<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="system.html#fmod_system_get_channels_playing">fmod_system_get_channels_playing</a></li>
@@ -1398,12 +1398,12 @@ This happens in two situations:</p>
 <tr>
 <td>pos</td>
 <td><a href="structs.html#fmodvector">FmodVector</a></td>
-<td>The position in 3D space used for panning and attenuation. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>.</td>
+<td>The position in 3D space used for panning and attenuation. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
 </tr>
 <tr>
 <td>vel</td>
 <td><a href="structs.html#fmodvector">FmodVector</a></td>
-<td>The velocity in 3D space used for doppler. Expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a> per second.</td>
+<td>The velocity in 3D space used for doppler. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a> per second.</td>
 </tr>
 </tbody>
 </table>
@@ -1467,12 +1467,12 @@ This happens in two situations:</p>
 <tr>
 <td>min_dist</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The distance from the source where attenuation begins, expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>. A value in the range [0, <code>infinity</code>]. Default is 1.</td>
+<td>The distance from the source where attenuation begins, expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>. A value in the range [0, <code>infinity</code>]. Default is 1.</td>
 </tr>
 <tr>
 <td>max_dist</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The distance from the source where attenuation ends, expressed in <a href="https://www.fmod.com/docs/2.02/api/glossary.html#distance-units">Distance units</a>. A value in the range [<code>min_dist</code>, <code>infinity</code>]. Default is 1.</td>
+<td>The distance from the source where attenuation ends, expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>. A value in the range [<code>min_dist</code>, <code>infinity</code>]. Default is 1.</td>
 </tr>
 </tbody>
 </table>
@@ -1554,7 +1554,7 @@ This happens in two situations:</p>
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmodcontroldspclock">FmodControlDSPClock</h1>
-<p>This struct holds the <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock values at a point in time.</p>
+<p>This struct holds the <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> clock values at a point in time.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="channel_control.html#fmod_channel_control_get_dsp_clock">fmod_channel_control_get_dsp_clock</a></li>
@@ -1604,7 +1604,7 @@ This happens in two situations:</p>
 <tr>
 <td>dsp_clock_start</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td><a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html">ChannelGroup</a> to audibly start playing sound at, expressed in samples.</td>
+<td><a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> clock of the parent <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> to audibly start playing sound at, expressed in samples.</td>
 </tr>
 <tr>
 <td>dsp_clock_end</td>
@@ -1646,7 +1646,7 @@ This happens in two situations:</p>
 <tr>
 <td>point_dsp_clock</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a></td>
-<td>An array of <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a> clock values that represent the fade point times. Expressed in samples.</td>
+<td>An array of <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> clock values that represent the fade point times. Expressed in samples.</td>
 </tr>
 <tr>
 <td>point_volume</td>
@@ -1684,7 +1684,7 @@ This happens in two situations:</p>
 <tr>
 <td>dsp_connection_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-dspconnection.html">DSPConnection</a> through which the two are connected.</td>
+<td>The <a href="https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html">DSPConnection</a> through which the two are connected.</td>
 </tr>
 </tbody>
 </table>
@@ -1732,7 +1732,7 @@ This happens in two situations:</p>
 
 <h1 id="fmoddspmeteringinfo">FmodDSPMeteringInfo</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_metering_info">FMOD_DSP_METERING_INFO</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_metering_info">FMOD_DSP_METERING_INFO</a></p>
 </blockquote>
 <p>This struct stores DSP metering information.</p>
 <p>This struct is referenced by the following structs:</p>
@@ -1808,7 +1808,7 @@ This happens in two situations:</p>
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmoddspmeteringenableinfo">FmodDSPMeteringEnableInfo</h1>
-<p>This struct holds information on whether input/output signal metering is enabled for a given <a href="https://www.fmod.com/docs/2.02/api/core-api-dsp.html">DSP</a>.</p>
+<p>This struct holds information on whether input/output signal metering is enabled for a given <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a>.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="DSP.html#fmod_dsp_get_metering_enabled">fmod_dsp_get_metering_enabled</a></li>
@@ -1963,7 +1963,7 @@ This happens in two situations:</p>
 
 <h1 id="fmoddspparameterdesc">FmodDspParameterDesc</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_desc">FMOD_DSP_PARAMETER_DESC</a></p>
 </blockquote>
 <p>This struct is a base structure for DSP parameter descriptions.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -1983,7 +1983,7 @@ This happens in two situations:</p>
 <tr>
 <td>type</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The parameter type (<a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_type">FMOD_DSP_PARAMETER_TYPE</a>).</td>
+<td>The parameter type (<a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_type">FMOD_DSP_PARAMETER_TYPE</a>).</td>
 </tr>
 <tr>
 <td>name</td>
@@ -2023,7 +2023,7 @@ This happens in two situations:</p>
 
 <h1 id="fmoddspparameterdescvalue">FmodDspParameterDescValue</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool">FMOD_DSP_PARAMETER_DESC_*</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_desc_bool">FMOD_DSP_PARAMETER_DESC_*</a></p>
 </blockquote>
 <p>This struct stores a parameter description.</p>
 <p>This struct is referenced by the following structs:</p>
@@ -2132,7 +2132,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodreverb3dattributes">FmodReverb3DAttributes</h1>
 <p>This struct stores the 3D attributes of a reverb sphere.</p>
-<p>See the <a href="https://www.fmod.com/docs/2.02/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
+<p>See the <a href="https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html">3D Reverb</a> guide for more information.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="reverb_3d.html#fmod_reverb_3d_get_3d_attributes">fmod_reverb_3d_get_3d_attributes</a></li>
@@ -2169,7 +2169,7 @@ This happens in two situations:</p>
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmodsoundformat">FmodSoundFormat</h1>
-<p>This struct stores format information about a <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>This struct stores format information about a <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="sound.html#fmod_sound_get_format">fmod_sound_get_format</a></li>
@@ -2211,7 +2211,7 @@ This happens in two situations:</p>
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmodsoundnumtags">FmodSoundNumTags</h1>
-<p>This struct stores the number of metadata tags of a particular <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>.</p>
+<p>This struct stores the number of metadata tags of a particular <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.</p>
@@ -2248,7 +2248,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodsoundtag">FmodSoundTag</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html#fmod_tag">FMOD_TAG</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tag">FMOD_TAG</a></p>
 </blockquote>
 <p>This struct holds tag data / metadata description.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2436,7 +2436,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodsyncpoint">FmodSyncPoint</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-common.html#fmod_syncpoint">FMOD_SYNCPOINT</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_syncpoint">FMOD_SYNCPOINT</a></p>
 </blockquote>
 <p>This struct stores information about a sync point.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2472,7 +2472,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiomemoryusage">FmodStudioMemoryUsage</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_memory_usage">FMOD_STUDIO_MEMORY_USAGE</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_memory_usage">FMOD_STUDIO_MEMORY_USAGE</a></p>
 </blockquote>
 <p>This struct stores FMOD Studio memory usage statistics.</p>
 <div class="admonition note">
@@ -2520,7 +2520,7 @@ This happens in two situations:</p>
 <p>This struct stores an FMOD Studio parameter value.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a href="https://www.fmod.com/docs/2.02/api/glossary.html#automatic-parameter">Automatic parameters</a> always return value as 0 since they can never have their value set from the public API.</p>
+<p><a href="https://www.fmod.com/docs/2.03/api/glossary.html#automatic-parameter">Automatic parameters</a> always return value as 0 since they can never have their value set from the public API.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2561,7 +2561,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudioparameterid">FmodStudioParameterId</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_id">FMOD_STUDIO_PARAMETER_ID</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_id">FMOD_STUDIO_PARAMETER_ID</a></p>
 </blockquote>
 <p>This struct holds an event parameter identifier.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2641,7 +2641,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodcommandreplaycommandinfo">FmodCommandReplayCommandInfo</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-commandreplay.html#fmod_studio_command_info">FMOD_STUDIO_COMMAND_INFO</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-commandreplay.html#fmod_studio_command_info">FMOD_STUDIO_COMMAND_INFO</a></p>
 </blockquote>
 <p>This struct describes a command replay command.</p>
 <div class="admonition note">
@@ -2773,7 +2773,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiobufferinfo">FmodStudioBufferInfo</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_info">FMOD_STUDIO_BUFFER_INFO</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_buffer_info">FMOD_STUDIO_BUFFER_INFO</a></p>
 </blockquote>
 <p>This struct stores information for a single buffer in FMOD Studio.</p>
 <p>This struct is referenced by the following structs:</p>
@@ -2823,7 +2823,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiobufferusage">FmodStudioBufferUsage</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_buffer_usage">FMOD_STUDIO_BUFFER_USAGE</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_buffer_usage">FMOD_STUDIO_BUFFER_USAGE</a></p>
 </blockquote>
 <p>This struct stores information for FMOD Studio buffer usage.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2858,7 +2858,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiocpuusage">FmodStudioCPUUsage</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_cpu_usage">FMOD_STUDIO_CPU_USAGE</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_cpu_usage">FMOD_STUDIO_CPU_USAGE</a></p>
 </blockquote>
 <p>This struct stores performance information for Studio API functionality.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2893,7 +2893,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiosoundinfo">FmodStudioSoundInfo</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_sound_info">FMOD_STUDIO_SOUND_INFO</a></p>
 </blockquote>
 <p>This struct describes a sound in the audio table.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -2955,12 +2955,12 @@ This happens in two situations:</p>
 <tr>
 <td>path</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">Path</a> to an object.</td>
+<td>The <a href="https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths">Path</a> to an object.</td>
 </tr>
 <tr>
 <td>guid</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The <a href="https://www.fmod.com/docs/2.02/api/glossary.html#studio-guids-and-paths">GUID</a> of an object.</td>
+<td>The <a href="https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths">GUID</a> of an object.</td>
 </tr>
 </tbody>
 </table>
@@ -2970,7 +2970,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudioparameterdescription">FmodStudioParameterDescription</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
 </blockquote>
 <p>This struct describes an event parameter.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -3040,7 +3040,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudiouserproperty">FmodStudioUserProperty</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#fmod_studio_user_property">FMOD_STUDIO_USER_PROPERTY</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#fmod_studio_user_property">FMOD_STUDIO_USER_PROPERTY</a></p>
 </blockquote>
 <p>This struct describes a user property object.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -3096,7 +3096,7 @@ This happens in two situations:</p>
 
 <h1 id="fmodstudioadvancedsettings">FmodStudioAdvancedSettings</h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-system.html#fmod_studio_advancedsettings">FMOD_STUDIO_ADVANCEDSETTINGS</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_advancedsettings">FMOD_STUDIO_ADVANCEDSETTINGS</a></p>
 </blockquote>
 <p>This struct describes a Studio advanced settings object.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -3158,7 +3158,7 @@ This happens in two situations:</p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

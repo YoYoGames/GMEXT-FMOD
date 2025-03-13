@@ -1,7 +1,7 @@
 
 #include "Fmod_Tools.h"
 
-// https://www.fmod.com/docs/2.02/api/core-api-channelgroup.html
+// https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html
 
 std::map<uint32_t, FMOD::ChannelGroup*> map_channel_groups = {};
 uint32_t index_channel_groups = 0;

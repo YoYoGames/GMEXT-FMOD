@@ -23,7 +23,7 @@ void gSuspendCallback(bool value)
     if (self!=nil)
     {
         //Handling Interruptions
-        //https://www.fmod.com/docs/2.02/api/platforms-ios.html
+        //https://www.fmod.com/docs/2.03/api/platforms-ios.html
         [[NSNotificationCenter defaultCenter] addObserverForName:AVAudioSessionInterruptionNotification object:nil queue:nil usingBlock:^(NSNotification *notification)
         {
             bool began = [[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] intValue] == AVAudioSessionInterruptionTypeBegan;

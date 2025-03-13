@@ -161,7 +161,7 @@
                 <p><a id="top"></a></p>
 <h1 id="event-description"><strong>Event Description</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html">Studio::EventDescription</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html">Studio::EventDescription</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds functionality related to descriptions of FMOD Studio Events.</p>
@@ -208,13 +208,13 @@
 
 <h1 id="fmod_studio_event_description_create_instance">fmod_studio_event_description_create_instance</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_createinstance">Studio::EventDescription::createInstance</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_createinstance">Studio::EventDescription::createInstance</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function creates a playable instance, returning a handle to the new <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventinstance.html">EventInstance</a> object.</p>
+<p>This function creates a playable instance, returning a handle to the new <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html">EventInstance</a> object.</p>
 <p>When an event instance is created, any required non-streaming sample data is loaded asynchronously.</p>
 <p>Use <a href="event_description.html#fmod_studio_event_description_get_sample_loading_state">fmod_studio_event_description_get_sample_loading_state</a> to check the loading status.</p>
-<p>Sample data can be loaded ahead of time with <a href="event_description.html#fmod_studio_event_description_load_sample_data">fmod_studio_event_description_load_sample_data</a> or <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a>. See <a href="https://www.fmod.com/docs/2.02/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for more information.</p>
+<p>Sample data can be loaded ahead of time with <a href="event_description.html#fmod_studio_event_description_load_sample_data">fmod_studio_event_description_load_sample_data</a> or <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a>. See <a href="https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for more information.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -250,7 +250,7 @@
 
 <h1 id="fmod_studio_event_description_get_instance_count">fmod_studio_event_description_get_instance_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getinstancecount">Studio::EventDescription::getInstanceCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getinstancecount">Studio::EventDescription::getInstanceCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of instances in the EventDescription.</p>
@@ -290,7 +290,7 @@
 
 <h1 id="fmod_studio_event_description_get_instance_list">fmod_studio_event_description_get_instance_list</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getinstancelist">Studio::EventDescription::getInstanceList</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getinstancelist">Studio::EventDescription::getInstanceList</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an array containing the instances in the given EventDescription.</p>
@@ -330,7 +330,7 @@
 
 <h1 id="fmod_studio_event_description_release_all_instances">fmod_studio_event_description_release_all_instances</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_releaseallinstances">Studio::EventDescription::releaseAllInstances</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_releaseallinstances">Studio::EventDescription::releaseAllInstances</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function immediately stops and releases all instances of the event.</p>
@@ -369,7 +369,7 @@
 
 <h1 id="fmod_studio_event_description_load_sample_data">fmod_studio_event_description_load_sample_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata">Studio::EventDescription::loadSampleData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_loadsampledata">Studio::EventDescription::loadSampleData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function will load all non-streaming sample data required by the event and any referenced events.</p>
@@ -409,7 +409,7 @@
 
 <h1 id="fmod_studio_event_description_unload_sample_data">fmod_studio_event_description_unload_sample_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_unloadsampledata">Studio::EventDescription::unloadSampleData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_unloadsampledata">Studio::EventDescription::unloadSampleData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function unloads all non-streaming sample data.</p>
@@ -449,7 +449,7 @@
 
 <h1 id="fmod_studio_event_description_get_sample_loading_state">fmod_studio_event_description_get_sample_loading_state</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getsampleloadingstate">Studio::EventDescription::getSampleLoadingState</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getsampleloadingstate">Studio::EventDescription::getSampleLoadingState</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the sample data loading state.</p>
@@ -489,10 +489,10 @@
 
 <h1 id="fmod_studio_event_description_is_3d">fmod_studio_event_description_is_3d</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d">Studio::EventDescription::is3D</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_is3d">Studio::EventDescription::is3D</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the event's 3D status. For more info, see <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_is3d">Studio::EventDescription::is3D</a>.</p>
+<p>This function retrieves the event's 3D status. For more info, see <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_is3d">Studio::EventDescription::is3D</a>.</p>
 <p>This will return <code>true</code> if the event is 3D and <code>false</code> if not.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -529,7 +529,7 @@
 
 <h1 id="fmod_studio_event_description_is_doppler_enabled">fmod_studio_event_description_is_doppler_enabled</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isdopplerenabled">Studio::EventDescription::isDopplerEnabled</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isdopplerenabled">Studio::EventDescription::isDopplerEnabled</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the event's doppler status.</p>
@@ -570,7 +570,7 @@
 
 <h1 id="fmod_studio_event_description_is_oneshot">fmod_studio_event_description_is_oneshot</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isoneshot">Studio::EventDescription::isOneshot</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isoneshot">Studio::EventDescription::isOneshot</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the event's oneshot status.</p>
@@ -612,7 +612,7 @@
 
 <h1 id="fmod_studio_event_description_is_snapshot">fmod_studio_event_description_is_snapshot</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_issnapshot">Studio::EventDescription::isSnapshot</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_issnapshot">Studio::EventDescription::isSnapshot</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the event's snapshot status.</p>
@@ -652,7 +652,7 @@
 
 <h1 id="fmod_studio_event_description_is_stream">fmod_studio_event_description_is_stream</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isstream">Studio::EventDescription::isStream</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isstream">Studio::EventDescription::isStream</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the event's stream status, returning <code>true</code> if the event contains one or more streamed sounds, otherwise <code>false</code>.</p>
@@ -692,7 +692,7 @@
 
 <h1 id="fmod_studio_event_description_has_sustain_point">fmod_studio_event_description_has_sustain_point</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_hassustainpoint">Studio::EventDescription::hasSustainPoint</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_hassustainpoint">Studio::EventDescription::hasSustainPoint</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves whether the event has any sustain points (<code>true</code> or <code>false</code>).</p>
@@ -731,7 +731,7 @@
 
 <h1 id="fmod_studio_event_description_get_min_max_distance">fmod_studio_event_description_get_min_max_distance</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getminmaxdistance">Studio::EventDescription::getMinMaxDistance</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getminmaxdistance">Studio::EventDescription::getMinMaxDistance</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the minimum and maximum distances for 3D attenuation, as a struct.</p>
@@ -770,7 +770,7 @@
 
 <h1 id="fmod_studio_event_description_get_sound_size">fmod_studio_event_description_get_sound_size</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getsoundsize">Studio::EventDescription::getSoundSize</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getsoundsize">Studio::EventDescription::getSoundSize</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the sound size for 3D panning.</p>
@@ -810,7 +810,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_description_by_name">fmod_studio_event_description_get_parameter_description_by_name</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyname">Studio::EventDescription::getParameterDescriptionByName</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyname">Studio::EventDescription::getParameterDescriptionByName</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter description by name.</p>
@@ -854,7 +854,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_description_by_id">fmod_studio_event_description_get_parameter_description_by_id</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyid">Studio::EventDescription::getParameterDescriptionByID</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyid">Studio::EventDescription::getParameterDescriptionByID</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter description by ID.</p>
@@ -898,7 +898,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_description_by_index">fmod_studio_event_description_get_parameter_description_by_index</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyindex">Studio::EventDescription::getParameterDescriptionByIndex</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptionbyindex">Studio::EventDescription::getParameterDescriptionByIndex</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter description by index.</p>
@@ -943,7 +943,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_description_count">fmod_studio_event_description_get_parameter_description_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptioncount">Studio::EventDescription::getParameterDescriptionCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterdescriptioncount">Studio::EventDescription::getParameterDescriptionCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of parameters in the event.</p>
@@ -983,7 +983,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_label_by_name">fmod_studio_event_description_get_parameter_label_by_name</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyname">Studio::EventDescription::getParameterLabelByName</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyname">Studio::EventDescription::getParameterLabelByName</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter label by name or path.</p>
@@ -1033,7 +1033,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_label_by_id">fmod_studio_event_description_get_parameter_label_by_id</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyid">Studio::EventDescription::getParameterLabelByID</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyid">Studio::EventDescription::getParameterLabelByID</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter label by ID.</p>
@@ -1082,7 +1082,7 @@
 
 <h1 id="fmod_studio_event_description_get_parameter_label_by_index">fmod_studio_event_description_get_parameter_label_by_index</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyindex">Studio::EventDescription::getParameterLabelByIndex</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getparameterlabelbyindex">Studio::EventDescription::getParameterLabelByIndex</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves an event parameter label by index.</p>
@@ -1132,7 +1132,7 @@
 
 <h1 id="fmod_studio_event_description_get_user_property">fmod_studio_event_description_get_user_property</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserproperty">Studio::EventDescription::getUserProperty</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserproperty">Studio::EventDescription::getUserProperty</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a user property by name.</p>
@@ -1176,7 +1176,7 @@
 
 <h1 id="fmod_studio_event_description_get_user_property_by_index">fmod_studio_event_description_get_user_property_by_index</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertybyindex">Studio::EventDescription::getUserPropertyByIndex</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertybyindex">Studio::EventDescription::getUserPropertyByIndex</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a user property by index.</p>
@@ -1221,7 +1221,7 @@
 
 <h1 id="fmod_studio_event_description_get_user_property_count">fmod_studio_event_description_get_user_property_count</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertycount">Studio::EventDescription::getUserPropertyCount</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserpropertycount">Studio::EventDescription::getUserPropertyCount</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the number of user properties attached to the event.</p>
@@ -1261,7 +1261,7 @@
 
 <h1 id="fmod_studio_event_description_get_id">fmod_studio_event_description_get_id</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getid">Studio::EventDescription::getID</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getid">Studio::EventDescription::getID</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the GUID of the EventDescription.</p>
@@ -1300,7 +1300,7 @@
 
 <h1 id="fmod_studio_event_description_get_length">fmod_studio_event_description_get_length</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getlength">Studio::EventDescription::getLength</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getlength">Studio::EventDescription::getLength</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the length of the timeline in milliseconds.</p>
@@ -1340,7 +1340,7 @@
 
 <h1 id="fmod_studio_event_description_get_path">fmod_studio_event_description_get_path</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getpath">Studio::EventDescription::getPath</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getpath">Studio::EventDescription::getPath</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the path of the EventDescription.</p>
@@ -1380,7 +1380,7 @@
 
 <h1 id="fmod_studio_event_description_set_callback">fmod_studio_event_description_set_callback</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_setcallback">Studio::EventDescription::setCallback</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_setcallback">Studio::EventDescription::setCallback</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function enables a user callback which will be assigned to all event instances subsequently created from the event. The callback for individual instances can be set with <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a>.</p>
@@ -1507,10 +1507,10 @@
 
 <h1 id="fmod_studio_event_description_set_user_data">fmod_studio_event_description_set_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_setuserdata">Studio::EventDescription::setUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_setuserdata">Studio::EventDescription::setUserData</a></p>
 </blockquote>
 <p><br /></p>
-<p>This allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
+<p>This allows a real value to be attached to this object. See <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a> for an example of how to get and set user data.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1551,7 +1551,7 @@
 
 <h1 id="fmod_studio_event_description_get_user_data">fmod_studio_event_description_get_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_getuserdata">Studio::EventDescription::getUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_getuserdata">Studio::EventDescription::getUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the real value attached to the object in <a href="event_description.html#fmod_studio_event_description_set_user_data">fmod_studio_event_description_set_user_data</a>.</p>
@@ -1591,7 +1591,7 @@
 
 <h1 id="fmod_studio_event_description_is_valid">fmod_studio_event_description_is_valid</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/studio-api-eventdescription.html#studio_eventdescription_isvalid">Studio::EventDescription::isValid</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#studio_eventdescription_isvalid">Studio::EventDescription::isValid</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function checks that the EventDescription reference is valid.</p>
@@ -1637,7 +1637,7 @@
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

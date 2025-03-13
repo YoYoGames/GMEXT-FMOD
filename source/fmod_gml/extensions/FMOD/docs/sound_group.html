@@ -161,7 +161,7 @@
                 <p><a id="top"></a></p>
 <h1 id="sound-group"><strong>Sound Group</strong></h1>
 <blockquote>
-<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a></p>
+<p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds functionality related to Sound Groups.</p>
@@ -192,7 +192,7 @@
 
 <h1 id="fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmaxaudible">SoundGroup::setMaxAudible</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmaxaudible">SoundGroup::setMaxAudible</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the maximum number of playbacks to be audible at once in a sound group.</p>
@@ -239,7 +239,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_max_audible">fmod_sound_group_get_max_audible</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmaxaudible">SoundGroup::getMaxAudible</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmaxaudible">SoundGroup::getMaxAudible</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the maximum number of playbacks to be audible at once in a sound group.</p>
@@ -278,7 +278,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_set_max_audible_behavior">fmod_sound_group_set_max_audible_behavior</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmaxaudiblebehavior">SoundGroup::setMaxAudibleBehavior</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmaxaudiblebehavior">SoundGroup::setMaxAudibleBehavior</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function changes the way the sound playback behaves when too many sounds are playing in a soundgroup.</p>
@@ -304,7 +304,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 <tr>
 <td>behavior</td>
 <td><a href="constants.html#fmod_soundgroup_behavior">FMOD_SOUNDGROUP_BEHAVIOR</a></td>
-<td>The <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>'s max playbacks behavior. The default is <code>FMOD_SOUNDGROUP_BEHAVIOR.FAIL</code>.</td>
+<td>The <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>'s max playbacks behavior. The default is <code>FMOD_SOUNDGROUP_BEHAVIOR.FAIL</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -322,7 +322,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_max_audible_behavior">fmod_sound_group_get_max_audible_behavior</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmaxaudiblebehavior">SoundGroup::getMaxAudibleBehavior</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmaxaudiblebehavior">SoundGroup::getMaxAudibleBehavior</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current max audible behavior.</p>
@@ -361,12 +361,12 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_set_mute_fade_speed">fmod_sound_group_set_mute_fade_speed</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setmutefadespeed">SoundGroup::setMuteFadeSpeed</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setmutefadespeed">SoundGroup::setMuteFadeSpeed</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets a mute fade time.</p>
 <p>If a mode besides <code>FMOD_SOUNDGROUP_BEHAVIOR.MUTE</code> is used, the fade speed is ignored.</p>
-<p>When more sounds are playing in a SoundGroup than are specified with <a href="sound_group.html#fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</a>, the least important <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a> (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if <code>FMOD_SOUNDGROUP_BEHAVIOR.MUTE</code> is used, and any previous sounds that were silent because of this rule will fade in if they are more important.</p>
+<p>When more sounds are playing in a SoundGroup than are specified with <a href="sound_group.html#fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</a>, the least important <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if <code>FMOD_SOUNDGROUP_BEHAVIOR.MUTE</code> is used, and any previous sounds that were silent because of this rule will fade in if they are more important.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -407,7 +407,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_mute_fade_speed">fmod_sound_group_get_mute_fade_speed</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getmutefadespeed">SoundGroup::getMuteFadeSpeed</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getmutefadespeed">SoundGroup::getMuteFadeSpeed</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current mute fade time, in seconds.</p>
@@ -446,13 +446,13 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_set_volume">fmod_sound_group_set_volume</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setvolume">SoundGroup::setVolume</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setvolume">SoundGroup::setVolume</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets the volume of the sound group.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This scales the volume of all <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> playing <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> in this <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>This scales the volume of all <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> playing <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> in this <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -489,7 +489,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_volume">fmod_sound_group_get_volume</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getvolume">SoundGroup::getVolume</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getvolume">SoundGroup::getVolume</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the volume level of the sound group.</p>
@@ -528,10 +528,10 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_num_sounds">fmod_sound_group_get_num_sounds</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getnumsounds">SoundGroup::getNumSounds</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getnumsounds">SoundGroup::getNumSounds</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the current number of <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sounds</a> in this SoundGroup.</p>
+<p>This function retrieves the current number of <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> in this SoundGroup.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -567,13 +567,13 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_sound">fmod_sound_group_get_sound</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getsound">SoundGroup::getSound</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getsound">SoundGroup::getSound</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a sound.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Use <a href="sound_group.html#fmod_sound_group_get_num_sounds">fmod_sound_group_get_num_sounds</a> in conjunction with this function to enumerate all sounds in a <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>Use <a href="sound_group.html#fmod_sound_group_get_num_sounds">fmod_sound_group_get_num_sounds</a> in conjunction with this function to enumerate all sounds in a <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -615,11 +615,11 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_num_playing">fmod_sound_group_get_num_playing</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getnumplaying">SoundGroup::getNumPlaying</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getnumplaying">SoundGroup::getNumPlaying</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the number of currently playing <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> for the <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
-<p>The function returns the number of <a href="https://www.fmod.com/docs/2.02/api/core-api-channel.html">Channels</a> playing. If the <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a> only has one <a href="https://www.fmod.com/docs/2.02/api/core-api-sound.html">Sound</a>, and that Sound is playing twice, the figure returned will be two.</p>
+<p>This function retrieves the number of currently playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> for the <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>The function returns the number of <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> playing. If the <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a> only has one <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>, and that Sound is playing twice, the figure returned will be two.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -655,7 +655,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_stop">fmod_sound_group_stop</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_stop">SoundGroup::stop</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_stop">SoundGroup::stop</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function stops all sounds within this sound group.</p>
@@ -694,7 +694,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_name">fmod_sound_group_get_name</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getname">SoundGroup::getName</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getname">SoundGroup::getName</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the name of the sound group.</p>
@@ -733,13 +733,13 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_release">fmod_sound_group_release</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_release">SoundGroup::release</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_release">SoundGroup::release</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function releases a soundgroup object and returns all sounds back to the master sound group.</p>
 <blockquote>
 <p>Important</p>
-<p>You cannot release the master <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html">SoundGroup</a>.</p>
+<p>You cannot release the master <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>.</p>
 </blockquote>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -776,7 +776,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_system_object">fmod_sound_group_get_system_object</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getsystemobject">SoundGroup::getSystemObject</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getsystemobject">SoundGroup::getSystemObject</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the parent System object.</p>
@@ -815,13 +815,13 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_set_user_data">fmod_sound_group_set_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_setuserdata">SoundGroup::setUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_setuserdata">SoundGroup::setUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function sets a floating-point user value associated with this object.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -863,13 +863,13 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
 <h1 id="fmod_sound_group_get_user_data">fmod_sound_group_get_user_data</h1>
 <blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.02/api/core-api-soundgroup.html#soundgroup_getuserdata">SoundGroup::getUserData</a></p>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html#soundgroup_getuserdata">SoundGroup::getUserData</a></p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a user value associated with this object, as set with an earlier call to <a href="sound_group.html#fmod_sound_group_set_user_data">fmod_sound_group_set_user_data</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.02/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -913,7 +913,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>YoYoGames 2024</p>
+      <p>YoYoGames 2025</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
