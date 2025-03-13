@@ -4,7 +4,7 @@
 
 /* FMOD constants */
 
-#macro FMOD_VERSION    0x00020215                     /* 0xaaaabbcc -> aaaa = product version, bb = major version, cc = minor version.*/
+#macro FMOD_VERSION    0x00020306                     /* 0xaaaabbcc -> aaaa = product version, bb = major version, cc = minor version.*/
 
 enum FMOD_DEBUG_FLAGS 
 {
