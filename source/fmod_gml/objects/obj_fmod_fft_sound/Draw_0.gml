@@ -23,7 +23,7 @@ draw_line(_x + _l*_pos, _y - 10, _x + _l*_pos, _y + 10);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-var _dom_freq = round(fmod_dsp_get_parameter_float(dsp_fft,FMOD_DSP_FFT.DOMINANT_FREQ));
+var _dom_freq = round(fmod_dsp_get_parameter_float(dsp_fft,FMOD_DSP_FFT.SPECTRAL_CENTROID));
 draw_text(_x, _y-130, $"Dominant Frequency: {_dom_freq}Hz");
 
 // Since it's a buffer, good practice to seek to beginning

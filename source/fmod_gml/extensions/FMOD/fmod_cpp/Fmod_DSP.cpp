@@ -293,10 +293,11 @@ func double fmod_dsp_get_parameter_data_multiplatform(double dsp_ref, double par
 		FMOD_DSP_PARAMETER_FFT* fft = (FMOD_DSP_PARAMETER_FFT*)data;
 
 		// Check the size required to write the data
-		uint32_t required_size = sizeof(int) * 2 // For length and numchannels
+		data_length = sizeof(int) * 2 // For length and numchannels
                          + sizeof(float) * static_cast<unsigned long long>(fft->numchannels) * fft->length;
-		if ((uint32_t)length < required_size)
-			return required_size;
+		if (data_length > (uint32_t)length) {
+			return data_length;
+		}
 
 		// Write the length of the window (int)
 		writeDataToBuffer(buff, fft->length, offset);

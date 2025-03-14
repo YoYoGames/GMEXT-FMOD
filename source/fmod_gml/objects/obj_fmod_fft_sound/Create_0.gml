@@ -13,7 +13,7 @@ music = fmod_system_play_sound(sound, false);
 // Create and setup FFT dsp.
 dsp_fft = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.FFT);
 fmod_channel_control_add_dsp(music, FMOD_CHANNELCONTROL_DSP_INDEX.HEAD, dsp_fft);
-fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWTYPE, FMOD_DSP_FFT_WINDOW.RECT);
+fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOW_TYPE, FMOD_DSP_FFT_WINDOW_TYPE.RECT);
 fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 128);
 
 // Create buffer for parameter data

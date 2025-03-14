@@ -62,7 +62,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
 // Get the dominant frequency (and display it)
-var _dom_freq = round(fmod_dsp_get_parameter_float(dsp_fft,FMOD_DSP_FFT.DOMINANT_FREQ));
+var _dom_freq = round(fmod_dsp_get_parameter_float(dsp_fft,FMOD_DSP_FFT.SPECTRAL_CENTROID));
 draw_text(_x, _y, $"DSP Dominant Frequency: {_dom_freq}Hz");
 draw_text(_x, _y - 40, $"Higest Frequency: {_dominant_freq}Hz");
 
