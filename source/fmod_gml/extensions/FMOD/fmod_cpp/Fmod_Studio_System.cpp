@@ -73,6 +73,12 @@ func double fmod_studio_system_release()
 	unregisterMasterGroups(fmod_system);
 
 	g_fmod_last_result = fmod_studio_system->release();
+
+	if (g_fmod_last_result == FMOD_OK)
+	{
+		studio_system_selected_ref = 0;
+	}
+
 	return 0;
 }
 
