@@ -45,7 +45,7 @@ T YYGetNumber(const uint8_t* buff) {
 	static_assert(std::is_arithmetic<T>::value, "T must be a numeric type");
 
 	GMValueType kind = YYGetKind(buff);
-	size_t offset = sizeof(kind); 
+	size_t offset = sizeof(kind);
 
 	// Ensure that the buffer's kind matches the requested type (or casting is allowed)
 	if (!isNumber(kind)) {
@@ -68,11 +68,11 @@ T YYGetNumber(const uint8_t* buff) {
 	case GMValueType::Int32:
 		return static_cast<T>(deserializeNumber<int32_t>(buff + offset));
 	case GMValueType::UInt64:
-		return static_cast<T>(deserializeNumber<uint64_t>(buff + offset)); 
+		return static_cast<T>(deserializeNumber<uint64_t>(buff + offset));
 	case GMValueType::Float:
 		return static_cast<T>(deserializeNumber<float>(buff + offset));
 	case GMValueType::Double:
-		return static_cast<T>(deserializeNumber<double>(buff + offset)); 
+		return static_cast<T>(deserializeNumber<double>(buff + offset));
 	default:
 		LOG_ERROR("Unsupported or mismatched type.");
 		return T();
@@ -135,7 +135,7 @@ bool YYGetBool(const uint8_t* buff)
 	GMValueType kind = YYGetKind(buff);
 	if (kind == GMValueType::Bool)
 	{
-		return (bool)buff[1];
+		return (bool)&buff[1];
 	}
 	return YYGetNumber<double>(buff);
 }
@@ -258,75 +258,75 @@ void buffer_unpack_value(const uint8_t* buff, size_t& index)
 
 	switch (kind)
 	{
-		case GMValueType::UInt8:
-		case GMValueType::Int8:
-		{
-			index++;
-		}
-		break;
+	case GMValueType::UInt8:
+	case GMValueType::Int8:
+	{
+		index++;
+	}
+	break;
 
-		case GMValueType::UInt16:
-		case GMValueType::Int16:
-		{
-			index += 2;
-		}
-		break;
+	case GMValueType::UInt16:
+	case GMValueType::Int16:
+	{
+		index += 2;
+	}
+	break;
 
-		case GMValueType::UInt32:
-		case GMValueType::Int32:
-		case GMValueType::Float:
-		{
-			index += 4;
-		}
-		break;
+	case GMValueType::UInt32:
+	case GMValueType::Int32:
+	case GMValueType::Float:
+	{
+		index += 4;
+	}
+	break;
 
-		case GMValueType::UInt64:
-		case GMValueType::Double:
-		{
-			index += 8;
-		}
-		break;
+	case GMValueType::UInt64:
+	case GMValueType::Double:
+	{
+		index += 8;
+	}
+	break;
 
-		case GMValueType::Bool:
-		{
-			index += 1;
-		}
-		break;
+	case GMValueType::Bool:
+	{
+		index += 1;
+	}
+	break;
 
-		case GMValueType::String:
-		{
-			index += strlen((const char*)&buff[index]) + 1;
-		}
-		break;
+	case GMValueType::String:
+	{
+		index += strlen((const char*)&buff[index]) + 1;
+	}
+	break;
 
-		case GMValueType::Pointer:
-		{
-			index += 8;	 // address
-		}
-		break;
+	case GMValueType::Pointer:
+	{
+		index += 8;	 // address
+	}
+	break;
 
-		case GMValueType::Buffer:
-		{
-			index += 4;	 // length
-			index += 8;	 // address
-		}
-		break;
+	case GMValueType::Buffer:
+	{
+		index += 4;	 // length
+		index += 8;	 // address
+	}
+	break;
 
-		case GMValueType::Array:
-		{
-			buffer_unpack_array(buff, index);
-		}
-		break;
+	case GMValueType::Array:
+	{
+		buffer_unpack_array(buff, index);
+	}
+	break;
 
-		case GMValueType::Struct:
-		{
-			buffer_unpack_struct(buff, index);
-		}
-		break;
+	case GMValueType::Struct:
+	{
+		buffer_unpack_struct(buff, index);
+	}
+	break;
 
-		default:
-			LOG_ERROR("Unpacking unsupported type: %d", (int)kind);
-			break;
+	default:
+		LOG_ERROR("Unpacking unsupported type: %d", (int)kind);
+		break;
 	}
 }
 
