@@ -1,21 +1,24 @@
-name: Extension Bug Report
-description: File a bug report for issues that happen with any of our Official Extensions.
-labels: ["extension-bug"]
+name: Bug Report
+description: File a bug report for issues that only happen when this extension is in your project
+labels: ["Twitch"]
+type: "Extension Bug"
 body:
   - type: markdown
     attributes:
       value: |
-        For any GameMaker Account or licencing issues (including "I can't see all my platforms in Target Manager") please submit a [Helpdesk Ticket](https://contact.gamemaker.io/contact-us#account) instead of using this form.
+        For in-game bugs which also happen without this extension, or about using GameMaker itself, DO NOT report that here! (Help  inside GameMaker.)
         
-        Please also ensure you have searched for any existing reports of this issue before you begin - if one exists, please leave a thumbs-up on that one, rather than knowingly filing a duplicate report, as duplicates just slow things down.
+        Ensure the bug happens in the latest version of this extension before sending any bug reports! (DO NOT send reports for older versions.)
+        
+        Search for any existing reports of this bug first! (If one exists, DO NOT file yours now - add a thumbs-up/comment on the existing report.)
        
-        Note that most fields are required to be filled-in before you can submit this report, as it is all essential information which we will require in order to confirm and fix your issue.
+        Most fields need to be filled-in before you can submit, as it's all required information to us confirm and fix this bug.
 
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: Write a concise yet detailed description of the issue and do include any relevant screenshots at suitable locations in the body of your text. Please do not copy/paste lots of code in this field - attach a sample project instead, as requested below. (Also, do not add a web link as your entire bug report and assume we will read the external thread to work it out ourselves, as we will most likely simply close the report!)
+      description: Write a thorough description of the bug. Paste any relevant screenshots into here also. DO NOT paste more than a couple of code (send a sample project instead!) and DO NOT add a web URL and assume we will read the external thread to work the bug ourselves, as we will almost certainly just close the report!
     validations:
       required: true
       
@@ -31,7 +34,7 @@ body:
     id: steps
     attributes:
       label: Steps To Reproduce
-      description: Add the detailed, ordered steps for someone else to reproduce the issue into the gaps below (add as many steps into the middle as you require)
+      description: Add detailed, ordered steps saying how someone else can recreate this bug (add as many steps into the middle as you require)
       value: |
         1. Start GameMaker
         2. 
@@ -53,20 +56,14 @@ body:
     validations:
       required: true
       
-  - type: dropdown
-    id: version
+  - type: input
+    id: gm-version
     attributes:
       label: Which version of GameMaker are you reporting this issue for?
-      description: Please put the exact version number in your Description (If your version is older and therefore not in this list, please update and confirm your issue is not already fixed before you send any report!)
-      multiple: true
-      options:
-        - Monthly
-        - LTS
-        - Beta
-        - Other Release
+      description: Double-click or right-click the version number in the top-right corner of GameMaker, and then paste the version number here. 
     validations:
-      required: true
-      
+      required: false
+    
   - type: dropdown
     id: platforms
     attributes:
@@ -88,23 +85,13 @@ body:
     validations:
       required: false
       
-  - type: checkboxes
-    id: compile-log
-    attributes:
-      label: Compiler Log File
-      description: Please copy/paste your entire _Output Window_ contents from GameMaker into a new .txt file and ensure you have dropped that .txt file onto this bug report form, then tick the checkbox to confirm you have done so. This file is essential for all compilation and in-game bug reports.
-      options:
-        - label: I have attached my compiler log in a text file
-          required: true
-          
-  - type: checkboxes
+  - type: input
     id: sample
     attributes:
-      label: Sample .yyz File
-      description: Please _Export_ as small a sample project as you can make to recreate the issue and drop the .yyz file GameMaker made for you onto this bug report form, then tick the checkbox to confirm you have done so. This file is often extremely important for in-game bug reports and we will ask for a sample if the issue does not easily reproduce for us.
-      options:
-        - label: I have attached a small sample project
-          required: false
+      label: Sample Package
+      description: Please create as small a sample project as you can make which shows the problem and then use the Help > Upload a Bug Sample tool inside GameMaker. Say yes to including that little sample project! Then paste the download URL into the box below.
+    validations:
+      required: false
           
   - type: markdown
     attributes:
