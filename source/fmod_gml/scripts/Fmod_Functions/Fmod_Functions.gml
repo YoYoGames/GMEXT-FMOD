@@ -5,26 +5,6 @@
 /// @returns {string}
 function fmod_path_bundle(_file)
 {
-	static is_gmrt = -1;
-	
-	// First time around lets try to get the runtime type.
-	if (is_gmrt < 0) {
-		try {
-			// Try to use builtin constant (this might not exist)
-			is_gmrt = GM_runtime_type == "gmrt";
-		}
-		catch(_e) {
-			// Catch this by using the runtime version
-			var _version_parts = string_split(GM_runtime_version, ".");
-			is_gmrt = (array_length(_version_parts) == 4) && (real(_version_parts[0]) < 2020);
-		}
-	}
-
-	
-	if (is_gmrt && os_type == os_windows) {
-		return $"{working_directory}/assets/{_file}";
-	}
-		
 	if (os_type == os_switch)
 	{
 		if (GM_build_type == "exe")
