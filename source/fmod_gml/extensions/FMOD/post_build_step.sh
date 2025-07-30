@@ -69,8 +69,8 @@ setupLinux() {
     pathResolveExisting "$YYprojectDir" "$LINUX_SDK_PATH" SDK_PATH
 
     # Get library file paths
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmod.so.13"
-    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so.13"
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmod.so.14"
+    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so.14"
 
     # assertFileHashEquals $SDK_CORE_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
 
@@ -86,12 +86,12 @@ setupLinux() {
 
     fileExtract "${YYprojectName}.zip" "_temp"
 
-    if [[ ! -f "_temp/assets/libfmod.so.13" ]]; then 
-        itemCopyTo "$SDK_CORE_SOURCE" "_temp/assets/libfmod.so.13"
+    if [[ ! -f "_temp/assets/libfmod.so.14" ]]; then 
+        itemCopyTo "$SDK_CORE_SOURCE" "_temp/assets/libfmod.so.14"
 
         # Copy studio libs if enabled
-        if [[$ENABLE_STUDIO_FLAG == 1]]; then
-            [[ ! -f "_temp/assets/libfmodstudio.so.13" ]] && itemCopyTo "$SDK_STUDIO_SOURCE" "_temp/assets/libfmodstudio.so.13"
+        if [[ $ENABLE_STUDIO_FLAG == 1 ]]; then
+            [[ ! -f "_temp/assets/libfmodstudio.so.14" ]] && itemCopyTo "$SDK_STUDIO_SOURCE" "_temp/assets/libfmodstudio.so.14"
         fi
     fi
 
