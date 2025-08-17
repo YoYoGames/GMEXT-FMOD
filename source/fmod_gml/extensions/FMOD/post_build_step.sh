@@ -104,19 +104,13 @@ setupLinux() {
     # Replace spaces with underscores (this matches the assetcompiler output)
     YYfixedProjectName="${YYprojectName// /_}"
 
-    fileExtract "${YYprojectName}.zip" "_temp"
-
-    if [[ ! -f "_temp/assets/libfmod.so.14" ]]; then 
-        itemCopyTo "$SDK_CORE_SOURCE" "_temp/assets/libfmod.so.14"
-
-        # Copy studio libs if enabled
-        if [[ $ENABLE_STUDIO_FLAG == 1 ]]; then
-            [[ ! -f "_temp/assets/libfmodstudio.so.14" ]] && itemCopyTo "$SDK_STUDIO_SOURCE" "_temp/assets/libfmodstudio.so.14"
-        fi
-    fi
-
-    folderCompress "_temp" "${YYprojectName}.zip"
-    rm -r _temp
+    TEMP_FOLDER="${YYprojectName}___temp___"
+    
+    mkdir "./${TEMP_FOLDER}"
+    itemCopyTo "$SDK_CORE_SOURCE" "${TEMP_FOLDER}/assets/libfmod.so.14"
+    itemCopyTo "$SDK_STUDIO_SOURCE" "${TEMP_FOLDER}/assets/libfmodstudio.so.14"
+    zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
+    rm -r ${TEMP_FOLDER}
 }
 
 # ----------------------------------------------------------------------------------------------------
