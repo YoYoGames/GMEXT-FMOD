@@ -82,6 +82,52 @@ setupmacOS() {
     fi
 }
 
+setupMac() {
+    # Resolve the SDK path (must exist)
+    pathResolveExisting "$YYprojectDir" "$MACOS_SDK_PATH" SDK_PATH
+
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
+    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/libfmodstudioL.dylib"
+
+    for f in "${SDK_CORE_SOURCE}" "${SDK_STUDIO_SOURCE}"; do
+        # Skip empty vars
+        [ -n "$f" ] || continue
+
+        if [ ! -e "$f" ]; then
+            logWarning "Not found: $f"
+            continue
+        fi
+
+        if xattr -p com.apple.quarantine "$f" >/dev/null 2>&1; then
+            logWarning "'$(basename "$f")' is quarantined. Removing com.apple.quarantine…"
+            if xattr -d com.apple.quarantine "$f" >/dev/null 2>&1; then
+                logInformation "Removed quarantine from '$f'"
+            else
+                logError "Failed to remove quarantine from '$f' (permissions/path?)."
+            fi
+        fi
+    done
+
+    echo "Copying macOS (64 bit) dependencies"
+
+    pushd "./build/assets/" >/dev/null
+
+    # Assert if xcode-tools are installed (required)
+    assertXcodeToolsInstalled
+
+    # Code sign the original library binary
+    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libYYFMOD.dylib"
+
+    # Copy and code sign dependencies
+    itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
+    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
+
+    itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
+    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
+
+    popd >/dev/null
+}
+
 # ----------------------------------------------------------------------------------------------------
 setupLinux() {
 
@@ -235,9 +281,6 @@ fi
 
 # Error String
 ERROR_SDK_HASH="Invalid FMOD SDK version, sha256 hash mismatch (expected v$SDK_VERSION)."
-
-# Checks IDE and Runtime versions
-versionLockCheck "$YYruntimeVersion" $RUNTIME_VERSION_STABLE $RUNTIME_VERSION_BETA $RUNTIME_VERSION_DEV $RUNTIME_VERSION_LTS
 
 # Ensure we are on the output path
 pushd "$YYoutputFolder" >/dev/null

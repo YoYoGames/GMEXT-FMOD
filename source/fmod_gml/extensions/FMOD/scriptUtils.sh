@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_PATH="$0"
+SCRIPT_PATH="${BASH_SOURCE[1]:-$0}"
 
 # Auxiliar Functions
 
@@ -9,10 +9,10 @@ SCRIPT_PATH="$0"
 scriptInit() {
     LOG_LABEL="UNSET"
     LOG_LEVEL=-1
-    EXTENSION_NAME=
-
+    
     # Get extension data
-    pathExtractBase "$SCRIPT_PATH" EXTENSION_NAME
+    SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+    EXTENSION_NAME="$(basename "$SCRIPT_DIR")"
     extensionGetVersion EXTENSION_VERSION
 
     if [ -z "$EXTENSION_VERSION" ]; then
