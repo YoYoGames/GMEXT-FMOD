@@ -2521,7 +2521,7 @@ function fmod_studio_system_get_parameter_by_id(_parameter_id)
 /// @param {struct.FmodStudioParameterId} parameter_id
 /// @param {real} value
 /// @param {bool} ignore_seek_speed
-function fmod_studio_system_set_parameter_by_id(_parameter_id, _value, _ignore_seek_speed)
+function fmod_studio_system_set_parameter_by_id(_parameter_id, _value, _ignore_seek_speed = false)
 {
 	var _args = [
 		// [ value, forced_type ]
