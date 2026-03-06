@@ -1,1 +1,1 @@
-YoYoGames ${time.year}
+<p align="center">GameMaker ${time.year}</p>
