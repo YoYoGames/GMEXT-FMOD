@@ -2721,7 +2721,7 @@ function FmodStudioAdvancedSettings() constructor {
 	command_queue_size = 32768;
 	handle_initial_size = 8192 * 8;
 	studio_update_period = 20;
-	idle_sampledata_pool_size = 262144;
+	idle_sample_data_pool_size = 262144;
 	streaming_schedule_delay = 8192
 	encryption_key = pointer_null;
 }

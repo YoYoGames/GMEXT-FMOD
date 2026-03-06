@@ -2,7 +2,7 @@
   "$GMProject":"v1",
   "%Name":"FMOD",
   "AudioGroups":[
-    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -62,12 +62,9 @@
     {"$GMIncludedFile":"","%Name":"truck_idle_off_06.wav","CopyToMask":-1,"filePath":"datafiles/granular","name":"truck_idle_off_06.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"jaguar.wav","CopyToMask":-1,"filePath":"datafiles","name":"jaguar.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"master.bank","CopyToMask":-1,"filePath":"datafiles","name":"master.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"Master.bank","CopyToMask":-1,"filePath":"datafiles","name":"Master.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"master.strings.bank","CopyToMask":-1,"filePath":"datafiles","name":"master.strings.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"Master.strings.bank","CopyToMask":-1,"filePath":"datafiles","name":"Master.strings.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Music.bank","CopyToMask":-1,"filePath":"datafiles","name":"Music.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"sfx.bank","CopyToMask":-1,"filePath":"datafiles","name":"sfx.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"SFX.bank","CopyToMask":-1,"filePath":"datafiles","name":"SFX.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"singing.wav","CopyToMask":-1,"filePath":"datafiles","name":"singing.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"standrews.wav","CopyToMask":-1,"filePath":"datafiles","name":"standrews.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Vehicles.bank","CopyToMask":-1,"filePath":"datafiles","name":"Vehicles.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
