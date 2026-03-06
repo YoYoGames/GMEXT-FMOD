@@ -124,6 +124,8 @@ function fmod_handle_async_events()
 	var _buffer_address = buffer_get_address(_async_buffer);
 	var _buffer_size = buffer_get_size(_async_buffer);
 	
+	buffer_poke(_async_buffer, 0, buffer_u8, BUFFER_UNDEFINED);
+	
 	var _size = fmod_fetch_callbacks(_buffer_address, _buffer_size);
 	
 	// This is a special case that signals the runner that the buffer size needs to be increased.
@@ -134,6 +136,8 @@ function fmod_handle_async_events()
 	
 	buffer_seek(_async_buffer, buffer_seek_start, 0);
 	var _map_array = ext_buffer_unpack(_async_buffer, true);
+	
+	if (is_undefined(_map_array)) return 0;
 	
 	var _array_size = array_length(_map_array);
 	for (var _i = 0; _i < _array_size; _i++) {

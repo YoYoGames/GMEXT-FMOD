@@ -8,8 +8,9 @@ FMOD_RESULT g_fmod_last_result = FMOD_RESULT::FMOD_OK;
 
 #define yy_cpp_callbacks
 
-std::mutex callbacksMutex;
-ArrayStream callbacks(2048);
+static std::mutex g_mutex;
+static std::vector<DataStream> g_pending;
+static ArrayStream g_packed;
 
 uint64_t packIndexIntoRef(uint32_t index, uint8_t type)
 {
@@ -49,28 +50,43 @@ void registerMasterGroups(FMOD::System* fmod_system) {
 
 func double fmod_fetch_callbacks(char* buffer, double length)
 {
-	// Lock the mutex to protect the shared resource
-	std::lock_guard<std::mutex> lock(callbacksMutex);
+	std::size_t bytesNeeded = g_packed.getBuffer().size();
 
-	// This is a signal for the GM runner to resize the buffer
-	size_t size = callbacks.getBuffer().size();
-	if (size > length) {
-		return -(double)size;
-	}
-
-	// Write to the buffer & clear stream
-	callbacks.writeTo(buffer);
-	callbacks.clear();
+	if (bytesNeeded == 0) // no pending stream
+	{
+		std::vector<DataStream> local;
+		{
+			std::lock_guard<std::mutex> lock(g_mutex);
+			if (g_pending.empty())
+				return 0;          // nothing to do
+			local.swap(g_pending); // steal vector in O(1)
+		}
 	
-	// Return size
-	return (double)size;
+		for (auto& ev : local) {
+			g_packed << std::move(ev); // append into ArrayStream
+		}
+	
+		bytesNeeded = g_packed.getBuffer().size();
+	}
+	
+	if (bytesNeeded > length) {
+		return -static_cast<double>(bytesNeeded);
+	}
+	
+	g_packed.writeTo(buffer);
+	g_packed.clear();
+
+	return static_cast<double>(bytesNeeded);
 }
 
 void async_create_event(const StructStream& async_map)
 {
+	DataStream ds;
+	ds << async_map;
+
 	// Lock the mutex to protect the shared resource
-	std::lock_guard<std::mutex> lock(callbacksMutex);
-	callbacks << async_map;
+	std::lock_guard<std::mutex> lock(g_mutex);
+	g_pending.push_back(ds);
 }
 
 func double fmod_last_result()

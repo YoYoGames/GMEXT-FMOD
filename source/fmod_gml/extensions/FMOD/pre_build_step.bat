@@ -203,7 +203,7 @@ exit /b 0
     call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%GDK_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
-    call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
+    call "%YYPREF_visual_studio_path%" 
     msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
 
     :: Extract the directory part from the full path
@@ -240,7 +240,7 @@ exit /b 0
     call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%PS_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
-    call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
+    call "%YYPREF_visual_studio_path%"
     msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
 
     :: Extract the directory part from the full path
@@ -265,7 +265,7 @@ exit /b 0
     call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH_VS_PATH%" SOLUTION_PATH
 
     :: Build libraries
-    call "c:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
+    call "%YYPREF_visual_studio_path%"
     msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
 
     :: Extract the directory part from the full path

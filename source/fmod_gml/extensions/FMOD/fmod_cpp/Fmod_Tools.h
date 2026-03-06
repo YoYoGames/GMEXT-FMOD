@@ -34,7 +34,6 @@ void async_create_event(const StructStream& async_map);
 
 extern char gStringBuffer[1024];
 
-extern ArrayStream callbacks;
 extern uint64_t system_selected_ref;
 
 extern std::map<uint32_t, FMOD::System*> map_systems;
