@@ -222,50 +222,7 @@ exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupXbox
-    :: Set building defaults
-    set "PLATFORM_PATH="
-
-    :: Get Xbox type file
-    set "FilePath=%YYoutputFolder%\xbox-type.bin"
-    set IsXboxOne=0
-
-    :: Read the file and check if it contains "XboxOne"
-    for /f "delims=" %%A in ('type "%FilePath%"') do (
-        if /i "%%A"=="XboxOne" (
-            set IsXboxOne=1
-        )
-    )
-
-    :: Update default variables
-    if %IsXboxOne% == 1 (
-        set "PLATFORM_PATH=xboxone"
-        set XBOX_SDK_HASH=%XBOX_ONE_SDK_HASH%
-    ) else (
-        set "PLATFORM_PATH=scarlett"
-        set XBOX_SDK_HASH=%XBOX_SERIES_SDK_HASH%
-    )
-
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%GDK_SDK_PATH%" SDK_PATH
-
-    :: Get library file paths
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmodL.dll"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%PLATFORM_PATH%\fmodstudioL.dll"
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %XBOX_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    echo "Copying XBox (%PLATFORM_PATH%) dependencies"
-    if not exist "fmodL.dll" (
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
-    )
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "fmodstudioL.dll" (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "fmodstudioL.dll"
-        )
-    )
+    :: Nothing to do here
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

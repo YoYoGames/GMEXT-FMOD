@@ -172,6 +172,7 @@ exit /b 0
     :: Set building defaults
     set "CONFIGURATION=Release-AutoBuild"
     set "PLATFORM="
+    set "PLATFORM_PATH="
     set "LIBRARY_NAME="
     set "FMOD_SDK_PATH=%GDK_SDK_PATH%"
     
@@ -179,18 +180,52 @@ exit /b 0
     set "FilePath=%YYoutputFolder%\xbox-type.bin"
     set IsXboxOne=0
 
-    :: Read the file and check if it contains "XboxOne"
-    for /f "delims=" %%A in ('type "%FilePath%"') do (
-        if /i "%%A"=="XboxOne" (
-            set IsXboxOne=1
+    :: ------------------------------------------------------------
+    :: First preference: xbox-type.bin if it exists
+    :: ------------------------------------------------------------
+    if exist "%FilePath%" (
+        for /f "usebackq delims=" %%A in ("%FilePath%") do (
+            if /i "%%A"=="XboxOne" (
+                set "IsXboxOne=1"
+            ) else if /i "%%A"=="Scarlett" (
+                set "IsXboxOne=0"
+            )
         )
     )
 
+    :: ------------------------------------------------------------
+    :: Fallback: infer from YYtargetFile if IsXboxOne still unknown
+    :: ------------------------------------------------------------
+    if not defined IsXboxOne (
+        if defined YYtargetFile (
+            echo(%YYtargetFile% | findstr /i "xboxone-dev-pkg xboxone-pkg" >nul
+            if !errorlevel! == 0 (
+                set "IsXboxOne=1"
+            ) 
+            else (
+                echo(%YYtargetFile% | findstr /i "xboxseriesxs-dev-pkg xboxseriesxs-pkg" >nul
+                if !errorlevel! == 0 (
+                    set "IsXboxOne=0"
+                )
+            )
+        )
+    )
+
+    :: ------------------------------------------------------------
+    :: Final fallback if nothing matched
+    :: ------------------------------------------------------------
+    if not defined IsXboxOne (
+        echo Could not determine Xbox target. Defaulting to Scarlett.
+        set "IsXboxOne=0"
+    )
+
     :: Update default variables
-    if %IsXboxOne% == 1 (
+    if "%IsXboxOne%" == "1" (
+        set "PLATFORM_PATH=xboxone"
         set "PLATFORM=Gaming.Xbox.XboxOne.x64"
         set "LIBRARY_NAME=YYFMOD_xboxone.dll"
     ) else (
+        set "PLATFORM_PATH=scarlett"
         set "PLATFORM=Gaming.Xbox.Scarlett.x64"
         set "LIBRARY_NAME=YYFMOD_xboxseriesxs.dll"
     )
@@ -211,6 +246,26 @@ exit /b 0
 
     :: Copy libs to GML project
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
+
+
+    :: Resolve SDK path
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%GDK_SDK_PATH%" SDK_PATH
+    if errorlevel 1 (
+        exit /b 1
+    )
+
+    :: Library file paths
+    set "SDK_CORE_SOURCE=%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmodL.dll"
+    set "SDK_STUDIO_SOURCE=%SDK_PATH%\api\studio\lib\%PLATFORM_PATH%\fmodstudioL.dll"
+
+    echo Copying Xbox (%PLATFORM_PATH%) dependencies
+    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\fmodL.dll"
+
+    if "%ENABLE_STUDIO_FLAG%"=="1" (
+        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "%EXTENSION_DIR%\fmodstudioL.dll"
+    )
+
+
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
