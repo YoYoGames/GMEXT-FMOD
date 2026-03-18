@@ -303,6 +303,18 @@ exit /b 0
 
     :: Copy libs to GML project
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
+
+    :: Get library file paths
+    set "SDK_CORE_SOURCE=%FMOD_SDK_PATH%\api\core\lib\libfmodL.prx"
+    set "SDK_STUDIO_SOURCE=%FMOD_SDK_PATH%\api\studio\lib\libfmodstudioL.prx"
+
+    echo "Copying %YYPLATFORM_name% dependencies"
+    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "libfmodL.prx"
+
+    :: Copy studio libs if enabled
+    if %ENABLE_STUDIO_FLAG% == 1 (
+        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "libfmodstudioL.prx"
+    )
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

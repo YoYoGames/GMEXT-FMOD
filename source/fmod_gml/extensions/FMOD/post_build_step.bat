@@ -227,32 +227,7 @@ exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupPlaystation
-    :: Check correct version PS4 or PS5
-    if "%YYPLATFORM_name%"=="PlayStation 4" (
-        set PS_SDK_PATH=%PS4_SDK_PATH%
-        set PS_SDK_HASH=%PS4_SDK_HASH%
-    ) else (
-        set PS_SDK_PATH=%PS5_SDK_PATH%
-        set PS_SDK_HASH=%PS5_SDK_HASH%
-    )
-
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%PS_SDK_PATH%" SDK_PATH
-
-    :: Get library file paths
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmodL.prx"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL.prx"
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %PS_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    echo "Copying %YYPLATFORM_name% dependencies"
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "libfmodL.prx"
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "libfmodstudioL.prx"
-    )
+    :: Nothing to do here
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
