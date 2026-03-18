@@ -341,5 +341,6 @@ exit /b 0
     :: Copy libs to GML project
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%EXTENSION_DIR%\YYFMOD.nro"
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%EXTENSION_DIR%\YYFMOD.nrr"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrs" "%EXTENSION_DIR%\YYFMOD.nrs"
 
 exit /b 0
