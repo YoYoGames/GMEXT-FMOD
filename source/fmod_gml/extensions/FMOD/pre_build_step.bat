@@ -309,11 +309,11 @@ exit /b 0
     set "SDK_STUDIO_SOURCE=%FMOD_SDK_PATH%\api\studio\lib\libfmodstudioL.prx"
 
     echo "Copying %YYPLATFORM_name% dependencies"
-    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "libfmodL.prx"
+    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\libfmodL.prx"
 
     :: Copy studio libs if enabled
     if %ENABLE_STUDIO_FLAG% == 1 (
-        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "libfmodstudioL.prx"
+        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "%EXTENSION_DIR%\libfmodstudioL.prx"
     )
 exit /b 0
 
