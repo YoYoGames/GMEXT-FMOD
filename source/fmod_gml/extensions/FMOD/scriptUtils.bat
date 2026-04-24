@@ -6,6 +6,7 @@ shift & goto :%~1
 :scriptInit
     set "LOG_LABEL=UNSET"
     set "LOG_LEVEL=-1"
+    set PSMODULEPATH=
 
     call :assertPowerShellExecutionPolicy
 
@@ -32,7 +33,7 @@ exit /b 0
     for /f "delims=" %%i in ('powershell -NoLogo -NoProfile -Command "Get-ExecutionPolicy"') do set ExecutionPolicy=%%i
 
     :: If the execution policy is set to 'Restricted' echo the appropriate message.
-    IF "!ExecutionPolicy!"=="Restricted" (
+    IF "%ExecutionPolicy%"=="Restricted" (
         echo The execution of our extensions requires changing the PowerShell Execution Policy.
         echo To do so, please run the following command in your PowerShell terminal:
         echo     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -46,7 +47,7 @@ exit /b 0
 
     set "result=!GMEXT_%EXTENSION_NAME%_version!"
     call :logInformation "Accessed extension version with value '%result%'."
-    
+
     :: Need to end local (to push into main scope)
     endlocal & set "%~1=%result%"
 exit /b 0
@@ -65,7 +66,7 @@ exit /b 0
 
 :: Converts a string to uppercase and stores it into a variable
 :toUpper str result
-    for /f "usebackq delims=" %%i in (`powershell.exe -Command "$str = '%~1'.ToUpper(); Write-Output $str"`) do set "%~2=%%i"
+    for /f "usebackq delims=" %%i in (`powershell -NoLogo -NoProfile -Command "$str = '%~1'.ToUpper(); Write-Output $str"`) do set "%~2=%%i"
     call :logInformation "Converted string '%~1' to uppercase."
 exit /b 0
 
@@ -75,7 +76,7 @@ exit /b 0
     call :logInformation "Extracted directory path from '%~1'."
 exit /b 0
 
-:: Extracts the parent folder path from a filepath. The input 'path\to\my\file.txt' must result in 'my' 
+:: Extracts the parent folder path from a filepath. The input 'path\to\my\file.txt' must result in 'my'
 :pathExtractBase fullpath result
     for %%I in ("%~dp1\.") do set "%~2=%%~nI%%~xI"
     call :logInformation "Extracted base name from '%~1'."
@@ -211,7 +212,7 @@ exit /b 0
 
     :: Clean up environment variables
     set "PS_TARGET="
-    
+
     :: Check if the deletion operation succeeded
     if %errorlevel% neq 0 (
         call :logError "Failed to delete '%target%'."
@@ -306,7 +307,7 @@ exit /b 0
 :versionExtract version part result
     :: Use PowerShell to extract the specified part of the version string
     for /f "usebackq delims=" %%i in (`powershell -NoLogo -NoProfile -Command "$version = New-Object Version '%~1'; Write-Output $version.%~2"`) do set "%~3=%%i"
-    
+
     :: Need to enabled delayed expansion
     setlocal enabledelayedexpansion
     call :logInformation "Extracted part %~2 of version '%~1' with value '!%~3%!'."
@@ -331,7 +332,7 @@ exit /b 0
         :: LTS version
         set "runnerBuild=LTS"
         call :assertVersionRequired "%~1" "%~5" "The %%runnerBuild%% runtime version needs to be at least v%~5."
-        
+
     ) else (
         if %majorVersion% geq 2020 (
             if %minorVersion% geq 100 (
