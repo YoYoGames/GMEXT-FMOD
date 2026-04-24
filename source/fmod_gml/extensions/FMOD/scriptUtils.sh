@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_PATH="${BASH_SOURCE[1]:-$0}"
+SCRIPT_PATH="$0"
 
 # Auxiliar Functions
 
@@ -9,10 +9,10 @@ SCRIPT_PATH="${BASH_SOURCE[1]:-$0}"
 scriptInit() {
     LOG_LABEL="UNSET"
     LOG_LEVEL=-1
-    
+    EXTENSION_NAME=
+
     # Get extension data
-    SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
-    EXTENSION_NAME="$(basename "$SCRIPT_DIR")"
+    pathExtractBase "$SCRIPT_PATH" EXTENSION_NAME
     extensionGetVersion EXTENSION_VERSION
 
     if [ -z "$EXTENSION_VERSION" ]; then
@@ -212,6 +212,22 @@ itemDelete() {
 
     logInformation "Deleted '$target_path'."
     return 0
+}
+
+# Clears the contents of a folder, creating it first if it doesn't exist
+# Usage: itemClearDir targetPath
+itemClearDir() {
+    local target="$1"
+
+    mkdir -p "$target"
+    find "$target" -mindepth 1 -delete
+
+    if [ $? -ne 0 ]; then
+        logError "Failed to clear directory '$target'."
+        exit 1
+    fi
+
+    logInformation "Cleared contents of directory '$target'."
 }
 
 # Generates the SHA256 hash of a file and stores it into a variable
