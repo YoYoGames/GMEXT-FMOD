@@ -234,3 +234,10 @@ exit /b 0
 :setupSwitch
     :: Nothing to do here
 exit /b 0
+
+
+:: ----------------------------------------------------------------------------------------------------
+:setupSwitch2
+    :: Nothing to do here for Switch2/Ounce post-build.
+exit /b 0
+

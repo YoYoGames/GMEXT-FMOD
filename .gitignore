@@ -35,6 +35,7 @@ source/fmod_gml/extensions/FMOD/fmod_gdk/**/Gaming.Xbox.*.x64/
 source/fmod_gml/extensions/FMOD/fmod_playstation/**/ORBIS/
 source/fmod_gml/extensions/FMOD/fmod_playstation/**/Prospero/
 source/fmod_gml/extensions/FMOD/fmod_switch/**/NX64/
+source/fmod_gml/extensions/FMOD/fmod_switch2/**/Ounce64/
 source/fmod_gml/extensions/FMOD/fmod_windows/**/x64/
 source/fmod_gml/extensions/FMOD/fmod_ios/build/*
 source/fmod_gml/extensions/FMOD/fmod_tvos/build/*

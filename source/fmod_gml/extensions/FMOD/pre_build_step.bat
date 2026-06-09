@@ -28,6 +28,7 @@ call %Utils% optionGetValue "gdkSdkPath" GDK_SDK_PATH
 call %Utils% optionGetValue "ps4SdkPath" PS4_SDK_PATH
 call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
 call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
+call %Utils% optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
 
 :: Enable Studio?
 call %Utils% optionGetValue "enableStudio" ENABLE_STUDIO
@@ -344,3 +345,46 @@ exit /b 0
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrs" "%EXTENSION_DIR%\YYFMOD.nrs"
 
 exit /b 0
+
+
+:: ----------------------------------------------------------------------------------------------------
+:setupSwitch2
+    :: Build Nintendo Switch 2 / Ounce native library using the extension option:
+    :: switch2SdkPath
+    set "CONFIGURATION=Release-AutoBuild"
+    set "PLATFORM=Ounce64"
+
+    if "%SWITCH2_SDK_PATH%"=="" (
+        call %Utils% logError "Extension option 'switch2SdkPath' is empty. Set it to the FMOD Switch 2 SDK path."
+        exit /b 1
+    )
+
+    :: Resolve the FMOD Switch 2 SDK path (must exist)
+    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH2_SDK_PATH%" FMOD_SDK_PATH
+
+    :: Optional hash check. Matches Switch 1 behavior: currently bypassed/commented.
+    :: call %Utils% assertFileHashEquals "%FMOD_SDK_PATH%\api\core\lib\libfmodL.a" %SWITCH2_SDK_HASH% "%ERROR_SDK_HASH%"
+
+    :: Resolve the Switch2/Ounce solution path (must exist)
+    set "SWITCH2_VS_PATH=.\fmod_switch2\FMOD.sln"
+    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH2_VS_PATH%" SOLUTION_PATH
+
+    :: Build libraries
+    call "%YYPREF_visual_studio_path%"
+    msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
+
+    if errorlevel 1 (
+        call %Utils% logError "Switch2/Ounce FMOD native build failed."
+        exit /b 1
+    )
+
+    :: Extract the directory part from the full path
+    call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
+
+    :: Copy libs to GML project
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%EXTENSION_DIR%\YYFMOD.nro"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%EXTENSION_DIR%\YYFMOD.nrr"
+    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrs" "%EXTENSION_DIR%\YYFMOD.nrs"
+
+exit /b 0
+

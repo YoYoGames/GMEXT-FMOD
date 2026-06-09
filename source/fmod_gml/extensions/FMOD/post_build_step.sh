@@ -234,6 +234,13 @@ setupSwitch() {
     :
 }
 
+
+# ----------------------------------------------------------------------------------------------------
+setupSwitch2() {
+    # Nothing to do here for Switch2/Ounce post-build.
+    :
+}
+
 # ######################################################################################
 # Script Logic
 
@@ -260,6 +267,7 @@ optionGetValue "xboxSeriesSdkHash" XBOX_SERIES_SDK_HASH
 optionGetValue "ps4SdkHash" PS4_SDK_HASH
 optionGetValue "ps5SdkHash" PS5_SDK_HASH
 optionGetValue "switchSdkHash" SWITCH_SDK_HASH
+optionGetValue "switch2SdkHash" SWITCH2_SDK_HASH
 
 # SDK Paths
 optionGetValue "winSdkPath" WIN_SDK_PATH
@@ -271,6 +279,7 @@ optionGetValue "xboxSdkPath" XBOX_SDK_PATH
 optionGetValue "ps4SdkPath" PS4_SDK_PATH
 optionGetValue "ps5SdkPath" PS5_SDK_PATH
 optionGetValue "switchSdkPath" SWITCH_SDK_PATH
+optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
 
 # Enable Studio?
 optionGetValue "enableStudio" ENABLE_STUDIO

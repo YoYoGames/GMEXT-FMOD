@@ -144,6 +144,22 @@ setupSwitch() {
     :
 }
 
+
+# ----------------------------------------------------------------------------------------------------
+setupSwitch2() {
+    if [[ -z "${SWITCH2_SDK_PATH:-}" ]]; then
+        logError "Extension option 'switch2SdkPath' is empty. Set it to the FMOD Switch 2 SDK path."
+    fi
+
+    pathResolveExisting "$YYprojectDir" "$SWITCH2_SDK_PATH" SDK_PATH
+
+    # Optional hash check. Matches Switch 1 behavior: currently bypassed/commented.
+    # assertFileHashEquals "$SDK_PATH/api/core/lib/libfmodL.a" "$SWITCH2_SDK_HASH" "$ERROR_SDK_HASH"
+
+    # Nothing else to do here on shell build path unless YoYo adds a non-Windows Switch2 pipeline.
+    :
+}
+
 # ######################################################################################
 # Script Logic
 

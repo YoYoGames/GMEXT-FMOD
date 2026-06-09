@@ -69,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|NX32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
     <NintendoSdkSpec>NX</NintendoSdkSpec>
@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|NX32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
     <NintendoSdkSpec>NX</NintendoSdkSpec>
@@ -87,7 +87,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|NX32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
@@ -97,7 +97,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-AutoBuild|NX32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
@@ -107,7 +107,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|NX64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
     <NintendoSdkSpec>NX</NintendoSdkSpec>
@@ -116,7 +116,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Develop|NX64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
     <NintendoSdkSpec>NX</NintendoSdkSpec>
@@ -125,7 +125,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|NX64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
@@ -135,7 +135,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-AutoBuild|NX64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>

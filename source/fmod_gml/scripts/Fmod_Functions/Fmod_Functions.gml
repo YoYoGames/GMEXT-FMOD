@@ -5,18 +5,19 @@
 /// @returns {string}
 function fmod_path_bundle(_file)
 {
-	if (os_type == os_switch)
+	if (os_type == os_switch || os_type == os_switch2)
 	{
 		if (GM_build_type == "exe")
 			return $"rom:/{working_directory}{_file}";
 		else
 			return $"host:/{working_directory}{_file}";
 	}
-	else if (os_type == os_android) {
+	else if (os_type == os_android)
+	{
 		return $"file:///android_asset/{_file}";
 	}
 	
-	return $"{working_directory}{_file}"
+	return $"{working_directory}{_file}";
 }
 
 /// @param {string} file
