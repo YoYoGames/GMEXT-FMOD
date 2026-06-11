@@ -1,3 +1,7 @@
+
+if(!fmod_system_get_num_drivers())
+	exit
+
 with(obj_fmod_multi_system)
 {
 	selected++
