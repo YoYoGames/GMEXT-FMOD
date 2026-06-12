@@ -47,7 +47,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2A4114ED-B512-4D3B-AA28-3F6255FD6738}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>YYFMOD</ProjectName>
+    <ProjectName>YYFMOD_Switch2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Ounce64'" Label="Configuration">
