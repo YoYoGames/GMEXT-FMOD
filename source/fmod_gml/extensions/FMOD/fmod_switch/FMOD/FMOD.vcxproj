@@ -234,7 +234,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <AdditionalDependenciesCull>libfmodL.a;libfmodstudioL.a;</AdditionalDependenciesCull>
+      <AdditionalDependenciesCull>libfmod.a;libfmodstudio.a;</AdditionalDependenciesCull>
       <AdditionalLibraryDirectories>..\..\..\..\..\fmod_sdk\FMOD Studio API Switch\api\core\lib\nx64;..\..\..\..\..\fmod_sdk\FMOD Studio API Switch\api\studio\lib\nx64;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -245,7 +245,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <AdditionalDependenciesCull>libfmodL.a;libfmodstudioL.a;</AdditionalDependenciesCull>
+      <AdditionalDependenciesCull>libfmod.a;libfmodstudio.a;</AdditionalDependenciesCull>
       <AdditionalLibraryDirectories>$(FmodSdkPath)\api\core\lib\nx64;$(FmodSdkPath)\api\studio\lib\nx64;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
