@@ -522,6 +522,9 @@
         {"$GMProxyFile":"","%Name":"YYFMOD.nro","name":"YYFMOD.nro","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":57,},
         {"$GMProxyFile":"","%Name":"YYFMOD.nrr","name":"YYFMOD.nrr","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":57,},
         {"$GMProxyFile":"","%Name":"YYFMOD.nrs","name":"YYFMOD.nrs","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":57,},
+        {"$GMProxyFile":"","%Name":"YYFMOD_Switch2.nrr","name":"YYFMOD_Switch2.nrr","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":33,},
+        {"$GMProxyFile":"","%Name":"YYFMOD_Switch2.nro","name":"YYFMOD_Switch2.nro","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":33,},
+        {"$GMProxyFile":"","%Name":"YYFMOD_Switch2.nrs","name":"YYFMOD_Switch2.nrs","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":33,},
       ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":true,},
     {"$GMExtensionFile":"v1","%Name":"libfmodL.dylib","constants":[],"copyToTargets":2,"filename":"libfmodL.dylib","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__libfmodL_load__","argCount":0,"args":[],"documentation":"","externalName":"__libfmodL_load__","help":"","hidden":true,"kind":1,"name":"__libfmodL_load__","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
