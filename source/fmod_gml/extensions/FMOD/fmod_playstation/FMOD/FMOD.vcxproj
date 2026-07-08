@@ -191,9 +191,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>..\..\..\..\..\fmod_sdk\FMOD Studio API PS5\api\core\inc;..\..\..\..\..\fmod_sdk\FMOD Studio API PS5\api\studio\inc</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStd>Cpp17</CppLanguageStd>
+      <CppLanguageStd>Cpp20</CppLanguageStd>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -262,7 +262,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>..\..\..\..\..\fmod_sdk\FMOD Studio API PS5\api\core\inc;..\..\..\..\..\fmod_sdk\FMOD Studio API PS5\api\studio\inc</AdditionalIncludeDirectories>
-      <CppLanguageStd>Cpp17</CppLanguageStd>
+      <CppLanguageStd>Cpp20</CppLanguageStd>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
@@ -286,7 +286,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(FmodSdkPath)\api\core\inc;$(FmodSdkPath)\api\studio\inc</AdditionalIncludeDirectories>
-      <CppLanguageStd>Cpp17</CppLanguageStd>
+      <CppLanguageStd>Cpp20</CppLanguageStd>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>

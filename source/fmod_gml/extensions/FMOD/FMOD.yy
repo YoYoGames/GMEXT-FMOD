@@ -18,7 +18,7 @@
   "exportToGame":true,
   "extensionVersion":"1.2.0",
   "files":[
-    {"$GMExtensionFile":"v1","%Name":"YYFMOD.ext","constants":[],"copyToTargets":3035426161732616398,"filename":"YYFMOD.ext","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"YYFMOD.ext","constants":[],"copyToTargets":2891310973656760526,"filename":"YYFMOD.ext","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"fmod_channel_set_frequency","argCount":0,"args":[2,2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @param {real} frequency \n\r/// @returns {real}\n\r","externalName":"fmod_channel_set_frequency","help":"fmod_channel_set_frequency(channel_ref, frequency)","hidden":false,"kind":1,"name":"fmod_channel_set_frequency","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_channel_get_frequency","argCount":0,"args":[2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @returns {real}\n\r","externalName":"fmod_channel_get_frequency","help":"fmod_channel_get_frequency(channel_ref)","hidden":false,"kind":1,"name":"fmod_channel_get_frequency","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"fmod_channel_set_priority","argCount":0,"args":[2,2,],"documentation":"/// @desc\n\r/// @param {real} channel_ref \n\r/// @param {real} priority \n\r/// @returns {real}\n\r","externalName":"fmod_channel_set_priority","help":"fmod_channel_set_priority(channel_ref, priority)","hidden":false,"kind":1,"name":"fmod_channel_set_priority","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
@@ -526,14 +526,14 @@
         {"$GMProxyFile":"","%Name":"YYFMOD_Switch2.nro","name":"YYFMOD_Switch2.nro","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":33,},
         {"$GMProxyFile":"","%Name":"YYFMOD_Switch2.nrs","name":"YYFMOD_Switch2.nrs","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":33,},
       ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":true,},
-    {"$GMExtensionFile":"v1","%Name":"libfmodL.dylib","constants":[],"copyToTargets":2,"filename":"libfmodL.dylib","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"libfmodL.dylib","constants":[],"copyToTargets":576460756598390786,"filename":"libfmodL.dylib","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__libfmodL_load__","argCount":0,"args":[],"documentation":"","externalName":"__libfmodL_load__","help":"","hidden":true,"kind":1,"name":"__libfmodL_load__","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
       ],"init":"__libfmodL_load__","kind":1,"name":"libfmodL.dylib","origname":"","ProxyFiles":[
         {"$GMProxyFile":"","%Name":"libfmodL.prx","name":"libfmodL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":32,},
         {"$GMProxyFile":"","%Name":"libfmodL.prx","name":"libfmodL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":59,},
         {"$GMProxyFile":"","%Name":"fmodL.dll","name":"fmodL.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
       ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
-    {"$GMExtensionFile":"v1","%Name":"libfmodstudioL.dylib","constants":[],"copyToTargets":2,"filename":"libfmodstudioL.dylib","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"libfmodstudioL.dylib","constants":[],"copyToTargets":576460756598390786,"filename":"libfmodstudioL.dylib","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__libfmodstudioL_load__","argCount":0,"args":[],"documentation":"","externalName":"__libfmodstudioL_load__","help":"","hidden":true,"kind":1,"name":"__libfmodstudioL_load__","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
       ],"init":"__libfmodstudioL_load__","kind":1,"name":"libfmodstudioL.dylib","origname":"","ProxyFiles":[
         {"$GMProxyFile":"","%Name":"libfmodstudioL.prx","name":"libfmodstudioL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":32,},
