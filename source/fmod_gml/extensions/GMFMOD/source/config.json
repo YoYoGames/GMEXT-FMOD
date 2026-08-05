@@ -1,0 +1,42 @@
+{
+  "$schema": "./extgen.schema.json",
+  "input": "spec.gmidl",
+  "root": "./",
+  "gamemaker": {
+    "runtime": {"outputFile": "../../../scripts/ExtensionCore_api/ExtensionCore_api.gml"},
+    "wrappers": {
+      "outputFile": "../../../scripts/GMFMOD_API/GMFMOD_API.gml"
+    },
+    "extension": {
+      "mode": "patch",
+      "outputFile": "../../../extensions/GMFMOD/GMFMOD.yy"
+    },
+    "injectors": { }
+  },
+    "targets": {
+        "windows":{},
+        "macos":{},
+        "linux":{},
+        "android":{
+          "mode": "jni"
+        },
+        "ios":{
+          "mode": "native"
+        }
+    },
+  "extras": {
+    "docs": { 
+      "outputFile": "../../../../../docs/extgen_docs.js"
+    }
+  },
+    "build": {
+        "emitCmake": true,
+        "cmake": {
+            "cppStandard": 17,
+            "cppExtensions": false,
+            "strictWarnings": true,
+            "useThirdParty": true,
+            "emitPresets": true
+        }
+    }
+}

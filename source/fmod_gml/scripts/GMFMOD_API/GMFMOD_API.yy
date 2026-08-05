@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GMFMOD_API",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GMFMOD_API",
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Fmod/Extensions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

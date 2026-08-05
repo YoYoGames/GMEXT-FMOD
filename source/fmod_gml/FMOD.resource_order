@@ -32,6 +32,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"FMOD","order":4,"path":"extensions/FMOD/FMOD.yy",},
+    {"name":"GMFMOD","order":7,"path":"extensions/GMFMOD/GMFMOD.yy",},
     {"name":"fnt_gm_20","order":1,"path":"fonts/fnt_gm_20/fnt_gm_20.yy",},
     {"name":"fnt_gm_30","order":2,"path":"fonts/fnt_gm_30/fnt_gm_30.yy",},
     {"name":"obj_fmod_channel_groups_mute","order":2,"path":"objects/obj_fmod_channel_groups_mute/obj_fmod_channel_groups_mute.yy",},
@@ -112,6 +113,7 @@
     {"name":"ExtBufferIO","order":2,"path":"scripts/ExtBufferIO/ExtBufferIO.yy",},
     {"name":"Fmod_Definitions","order":5,"path":"scripts/Fmod_Definitions/Fmod_Definitions.yy",},
     {"name":"Fmod_Functions","order":1,"path":"scripts/Fmod_Functions/Fmod_Functions.yy",},
+    {"name":"GMFMOD_API","order":6,"path":"scripts/GMFMOD_API/GMFMOD_API.yy",},
     {"name":"spr_gm_background","order":2,"path":"sprites/spr_gm_background/spr_gm_background.yy",},
     {"name":"spr_gm_button","order":1,"path":"sprites/spr_gm_button/spr_gm_button.yy",},
   ],

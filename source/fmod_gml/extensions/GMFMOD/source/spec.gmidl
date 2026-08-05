@@ -1,0 +1,336 @@
+[gml_api]
+module GMFMOD;
+
+// ============================================================
+// Reference Types
+// ============================================================
+
+[global]
+class `[[FmodChannelRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
+[global]
+class `[[FmodChannelGroupRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoundRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSystemRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
+group
+{
+
+// ============================================================
+// Channel - Frequency
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_set_frequency(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    frequency: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_get_frequency(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): real;
+
+// ============================================================
+// Channel - Priority
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_set_priority(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    priority: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_get_priority(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): real;
+
+// ============================================================
+// Channel - Position
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_set_position(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    position: real,
+    time_unit: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_get_position(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    time_unit: real
+): real;
+
+// ============================================================
+// Channel - Channel Group
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_set_channel_group(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodChannelGroupRef`]
+function fmod_channel_get_channel_group(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): gmval;
+
+// ============================================================
+// Channel - Loop
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_set_loop_count(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    loop_count: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_get_loop_count(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_set_loop_points(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    loop_start: real,
+    loop_start_type: real,
+    loop_end: real,
+    loop_end_type: real
+): real;
+
+// ============================================================
+// Channel - Status
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_is_virtual(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_get_index(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): real;
+
+// ============================================================
+// Channel - Sound and System
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodSoundRef`]
+function fmod_channel_get_current_sound(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodSystemRef`]
+function fmod_channel_get_system_object(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): gmval;
+
+}
+
+group
+{
+
+// ============================================================
+// System - Creation & Initialization
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodSystemRef`]
+function fmod_system_create(): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_init(
+    max_channels: real,
+    flags: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_release(
+    [type_hint=`FmodSystemRef`] system_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_close(
+    [type_hint=`FmodSystemRef`] system_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_update(): real;
+
+// ============================================================
+// System - Channel Management
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodChannelRef`]
+function fmod_system_get_channel(index: real): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodChannelGroupRef`]
+function fmod_system_get_master_channel_group(): gmval;
+
+// ============================================================
+// System - Output & Driver
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_set_output(output: real): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_output(): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_num_drivers(): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_driver(driver: real): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_driver(): real;
+
+// ============================================================
+// System - Software Channels
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_set_software_channels(software_channels: real): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_software_channels(): real;
+
+}
+
+group
+{
+
+// ============================================================
+// Sound - Creation & Loading
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodSoundRef`]
+function fmod_system_create_sound(
+    name_or_data: string,
+    mode: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodSoundRef`]
+function fmod_system_create_stream(
+    name_or_data: string,
+    mode: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodChannelRef`]
+function fmod_system_play_sound(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval,
+    pause: real
+): gmval;
+
+// ============================================================
+// Sound - Properties
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_get_length(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    length_type: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_defaults(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    frequency: real,
+    priority: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_mode(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    mode: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_mode(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+// ============================================================
+// Sound - Loop
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_set_loop_count(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    count: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_loop_count(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_loop_points(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    loop_start: real,
+    loop_start_type: real,
+    loop_end: real,
+    loop_end_type: real
+): real;
+
+// ============================================================
+// Sound - 3D & Distance
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_set_3d_min_max_distance(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    min: real,
+    max: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_3d_cone_settings(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    inside_cone_angle: real,
+    outside_cone_angle: real,
+    outside_volume: real
+): real;
+
+// ============================================================
+// Sound - Release
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_release(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSystemRef`]
+function fmod_sound_get_system_object(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
+}
