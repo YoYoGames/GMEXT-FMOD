@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\code_gen\core\GMExtUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\code_gen\core\GMExtWire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\code_gen\native\GMFMODInternal_native.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_channel_control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_channel_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_dsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_native.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_reverb_3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_sound_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_bank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_bus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_command_replay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_event_description.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_event_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_studio_vca.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\src\native\GMFMOD_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\GMFMOD\source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{56293854-48AD-3460-82F4-C35972C35697}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

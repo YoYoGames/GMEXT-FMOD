@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/Github/GMEXT-FMOD/source/fmod_gml/extensions/GMFMOD/out/build/win-x64-release/cmake_install.cmake",
+		"D:/Github/GMEXT-FMOD/source/fmod_gml/extensions/GMFMOD/out/build/win-x64-release/src/cmake_install.cmake",
+		"D:/Github/GMEXT-FMOD/source/fmod_gml/extensions/GMFMOD/out/build/win-x64-release/third_party/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
