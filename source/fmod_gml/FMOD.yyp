@@ -81,7 +81,6 @@
   },
   "name":"FMOD",
   "resources":[
-    {"id":{"name":"FMOD","path":"extensions/FMOD/FMOD.yy",},},
     {"id":{"name":"GMFMOD","path":"extensions/GMFMOD/GMFMOD.yy",},},
     {"id":{"name":"fnt_gm_15","path":"fonts/fnt_gm_15/fnt_gm_15.yy",},},
     {"id":{"name":"fnt_gm_20","path":"fonts/fnt_gm_20/fnt_gm_20.yy",},},
@@ -186,9 +185,6 @@
     {"id":{"name":"rm_fmod_studio_object_pan","path":"rooms/rm_fmod_studio_object_pan/rm_fmod_studio_object_pan.yy",},},
     {"id":{"name":"rm_fmod_studio_recording_playback","path":"rooms/rm_fmod_studio_recording_playback/rm_fmod_studio_recording_playback.yy",},},
     {"id":{"name":"rm_fmod_studio_simple_event","path":"rooms/rm_fmod_studio_simple_event/rm_fmod_studio_simple_event.yy",},},
-    {"id":{"name":"ExtBufferIO","path":"scripts/ExtBufferIO/ExtBufferIO.yy",},},
-    {"id":{"name":"Fmod_Definitions","path":"scripts/Fmod_Definitions/Fmod_Definitions.yy",},},
-    {"id":{"name":"Fmod_Functions","path":"scripts/Fmod_Functions/Fmod_Functions.yy",},},
     {"id":{"name":"GMFMOD_API","path":"scripts/GMFMOD_API/GMFMOD_API.yy",},},
     {"id":{"name":"spr_gm_background","path":"sprites/spr_gm_background/spr_gm_background.yy",},},
     {"id":{"name":"spr_gm_button","path":"sprites/spr_gm_button/spr_gm_button.yy",},},

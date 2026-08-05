@@ -31,7 +31,6 @@
     {"name":"Sprites","order":3,"path":"folders/GM Extensions Assets/Sprites.yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"FMOD","order":4,"path":"extensions/FMOD/FMOD.yy",},
     {"name":"GMFMOD","order":7,"path":"extensions/GMFMOD/GMFMOD.yy",},
     {"name":"fnt_gm_20","order":1,"path":"fonts/fnt_gm_20/fnt_gm_20.yy",},
     {"name":"fnt_gm_30","order":2,"path":"fonts/fnt_gm_30/fnt_gm_30.yy",},
@@ -110,9 +109,6 @@
     {"name":"rm_fmod_studio_event_parameter","order":1,"path":"rooms/rm_fmod_studio_event_parameter/rm_fmod_studio_event_parameter.yy",},
     {"name":"rm_fmod_studio_menu","order":6,"path":"rooms/rm_fmod_studio_menu/rm_fmod_studio_menu.yy",},
     {"name":"rm_fmod_studio_object_pan","order":1,"path":"rooms/rm_fmod_studio_object_pan/rm_fmod_studio_object_pan.yy",},
-    {"name":"ExtBufferIO","order":2,"path":"scripts/ExtBufferIO/ExtBufferIO.yy",},
-    {"name":"Fmod_Definitions","order":5,"path":"scripts/Fmod_Definitions/Fmod_Definitions.yy",},
-    {"name":"Fmod_Functions","order":1,"path":"scripts/Fmod_Functions/Fmod_Functions.yy",},
     {"name":"GMFMOD_API","order":6,"path":"scripts/GMFMOD_API/GMFMOD_API.yy",},
     {"name":"spr_gm_background","order":2,"path":"sprites/spr_gm_background/spr_gm_background.yy",},
     {"name":"spr_gm_button","order":1,"path":"sprites/spr_gm_button/spr_gm_button.yy",},
