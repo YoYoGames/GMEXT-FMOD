@@ -16,7 +16,7 @@ draw_text(_x + _l, _y + 30, ms)
 
 draw_text(_x+_l/2,_y+20,"(ms)")
 
-var _pos = fmod_channel_get_position(music, FMOD_TIMEUNIT.PCM) / length;
+var _pos = fmod_channel_get_position(music, FmodTimeUnit.Pcm) / length;
 draw_line(_x + _l*_pos, _y - 10, _x + _l*_pos, _y + 10);
 
 // Grabbing parameter data via float
@@ -62,3 +62,4 @@ for(var _i = 0 ; _i < _channels_num ; _i++)
 		draw_circle(_x + _j*2, _y + _i*150 - (100 * _value), 2, false);
 	}
 }
+

@@ -15,6 +15,44 @@ GMEXPORT double __EXT_NATIVE__GMFMOD_invocation_handler(char* __ret_buffer, doub
     return __dispatch_queue.fetch(__bw);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_last_result(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_last_result();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodResult
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_debug_initialize(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: flags, type: enum FmodDebugFlags
+    gm_enums::FmodDebugFlags flags = gm::wire::codec::readValue<gm_enums::FmodDebugFlags>(__br);
+
+    // field: mode, type: enum FmodDebugMode
+    gm_enums::FmodDebugMode mode = gm::wire::codec::readValue<gm_enums::FmodDebugMode>(__br);
+
+    fmod_debug_initialize(flags, mode);
+    return 0;
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_path_bundle(char* filename)
+{
+    static std::string __result;
+    __result = fmod_path_bundle(filename);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_path_user(char* filename)
+{
+    static std::string __result;
+    __result = fmod_path_user(filename);
+    return (char*)__result.c_str();
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};

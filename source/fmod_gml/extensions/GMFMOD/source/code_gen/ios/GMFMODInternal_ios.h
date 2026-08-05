@@ -3,6 +3,10 @@
 #import <Foundation/Foundation.h>
 
 @interface GMFMODInternal : NSObject
+- (double)__EXT_NATIVE__fmod_last_result:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_debug_initialize:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (char*)__EXT_NATIVE__fmod_path_bundle:(char*)filename;
+- (char*)__EXT_NATIVE__fmod_path_user:(char*)filename;
 - (double)__EXT_NATIVE__fmod_channel_set_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_get_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_set_priority:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

@@ -9,7 +9,7 @@ fmod_system_set_software_format(48000, FMOD_SPEAKERMODE.STEREO, 0);
 /*
     Initialize the Sound
 */
-sound = fmod_system_create_sound(sound_file, FMOD_MODE.DEFAULT);
+sound = fmod_system_create_sound(sound_file, FmodMode.Default);
 
 channel = fmod_system_play_sound(sound, false);
 

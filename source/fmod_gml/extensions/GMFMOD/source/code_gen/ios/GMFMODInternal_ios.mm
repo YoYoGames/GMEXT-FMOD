@@ -88,6 +88,22 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
     GMExtensionInitialise(&ri, sizeof(ri));
 }
 
+- (double)__EXT_NATIVE__fmod_last_result:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_last_result(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_debug_initialize:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_debug_initialize(__arg_buffer, __arg_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_path_bundle:(char*)filename
+{
+    return __EXT_NATIVE__fmod_path_bundle(filename);
+}
+- (char*)__EXT_NATIVE__fmod_path_user:(char*)filename
+{
+    return __EXT_NATIVE__fmod_path_user(filename);
+}
 - (double)__EXT_NATIVE__fmod_channel_set_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_set_frequency(__arg_buffer, __arg_buffer_length);

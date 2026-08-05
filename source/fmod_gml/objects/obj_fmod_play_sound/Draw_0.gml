@@ -9,7 +9,7 @@ draw_text(10, 100, fmod_system_get_channels_playing())
 
 if(channel_index == -1) exit;
 
-var pos = fmod_channel_get_position(channel_index, FMOD_TIMEUNIT.MS);
+var pos = fmod_channel_get_position(channel_index, FmodTimeUnit.Ms);
 
 var Y
 if(sound_file == "drumloop.wav")
@@ -17,4 +17,5 @@ if(sound_file == "drumloop.wav")
 else
 	Y = 200
 draw_text(10,Y,string(pos)+"/"+string(sound_lenght)+"ms")
+
 

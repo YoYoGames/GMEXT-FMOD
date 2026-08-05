@@ -2,14 +2,14 @@
 show_debug_message("Obj_Fmod::Create")
 
 var _max_channels = 1024
-var _flags_core = FMOD_INIT.NORMAL;
-var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
+var _flags_core = FmodInitFlags.Normal;
+var _flags_studio = FmodStudioInitFlags.LiveUpdate;
 
 #macro USE_FMOD_STUDIO true
 #macro USE_DEBUG_CALLBACKS false
 
 if (USE_DEBUG_CALLBACKS) {
-	fmod_debug_initialize(FMOD_DEBUG_FLAGS.LEVEL_LOG, FMOD_DEBUG_MODE.CALLBACK);
+	fmod_debug_initialize(FmodDebugFlags.LevelLog, FmodDebugMode.Callback);
 }
 
 if (USE_FMOD_STUDIO) {
@@ -36,3 +36,4 @@ else {
 	fmod_system_init(_max_channels, _flags_core)
 	show_debug_message("fmod_system_init: " + string(fmod_last_result()))
 }
+

@@ -57,7 +57,7 @@ function queue_next_sound(outputrate, playingchannel, newindex, slot)
         */
 		playing_sound = fmod_channel_get_current_sound(playingchannel)
 		
-		soundlength = fmod_sound_get_length(playing_sound, FMOD_TIMEUNIT.PCM);
+		soundlength = fmod_sound_get_length(playing_sound, FmodTimeUnit.Pcm);
 
         soundfrequency = fmod_channel_get_frequency(playingchannel)
 		
@@ -115,7 +115,7 @@ system_format = fmod_system_get_software_format()
    
 sounds = []
 for(var count = 0; count < array_length(soundname) ; count++) {
-	sounds[count] = fmod_system_create_sound(soundname[count],FMOD_MODE.IGNORETAGS)
+	sounds[count] = fmod_system_create_sound(soundname[count],FmodMode.IgnoreTags)
 }
 
 /*

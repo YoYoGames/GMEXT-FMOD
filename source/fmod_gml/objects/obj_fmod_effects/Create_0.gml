@@ -1,5 +1,5 @@
 	
-sound_index = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"), FMOD_MODE.DEFAULT)
+sound_index = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"), FmodMode.Default)
 
 channel_index = fmod_system_play_sound(sound_index, false)
 
@@ -39,4 +39,5 @@ fmod_dsp_set_bypass(dsp_lowpass,true)
 fmod_dsp_set_bypass(dsp_highpass,true)
 fmod_dsp_set_bypass(dsp_echo,true)
 fmod_dsp_set_bypass(dsp_flange,true)
+
 

@@ -6,6 +6,10 @@
 // Internal function used for fetching dispatched function calls to GML
 GMEXPORT double __EXT_NATIVE__GMFMOD_invocation_handler(char* __ret_buffer, double __ret_buffer_length);
 
+GMEXPORT double __EXT_NATIVE__fmod_last_result(char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_debug_initialize(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT char* __EXT_NATIVE__fmod_path_bundle(char* filename);
+GMEXPORT char* __EXT_NATIVE__fmod_path_user(char* filename);
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_get_frequency(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_priority(char* __arg_buffer, double __arg_buffer_length);

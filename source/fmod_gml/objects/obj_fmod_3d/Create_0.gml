@@ -10,7 +10,7 @@ fmod_system_set_3d_settings(1,DISTANCEFACTOR,1)
 
 //Load some sound 1
 
-sound_index_1 = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"), FMOD_MODE.AS_3D | FMOD_MODE.LOOP_NORMAL)
+sound_index_1 = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"), FmodMode._3D | FmodMode.LoopOn)
 
 fmod_sound_set_3d_min_max_distance(sound_index_1,DISTANCEFACTOR*0.5,DISTANCEFACTOR*5000)
 
@@ -24,7 +24,7 @@ fmod_channel_control_set_paused(channel1,false)
 //Load some sound 2
 
 
-sound_index_2 = fmod_system_create_sound(fmod_path_bundle("jaguar.wav"),FMOD_MODE.AS_3D | FMOD_MODE.LOOP_NORMAL)
+sound_index_2 = fmod_system_create_sound(fmod_path_bundle("jaguar.wav"),FmodMode._3D | FmodMode.LoopOn)
 
 fmod_sound_set_3d_min_max_distance(sound_index_2,DISTANCEFACTOR*0.5,DISTANCEFACTOR*5000)
 
@@ -35,4 +35,5 @@ fmod_channel_control_set_3d_attributes(channel2, {x:point_2[0],y:point_2[1],z:po
 fmod_channel_control_set_paused(channel2, false)
 
 //////////////////
+
 

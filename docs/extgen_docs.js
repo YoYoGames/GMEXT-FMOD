@@ -1,4 +1,31 @@
 /**
+ * @function_partial fmod_last_result
+ * @returns {Enum.FmodResult}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_debug_initialize
+ * @param {Enum.FmodDebugFlags} flags
+ * @param {Enum.FmodDebugMode} mode
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_path_bundle
+ * @param {String} filename
+ * @returns {String}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_path_user
+ * @param {String} filename
+ * @returns {String}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_channel_set_frequency
  * @param {Struct.FmodChannelRef} channel_ref
  * @param {Real} frequency
@@ -1670,6 +1697,384 @@
  * @struct_partial FmodStudioCommandReplayRef
  * @member {Real} _ref
  * @struct_end
+ */
+
+/**
+ * @enum_partial FmodResult
+ * @member Ok
+ * @member BadCommand
+ * @member ChannelAlloc
+ * @member ChannelStolen
+ * @member Dma
+ * @member DspConnection
+ * @member DspDontProcess
+ * @member DspFormat
+ * @member DspInUse
+ * @member DspNotFound
+ * @member DspReserved
+ * @member DspSilence
+ * @member DspType
+ * @member FileBad
+ * @member FileCouldNotSeek
+ * @member FileDiskEjected
+ * @member FileEof
+ * @member FileEndOfData
+ * @member FileNotFound
+ * @member FileUnwanted
+ * @member FormatUnsupported
+ * @member Generic
+ * @member InvalidHandle
+ * @member InvalidParam
+ * @member InvalidPosition
+ * @member InvalidSpeakerMode
+ * @member InvalidThread
+ * @member InvalidVector
+ * @member MaxAudioEngines
+ * @member Memory
+ * @member MemoryCantPoint
+ * @member Needs3D
+ * @member NeedsSoftware
+ * @member NetConnect
+ * @member NetSocketError
+ * @member NetUrl
+ * @member NetWouldBlock
+ * @member NotReady
+ * @member OutputAllocated
+ * @member OutputCreateBuffer
+ * @member OutputDriverCall
+ * @member OutputFormat
+ * @member OutputInit
+ * @member OutputNoDriver
+ * @member Record
+ * @member ReverseStereo
+ * @member Threading
+ * @member TooManyChannels
+ * @member TruncatedData
+ * @member Unimplemented
+ * @member Uninitialized
+ * @member Unsupported
+ * @member Update
+ * @member Version
+ * @member EventAlreadyLoaded
+ * @member InternalError
+ * @member InvalidSecret
+ * @member MissingCallback
+ * @member SampleMissing
+ * @member Plugin
+ * @member PluginMissing
+ * @member PluginResource
+ * @member PluginVersion
+ * @member ReverbChannelGroup
+ * @member ReverbInstance
+ * @member SubSounds
+ * @member SubSoundAllocated
+ * @member SubSoundCantMove
+ * @member TagNotFound
+ * @member Http
+ * @member HttpAccess
+ * @member HttpProxyAuth
+ * @member HttpServerError
+ * @member HttpTimeout
+ * @member InvalidFloat
+ * @member InvalidSyncPoint
+ * @member InvalidSpeaker
+ * @member InvalidString
+ * @member AlreadyLocked
+ * @member NotLocked
+ * @member RecordDisconnected
+ * @member TooManySamples
+ * @member StudioUninitialized
+ * @member StudioNotLoaded
+ * @member EventNotFound
+ * @member EventLiveUpdateBusy
+ * @member EventLiveUpdateMismatch
+ * @member EventLiveUpdateTimeout
+ * @member Format
+ * @member Initialization
+ * @member Initialized
+ * @member Internal
+ * @member MaxAudible
+ * @member NeedsHardware
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodInitFlags
+ * @member Normal
+ * @member StreamFromUpdate
+ * @member IgnoreTags
+ * @member SyncMixDown
+ * @member ProfileEnable
+ * @member Vol0BecomesVirtual
+ * @member GeometryUseCheap
+ * @member ClipOutput
+ * @member Unicode
+ * @member TimerTickBaseClockSource
+ * @member ProfileMeterAll
+ * @member MemoryTracking
+ * @member ThreadUnsafe
+ * @member ProfileMeterThreadLocks
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioInitFlags
+ * @member Normal
+ * @member LiveUpdate
+ * @member AllowMissingPlugins
+ * @member SynchronousUpdate
+ * @member DeferredCallbacks
+ * @member LoadFromUpdate
+ * @member DebugOverlay
+ * @member DisableSounds
+ * @member DisableAllSamples
+ * @member DisableCommandReplay
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodMode
+ * @member Default
+ * @member LoopOff
+ * @member LoopOn
+ * @member LoopBidi
+ * @member _2D
+ * @member _3D
+ * @member CreateStream
+ * @member CreateSample
+ * @member CreateCompressedSample
+ * @member OpenUser
+ * @member OpenMemory
+ * @member OpenMemoryPoint
+ * @member OpenRaw
+ * @member OpenOnly
+ * @member AccurateTime
+ * @member MpegSearch
+ * @member NonBlocking
+ * @member Unique
+ * @member _3DHeadRelative
+ * @member _3DWorldRelative
+ * @member _3DInverseRollOff
+ * @member _3DLinearRollOff
+ * @member _3DLinearSquareRollOff
+ * @member _3DCustomRollOff
+ * @member _3DIgnoreGeometry
+ * @member IgnoreTags
+ * @member LowMem
+ * @member VirtualPlayFromStart
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodTimeUnit
+ * @member Ms
+ * @member Pcm
+ * @member PcmBytes
+ * @member RawBytes
+ * @member PcmFraction
+ * @member ModOrder
+ * @member ModRow
+ * @member ModPattern
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspType
+ * @member Unknown
+ * @member Mixer
+ * @member Oscillator
+ * @member LowPass
+ * @member ItLowPass
+ * @member HighPass
+ * @member Echo
+ * @member Flange
+ * @member Distortion
+ * @member Normalize
+ * @member Limiter
+ * @member ParamEq
+ * @member PitchShift
+ * @member Chorus
+ * @member VstPlugin
+ * @member WinampPlugin
+ * @member Convolution
+ * @member ChannelMix
+ * @member Transceiver
+ * @member ObjectPan
+ * @member MultibandEq
+ * @member CompDynEq
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspConnectionType
+ * @member Default
+ * @member Dry
+ * @member Wet
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDebugFlags
+ * @member LevelNone
+ * @member LevelError
+ * @member LevelWarning
+ * @member LevelLog
+ * @member TypeMemory
+ * @member TypeFile
+ * @member TypeCodec
+ * @member TypeTrace
+ * @member DisplayTimeStamps
+ * @member DisplayLineNumbers
+ * @member DisplayCompress
+ * @member DisplayThreadId
+ * @member DisplayModule
+ * @member DisplaySourceCodeLine
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDebugMode
+ * @member Tty
+ * @member File
+ * @member Callback
+ * @member FilePlusTty
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodSpeakerMode
+ * @member Default
+ * @member Raw
+ * @member Mono
+ * @member Stereo
+ * @member Quad
+ * @member Surround
+ * @member _5Point1
+ * @member _7Point1
+ * @member _7Point1PointFront
+ * @member _5Point1Rears
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodSoundType
+ * @member Unknown
+ * @member Aiff
+ * @member Asf
+ * @member Dsd
+ * @member Flac
+ * @member Fsb
+ * @member It
+ * @member Midi
+ * @member Mpeg
+ * @member OggVorbis
+ * @member Playlist
+ * @member Raw
+ * @member S3m
+ * @member User
+ * @member Wav
+ * @member Xm
+ * @member Xwm
+ * @member Ac3
+ * @member At9
+ * @member Vorbis
+ * @member MediaFoundation
+ * @member MediaCodec
+ * @member Fadpcm
+ * @member Opus
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodSoundFormat
+ * @member None
+ * @member Pcm8
+ * @member Pcm16
+ * @member Pcm24
+ * @member Pcm32
+ * @member PcmFloat
+ * @member BitStream
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodOutputType
+ * @member AutoDetect
+ * @member Unknown
+ * @member NoSound
+ * @member WavWriter
+ * @member NoSoundNrt
+ * @member WavWriterNrt
+ * @member Wasapi
+ * @member Asio
+ * @member PulseAudio
+ * @member Alsa
+ * @member CoreAudio
+ * @member AudioTrack
+ * @member OpenSl
+ * @member AudioOut
+ * @member Audio3D
+ * @member WebAudio
+ * @member NnAudio
+ * @member WinSonic
+ * @member AAudio
+ * @member NativeAudio
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioLoadingState
+ * @member Unloading
+ * @member Unloaded
+ * @member Loading
+ * @member Loaded
+ * @member Error
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioPlaybackState
+ * @member Playing
+ * @member Sustaining
+ * @member Stopped
+ * @member Starting
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioStopMode
+ * @member AllowFadeOut
+ * @member Immediate
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioEventProperty
+ * @member ChannelPriority
+ * @member ScheduleDelay
+ * @member ScheduleLookAhead
+ * @member MinimumDistance
+ * @member MaximumDistance
+ * @member CoolDown
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioParameterFlags
+ * @member ReadOnly
+ * @member Automatic
+ * @member Interactive
+ * @member Labeled
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioUserPropertyType
+ * @member String
+ * @member Integer
+ * @member Float
+ * @member Boolean
+ * @enum_end
  */
 
 /**

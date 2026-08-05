@@ -10,7 +10,7 @@ if (channel_index != 0)
 {            
 	playing = fmod_channel_control_is_playing(channel_index);
             
-	pos = fmod_channel_get_position(channel_index, FMOD_TIMEUNIT.MS);
+	pos = fmod_channel_get_position(channel_index, FmodTimeUnit.Ms);
 		    
     /* Silence the stream until we have sufficient data for smooth playback. */
 	fmod_channel_control_set_mute(channel_index, state.starving);
@@ -57,4 +57,5 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 	}
 	_tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
 }
+
 

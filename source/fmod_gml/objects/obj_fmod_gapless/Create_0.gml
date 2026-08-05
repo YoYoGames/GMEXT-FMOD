@@ -52,9 +52,9 @@ outputrate = fmod_system_get_software_format()
 /*
     Load 3 sounds - these are just sine wave tones at different frequencies.  C, D and E on the musical scale.
 */
-sound_note_c = fmod_system_create_sound(fmod_path_bundle("c.ogg"),FMOD_MODE.DEFAULT)
-sound_note_d = fmod_system_create_sound(fmod_path_bundle("d.ogg"),FMOD_MODE.DEFAULT)
-sound_note_e = fmod_system_create_sound(fmod_path_bundle("e.ogg"),FMOD_MODE.DEFAULT)
+sound_note_c = fmod_system_create_sound(fmod_path_bundle("c.ogg"),FmodMode.Default)
+sound_note_d = fmod_system_create_sound(fmod_path_bundle("d.ogg"),FmodMode.Default)
+sound_note_e = fmod_system_create_sound(fmod_path_bundle("e.ogg"),FmodMode.Default)
 	
 var numsounds = array_length(note)
 
@@ -87,7 +87,7 @@ for (var count = 0; count < numsounds; count++)
     }
     else
     {
-		var slen = fmod_sound_get_length(sound, FMOD_TIMEUNIT.PCM) /* Get the length of the sound in samples. */
+		var slen = fmod_sound_get_length(sound, FmodTimeUnit.Pcm) /* Get the length of the sound in samples. */
 		var struct = fmod_sound_get_defaults(sound)/* Get the default frequency that the sound was recorded at. */
 		
         slen = (slen / struct.frequency * outputrate.sample_rate);/* Convert the length of the sound to 'output samples' for the output timeline. */
@@ -97,4 +97,5 @@ for (var count = 0; count < numsounds; count++)
 	fmod_channel_control_set_delay(channel,clock_start,0,false) /* Schedule the channel to start in the future at the newly calculated channelgroup clock value. */
 	fmod_channel_control_set_paused(channel,false) /* Unpause the sound.  Note that you won't hear the sounds, they are scheduled into the future. */
 }
+
 

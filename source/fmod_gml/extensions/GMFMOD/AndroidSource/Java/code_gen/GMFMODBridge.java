@@ -18,6 +18,10 @@ public final class GMFMODBridge {
     }
 
     public static native double __EXT_JNI__GMFMOD_invocation_handler(ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_last_result(ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_debug_initialize(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native String __EXT_JNI__fmod_path_bundle(String filename);
+    public static native String __EXT_JNI__fmod_path_user(String filename);
     public static native double __EXT_JNI__fmod_channel_set_frequency(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_get_frequency(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_set_priority(ByteBuffer __arg_buffer, double __arg_buffer_length);

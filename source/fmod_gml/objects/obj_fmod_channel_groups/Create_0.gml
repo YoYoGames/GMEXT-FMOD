@@ -1,12 +1,12 @@
 
 
-sound_index_A_1 = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"),FMOD_MODE.LOOP_NORMAL)
-sound_index_A_2 = fmod_system_create_sound(fmod_path_bundle("jaguar.wav"),FMOD_MODE.LOOP_NORMAL)
-sound_index_A_3 = fmod_system_create_sound(fmod_path_bundle("swish.wav"),FMOD_MODE.LOOP_NORMAL)
+sound_index_A_1 = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"),FmodMode.LoopOn)
+sound_index_A_2 = fmod_system_create_sound(fmod_path_bundle("jaguar.wav"),FmodMode.LoopOn)
+sound_index_A_3 = fmod_system_create_sound(fmod_path_bundle("swish.wav"),FmodMode.LoopOn)
 
-sound_index_B_1 = fmod_system_create_sound(fmod_path_bundle("c.ogg"),FMOD_MODE.LOOP_NORMAL)
-sound_index_B_2 = fmod_system_create_sound(fmod_path_bundle("d.ogg"),FMOD_MODE.LOOP_NORMAL)
-sound_index_B_3 = fmod_system_create_sound(fmod_path_bundle("e.ogg"),FMOD_MODE.LOOP_NORMAL)
+sound_index_B_1 = fmod_system_create_sound(fmod_path_bundle("c.ogg"),FmodMode.LoopOn)
+sound_index_B_2 = fmod_system_create_sound(fmod_path_bundle("d.ogg"),FmodMode.LoopOn)
+sound_index_B_3 = fmod_system_create_sound(fmod_path_bundle("e.ogg"),FmodMode.LoopOn)
 
 channel_group_A_index = fmod_system_create_channel_group("groupA")
 channel_group_B_index = fmod_system_create_channel_group("groupB")
@@ -35,3 +35,4 @@ channel_groups = {
 	groupB: channel_group_B_index,
 	master: channel_group_C_index
 }
+

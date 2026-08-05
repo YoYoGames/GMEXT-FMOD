@@ -1,5 +1,6 @@
 {
   "FolderOrderSettings":[
+    {"name":"ExtensionCore","order":3,"path":"folders/ExtensionCore.yy",},
     {"name":"Fmod Demo","order":1,"path":"folders/Fmod Demo.yy",},
     {"name":"Core","order":4,"path":"folders/Fmod Demo/Core.yy",},
     {"name":"ChannelGroups","order":11,"path":"folders/Fmod Demo/Core/ChannelGroups.yy",},
@@ -109,6 +110,7 @@
     {"name":"rm_fmod_studio_event_parameter","order":1,"path":"rooms/rm_fmod_studio_event_parameter/rm_fmod_studio_event_parameter.yy",},
     {"name":"rm_fmod_studio_menu","order":6,"path":"rooms/rm_fmod_studio_menu/rm_fmod_studio_menu.yy",},
     {"name":"rm_fmod_studio_object_pan","order":1,"path":"rooms/rm_fmod_studio_object_pan/rm_fmod_studio_object_pan.yy",},
+    {"name":"ExtensionCore_api","order":1,"path":"scripts/ExtensionCore_api/ExtensionCore_api.yy",},
     {"name":"GMFMOD_API","order":6,"path":"scripts/GMFMOD_API/GMFMOD_API.yy",},
     {"name":"spr_gm_background","order":2,"path":"sprites/spr_gm_background/spr_gm_background.yy",},
     {"name":"spr_gm_button","order":1,"path":"sprites/spr_gm_button/spr_gm_button.yy",},

@@ -40,7 +40,7 @@ if (channel) {
     /*
         Determine how much has been played since we last checked.
     */
-	var _play_pos = fmod_channel_get_position(channel, FMOD_TIMEUNIT.PCM);
+	var _play_pos = fmod_channel_get_position(channel, FmodTimeUnit.Pcm);
 	
 	var _play_delta = (_play_pos >= last_play_pos) ? (_play_pos - last_play_pos) : (_play_pos + sound_length - last_play_pos);
 	last_play_pos = _play_pos;
@@ -64,4 +64,5 @@ if (channel) {
 	
 	fmod_channel_set_frequency(channel, _playback_rate);
 }
+
 

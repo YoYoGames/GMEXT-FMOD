@@ -15,6 +15,365 @@ namespace gm_consts
 
 namespace gm_enums
 {
+    enum class FmodResult : std::int64_t
+    {
+        Ok = 0,
+        BadCommand = 1,
+        ChannelAlloc = 2,
+        ChannelStolen = 3,
+        Dma = 4,
+        DspConnection = 5,
+        DspDontProcess = 6,
+        DspFormat = 7,
+        DspInUse = 8,
+        DspNotFound = 9,
+        DspReserved = 10,
+        DspSilence = 11,
+        DspType = 12,
+        FileBad = 13,
+        FileCouldNotSeek = 14,
+        FileDiskEjected = 15,
+        FileEof = 16,
+        FileEndOfData = 17,
+        FileNotFound = 18,
+        FileUnwanted = 19,
+        FormatUnsupported = 20,
+        Generic = 21,
+        InvalidHandle = 22,
+        InvalidParam = 23,
+        InvalidPosition = 24,
+        InvalidSpeakerMode = 25,
+        InvalidThread = 26,
+        InvalidVector = 27,
+        MaxAudioEngines = 28,
+        Memory = 29,
+        MemoryCantPoint = 30,
+        Needs3D = 31,
+        NeedsSoftware = 32,
+        NetConnect = 33,
+        NetSocketError = 34,
+        NetUrl = 35,
+        NetWouldBlock = 36,
+        NotReady = 37,
+        OutputAllocated = 38,
+        OutputCreateBuffer = 39,
+        OutputDriverCall = 40,
+        OutputFormat = 41,
+        OutputInit = 42,
+        OutputNoDriver = 43,
+        Record = 44,
+        ReverseStereo = 45,
+        Threading = 46,
+        TooManyChannels = 47,
+        TruncatedData = 48,
+        Unimplemented = 49,
+        Uninitialized = 50,
+        Unsupported = 51,
+        Update = 52,
+        Version = 53,
+        EventAlreadyLoaded = 54,
+        InternalError = 55,
+        InvalidSecret = 56,
+        MissingCallback = 57,
+        SampleMissing = 58,
+        Plugin = 59,
+        PluginMissing = 60,
+        PluginResource = 61,
+        PluginVersion = 62,
+        ReverbChannelGroup = 63,
+        ReverbInstance = 64,
+        SubSounds = 65,
+        SubSoundAllocated = 66,
+        SubSoundCantMove = 67,
+        TagNotFound = 68,
+        Http = 69,
+        HttpAccess = 70,
+        HttpProxyAuth = 71,
+        HttpServerError = 72,
+        HttpTimeout = 73,
+        InvalidFloat = 74,
+        InvalidSyncPoint = 75,
+        InvalidSpeaker = 76,
+        InvalidString = 77,
+        AlreadyLocked = 78,
+        NotLocked = 79,
+        RecordDisconnected = 80,
+        TooManySamples = 81,
+        StudioUninitialized = 82,
+        StudioNotLoaded = 83,
+        EventNotFound = 84,
+        EventLiveUpdateBusy = 85,
+        EventLiveUpdateMismatch = 86,
+        EventLiveUpdateTimeout = 87,
+        Format = 88,
+        Initialization = 89,
+        Initialized = 90,
+        Internal = 91,
+        MaxAudible = 92,
+        NeedsHardware = 93
+    };
+
+    enum class FmodInitFlags : std::int64_t
+    {
+        Normal = 0,
+        StreamFromUpdate = 1,
+        IgnoreTags = 2,
+        SyncMixDown = 4,
+        ProfileEnable = 16,
+        Vol0BecomesVirtual = 32,
+        GeometryUseCheap = 64,
+        ClipOutput = 128,
+        Unicode = 256,
+        TimerTickBaseClockSource = 512,
+        ProfileMeterAll = 1024,
+        MemoryTracking = 2048,
+        ThreadUnsafe = 4096,
+        ProfileMeterThreadLocks = 8192
+    };
+
+    enum class FmodStudioInitFlags : std::int64_t
+    {
+        Normal = 0,
+        LiveUpdate = 1,
+        AllowMissingPlugins = 2,
+        SynchronousUpdate = 4,
+        DeferredCallbacks = 8,
+        LoadFromUpdate = 16,
+        DebugOverlay = 32,
+        DisableSounds = 64,
+        DisableAllSamples = 128,
+        DisableCommandReplay = 256
+    };
+
+    enum class FmodMode : std::int64_t
+    {
+        Default = 0,
+        LoopOff = 1,
+        LoopOn = 4,
+        LoopBidi = 8,
+        _2D = 16,
+        _3D = 32,
+        CreateStream = 128,
+        CreateSample = 256,
+        CreateCompressedSample = 512,
+        OpenUser = 1024,
+        OpenMemory = 2048,
+        OpenMemoryPoint = 268435456,
+        OpenRaw = 4096,
+        OpenOnly = 8192,
+        AccurateTime = 16384,
+        MpegSearch = 32768,
+        NonBlocking = 65536,
+        Unique = 131072,
+        _3DHeadRelative = 262144,
+        _3DWorldRelative = 524288,
+        _3DInverseRollOff = 1048576,
+        _3DLinearRollOff = 2097152,
+        _3DLinearSquareRollOff = 4194304,
+        _3DCustomRollOff = 67108864,
+        _3DIgnoreGeometry = 1073741824,
+        IgnoreTags = 33554432,
+        LowMem = 134217728,
+        VirtualPlayFromStart = -2147483648
+    };
+
+    enum class FmodTimeUnit : std::int64_t
+    {
+        Ms = 1,
+        Pcm = 2,
+        PcmBytes = 4,
+        RawBytes = 8,
+        PcmFraction = 16,
+        ModOrder = 256,
+        ModRow = 512,
+        ModPattern = 1024
+    };
+
+    enum class FmodDspType : std::int64_t
+    {
+        Unknown = -1,
+        Mixer = 0,
+        Oscillator = 1,
+        LowPass = 2,
+        ItLowPass = 3,
+        HighPass = 4,
+        Echo = 5,
+        Flange = 6,
+        Distortion = 7,
+        Normalize = 8,
+        Limiter = 9,
+        ParamEq = 10,
+        PitchShift = 11,
+        Chorus = 12,
+        VstPlugin = 13,
+        WinampPlugin = 14,
+        Convolution = 15,
+        ChannelMix = 16,
+        Transceiver = 17,
+        ObjectPan = 18,
+        MultibandEq = 19,
+        CompDynEq = 20
+    };
+
+    enum class FmodDspConnectionType : std::int64_t
+    {
+        Default = 0,
+        Dry = 1,
+        Wet = 2
+    };
+
+    enum class FmodDebugFlags : std::int64_t
+    {
+        LevelNone = 0,
+        LevelError = 1,
+        LevelWarning = 2,
+        LevelLog = 4,
+        TypeMemory = 256,
+        TypeFile = 512,
+        TypeCodec = 1024,
+        TypeTrace = 2048,
+        DisplayTimeStamps = 65536,
+        DisplayLineNumbers = 131072,
+        DisplayCompress = 262144,
+        DisplayThreadId = 524288,
+        DisplayModule = 1048576,
+        DisplaySourceCodeLine = 2097152
+    };
+
+    enum class FmodDebugMode : std::int64_t
+    {
+        Tty = 0,
+        File = 1,
+        Callback = 2,
+        FilePlusTty = 3
+    };
+
+    enum class FmodSpeakerMode : std::int64_t
+    {
+        Default = 0,
+        Raw = 1,
+        Mono = 2,
+        Stereo = 3,
+        Quad = 4,
+        Surround = 5,
+        _5Point1 = 6,
+        _7Point1 = 7,
+        _7Point1PointFront = 8,
+        _5Point1Rears = 9
+    };
+
+    enum class FmodSoundType : std::int64_t
+    {
+        Unknown = 0,
+        Aiff = 1,
+        Asf = 2,
+        Dsd = 3,
+        Flac = 4,
+        Fsb = 5,
+        It = 6,
+        Midi = 7,
+        Mpeg = 8,
+        OggVorbis = 9,
+        Playlist = 10,
+        Raw = 11,
+        S3m = 12,
+        User = 13,
+        Wav = 14,
+        Xm = 15,
+        Xwm = 16,
+        Ac3 = 17,
+        At9 = 18,
+        Vorbis = 19,
+        MediaFoundation = 20,
+        MediaCodec = 21,
+        Fadpcm = 22,
+        Opus = 23
+    };
+
+    enum class FmodSoundFormat : std::int64_t
+    {
+        None = 0,
+        Pcm8 = 1,
+        Pcm16 = 2,
+        Pcm24 = 3,
+        Pcm32 = 4,
+        PcmFloat = 5,
+        BitStream = 6
+    };
+
+    enum class FmodOutputType : std::int64_t
+    {
+        AutoDetect = 0,
+        Unknown = 1,
+        NoSound = 2,
+        WavWriter = 3,
+        NoSoundNrt = 4,
+        WavWriterNrt = 5,
+        Wasapi = 6,
+        Asio = 7,
+        PulseAudio = 8,
+        Alsa = 9,
+        CoreAudio = 10,
+        AudioTrack = 11,
+        OpenSl = 12,
+        AudioOut = 13,
+        Audio3D = 14,
+        WebAudio = 15,
+        NnAudio = 16,
+        WinSonic = 17,
+        AAudio = 18,
+        NativeAudio = 19
+    };
+
+    enum class FmodStudioLoadingState : std::int64_t
+    {
+        Unloading = 0,
+        Unloaded = 1,
+        Loading = 2,
+        Loaded = 3,
+        Error = 4
+    };
+
+    enum class FmodStudioPlaybackState : std::int64_t
+    {
+        Playing = 0,
+        Sustaining = 1,
+        Stopped = 2,
+        Starting = 3
+    };
+
+    enum class FmodStudioStopMode : std::int64_t
+    {
+        AllowFadeOut = 0,
+        Immediate = 1
+    };
+
+    enum class FmodStudioEventProperty : std::int64_t
+    {
+        ChannelPriority = 0,
+        ScheduleDelay = 1,
+        ScheduleLookAhead = 2,
+        MinimumDistance = 3,
+        MaximumDistance = 4,
+        CoolDown = 5
+    };
+
+    enum class FmodStudioParameterFlags : std::int64_t
+    {
+        ReadOnly = 1,
+        Automatic = 2,
+        Interactive = 4,
+        Labeled = 8
+    };
+
+    enum class FmodStudioUserPropertyType : std::int64_t
+    {
+        String = 0,
+        Integer = 1,
+        Float = 2,
+        Boolean = 3
+    };
+
 }
 
 
@@ -463,6 +822,10 @@ namespace gm::wire::details
 
 }
 
+gm_enums::FmodResult fmod_last_result();
+void fmod_debug_initialize(gm_enums::FmodDebugFlags flags, gm_enums::FmodDebugMode mode);
+std::string fmod_path_bundle(std::string_view filename);
+std::string fmod_path_user(std::string_view filename);
 double fmod_channel_set_frequency(const gm_structs::FmodChannelRef& channel_ref, double frequency);
 double fmod_channel_get_frequency(const gm_structs::FmodChannelRef& channel_ref);
 double fmod_channel_set_priority(const gm_structs::FmodChannelRef& channel_ref, double priority);

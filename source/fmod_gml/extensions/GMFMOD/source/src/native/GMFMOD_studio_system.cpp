@@ -34,6 +34,7 @@ FmodStudioSystemRef fmod_studio_system_create()
 
 double fmod_studio_system_init(double max_channels, double studio_flags, double core_flags)
 {
+	TRACE("fmod_studio_system_init EXT CALLED");
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;

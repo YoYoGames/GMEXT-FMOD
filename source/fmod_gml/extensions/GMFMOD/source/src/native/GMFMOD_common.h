@@ -13,6 +13,10 @@
 // ============================================================
 
 extern FMOD_RESULT g_fmod_last_result;
+extern enum gm_enums::FmodResult fmod_last_result();
+extern void fmod_debug_initialize(enum gm_enums::FmodDebugFlags flags, enum gm_enums::FmodDebugMode mode);
+extern std::string fmod_path_bundle(std::string_view filename);
+extern std::string fmod_path_user(std::string_view filename);
 
 extern std::map<uint32_t, FMOD::System*> map_systems;
 extern uint32_t index_systems;

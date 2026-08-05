@@ -1,11 +1,11 @@
 ///@desc Init Variables
 
 // Create sound
-sound = fmod_system_create_sound(fmod_path_bundle("wave.mp3"),FMOD_MODE.LOOP_NORMAL);
+sound = fmod_system_create_sound(fmod_path_bundle("wave.mp3"),FmodMode.LoopOn);
 
 // Get length in both samples and ms
-length = fmod_sound_get_length(sound, FMOD_TIMEUNIT.PCM);
-ms = fmod_sound_get_length(sound, FMOD_TIMEUNIT.MS);
+length = fmod_sound_get_length(sound, FmodTimeUnit.Pcm);
+ms = fmod_sound_get_length(sound, FmodTimeUnit.Ms);
 
 // Play sound
 music = fmod_system_play_sound(sound, false);

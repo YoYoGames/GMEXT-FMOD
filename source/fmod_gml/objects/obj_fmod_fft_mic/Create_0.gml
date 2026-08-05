@@ -34,12 +34,12 @@ var _extras = {
 /*
     Create user sound to record into, then start recording.
 */
-sound = fmod_system_create_sound("", FMOD_MODE.LOOP_NORMAL | FMOD_MODE.OPENUSER, _extras)
+sound = fmod_system_create_sound("", FmodMode.LoopOn | FmodMode.OpenUser, _extras)
 
 fmod_system_record_start(DEVICE_INDEX, sound, true);
 
-length = fmod_sound_get_length(sound,FMOD_TIMEUNIT.PCM);
-ms = fmod_sound_get_length(sound,FMOD_TIMEUNIT.MS);
+length = fmod_sound_get_length(sound,FmodTimeUnit.Pcm);
+ms = fmod_sound_get_length(sound,FmodTimeUnit.Ms);
 
 music = fmod_system_play_sound(sound, false);
 
