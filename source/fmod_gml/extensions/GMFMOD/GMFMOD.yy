@@ -796,6 +796,178 @@
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_num_channels",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_num_channels",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_num_channels",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_channel",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_channel",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_channel",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_add_group",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_add_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_add_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_num_groups",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_num_groups",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_num_groups",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_group",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_parent_group",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_parent_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_parent_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_name",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_name",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_name",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_release",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_release",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_release",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_get_system_object",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_get_system_object",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_get_system_object",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
         }
       ],
       "init": "",

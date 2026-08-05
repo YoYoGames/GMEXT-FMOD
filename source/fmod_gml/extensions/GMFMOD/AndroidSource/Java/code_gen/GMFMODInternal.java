@@ -176,4 +176,40 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_sound_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_channel_group_get_num_channels(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_num_channels(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_get_channel(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_channel(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_add_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_add_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_get_num_groups(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_num_groups(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_get_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_get_parent_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_parent_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public String __EXT_NATIVE__fmod_channel_group_get_name(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_name(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_release(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_release(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_channel_group_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_channel_group_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
 }

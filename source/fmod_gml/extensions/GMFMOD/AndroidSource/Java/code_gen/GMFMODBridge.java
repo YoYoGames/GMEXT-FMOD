@@ -60,4 +60,13 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_sound_set_3d_cone_settings(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_num_channels(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_channel(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_add_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_num_groups(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_parent_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native String __EXT_JNI__fmod_channel_group_get_name(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
 }

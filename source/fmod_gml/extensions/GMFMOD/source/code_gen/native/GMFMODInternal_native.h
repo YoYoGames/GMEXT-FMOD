@@ -24,6 +24,7 @@ namespace gm_structs
     struct FmodChannelGroupRef;
     struct FmodSoundRef;
     struct FmodSystemRef;
+    struct FmodDSPConnectionRef;
 
     struct FmodChannelRef
     {
@@ -41,6 +42,11 @@ namespace gm_structs
     };
 
     struct FmodSystemRef
+    {
+        std::uint64_t _ref;
+    };
+
+    struct FmodDSPConnectionRef
     {
         std::uint64_t _ref;
     };
@@ -105,6 +111,20 @@ namespace gm::wire::codec
         return obj;
     }
 
+    template<>
+    inline void writeValue<gm_structs::FmodDSPConnectionRef>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPConnectionRef& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj._ref);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPConnectionRef readValue<gm_structs::FmodDSPConnectionRef>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPConnectionRef obj;
+        obj._ref = gm::wire::codec::readValue<std::uint64_t>(_buf);
+        return obj;
+    }
+
 }
 
 namespace gm::wire::details
@@ -135,6 +155,13 @@ namespace gm::wire::details
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 3;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPConnectionRef>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 4;
     };
 
 }
@@ -182,3 +209,12 @@ double fmod_sound_set_3d_min_max_distance(const gm_structs::FmodSoundRef& sound_
 double fmod_sound_set_3d_cone_settings(const gm_structs::FmodSoundRef& sound_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume);
 double fmod_sound_release(const gm_structs::FmodSoundRef& sound_ref);
 gm_structs::FmodSystemRef fmod_sound_get_system_object(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_channel_group_get_num_channels(const gm_structs::FmodChannelGroupRef& channel_group_ref);
+gm_structs::FmodChannelRef fmod_channel_group_get_channel(const gm_structs::FmodChannelGroupRef& channel_group_ref, double index);
+gm_structs::FmodDSPConnectionRef fmod_channel_group_add_group(const gm_structs::FmodChannelGroupRef& channel_group_ref, const gm_structs::FmodChannelGroupRef& child_channel_group_ref, double propagate_dsp_clock);
+double fmod_channel_group_get_num_groups(const gm_structs::FmodChannelGroupRef& channel_group_ref);
+gm_structs::FmodChannelGroupRef fmod_channel_group_get_group(const gm_structs::FmodChannelGroupRef& channel_group_ref, double group_index);
+gm_structs::FmodChannelGroupRef fmod_channel_group_get_parent_group(const gm_structs::FmodChannelGroupRef& channel_group_ref);
+std::string fmod_channel_group_get_name(const gm_structs::FmodChannelGroupRef& channel_group_ref);
+double fmod_channel_group_release(const gm_structs::FmodChannelGroupRef& channel_group_ref);
+gm_structs::FmodSystemRef fmod_channel_group_get_system_object(const gm_structs::FmodChannelGroupRef& channel_group_ref);

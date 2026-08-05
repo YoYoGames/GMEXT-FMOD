@@ -33,6 +33,13 @@ class `[[FmodSystemRef]]` prototype Object
     property _ref: gmval { get; set; }
 }
 
+[global]
+class `[[FmodDSPConnectionRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
 group
 {
 
@@ -331,6 +338,72 @@ function fmod_sound_release(
 [global, bind = typed_gml, type_hint=`FmodSystemRef`]
 function fmod_sound_get_system_object(
     [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
+}
+
+group
+{
+
+// ============================================================
+// ChannelGroup - Channel Management
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_group_get_num_channels(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodChannelRef`]
+function fmod_channel_group_get_channel(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval,
+    index: real
+): gmval;
+
+// ============================================================
+// ChannelGroup - Group Management
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodDSPConnectionRef`]
+function fmod_channel_group_add_group(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval,
+    [type_hint=`FmodChannelGroupRef`] child_channel_group_ref: gmval,
+    propagate_dsp_clock: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_channel_group_get_num_groups(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodChannelGroupRef`]
+function fmod_channel_group_get_group(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval,
+    group_index: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodChannelGroupRef`]
+function fmod_channel_group_get_parent_group(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): gmval;
+
+// ============================================================
+// ChannelGroup - General
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_group_get_name(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): string;
+
+[global, bind = typed_gml]
+function fmod_channel_group_release(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSystemRef`]
+function fmod_channel_group_get_system_object(
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval
 ): gmval;
 
 }

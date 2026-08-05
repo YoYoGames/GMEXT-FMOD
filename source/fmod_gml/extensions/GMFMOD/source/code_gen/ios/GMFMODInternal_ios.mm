@@ -260,5 +260,41 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_channel_group_get_num_channels:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_num_channels(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_get_channel:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_channel(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_add_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_add_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_get_num_groups:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_num_groups(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_get_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_get_parent_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_parent_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_channel_group_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_name(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_release(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 @end
 

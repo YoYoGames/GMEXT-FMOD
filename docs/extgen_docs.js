@@ -323,6 +323,73 @@
  */
 
 /**
+ * @function_partial fmod_channel_group_get_num_channels
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_channel
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} index
+ * @returns {Struct.FmodChannelRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_add_group
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Struct.FmodChannelGroupRef} child_channel_group_ref
+ * @param {Real} propagate_dsp_clock
+ * @returns {Struct.FmodDSPConnectionRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_num_groups
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_group
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} group_index
+ * @returns {Struct.FmodChannelGroupRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_parent_group
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {Struct.FmodChannelGroupRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_name
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {String}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_release
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_get_system_object
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @returns {Struct.FmodSystemRef}
+ * @function_end
+ */
+
+/**
  * @struct_partial FmodChannelRef
  * @member {Real} _ref
  * @struct_end
@@ -342,6 +409,12 @@
 
 /**
  * @struct_partial FmodSystemRef
+ * @member {Real} _ref
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPConnectionRef
  * @member {Real} _ref
  * @struct_end
  */

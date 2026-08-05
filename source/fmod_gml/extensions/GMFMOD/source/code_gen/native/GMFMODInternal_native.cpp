@@ -530,3 +530,135 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_system_object(char* __arg_buffer, d
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_num_channels(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    auto&& __result = fmod_channel_group_get_num_channels(channel_group_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_channel(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_group_get_channel(channel_group_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodChannelRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_add_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    // field: child_channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef child_channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    // field: propagate_dsp_clock, type: Float64
+    double propagate_dsp_clock = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref, propagate_dsp_clock);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPConnectionRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_num_groups(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    auto&& __result = fmod_channel_group_get_num_groups(channel_group_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    // field: group_index, type: Float64
+    double group_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_group_get_group(channel_group_ref, group_index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodChannelGroupRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_parent_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    auto&& __result = fmod_channel_group_get_parent_group(channel_group_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodChannelGroupRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_channel_group_get_name(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    static std::string __result;
+    __result = fmod_channel_group_get_name(channel_group_ref);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_release(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    auto&& __result = fmod_channel_group_release(channel_group_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_system_object(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: struct FmodChannelGroupRef
+    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+
+    auto&& __result = fmod_channel_group_get_system_object(channel_group_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodSystemRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+

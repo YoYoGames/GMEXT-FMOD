@@ -72,6 +72,21 @@ function FmodSystemRef() constructor
 
 }
 
+/**
+ * @returns {Struct.FmodDSPConnectionRef}
+ */
+function FmodDSPConnectionRef() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 67812655;
+
+    self._ref = undefined;
+
+}
+
 // #####################################################################
 // # Codecs
 // #####################################################################
@@ -234,6 +249,48 @@ function __FmodSystemRef_decode(_buffer, _offset)
     buffer_seek(_buffer, buffer_seek_start, _offset);
 
     _inst = new FmodSystemRef();
+    with (_inst)
+    {
+        // field: _ref, type: UInt64
+        self._ref = buffer_read(_buffer, buffer_u64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPConnectionRef_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPConnectionRef} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPConnectionRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: _ref, type: UInt64
+        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
+        buffer_write(_buffer, buffer_u64, self._ref);
+
+    }
+}
+
+/**
+ * @func __FmodDSPConnectionRef_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPConnectionRef}
+ * @ignore
+ */
+function __FmodDSPConnectionRef_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPConnectionRef();
     with (_inst)
     {
         // field: _ref, type: UInt64
@@ -1100,6 +1157,226 @@ function fmod_sound_get_system_object(_sound_ref)
     return __result__;
 }
 
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {Real}
+ */
+function fmod_channel_group_get_num_channels(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_channel_group_get_num_channels(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _index
+ * @returns {Struct.FmodChannelRef}
+ */
+function fmod_channel_group_get_channel(_channel_group_ref, _index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_channel_group_get_channel(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodChannelRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Struct.FmodChannelGroupRef} _child_channel_group_ref
+ * @param {Real} _propagate_dsp_clock
+ * @returns {Struct.FmodDSPConnectionRef}
+ */
+function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_ref, _propagate_dsp_clock)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _child_channel_group_ref, type: struct FmodChannelGroupRef
+    if (_child_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _child_channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_child_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _propagate_dsp_clock, type: Float64
+    if (!is_numeric(_propagate_dsp_clock)) show_error($"{_GMFUNCTION_} :: _propagate_dsp_clock expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _propagate_dsp_clock);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_channel_group_add_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPConnectionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {Real}
+ */
+function fmod_channel_group_get_num_groups(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_channel_group_get_num_groups(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _group_index
+ * @returns {Struct.FmodChannelGroupRef}
+ */
+function fmod_channel_group_get_group(_channel_group_ref, _group_index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _group_index, type: Float64
+    if (!is_numeric(_group_index)) show_error($"{_GMFUNCTION_} :: _group_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _group_index);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_channel_group_get_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {Struct.FmodChannelGroupRef}
+ */
+function fmod_channel_group_get_parent_group(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_channel_group_get_parent_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {String}
+ */
+function fmod_channel_group_get_name(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_channel_group_get_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {Real}
+ */
+function fmod_channel_group_release(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_channel_group_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @returns {Struct.FmodSystemRef}
+ */
+function fmod_channel_group_get_system_object(_channel_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _channel_group_ref, type: struct FmodChannelGroupRef
+    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
+    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_channel_group_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
 /// @ignore
 function __GMFMOD_get_decoders()
 {
@@ -1107,7 +1384,8 @@ function __GMFMOD_get_decoders()
         __FmodChannelRef_decode,
         __FmodChannelGroupRef_decode,
         __FmodSoundRef_decode,
-        __FmodSystemRef_decode
+        __FmodSystemRef_decode,
+        __FmodDSPConnectionRef_decode
     ];
     return __decoders__;
 }

@@ -46,5 +46,14 @@
 - (double)__EXT_NATIVE__fmod_sound_set_3d_cone_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_num_channels:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_channel:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_add_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_num_groups:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_parent_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (char*)__EXT_NATIVE__fmod_channel_group_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 @end
 
