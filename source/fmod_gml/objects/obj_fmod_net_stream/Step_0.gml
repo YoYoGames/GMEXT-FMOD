@@ -18,7 +18,7 @@ if (channel_index != 0)
 else
 {
     /* This may fail if the stream isn't ready yet, so check the error code. */
-    channel_index = fmod_system_play_sound(sound_index, false);
+    channel_index = fmod_system_play_sound(sound_index, fmod_system_get_master_channel_group(), false);
 }
 
 /*
@@ -43,7 +43,7 @@ while (fmod_last_result() == FMOD_RESULT.OK)
 	        var _url = _value;
 			fmod_sound_release(sound_index);
 		
-	        sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING, extra);
+	        sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING /*, extra*/);
 	    }
 	}
 	else if (_tag.type == FMOD_TAGTYPE.FMOD)

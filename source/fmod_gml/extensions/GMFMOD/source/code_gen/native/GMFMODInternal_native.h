@@ -395,6 +395,15 @@ namespace gm_structs
     struct FmodStudioEventDescriptionRef;
     struct FmodStudioVCARef;
     struct FmodStudioCommandReplayRef;
+    struct FmodSoundDefaults;
+    struct FmodLoopPoints;
+    struct FmodSoundMinMaxDistance;
+    struct FmodConeSettings;
+    struct FmodSystem3DSettings;
+    struct FmodListener3DAttributes;
+    struct FmodSyncPointInfo;
+    struct FmodRecordDriverInfo;
+    struct FmodDSPMixMatrix;
 
     struct FmodChannelRef
     {
@@ -474,6 +483,66 @@ namespace gm_structs
     struct FmodStudioCommandReplayRef
     {
         std::uint64_t _ref;
+    };
+
+    struct FmodSoundDefaults
+    {
+        double frequency;
+        double priority;
+    };
+
+    struct FmodLoopPoints
+    {
+        double loop_start;
+        double loop_end;
+    };
+
+    struct FmodSoundMinMaxDistance
+    {
+        double min_distance;
+        double max_distance;
+    };
+
+    struct FmodConeSettings
+    {
+        double inside_cone_angle;
+        double outside_cone_angle;
+        double outside_volume;
+    };
+
+    struct FmodSystem3DSettings
+    {
+        double doppler_scale;
+        double distance_factor;
+        double rolloff_scale;
+    };
+
+    struct FmodListener3DAttributes
+    {
+        double position;
+        double velocity;
+        double forward;
+        double up;
+    };
+
+    struct FmodSyncPointInfo
+    {
+        std::string name;
+        double offset;
+    };
+
+    struct FmodRecordDriverInfo
+    {
+        std::string name;
+        double speaker_mode;
+        double sample_rate;
+    };
+
+    struct FmodDSPMixMatrix
+    {
+        double out_channels;
+        double in_channels;
+        double matrix;
     };
 
 }
@@ -704,6 +773,162 @@ namespace gm::wire::codec
         return obj;
     }
 
+    template<>
+    inline void writeValue<gm_structs::FmodSoundDefaults>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSoundDefaults& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.frequency);
+        gm::wire::codec::writeValue(_buf, obj.priority);
+    }
+
+    template<>
+    inline gm_structs::FmodSoundDefaults readValue<gm_structs::FmodSoundDefaults>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSoundDefaults obj;
+        obj.frequency = gm::wire::codec::readValue<double>(_buf);
+        obj.priority = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodLoopPoints>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodLoopPoints& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.loop_start);
+        gm::wire::codec::writeValue(_buf, obj.loop_end);
+    }
+
+    template<>
+    inline gm_structs::FmodLoopPoints readValue<gm_structs::FmodLoopPoints>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodLoopPoints obj;
+        obj.loop_start = gm::wire::codec::readValue<double>(_buf);
+        obj.loop_end = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSoundMinMaxDistance>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSoundMinMaxDistance& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.min_distance);
+        gm::wire::codec::writeValue(_buf, obj.max_distance);
+    }
+
+    template<>
+    inline gm_structs::FmodSoundMinMaxDistance readValue<gm_structs::FmodSoundMinMaxDistance>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSoundMinMaxDistance obj;
+        obj.min_distance = gm::wire::codec::readValue<double>(_buf);
+        obj.max_distance = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodConeSettings>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodConeSettings& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.inside_cone_angle);
+        gm::wire::codec::writeValue(_buf, obj.outside_cone_angle);
+        gm::wire::codec::writeValue(_buf, obj.outside_volume);
+    }
+
+    template<>
+    inline gm_structs::FmodConeSettings readValue<gm_structs::FmodConeSettings>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodConeSettings obj;
+        obj.inside_cone_angle = gm::wire::codec::readValue<double>(_buf);
+        obj.outside_cone_angle = gm::wire::codec::readValue<double>(_buf);
+        obj.outside_volume = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSystem3DSettings>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSystem3DSettings& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.doppler_scale);
+        gm::wire::codec::writeValue(_buf, obj.distance_factor);
+        gm::wire::codec::writeValue(_buf, obj.rolloff_scale);
+    }
+
+    template<>
+    inline gm_structs::FmodSystem3DSettings readValue<gm_structs::FmodSystem3DSettings>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSystem3DSettings obj;
+        obj.doppler_scale = gm::wire::codec::readValue<double>(_buf);
+        obj.distance_factor = gm::wire::codec::readValue<double>(_buf);
+        obj.rolloff_scale = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodListener3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodListener3DAttributes& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.position);
+        gm::wire::codec::writeValue(_buf, obj.velocity);
+        gm::wire::codec::writeValue(_buf, obj.forward);
+        gm::wire::codec::writeValue(_buf, obj.up);
+    }
+
+    template<>
+    inline gm_structs::FmodListener3DAttributes readValue<gm_structs::FmodListener3DAttributes>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodListener3DAttributes obj;
+        obj.position = gm::wire::codec::readValue<double>(_buf);
+        obj.velocity = gm::wire::codec::readValue<double>(_buf);
+        obj.forward = gm::wire::codec::readValue<double>(_buf);
+        obj.up = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSyncPointInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSyncPointInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.offset);
+    }
+
+    template<>
+    inline gm_structs::FmodSyncPointInfo readValue<gm_structs::FmodSyncPointInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSyncPointInfo obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.offset = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodRecordDriverInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodRecordDriverInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.speaker_mode);
+        gm::wire::codec::writeValue(_buf, obj.sample_rate);
+    }
+
+    template<>
+    inline gm_structs::FmodRecordDriverInfo readValue<gm_structs::FmodRecordDriverInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodRecordDriverInfo obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.speaker_mode = gm::wire::codec::readValue<double>(_buf);
+        obj.sample_rate = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPMixMatrix>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPMixMatrix& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.out_channels);
+        gm::wire::codec::writeValue(_buf, obj.in_channels);
+        gm::wire::codec::writeValue(_buf, obj.matrix);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPMixMatrix readValue<gm_structs::FmodDSPMixMatrix>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPMixMatrix obj;
+        obj.out_channels = gm::wire::codec::readValue<double>(_buf);
+        obj.in_channels = gm::wire::codec::readValue<double>(_buf);
+        obj.matrix = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
 }
 
 namespace gm::wire::details
@@ -820,6 +1045,69 @@ namespace gm::wire::details
         static constexpr std::uint32_t codec_id = 15;
     };
 
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSoundDefaults>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 16;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodLoopPoints>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 17;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSoundMinMaxDistance>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 18;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodConeSettings>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 19;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSystem3DSettings>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 20;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodListener3DAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 21;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSyncPointInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 22;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodRecordDriverInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 23;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPMixMatrix>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 24;
+    };
+
 }
 
 gm_enums::FmodResult fmod_last_result();
@@ -846,6 +1134,7 @@ double fmod_system_init(double max_channels, double flags);
 double fmod_system_release(const gm_structs::FmodSystemRef& system_ref);
 double fmod_system_close(const gm_structs::FmodSystemRef& system_ref);
 double fmod_system_update();
+double fmod_system_get_channels_playing();
 gm_structs::FmodChannelRef fmod_system_get_channel(double index);
 gm_structs::FmodChannelGroupRef fmod_system_get_master_channel_group();
 double fmod_system_set_output(double output);
@@ -855,6 +1144,16 @@ double fmod_system_set_driver(double driver);
 double fmod_system_get_driver();
 double fmod_system_set_software_channels(double software_channels);
 double fmod_system_get_software_channels();
+double fmod_system_set_3d_settings(double doppler_scale, double distance_factor, double rolloff_scale);
+gm_structs::FmodSystem3DSettings fmod_system_get_3d_settings();
+double fmod_system_set_3d_listener_attributes(double listener_index, const gm::wire::GMValue& position, const gm::wire::GMValue& velocity, const gm::wire::GMValue& forward, const gm::wire::GMValue& up);
+gm_structs::FmodListener3DAttributes fmod_system_get_3d_listener_attributes(double listener_index);
+double fmod_system_get_record_num_drivers();
+gm_structs::FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_index);
+double fmod_system_get_record_position(double device_index);
+double fmod_system_record_start(double device_index, const gm_structs::FmodSoundRef& sound_ref, double loop);
+double fmod_system_record_stop(double device_index);
+double fmod_system_is_recording(double device_index);
 gm_structs::FmodSoundRef fmod_system_create_sound(std::string_view name_or_data, double mode);
 gm_structs::FmodSoundRef fmod_system_create_stream(std::string_view name_or_data, double mode);
 gm_structs::FmodChannelRef fmod_system_play_sound(const gm_structs::FmodSoundRef& sound_ref, const gm_structs::FmodChannelGroupRef& channel_group_ref, double pause);
@@ -862,11 +1161,30 @@ double fmod_sound_get_length(const gm_structs::FmodSoundRef& sound_ref, double l
 double fmod_sound_set_defaults(const gm_structs::FmodSoundRef& sound_ref, double frequency, double priority);
 double fmod_sound_set_mode(const gm_structs::FmodSoundRef& sound_ref, double mode);
 double fmod_sound_get_mode(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_sound_get_format(const gm_structs::FmodSoundRef& sound_ref);
+std::string fmod_sound_get_name(const gm_structs::FmodSoundRef& sound_ref);
+gm_structs::FmodSoundDefaults fmod_sound_get_defaults(const gm_structs::FmodSoundRef& sound_ref);
 double fmod_sound_set_loop_count(const gm_structs::FmodSoundRef& sound_ref, double count);
 double fmod_sound_get_loop_count(const gm_structs::FmodSoundRef& sound_ref);
 double fmod_sound_set_loop_points(const gm_structs::FmodSoundRef& sound_ref, double loop_start, double loop_start_type, double loop_end, double loop_end_type);
+gm_structs::FmodLoopPoints fmod_sound_get_loop_points(const gm_structs::FmodSoundRef& sound_ref, double start_type, double end_type);
 double fmod_sound_set_3d_min_max_distance(const gm_structs::FmodSoundRef& sound_ref, double min, double max);
+gm_structs::FmodSoundMinMaxDistance fmod_sound_get_3d_min_max_distance(const gm_structs::FmodSoundRef& sound_ref);
 double fmod_sound_set_3d_cone_settings(const gm_structs::FmodSoundRef& sound_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume);
+gm_structs::FmodConeSettings fmod_sound_get_3d_cone_settings(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_sound_set_3d_custom_rolloff(const gm_structs::FmodSoundRef& sound_ref, const gm::wire::GMValue& points, double num_points);
+gm::wire::DataStream fmod_sound_get_3d_custom_rolloff(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_sound_get_num_sync_points(const gm_structs::FmodSoundRef& sound_ref);
+gm_structs::FmodSyncPointInfo fmod_sound_get_sync_point(const gm_structs::FmodSoundRef& sound_ref, double sync_point_index, double offset_type);
+double fmod_sound_add_sync_point(const gm_structs::FmodSoundRef& sound_ref, double offset, double offset_type, std::string_view name);
+double fmod_sound_delete_sync_point(const gm_structs::FmodSoundRef& sound_ref, double sync_point_index);
+double fmod_sound_get_music_num_channels(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_sound_set_music_channel_volume(const gm_structs::FmodSoundRef& sound_ref, double channel_index, double volume);
+double fmod_sound_get_music_channel_volume(const gm_structs::FmodSoundRef& sound_ref, double channel_index);
+double fmod_sound_set_music_speed(const gm_structs::FmodSoundRef& sound_ref, double speed);
+double fmod_sound_get_music_speed(const gm_structs::FmodSoundRef& sound_ref);
+double fmod_sound_set_sound_group(const gm_structs::FmodSoundRef& sound_ref, const gm_structs::FmodSoundGroupRef& sound_group_ref);
+gm_structs::FmodSoundGroupRef fmod_sound_get_sound_group(const gm_structs::FmodSoundRef& sound_ref);
 double fmod_sound_release(const gm_structs::FmodSoundRef& sound_ref);
 gm_structs::FmodSystemRef fmod_sound_get_system_object(const gm_structs::FmodSoundRef& sound_ref);
 double fmod_channel_group_get_num_channels(const gm_structs::FmodChannelGroupRef& channel_group_ref);
@@ -948,6 +1266,15 @@ double fmod_dsp_set_parameter_bool(const gm_structs::FmodDSPRef& dsp_ref, double
 double fmod_dsp_get_parameter_bool(const gm_structs::FmodDSPRef& dsp_ref, double index);
 double fmod_dsp_release(const gm_structs::FmodDSPRef& dsp_ref);
 gm_structs::FmodSystemRef fmod_dsp_get_system_object(const gm_structs::FmodDSPRef& dsp_ref);
+double fmod_dsp_connection_set_mix(const gm_structs::FmodDSPConnectionRef& connection_ref, double volume);
+double fmod_dsp_connection_get_mix(const gm_structs::FmodDSPConnectionRef& connection_ref);
+double fmod_dsp_connection_set_mix_matrix(const gm_structs::FmodDSPConnectionRef& connection_ref, double matrix, double out_channels, double in_channels, double in_channel_hop);
+gm_structs::FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(const gm_structs::FmodDSPConnectionRef& connection_ref, double in_channel_hop);
+gm_structs::FmodDSPRef fmod_dsp_connection_get_input(const gm_structs::FmodDSPConnectionRef& connection_ref);
+gm_structs::FmodDSPRef fmod_dsp_connection_get_output(const gm_structs::FmodDSPConnectionRef& connection_ref);
+double fmod_dsp_connection_get_type(const gm_structs::FmodDSPConnectionRef& connection_ref);
+double fmod_dsp_connection_set_user_data(const gm_structs::FmodDSPConnectionRef& connection_ref, double user_data);
+double fmod_dsp_connection_get_user_data(const gm_structs::FmodDSPConnectionRef& connection_ref);
 double fmod_geometry_set_polygon_attributes(const gm_structs::FmodGeometryRef& geometry_ref, double polygon_index, double direct_occlusion, double reverb_occlusion, double double_sided);
 double fmod_geometry_get_polygon_num_vertices(const gm_structs::FmodGeometryRef& geometry_ref, double polygon_index);
 double fmod_geometry_set_position(const gm_structs::FmodGeometryRef& geometry_ref, double x, double y, double z);

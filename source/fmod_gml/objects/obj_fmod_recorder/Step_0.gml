@@ -22,7 +22,7 @@ Delay playback until our desired latency is reached.
 if ((channel == -1) && (samples_recorded >= adjusted_latency))
 {
 	show_debug_message("Started Playback...");
-    channel = fmod_system_play_sound(sound_index, false);
+    channel = fmod_system_play_sound(sound_index, fmod_system_get_master_channel_group(), false);
 }
 
 if (channel) {

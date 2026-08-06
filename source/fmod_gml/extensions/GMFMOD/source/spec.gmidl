@@ -503,6 +503,118 @@ class `[[FmodStudioCommandReplayRef]]` prototype Object
     property _ref: gmval { get; set; }
 }
 
+// ============================================================
+// Data Return Types
+// ============================================================
+
+[global]
+class `[[FmodSoundDefaults]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property frequency: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property priority: gmval { get; set; }
+}
+
+[global]
+class `[[FmodLoopPoints]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property loop_start: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property loop_end: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoundMinMaxDistance]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property min_distance: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_distance: gmval { get; set; }
+}
+
+[global]
+class `[[FmodConeSettings]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property inside_cone_angle: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property outside_cone_angle: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property outside_volume: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSystem3DSettings]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property doppler_scale: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property distance_factor: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property rolloff_scale: gmval { get; set; }
+}
+
+[global]
+class `[[FmodListener3DAttributes]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property position: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property velocity: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property forward: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property up: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSyncPointInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property offset: gmval { get; set; }
+}
+
+[global]
+class `[[FmodRecordDriverInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property speaker_mode: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property sample_rate: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPMixMatrix]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property out_channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property in_channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property matrix: gmval { get; set; }
+}
+
 group
 {
 
@@ -675,6 +787,9 @@ function fmod_system_close(
 [global, bind = typed_gml]
 function fmod_system_update(): real;
 
+[global, bind = typed_gml]
+function fmod_system_get_channels_playing(): real;
+
 // ============================================================
 // System - Channel Management
 // ============================================================
@@ -713,6 +828,72 @@ function fmod_system_set_software_channels(software_channels: real): real;
 
 [global, bind = typed_gml]
 function fmod_system_get_software_channels(): real;
+
+// ============================================================
+// System - 3D Settings
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_set_3d_settings(
+    doppler_scale: real,
+    distance_factor: real,
+    rolloff_scale: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSystem3DSettings`]
+function fmod_system_get_3d_settings(): gmval;
+
+// ============================================================
+// System - 3D Listeners
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_set_3d_listener_attributes(
+    listener_index: real,
+    position: gmval,
+    velocity: gmval,
+    forward: gmval,
+    up: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodListener3DAttributes`]
+function fmod_system_get_3d_listener_attributes(
+    listener_index: real
+): gmval;
+
+// ============================================================
+// System - Recording
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_get_record_num_drivers(): real;
+
+[global, bind = typed_gml, type_hint=`FmodRecordDriverInfo`]
+function fmod_system_get_record_driver_info(
+    record_driver_index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_get_record_position(
+    device_index: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_record_start(
+    device_index: real,
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    loop: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_record_stop(
+    device_index: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_is_recording(
+    device_index: real
+): real;
 
 }
 
@@ -770,6 +951,21 @@ function fmod_sound_get_mode(
     [type_hint=`FmodSoundRef`] sound_ref: gmval
 ): real;
 
+[global, bind = typed_gml]
+function fmod_sound_get_format(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_name(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): string;
+
+[global, bind = typed_gml, type_hint=`FmodSoundDefaults`]
+function fmod_sound_get_defaults(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
 // ============================================================
 // Sound - Loop
 // ============================================================
@@ -794,6 +990,13 @@ function fmod_sound_set_loop_points(
     loop_end_type: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodLoopPoints`]
+function fmod_sound_get_loop_points(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    start_type: real,
+    end_type: real
+): gmval;
+
 // ============================================================
 // Sound - 3D & Distance
 // ============================================================
@@ -805,6 +1008,11 @@ function fmod_sound_set_3d_min_max_distance(
     max: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodSoundMinMaxDistance`]
+function fmod_sound_get_3d_min_max_distance(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_sound_set_3d_cone_settings(
     [type_hint=`FmodSoundRef`] sound_ref: gmval,
@@ -812,6 +1020,101 @@ function fmod_sound_set_3d_cone_settings(
     outside_cone_angle: real,
     outside_volume: real
 ): real;
+
+[global, bind = typed_gml, type_hint=`FmodConeSettings`]
+function fmod_sound_get_3d_cone_settings(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_set_3d_custom_rolloff(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    points: gmval,
+    num_points: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_3d_custom_rolloff(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
+// ============================================================
+// Sound - Sync Points
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_get_num_sync_points(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSyncPointInfo`]
+function fmod_sound_get_sync_point(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    sync_point_index: real,
+    offset_type: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_add_sync_point(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    offset: real,
+    offset_type: real,
+    name: string
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_delete_sync_point(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    sync_point_index: real
+): real;
+
+// ============================================================
+// Sound - Music (MOD/S3M/XM/IT/MIDI)
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_get_music_num_channels(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_music_channel_volume(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    channel_index: real,
+    volume: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_music_channel_volume(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    channel_index: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_set_music_speed(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    speed: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_music_speed(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+// ============================================================
+// Sound - Sound Groups
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_set_sound_group(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    [type_hint=`FmodSoundGroupRef`] sound_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSoundGroupRef`]
+function fmod_sound_get_sound_group(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
 
 // ============================================================
 // Sound - Release
@@ -1392,6 +1695,67 @@ function fmod_dsp_release(
 function fmod_dsp_get_system_object(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
 ): gmval;
+
+}
+
+group
+{
+
+// ============================================================
+// DSP Connection
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_set_mix(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval,
+    volume: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_get_mix(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_set_mix_matrix(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval,
+    matrix: real,
+    out_channels: real,
+    in_channels: real,
+    in_channel_hop: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
+function fmod_dsp_connection_get_mix_matrix(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval,
+    in_channel_hop: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPRef`]
+function fmod_dsp_connection_get_input(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPRef`]
+function fmod_dsp_connection_get_output(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_get_type(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_set_user_data(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_connection_get_user_data(
+    [type_hint=`FmodDSPConnectionRef`] connection_ref: gmval
+): real;
 
 }
 

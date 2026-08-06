@@ -16,7 +16,7 @@ show_debug_message(string(fmod_last_result()))
 vehicle_ins_index = fmod_studio_event_description_create_instance(vehicle_guid)
 show_debug_message(string(fmod_last_result()))
 
-fmod_studio_event_instance_set_parameter_by_name(vehicle_ins_index,"RPM", 650, false)
+fmod_studio_event_instance_set_parameter_by_name(vehicle_ins_index,"RPM", 650)
 show_debug_message(fmod_last_result())
 
 weapon_event_id = fmod_studio_system_lookup_id("event:/Weapons/Explosion")

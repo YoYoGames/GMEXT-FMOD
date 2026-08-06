@@ -1,5 +1,5 @@
 
-var _channel_index = fmod_system_play_sound(sound_index,true)
+var _channel_index = fmod_system_play_sound(sound_index,fmod_system_get_master_channel_group(),true)
 
 var front_left = obj_fmod_speaker_front_left.enabled
 var front_right = obj_fmod_speaker_front_right.enabled

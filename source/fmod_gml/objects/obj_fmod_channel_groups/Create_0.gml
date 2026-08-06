@@ -15,20 +15,20 @@ channel_group_C_index = fmod_system_get_master_channel_group();
 /*
     Instead of being independent, set the group A and B to be children of the master group.
 */
-fmod_channel_group_add_group(channel_group_C_index,channel_group_A_index)
-fmod_channel_group_add_group(channel_group_C_index,channel_group_B_index)
+fmod_channel_group_add_group(channel_group_C_index,channel_group_A_index,true)
+fmod_channel_group_add_group(channel_group_C_index,channel_group_B_index,true)
 
 
 /*
     Start all the sounds.
 */
-fmod_system_play_sound(sound_index_A_1,false,channel_group_A_index)
-fmod_system_play_sound(sound_index_A_2,false,channel_group_A_index)
-fmod_system_play_sound(sound_index_A_3,false,channel_group_A_index)
+fmod_system_play_sound(sound_index_A_1,channel_group_A_index,false)
+fmod_system_play_sound(sound_index_A_2,channel_group_A_index,false)
+fmod_system_play_sound(sound_index_A_3,channel_group_A_index,false)
 
-fmod_system_play_sound(sound_index_B_1,false,channel_group_B_index)
-fmod_system_play_sound(sound_index_B_2,false,channel_group_B_index)
-fmod_system_play_sound(sound_index_B_3,false,channel_group_B_index)
+fmod_system_play_sound(sound_index_B_1,channel_group_B_index,false)
+fmod_system_play_sound(sound_index_B_2,channel_group_B_index,false)
+fmod_system_play_sound(sound_index_B_3,channel_group_B_index,false)
 
 channel_groups = {
 	groupA: channel_group_A_index,

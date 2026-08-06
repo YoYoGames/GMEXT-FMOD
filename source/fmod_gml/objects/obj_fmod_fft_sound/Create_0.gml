@@ -8,7 +8,7 @@ length = fmod_sound_get_length(sound, FmodTimeUnit.Pcm);
 ms = fmod_sound_get_length(sound, FmodTimeUnit.Ms);
 
 // Play sound
-music = fmod_system_play_sound(sound, false);
+music = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), false);
 
 // Create and setup FFT dsp.
 dsp_fft = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.FFT);

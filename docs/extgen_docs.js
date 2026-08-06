@@ -176,6 +176,12 @@
  */
 
 /**
+ * @function_partial fmod_system_get_channels_playing
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_get_channel
  * @param {Real} index
  * @returns {Struct.FmodChannelRef}
@@ -229,6 +235,82 @@
 
 /**
  * @function_partial fmod_system_get_software_channels
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_set_3d_settings
+ * @param {Real} doppler_scale
+ * @param {Real} distance_factor
+ * @param {Real} rolloff_scale
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_3d_settings
+ * @returns {Struct.FmodSystem3DSettings}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_set_3d_listener_attributes
+ * @param {Real} listener_index
+ * @param {Any} position
+ * @param {Any} velocity
+ * @param {Any} forward
+ * @param {Any} up
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_3d_listener_attributes
+ * @param {Real} listener_index
+ * @returns {Struct.FmodListener3DAttributes}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_record_num_drivers
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_record_driver_info
+ * @param {Real} record_driver_index
+ * @returns {Struct.FmodRecordDriverInfo}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_record_position
+ * @param {Real} device_index
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_record_start
+ * @param {Real} device_index
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} loop
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_record_stop
+ * @param {Real} device_index
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_is_recording
+ * @param {Real} device_index
  * @returns {Real}
  * @function_end
  */
@@ -291,6 +373,27 @@
  */
 
 /**
+ * @function_partial fmod_sound_get_format
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_name
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {String}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_defaults
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Struct.FmodSoundDefaults}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_sound_set_loop_count
  * @param {Struct.FmodSoundRef} sound_ref
  * @param {Real} count
@@ -317,11 +420,27 @@
  */
 
 /**
+ * @function_partial fmod_sound_get_loop_points
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} start_type
+ * @param {Real} end_type
+ * @returns {Struct.FmodLoopPoints}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_sound_set_3d_min_max_distance
  * @param {Struct.FmodSoundRef} sound_ref
  * @param {Real} min
  * @param {Real} max
  * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_3d_min_max_distance
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Struct.FmodSoundMinMaxDistance}
  * @function_end
  */
 
@@ -332,6 +451,117 @@
  * @param {Real} outside_cone_angle
  * @param {Real} outside_volume
  * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_3d_cone_settings
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Struct.FmodConeSettings}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_set_3d_custom_rolloff
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Any} points
+ * @param {Real} num_points
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_3d_custom_rolloff
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Any}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_num_sync_points
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_sync_point
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sync_point_index
+ * @param {Real} offset_type
+ * @returns {Struct.FmodSyncPointInfo}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_add_sync_point
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} offset
+ * @param {Real} offset_type
+ * @param {String} name
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_delete_sync_point
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sync_point_index
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_music_num_channels
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_set_music_channel_volume
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} channel_index
+ * @param {Real} volume
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_music_channel_volume
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} channel_index
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_set_music_speed
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} speed
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_music_speed
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_set_sound_group
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_sound_group
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Struct.FmodSoundGroupRef}
  * @function_end
  */
 
@@ -973,6 +1203,76 @@
  * @function_partial fmod_dsp_get_system_object
  * @param {Struct.FmodDSPRef} dsp_ref
  * @returns {Struct.FmodSystemRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_set_mix
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} volume
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_mix
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_set_mix_matrix
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} matrix
+ * @param {Real} out_channels
+ * @param {Real} in_channels
+ * @param {Real} in_channel_hop
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_mix_matrix
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} in_channel_hop
+ * @returns {Struct.FmodDSPMixMatrix}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_input
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @returns {Struct.FmodDSPRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_output
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @returns {Struct.FmodDSPRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_type
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_set_user_data
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} user_data
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_connection_get_user_data
+ * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @returns {Real}
  * @function_end
  */
 
@@ -1696,6 +1996,75 @@
 /**
  * @struct_partial FmodStudioCommandReplayRef
  * @member {Real} _ref
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundDefaults
+ * @member {Real} frequency
+ * @member {Real} priority
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodLoopPoints
+ * @member {Real} loop_start
+ * @member {Real} loop_end
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundMinMaxDistance
+ * @member {Real} min_distance
+ * @member {Real} max_distance
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodConeSettings
+ * @member {Real} inside_cone_angle
+ * @member {Real} outside_cone_angle
+ * @member {Real} outside_volume
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSystem3DSettings
+ * @member {Real} doppler_scale
+ * @member {Real} distance_factor
+ * @member {Real} rolloff_scale
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodListener3DAttributes
+ * @member {Real} position
+ * @member {Real} velocity
+ * @member {Real} forward
+ * @member {Real} up
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSyncPointInfo
+ * @member {String} name
+ * @member {Real} offset
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodRecordDriverInfo
+ * @member {String} name
+ * @member {Real} speaker_mode
+ * @member {Real} sample_rate
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPMixMatrix
+ * @member {Real} out_channels
+ * @member {Real} in_channels
+ * @member {Real} matrix
  * @struct_end
  */
 

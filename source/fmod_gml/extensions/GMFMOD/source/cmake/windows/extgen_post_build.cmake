@@ -1,6 +1,4 @@
 # Windows post-build: copy .dll, runtime DLLs (CMake 3.21+), and third-party runtimes
-# The copy below publishes "<name>.dll", which is the exact filename GameMaker's
-# .yy Windows proxy expects — keep the two in step if either is ever renamed.
 add_custom_command(
   TARGET ${PROJECT_NAME} POST_BUILD
   COMMAND "${CMAKE_COMMAND}" -E copy_if_different

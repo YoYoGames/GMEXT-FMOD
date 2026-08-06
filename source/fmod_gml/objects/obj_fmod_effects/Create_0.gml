@@ -1,7 +1,7 @@
 	
 sound_index = fmod_system_create_sound(fmod_path_bundle("drumloop.wav"), FmodMode.Default)
 
-channel_index = fmod_system_play_sound(sound_index, false)
+channel_index = fmod_system_play_sound(sound_index, fmod_system_get_master_channel_group(), false)
 
 //Create some effects to play with
 

@@ -181,6 +181,21 @@ uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
 		} \
 	}
 
+#define validate_fmod_dsp_connection(ref, output) \
+	{ \
+		uint64_t _ref = (uint64_t)ref; \
+		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
+		if (auto search = map_dsp_connections.find(_ref_id); search != map_dsp_connections.end()) \
+		{ \
+			output = (FMOD::DSPConnection*)search->second; \
+		} \
+		else \
+		{ \
+			g_fmod_last_result = (FMOD_RESULT)-2; \
+			output = nullptr; \
+		} \
+	}
+
 #define validate_fmod_geometry(ref, output) \
 	{ \
 		uint64_t _ref = (uint64_t)ref; \

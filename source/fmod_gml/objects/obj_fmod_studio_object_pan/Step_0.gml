@@ -14,7 +14,10 @@ var Struct_3D_ATTRIBUTES = {
 			up: {x:0,y:1.0,z:0},
 		}
 
-fmod_studio_event_instance_set_3d_attributes(ins_index,Struct_3D_ATTRIBUTES)
+fmod_studio_event_instance_set_3d_attributes(ins_index,
+	Struct_3D_ATTRIBUTES.position.x,
+	Struct_3D_ATTRIBUTES.position.y,
+	Struct_3D_ATTRIBUTES.position.z)
 show_debug_message("fmod_studio_event_instance_set_3d_attributes: " + string(fmod_last_result()))
 
 var _attenuation = new FmodVector();

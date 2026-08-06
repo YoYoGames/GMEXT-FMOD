@@ -63,7 +63,7 @@ fmod_sound_release(ir_sound_index);
     Load up and play a sample clip recorded in an anechoic chamber
 */
 sound_index = fmod_system_create_sound(fmod_path_bundle("singing.wav"), FmodMode._3D | FmodMode.LoopOn);
-channel_index = fmod_system_play_sound(sound_index, true, main_channel_group_index);
+channel_index = fmod_system_play_sound(sound_index, main_channel_group_index, true);
 
 /*
     Create a send connection between the channel head and the reverb unit

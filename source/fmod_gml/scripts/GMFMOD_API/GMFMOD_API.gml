@@ -611,6 +611,156 @@ function FmodStudioCommandReplayRef() constructor
 
 }
 
+/**
+ * @returns {Struct.FmodSoundDefaults}
+ */
+function FmodSoundDefaults() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 3627656448;
+
+    self.frequency = undefined;
+    self.priority = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodLoopPoints}
+ */
+function FmodLoopPoints() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 461444910;
+
+    self.loop_start = undefined;
+    self.loop_end = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodSoundMinMaxDistance}
+ */
+function FmodSoundMinMaxDistance() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2123847383;
+
+    self.min_distance = undefined;
+    self.max_distance = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodConeSettings}
+ */
+function FmodConeSettings() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 1299505293;
+
+    self.inside_cone_angle = undefined;
+    self.outside_cone_angle = undefined;
+    self.outside_volume = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodSystem3DSettings}
+ */
+function FmodSystem3DSettings() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2923096268;
+
+    self.doppler_scale = undefined;
+    self.distance_factor = undefined;
+    self.rolloff_scale = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodListener3DAttributes}
+ */
+function FmodListener3DAttributes() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 42654001;
+
+    self.position = undefined;
+    self.velocity = undefined;
+    self.forward = undefined;
+    self.up = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodSyncPointInfo}
+ */
+function FmodSyncPointInfo() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2703225654;
+
+    self.name = undefined;
+    self.offset = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodRecordDriverInfo}
+ */
+function FmodRecordDriverInfo() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 920558908;
+
+    self.name = undefined;
+    self.speaker_mode = undefined;
+    self.sample_rate = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPMixMatrix}
+ */
+function FmodDSPMixMatrix() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 47636445;
+
+    self.out_channels = undefined;
+    self.in_channels = undefined;
+    self.matrix = undefined;
+
+}
+
 // #####################################################################
 // # Codecs
 // #####################################################################
@@ -1287,6 +1437,493 @@ function __FmodStudioCommandReplayRef_decode(_buffer, _offset)
     return _inst;
 }
 
+/**
+ * @func __FmodSoundDefaults_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodSoundDefaults} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodSoundDefaults_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: frequency, type: Float64
+        if (!is_numeric(self.frequency)) show_error($"{_where} :: self.frequency expected number", true);
+        buffer_write(_buffer, buffer_f64, self.frequency);
+
+        // field: priority, type: Float64
+        if (!is_numeric(self.priority)) show_error($"{_where} :: self.priority expected number", true);
+        buffer_write(_buffer, buffer_f64, self.priority);
+
+    }
+}
+
+/**
+ * @func __FmodSoundDefaults_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodSoundDefaults}
+ * @ignore
+ */
+function __FmodSoundDefaults_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodSoundDefaults();
+    with (_inst)
+    {
+        // field: frequency, type: Float64
+        self.frequency = buffer_read(_buffer, buffer_f64);
+
+        // field: priority, type: Float64
+        self.priority = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodLoopPoints_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodLoopPoints} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodLoopPoints_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: loop_start, type: Float64
+        if (!is_numeric(self.loop_start)) show_error($"{_where} :: self.loop_start expected number", true);
+        buffer_write(_buffer, buffer_f64, self.loop_start);
+
+        // field: loop_end, type: Float64
+        if (!is_numeric(self.loop_end)) show_error($"{_where} :: self.loop_end expected number", true);
+        buffer_write(_buffer, buffer_f64, self.loop_end);
+
+    }
+}
+
+/**
+ * @func __FmodLoopPoints_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodLoopPoints}
+ * @ignore
+ */
+function __FmodLoopPoints_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodLoopPoints();
+    with (_inst)
+    {
+        // field: loop_start, type: Float64
+        self.loop_start = buffer_read(_buffer, buffer_f64);
+
+        // field: loop_end, type: Float64
+        self.loop_end = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodSoundMinMaxDistance_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodSoundMinMaxDistance} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodSoundMinMaxDistance_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: min_distance, type: Float64
+        if (!is_numeric(self.min_distance)) show_error($"{_where} :: self.min_distance expected number", true);
+        buffer_write(_buffer, buffer_f64, self.min_distance);
+
+        // field: max_distance, type: Float64
+        if (!is_numeric(self.max_distance)) show_error($"{_where} :: self.max_distance expected number", true);
+        buffer_write(_buffer, buffer_f64, self.max_distance);
+
+    }
+}
+
+/**
+ * @func __FmodSoundMinMaxDistance_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodSoundMinMaxDistance}
+ * @ignore
+ */
+function __FmodSoundMinMaxDistance_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodSoundMinMaxDistance();
+    with (_inst)
+    {
+        // field: min_distance, type: Float64
+        self.min_distance = buffer_read(_buffer, buffer_f64);
+
+        // field: max_distance, type: Float64
+        self.max_distance = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodConeSettings_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodConeSettings} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodConeSettings_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: inside_cone_angle, type: Float64
+        if (!is_numeric(self.inside_cone_angle)) show_error($"{_where} :: self.inside_cone_angle expected number", true);
+        buffer_write(_buffer, buffer_f64, self.inside_cone_angle);
+
+        // field: outside_cone_angle, type: Float64
+        if (!is_numeric(self.outside_cone_angle)) show_error($"{_where} :: self.outside_cone_angle expected number", true);
+        buffer_write(_buffer, buffer_f64, self.outside_cone_angle);
+
+        // field: outside_volume, type: Float64
+        if (!is_numeric(self.outside_volume)) show_error($"{_where} :: self.outside_volume expected number", true);
+        buffer_write(_buffer, buffer_f64, self.outside_volume);
+
+    }
+}
+
+/**
+ * @func __FmodConeSettings_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodConeSettings}
+ * @ignore
+ */
+function __FmodConeSettings_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodConeSettings();
+    with (_inst)
+    {
+        // field: inside_cone_angle, type: Float64
+        self.inside_cone_angle = buffer_read(_buffer, buffer_f64);
+
+        // field: outside_cone_angle, type: Float64
+        self.outside_cone_angle = buffer_read(_buffer, buffer_f64);
+
+        // field: outside_volume, type: Float64
+        self.outside_volume = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodSystem3DSettings_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodSystem3DSettings} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodSystem3DSettings_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: doppler_scale, type: Float64
+        if (!is_numeric(self.doppler_scale)) show_error($"{_where} :: self.doppler_scale expected number", true);
+        buffer_write(_buffer, buffer_f64, self.doppler_scale);
+
+        // field: distance_factor, type: Float64
+        if (!is_numeric(self.distance_factor)) show_error($"{_where} :: self.distance_factor expected number", true);
+        buffer_write(_buffer, buffer_f64, self.distance_factor);
+
+        // field: rolloff_scale, type: Float64
+        if (!is_numeric(self.rolloff_scale)) show_error($"{_where} :: self.rolloff_scale expected number", true);
+        buffer_write(_buffer, buffer_f64, self.rolloff_scale);
+
+    }
+}
+
+/**
+ * @func __FmodSystem3DSettings_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodSystem3DSettings}
+ * @ignore
+ */
+function __FmodSystem3DSettings_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodSystem3DSettings();
+    with (_inst)
+    {
+        // field: doppler_scale, type: Float64
+        self.doppler_scale = buffer_read(_buffer, buffer_f64);
+
+        // field: distance_factor, type: Float64
+        self.distance_factor = buffer_read(_buffer, buffer_f64);
+
+        // field: rolloff_scale, type: Float64
+        self.rolloff_scale = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodListener3DAttributes_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodListener3DAttributes} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodListener3DAttributes_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: position, type: Float64
+        if (!is_numeric(self.position)) show_error($"{_where} :: self.position expected number", true);
+        buffer_write(_buffer, buffer_f64, self.position);
+
+        // field: velocity, type: Float64
+        if (!is_numeric(self.velocity)) show_error($"{_where} :: self.velocity expected number", true);
+        buffer_write(_buffer, buffer_f64, self.velocity);
+
+        // field: forward, type: Float64
+        if (!is_numeric(self.forward)) show_error($"{_where} :: self.forward expected number", true);
+        buffer_write(_buffer, buffer_f64, self.forward);
+
+        // field: up, type: Float64
+        if (!is_numeric(self.up)) show_error($"{_where} :: self.up expected number", true);
+        buffer_write(_buffer, buffer_f64, self.up);
+
+    }
+}
+
+/**
+ * @func __FmodListener3DAttributes_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodListener3DAttributes}
+ * @ignore
+ */
+function __FmodListener3DAttributes_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodListener3DAttributes();
+    with (_inst)
+    {
+        // field: position, type: Float64
+        self.position = buffer_read(_buffer, buffer_f64);
+
+        // field: velocity, type: Float64
+        self.velocity = buffer_read(_buffer, buffer_f64);
+
+        // field: forward, type: Float64
+        self.forward = buffer_read(_buffer, buffer_f64);
+
+        // field: up, type: Float64
+        self.up = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodSyncPointInfo_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodSyncPointInfo} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodSyncPointInfo_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: offset, type: Float64
+        if (!is_numeric(self.offset)) show_error($"{_where} :: self.offset expected number", true);
+        buffer_write(_buffer, buffer_f64, self.offset);
+
+    }
+}
+
+/**
+ * @func __FmodSyncPointInfo_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodSyncPointInfo}
+ * @ignore
+ */
+function __FmodSyncPointInfo_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodSyncPointInfo();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: offset, type: Float64
+        self.offset = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodRecordDriverInfo_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodRecordDriverInfo} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodRecordDriverInfo_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: speaker_mode, type: Float64
+        if (!is_numeric(self.speaker_mode)) show_error($"{_where} :: self.speaker_mode expected number", true);
+        buffer_write(_buffer, buffer_f64, self.speaker_mode);
+
+        // field: sample_rate, type: Float64
+        if (!is_numeric(self.sample_rate)) show_error($"{_where} :: self.sample_rate expected number", true);
+        buffer_write(_buffer, buffer_f64, self.sample_rate);
+
+    }
+}
+
+/**
+ * @func __FmodRecordDriverInfo_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodRecordDriverInfo}
+ * @ignore
+ */
+function __FmodRecordDriverInfo_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodRecordDriverInfo();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: speaker_mode, type: Float64
+        self.speaker_mode = buffer_read(_buffer, buffer_f64);
+
+        // field: sample_rate, type: Float64
+        self.sample_rate = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPMixMatrix_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPMixMatrix} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPMixMatrix_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: out_channels, type: Float64
+        if (!is_numeric(self.out_channels)) show_error($"{_where} :: self.out_channels expected number", true);
+        buffer_write(_buffer, buffer_f64, self.out_channels);
+
+        // field: in_channels, type: Float64
+        if (!is_numeric(self.in_channels)) show_error($"{_where} :: self.in_channels expected number", true);
+        buffer_write(_buffer, buffer_f64, self.in_channels);
+
+        // field: matrix, type: Float64
+        if (!is_numeric(self.matrix)) show_error($"{_where} :: self.matrix expected number", true);
+        buffer_write(_buffer, buffer_f64, self.matrix);
+
+    }
+}
+
+/**
+ * @func __FmodDSPMixMatrix_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPMixMatrix}
+ * @ignore
+ */
+function __FmodDSPMixMatrix_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPMixMatrix();
+    with (_inst)
+    {
+        // field: out_channels, type: Float64
+        self.out_channels = buffer_read(_buffer, buffer_f64);
+
+        // field: in_channels, type: Float64
+        self.in_channels = buffer_read(_buffer, buffer_f64);
+
+        // field: matrix, type: Float64
+        self.matrix = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
 // #####################################################################
 // # Functions
 // #####################################################################
@@ -1770,6 +2407,9 @@ function fmod_system_close(_system_ref)
 // Skipping function fmod_system_update (no wrapper is required)
 
 
+// Skipping function fmod_system_get_channels_playing (no wrapper is required)
+
+
 /**
  * @param {Real} _index
  * @returns {Struct.FmodChannelRef}
@@ -1824,6 +2464,144 @@ function fmod_system_get_master_channel_group()
 
 
 // Skipping function fmod_system_get_software_channels (no wrapper is required)
+
+
+// Skipping function fmod_system_set_3d_settings (no wrapper is required)
+
+
+/**
+ * @returns {Struct.FmodSystem3DSettings}
+ */
+function fmod_system_get_3d_settings()
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_get_3d_settings(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSystem3DSettings_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Real} _listener_index
+ * @param {Any} _position
+ * @param {Any} _velocity
+ * @param {Any} _forward
+ * @param {Any} _up
+ * @returns {Real}
+ */
+function fmod_system_set_3d_listener_attributes(_listener_index, _position, _velocity, _forward, _up)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _listener_index, type: Float64
+    if (!is_numeric(_listener_index)) show_error($"{_GMFUNCTION_} :: _listener_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _listener_index);
+
+    // param: _position, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _position);
+
+    // param: _velocity, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _velocity);
+
+    // param: _forward, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _forward);
+
+    // param: _up, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _up);
+
+    var __return_value__ = __fmod_system_set_3d_listener_attributes(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Real} _listener_index
+ * @returns {Struct.FmodListener3DAttributes}
+ */
+function fmod_system_get_3d_listener_attributes(_listener_index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_get_3d_listener_attributes(_listener_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodListener3DAttributes_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+// Skipping function fmod_system_get_record_num_drivers (no wrapper is required)
+
+
+/**
+ * @param {Real} _record_driver_index
+ * @returns {Struct.FmodRecordDriverInfo}
+ */
+function fmod_system_get_record_driver_info(_record_driver_index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_get_record_driver_info(_record_driver_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodRecordDriverInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+// Skipping function fmod_system_get_record_position (no wrapper is required)
+
+
+/**
+ * @param {Real} _device_index
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _loop
+ * @returns {Real}
+ */
+function fmod_system_record_start(_device_index, _sound_ref, _loop)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _device_index, type: Float64
+    if (!is_numeric(_device_index)) show_error($"{_GMFUNCTION_} :: _device_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _device_index);
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _loop, type: Float64
+    if (!is_numeric(_loop)) show_error($"{_GMFUNCTION_} :: _loop expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _loop);
+
+    var __return_value__ = __fmod_system_record_start(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+// Skipping function fmod_system_record_stop (no wrapper is required)
+
+
+// Skipping function fmod_system_is_recording (no wrapper is required)
 
 
 /**
@@ -2000,6 +2778,70 @@ function fmod_sound_get_mode(_sound_ref)
 
 /**
  * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Real}
+ */
+function fmod_sound_get_format(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_get_format(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {String}
+ */
+function fmod_sound_get_name(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_get_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Struct.FmodSoundDefaults}
+ */
+function fmod_sound_get_defaults(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_defaults(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSoundDefaults_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
  * @param {Real} _count
  * @returns {Real}
  */
@@ -2085,6 +2927,40 @@ function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _
 
 /**
  * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _start_type
+ * @param {Real} _end_type
+ * @returns {Struct.FmodLoopPoints}
+ */
+function fmod_sound_get_loop_points(_sound_ref, _start_type, _end_type)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _start_type, type: Float64
+    if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _start_type);
+
+    // param: _end_type, type: Float64
+    if (!is_numeric(_end_type)) show_error($"{_GMFUNCTION_} :: _end_type expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _end_type);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_loop_points(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodLoopPoints_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
  * @param {Real} _min
  * @param {Real} _max
  * @returns {Real}
@@ -2111,6 +2987,30 @@ function fmod_sound_set_3d_min_max_distance(_sound_ref, _min, _max)
     var __return_value__ = __fmod_sound_set_3d_min_max_distance(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
     return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Struct.FmodSoundMinMaxDistance}
+ */
+function fmod_sound_get_3d_min_max_distance(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_3d_min_max_distance(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSoundMinMaxDistance_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
 }
 
 /**
@@ -2146,6 +3046,368 @@ function fmod_sound_set_3d_cone_settings(_sound_ref, _inside_cone_angle, _outsid
     var __return_value__ = __fmod_sound_set_3d_cone_settings(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
     return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Struct.FmodConeSettings}
+ */
+function fmod_sound_get_3d_cone_settings(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_3d_cone_settings(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodConeSettings_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Any} _points
+ * @param {Real} _num_points
+ * @returns {Real}
+ */
+function fmod_sound_set_3d_custom_rolloff(_sound_ref, _points, _num_points)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _points, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _points);
+
+    // param: _num_points, type: Float64
+    if (!is_numeric(_num_points)) show_error($"{_GMFUNCTION_} :: _num_points expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _num_points);
+
+    var __return_value__ = __fmod_sound_set_3d_custom_rolloff(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Any}
+ */
+function fmod_sound_get_3d_custom_rolloff(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_3d_custom_rolloff(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __ext_core_buffer_unmarshal_value(__ret_buffer, __decoders__);
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Real}
+ */
+function fmod_sound_get_num_sync_points(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_get_num_sync_points(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sync_point_index
+ * @param {Real} _offset_type
+ * @returns {Struct.FmodSyncPointInfo}
+ */
+function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _sync_point_index, type: Float64
+    if (!is_numeric(_sync_point_index)) show_error($"{_GMFUNCTION_} :: _sync_point_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _sync_point_index);
+
+    // param: _offset_type, type: Float64
+    if (!is_numeric(_offset_type)) show_error($"{_GMFUNCTION_} :: _offset_type expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _offset_type);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_sync_point(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSyncPointInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _offset
+ * @param {Real} _offset_type
+ * @param {String} _name
+ * @returns {Real}
+ */
+function fmod_sound_add_sync_point(_sound_ref, _offset, _offset_type, _name)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _offset, type: Float64
+    if (!is_numeric(_offset)) show_error($"{_GMFUNCTION_} :: _offset expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _offset);
+
+    // param: _offset_type, type: Float64
+    if (!is_numeric(_offset_type)) show_error($"{_GMFUNCTION_} :: _offset_type expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _offset_type);
+
+    // param: _name, type: String
+    if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
+    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer, buffer_string, _name);
+
+    var __return_value__ = __fmod_sound_add_sync_point(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sync_point_index
+ * @returns {Real}
+ */
+function fmod_sound_delete_sync_point(_sound_ref, _sync_point_index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _sync_point_index, type: Float64
+    if (!is_numeric(_sync_point_index)) show_error($"{_GMFUNCTION_} :: _sync_point_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _sync_point_index);
+
+    var __return_value__ = __fmod_sound_delete_sync_point(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Real}
+ */
+function fmod_sound_get_music_num_channels(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_get_music_num_channels(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _channel_index
+ * @param {Real} _volume
+ * @returns {Real}
+ */
+function fmod_sound_set_music_channel_volume(_sound_ref, _channel_index, _volume)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _channel_index, type: Float64
+    if (!is_numeric(_channel_index)) show_error($"{_GMFUNCTION_} :: _channel_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _channel_index);
+
+    // param: _volume, type: Float64
+    if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _volume);
+
+    var __return_value__ = __fmod_sound_set_music_channel_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _channel_index
+ * @returns {Real}
+ */
+function fmod_sound_get_music_channel_volume(_sound_ref, _channel_index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _channel_index, type: Float64
+    if (!is_numeric(_channel_index)) show_error($"{_GMFUNCTION_} :: _channel_index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _channel_index);
+
+    var __return_value__ = __fmod_sound_get_music_channel_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _speed
+ * @returns {Real}
+ */
+function fmod_sound_set_music_speed(_sound_ref, _speed)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _speed, type: Float64
+    if (!is_numeric(_speed)) show_error($"{_GMFUNCTION_} :: _speed expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _speed);
+
+    var __return_value__ = __fmod_sound_set_music_speed(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Real}
+ */
+function fmod_sound_get_music_speed(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_get_music_speed(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @returns {Real}
+ */
+function fmod_sound_set_sound_group(_sound_ref, _sound_group_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _sound_group_ref, type: struct FmodSoundGroupRef
+    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
+    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_sound_set_sound_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodSoundRef} _sound_ref
+ * @returns {Struct.FmodSoundGroupRef}
+ */
+function fmod_sound_get_sound_group(_sound_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _sound_ref, type: struct FmodSoundRef
+    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
+    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_sound_get_sound_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodSoundGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
 }
 
 /**
@@ -3464,6 +4726,233 @@ function fmod_dsp_get_system_object(_dsp_ref)
     var __result__ = undefined;
     __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
     return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _volume
+ * @returns {Real}
+ */
+function fmod_dsp_connection_set_mix(_connection_ref, _volume)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _volume, type: Float64
+    if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _volume);
+
+    var __return_value__ = __fmod_dsp_connection_set_mix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @returns {Real}
+ */
+function fmod_dsp_connection_get_mix(_connection_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_connection_get_mix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _matrix
+ * @param {Real} _out_channels
+ * @param {Real} _in_channels
+ * @param {Real} _in_channel_hop
+ * @returns {Real}
+ */
+function fmod_dsp_connection_set_mix_matrix(_connection_ref, _matrix, _out_channels, _in_channels, _in_channel_hop)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _matrix, type: Float64
+    if (!is_numeric(_matrix)) show_error($"{_GMFUNCTION_} :: _matrix expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _matrix);
+
+    // param: _out_channels, type: Float64
+    if (!is_numeric(_out_channels)) show_error($"{_GMFUNCTION_} :: _out_channels expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _out_channels);
+
+    // param: _in_channels, type: Float64
+    if (!is_numeric(_in_channels)) show_error($"{_GMFUNCTION_} :: _in_channels expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _in_channels);
+
+    // param: _in_channel_hop, type: Float64
+    if (!is_numeric(_in_channel_hop)) show_error($"{_GMFUNCTION_} :: _in_channel_hop expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _in_channel_hop);
+
+    var __return_value__ = __fmod_dsp_connection_set_mix_matrix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _in_channel_hop
+ * @returns {Struct.FmodDSPMixMatrix}
+ */
+function fmod_dsp_connection_get_mix_matrix(_connection_ref, _in_channel_hop)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _in_channel_hop, type: Float64
+    if (!is_numeric(_in_channel_hop)) show_error($"{_GMFUNCTION_} :: _in_channel_hop expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _in_channel_hop);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_connection_get_mix_matrix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPMixMatrix_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @returns {Struct.FmodDSPRef}
+ */
+function fmod_dsp_connection_get_input(_connection_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_connection_get_input(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @returns {Struct.FmodDSPRef}
+ */
+function fmod_dsp_connection_get_output(_connection_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_connection_get_output(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @returns {Real}
+ */
+function fmod_dsp_connection_get_type(_connection_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_connection_get_type(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _user_data
+ * @returns {Real}
+ */
+function fmod_dsp_connection_set_user_data(_connection_ref, _user_data)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _user_data, type: Float64
+    if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _user_data);
+
+    var __return_value__ = __fmod_dsp_connection_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @returns {Real}
+ */
+function fmod_dsp_connection_get_user_data(_connection_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _connection_ref, type: struct FmodDSPConnectionRef
+    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
+    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_connection_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
 }
 
 /**
@@ -5335,7 +6824,16 @@ function __GMFMOD_get_decoders()
         __FmodStudioEventInstanceRef_decode,
         __FmodStudioEventDescriptionRef_decode,
         __FmodStudioVCARef_decode,
-        __FmodStudioCommandReplayRef_decode
+        __FmodStudioCommandReplayRef_decode,
+        __FmodSoundDefaults_decode,
+        __FmodLoopPoints_decode,
+        __FmodSoundMinMaxDistance_decode,
+        __FmodConeSettings_decode,
+        __FmodSystem3DSettings_decode,
+        __FmodListener3DAttributes_decode,
+        __FmodSyncPointInfo_decode,
+        __FmodRecordDriverInfo_decode,
+        __FmodDSPMixMatrix_decode
     ];
     return __decoders__;
 }

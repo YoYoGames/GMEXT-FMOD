@@ -27,17 +27,20 @@ var _driver_info_struct = fmod_system_get_record_driver_info(0);
 native_rate = _driver_info_struct.system_rate;
 native_channels = _driver_info_struct.speaker_mode_channels;
 
-var _extras = {
-	num_channels: native_channels,
-	format: FMOD_SOUND_FORMAT.PCM16,
-	default_frequency: native_rate,
-	length: native_rate * buffer_sizeof(buffer_u16) * native_channels
-}
+// TODO: FMOD_CREATESOUNDEXINFO is not exposed by the ExtGen port yet, so the
+// user-created sound cannot be described. Re-enable once fmod_system_create_sound
+// accepts an ex_info argument again.
+//var _extras = {
+//	num_channels: native_channels,
+//	format: FMOD_SOUND_FORMAT.PCM16,
+//	default_frequency: native_rate,
+//	length: native_rate * buffer_sizeof(buffer_u16) * native_channels
+//}
 
     /*
         Create user sound to record into, then start recording.
     */
-sound_index = fmod_system_create_sound("", FmodMode.LoopOn | FmodMode.OpenUser, _extras)
+sound_index = fmod_system_create_sound("", FmodMode.LoopOn | FmodMode.OpenUser /*, _extras*/)
 
 fmod_system_record_start(DEVICE_INDEX, sound_index, true);
 

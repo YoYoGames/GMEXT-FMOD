@@ -40,7 +40,7 @@ channels = [-1, -1];
 function queue_next_sound(outputrate, playingchannel, newindex, slot)
 {
 	var new_sound = sounds[newindex]
-	var new_channel = fmod_system_play_sound(new_sound,true,channel_group_index)
+	var new_channel = fmod_system_play_sound(new_sound,channel_group_index,true)
 	
 	var playing_sound;
 	

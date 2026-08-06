@@ -11,7 +11,7 @@ fmod_system_set_software_format(48000, FMOD_SPEAKERMODE.STEREO, 0);
 */
 sound = fmod_system_create_sound(sound_file, FmodMode.Default);
 
-channel = fmod_system_play_sound(sound, false);
+channel = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), false);
 
 
 /*
@@ -62,8 +62,8 @@ fmod_dsp_disconnect_from(dsp_head, dsp_channel_mixer);
               [DSPHIGHPASS]
 */
 
-lowpass_connection = fmod_dsp_add_input(dsp_head, dsp_lowpass);
-highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass);
+lowpass_connection = fmod_dsp_add_input(dsp_head, dsp_lowpass, FmodDspConnectionType.Default);
+highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass, FmodDspConnectionType.Default);
 
 /*
     Now connect the channelmixer to the 2 effects
@@ -75,8 +75,8 @@ highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass);
               [DSPHIGHPASS]
 */
 
-fmod_dsp_add_input(dsp_lowpass, dsp_channel_mixer); /* Ignore connection - we dont care about it. */
-fmod_dsp_add_input(dsp_highpass, dsp_channel_mixer); /* Ignore connection - we dont care about it. */
+fmod_dsp_add_input(dsp_lowpass, dsp_channel_mixer, FmodDspConnectionType.Default); /* Ignore connection - we dont care about it. */
+fmod_dsp_add_input(dsp_highpass, dsp_channel_mixer, FmodDspConnectionType.Default); /* Ignore connection - we dont care about it. */
 
 
 /*

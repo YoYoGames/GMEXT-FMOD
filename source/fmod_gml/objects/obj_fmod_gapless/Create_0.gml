@@ -74,7 +74,7 @@ for (var count = 0; count < numsounds; count++)
 		case NOTE.E: sound = sound_note_e break;
 	}
 	
-    channel = fmod_system_play_sound(sound, true);/* Play the sound on the channelgroup we want to use as the parent clock reference (for setDelay further down) */
+    channel = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), true);/* Play the sound on the channelgroup we want to use as the parent clock reference (for setDelay further down) */
 
     if(!clock_start)
     {

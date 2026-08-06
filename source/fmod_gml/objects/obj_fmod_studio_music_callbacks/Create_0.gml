@@ -10,10 +10,12 @@ show_debug_message("music: " + string(fmod_last_result()))
 event_guid = fmod_studio_system_get_event("event:/Music/Level 01")
 event_ins_index = fmod_studio_event_description_create_instance(event_guid)
 
-fmod_studio_event_instance_set_callback(event_ins_index,
-	FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER | FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT |
-	FMOD_STUDIO_EVENT_CALLBACK.SOUND_PLAYED | FMOD_STUDIO_EVENT_CALLBACK.SOUND_STOPPED)
-show_debug_message(string(fmod_last_result()))
+// TODO: event instance callbacks are not implemented in the ExtGen port yet.
+// Re-enable once fmod_studio_event_instance_set_callback is exposed again.
+//fmod_studio_event_instance_set_callback(event_ins_index,
+//	FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_MARKER | FMOD_STUDIO_EVENT_CALLBACK.TIMELINE_BEAT |
+//	FMOD_STUDIO_EVENT_CALLBACK.SOUND_PLAYED | FMOD_STUDIO_EVENT_CALLBACK.SOUND_STOPPED)
+//show_debug_message(string(fmod_last_result()))
 
 fmod_studio_event_instance_start(event_ins_index)
 show_debug_message(string(fmod_last_result()))

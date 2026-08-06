@@ -16,7 +16,7 @@ show_debug_message(string(fmod_last_result()))
 vehicle_event_inst = fmod_studio_event_description_create_instance(vehicle_event_desc)
 show_debug_message(string(fmod_last_result()))
 
-fmod_studio_event_instance_set_parameter_by_name(vehicle_event_inst,"RPM", 650, false);
+fmod_studio_event_instance_set_parameter_by_name(vehicle_event_inst,"RPM", 650);
 show_debug_message(fmod_last_result())
 
 
@@ -63,4 +63,7 @@ car_attributes = {
 	up: {x:0,y:1.0,z:0},
 }
 
-fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst, car_attributes);
+fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst,
+	car_attributes.position.x,
+	car_attributes.position.y,
+	car_attributes.position.z);

@@ -5,7 +5,10 @@ var _y = (obj_console_pointer.y - room_height/2) / 37.5;
 car_attributes.position.x = _x;
 car_attributes.position.y = _y;
 
-fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst, car_attributes);
+fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst,
+	car_attributes.position.x,
+	car_attributes.position.y,
+	car_attributes.position.z);
 
 for (var _i = 0; _i < 2; ++_i)
 {
