@@ -1672,7 +1672,7 @@ function fmod_sound_set_3d_custom_rolloff(
 [global, bind = typed_gml]
 function fmod_sound_get_3d_custom_rolloff(
     [type_hint=`FmodSoundRef`] sound_ref: gmval
-): gmval;
+): unit;
 
 // ============================================================
 // Sound - Sync Points
@@ -2446,7 +2446,7 @@ function fmod_dsp_get_parameter_data(
     length: real
 ): real;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodDSPParameterInfo`]
 function fmod_dsp_get_parameter_info(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval,
     index: real

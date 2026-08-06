@@ -372,19 +372,16 @@ double fmod_sound_set_3d_custom_rolloff(const FmodSoundRef& sound_ref, const gm:
 	return 0;
 }
 
-gm::wire::DataStream fmod_sound_get_3d_custom_rolloff(const FmodSoundRef& sound_ref)
+void fmod_sound_get_3d_custom_rolloff(const FmodSoundRef& sound_ref)
 {
-	gm::wire::DataStream result;
-
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref._ref, sound);
 
 	if (sound == nullptr)
-		return result;
+		return;
 
 	// Custom rolloff requires array conversion - for now return unsupported
 	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
-	return result;
 }
 
 // ============================================================
