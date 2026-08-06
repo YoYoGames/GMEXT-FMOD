@@ -1728,8 +1728,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_float(char* __arg_buffer, d
     // field: value, type: Float64
     double value = gm::wire::codec::readValue<double>(__br);
 
-    auto&& __result = fmod_dsp_set_parameter_float(dsp_ref, index, value);
-    return static_cast<double>(__result);
+    fmod_dsp_set_parameter_float(dsp_ref, index, value);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_float(char* __arg_buffer, double __arg_buffer_length)
@@ -1759,8 +1759,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_int(char* __arg_buffer, dou
     // field: value, type: Float64
     double value = gm::wire::codec::readValue<double>(__br);
 
-    auto&& __result = fmod_dsp_set_parameter_int(dsp_ref, index, value);
-    return static_cast<double>(__result);
+    fmod_dsp_set_parameter_int(dsp_ref, index, value);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_int(char* __arg_buffer, double __arg_buffer_length)
@@ -1790,8 +1790,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_bool(char* __arg_buffer, do
     // field: value, type: Float64
     double value = gm::wire::codec::readValue<double>(__br);
 
-    auto&& __result = fmod_dsp_set_parameter_bool(dsp_ref, index, value);
-    return static_cast<double>(__result);
+    fmod_dsp_set_parameter_bool(dsp_ref, index, value);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_bool(char* __arg_buffer, double __arg_buffer_length)
@@ -1815,8 +1815,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_release(char* __arg_buffer, double __arg_
     // field: dsp_ref, type: struct FmodDSPRef
     gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
 
-    auto&& __result = fmod_dsp_release(dsp_ref);
-    return static_cast<double>(__result);
+    fmod_dsp_release(dsp_ref);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_get_system_object(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
@@ -1832,6 +1832,413 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_system_object(char* __arg_buffer, dou
     // return: __result, type: struct FmodSystemRef
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_input(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_get_input(dsp_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_get_output(dsp_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPConnectionRef
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_disconnect_from(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: target_dsp, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef target_dsp = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    fmod_dsp_disconnect_from(dsp_ref, target_dsp);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_data_parameter_index(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: data_type, type: Float64
+    double data_type = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_get_data_parameter_index(dsp_ref, data_type);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    // field: buffer, type: Any
+    gm::wire::GMValue buffer = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_parameter_data(dsp_ref, index, buffer, length);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    // field: buffer, type: Any
+    gm::wire::GMValue buffer = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_get_parameter_data(dsp_ref, index, buffer, length);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_get_parameter_info(dsp_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Any
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_channel_format(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: channel_mask, type: Float64
+    double channel_mask = gm::wire::codec::readValue<double>(__br);
+
+    // field: num_channels, type: Float64
+    double num_channels = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_channel_format(dsp_ref, channel_mask, num_channels);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_channel_format(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_channel_format(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPChannelFormat
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output_channel_format(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_output_channel_format(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPChannelFormat
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_metering_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_metering_info(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPMeteringInfo
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_metering_enabled(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: input_enabled, type: Float64
+    double input_enabled = gm::wire::codec::readValue<double>(__br);
+
+    // field: output_enabled, type: Float64
+    double output_enabled = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_metering_enabled(dsp_ref, input_enabled, output_enabled);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_metering_enabled(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_metering_enabled(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPMeteringEnabled
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_active(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: active, type: Float64
+    double active = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_active(dsp_ref, active);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_active(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_active(dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_bypass(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: bypass, type: Float64
+    double bypass = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_bypass(dsp_ref, bypass);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_bypass(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_bypass(dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_wet_dry_mix(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: prewet, type: Float64
+    double prewet = gm::wire::codec::readValue<double>(__br);
+
+    // field: postwet, type: Float64
+    double postwet = gm::wire::codec::readValue<double>(__br);
+
+    // field: dry, type: Float64
+    double dry = gm::wire::codec::readValue<double>(__br);
+
+    fmod_dsp_set_wet_dry_mix(dsp_ref, prewet, postwet, dry);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_wet_dry_mix(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_wet_dry_mix(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPWetDryMix
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_idle(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_idle(dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_reset(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    fmod_dsp_reset(dsp_ref);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_type(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_type(dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_info(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPInfo
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_cpu_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_cpu_usage(dsp_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPCPUUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_dsp_set_user_data(dsp_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    auto&& __result = fmod_dsp_get_user_data(dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_dsp_set_callback(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_ref, type: struct FmodDSPRef
+    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+
+    // field: callback, type: optional<Function>
+    std::optional<gm::wire::GMFunction> callback = std::nullopt;
+    if (gm::wire::codec::readValue<bool>(__br))
+    {
+        callback = gm::wire::codec::readFunction(__br, &__dispatch_queue);
+    }
+
+    auto&& __result = fmod_dsp_set_callback(dsp_ref, callback);
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_mix(char* __arg_buffer, double __arg_buffer_length)

@@ -761,6 +761,154 @@ function FmodDSPMixMatrix() constructor
 
 }
 
+/**
+ * @returns {Struct.FmodDSPChannelFormat}
+ */
+function FmodDSPChannelFormat() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 4082622682;
+
+    self.channel_mask = undefined;
+    self.num_channels = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPMeteringInfo}
+ */
+function FmodDSPMeteringInfo() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 125554541;
+
+    self.num_samples_analysed = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPMeteringEnabled}
+ */
+function FmodDSPMeteringEnabled() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 27335014;
+
+    self.input_enabled = undefined;
+    self.output_enabled = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPParameterInfo}
+ */
+function FmodDSPParameterInfo() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 3192645597;
+
+    self.name = undefined;
+    self.label = undefined;
+    self.description = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPWetDryMix}
+ */
+function FmodDSPWetDryMix() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2411303503;
+
+    self.prewet = undefined;
+    self.postwet = undefined;
+    self.dry = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPInfo}
+ */
+function FmodDSPInfo() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 1355784450;
+
+    self.name = undefined;
+    self.version = undefined;
+    self.channels = undefined;
+    self.configwidth = undefined;
+    self.configheight = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPCPUUsage}
+ */
+function FmodDSPCPUUsage() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 1533955139;
+
+    self.exclusive = undefined;
+    self.inclusive = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodMinMaxDistance}
+ */
+function FmodMinMaxDistance() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 3358574130;
+
+    self.min_distance = undefined;
+    self.max_distance = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodSyncPoint}
+ */
+function FmodSyncPoint() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 3645350566;
+
+    self.offset = undefined;
+    self.name = undefined;
+
+}
+
 // #####################################################################
 // # Codecs
 // #####################################################################
@@ -1918,6 +2066,485 @@ function __FmodDSPMixMatrix_decode(_buffer, _offset)
 
         // field: matrix, type: Float64
         self.matrix = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPChannelFormat_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPChannelFormat} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPChannelFormat_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: channel_mask, type: Float64
+        if (!is_numeric(self.channel_mask)) show_error($"{_where} :: self.channel_mask expected number", true);
+        buffer_write(_buffer, buffer_f64, self.channel_mask);
+
+        // field: num_channels, type: Float64
+        if (!is_numeric(self.num_channels)) show_error($"{_where} :: self.num_channels expected number", true);
+        buffer_write(_buffer, buffer_f64, self.num_channels);
+
+    }
+}
+
+/**
+ * @func __FmodDSPChannelFormat_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPChannelFormat}
+ * @ignore
+ */
+function __FmodDSPChannelFormat_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPChannelFormat();
+    with (_inst)
+    {
+        // field: channel_mask, type: Float64
+        self.channel_mask = buffer_read(_buffer, buffer_f64);
+
+        // field: num_channels, type: Float64
+        self.num_channels = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPMeteringInfo_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPMeteringInfo} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPMeteringInfo_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: num_samples_analysed, type: Float64
+        if (!is_numeric(self.num_samples_analysed)) show_error($"{_where} :: self.num_samples_analysed expected number", true);
+        buffer_write(_buffer, buffer_f64, self.num_samples_analysed);
+
+    }
+}
+
+/**
+ * @func __FmodDSPMeteringInfo_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPMeteringInfo}
+ * @ignore
+ */
+function __FmodDSPMeteringInfo_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPMeteringInfo();
+    with (_inst)
+    {
+        // field: num_samples_analysed, type: Float64
+        self.num_samples_analysed = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPMeteringEnabled_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPMeteringEnabled} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPMeteringEnabled_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: input_enabled, type: Float64
+        if (!is_numeric(self.input_enabled)) show_error($"{_where} :: self.input_enabled expected number", true);
+        buffer_write(_buffer, buffer_f64, self.input_enabled);
+
+        // field: output_enabled, type: Float64
+        if (!is_numeric(self.output_enabled)) show_error($"{_where} :: self.output_enabled expected number", true);
+        buffer_write(_buffer, buffer_f64, self.output_enabled);
+
+    }
+}
+
+/**
+ * @func __FmodDSPMeteringEnabled_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPMeteringEnabled}
+ * @ignore
+ */
+function __FmodDSPMeteringEnabled_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPMeteringEnabled();
+    with (_inst)
+    {
+        // field: input_enabled, type: Float64
+        self.input_enabled = buffer_read(_buffer, buffer_f64);
+
+        // field: output_enabled, type: Float64
+        self.output_enabled = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPParameterInfo_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPParameterInfo} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPParameterInfo_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: label, type: String
+        if (!is_string(self.label)) show_error($"{_where} :: self.label expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.label));
+        buffer_write(_buffer, buffer_string, self.label);
+
+        // field: description, type: String
+        if (!is_string(self.description)) show_error($"{_where} :: self.description expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.description));
+        buffer_write(_buffer, buffer_string, self.description);
+
+    }
+}
+
+/**
+ * @func __FmodDSPParameterInfo_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPParameterInfo}
+ * @ignore
+ */
+function __FmodDSPParameterInfo_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPParameterInfo();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: label, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.label = buffer_read(_buffer, buffer_string);
+
+        // field: description, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.description = buffer_read(_buffer, buffer_string);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPWetDryMix_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPWetDryMix} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPWetDryMix_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: prewet, type: Float64
+        if (!is_numeric(self.prewet)) show_error($"{_where} :: self.prewet expected number", true);
+        buffer_write(_buffer, buffer_f64, self.prewet);
+
+        // field: postwet, type: Float64
+        if (!is_numeric(self.postwet)) show_error($"{_where} :: self.postwet expected number", true);
+        buffer_write(_buffer, buffer_f64, self.postwet);
+
+        // field: dry, type: Float64
+        if (!is_numeric(self.dry)) show_error($"{_where} :: self.dry expected number", true);
+        buffer_write(_buffer, buffer_f64, self.dry);
+
+    }
+}
+
+/**
+ * @func __FmodDSPWetDryMix_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPWetDryMix}
+ * @ignore
+ */
+function __FmodDSPWetDryMix_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPWetDryMix();
+    with (_inst)
+    {
+        // field: prewet, type: Float64
+        self.prewet = buffer_read(_buffer, buffer_f64);
+
+        // field: postwet, type: Float64
+        self.postwet = buffer_read(_buffer, buffer_f64);
+
+        // field: dry, type: Float64
+        self.dry = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPInfo_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPInfo} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPInfo_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: version, type: Float64
+        if (!is_numeric(self.version)) show_error($"{_where} :: self.version expected number", true);
+        buffer_write(_buffer, buffer_f64, self.version);
+
+        // field: channels, type: Float64
+        if (!is_numeric(self.channels)) show_error($"{_where} :: self.channels expected number", true);
+        buffer_write(_buffer, buffer_f64, self.channels);
+
+        // field: configwidth, type: Float64
+        if (!is_numeric(self.configwidth)) show_error($"{_where} :: self.configwidth expected number", true);
+        buffer_write(_buffer, buffer_f64, self.configwidth);
+
+        // field: configheight, type: Float64
+        if (!is_numeric(self.configheight)) show_error($"{_where} :: self.configheight expected number", true);
+        buffer_write(_buffer, buffer_f64, self.configheight);
+
+    }
+}
+
+/**
+ * @func __FmodDSPInfo_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPInfo}
+ * @ignore
+ */
+function __FmodDSPInfo_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPInfo();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: version, type: Float64
+        self.version = buffer_read(_buffer, buffer_f64);
+
+        // field: channels, type: Float64
+        self.channels = buffer_read(_buffer, buffer_f64);
+
+        // field: configwidth, type: Float64
+        self.configwidth = buffer_read(_buffer, buffer_f64);
+
+        // field: configheight, type: Float64
+        self.configheight = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPCPUUsage_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPCPUUsage} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPCPUUsage_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: exclusive, type: Float64
+        if (!is_numeric(self.exclusive)) show_error($"{_where} :: self.exclusive expected number", true);
+        buffer_write(_buffer, buffer_f64, self.exclusive);
+
+        // field: inclusive, type: Float64
+        if (!is_numeric(self.inclusive)) show_error($"{_where} :: self.inclusive expected number", true);
+        buffer_write(_buffer, buffer_f64, self.inclusive);
+
+    }
+}
+
+/**
+ * @func __FmodDSPCPUUsage_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPCPUUsage}
+ * @ignore
+ */
+function __FmodDSPCPUUsage_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPCPUUsage();
+    with (_inst)
+    {
+        // field: exclusive, type: Float64
+        self.exclusive = buffer_read(_buffer, buffer_f64);
+
+        // field: inclusive, type: Float64
+        self.inclusive = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodMinMaxDistance_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodMinMaxDistance} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodMinMaxDistance_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: min_distance, type: Float64
+        if (!is_numeric(self.min_distance)) show_error($"{_where} :: self.min_distance expected number", true);
+        buffer_write(_buffer, buffer_f64, self.min_distance);
+
+        // field: max_distance, type: Float64
+        if (!is_numeric(self.max_distance)) show_error($"{_where} :: self.max_distance expected number", true);
+        buffer_write(_buffer, buffer_f64, self.max_distance);
+
+    }
+}
+
+/**
+ * @func __FmodMinMaxDistance_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodMinMaxDistance}
+ * @ignore
+ */
+function __FmodMinMaxDistance_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodMinMaxDistance();
+    with (_inst)
+    {
+        // field: min_distance, type: Float64
+        self.min_distance = buffer_read(_buffer, buffer_f64);
+
+        // field: max_distance, type: Float64
+        self.max_distance = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodSyncPoint_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodSyncPoint} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodSyncPoint_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: offset, type: Float64
+        if (!is_numeric(self.offset)) show_error($"{_where} :: self.offset expected number", true);
+        buffer_write(_buffer, buffer_f64, self.offset);
+
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+    }
+}
+
+/**
+ * @func __FmodSyncPoint_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodSyncPoint}
+ * @ignore
+ */
+function __FmodSyncPoint_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodSyncPoint();
+    with (_inst)
+    {
+        // field: offset, type: Float64
+        self.offset = buffer_read(_buffer, buffer_f64);
+
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
 
     }
 
@@ -4523,7 +5150,6 @@ function fmod_dsp_get_num_parameters(_dsp_ref)
  * @param {Struct.FmodDSPRef} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
- * @returns {Real}
  */
 function fmod_dsp_set_parameter_float(_dsp_ref, _index, _value)
 {
@@ -4578,7 +5204,6 @@ function fmod_dsp_get_parameter_float(_dsp_ref, _index)
  * @param {Struct.FmodDSPRef} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
- * @returns {Real}
  */
 function fmod_dsp_set_parameter_int(_dsp_ref, _index, _value)
 {
@@ -4633,7 +5258,6 @@ function fmod_dsp_get_parameter_int(_dsp_ref, _index)
  * @param {Struct.FmodDSPRef} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
- * @returns {Real}
  */
 function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
 {
@@ -4686,7 +5310,6 @@ function fmod_dsp_get_parameter_bool(_dsp_ref, _index)
 
 /**
  * @param {Struct.FmodDSPRef} _dsp_ref
- * @returns {Real}
  */
 function fmod_dsp_release(_dsp_ref)
 {
@@ -4726,6 +5349,699 @@ function fmod_dsp_get_system_object(_dsp_ref)
     var __result__ = undefined;
     __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
     return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _index
+ * @returns {Struct.FmodDSPRef}
+ */
+function fmod_dsp_get_input(_dsp_ref, _index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_input(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _index
+ * @returns {Struct.FmodDSPConnectionRef}
+ */
+function fmod_dsp_get_output(_dsp_ref, _index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_output(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPConnectionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Struct.FmodDSPRef} _target_dsp
+ */
+function fmod_dsp_disconnect_from(_dsp_ref, _target_dsp)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _target_dsp, type: struct FmodDSPRef
+    if (_target_dsp.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _target_dsp expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_target_dsp, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_disconnect_from(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _data_type
+ * @returns {Real}
+ */
+function fmod_dsp_get_data_parameter_index(_dsp_ref, _data_type)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _data_type, type: Float64
+    if (!is_numeric(_data_type)) show_error($"{_GMFUNCTION_} :: _data_type expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _data_type);
+
+    var __return_value__ = __fmod_dsp_get_data_parameter_index(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _index
+ * @param {Any} _buffer
+ * @param {Real} _length
+ */
+function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    // param: _buffer, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _buffer);
+
+    // param: _length, type: Float64
+    if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _length);
+
+    var __return_value__ = __fmod_dsp_set_parameter_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _index
+ * @param {Any} _buffer
+ * @param {Real} _length
+ * @returns {Real}
+ */
+function fmod_dsp_get_parameter_data(_dsp_ref, _index, _buffer, _length)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    // param: _buffer, type: Any
+
+    __ext_core_buffer_marshal_value(__args_buffer, _buffer);
+
+    // param: _length, type: Float64
+    if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _length);
+
+    var __return_value__ = __fmod_dsp_get_parameter_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _index
+ * @returns {Any}
+ */
+function fmod_dsp_get_parameter_info(_dsp_ref, _index)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _index, type: Float64
+    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _index);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_parameter_info(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __ext_core_buffer_unmarshal_value(__ret_buffer, __decoders__);
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _channel_mask
+ * @param {Real} _num_channels
+ */
+function fmod_dsp_set_channel_format(_dsp_ref, _channel_mask, _num_channels)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _channel_mask, type: Float64
+    if (!is_numeric(_channel_mask)) show_error($"{_GMFUNCTION_} :: _channel_mask expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _channel_mask);
+
+    // param: _num_channels, type: Float64
+    if (!is_numeric(_num_channels)) show_error($"{_GMFUNCTION_} :: _num_channels expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _num_channels);
+
+    var __return_value__ = __fmod_dsp_set_channel_format(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPChannelFormat}
+ */
+function fmod_dsp_get_channel_format(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_channel_format(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPChannelFormat_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPChannelFormat}
+ */
+function fmod_dsp_get_output_channel_format(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_output_channel_format(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPChannelFormat_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPMeteringInfo}
+ */
+function fmod_dsp_get_metering_info(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_metering_info(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPMeteringInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _input_enabled
+ * @param {Real} _output_enabled
+ */
+function fmod_dsp_set_metering_enabled(_dsp_ref, _input_enabled, _output_enabled)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _input_enabled, type: Float64
+    if (!is_numeric(_input_enabled)) show_error($"{_GMFUNCTION_} :: _input_enabled expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _input_enabled);
+
+    // param: _output_enabled, type: Float64
+    if (!is_numeric(_output_enabled)) show_error($"{_GMFUNCTION_} :: _output_enabled expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _output_enabled);
+
+    var __return_value__ = __fmod_dsp_set_metering_enabled(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPMeteringEnabled}
+ */
+function fmod_dsp_get_metering_enabled(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_metering_enabled(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPMeteringEnabled_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _active
+ */
+function fmod_dsp_set_active(_dsp_ref, _active)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _active, type: Float64
+    if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _active);
+
+    var __return_value__ = __fmod_dsp_set_active(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Real}
+ */
+function fmod_dsp_get_active(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_get_active(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _bypass
+ */
+function fmod_dsp_set_bypass(_dsp_ref, _bypass)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _bypass, type: Float64
+    if (!is_numeric(_bypass)) show_error($"{_GMFUNCTION_} :: _bypass expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _bypass);
+
+    var __return_value__ = __fmod_dsp_set_bypass(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Real}
+ */
+function fmod_dsp_get_bypass(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_get_bypass(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _prewet
+ * @param {Real} _postwet
+ * @param {Real} _dry
+ */
+function fmod_dsp_set_wet_dry_mix(_dsp_ref, _prewet, _postwet, _dry)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _prewet, type: Float64
+    if (!is_numeric(_prewet)) show_error($"{_GMFUNCTION_} :: _prewet expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _prewet);
+
+    // param: _postwet, type: Float64
+    if (!is_numeric(_postwet)) show_error($"{_GMFUNCTION_} :: _postwet expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _postwet);
+
+    // param: _dry, type: Float64
+    if (!is_numeric(_dry)) show_error($"{_GMFUNCTION_} :: _dry expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _dry);
+
+    var __return_value__ = __fmod_dsp_set_wet_dry_mix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPWetDryMix}
+ */
+function fmod_dsp_get_wet_dry_mix(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_wet_dry_mix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPWetDryMix_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Real}
+ */
+function fmod_dsp_get_idle(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_get_idle(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ */
+function fmod_dsp_reset(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_reset(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Real}
+ */
+function fmod_dsp_get_type(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_get_type(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPInfo}
+ */
+function fmod_dsp_get_info(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_info(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Struct.FmodDSPCPUUsage}
+ */
+function fmod_dsp_get_cpu_usage(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_dsp_get_cpu_usage(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPCPUUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    return __result__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _user_data
+ * @returns {Real}
+ */
+function fmod_dsp_set_user_data(_dsp_ref, _user_data)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _user_data, type: Float64
+    if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _user_data);
+
+    var __return_value__ = __fmod_dsp_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @returns {Real}
+ */
+function fmod_dsp_get_user_data(_dsp_ref)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __return_value__ = __fmod_dsp_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
+}
+
+/**
+ * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Function} _callback
+ * @returns {Real}
+ */
+function fmod_dsp_set_callback(_dsp_ref, _callback)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __dispatcher__ = __GMFMOD_get_dispatcher();
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _dsp_ref, type: struct FmodDSPRef
+    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
+    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    // param: _callback, type: optional<Function>
+    if (is_undefined(_callback))
+    {
+        buffer_write(__args_buffer, buffer_bool, false);
+    }
+    else
+    {
+        buffer_write(__args_buffer, buffer_bool, true);
+        if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
+        var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
+        buffer_write(__args_buffer, buffer_u64, _callback_handle);
+    }
+
+    var __return_value__ = __fmod_dsp_set_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+
+    return __return_value__;
 }
 
 /**
@@ -6833,7 +8149,16 @@ function __GMFMOD_get_decoders()
         __FmodListener3DAttributes_decode,
         __FmodSyncPointInfo_decode,
         __FmodRecordDriverInfo_decode,
-        __FmodDSPMixMatrix_decode
+        __FmodDSPMixMatrix_decode,
+        __FmodDSPChannelFormat_decode,
+        __FmodDSPMeteringInfo_decode,
+        __FmodDSPMeteringEnabled_decode,
+        __FmodDSPParameterInfo_decode,
+        __FmodDSPWetDryMix_decode,
+        __FmodDSPInfo_decode,
+        __FmodDSPCPUUsage_decode,
+        __FmodMinMaxDistance_decode,
+        __FmodSyncPoint_decode
     ];
     return __decoders__;
 }

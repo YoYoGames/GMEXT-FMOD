@@ -615,6 +615,108 @@ class `[[FmodDSPMixMatrix]]` prototype Object
     property matrix: gmval { get; set; }
 }
 
+[global]
+class `[[FmodDSPChannelFormat]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property channel_mask: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property num_channels: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPMeteringInfo]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property num_samples_analysed: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPMeteringEnabled]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property input_enabled: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property output_enabled: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPParameterInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property label: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property description: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPWetDryMix]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property prewet: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property postwet: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property dry: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property version: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property configwidth: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property configheight: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPCPUUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property exclusive: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property inclusive: gmval { get; set; }
+}
+
+[global]
+class `[[FmodMinMaxDistance]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property min_distance: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_distance: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSyncPoint]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property offset: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+}
+
 group
 {
 
@@ -1648,7 +1750,7 @@ function fmod_dsp_set_parameter_float(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval,
     index: real,
     value: real
-): real;
+): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_parameter_float(
@@ -1661,7 +1763,7 @@ function fmod_dsp_set_parameter_int(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval,
     index: real,
     value: real
-): real;
+): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_parameter_int(
@@ -1674,7 +1776,7 @@ function fmod_dsp_set_parameter_bool(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval,
     index: real,
     value: real
-): real;
+): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_parameter_bool(
@@ -1689,12 +1791,197 @@ function fmod_dsp_get_parameter_bool(
 [global, bind = typed_gml]
 function fmod_dsp_release(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
-): real;
+): unit;
 
 [global, bind = typed_gml, type_hint=`FmodSystemRef`]
 function fmod_dsp_get_system_object(
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
 ): gmval;
+
+// ============================================================
+// DSP - Input/Output & Connections
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodDSPRef`]
+function fmod_dsp_get_input(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    index: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPConnectionRef`]
+function fmod_dsp_get_output(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_dsp_disconnect_from(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    [type_hint=`FmodDSPRef`] target_dsp: gmval
+): unit;
+
+// ============================================================
+// DSP - Parameter Data Access
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_get_data_parameter_index(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    data_type: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_set_parameter_data(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    index: real,
+    buffer: gmval,
+    length: real
+): unit;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_parameter_data(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    index: real,
+    buffer: gmval,
+    length: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_parameter_info(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    index: real
+): gmval;
+
+// ============================================================
+// DSP - Format & Channel Control
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_set_channel_format(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    channel_mask: real,
+    num_channels: real
+): unit;
+
+[global, bind = typed_gml, type_hint=`FmodDSPChannelFormat`]
+function fmod_dsp_get_channel_format(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPChannelFormat`]
+function fmod_dsp_get_output_channel_format(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+// ============================================================
+// DSP - Metering
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodDSPMeteringInfo`]
+function fmod_dsp_get_metering_info(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_dsp_set_metering_enabled(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    input_enabled: real,
+    output_enabled: real
+): unit;
+
+[global, bind = typed_gml, type_hint=`FmodDSPMeteringEnabled`]
+function fmod_dsp_get_metering_enabled(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+// ============================================================
+// DSP - Active & Bypass
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_set_active(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    active: real
+): unit;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_active(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_set_bypass(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    bypass: real
+): unit;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_bypass(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): real;
+
+// ============================================================
+// DSP - Wet/Dry Mix
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_set_wet_dry_mix(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    prewet: real,
+    postwet: real,
+    dry: real
+): unit;
+
+[global, bind = typed_gml, type_hint=`FmodDSPWetDryMix`]
+function fmod_dsp_get_wet_dry_mix(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+// ============================================================
+// DSP - Idle, Reset & Properties
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_dsp_get_idle(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_reset(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): unit;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_type(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDSPInfo`]
+function fmod_dsp_get_info(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPCPUUsage`]
+function fmod_dsp_get_cpu_usage(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_dsp_set_user_data(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_get_user_data(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_dsp_set_callback(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    [type_hint=`func?`] callback: gmval
+): real;
 
 }
 

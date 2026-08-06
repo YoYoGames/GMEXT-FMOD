@@ -632,6 +632,114 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_dsp_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_dsp_get_input(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_input(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_output(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_output(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_disconnect_from(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_disconnect_from(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_data_parameter_index(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_data_parameter_index(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_parameter_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_parameter_data(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_parameter_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_parameter_data(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_parameter_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_parameter_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_channel_format(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_channel_format(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_channel_format(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_channel_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_output_channel_format(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_output_channel_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_metering_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_metering_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_metering_enabled(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_metering_enabled(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_metering_enabled(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_metering_enabled(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_active(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_active(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_active(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_active(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_bypass(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_bypass(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_bypass(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_bypass(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_wet_dry_mix(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_wet_dry_mix(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_wet_dry_mix(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_wet_dry_mix(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_idle(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_idle(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_reset(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_reset(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_cpu_usage(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_cpu_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_user_data(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_get_user_data(__arg_buffer, __arg_buffer_length);
+    }
+    public double __EXT_NATIVE__fmod_dsp_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_dsp_set_callback(__arg_buffer, __arg_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_dsp_connection_set_mix(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
         return __EXT_JNI__fmod_dsp_connection_set_mix(__arg_buffer, __arg_buffer_length);

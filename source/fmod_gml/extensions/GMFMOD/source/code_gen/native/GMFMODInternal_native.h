@@ -404,6 +404,15 @@ namespace gm_structs
     struct FmodSyncPointInfo;
     struct FmodRecordDriverInfo;
     struct FmodDSPMixMatrix;
+    struct FmodDSPChannelFormat;
+    struct FmodDSPMeteringInfo;
+    struct FmodDSPMeteringEnabled;
+    struct FmodDSPParameterInfo;
+    struct FmodDSPWetDryMix;
+    struct FmodDSPInfo;
+    struct FmodDSPCPUUsage;
+    struct FmodMinMaxDistance;
+    struct FmodSyncPoint;
 
     struct FmodChannelRef
     {
@@ -543,6 +552,64 @@ namespace gm_structs
         double out_channels;
         double in_channels;
         double matrix;
+    };
+
+    struct FmodDSPChannelFormat
+    {
+        double channel_mask;
+        double num_channels;
+    };
+
+    struct FmodDSPMeteringInfo
+    {
+        double num_samples_analysed;
+    };
+
+    struct FmodDSPMeteringEnabled
+    {
+        double input_enabled;
+        double output_enabled;
+    };
+
+    struct FmodDSPParameterInfo
+    {
+        std::string name;
+        std::string label;
+        std::string description;
+    };
+
+    struct FmodDSPWetDryMix
+    {
+        double prewet;
+        double postwet;
+        double dry;
+    };
+
+    struct FmodDSPInfo
+    {
+        std::string name;
+        double version;
+        double channels;
+        double configwidth;
+        double configheight;
+    };
+
+    struct FmodDSPCPUUsage
+    {
+        double exclusive;
+        double inclusive;
+    };
+
+    struct FmodMinMaxDistance
+    {
+        double min_distance;
+        double max_distance;
+    };
+
+    struct FmodSyncPoint
+    {
+        double offset;
+        std::string name;
     };
 
 }
@@ -929,6 +996,158 @@ namespace gm::wire::codec
         return obj;
     }
 
+    template<>
+    inline void writeValue<gm_structs::FmodDSPChannelFormat>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPChannelFormat& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.channel_mask);
+        gm::wire::codec::writeValue(_buf, obj.num_channels);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPChannelFormat readValue<gm_structs::FmodDSPChannelFormat>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPChannelFormat obj;
+        obj.channel_mask = gm::wire::codec::readValue<double>(_buf);
+        obj.num_channels = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPMeteringInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPMeteringInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.num_samples_analysed);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPMeteringInfo readValue<gm_structs::FmodDSPMeteringInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPMeteringInfo obj;
+        obj.num_samples_analysed = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPMeteringEnabled>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPMeteringEnabled& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.input_enabled);
+        gm::wire::codec::writeValue(_buf, obj.output_enabled);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPMeteringEnabled readValue<gm_structs::FmodDSPMeteringEnabled>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPMeteringEnabled obj;
+        obj.input_enabled = gm::wire::codec::readValue<double>(_buf);
+        obj.output_enabled = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPParameterInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPParameterInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.label);
+        gm::wire::codec::writeValue(_buf, obj.description);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPParameterInfo readValue<gm_structs::FmodDSPParameterInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPParameterInfo obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.label = gm::wire::codec::readValue<std::string>(_buf);
+        obj.description = gm::wire::codec::readValue<std::string>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPWetDryMix>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPWetDryMix& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.prewet);
+        gm::wire::codec::writeValue(_buf, obj.postwet);
+        gm::wire::codec::writeValue(_buf, obj.dry);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPWetDryMix readValue<gm_structs::FmodDSPWetDryMix>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPWetDryMix obj;
+        obj.prewet = gm::wire::codec::readValue<double>(_buf);
+        obj.postwet = gm::wire::codec::readValue<double>(_buf);
+        obj.dry = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.version);
+        gm::wire::codec::writeValue(_buf, obj.channels);
+        gm::wire::codec::writeValue(_buf, obj.configwidth);
+        gm::wire::codec::writeValue(_buf, obj.configheight);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPInfo readValue<gm_structs::FmodDSPInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPInfo obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.version = gm::wire::codec::readValue<double>(_buf);
+        obj.channels = gm::wire::codec::readValue<double>(_buf);
+        obj.configwidth = gm::wire::codec::readValue<double>(_buf);
+        obj.configheight = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPCPUUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPCPUUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.exclusive);
+        gm::wire::codec::writeValue(_buf, obj.inclusive);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPCPUUsage readValue<gm_structs::FmodDSPCPUUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPCPUUsage obj;
+        obj.exclusive = gm::wire::codec::readValue<double>(_buf);
+        obj.inclusive = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodMinMaxDistance>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodMinMaxDistance& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.min_distance);
+        gm::wire::codec::writeValue(_buf, obj.max_distance);
+    }
+
+    template<>
+    inline gm_structs::FmodMinMaxDistance readValue<gm_structs::FmodMinMaxDistance>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodMinMaxDistance obj;
+        obj.min_distance = gm::wire::codec::readValue<double>(_buf);
+        obj.max_distance = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSyncPoint>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSyncPoint& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.offset);
+        gm::wire::codec::writeValue(_buf, obj.name);
+    }
+
+    template<>
+    inline gm_structs::FmodSyncPoint readValue<gm_structs::FmodSyncPoint>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSyncPoint obj;
+        obj.offset = gm::wire::codec::readValue<double>(_buf);
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        return obj;
+    }
+
 }
 
 namespace gm::wire::details
@@ -1108,6 +1327,69 @@ namespace gm::wire::details
         static constexpr std::uint32_t codec_id = 24;
     };
 
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPChannelFormat>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 25;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPMeteringInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 26;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPMeteringEnabled>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 27;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPParameterInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 28;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPWetDryMix>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 29;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 30;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodDSPCPUUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 31;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodMinMaxDistance>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 32;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSyncPoint>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 33;
+    };
+
 }
 
 gm_enums::FmodResult fmod_last_result();
@@ -1258,14 +1540,41 @@ double fmod_dsp_get_num_inputs(const gm_structs::FmodDSPRef& dsp_ref);
 double fmod_dsp_get_num_outputs(const gm_structs::FmodDSPRef& dsp_ref);
 double fmod_dsp_disconnect_all(const gm_structs::FmodDSPRef& dsp_ref, double inputs, double outputs);
 double fmod_dsp_get_num_parameters(const gm_structs::FmodDSPRef& dsp_ref);
-double fmod_dsp_set_parameter_float(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
+void fmod_dsp_set_parameter_float(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
 double fmod_dsp_get_parameter_float(const gm_structs::FmodDSPRef& dsp_ref, double index);
-double fmod_dsp_set_parameter_int(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
+void fmod_dsp_set_parameter_int(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
 double fmod_dsp_get_parameter_int(const gm_structs::FmodDSPRef& dsp_ref, double index);
-double fmod_dsp_set_parameter_bool(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
+void fmod_dsp_set_parameter_bool(const gm_structs::FmodDSPRef& dsp_ref, double index, double value);
 double fmod_dsp_get_parameter_bool(const gm_structs::FmodDSPRef& dsp_ref, double index);
-double fmod_dsp_release(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_release(const gm_structs::FmodDSPRef& dsp_ref);
 gm_structs::FmodSystemRef fmod_dsp_get_system_object(const gm_structs::FmodDSPRef& dsp_ref);
+gm_structs::FmodDSPRef fmod_dsp_get_input(const gm_structs::FmodDSPRef& dsp_ref, double index);
+gm_structs::FmodDSPConnectionRef fmod_dsp_get_output(const gm_structs::FmodDSPRef& dsp_ref, double index);
+void fmod_dsp_disconnect_from(const gm_structs::FmodDSPRef& dsp_ref, const gm_structs::FmodDSPRef& target_dsp);
+double fmod_dsp_get_data_parameter_index(const gm_structs::FmodDSPRef& dsp_ref, double data_type);
+void fmod_dsp_set_parameter_data(const gm_structs::FmodDSPRef& dsp_ref, double index, const gm::wire::GMValue& buffer, double length);
+double fmod_dsp_get_parameter_data(const gm_structs::FmodDSPRef& dsp_ref, double index, const gm::wire::GMValue& buffer, double length);
+gm::wire::DataStream fmod_dsp_get_parameter_info(const gm_structs::FmodDSPRef& dsp_ref, double index);
+void fmod_dsp_set_channel_format(const gm_structs::FmodDSPRef& dsp_ref, double channel_mask, double num_channels);
+gm_structs::FmodDSPChannelFormat fmod_dsp_get_channel_format(const gm_structs::FmodDSPRef& dsp_ref);
+gm_structs::FmodDSPChannelFormat fmod_dsp_get_output_channel_format(const gm_structs::FmodDSPRef& dsp_ref);
+gm_structs::FmodDSPMeteringInfo fmod_dsp_get_metering_info(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_set_metering_enabled(const gm_structs::FmodDSPRef& dsp_ref, double input_enabled, double output_enabled);
+gm_structs::FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_set_active(const gm_structs::FmodDSPRef& dsp_ref, double active);
+double fmod_dsp_get_active(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_set_bypass(const gm_structs::FmodDSPRef& dsp_ref, double bypass);
+double fmod_dsp_get_bypass(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_set_wet_dry_mix(const gm_structs::FmodDSPRef& dsp_ref, double prewet, double postwet, double dry);
+gm_structs::FmodDSPWetDryMix fmod_dsp_get_wet_dry_mix(const gm_structs::FmodDSPRef& dsp_ref);
+double fmod_dsp_get_idle(const gm_structs::FmodDSPRef& dsp_ref);
+void fmod_dsp_reset(const gm_structs::FmodDSPRef& dsp_ref);
+double fmod_dsp_get_type(const gm_structs::FmodDSPRef& dsp_ref);
+gm_structs::FmodDSPInfo fmod_dsp_get_info(const gm_structs::FmodDSPRef& dsp_ref);
+gm_structs::FmodDSPCPUUsage fmod_dsp_get_cpu_usage(const gm_structs::FmodDSPRef& dsp_ref);
+double fmod_dsp_set_user_data(const gm_structs::FmodDSPRef& dsp_ref, double user_data);
+double fmod_dsp_get_user_data(const gm_structs::FmodDSPRef& dsp_ref);
+double fmod_dsp_set_callback(const gm_structs::FmodDSPRef& dsp_ref, const std::optional<gm::wire::GMFunction>& callback);
 double fmod_dsp_connection_set_mix(const gm_structs::FmodDSPConnectionRef& connection_ref, double volume);
 double fmod_dsp_connection_get_mix(const gm_structs::FmodDSPConnectionRef& connection_ref);
 double fmod_dsp_connection_set_mix_matrix(const gm_structs::FmodDSPConnectionRef& connection_ref, double matrix, double out_channels, double in_channels, double in_channel_hop);

@@ -1146,7 +1146,6 @@
  * @param {Struct.FmodDSPRef} dsp_ref
  * @param {Real} index
  * @param {Real} value
- * @returns {Real}
  * @function_end
  */
 
@@ -1163,7 +1162,6 @@
  * @param {Struct.FmodDSPRef} dsp_ref
  * @param {Real} index
  * @param {Real} value
- * @returns {Real}
  * @function_end
  */
 
@@ -1180,7 +1178,6 @@
  * @param {Struct.FmodDSPRef} dsp_ref
  * @param {Real} index
  * @param {Real} value
- * @returns {Real}
  * @function_end
  */
 
@@ -1195,7 +1192,6 @@
 /**
  * @function_partial fmod_dsp_release
  * @param {Struct.FmodDSPRef} dsp_ref
- * @returns {Real}
  * @function_end
  */
 
@@ -1203,6 +1199,209 @@
  * @function_partial fmod_dsp_get_system_object
  * @param {Struct.FmodDSPRef} dsp_ref
  * @returns {Struct.FmodSystemRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_input
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} index
+ * @returns {Struct.FmodDSPRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_output
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} index
+ * @returns {Struct.FmodDSPConnectionRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_disconnect_from
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Struct.FmodDSPRef} target_dsp
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_data_parameter_index
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} data_type
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_parameter_data
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} index
+ * @param {Any} buffer
+ * @param {Real} length
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_parameter_data
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} index
+ * @param {Any} buffer
+ * @param {Real} length
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_parameter_info
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} index
+ * @returns {Any}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_channel_format
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} channel_mask
+ * @param {Real} num_channels
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_channel_format
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPChannelFormat}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_output_channel_format
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPChannelFormat}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_metering_info
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPMeteringInfo}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_metering_enabled
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} input_enabled
+ * @param {Real} output_enabled
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_metering_enabled
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPMeteringEnabled}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_active
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} active
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_active
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_bypass
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} bypass
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_bypass
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_wet_dry_mix
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} prewet
+ * @param {Real} postwet
+ * @param {Real} dry
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_wet_dry_mix
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPWetDryMix}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_idle
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_reset
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_type
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_info
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPInfo}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_cpu_usage
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Struct.FmodDSPCPUUsage}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_user_data
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} user_data
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_get_user_data
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_dsp_set_callback
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Function} [callback]
+ * @returns {Real}
  * @function_end
  */
 
@@ -2065,6 +2264,73 @@
  * @member {Real} out_channels
  * @member {Real} in_channels
  * @member {Real} matrix
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPChannelFormat
+ * @member {Real} channel_mask
+ * @member {Real} num_channels
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPMeteringInfo
+ * @member {Real} num_samples_analysed
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPMeteringEnabled
+ * @member {Real} input_enabled
+ * @member {Real} output_enabled
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPParameterInfo
+ * @member {String} name
+ * @member {String} label
+ * @member {String} description
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPWetDryMix
+ * @member {Real} prewet
+ * @member {Real} postwet
+ * @member {Real} dry
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPInfo
+ * @member {String} name
+ * @member {Real} version
+ * @member {Real} channels
+ * @member {Real} configwidth
+ * @member {Real} configheight
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPCPUUsage
+ * @member {Real} exclusive
+ * @member {Real} inclusive
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodMinMaxDistance
+ * @member {Real} min_distance
+ * @member {Real} max_distance
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSyncPoint
+ * @member {Real} offset
+ * @member {String} name
  * @struct_end
  */
 

@@ -712,6 +712,114 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_dsp_get_input:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_input(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_output(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_disconnect_from:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_disconnect_from(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_data_parameter_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_data_parameter_index(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_parameter_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_parameter_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_parameter_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_parameter_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_parameter_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_parameter_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_channel_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_channel_format(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_channel_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_channel_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_output_channel_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_output_channel_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_metering_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_metering_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_metering_enabled:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_metering_enabled(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_metering_enabled:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_metering_enabled(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_active:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_active(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_active:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_active(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_bypass:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_bypass(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_bypass:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_bypass(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_wet_dry_mix:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_wet_dry_mix(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_wet_dry_mix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_wet_dry_mix(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_idle:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_idle(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_reset:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_reset(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_cpu_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_cpu_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_dsp_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_dsp_set_callback(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_dsp_connection_set_mix:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_dsp_connection_set_mix(__arg_buffer, __arg_buffer_length);

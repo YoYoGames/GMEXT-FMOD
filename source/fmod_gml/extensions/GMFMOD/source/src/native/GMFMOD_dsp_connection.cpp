@@ -64,9 +64,12 @@ FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(
 		return result;
 	}
 
-	// Note: Getting mix matrix would require array conversion
-	// For now, return unsupported as this requires special handling
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	int out_channels = 0, in_channels = 0;
+	g_fmod_last_result = connection->getMixMatrix(nullptr, &out_channels, &in_channels, (int)in_channel_hop);
+
+	result.out_channels = (double)out_channels;
+	result.in_channels = (double)in_channels;
+	result.matrix = 0.0;
 	return result;
 }
 
