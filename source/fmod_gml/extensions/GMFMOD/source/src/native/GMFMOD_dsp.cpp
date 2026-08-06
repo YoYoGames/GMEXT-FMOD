@@ -245,9 +245,9 @@ double fmod_dsp_get_parameter_data(const FmodDSPRef& dsp_ref, double index, cons
 	return 0;
 }
 
-gm::wire::DataStream fmod_dsp_get_parameter_info(const FmodDSPRef& dsp_ref, double index)
+FmodDSPParameterInfo fmod_dsp_get_parameter_info(const FmodDSPRef& dsp_ref, double index)
 {
-	gm::wire::DataStream result;
+	FmodDSPParameterInfo result{};
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref._ref, dsp);
 	if (dsp == nullptr) return result;
@@ -257,9 +257,9 @@ gm::wire::DataStream fmod_dsp_get_parameter_info(const FmodDSPRef& dsp_ref, doub
 
 	if (g_fmod_last_result == FMOD_OK && param_desc != nullptr)
 	{
-		// Build a DataStream with parameter info
-		// This would need proper struct serialization
-		g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+		result.name = param_desc->name ? param_desc->name : "";
+		result.label = param_desc->label ? param_desc->label : "";
+		result.description = param_desc->description ? param_desc->description : "";
 	}
 	return result;
 }
