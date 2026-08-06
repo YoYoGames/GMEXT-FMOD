@@ -27,81 +27,69 @@ enum FmodResult
 	FileEof = 16,
 	FileEndOfData = 17,
 	FileNotFound = 18,
-	FileUnwanted = 19,
-	FormatUnsupported = 20,
-	Generic = 21,
-	InvalidHandle = 22,
-	InvalidParam = 23,
-	InvalidPosition = 24,
-	InvalidSpeakerMode = 25,
-	InvalidThread = 26,
-	InvalidVector = 27,
-	MaxAudioEngines = 28,
-	Memory = 29,
-	MemoryCantPoint = 30,
-	Needs3D = 31,
-	NeedsSoftware = 32,
-	NetConnect = 33,
-	NetSocketError = 34,
-	NetUrl = 35,
-	NetWouldBlock = 36,
-	NotReady = 37,
-	OutputAllocated = 38,
-	OutputCreateBuffer = 39,
-	OutputDriverCall = 40,
-	OutputFormat = 41,
-	OutputInit = 42,
-	OutputNoDriver = 43,
-	Record = 44,
-	ReverseStereo = 45,
-	Threading = 46,
-	TooManyChannels = 47,
-	TruncatedData = 48,
-	Unimplemented = 49,
-	Uninitialized = 50,
-	Unsupported = 51,
-	Update = 52,
-	Version = 53,
-	EventAlreadyLoaded = 54,
-	InternalError = 55,
-	InvalidSecret = 56,
-	MissingCallback = 57,
-	SampleMissing = 58,
-	Plugin = 59,
-	PluginMissing = 60,
-	PluginResource = 61,
-	PluginVersion = 62,
-	ReverbChannelGroup = 63,
-	ReverbInstance = 64,
-	SubSounds = 65,
-	SubSoundAllocated = 66,
-	SubSoundCantMove = 67,
-	TagNotFound = 68,
-	Http = 69,
-	HttpAccess = 70,
-	HttpProxyAuth = 71,
-	HttpServerError = 72,
-	HttpTimeout = 73,
-	InvalidFloat = 74,
-	InvalidSyncPoint = 75,
-	InvalidSpeaker = 76,
+	Format = 19,
+	HeaderMismatch = 20,
+	Http = 21,
+	HttpAccess = 22,
+	HttpProxyAuth = 23,
+	HttpServerError = 24,
+	HttpTimeout = 25,
+	Initialization = 26,
+	Initialized = 27,
+	Internal = 28,
+	InvalidFloat = 29,
+	InvalidHandle = 30,
+	InvalidParam = 31,
+	InvalidPosition = 32,
+	InvalidSpeaker = 33,
+	InvalidSyncPoint = 34,
+	InvalidThread = 35,
+	InvalidVector = 36,
+	MaxAudible = 37,
+	Memory = 38,
+	MemoryCantPoint = 39,
+	Needs3D = 40,
+	NeedsHardware = 41,
+	NetConnect = 42,
+	NetSocketError = 43,
+	NetUrl = 44,
+	NetWouldBlock = 45,
+	NotReady = 46,
+	OutputAllocated = 47,
+	OutputCreateBuffer = 48,
+	OutputDriverCall = 49,
+	OutputFormat = 50,
+	OutputInit = 51,
+	OutputNoDriver = 52,
+	Plugin = 53,
+	PluginMissing = 54,
+	PluginResource = 55,
+	PluginVersion = 56,
+	Record = 57,
+	ReverbChannelGroup = 58,
+	ReverbInstance = 59,
+	SubSounds = 60,
+	SubSoundAllocated = 61,
+	SubSoundCantMove = 62,
+	TagNotFound = 63,
+	TooManyChannels = 64,
+	TruncatedData = 65,
+	Unimplemented = 66,
+	Uninitialized = 67,
+	Unsupported = 68,
+	Version = 69,
+	EventAlreadyLoaded = 70,
+	EventLiveUpdateBusy = 71,
+	EventLiveUpdateMismatch = 72,
+	EventLiveUpdateTimeout = 73,
+	EventNotFound = 74,
+	StudioUninitialized = 75,
+	StudioNotLoaded = 76,
 	InvalidString = 77,
 	AlreadyLocked = 78,
 	NotLocked = 79,
 	RecordDisconnected = 80,
 	TooManySamples = 81,
-	StudioUninitialized = 82,
-	StudioNotLoaded = 83,
-	EventNotFound = 84,
-	EventLiveUpdateBusy = 85,
-	EventLiveUpdateMismatch = 86,
-	EventLiveUpdateTimeout = 87,
-	Format = 88,
-	Initialization = 89,
-	Initialized = 90,
-	Internal = 91,
-	MaxAudible = 92,
-	NeedsHardware = 93,
 }
 
 [global, bind = typed_gml]
@@ -109,18 +97,18 @@ enum FmodInitFlags
 {
 	Normal = 0x00000000,
 	StreamFromUpdate = 0x00000001,
-	IgnoreTags = 0x00000002,
-	SyncMixDown = 0x00000004,
-	ProfileEnable = 0x00000010,
-	Vol0BecomesVirtual = 0x00000020,
-	GeometryUseCheap = 0x00000040,
-	ClipOutput = 0x00000080,
-	Unicode = 0x00000100,
-	TimerTickBaseClockSource = 0x00000200,
-	ProfileMeterAll = 0x00000400,
-	MemoryTracking = 0x00000800,
-	ThreadUnsafe = 0x00001000,
-	ProfileMeterThreadLocks = 0x00002000,
+	MixFromUpdate = 0x00000002,
+	RightHanded3D = 0x00000004,
+	ClipOutput = 0x00000008,
+	ChannelLowpass = 0x00000100,
+	ChannelDistanceFilter = 0x00000200,
+	ProfileEnable = 0x00010000,
+	Vol0BecomesVirtual = 0x00020000,
+	GeometryUseClosest = 0x00040000,
+	PreferDolbyDownmix = 0x00080000,
+	ThreadUnsafe = 0x00100000,
+	ProfileMeterAll = 0x00200000,
+	MemoryTracking = 0x00400000,
 }
 
 [global, bind = typed_gml]
@@ -132,10 +120,7 @@ enum FmodStudioInitFlags
 	SynchronousUpdate = 0x00000004,
 	DeferredCallbacks = 0x00000008,
 	LoadFromUpdate = 0x00000010,
-	DebugOverlay = 0x00000020,
-	DisableSounds = 0x00000040,
-	DisableAllSamples = 0x00000080,
-	DisableCommandReplay = 0x00000100,
+	MemoryTracking = 0x00000020,
 }
 
 [global, bind = typed_gml]
@@ -143,10 +128,10 @@ enum FmodMode
 {
 	Default = 0x00000000,
 	LoopOff = 0x00000001,
-	LoopOn = 0x00000004,
-	LoopBidi = 0x00000008,
-	_2D = 0x00000010,
-	_3D = 0x00000020,
+	LoopOn = 0x00000002,
+	LoopBidi = 0x00000004,
+	_2D = 0x00000008,
+	_3D = 0x00000010,
 	CreateStream = 0x00000080,
 	CreateSample = 0x00000100,
 	CreateCompressedSample = 0x00000200,
@@ -164,6 +149,7 @@ enum FmodMode
 	_3DInverseRollOff = 0x00100000,
 	_3DLinearRollOff = 0x00200000,
 	_3DLinearSquareRollOff = 0x00400000,
+	_3DInverseTaperedRollOff = 0x00800000,
 	_3DCustomRollOff = 0x04000000,
 	_3DIgnoreGeometry = 0x40000000,
 	IgnoreTags = 0x02000000,
@@ -187,64 +173,265 @@ enum FmodTimeUnit
 [global, bind = typed_gml]
 enum FmodDspType
 {
-	Unknown = -1,
-	Mixer = 0,
-	Oscillator = 1,
-	LowPass = 2,
-	ItLowPass = 3,
-	HighPass = 4,
-	Echo = 5,
-	Flange = 6,
-	Distortion = 7,
-	Normalize = 8,
-	Limiter = 9,
-	ParamEq = 10,
-	PitchShift = 11,
-	Chorus = 12,
-	VstPlugin = 13,
-	WinampPlugin = 14,
-	Convolution = 15,
-	ChannelMix = 16,
-	Transceiver = 17,
-	ObjectPan = 18,
-	MultibandEq = 19,
-	CompDynEq = 20,
+	Unknown = 0,
+	Mixer = 1,
+	Oscillator = 2,
+	LowPass = 3,
+	ItLowPass = 4,
+	HighPass = 5,
+	Echo = 6,
+	Fader = 7,
+	Flange = 8,
+	Distortion = 9,
+	Normalize = 10,
+	Limiter = 11,
+	ParamEq = 12,
+	PitchShift = 13,
+	Chorus = 14,
+	VstPlugin = 15,
+	WinampPlugin = 16,
+	ItEcho = 17,
+	Compressor = 18,
+	SfxReverb = 19,
+	LowPassSimple = 20,
+	Delay = 21,
+	Tremolo = 22,
+	LadspaPlugin = 23,
+	Send = 24,
+	Return = 25,
+	HighPassSimple = 26,
+	Pan = 27,
+	ThreeEq = 28,
+	FFT = 29,
+	LoudnessMeter = 30,
+	EnvelopeFollower = 31,
+	ConvolutionReverb = 32,
+	ChannelMix = 33,
+	Transceiver = 34,
+	ObjectPan = 35,
+	MultibandEq = 36,
 }
 
 [global, bind = typed_gml]
 enum FmodDspConnectionType
 {
-	Default = 0,
-	Dry = 1,
-	Wet = 2,
+	Standard = 0,
+	Sidechain = 1,
+	Send = 2,
+	SendSidechain = 3,
+}
+
+// ============================================================
+// DSP Parameter Enums
+// ============================================================
+
+[global, bind = typed_gml]
+enum FmodDspLowPass
+{
+	Cutoff = 0,
+	Resonance = 1,
 }
 
 [global, bind = typed_gml]
-enum FmodDebugFlags
+enum FmodDspHighPass
 {
-	LevelNone = 0x00000000,
-	LevelError = 0x00000001,
-	LevelWarning = 0x00000002,
-	LevelLog = 0x00000004,
-	TypeMemory = 0x00000100,
-	TypeFile = 0x00000200,
-	TypeCodec = 0x00000400,
-	TypeTrace = 0x00000800,
-	DisplayTimeStamps = 0x00010000,
-	DisplayLineNumbers = 0x00020000,
-	DisplayCompress = 0x00040000,
-	DisplayThreadId = 0x00080000,
-	DisplayModule = 0x00100000,
-	DisplaySourceCodeLine = 0x00200000,
+	Cutoff = 0,
+	Resonance = 1,
 }
 
 [global, bind = typed_gml]
-enum FmodDebugMode
+enum FmodDspItLowPass
 {
-	Tty = 0,
-	File = 1,
-	Callback = 2,
-	FilePlusTty = 3,
+	Cutoff = 0,
+	Resonance = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspEcho
+{
+	Delay = 0,
+	Feedback = 1,
+	DryLevel = 2,
+	WetLevel = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspFlange
+{
+	Mix = 0,
+	Depth = 1,
+	Rate = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspDistortion
+{
+	Level = 0,
+}
+
+[global, bind = typed_gml]
+enum FmodDspNormalize
+{
+	FadeTime = 0,
+	Threshold = 1,
+	MaxAmplitude = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspLimiter
+{
+	ReleaseTime = 0,
+	Ceiling = 1,
+	MaximizerGain = 2,
+	Mode = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspParamEq
+{
+	Center = 0,
+	Bandwidth = 1,
+	Gain = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPitchShift
+{
+	Pitch = 0,
+	FftSize = 1,
+	Overlap = 2,
+	MaxChannels = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspChorus
+{
+	Mix = 0,
+	Rate = 1,
+	Depth = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspMultibandEq
+{
+	AFilter = 0,
+	AFrequency = 1,
+	AQ = 2,
+	AGain = 3,
+	BFilter = 4,
+	BFrequency = 5,
+	BQ = 6,
+	BGain = 7,
+	CFilter = 8,
+	CFrequency = 9,
+	CQ = 10,
+	CGain = 11,
+	DFilter = 12,
+	DFrequency = 13,
+	DQ = 14,
+	DGain = 15,
+	EFilter = 16,
+	EFrequency = 17,
+	EQ = 18,
+	EGain = 19,
+}
+
+[global, bind = typed_gml]
+enum FmodDspMultibandEqFilterType
+{
+	Disabled = 0,
+	Lowpass12db = 1,
+	Lowpass24db = 2,
+	Lowpass48db = 3,
+	Highpass12db = 4,
+	Highpass24db = 5,
+	Highpass48db = 6,
+	Lowshelf = 7,
+	Highshelf = 8,
+	Peaking = 9,
+	Bandpass = 10,
+	Notch = 11,
+	Allpass = 12,
+}
+
+[global, bind = typed_gml]
+enum FmodDspChannelMix
+{
+	OutputGain = 0,
+	OutputGainCh0 = 1,
+	OutputGainCh1 = 2,
+	OutputGainCh2 = 3,
+	OutputGainCh3 = 4,
+	OutputGainCh4 = 5,
+	OutputGainCh5 = 6,
+	OutputGainCh6 = 7,
+	OutputGainCh7 = 8,
+}
+
+[global, bind = typed_gml]
+enum FmodDspTransceiver
+{
+	TransmitFreq = 0,
+	ReceiveFreq = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspCompDynEq
+{
+	Threshold = 0,
+	Ratio = 1,
+	Attack = 2,
+	Release = 3,
+	GainMakeup = 4,
+	UseSidechain = 5,
+	Linked = 6,
+}
+
+[global, bind = typed_gml]
+enum FmodDspFft
+{
+	WindowSize = 0,
+	WindowType = 1,
+	SpectrumData = 2,
+	DominantFreq = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspFftWindowType
+{
+	Rect = 0,
+	Triangle = 1,
+	Hamming = 2,
+	Hanning = 3,
+	Blackman = 4,
+	BlackmanHarris = 5,
+}
+
+[global, bind = typed_gml]
+enum FmodDspOscillator
+{
+	Type = 0,
+	Rate = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspOscillatorType
+{
+	Sine = 0,
+	Square = 1,
+	Sawup = 2,
+	Sawdown = 3,
+	Triangle = 4,
+	Noise = 5,
+}
+
+[global, bind = typed_gml]
+enum FmodDspConvolution
+{
+	Ir = 0,
+	Wet = 1,
+	Dry = 2,
+	Linked = 3,
 }
 
 [global, bind = typed_gml]
@@ -258,8 +445,31 @@ enum FmodSpeakerMode
 	Surround = 5,
 	_5Point1 = 6,
 	_7Point1 = 7,
-	_7Point1PointFront = 8,
-	_5Point1Rears = 9,
+	_7Point1Point4 = 8,
+}
+
+[global, bind = typed_gml]
+enum FmodDebugFlags
+{
+	LevelNone = 0x00000000,
+	LevelError = 0x00000001,
+	LevelWarning = 0x00000002,
+	LevelLog = 0x00000004,
+	TypeMemory = 0x00000100,
+	TypeFile = 0x00000200,
+	TypeCodec = 0x00000400,
+	TypeTrace = 0x00000800,
+	DisplayTimestamps = 0x00010000,
+	DisplayLineNumbers = 0x00020000,
+	DisplayThread = 0x00040000,
+}
+
+[global, bind = typed_gml]
+enum FmodDebugMode
+{
+	Tty = 0,
+	File = 1,
+	Callback = 2,
 }
 
 [global, bind = typed_gml]
@@ -325,7 +535,9 @@ enum FmodOutputType
 	NnAudio = 16,
 	WinSonic = 17,
 	AAudio = 18,
-	NativeAudio = 19,
+	AudioWorklet = 19,
+	Phase = 20,
+	OhAudio = 21,
 }
 
 [global, bind = typed_gml]
@@ -345,6 +557,7 @@ enum FmodStudioPlaybackState
 	Sustaining = 1,
 	Stopped = 2,
 	Starting = 3,
+	Stopping = 4,
 }
 
 [global, bind = typed_gml]
@@ -370,17 +583,119 @@ enum FmodStudioParameterFlags
 {
 	ReadOnly = 0x00000001,
 	Automatic = 0x00000002,
-	Interactive = 0x00000004,
-	Labeled = 0x00000008,
+	Global = 0x00000004,
+	Discrete = 0x00000008,
+	Labeled = 0x00000010,
 }
 
 [global, bind = typed_gml]
 enum FmodStudioUserPropertyType
 {
-	String = 0,
-	Integer = 1,
+	Integer = 0,
+	Boolean = 1,
 	Float = 2,
-	Boolean = 3,
+	String = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodChannelControlDspIndex
+{
+	Head = -1,
+	Fader = -2,
+	Tail = -3,
+}
+
+[global, bind = typed_gml]
+enum FmodOpenState
+{
+	Ready = 0,
+	Loading = 1,
+	Error = 2,
+	Connecting = 3,
+	Buffering = 4,
+	Seeking = 5,
+	Playing = 6,
+	SetPosition = 7,
+	Max = 8,
+}
+
+[global, bind = typed_gml]
+enum FmodTagType
+{
+	Unknown = 0,
+	Id3v1 = 1,
+	Id3v2 = 2,
+	VorbisComment = 3,
+	ShoutCast = 4,
+	IceCast = 5,
+	Asf = 6,
+	Midi = 7,
+	Playlist = 8,
+	Fmod = 9,
+	User = 10,
+}
+
+[global, bind = typed_gml]
+enum FmodTagDataType
+{
+	Binary = 0,
+	Int = 1,
+	Float = 2,
+	String = 3,
+	StringUtf16 = 4,
+	StringUtf16Be = 5,
+	StringUtf8 = 6,
+}
+
+[global, bind = typed_gml]
+enum FmodStudioLoadBankFlags
+{
+	Normal = 0x00000000,
+	NonBlocking = 0x00000001,
+	DecompressSamples = 0x00000002,
+	Unencrypted = 0x00000004,
+}
+
+[global, bind = typed_gml]
+enum FmodStudioCommandCaptureFlags
+{
+	Normal = 0x00000000,
+	FileFlush = 0x00000001,
+	SkipInitialState = 0x00000002,
+}
+
+[global, bind = typed_gml]
+enum FmodStudioCommandReplayFlags
+{
+	Normal = 0x00000000,
+	SkipCleanup = 0x00000001,
+	FastForward = 0x00000002,
+	SkipBankLoad = 0x00000004,
+}
+
+[global, bind = typed_gml]
+enum FmodStudioEventCallbackType
+{
+	Created = 0x00000001,
+	Destroyed = 0x00000002,
+	Starting = 0x00000004,
+	Started = 0x00000008,
+	Restarted = 0x00000010,
+	Stopped = 0x00000020,
+	StartFailed = 0x00000040,
+	CreateProgrammerSound = 0x00000080,
+	DestroyProgrammerSound = 0x00000100,
+	PluginCreated = 0x00000200,
+	PluginDestroyed = 0x00000400,
+	TimelineMarker = 0x00000800,
+	TimelineBeat = 0x00001000,
+	SoundPlayed = 0x00002000,
+	SoundStopped = 0x00004000,
+	RealToVirtual = 0x00008000,
+	VirtualToReal = 0x00010000,
+	StartEventCommand = 0x00020000,
+	NestedTimelineBeat = 0x00040000,
+	All = 0xFFFFFFFF,
 }
 
 // ============================================================
@@ -445,6 +760,13 @@ class `[[FmodDSPRef]]` prototype Object
 
 [global]
 class `[[FmodGeometryRef]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property _ref: gmval { get; set; }
+}
+
+[global]
+class `[[FmodChannelControlRef]]` prototype Object
 {
     [field, type_hint=`uint64`]
     property _ref: gmval { get; set; }
@@ -564,19 +886,42 @@ class `[[FmodSystem3DSettings]]` prototype Object
 }
 
 [global]
-class `[[FmodListener3DAttributes]]` prototype Object
+class `[[FmodVec3]]` prototype Object
 {
     [field, type_hint=`real`]
+    property x: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property y: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property z: gmval { get; set; }
+}
+
+[global]
+class `[[FmodListener3DAttributes]]` prototype Object
+{
+    [field, type_hint=`FmodVec3`]
     property position: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodVec3`]
     property velocity: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodVec3`]
     property forward: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodVec3`]
     property up: gmval { get; set; }
+}
+
+[global]
+class `[[FmodChannelControl3DAttributes]]` prototype Object
+{
+    [field, type_hint=`FmodVec3`]
+    property position: gmval { get; set; }
+
+    [field, type_hint=`FmodVec3`]
+    property velocity: gmval { get; set; }
 }
 
 [global]
@@ -717,6 +1062,131 @@ class `[[FmodSyncPoint]]` prototype Object
     property name: gmval { get; set; }
 }
 
+[global]
+class `[[FmodDSPBufferSize]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property buff_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property num_buffers: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoftwareFormat]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property sample_rate: gmval { get; set; }
+
+    [field, type_hint=`FmodSpeakerMode`]
+    property speaker_mode: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property num_raw_speakers: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDriverInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`FmodSpeakerMode`]
+    property speaker_mode: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property sample_rate: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property speaker_mode_channels: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDelay]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property dspclock_start: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property dspclock_end: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property stop_channels: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDSPClock]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property dspclock: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property parent_clock: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoundOpenState]]` prototype Object
+{
+    [field, type_hint=`FmodOpenState`]
+    property open_state: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property percent_buffered: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property starving: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property disk_busy: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoundTag]]` prototype Object
+{
+    [field, type_hint=`FmodTagType`]
+    property type: gmval { get; set; }
+
+    [field, type_hint=`FmodTagDataType`]
+    property datatype: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field]
+    property value: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property updated: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioParameterDescription]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property id_data1: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property id_data2: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property minimum: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property maximum: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property defaultvalue: gmval { get; set; }
+
+    [field, type_hint=`FmodStudioUserPropertyType`]
+    property type: gmval { get; set; }
+
+    [field, type_hint=`FmodStudioParameterFlags`]
+    property flags: gmval { get; set; }
+}
+
 group
 {
 
@@ -738,6 +1208,11 @@ function fmod_path_bundle(filename: string): string;
 
 [global, bind = typed_gml]
 function fmod_path_user(filename: string): string;
+
+[global, bind = typed_gml]
+function fmod_error_string(
+    [type_hint=`FmodResult`] result: gmval
+): string;
 
 }
 
@@ -952,10 +1427,10 @@ function fmod_system_get_3d_settings(): gmval;
 [global, bind = typed_gml]
 function fmod_system_set_3d_listener_attributes(
     listener_index: real,
-    position: gmval,
-    velocity: gmval,
-    forward: gmval,
-    up: gmval
+    [type_hint=`FmodVec3`] position: gmval,
+    [type_hint=`FmodVec3`] velocity: gmval,
+    [type_hint=`FmodVec3`] forward: gmval,
+    [type_hint=`FmodVec3`] up: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodListener3DAttributes`]
@@ -995,6 +1470,65 @@ function fmod_system_record_stop(
 [global, bind = typed_gml]
 function fmod_system_is_recording(
     device_index: real
+): real;
+
+// ============================================================
+// System - DSP Creation
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodDSPRef`]
+function fmod_system_create_dsp(): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPRef`]
+function fmod_system_create_dsp_by_type(
+    [type_hint=`FmodDspType`] dsp_type: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPBufferSize`]
+function fmod_system_get_dsp_buffer_size(): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_set_dsp_buffer_size(
+    buff_size: real,
+    num_buffers: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSoftwareFormat`]
+function fmod_system_get_software_format(): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_set_software_format(
+    sample_rate: real,
+    [type_hint=`FmodSpeakerMode`] speaker_mode: gmval,
+    num_raw_speakers: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_stream_buffer_size(
+    file_buffer_size: real,
+    file_buffer_size_type: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDriverInfo`]
+function fmod_system_get_driver_info(
+    driver_id: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodChannelGroupRef`]
+function fmod_system_create_channel_group(
+    name: string
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodChannelRef`]
+function fmod_system_play_dsp(
+    [type_hint=`FmodDSPRef`] dsp_ref: gmval,
+    [type_hint=`FmodChannelGroupRef`] channel_group_ref: gmval,
+    paused: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_select(
+    [type_hint=`FmodSystemRef`] system_ref: gmval
 ): real;
 
 }
@@ -1232,6 +1766,36 @@ function fmod_sound_get_system_object(
     [type_hint=`FmodSoundRef`] sound_ref: gmval
 ): gmval;
 
+[global, bind = typed_gml, type_hint=`FmodSoundOpenState`]
+function fmod_sound_get_open_state(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodSoundTag`]
+function fmod_sound_get_tag(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    name: string,
+    index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_get_num_sub_sounds(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSoundRef`]
+function fmod_sound_get_sub_sound(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_read_data(
+    [type_hint=`FmodSoundRef`] sound_ref: gmval,
+    [type_hint=buffer] data: gmval,
+    length: real
+): real;
+
 }
 
 group
@@ -1452,45 +2016,45 @@ group
 
 [global, bind = typed_gml]
 function fmod_channel_control_is_playing(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_stop(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_paused(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     paused: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_paused(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mode(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     mode: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_mode(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_pitch(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     pitch: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_pitch(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 // ============================================================
@@ -1499,40 +2063,40 @@ function fmod_channel_control_get_pitch(
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_audibility(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_volume(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     volume: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_volume(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_volume_ramp(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     ramp: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_volume_ramp(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mute(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     mute: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_mute(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 // ============================================================
@@ -1541,36 +2105,36 @@ function fmod_channel_control_get_mute(
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_doppler_level(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     level: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_3d_doppler_level(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_level(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     level: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_3d_level(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_min_max_distance(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     min_dist: real,
     max_dist: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_cone_settings(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     inside_cone_angle: real,
     outside_cone_angle: real,
     outside_volume: real
@@ -1578,25 +2142,37 @@ function fmod_channel_control_set_3d_cone_settings(
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_occlusion(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     direct_occlusion: real,
     reverb_occlusion: real
 ): real;
 
 [global, bind = typed_gml]
+function fmod_channel_control_set_3d_attributes(
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
+    [type_hint=`FmodVec3`] position: gmval,
+    [type_hint=`FmodVec3`] velocity: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodChannelControl3DAttributes`]
+function fmod_channel_control_get_3d_attributes(
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
 function fmod_channel_control_set_3d_spread(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     angle: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_3d_spread(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_distance_filter(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     custom: real,
     custom_level: real,
     center_freq: real
@@ -1608,13 +2184,13 @@ function fmod_channel_control_set_3d_distance_filter(
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_pan(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     pan: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mix_levels_output(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     front_left: real,
     front_right: real,
     center: real,
@@ -1631,26 +2207,26 @@ function fmod_channel_control_set_mix_levels_output(
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_reverb_properties(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     reverb_instance: real,
     wet: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_reverb_properties(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     reverb_instance: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_low_pass_gain(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     gain: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_low_pass_gain(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 // ============================================================
@@ -1659,38 +2235,38 @@ function fmod_channel_control_get_low_pass_gain(
 
 [global, bind = typed_gml]
 function fmod_channel_control_add_dsp(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     dsp_chain_offset: real,
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_remove_dsp(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_num_dsps(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodDSPRef`]
 function fmod_channel_control_get_dsp(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     index: real
 ): gmval;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_dsp_index(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     [type_hint=`FmodDSPRef`] dsp_ref: gmval,
     chain_index: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_dsp_index(
-    channel_control_ref: real,
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval,
     [type_hint=`FmodDSPRef`] dsp_ref: gmval
 ): real;
 
@@ -1700,8 +2276,32 @@ function fmod_channel_control_get_dsp_index(
 
 [global, bind = typed_gml, type_hint=`FmodSystemRef`]
 function fmod_channel_control_get_system_object(
-    channel_control_ref: real
+    [type_hint=`FmodChannelControlRef`] channel_control_ref: gmval
 ): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDelay`]
+function fmod_channel_control_get_delay(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_delay(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    dspclock_start: real,
+    dspclock_end: real,
+    stop_channels: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDSPClock`]
+function fmod_channel_control_get_dsp_clock(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_callback(
+    [type_hint=`FmodChannelRef`] channel_ref: gmval,
+    [type_hint=`func?`] callback: gmval
+): real;
 
 }
 
@@ -2213,6 +2813,30 @@ function fmod_studio_system_get_parameter_by_name(name: string): real;
 [global, bind = typed_gml, type_hint=`FmodSystemRef`]
 function fmod_studio_system_get_core_system(): gmval;
 
+[global, bind = typed_gml]
+function fmod_studio_system_set_num_listeners(count: real): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_lookup_id(path: string): string;
+
+[global, bind = typed_gml, type_hint=`FmodStudioEventDescriptionRef`]
+function fmod_studio_system_get_event_by_id(id: string): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_start_command_capture(
+    filename: string,
+    [type_hint=`FmodStudioCommandCaptureFlags`] flags: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_stop_command_capture(): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioCommandReplayRef`]
+function fmod_studio_system_load_command_replay(
+    filename: string,
+    [type_hint=`FmodStudioCommandReplayFlags`] flags: gmval
+): gmval;
+
 }
 
 group
@@ -2297,6 +2921,15 @@ function fmod_studio_event_description_get_parameter_count([type_hint=`FmodStudi
 [global, bind = typed_gml]
 function fmod_studio_event_description_release_all_instances([type_hint=`FmodStudioEventDescriptionRef`] event_desc_ref: gmval): real;
 
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_event_description_get_parameter_description_by_name(
+	[type_hint=`FmodStudioEventDescriptionRef`] event_desc_ref: gmval,
+	name: string
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_load_sample_data([type_hint=`FmodStudioEventDescriptionRef`] event_desc_ref: gmval): real;
+
 }
 
 group
@@ -2355,6 +2988,28 @@ function fmod_studio_event_instance_get_parameter_by_name([type_hint=`FmodStudio
 
 [global, bind = typed_gml]
 function fmod_studio_event_instance_get_parameter_count([type_hint=`FmodStudioEventInstanceRef`] instance_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_get_parameter_by_id(
+	[type_hint=`FmodStudioEventInstanceRef`] instance_ref: gmval,
+	id_data1: real,
+	id_data2: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_parameter_by_id(
+	[type_hint=`FmodStudioEventInstanceRef`] instance_ref: gmval,
+	id_data1: real,
+	id_data2: real,
+	value: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_callback(
+	[type_hint=`FmodStudioEventInstanceRef`] instance_ref: gmval,
+	[type_hint=`func?`] callback: gmval,
+	[type_hint=`FmodStudioEventCallbackType`] mask: gmval
+): real;
 
 // ============================================================
 // Studio EventInstance - 3D
@@ -2438,6 +3093,16 @@ function fmod_studio_command_replay_get_current_command([type_hint=`FmodStudioCo
 
 [global, bind = typed_gml]
 function fmod_studio_command_replay_release([type_hint=`FmodStudioCommandReplayRef`] replay_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_command_count(
+	[type_hint=`FmodStudioCommandReplayRef`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_length(
+	[type_hint=`FmodStudioCommandReplayRef`] replay_ref: gmval
+): real;
 
 // ============================================================
 // Studio CommandReplay - Callbacks
