@@ -7,7 +7,7 @@ draw_set_halign(fa_left)
 draw_set_valign(fa_top)
 draw_text(10, 100, fmod_system_get_channels_playing())
 
-if(channel_index == -1) exit;
+if(channel_index == 0) exit;
 
 var pos = fmod_channel_get_position(channel_index, FmodTimeUnit.Ms);
 

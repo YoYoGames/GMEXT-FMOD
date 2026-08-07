@@ -19,6 +19,20 @@ else
 {
     /* This may fail if the stream isn't ready yet, so check the error code. */
     channel_index = fmod_system_play_sound(sound_index, fmod_system_get_master_channel_group(), false);
+
+	/*
+	    Keep this channel out of the virtual voice system.
+
+	    A paused (or muted) channel has zero audibility, so FMOD happily makes it
+	    virtual. Coming back from virtual, FMOD seeks the stream to where playback
+	    should have reached - and a live HTTP stream cannot seek, so the sound flips
+	    to FmodOpenState.Error with FmodResult.ErrFileCouldNotSeek the instant you
+	    un-pause. Priority 0 (the highest) keeps the voice real for its whole life.
+	*/
+	if (channel_index != 0)
+	{
+		fmod_channel_set_priority(channel_index, 0);
+	}
 }
 
 /*
@@ -52,7 +66,7 @@ while (fmod_last_result() == FmodResult.Ok)
 	else if (_tag.type == FmodTagType.Fmod)
 	{
 	    /* When a song changes, the sample rate may also change, so compensate here. */
-	    if ((_tag.name == "Sample Rate Change") && channel_index != -1)
+	    if ((_tag.name == "Sample Rate Change") && channel_index != 0)
 	    {
 	        // Float tags arrive as their decimal text.
 	        var _frequency = real(_tag.data);

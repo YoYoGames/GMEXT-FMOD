@@ -9,4 +9,4 @@ fmod_sound_set_mode(sound_index,FmodMode.LoopOff)
 
 sound_lenght = fmod_sound_get_length(sound_index,FmodTimeUnit.Ms)
 
-channel_index = -1
+channel_index = 0
