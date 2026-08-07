@@ -26,24 +26,27 @@ else
     to a new song. This loop only runs IF there is an update to the tags.
 */
 
-var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+/*
+    fmod_sound_get_tag(sound_ref, name, index) - an empty name means "any tag" and an
+    index of -1 asks for the next tag that was updated, so the loop drains the queue.
+    The returned FmodSoundTag already flattens the payload into the string `data`, so
+    no scratch buffer is needed any more.
+*/
+var _tag = fmod_sound_get_tag(sound_index, "", -1);
 while (fmod_last_result() == FmodResult.Ok)
 {
-	// Move cursor to the begining of the buffer
-	buffer_seek(tag_data_buff, buffer_seek_start, 0);
-	
-	if (_tag.data_type == FmodTagDataType.String)
+	if (_tag.datatype == FmodTagDataType.String)
 	{
-		var _value = buffer_read(tag_data_buff, buffer_string);
+		var _value = _tag.data;
 		tag_strings[tag_index] = $"{_tag.name}: {_value}";
 		tag_index = (tag_index + 1) % tag_count;
-			
+
 	    if (_tag.type == FmodTagType.Playlist && _tag.name == "FILE")
 	    {
 	        var _url = _value;
 			fmod_sound_release(sound_index);
-		
-	        sound_index = fmod_system_create_sound(_url, FmodMode.CreateStream | FmodMode.NonBlocking /*, extra*/);
+
+	        sound_index = fmod_system_create_sound(_url, FmodMode.CreateStream | FmodMode.NonBlocking);
 	    }
 	}
 	else if (_tag.type == FmodTagType.Fmod)
@@ -51,11 +54,12 @@ while (fmod_last_result() == FmodResult.Ok)
 	    /* When a song changes, the sample rate may also change, so compensate here. */
 	    if ((_tag.name == "Sample Rate Change") && channel_index != -1)
 	    {
-	        var _frequency = buffer_read(tag_data_buff, buffer_f32);
+	        // Float tags arrive as their decimal text.
+	        var _frequency = real(_tag.data);
 	        fmod_channel_set_frequency(channel_index, _frequency);
 	    }
 	}
-	_tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
+	_tag = fmod_sound_get_tag(sound_index, "", -1);
 }
 
 

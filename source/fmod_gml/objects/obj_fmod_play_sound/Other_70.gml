@@ -1,4 +1,4 @@
 
-// TODO: FMOD callbacks are not dispatched through the Async - Social event in the
-// ExtGen port yet. Re-enable once the callback bridge is wired back up.
-//show_debug_message(json_encode(async_load))
+// FMOD callbacks are no longer routed through the Async - Social event. They are
+// plain GML methods now - see the fmod_channel_control_set_callback call in the
+// Left Released event.

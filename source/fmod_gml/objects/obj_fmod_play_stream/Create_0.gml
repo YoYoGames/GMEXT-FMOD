@@ -21,7 +21,11 @@ var play_this_sound = fmod_sound_get_sub_sound(sound_index, 0)
 //Play the sound.
 channel_index = fmod_system_play_sound(play_this_sound, fmod_system_get_master_channel_group(), false)
 
-// TODO: channel callbacks are not implemented in the ExtGen port yet.
-// Re-enable once fmod_channel_control_set_callback is exposed again.
-//fmod_channel_control_set_callback(channel_index);
+// Channel callbacks fire from fmod_system_update(). The callback receives the
+// channel that raised it and the raw FMOD_CHANNELCONTROL_CALLBACK_TYPE value
+// (0 = End, 1 = Virtual Voice, 2 = Sync Point, 3 = Occlusion).
+fmod_channel_control_set_callback(channel_index, function(_channel, _callback_type)
+{
+	show_debug_message($"[fmod] stream channel callback, type {_callback_type}");
+});
 

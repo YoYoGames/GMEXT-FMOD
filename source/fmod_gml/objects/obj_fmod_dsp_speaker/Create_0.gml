@@ -41,8 +41,8 @@ master_group_channel = fmod_system_get_master_channel_group();
 
 dsp_head = fmod_channel_control_get_dsp(master_group_channel, FmodChannelControlDspIndex.Head)
 
-dsp_channel_mixer_connection_info = fmod_dsp_get_input(dsp_head, 0); // { dsp_ref: <dsp_ref>, dsp_connection_ref: <dsp_connection_ref> }
-dsp_channel_mixer = dsp_channel_mixer_connection_info.dsp_ref
+// fmod_dsp_get_input returns the input DSP itself (a FmodDSPRef).
+dsp_channel_mixer = fmod_dsp_get_input(dsp_head, 0);
 
 /*
     Now disconnect channel dsp_head from wavetable to look like this.
@@ -92,26 +92,32 @@ fmod_dsp_add_input(dsp_highpass, dsp_channel_mixer, FmodDspConnectionType.Standa
               [DSPHIGHPASS]
 */    
 
-var _lowpass_matrix = [
-	1, 0, // <- output to front left.  Take front left input signal at 1.0.
-	0, 0  // <- output to front right.  Silence
-];
-
-var _highpass_matrix = [
-	0, 0, // <- output to front left.  Silence
-	0, 1  // <- output to front right.  Take front right input signal at 1.0
-];
-
-/* 
-    Upgrade the signal coming from the channel mixer from mono to stereo.  Otherwise the lowpass and highpass will get mono signals 
+/*
+    Upgrade the signal coming from the channel mixer from mono to stereo.  Otherwise the lowpass and highpass will get mono signals.
+    fmod_dsp_set_channel_format takes (dsp_ref, channel_mask, num_channels) - the
+    source speaker mode is always FMOD_SPEAKERMODE_DEFAULT, so ask for 2 channels.
 */
-fmod_dsp_set_channel_format(dsp_channel_mixer, 0, 0, FmodSpeakerMode.Stereo);
+fmod_dsp_set_channel_format(dsp_channel_mixer, 0, 2);
 
 /*
     Now set the above matrices.
+
+    TODO: fmod_dsp_connection_set_mix_matrix takes the matrix as a single real and
+    the native side returns FMOD_ERR_UNSUPPORTED, so the per-connection speaker
+    matrices cannot be applied yet. Both effects therefore still play to both
+    speakers. Re-enable once the extension accepts a GML array/buffer here.
+
+        var _lowpass_matrix = [
+            1, 0, // <- output to front left.  Take front left input signal at 1.0.
+            0, 0  // <- output to front right.  Silence
+        ];
+        var _highpass_matrix = [
+            0, 0, // <- output to front left.  Silence
+            0, 1  // <- output to front right.  Take front right input signal at 1.0
+        ];
+        fmod_dsp_connection_set_mix_matrix(lowpass_connection, _lowpass_matrix, 2, 2, 0);
+        fmod_dsp_connection_set_mix_matrix(highpass_connection, _highpass_matrix, 2, 2, 0);
 */
-fmod_dsp_connection_set_mix_matrix(lowpass_connection, _lowpass_matrix, 2, 2);
-fmod_dsp_connection_set_mix_matrix(highpass_connection, _highpass_matrix, 2, 2);
 
 fmod_dsp_set_bypass(dsp_lowpass, true);
 fmod_dsp_set_bypass(dsp_highpass, true);

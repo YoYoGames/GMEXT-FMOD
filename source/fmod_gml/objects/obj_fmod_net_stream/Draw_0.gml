@@ -8,7 +8,6 @@ switch(state.open_state)
 	case FmodOpenState.Buffering: open_state_str = "BUFFERING" break;
 	case FmodOpenState.Connecting: open_state_str = "CONNECTING" break;
 	case FmodOpenState.Error: open_state_str = "ERROR" break;
-	//case FmodOpenState.FORCEINT: open_state_str = "FORCEINT" break;
 	case FmodOpenState.Loading: open_state_str = "LOADING" break;
 	case FmodOpenState.Max: open_state_str = "MAX" break;
 	case FmodOpenState.Playing: open_state_str = "PLAYING" break;

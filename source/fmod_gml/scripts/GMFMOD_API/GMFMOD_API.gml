@@ -6329,7 +6329,7 @@ function fmod_channel_control_set_paused(_channel_control_ref, _paused)
     var __args_buffer = __ext_core_get_args_buffer();
 
     // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
+    //if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
     __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
 
     // param: _paused, type: Float64
@@ -6805,7 +6805,7 @@ function fmod_channel_control_set_3d_attributes(_channel_control_ref, _position,
     var __args_buffer = __ext_core_get_args_buffer();
 
     // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
+    //if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
     __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
 
     // param: _position, type: struct FmodVec3

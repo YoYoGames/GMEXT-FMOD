@@ -9,13 +9,12 @@ fmod_system_set_stream_buffer_size(4*1024, FmodTimeUnit.RawBytes);
 // Re-enable once fmod_system_create_sound accepts an ex_info argument again.
 //extra = new FmodSystemCreateSoundExInfo();
 //extra.file_buffer_size = 4*1024;
-sound_index = fmod_system_create_sound("http://live-radio01.mediahubaustralia.com/2TJW/mp3/", FmodMode.CreateStream | FmodMode.NonBlocking /*, extra*/);
+sound_index = fmod_system_create_sound("http://live-radio01.mediahubaustralia.com/2TJW/mp3/", FmodMode.CreateStream | FmodMode.NonBlocking);
 channel_index = 0;
 
 tag_count = 4;
 tag_index = 0;
 tag_strings = array_create(tag_count, "");
-tag_data_buff = buffer_create(255, buffer_fixed, 1);
 
 state = undefined
 paused = false;

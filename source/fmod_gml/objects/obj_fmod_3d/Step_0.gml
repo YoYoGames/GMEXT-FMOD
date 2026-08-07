@@ -4,8 +4,8 @@ var _x = obj_console_pointer.x;
 var _y = obj_console_pointer.y;
 
 var pos = new FmodVec3()
-pos.x = x
-pos.y = y
+pos.x = mouse_x
+pos.y = mouse_y
 pos.z = 0
 
 var vel = new FmodVec3()

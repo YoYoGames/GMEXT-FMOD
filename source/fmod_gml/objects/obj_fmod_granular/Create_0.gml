@@ -50,7 +50,7 @@ function queue_next_sound(outputrate, playingchannel, newindex, slot)
             Get the start time of the playing channel.
         */
 		var struct = fmod_channel_control_get_delay(playingchannel)
-		startdelay = struct.dsp_clock_start
+		startdelay = struct.dspclock_start
 		
         /*
             Grab the length of the playing sound, and its frequency, so we can caluate where to place the new sound on the time line.

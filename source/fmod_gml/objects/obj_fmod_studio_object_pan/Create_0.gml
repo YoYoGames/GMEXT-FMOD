@@ -1,6 +1,6 @@
 
-freq_struct = {};
-spatializer_struct = {};
+freq_value = 0;
+spatializer_value = 0;
 
 t = 0;
 isOnGround = false
@@ -8,12 +8,12 @@ useListenerAttenuationPosition = false
 
 //This 2 functions break Android and Ubuntu... maybe more
 //fmod_system_set_software_format(0,FmodSpeakerMode._5Point1,0)
-//fmod_system_set_output(FMOD_OUTPUTTYPE.AUDIO3D)
+//fmod_system_set_output(FmodOutputType.Audio3D)
 
 // Attempt to initialize with a compatible object panning output
 if(fmod_last_result() != FmodResult.Ok)
 {
-	fmod_system_set_output(FMOD_OUTPUTTYPE.WINSONIC)
+	fmod_system_set_output(FmodOutputType.WinSonic)
 	if(fmod_last_result() == FmodResult.Ok)
 		fmod_system_set_software_format(0,8/*setSoftwareFormat*/,0)
 }
@@ -23,7 +23,7 @@ num_drivers = fmod_system_get_num_drivers()
 if(num_drivers == 0)
 {
 	fmod_system_set_dsp_buffer_size(512,4)
-	fmod_system_set_output(FMOD_OUTPUTTYPE.AUTODETECT)
+	fmod_system_set_output(FmodOutputType.AutoDetect)
 }
 
 master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"),FmodStudioLoadBankFlags.Normal)

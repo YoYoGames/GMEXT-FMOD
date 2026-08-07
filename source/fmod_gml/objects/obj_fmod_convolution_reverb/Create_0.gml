@@ -28,22 +28,33 @@ sound_file = "standrews.wav"
 ir_sound_index = fmod_system_create_sound(fmod_path_bundle(sound_file), FmodMode.Default | FmodMode.OpenOnly);
 
 /*
-    Retrieve the sound information for the Impulse Response input file
+    Retrieve the sound information for the Impulse Response input file.
+    fmod_sound_get_format returns the FmodSoundFormat only - the channel count is
+    not reported, so the known channel count of the shipped IR is used instead.
 */
 ir_format = fmod_sound_get_format(ir_sound_index)
 ir_length = fmod_sound_get_length(ir_sound_index, FmodTimeUnit.Pcm)
+ir_channels = 2; // standrews.wav is stereo
 
 
 /*
     The reverb unit expects a block of data containing a single 16 bit int containing
     the number of channels in the impulse response, followed by PCM 16 data
 */
-ir_data_length = buffer_sizeof(buffer_u16) * (ir_length * ir_format.channels + 1);
+ir_data_length = buffer_sizeof(buffer_u16) * (ir_length * ir_channels + 1);
 
 var _buff = buffer_create(ir_data_length, buffer_fixed, 1);
-buffer_write(_buff, buffer_u16, ir_format.channels);
-fmod_sound_read_data(ir_sound_index, _buff, ir_data_length - 2, 2);
+buffer_write(_buff, buffer_u16, ir_channels);
 
+// fmod_sound_read_data(sound_ref, buffer, length) reads from the sound's current
+// read position into the buffer's current seek position - there is no separate
+// destination offset argument, so the channel-count header written above is kept.
+fmod_sound_read_data(ir_sound_index, _buff, ir_data_length - buffer_sizeof(buffer_u16));
+
+// NOTE: fmod_dsp_set_parameter_data currently returns FMOD_ERR_UNSUPPORTED on the
+// native side (the GML buffer argument is not unwrapped yet), so the impulse
+// response is not actually handed to the DSP. The call is left in place so the
+// example works again as soon as the extension unwraps the buffer.
 fmod_dsp_set_parameter_data(reverb_dsp, FmodDspConvolution.Ir, _buff, ir_data_length);
 
 /*

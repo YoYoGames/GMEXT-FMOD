@@ -31,39 +31,33 @@ fmod_studio_system_set_num_listeners(2)
 listener_dist = 8;
 listener_weight = [1.0, 0.0];
 
-listener_attributes = [
-	// Listener 1
-	{
-		position: {x: -listener_dist, y: 0, z: 0},
-		velocity: {x:0,y:0,z:0},
-		forward: {x:0,y:0,z:1.0},
-		up: {x:0,y:1.0,z:0},
-	},
-	// Listener 2
-	{
-		position: {x: listener_dist, y: 0, z: 0},
-		velocity: {x: 0, y: 0, z: 0},
-		forward: {x: 0, y: 0, z: 1.0},
-		up: {x:0,y:1.0,z:0},
-	}
-]
-		
+// The Studio listener/event 3D attributes only take a world position; velocity,
+// forward and up are handled internally by Studio.
+var _listener_1 = new FmodVec3()
+_listener_1.x = -listener_dist
+_listener_1.y = 0
+_listener_1.z = 0
 
-fmod_studio_system_set_listener_attributes(0, listener_attributes[0]);
+var _listener_2 = new FmodVec3()
+_listener_2.x = listener_dist
+_listener_2.y = 0
+_listener_2.z = 0
+
+listener_positions = [_listener_1, _listener_2]
+
+fmod_studio_system_set_listener_attributes(0, listener_positions[0].x, listener_positions[0].y, listener_positions[0].z);
 fmod_studio_system_set_listener_weight(0, listener_weight[0]);
-fmod_studio_system_set_listener_attributes(1, listener_attributes[1]);
+fmod_studio_system_set_listener_attributes(1, listener_positions[1].x, listener_positions[1].y, listener_positions[1].z);
 fmod_studio_system_set_listener_weight(1, listener_weight[1]);
 
 
 // Position the event 2 units in front of the listener
-car_attributes = {
-	position: {x: 0, y: 0, z: 0},
-	velocity: {x: 0, y: 0, z: 0},
-	forward: {x:0,y:0,z:1.0},
-	up: {x:0,y:1.0,z:0},
-}
+car_position = new FmodVec3()
+car_position.x = 0
+car_position.y = 0
+car_position.z = 0
 
 fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst,
-	car_attributes.position.x,
-	car_attributes.position.y,
-	car_attributes.position.z);
+	car_position.x,
+	car_position.y,
+	car_position.z);
