@@ -108,6 +108,26 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_error_string(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_fetch_callbacks
+{
+    return __EXT_NATIVE__fmod_fetch_callbacks();
+}
+- (double)__EXT_NATIVE__fmod_file_get_disk_busy
+{
+    return __EXT_NATIVE__fmod_file_get_disk_busy();
+}
+- (double)__EXT_NATIVE__fmod_file_set_disk_busy:(double)busy
+{
+    return __EXT_NATIVE__fmod_file_set_disk_busy(busy);
+}
+- (double)__EXT_NATIVE__fmod_memory_get_stats:(double)blocking arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_memory_get_stats(blocking, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_thread_set_attributes:(double)thread_type arg1:(double)affinity arg2:(double)priority
+{
+    return __EXT_NATIVE__fmod_thread_set_attributes(thread_type, affinity, priority);
+}
 - (double)__EXT_NATIVE__fmod_channel_set_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_set_frequency(__arg_buffer, __arg_buffer_length);
@@ -151,6 +171,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_channel_set_loop_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_set_loop_points(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_get_loop_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_get_loop_points(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_is_virtual:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -312,6 +336,150 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_select(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_system_count
+{
+    return __EXT_NATIVE__fmod_system_count();
+}
+- (double)__EXT_NATIVE__fmod_system_get_version
+{
+    return __EXT_NATIVE__fmod_system_get_version();
+}
+- (double)__EXT_NATIVE__fmod_system_get_master_sound_group:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_master_sound_group(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_advanced_settings:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_advanced_settings(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_set_advanced_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_set_advanced_settings(__arg_buffer, __arg_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_system_get_network_proxy
+{
+    return __EXT_NATIVE__fmod_system_get_network_proxy();
+}
+- (double)__EXT_NATIVE__fmod_system_set_network_proxy:(char*)proxy
+{
+    return __EXT_NATIVE__fmod_system_set_network_proxy(proxy);
+}
+- (double)__EXT_NATIVE__fmod_system_get_network_timeout
+{
+    return __EXT_NATIVE__fmod_system_get_network_timeout();
+}
+- (double)__EXT_NATIVE__fmod_system_set_network_timeout:(double)timeout_ms
+{
+    return __EXT_NATIVE__fmod_system_set_network_timeout(timeout_ms);
+}
+- (double)__EXT_NATIVE__fmod_system_get_speaker_mode_channels:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_speaker_mode_channels(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_speaker_position:(double)speaker arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_speaker_position(speaker, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_set_speaker_position:(double)speaker arg1:(double)x arg2:(double)y arg3:(double)active
+{
+    return __EXT_NATIVE__fmod_system_set_speaker_position(speaker, x, y, active);
+}
+- (double)__EXT_NATIVE__fmod_system_get_reverb_properties:(double)instance arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_reverb_properties(instance, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_set_reverb_properties:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_set_reverb_properties(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_default_mix_matrix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_default_mix_matrix(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_cpu_usage:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_cpu_usage(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_file_usage:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_file_usage(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_stream_buffer_size:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_stream_buffer_size(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_3d_num_listeners
+{
+    return __EXT_NATIVE__fmod_system_get_3d_num_listeners();
+}
+- (double)__EXT_NATIVE__fmod_system_set_3d_num_listeners:(double)num
+{
+    return __EXT_NATIVE__fmod_system_set_3d_num_listeners(num);
+}
+- (double)__EXT_NATIVE__fmod_system_set_3d_rolloff_callback
+{
+    return __EXT_NATIVE__fmod_system_set_3d_rolloff_callback();
+}
+- (double)__EXT_NATIVE__fmod_system_mixer_suspend
+{
+    return __EXT_NATIVE__fmod_system_mixer_suspend();
+}
+- (double)__EXT_NATIVE__fmod_system_mixer_resume
+{
+    return __EXT_NATIVE__fmod_system_mixer_resume();
+}
+- (double)__EXT_NATIVE__fmod_system_lock_dsp
+{
+    return __EXT_NATIVE__fmod_system_lock_dsp();
+}
+- (double)__EXT_NATIVE__fmod_system_unlock_dsp
+{
+    return __EXT_NATIVE__fmod_system_unlock_dsp();
+}
+- (double)__EXT_NATIVE__fmod_system_get_user_data
+{
+    return __EXT_NATIVE__fmod_system_get_user_data();
+}
+- (double)__EXT_NATIVE__fmod_system_set_user_data:(double)user_data
+{
+    return __EXT_NATIVE__fmod_system_set_user_data(user_data);
+}
+- (double)__EXT_NATIVE__fmod_system_attach_channel_group_to_port:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_attach_channel_group_to_port(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_detach_channel_group_from_port:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_detach_channel_group_from_port(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_create_sound_group:(char*)name arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_create_sound_group(name, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_create_geometry:(double)max_polygons arg1:(double)max_vertices arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_create_geometry(max_polygons, max_vertices, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_load_geometry:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_load_geometry(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_geometry_occlusion:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_geometry_occlusion(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_system_get_geometry_settings
+{
+    return __EXT_NATIVE__fmod_system_get_geometry_settings();
+}
+- (double)__EXT_NATIVE__fmod_system_set_geometry_settings:(double)max_world_size
+{
+    return __EXT_NATIVE__fmod_system_set_geometry_settings(max_world_size);
+}
+- (double)__EXT_NATIVE__fmod_system_create_reverb_3d:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_create_reverb_3d(__ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_system_create_sound:(char*)name_or_data arg1:(double)mode arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_system_create_sound(name_or_data, mode, __ret_buffer, __ret_buffer_length);
@@ -436,6 +604,14 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_get_sound_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_sound_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_get_user_data(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_sound_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_sound_release(__arg_buffer, __arg_buffer_length);
@@ -447,6 +623,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_sound_get_open_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_sound_get_open_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_get_num_tags:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_get_num_tags(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_sound_get_tag:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -460,9 +640,25 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_get_sub_sound(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_sound_get_sub_sound_parent:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_get_sub_sound_parent(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_sound_read_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_sound_read_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_seek_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_seek_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_lock:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_lock(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_unlock:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_unlock(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_group_get_num_channels:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -548,6 +744,14 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_group_stop(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_sound_group_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_group_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_sound_group_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_sound_group_get_user_data(__arg_buffer, __arg_buffer_length);
+}
 - (char*)__EXT_NATIVE__fmod_sound_group_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_sound_group_get_name(__arg_buffer, __arg_buffer_length);
@@ -572,9 +776,49 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_reverb_3d_set_properties(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_reverb_3d_get_properties:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_reverb_3d_get_properties(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_reverb_3d_set_3d_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_reverb_3d_set_3d_attributes(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_reverb_3d_get_3d_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_reverb_3d_get_3d_attributes(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_reverb_3d_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_reverb_3d_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_reverb_3d_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_reverb_3d_get_user_data(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_reverb_3d_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_reverb_3d_release(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_add_fade_point:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_add_fade_point(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_remove_fade_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_remove_fade_points(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_fade_point_ramp:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_fade_point_ramp(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_fade_point_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_fade_point_count(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_fade_point_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_fade_point_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_is_playing:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -656,13 +900,33 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_channel_control_set_3d_min_max_distance(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_min_max_distance:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_min_max_distance(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_channel_control_set_3d_cone_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_cone_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_cone_settings(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_3d_cone_orientation:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_3d_cone_orientation(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_cone_orientation:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_cone_orientation(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_channel_control_set_3d_occlusion:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_control_set_3d_occlusion(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_occlusion:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_occlusion(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_set_3d_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -684,6 +948,22 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_distance_filter:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_distance_filter(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_count(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_channel_control_set_pan:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_control_set_pan(__arg_buffer, __arg_buffer_length);
@@ -691,6 +971,18 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_channel_control_set_mix_levels_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_control_set_mix_levels_output(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_mix_levels_input:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_mix_levels_input(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_mix_matrix:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_mix_matrix(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_mix_matrix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_mix_matrix(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_set_reverb_properties:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -731,6 +1023,14 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_channel_control_get_dsp_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_control_get_dsp_index(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_control_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_control_get_user_data(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -948,25 +1248,77 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_connection_get_user_data(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_geometry_add_polygon:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_add_polygon(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_geometry_set_polygon_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_geometry_set_polygon_attributes(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_polygon_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_polygon_attributes(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_geometry_get_polygon_num_vertices:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_geometry_get_polygon_num_vertices(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_geometry_set_polygon_vertex:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_set_polygon_vertex(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_polygon_vertex:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_polygon_vertex(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_num_polygons:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_num_polygons(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_max_polygons:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_max_polygons(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_geometry_set_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_geometry_set_position(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_position(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_geometry_set_rotation:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_geometry_set_rotation(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_geometry_get_rotation:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_rotation(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_geometry_set_scale:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_geometry_set_scale(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_scale:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_scale(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_get_active:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_get_active(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_geometry_set_active:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_geometry_set_active(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_geometry_save:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1024,6 +1376,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_bank(path, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_studio_system_get_bank_by_id:(char*)str_guid arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_bank_by_id(str_guid, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_system_get_event:(char*)path arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_get_event(path, __ret_buffer, __ret_buffer_length);
@@ -1040,9 +1396,17 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_master_bus(__ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_studio_system_get_bus_by_id:(char*)str_guid arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_bus_by_id(str_guid, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_system_get_vca:(char*)path arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_get_vca(path, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_vca_by_id:(char*)str_guid arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_vca_by_id(str_guid, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_set_listener_attributes:(double)listener_index arg1:(double)x arg2:(double)y arg3:(double)z
 {
@@ -1051,6 +1415,18 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_studio_system_set_listener_weight:(double)listener_index arg1:(double)weight
 {
     return __EXT_NATIVE__fmod_studio_system_set_listener_weight(listener_index, weight);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_num_listeners
+{
+    return __EXT_NATIVE__fmod_studio_system_get_num_listeners();
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_listener_attributes:(double)listener_index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_listener_attributes(listener_index, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_listener_weight:(double)listener_index
+{
+    return __EXT_NATIVE__fmod_studio_system_get_listener_weight(listener_index);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name:(char*)name arg1:(double)value
 {
@@ -1072,9 +1448,17 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_lookup_id(path);
 }
+- (char*)__EXT_NATIVE__fmod_studio_system_lookup_path:(char*)str_guid
+{
+    return __EXT_NATIVE__fmod_studio_system_lookup_path(str_guid);
+}
 - (double)__EXT_NATIVE__fmod_studio_system_get_event_by_id:(char*)id arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_get_event_by_id(id, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_is_valid
+{
+    return __EXT_NATIVE__fmod_studio_system_is_valid();
 }
 - (double)__EXT_NATIVE__fmod_studio_system_start_command_capture:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1087,6 +1471,86 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_studio_system_load_command_replay:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_load_command_replay(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_sound_info:(char*)key arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_sound_info(key, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_by_id(id_data1, id_data2, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(double)value arg3:(double)ignore_seek_speed
+{
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id(id_data1, id_data2, value, ignore_seek_speed);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id(id_data1, id_data2, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_name:(char*)name arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_name(name, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_count
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_count();
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_at:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_at(index, __ret_buffer, __ret_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(double)label_index
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id(id_data1, id_data2, label_index);
+}
+- (char*)__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name:(char*)name arg1:(double)label_index
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name(name, label_index);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label:(double)id_data1 arg1:(double)id_data2 arg2:(char*)label arg3:(double)ignore_seek_speed
+{
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label(id_data1, id_data2, label, ignore_seek_speed);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label:(char*)name arg1:(char*)label arg2:(double)ignore_seek_speed
+{
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label(name, label, ignore_seek_speed);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_cpu_usage:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_cpu_usage(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_buffer_usage:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_buffer_usage(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_reset_buffer_usage
+{
+    return __EXT_NATIVE__fmod_studio_system_reset_buffer_usage();
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_memory_usage:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_memory_usage(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_advanced_settings:(char*)__ret_buffer arg1:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_advanced_settings(__ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_advanced_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_set_advanced_settings(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_callback:(double)callback_mask
+{
+    return __EXT_NATIVE__fmod_studio_system_set_callback(callback_mask);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_user_data
+{
+    return __EXT_NATIVE__fmod_studio_system_get_user_data();
+}
+- (double)__EXT_NATIVE__fmod_studio_system_set_user_data:(double)user_data
+{
+    return __EXT_NATIVE__fmod_studio_system_set_user_data(user_data);
 }
 - (double)__EXT_NATIVE__fmod_studio_bank_unload:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1136,6 +1600,34 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_bank_get_string_count(__arg_buffer, __arg_buffer_length);
 }
+- (char*)__EXT_NATIVE__fmod_studio_bank_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_get_id(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_is_valid(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_get_string_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_get_string_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_load_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_load_sample_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_unload_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_unload_sample_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bank_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bank_set_user_data(__arg_buffer, __arg_buffer_length);
+}
 - (char*)__EXT_NATIVE__fmod_studio_event_description_get_path:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_path(__arg_buffer, __arg_buffer_length);
@@ -1184,6 +1676,86 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_load_sample_data(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_studio_event_description_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_is_valid(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_is_3d:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_is_3d(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_is_stream:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_is_stream(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_is_doppler_enabled:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_is_doppler_enabled(__arg_buffer, __arg_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_event_description_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_id(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_min_max_distance:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_min_max_distance(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_sound_size:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_sound_size(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_unload_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_unload_sample_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_set_callback(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_user_property(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_user_property_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_user_property_count(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_id(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id(__arg_buffer, __arg_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at(__arg_buffer, __arg_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_event_instance_start:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_start(__arg_buffer, __arg_buffer_length);
@@ -1211,6 +1783,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_timeline_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_timeline_position(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_keyoff:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_keyoff(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_volume:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1252,9 +1828,77 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_callback(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name_with_label:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name_with_label(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_3d_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_3d_attributes(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_min_max_distance:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_min_max_distance(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_listener_mask:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_listener_mask(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_listener_mask:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_listener_mask(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_reverb_level:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_reverb_level(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_reverb_level:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_reverb_level(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_property(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_property(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_is_valid(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_is_virtual:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_is_virtual(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_memory_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_memory_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_description:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -1292,6 +1936,50 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_bus_get_master_bus(__ret_buffer, __ret_buffer_length);
 }
+- (char*)__EXT_NATIVE__fmod_studio_bus_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_id(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_is_valid(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_lock_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_lock_channel_group(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_unlock_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_unlock_channel_group(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_get_cpu_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_cpu_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_get_memory_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_memory_usage(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_get_mute:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_mute(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_set_mute:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_set_mute(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_get_port_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_get_port_index(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_bus_set_port_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_bus_set_port_index(__arg_buffer, __arg_buffer_length);
+}
 - (char*)__EXT_NATIVE__fmod_studio_vca_get_path:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_vca_get_path(__arg_buffer, __arg_buffer_length);
@@ -1323,6 +2011,62 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_studio_command_replay_get_length:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_command_replay_get_length(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_is_valid(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_command_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_command_info(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (char*)__EXT_NATIVE__fmod_studio_command_replay_get_command_string:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_command_string(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_command_at_time:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_command_at_time(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_seek_to_command:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_seek_to_command(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_seek_to_time:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_seek_to_time(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_set_bank_path:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_set_bank_path(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_paused(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_set_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_set_paused(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_start:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_start(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_stop:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_stop(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_get_user_data(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_command_replay_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_command_replay_set_user_data(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_frame_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

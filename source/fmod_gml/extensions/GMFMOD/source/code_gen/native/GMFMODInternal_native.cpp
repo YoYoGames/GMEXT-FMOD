@@ -76,6 +76,40 @@ GMEXPORT char* __EXT_NATIVE__fmod_error_string(char* __arg_buffer, double __arg_
     return (char*)__result.c_str();
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_fetch_callbacks()
+{
+    auto&& __result = fmod_fetch_callbacks();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_file_get_disk_busy()
+{
+    auto&& __result = fmod_file_get_disk_busy();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_file_set_disk_busy(double busy)
+{
+    auto&& __result = fmod_file_set_disk_busy(static_cast<double>(busy));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_memory_get_stats(double blocking, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_memory_get_stats(static_cast<double>(blocking));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodMemoryStats
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_thread_set_attributes(double thread_type, double affinity, double priority)
+{
+    auto&& __result = fmod_thread_set_attributes(static_cast<double>(thread_type), static_cast<double>(affinity), static_cast<double>(priority));
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -232,6 +266,27 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_loop_points(char* __arg_buffer, d
 
     auto&& __result = fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, loop_end, loop_end_type);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_get_loop_points(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: start_type, type: Float64
+    double start_type = gm::wire::codec::readValue<double>(__br);
+
+    // field: end_type, type: Float64
+    double end_type = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_get_loop_points(channel_ref, start_type, end_type);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodLoopPoints
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_is_virtual(char* __arg_buffer, double __arg_buffer_length)
@@ -622,6 +677,337 @@ GMEXPORT double __EXT_NATIVE__fmod_system_select(char* __arg_buffer, double __ar
 
     auto&& __result = fmod_system_select(system_ref);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_count()
+{
+    auto&& __result = fmod_system_count();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_version()
+{
+    auto&& __result = fmod_system_get_version();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_master_sound_group(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_master_sound_group();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_advanced_settings(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_advanced_settings();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodAdvancedSettings
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_advanced_settings(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: settings, type: struct FmodAdvancedSettings
+    gm_structs::FmodAdvancedSettings settings = gm::wire::codec::readValue<gm_structs::FmodAdvancedSettings>(__br);
+
+    auto&& __result = fmod_system_set_advanced_settings(settings);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_system_get_network_proxy()
+{
+    static std::string __result;
+    __result = fmod_system_get_network_proxy();
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_network_proxy(char* proxy)
+{
+    auto&& __result = fmod_system_set_network_proxy(proxy);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_network_timeout()
+{
+    auto&& __result = fmod_system_get_network_timeout();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_network_timeout(double timeout_ms)
+{
+    auto&& __result = fmod_system_set_network_timeout(static_cast<double>(timeout_ms));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_mode_channels(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: mode, type: enum FmodSpeakerMode
+    gm_enums::FmodSpeakerMode mode = gm::wire::codec::readValue<gm_enums::FmodSpeakerMode>(__br);
+
+    auto&& __result = fmod_system_get_speaker_mode_channels(mode);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_position(double speaker, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_speaker_position(static_cast<double>(speaker));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodSpeakerPosition
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_speaker_position(double speaker, double x, double y, double active)
+{
+    auto&& __result = fmod_system_set_speaker_position(static_cast<double>(speaker), static_cast<double>(x), static_cast<double>(y), static_cast<double>(active));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_reverb_properties(double instance, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_reverb_properties(static_cast<double>(instance));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodReverbProperties
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_reverb_properties(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance, type: Float64
+    double instance = gm::wire::codec::readValue<double>(__br);
+
+    // field: props, type: struct FmodReverbProperties
+    gm_structs::FmodReverbProperties props = gm::wire::codec::readValue<gm_structs::FmodReverbProperties>(__br);
+
+    auto&& __result = fmod_system_set_reverb_properties(instance, props);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_default_mix_matrix(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: source_speaker_mode, type: enum FmodSpeakerMode
+    gm_enums::FmodSpeakerMode source_speaker_mode = gm::wire::codec::readValue<gm_enums::FmodSpeakerMode>(__br);
+
+    // field: target_speaker_mode, type: enum FmodSpeakerMode
+    gm_enums::FmodSpeakerMode target_speaker_mode = gm::wire::codec::readValue<gm_enums::FmodSpeakerMode>(__br);
+
+    auto&& __result = fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPMixMatrix
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_cpu_usage(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_cpu_usage();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodCPUUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_file_usage(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_file_usage();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodFileUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_stream_buffer_size(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_get_stream_buffer_size();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStreamBufferSize
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_num_listeners()
+{
+    auto&& __result = fmod_system_get_3d_num_listeners();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_num_listeners(double num)
+{
+    auto&& __result = fmod_system_set_3d_num_listeners(static_cast<double>(num));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_rolloff_callback()
+{
+    auto&& __result = fmod_system_set_3d_rolloff_callback();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_mixer_suspend()
+{
+    auto&& __result = fmod_system_mixer_suspend();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_mixer_resume()
+{
+    auto&& __result = fmod_system_mixer_resume();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_lock_dsp()
+{
+    auto&& __result = fmod_system_lock_dsp();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_unlock_dsp()
+{
+    auto&& __result = fmod_system_unlock_dsp();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_user_data()
+{
+    auto&& __result = fmod_system_get_user_data();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_user_data(double user_data)
+{
+    auto&& __result = fmod_system_set_user_data(static_cast<double>(user_data));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_attach_channel_group_to_port(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: port_type, type: Float64
+    double port_type = gm::wire::codec::readValue<double>(__br);
+
+    // field: port_index, type: Float64
+    double port_index = gm::wire::codec::readValue<double>(__br);
+
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: pass_thru, type: Float64
+    double pass_thru = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_detach_channel_group_from_port(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_system_detach_channel_group_from_port(channel_group_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_group(char* name, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_create_sound_group(name);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_create_geometry(double max_polygons, double max_vertices, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_create_geometry(static_cast<double>(max_polygons), static_cast<double>(max_vertices));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_load_geometry(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: data, type: Buffer
+    gm::wire::GMBuffer data = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: data_size, type: Float64
+    double data_size = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_system_load_geometry(data, data_size);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: optional<UInt64>
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_geometry_occlusion(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: listener, type: struct FmodVec3
+    gm_structs::FmodVec3 listener = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
+
+    // field: source, type: struct FmodVec3
+    gm_structs::FmodVec3 source = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
+
+    auto&& __result = fmod_system_get_geometry_occlusion(listener, source);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodOcclusion
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_get_geometry_settings()
+{
+    auto&& __result = fmod_system_get_geometry_settings();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_set_geometry_settings(double max_world_size)
+{
+    auto&& __result = fmod_system_set_geometry_settings(static_cast<double>(max_world_size));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_create_reverb_3d(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_system_create_reverb_3d();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length)
@@ -1085,6 +1471,31 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sound_group(char* __arg_buffer, dou
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_sound_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_sound_set_user_data(sound_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_sound_get_user_data(sound_ref);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_sound_release(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1124,6 +1535,17 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_open_state(char* __arg_buffer, doub
     // return: __result, type: struct FmodSoundOpenState
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_sound_get_num_tags(sound_ref);
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_tag(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
@@ -1176,6 +1598,21 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sub_sound(char* __arg_buffer, doubl
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_sub_sound_parent(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_sound_get_sub_sound_parent(sound_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: optional<UInt64>
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_sound_read_data(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1191,6 +1628,74 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_read_data(char* __arg_buffer, double __
     double length = gm::wire::codec::readValue<double>(__br);
 
     auto&& __result = fmod_sound_read_data(sound_ref, data, length);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_seek_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: pcm, type: Float64
+    double pcm = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_sound_seek_data(sound_ref, pcm);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_lock(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: offset, type: Float64
+    double offset = gm::wire::codec::readValue<double>(__br);
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    // field: buffer1, type: Buffer
+    gm::wire::GMBuffer buffer1 = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: buffer2, type: Buffer
+    gm::wire::GMBuffer buffer2 = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    auto&& __result = fmod_sound_lock(sound_ref, offset, length, buffer1, buffer2);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodSoundLockLengths
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_unlock(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: buffer1, type: Buffer
+    gm::wire::GMBuffer buffer1 = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: buffer2, type: Buffer
+    gm::wire::GMBuffer buffer2 = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: length1, type: Float64
+    double length1 = gm::wire::codec::readValue<double>(__br);
+
+    // field: length2, type: Float64
+    double length2 = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_sound_unlock(sound_ref, buffer1, buffer2, length1, length2);
     return static_cast<double>(__result);
 }
 
@@ -1477,6 +1982,31 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_stop(char* __arg_buffer, double _
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_sound_group_set_user_data(sound_group_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_sound_group_get_user_data(sound_group_ref);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT char* __EXT_NATIVE__fmod_sound_group_get_name(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1587,6 +2117,81 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_properties(char* __arg_buffer, 
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_get_properties(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_reverb_3d_get_properties(reverb_3d_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodReverbProperties
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_3d_attributes(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: position, type: struct FmodVec3
+    gm_structs::FmodVec3 position = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
+
+    // field: min_distance, type: Float64
+    double min_distance = gm::wire::codec::readValue<double>(__br);
+
+    // field: max_distance, type: Float64
+    double max_distance = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_reverb_3d_set_3d_attributes(reverb_3d_ref, position, min_distance, max_distance);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_get_3d_attributes(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_reverb_3d_get_3d_attributes(reverb_3d_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodReverb3DAttributes
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_reverb_3d_set_user_data(reverb_3d_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_reverb_3d_get_user_data(reverb_3d_ref);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_release(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1596,6 +2201,86 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_release(char* __arg_buffer, double 
 
     auto&& __result = fmod_reverb_3d_release(reverb_3d_ref);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_add_fade_point(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: dsp_clock, type: Float64
+    double dsp_clock = gm::wire::codec::readValue<double>(__br);
+
+    // field: volume, type: Float64
+    double volume = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_add_fade_point(channel_control_ref, dsp_clock, volume);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_remove_fade_points(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: dsp_clock_start, type: Float64
+    double dsp_clock_start = gm::wire::codec::readValue<double>(__br);
+
+    // field: dsp_clock_end, type: Float64
+    double dsp_clock_end = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_remove_fade_points(channel_control_ref, dsp_clock_start, dsp_clock_end);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_fade_point_ramp(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: dsp_clock, type: Float64
+    double dsp_clock = gm::wire::codec::readValue<double>(__br);
+
+    // field: volume, type: Float64
+    double volume = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_set_fade_point_ramp(channel_control_ref, dsp_clock, volume);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_fade_point_count(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_fade_point_count(channel_control_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_fade_point_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_get_fade_point_at(channel_control_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodFadePoint
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_is_playing(char* __arg_buffer, double __arg_buffer_length)
@@ -1848,6 +2533,21 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_min_max_distance(char*
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_min_max_distance(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_min_max_distance(channel_control_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodMinMaxDistance
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1868,6 +2568,50 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings(char* __
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_cone_settings(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_cone_settings(channel_control_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodConeSettings
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_cone_orientation(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: orientation, type: struct FmodVec3
+    gm_structs::FmodVec3 orientation = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
+
+    auto&& __result = fmod_channel_control_set_3d_cone_orientation(channel_control_ref, orientation);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_cone_orientation(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_cone_orientation(channel_control_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodVec3
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_occlusion(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1883,6 +2627,21 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_occlusion(char* __arg_
 
     auto&& __result = fmod_channel_control_set_3d_occlusion(channel_control_ref, direct_occlusion, reverb_occlusion);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_occlusion(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_occlusion(channel_control_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodOcclusion
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_attributes(char* __arg_buffer, double __arg_buffer_length)
@@ -1962,6 +2721,67 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter(char* 
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_distance_filter(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_distance_filter(channel_control_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDistanceFilter
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: points, type: Any
+    gm::wire::GMValue points = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+
+    // field: num_points, type: Float64
+    double num_points = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points, num_points);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_count(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_custom_rolloff_count(channel_control_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_get_3d_custom_rolloff_at(channel_control_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodVec3
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pan(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -2009,6 +2829,64 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_output(char* _
 
     auto&& __result = fmod_channel_control_set_mix_levels_output(channel_control_ref, front_left, front_right, center, lfe, surround_left, surround_right, back_left, back_right);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_input(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: levels, type: Float64
+    double levels = gm::wire::codec::readValue<double>(__br);
+
+    // field: num_levels, type: Float64
+    double num_levels = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_set_mix_levels_input(channel_control_ref, levels, num_levels);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_matrix(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: matrix, type: Float64
+    double matrix = gm::wire::codec::readValue<double>(__br);
+
+    // field: out_channels, type: Float64
+    double out_channels = gm::wire::codec::readValue<double>(__br);
+
+    // field: in_channels, type: Float64
+    double in_channels = gm::wire::codec::readValue<double>(__br);
+
+    // field: in_channel_hop, type: Float64
+    double in_channel_hop = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_channels, in_channels, in_channel_hop);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mix_matrix(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: in_channel_hop, type: Float64
+    double in_channel_hop = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPMixMatrix
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_reverb_properties(char* __arg_buffer, double __arg_buffer_length)
@@ -2155,6 +3033,31 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_dsp_index(char* __arg_buf
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_channel_control_set_user_data(channel_control_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_channel_control_get_user_data(channel_control_ref);
     return static_cast<double>(__result);
 }
 
@@ -2970,6 +3873,33 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_user_data(char* __arg_buff
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_geometry_add_polygon(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: direct_occlusion, type: Float64
+    double direct_occlusion = gm::wire::codec::readValue<double>(__br);
+
+    // field: reverb_occlusion, type: Float64
+    double reverb_occlusion = gm::wire::codec::readValue<double>(__br);
+
+    // field: double_sided, type: Float64
+    double double_sided = gm::wire::codec::readValue<double>(__br);
+
+    // field: num_vertices, type: Float64
+    double num_vertices = gm::wire::codec::readValue<double>(__br);
+
+    // field: vertices, type: Buffer
+    gm::wire::GMBuffer vertices = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    auto&& __result = fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlusion, double_sided, num_vertices, vertices);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_geometry_set_polygon_attributes(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -2993,6 +3923,24 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_polygon_attributes(char* __arg_b
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_polygon_attributes(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: polygon_index, type: Float64
+    double polygon_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_geometry_get_polygon_attributes(geometry_ref, polygon_index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodPolygonAttributes
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_geometry_get_polygon_num_vertices(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -3005,6 +3953,73 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_get_polygon_num_vertices(char* __arg
 
     auto&& __result = fmod_geometry_get_polygon_num_vertices(geometry_ref, polygon_index);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_set_polygon_vertex(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: polygon_index, type: Float64
+    double polygon_index = gm::wire::codec::readValue<double>(__br);
+
+    // field: vertex_index, type: Float64
+    double vertex_index = gm::wire::codec::readValue<double>(__br);
+
+    // field: vertex, type: struct FmodVec3
+    gm_structs::FmodVec3 vertex = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
+
+    auto&& __result = fmod_geometry_set_polygon_vertex(geometry_ref, polygon_index, vertex_index, vertex);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_polygon_vertex(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: polygon_index, type: Float64
+    double polygon_index = gm::wire::codec::readValue<double>(__br);
+
+    // field: vertex_index, type: Float64
+    double vertex_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_geometry_get_polygon_vertex(geometry_ref, polygon_index, vertex_index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodVec3
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_num_polygons(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_num_polygons(geometry_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_max_polygons(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_max_polygons(geometry_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodGeometryMaxPolygons
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_geometry_set_position(char* __arg_buffer, double __arg_buffer_length)
@@ -3025,6 +4040,21 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_position(char* __arg_buffer, dou
 
     auto&& __result = fmod_geometry_set_position(geometry_ref, x, y, z);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_position(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_position(geometry_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodVec3
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_geometry_set_rotation(char* __arg_buffer, double __arg_buffer_length)
@@ -3056,6 +4086,21 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_rotation(char* __arg_buffer, dou
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_rotation(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_rotation(geometry_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodGeometryRotation
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_geometry_set_scale(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -3073,6 +4118,71 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_scale(char* __arg_buffer, double
     double scale_z = gm::wire::codec::readValue<double>(__br);
 
     auto&& __result = fmod_geometry_set_scale(geometry_ref, scale_x, scale_y, scale_z);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_scale(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_scale(geometry_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodVec3
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_geometry_set_user_data(geometry_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_user_data(geometry_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_get_active(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_geometry_get_active(geometry_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_geometry_set_active(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: active, type: Float64
+    double active = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_geometry_set_active(geometry_ref, active);
     return static_cast<double>(__result);
 }
 
@@ -3193,6 +4303,16 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank(char* path, char* __re
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank_by_id(char* str_guid, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_bank_by_id(str_guid);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: optional<UInt64>
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_event(char* path, char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_get_event(path);
@@ -3233,9 +4353,29 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_master_bus(char* __ret_buff
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bus_by_id(char* str_guid, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_bus_by_id(str_guid);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: optional<UInt64>
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca(char* path, char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_get_vca(path);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: optional<UInt64>
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca_by_id(char* str_guid, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_vca_by_id(str_guid);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: optional<UInt64>
@@ -3252,6 +4392,28 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_attributes(double 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_weight(double listener_index, double weight)
 {
     auto&& __result = fmod_studio_system_set_listener_weight(static_cast<double>(listener_index), static_cast<double>(weight));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_num_listeners()
+{
+    auto&& __result = fmod_studio_system_get_num_listeners();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_listener_attributes(double listener_index, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_listener_attributes(static_cast<double>(listener_index));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioListenerAttributes
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_listener_weight(double listener_index)
+{
+    auto&& __result = fmod_studio_system_get_listener_weight(static_cast<double>(listener_index));
     return static_cast<double>(__result);
 }
 
@@ -3290,6 +4452,13 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_system_lookup_id(char* path)
     return (char*)__result.c_str();
 }
 
+GMEXPORT char* __EXT_NATIVE__fmod_studio_system_lookup_path(char* str_guid)
+{
+    static std::string __result;
+    __result = fmod_studio_system_lookup_path(str_guid);
+    return (char*)__result.c_str();
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_event_by_id(char* id, char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_get_event_by_id(id);
@@ -3298,6 +4467,12 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_event_by_id(char* id, char*
     // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_is_valid()
+{
+    auto&& __result = fmod_studio_system_is_valid();
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_start_command_capture(char* __arg_buffer, double __arg_buffer_length)
@@ -3336,6 +4511,169 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_command_replay(char* __arg
     // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_sound_info(char* key, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_sound_info(key);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioSoundInfo
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_by_id(double id_data1, double id_data2, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_parameter_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterValue
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, double ignore_seek_speed)
+{
+    auto&& __result = fmod_studio_system_set_parameter_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2), static_cast<double>(value), static_cast<double>(ignore_seek_speed));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_parameter_description_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_name(char* name, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_parameter_description_by_name(name);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_description_count()
+{
+    auto&& __result = fmod_studio_system_get_parameter_description_count();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_description_at(double index, char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_parameter_description_at(static_cast<double>(index));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id(double id_data1, double id_data2, double label_index)
+{
+    static std::string __result;
+    __result = fmod_studio_system_get_parameter_label_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2), static_cast<double>(label_index));
+    return (char*)__result.c_str();
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name(char* name, double label_index)
+{
+    static std::string __result;
+    __result = fmod_studio_system_get_parameter_label_by_name(name, static_cast<double>(label_index));
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, char* label, double ignore_seek_speed)
+{
+    auto&& __result = fmod_studio_system_set_parameter_by_id_with_label(static_cast<double>(id_data1), static_cast<double>(id_data2), label, static_cast<double>(ignore_seek_speed));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label(char* name, char* label, double ignore_seek_speed)
+{
+    auto&& __result = fmod_studio_system_set_parameter_by_name_with_label(name, label, static_cast<double>(ignore_seek_speed));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_cpu_usage(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_cpu_usage();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioSystemCPUUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_buffer_usage(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_buffer_usage();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioBufferUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_reset_buffer_usage()
+{
+    auto&& __result = fmod_studio_system_reset_buffer_usage();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_memory_usage(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_memory_usage();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioMemoryUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_advanced_settings(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_advanced_settings();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioAdvancedSettings
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_advanced_settings(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: settings, type: struct FmodStudioAdvancedSettings
+    gm_structs::FmodStudioAdvancedSettings settings = gm::wire::codec::readValue<gm_structs::FmodStudioAdvancedSettings>(__br);
+
+    auto&& __result = fmod_studio_system_set_advanced_settings(settings);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_callback(double callback_mask)
+{
+    auto&& __result = fmod_studio_system_set_callback(static_cast<double>(callback_mask));
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_user_data()
+{
+    auto&& __result = fmod_studio_system_get_user_data();
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_user_data(double user_data)
+{
+    auto&& __result = fmod_studio_system_set_user_data(static_cast<double>(user_data));
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload(char* __arg_buffer, double __arg_buffer_length)
@@ -3496,6 +4834,94 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_string_count(char* __arg_buff
     return static_cast<double>(__result);
 }
 
+GMEXPORT char* __EXT_NATIVE__fmod_studio_bank_get_id(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_bank_get_id(bank_ref);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_is_valid(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bank_is_valid(bank_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_string_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: string_index, type: Float64
+    double string_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_bank_get_string_info(bank_ref, string_index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioStringInfo
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_load_sample_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bank_load_sample_data(bank_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload_sample_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bank_unload_sample_data(bank_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bank_get_user_data(bank_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_bank_set_user_data(bank_ref, user_data);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_path(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -3647,6 +5073,292 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_load_sample_data(cha
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_valid(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_is_valid(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_3d(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_is_3d(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_stream(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_is_stream(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_doppler_enabled(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_is_doppler_enabled(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_id(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_event_description_get_id(event_desc_ref);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_min_max_distance(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_min_max_distance(event_desc_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodMinMaxDistance
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sound_size(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_sound_size(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_sample_loading_state(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_unload_sample_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_unload_sample_data(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_callback(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: callback_mask, type: Float64
+    double callback_mask = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_description_set_callback(event_desc_ref, callback_mask);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_user_data(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_description_set_user_data(event_desc_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_property(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: name, type: String
+    std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_user_property(event_desc_ref, name);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioUserProperty
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_property_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_user_property_at(event_desc_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioUserProperty
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_property_count(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_user_property_count(event_desc_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_id(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: id_data1, type: Float64
+    double id_data1 = gm::wire::codec::readValue<double>(__br);
+
+    // field: id_data2, type: Float64
+    double id_data2 = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_parameter_description_by_id(event_desc_ref, id_data1, id_data2);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_description_get_parameter_description_at(event_desc_ref, index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioParameterDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: id_data1, type: Float64
+    double id_data1 = gm::wire::codec::readValue<double>(__br);
+
+    // field: id_data2, type: Float64
+    double id_data2 = gm::wire::codec::readValue<double>(__br);
+
+    // field: label_index, type: Float64
+    double label_index = gm::wire::codec::readValue<double>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_event_description_get_parameter_label_by_id(event_desc_ref, id_data1, id_data2, label_index);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    // field: label_index, type: Float64
+    double label_index = gm::wire::codec::readValue<double>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_event_description_get_parameter_label_at(event_desc_ref, index, label_index);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: name, type: String
+    std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: label_index, type: Float64
+    double label_index = gm::wire::codec::readValue<double>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_event_description_get_parameter_label_by_name(event_desc_ref, name, label_index);
+    return (char*)__result.c_str();
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_start(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -3730,6 +5442,17 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_timeline_position(c
     double position = gm::wire::codec::readValue<double>(__br);
 
     auto&& __result = fmod_studio_event_instance_set_timeline_position(instance_ref, position);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_keyoff(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_keyoff(instance_ref);
     return static_cast<double>(__result);
 }
 
@@ -3883,6 +5606,49 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_callback(char* __ar
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: id_data1, type: Float64
+    double id_data1 = gm::wire::codec::readValue<double>(__br);
+
+    // field: id_data2, type: Float64
+    double id_data2 = gm::wire::codec::readValue<double>(__br);
+
+    // field: label, type: String
+    std::string_view label = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: ignore_seek_speed, type: Float64
+    double ignore_seek_speed = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_parameter_by_id_with_label(instance_ref, id_data1, id_data2, label, ignore_seek_speed);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name_with_label(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: name, type: String
+    std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: label, type: String
+    std::string_view label = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: ignore_seek_speed, type: Float64
+    double ignore_seek_speed = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_parameter_by_name_with_label(instance_ref, name, label, ignore_seek_speed);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -3901,6 +5667,215 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes(char*
 
     auto&& __result = fmod_studio_event_instance_set_3d_attributes(instance_ref, x, y, z);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_3d_attributes(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_3d_attributes(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodChannelControl3DAttributes
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_min_max_distance(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_min_max_distance(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodMinMaxDistance
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_listener_mask(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_listener_mask(instance_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_listener_mask(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: mask, type: Float64
+    double mask = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_listener_mask(instance_ref, mask);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_reverb_level(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_reverb_level(instance_ref, index);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_reverb_level(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: index, type: Float64
+    double index = gm::wire::codec::readValue<double>(__br);
+
+    // field: level, type: Float64
+    double level = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_reverb_level(instance_ref, index, level);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_property(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: property_type, type: enum FmodStudioEventProperty
+    gm_enums::FmodStudioEventProperty property_type = gm::wire::codec::readValue<gm_enums::FmodStudioEventProperty>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_property(instance_ref, property_type);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_property(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: property_type, type: enum FmodStudioEventProperty
+    gm_enums::FmodStudioEventProperty property_type = gm::wire::codec::readValue<gm_enums::FmodStudioEventProperty>(__br);
+
+    // field: value, type: Float64
+    double value = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_property(instance_ref, property_type, value);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_user_data(instance_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_user_data(instance_ref, user_data);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_is_valid(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_is_valid(instance_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_is_virtual(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_is_virtual(instance_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_channel_group(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_cpu_usage(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioCPUUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_memory_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_memory_usage(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioMemoryUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_description(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
@@ -4015,6 +5990,150 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_master_bus(char* __ret_buffer,
     return 0;
 }
 
+GMEXPORT char* __EXT_NATIVE__fmod_studio_bus_get_id(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_bus_get_id(bus_ref);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_is_valid(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_is_valid(bus_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_channel_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_channel_group(bus_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_lock_channel_group(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_lock_channel_group(bus_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_unlock_channel_group(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_unlock_channel_group(bus_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_cpu_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_cpu_usage(bus_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioCPUUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_memory_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_memory_usage(bus_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioMemoryUsage
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_mute(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_mute(bus_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_mute(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: mute, type: Float64
+    double mute = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_bus_set_mute(bus_ref, mute);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_port_index(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_port_index(bus_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_port_index(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: port_index, type: UInt64
+    std::uint64_t port_index = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_set_port_index(bus_ref, port_index);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT char* __EXT_NATIVE__fmod_studio_vca_get_path(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -4104,6 +6223,193 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_length(char* __arg_
     std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_length(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_system_object(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_get_system_object(replay_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_is_valid(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_is_valid(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_command_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: command_index, type: Float64
+    double command_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_get_command_info(replay_ref, command_index);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodStudioCommandInfo
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT char* __EXT_NATIVE__fmod_studio_command_replay_get_command_string(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: command_index, type: Float64
+    double command_index = gm::wire::codec::readValue<double>(__br);
+
+    static std::string __result;
+    __result = fmod_studio_command_replay_get_command_string(replay_ref, command_index);
+    return (char*)__result.c_str();
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_command_at_time(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: time, type: Float64
+    double time = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_get_command_at_time(replay_ref, time);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_seek_to_command(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: command_index, type: Float64
+    double command_index = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_seek_to_command(replay_ref, command_index);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_seek_to_time(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: time, type: Float64
+    double time = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_seek_to_time(replay_ref, time);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_bank_path(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: path, type: String
+    std::string_view path = gm::wire::codec::readValue<std::string_view>(__br);
+
+    auto&& __result = fmod_studio_command_replay_set_bank_path(replay_ref, path);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_paused(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_get_paused(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_paused(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: paused, type: Float64
+    double paused = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_set_paused(replay_ref, paused);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_start(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_start(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_stop(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_stop(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_command_replay_get_user_data(replay_ref);
+    return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_user_data(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: user_data, type: Float64
+    double user_data = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_command_replay_set_user_data(replay_ref, user_data);
     return static_cast<double>(__result);
 }
 

@@ -116,6 +116,91 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "fmod_fetch_callbacks",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_fetch_callbacks",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_fetch_callbacks",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_file_get_disk_busy",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_file_get_disk_busy",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_file_get_disk_busy",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_file_set_disk_busy",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} busy\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_file_set_disk_busy",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_file_set_disk_busy",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_memory_get_stats",
+          "argCount": 3,
+          "args": [
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} blocking\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_memory_get_stats",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_memory_get_stats",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_thread_set_attributes",
+          "argCount": 3,
+          "args": [
+            2,
+            2,
+            2
+          ],
+          "documentation": "@param {Real} thread_type\r\n@param {Real} affinity\r\n@param {Real} priority\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_thread_set_attributes",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_thread_set_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_set_frequency",
           "argCount": 2,
           "args": [
@@ -310,6 +395,26 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_set_loop_points",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_get_loop_points",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_get_loop_points",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_get_loop_points",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1023,6 +1128,626 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "fmod_system_count",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_count",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_count",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_version",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_version",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_version",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_master_sound_group",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_master_sound_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_master_sound_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_advanced_settings",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_advanced_settings",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_advanced_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_set_advanced_settings",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_advanced_settings",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_set_advanced_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_network_proxy",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_network_proxy",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_network_proxy",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_network_proxy",
+          "argCount": 1,
+          "args": [
+            1
+          ],
+          "documentation": "@param {String} proxy\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_network_proxy",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_network_proxy",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_network_timeout",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_network_timeout",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_network_timeout",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_network_timeout",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} timeout_ms\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_network_timeout",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_network_timeout",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_speaker_mode_channels",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_speaker_mode_channels",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_speaker_mode_channels",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_speaker_position",
+          "argCount": 3,
+          "args": [
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} speaker\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_speaker_position",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_speaker_position",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_speaker_position",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "documentation": "@param {Real} speaker\r\n@param {Real} x\r\n@param {Real} y\r\n@param {Real} active\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_speaker_position",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_speaker_position",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_reverb_properties",
+          "argCount": 3,
+          "args": [
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} instance\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_reverb_properties",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_reverb_properties",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_set_reverb_properties",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_reverb_properties",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_set_reverb_properties",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_default_mix_matrix",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_default_mix_matrix",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_default_mix_matrix",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_cpu_usage",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_cpu_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_cpu_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_file_usage",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_file_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_file_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_stream_buffer_size",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_stream_buffer_size",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_stream_buffer_size",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_3d_num_listeners",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_3d_num_listeners",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_3d_num_listeners",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_3d_num_listeners",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} num\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_3d_num_listeners",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_3d_num_listeners",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_3d_rolloff_callback",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_3d_rolloff_callback",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_3d_rolloff_callback",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_mixer_suspend",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_mixer_suspend",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_mixer_suspend",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_mixer_resume",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_mixer_resume",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_mixer_resume",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_lock_dsp",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_lock_dsp",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_lock_dsp",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_unlock_dsp",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_unlock_dsp",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_unlock_dsp",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_user_data",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_user_data",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_user_data",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} user_data\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_user_data",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_attach_channel_group_to_port",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_attach_channel_group_to_port",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_attach_channel_group_to_port",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_detach_channel_group_from_port",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_detach_channel_group_from_port",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_detach_channel_group_from_port",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_create_sound_group",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} name\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_create_sound_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_create_sound_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_create_geometry",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} max_polygons\r\n@param {Real} max_vertices\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_create_geometry",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_create_geometry",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_load_geometry",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_load_geometry",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_load_geometry",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_geometry_occlusion",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_geometry_occlusion",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_geometry_occlusion",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_get_geometry_settings",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_geometry_settings",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_get_geometry_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_system_set_geometry_settings",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} max_world_size\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_set_geometry_settings",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_system_set_geometry_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_create_reverb_3d",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_create_reverb_3d",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_create_reverb_3d",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_system_create_sound",
           "argCount": 4,
           "args": [
@@ -1599,6 +2324,42 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_release",
           "argCount": 2,
           "args": [
@@ -1651,6 +2412,24 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_sound_get_open_state",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_get_num_tags",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_get_num_tags",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_get_num_tags",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1715,6 +2494,26 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_get_sub_sound_parent",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_get_sub_sound_parent",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_get_sub_sound_parent",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_read_data",
           "argCount": 2,
           "args": [
@@ -1727,6 +2526,62 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_sound_read_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_seek_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_seek_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_seek_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_lock",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_lock",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_lock",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_unlock",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_unlock",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_unlock",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2123,6 +2978,42 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_group_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_group_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_group_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_sound_group_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_sound_group_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_sound_group_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_group_get_name",
           "argCount": 2,
           "args": [
@@ -2233,6 +3124,100 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_reverb_3d_get_properties",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_reverb_3d_get_properties",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_reverb_3d_get_properties",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_reverb_3d_set_3d_attributes",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_reverb_3d_set_3d_attributes",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_reverb_3d_set_3d_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_reverb_3d_get_3d_attributes",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_reverb_3d_get_3d_attributes",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_reverb_3d_get_3d_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_reverb_3d_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_reverb_3d_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_reverb_3d_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_reverb_3d_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_reverb_3d_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_reverb_3d_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_reverb_3d_release",
           "argCount": 2,
           "args": [
@@ -2245,6 +3230,98 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_reverb_3d_release",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_add_fade_point",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_add_fade_point",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_add_fade_point",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_remove_fade_points",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_remove_fade_points",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_remove_fade_points",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_fade_point_ramp",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_fade_point_ramp",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_fade_point_ramp",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_fade_point_count",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_fade_point_count",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_fade_point_count",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_fade_point_at",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_fade_point_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_fade_point_at",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2611,6 +3688,26 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_min_max_distance",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_min_max_distance",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_min_max_distance",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_control_set_3d_cone_settings",
           "argCount": 2,
           "args": [
@@ -2629,6 +3726,64 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_cone_settings",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_cone_settings",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_cone_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_3d_cone_orientation",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_3d_cone_orientation",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_3d_cone_orientation",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_cone_orientation",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_cone_orientation",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_cone_orientation",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_control_set_3d_occlusion",
           "argCount": 2,
           "args": [
@@ -2641,6 +3796,26 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_control_set_3d_occlusion",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_occlusion",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_occlusion",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_occlusion",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2739,6 +3914,82 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_distance_filter",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_distance_filter",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_distance_filter",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_3d_custom_rolloff",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_3d_custom_rolloff",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_custom_rolloff_count",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_count",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_custom_rolloff_count",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_custom_rolloff_at",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_custom_rolloff_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_control_set_pan",
           "argCount": 2,
           "args": [
@@ -2769,6 +4020,62 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_control_set_mix_levels_output",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_mix_levels_input",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_mix_levels_input",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_mix_levels_input",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_mix_matrix",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_mix_matrix",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_mix_matrix",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_mix_matrix",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_mix_matrix",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_mix_matrix",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2951,6 +4258,42 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_control_get_dsp_index",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -3965,6 +5308,24 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_add_polygon",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_add_polygon",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_add_polygon",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_geometry_set_polygon_attributes",
           "argCount": 2,
           "args": [
@@ -3977,6 +5338,26 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_geometry_set_polygon_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_polygon_attributes",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_polygon_attributes",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_polygon_attributes",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4001,6 +5382,82 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_set_polygon_vertex",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_set_polygon_vertex",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_set_polygon_vertex",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_polygon_vertex",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_polygon_vertex",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_polygon_vertex",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_num_polygons",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_num_polygons",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_num_polygons",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_max_polygons",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_max_polygons",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_max_polygons",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_geometry_set_position",
           "argCount": 2,
           "args": [
@@ -4013,6 +5470,26 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_geometry_set_position",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_position",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_position",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_position",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4037,6 +5514,26 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_rotation",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_rotation",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_rotation",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_geometry_set_scale",
           "argCount": 2,
           "args": [
@@ -4049,6 +5546,98 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_geometry_set_scale",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_scale",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_scale",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_scale",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_get_active",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_get_active",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_get_active",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_geometry_set_active",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_geometry_set_active",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_geometry_set_active",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4296,6 +5885,25 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_bank_by_id",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} str_guid\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_bank_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_bank_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_system_get_event",
           "argCount": 3,
           "args": [
@@ -4371,6 +5979,25 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_bus_by_id",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} str_guid\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_bus_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_bus_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_system_get_vca",
           "argCount": 3,
           "args": [
@@ -4384,6 +6011,25 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_system_get_vca",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_vca_by_id",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} str_guid\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_vca_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_vca_by_id",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4422,6 +6068,57 @@
           "hidden": false,
           "kind": 4,
           "name": "fmod_studio_system_set_listener_weight",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_num_listeners",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_num_listeners",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_num_listeners",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_listener_attributes",
+          "argCount": 3,
+          "args": [
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} listener_index\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_listener_attributes",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_listener_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_listener_weight",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} listener_index\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_listener_weight",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_listener_weight",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4515,6 +6212,23 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_lookup_path",
+          "argCount": 1,
+          "args": [
+            1
+          ],
+          "documentation": "@param {String} str_guid\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_lookup_path",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_lookup_path",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_system_get_event_by_id",
           "argCount": 3,
           "args": [
@@ -4528,6 +6242,21 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_system_get_event_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_is_valid",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_is_valid",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_is_valid",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4581,6 +6310,368 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_system_load_command_replay",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_sound_info",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} key\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_sound_info",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_sound_info",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_parameter_by_id",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} id_data1\r\n@param {Real} id_data2\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_parameter_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_set_parameter_by_id",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "documentation": "@param {Real} id_data1\r\n@param {Real} id_data2\r\n@param {Real} value\r\n@param {Real} ignore_seek_speed\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_parameter_by_id",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_set_parameter_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_parameter_description_by_id",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} id_data1\r\n@param {Real} id_data2\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_parameter_description_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_parameter_description_by_name",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} name\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_name",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_parameter_description_by_name",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_parameter_description_count",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_description_count",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_parameter_description_count",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_parameter_description_at",
+          "argCount": 3,
+          "args": [
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} index\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_description_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_parameter_description_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_parameter_label_by_id",
+          "argCount": 3,
+          "args": [
+            2,
+            2,
+            2
+          ],
+          "documentation": "@param {Real} id_data1\r\n@param {Real} id_data2\r\n@param {Real} label_index\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_parameter_label_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_parameter_label_by_name",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {String} name\r\n@param {Real} label_index\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_parameter_label_by_name",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_set_parameter_by_id_with_label",
+          "argCount": 4,
+          "args": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Real} id_data1\r\n@param {Real} id_data2\r\n@param {String} label\r\n@param {Real} ignore_seek_speed\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_set_parameter_by_id_with_label",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_set_parameter_by_name_with_label",
+          "argCount": 3,
+          "args": [
+            1,
+            1,
+            2
+          ],
+          "documentation": "@param {String} name\r\n@param {String} label\r\n@param {Real} ignore_seek_speed\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_set_parameter_by_name_with_label",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_cpu_usage",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_cpu_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_cpu_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_buffer_usage",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_buffer_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_buffer_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_reset_buffer_usage",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_reset_buffer_usage",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_reset_buffer_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_memory_usage",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_memory_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_memory_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_get_advanced_settings",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_advanced_settings",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_get_advanced_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_system_set_advanced_settings",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_advanced_settings",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_system_set_advanced_settings",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_set_callback",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} callback_mask\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_callback",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_set_callback",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_get_user_data",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_get_user_data",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_studio_system_set_user_data",
+          "argCount": 1,
+          "args": [
+            2
+          ],
+          "documentation": "@param {Real} user_data\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_system_set_user_data",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_studio_system_set_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -4811,6 +6902,134 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_get_id",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_get_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_get_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_is_valid",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_is_valid",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_is_valid",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_get_string_info",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_get_string_info",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_get_string_info",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_load_sample_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_load_sample_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_load_sample_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_unload_sample_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_unload_sample_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_unload_sample_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bank_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bank_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bank_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_description_get_path",
           "argCount": 2,
           "args": [
@@ -5033,6 +7252,376 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_is_valid",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_is_valid",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_is_valid",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_is_3d",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_is_3d",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_is_3d",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_is_stream",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_is_stream",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_is_stream",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_is_doppler_enabled",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_is_doppler_enabled",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_is_doppler_enabled",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_id",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_min_max_distance",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_min_max_distance",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_min_max_distance",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_sound_size",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_sound_size",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_sound_size",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_sample_loading_state",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_sample_loading_state",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_unload_sample_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_unload_sample_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_unload_sample_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_set_callback",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_set_callback",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_set_callback",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_user_property",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_user_property",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_user_property",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_user_property_at",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_user_property_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_user_property_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_user_property_count",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_user_property_count",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_user_property_count",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_parameter_description_by_id",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_parameter_description_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_parameter_description_at",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_parameter_description_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_parameter_label_by_id",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_parameter_label_by_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_parameter_label_at",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_parameter_label_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_description_get_parameter_label_by_name",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_description_get_parameter_label_by_name",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_start",
           "argCount": 2,
           "args": [
@@ -5153,6 +7742,24 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_event_instance_set_timeline_position",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_keyoff",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_keyoff",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_keyoff",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -5339,6 +7946,42 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_parameter_by_id_with_label",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_parameter_by_id_with_label",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_parameter_by_name_with_label",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name_with_label",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_parameter_by_name_with_label",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_set_3d_attributes",
           "argCount": 2,
           "args": [
@@ -5351,6 +7994,286 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_event_instance_set_3d_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_3d_attributes",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_3d_attributes",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_3d_attributes",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_min_max_distance",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_min_max_distance",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_min_max_distance",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_listener_mask",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_listener_mask",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_listener_mask",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_listener_mask",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_listener_mask",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_listener_mask",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_reverb_level",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_reverb_level",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_reverb_level",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_reverb_level",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_reverb_level",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_reverb_level",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_property",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_property",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_property",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_property",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_property",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_property",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_is_valid",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_is_valid",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_is_valid",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_is_virtual",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_is_virtual",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_is_virtual",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_channel_group",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_channel_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_channel_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_cpu_usage",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_cpu_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_get_memory_usage",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_memory_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_get_memory_usage",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -5521,6 +8444,212 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_id",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_id",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_id",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_is_valid",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_is_valid",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_is_valid",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_channel_group",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_channel_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_channel_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_lock_channel_group",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_lock_channel_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_lock_channel_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_unlock_channel_group",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_unlock_channel_group",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_unlock_channel_group",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_cpu_usage",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_cpu_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_cpu_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_memory_usage",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_memory_usage",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_memory_usage",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_mute",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_mute",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_mute",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_set_mute",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_set_mute",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_set_mute",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_get_port_index",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_port_index",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_get_port_index",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_bus_set_port_index",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_bus_set_port_index",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_bus_set_port_index",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_vca_get_path",
           "argCount": 2,
           "args": [
@@ -5659,6 +8788,262 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_command_replay_get_length",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_system_object",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_system_object",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_system_object",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_is_valid",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_is_valid",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_is_valid",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_command_info",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_command_info",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_command_info",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_command_string",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {String}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_command_string",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_command_string",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 1
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_command_at_time",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_command_at_time",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_command_at_time",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_seek_to_command",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_seek_to_command",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_seek_to_command",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_seek_to_time",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_seek_to_time",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_seek_to_time",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_set_bank_path",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_set_bank_path",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_set_bank_path",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_paused",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_paused",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_paused",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_set_paused",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_set_paused",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_set_paused",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_start",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_start",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_start",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_stop",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_stop",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_stop",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_get_user_data",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_command_replay_set_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_command_replay_set_user_data",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_command_replay_set_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2

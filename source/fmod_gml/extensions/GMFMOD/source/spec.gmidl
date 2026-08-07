@@ -1068,6 +1068,521 @@ class `[[FmodStudioParameterDescription]]` prototype Object
     property flags: gmval { get; set; }
 }
 
+[global]
+class `[[FmodFadePoint]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property dsp_clock: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property volume: gmval { get; set; }
+}
+
+[global]
+class `[[FmodDistanceFilter]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property custom: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property custom_level: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property center_freq: gmval { get; set; }
+}
+
+[global]
+class `[[FmodOcclusion]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property direct: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property reverb: gmval { get; set; }
+}
+
+[global]
+class `[[FmodGeometryMaxPolygons]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property max_polygons: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_vertices: gmval { get; set; }
+}
+
+[global]
+class `[[FmodPolygonAttributes]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property direct_occlusion: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property reverb_occlusion: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property double_sided: gmval { get; set; }
+}
+
+[global]
+class `[[FmodGeometryRotation]]` prototype Object
+{
+    [field, type_hint=`FmodVec3`]
+    property forward: gmval { get; set; }
+
+    [field, type_hint=`FmodVec3`]
+    property up: gmval { get; set; }
+}
+
+[global]
+class `[[FmodReverbProperties]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property decay_time: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property early_delay: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property late_delay: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property hf_reference: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property hf_decay_ratio: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property diffusion: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property density: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property low_shelf_frequency: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property low_shelf_gain: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property high_cut: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property early_late_mix: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property wet_level: gmval { get; set; }
+}
+
+[global]
+class `[[FmodReverb3DAttributes]]` prototype Object
+{
+    [field, type_hint=`FmodVec3`]
+    property position: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property min_distance: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_distance: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSoundLockLengths]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property length1: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property length2: gmval { get; set; }
+}
+
+[global]
+class `[[FmodMemoryStats]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property current_alloced: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_alloced: gmval { get; set; }
+}
+
+[global]
+class `[[FmodAdvancedSettings]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property max_mpeg_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_adpcm_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_xma_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_vorbis_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_at9_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_fadpcm_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_pcm_codecs: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property asio_num_channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property vol0_virtualvol: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property default_decode_buffer_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property profile_port: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property geometry_max_fade_time: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property distance_filter_center_freq: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property reverb3d_instance: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property dsp_buffer_pool_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property resampler_method: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property random_seed: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_convolution_threads: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_opus_codecs: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSpeakerPosition]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property x: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property y: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property active: gmval { get; set; }
+}
+
+[global]
+class `[[FmodCPUUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property dsp: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property stream: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property geometry: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property update: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property convolution1: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property convolution2: gmval { get; set; }
+}
+
+[global]
+class `[[FmodFileUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property sample_bytes_read: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property stream_bytes_read: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property other_bytes_read: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStreamBufferSize]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property file_buffer_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property file_buffer_size_type: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioStringInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property guid: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property path: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioCPUUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property exclusive: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property inclusive: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioMemoryUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property exclusive: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property inclusive: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property sample_data: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioCommandInfo]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property command_name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property parent_command_index: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property frame_time: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property instance_type: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property output_type: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property instance_handle: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property output_handle: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioCurrentCommand]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property command_index: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property current_time: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioUserProperty]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`FmodStudioUserPropertyType`]
+    property type: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property string_value: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property int_value: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property bool_value: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property float_value: gmval { get; set; }
+}
+
+[global]
+class `[[FmodCreateSoundExInfo]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property length: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property file_offset: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property num_channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property default_frequency: gmval { get; set; }
+
+    [field, type_hint=`FmodSoundFormat`]
+    property format: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property decode_buffer_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property initial_subsound: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property num_subsounds: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property inclusion_list_num: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property dls_name: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property encryption_key: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property max_polyphony: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property suggested_sound_type: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property file_buffer_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property channel_order: gmval { get; set; }
+
+    [field, type_hint=`uint64`]
+    property initial_sound_group: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property initial_seek_position: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property initial_seek_pos_type: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property ignore_set_filesystem: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property audio_queue_policy: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property min_midi_granularity: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property non_block_thread_id: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioSoundInfo]]` prototype Object
+{
+    [field, type_hint=`FmodCreateSoundExInfo`]
+    property ext_info: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property name_or_data: gmval { get; set; }
+
+    [field, type_hint=`FmodMode`]
+    property mode: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property sub_sound_index: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioSystemCPUUsage]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property studio_update: gmval { get; set; }
+
+    [field, type_hint=`FmodCPUUsage`]
+    property core: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioBufferInfo]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property current_usage: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property peak_usage: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property capacity: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property stall_count: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property stall_time: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioBufferUsage]]` prototype Object
+{
+    [field, type_hint=`FmodStudioBufferInfo`]
+    property command_queue: gmval { get; set; }
+
+    [field, type_hint=`FmodStudioBufferInfo`]
+    property handle: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioListenerAttributes]]` prototype Object
+{
+    [field, type_hint=`FmodListener3DAttributes`]
+    property attributes: gmval { get; set; }
+
+    [field, type_hint=`FmodVec3`]
+    property attenuation: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioAdvancedSettings]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property command_queue_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property handle_initial_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property studio_update_period: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property idle_sampledata_pool_size: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property streaming_schedule_delay: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property encryption_key: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioParameterValue]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property value: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property final_value: gmval { get; set; }
+}
+
 group
 {
 
@@ -1094,6 +1609,56 @@ function fmod_path_user(filename: string): string;
 function fmod_error_string(
     [type_hint=`FmodResult`] result: gmval
 ): string;
+
+[global, bind = typed_gml]
+function fmod_fetch_callbacks(): real;
+
+}
+
+group
+{
+
+// ============================================================
+// File
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_file_get_disk_busy(): real;
+
+[global, bind = typed_gml]
+function fmod_file_set_disk_busy(
+    busy: real
+): real;
+
+}
+
+group
+{
+
+// ============================================================
+// Memory
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodMemoryStats`]
+function fmod_memory_get_stats(
+    blocking: real
+): gmval;
+
+}
+
+group
+{
+
+// ============================================================
+// Thread
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_thread_set_attributes(
+    thread_type: real,
+    affinity: real,
+    priority: real
+): real;
 
 }
 
@@ -1185,6 +1750,13 @@ function fmod_channel_set_loop_points(
     loop_end: real,
     loop_end_type: real
 ): real;
+
+[global, bind = typed_gml, type_hint=`FmodLoopPoints`]
+function fmod_channel_get_loop_points(
+    [type_hint=`uint64`] channel_ref: gmval,
+    start_type: real,
+    end_type: real
+): gmval;
 
 // ============================================================
 // Channel - Status
@@ -1412,6 +1984,173 @@ function fmod_system_select(
     [type_hint=`uint64`] system_ref: gmval
 ): real;
 
+// ============================================================
+// System - Diagnostics & Configuration
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_system_count(): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_version(): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_get_master_sound_group(): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodAdvancedSettings`]
+function fmod_system_get_advanced_settings(): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_set_advanced_settings(
+    [type_hint=`FmodAdvancedSettings`] settings: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_network_proxy(): string;
+
+[global, bind = typed_gml]
+function fmod_system_set_network_proxy(
+    proxy: string
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_network_timeout(): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_network_timeout(
+    timeout_ms: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_speaker_mode_channels(
+    [type_hint=`FmodSpeakerMode`] mode: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSpeakerPosition`]
+function fmod_system_get_speaker_position(
+    speaker: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_set_speaker_position(
+    speaker: real,
+    x: real,
+    y: real,
+    active: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodReverbProperties`]
+function fmod_system_get_reverb_properties(
+    instance: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_set_reverb_properties(
+    instance: real,
+    [type_hint=`FmodReverbProperties`] props: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
+function fmod_system_get_default_mix_matrix(
+    [type_hint=`FmodSpeakerMode`] source_speaker_mode: gmval,
+    [type_hint=`FmodSpeakerMode`] target_speaker_mode: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodCPUUsage`]
+function fmod_system_get_cpu_usage(): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodFileUsage`]
+function fmod_system_get_file_usage(): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStreamBufferSize`]
+function fmod_system_get_stream_buffer_size(): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_get_3d_num_listeners(): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_3d_num_listeners(
+    num: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_3d_rolloff_callback(): real;
+
+[global, bind = typed_gml]
+function fmod_system_mixer_suspend(): real;
+
+[global, bind = typed_gml]
+function fmod_system_mixer_resume(): real;
+
+[global, bind = typed_gml]
+function fmod_system_lock_dsp(): real;
+
+[global, bind = typed_gml]
+function fmod_system_unlock_dsp(): real;
+
+[global, bind = typed_gml]
+function fmod_system_get_user_data(): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_user_data(
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_attach_channel_group_to_port(
+    port_type: real,
+    port_index: real,
+    [type_hint=`uint64`] channel_group_ref: gmval,
+    pass_thru: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_system_detach_channel_group_from_port(
+    [type_hint=`uint64`] channel_group_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_sound_group(
+    name: string
+): gmval;
+
+// ============================================================
+// System - Geometry
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_geometry(
+    max_polygons: real,
+    max_vertices: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`uint64?`]
+function fmod_system_load_geometry(
+    [type_hint=buffer] data: gmval,
+    data_size: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodOcclusion`]
+function fmod_system_get_geometry_occlusion(
+    [type_hint=`FmodVec3`] listener: gmval,
+    [type_hint=`FmodVec3`] source: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_system_get_geometry_settings(): real;
+
+[global, bind = typed_gml]
+function fmod_system_set_geometry_settings(
+    max_world_size: real
+): real;
+
+// ============================================================
+// System - Reverb3D
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_reverb_3d(): gmval;
+
 }
 
 group
@@ -1634,6 +2373,21 @@ function fmod_sound_get_sound_group(
 ): gmval;
 
 // ============================================================
+// Sound - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_set_user_data(
+    [type_hint=`uint64`] sound_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_get_user_data(
+    [type_hint=`uint64`] sound_ref: gmval
+): real;
+
+// ============================================================
 // Sound - Release
 // ============================================================
 
@@ -1651,6 +2405,11 @@ function fmod_sound_get_system_object(
 function fmod_sound_get_open_state(
     [type_hint=`uint64`] sound_ref: gmval
 ): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_get_num_tags(
+    [type_hint=`uint64`] sound_ref: gmval
+): real;
 
 [global, bind = typed_gml, type_hint=`FmodSoundTag`]
 function fmod_sound_get_tag(
@@ -1670,11 +2429,40 @@ function fmod_sound_get_sub_sound(
     index: real
 ): gmval;
 
+[global, bind = typed_gml, type_hint=`uint64?`]
+function fmod_sound_get_sub_sound_parent(
+    [type_hint=`uint64`] sound_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_sound_read_data(
     [type_hint=`uint64`] sound_ref: gmval,
     [type_hint=buffer] data: gmval,
     length: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_seek_data(
+    [type_hint=`uint64`] sound_ref: gmval,
+    pcm: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodSoundLockLengths`]
+function fmod_sound_lock(
+    [type_hint=`uint64`] sound_ref: gmval,
+    offset: real,
+    length: real,
+    [type_hint=buffer] buffer1: gmval,
+    [type_hint=buffer] buffer2: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_sound_unlock(
+    [type_hint=`uint64`] sound_ref: gmval,
+    [type_hint=buffer] buffer1: gmval,
+    [type_hint=buffer] buffer2: gmval,
+    length1: real,
+    length2: real
 ): real;
 
 }
@@ -1822,6 +2610,21 @@ function fmod_sound_group_stop(
 ): real;
 
 // ============================================================
+// SoundGroup - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_sound_group_set_user_data(
+    [type_hint=`uint64`] sound_group_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_sound_group_get_user_data(
+    [type_hint=`uint64`] sound_group_ref: gmval
+): real;
+
+// ============================================================
 // SoundGroup - General
 // ============================================================
 
@@ -1877,6 +2680,43 @@ function fmod_reverb_3d_set_properties(
     wet_level: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodReverbProperties`]
+function fmod_reverb_3d_get_properties(
+    [type_hint=`uint64`] reverb_3d_ref: gmval
+): gmval;
+
+// ============================================================
+// Reverb3D - 3D Attributes
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_reverb_3d_set_3d_attributes(
+    [type_hint=`uint64`] reverb_3d_ref: gmval,
+    [type_hint=`FmodVec3`] position: gmval,
+    min_distance: real,
+    max_distance: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodReverb3DAttributes`]
+function fmod_reverb_3d_get_3d_attributes(
+    [type_hint=`uint64`] reverb_3d_ref: gmval
+): gmval;
+
+// ============================================================
+// Reverb3D - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_reverb_3d_set_user_data(
+    [type_hint=`uint64`] reverb_3d_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_reverb_3d_get_user_data(
+    [type_hint=`uint64`] reverb_3d_ref: gmval
+): real;
+
 // ============================================================
 // Reverb3D - General
 // ============================================================
@@ -1890,6 +2730,42 @@ function fmod_reverb_3d_release(
 
 group
 {
+
+// ============================================================
+// ChannelControl - Fade Points
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_control_add_fade_point(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    dsp_clock: real,
+    volume: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_remove_fade_points(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    dsp_clock_start: real,
+    dsp_clock_end: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_fade_point_ramp(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    dsp_clock: real,
+    volume: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_get_fade_point_count(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodFadePoint`]
+function fmod_channel_control_get_fade_point_at(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    index: real
+): gmval;
 
 // ============================================================
 // ChannelControl - Playback
@@ -2013,6 +2889,11 @@ function fmod_channel_control_set_3d_min_max_distance(
     max_dist: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodMinMaxDistance`]
+function fmod_channel_control_get_3d_min_max_distance(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_cone_settings(
     [type_hint=`uint64`] channel_control_ref: gmval,
@@ -2021,12 +2902,33 @@ function fmod_channel_control_set_3d_cone_settings(
     outside_volume: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodConeSettings`]
+function fmod_channel_control_get_3d_cone_settings(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_3d_cone_orientation(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    [type_hint=`FmodVec3`] orientation: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodVec3`]
+function fmod_channel_control_get_3d_cone_orientation(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_occlusion(
     [type_hint=`uint64`] channel_control_ref: gmval,
     direct_occlusion: real,
     reverb_occlusion: real
 ): real;
+
+[global, bind = typed_gml, type_hint=`FmodOcclusion`]
+function fmod_channel_control_get_3d_occlusion(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_attributes(
@@ -2059,6 +2961,29 @@ function fmod_channel_control_set_3d_distance_filter(
     center_freq: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodDistanceFilter`]
+function fmod_channel_control_get_3d_distance_filter(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_3d_custom_rolloff(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    points: gmval,
+    num_points: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_get_3d_custom_rolloff_count(
+    [type_hint=`uint64`] channel_control_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodVec3`]
+function fmod_channel_control_get_3d_custom_rolloff_at(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    index: real
+): gmval;
+
 // ============================================================
 // ChannelControl - Panning & Mixing
 // ============================================================
@@ -2081,6 +3006,28 @@ function fmod_channel_control_set_mix_levels_output(
     back_left: real,
     back_right: real
 ): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_mix_levels_input(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    levels: real,
+    num_levels: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_mix_matrix(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    matrix: real,
+    out_channels: real,
+    in_channels: real,
+    in_channel_hop: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
+function fmod_channel_control_get_mix_matrix(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    in_channel_hop: real
+): gmval;
 
 // ============================================================
 // ChannelControl - Filtering
@@ -2149,6 +3096,21 @@ function fmod_channel_control_set_dsp_index(
 function fmod_channel_control_get_dsp_index(
     [type_hint=`uint64`] channel_control_ref: gmval,
     [type_hint=`uint64`] dsp_ref: gmval
+): real;
+
+// ============================================================
+// ChannelControl - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_channel_control_set_user_data(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_channel_control_get_user_data(
+    [type_hint=`uint64`] channel_control_ref: gmval
 ): real;
 
 // ============================================================
@@ -2535,6 +3497,16 @@ group
 // ============================================================
 
 [global, bind = typed_gml]
+function fmod_geometry_add_polygon(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    direct_occlusion: real,
+    reverb_occlusion: real,
+    double_sided: real,
+    num_vertices: real,
+    [type_hint=buffer] vertices: gmval
+): real;
+
+[global, bind = typed_gml]
 function fmod_geometry_set_polygon_attributes(
     [type_hint=`uint64`] geometry_ref: gmval,
     polygon_index: real,
@@ -2543,11 +3515,42 @@ function fmod_geometry_set_polygon_attributes(
     double_sided: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodPolygonAttributes`]
+function fmod_geometry_get_polygon_attributes(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    polygon_index: real
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_geometry_get_polygon_num_vertices(
     [type_hint=`uint64`] geometry_ref: gmval,
     polygon_index: real
 ): real;
+
+[global, bind = typed_gml]
+function fmod_geometry_set_polygon_vertex(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    polygon_index: real,
+    vertex_index: real,
+    [type_hint=`FmodVec3`] vertex: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodVec3`]
+function fmod_geometry_get_polygon_vertex(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    polygon_index: real,
+    vertex_index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_geometry_get_num_polygons(
+    [type_hint=`uint64`] geometry_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodGeometryMaxPolygons`]
+function fmod_geometry_get_max_polygons(
+    [type_hint=`uint64`] geometry_ref: gmval
+): gmval;
 
 // ============================================================
 // Geometry - Position & Orientation
@@ -2561,6 +3564,11 @@ function fmod_geometry_set_position(
     z: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodVec3`]
+function fmod_geometry_get_position(
+    [type_hint=`uint64`] geometry_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_geometry_set_rotation(
     [type_hint=`uint64`] geometry_ref: gmval,
@@ -2572,6 +3580,11 @@ function fmod_geometry_set_rotation(
     up_z: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodGeometryRotation`]
+function fmod_geometry_get_rotation(
+    [type_hint=`uint64`] geometry_ref: gmval
+): gmval;
+
 [global, bind = typed_gml]
 function fmod_geometry_set_scale(
     [type_hint=`uint64`] geometry_ref: gmval,
@@ -2580,9 +3593,40 @@ function fmod_geometry_set_scale(
     scale_z: real
 ): real;
 
+[global, bind = typed_gml, type_hint=`FmodVec3`]
+function fmod_geometry_get_scale(
+    [type_hint=`uint64`] geometry_ref: gmval
+): gmval;
+
+// ============================================================
+// Geometry - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_geometry_set_user_data(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    user_data: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_geometry_get_user_data(
+    [type_hint=`uint64`] geometry_ref: gmval
+): real;
+
 // ============================================================
 // Geometry - General
 // ============================================================
+
+[global, bind = typed_gml]
+function fmod_geometry_get_active(
+    [type_hint=`uint64`] geometry_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_geometry_set_active(
+    [type_hint=`uint64`] geometry_ref: gmval,
+    active: real
+): real;
 
 [global, bind = typed_gml]
 function fmod_geometry_save(
@@ -2644,6 +3688,9 @@ function fmod_studio_system_get_bank_at(index: real): gmval;
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_bank(path: string): gmval;
 
+[global, bind = typed_gml, type_hint=`uint64?`]
+function fmod_studio_system_get_bank_by_id(str_guid: string): gmval;
+
 // ============================================================
 // Studio System - Events
 // ============================================================
@@ -2664,12 +3711,18 @@ function fmod_studio_system_get_bus(path: string): gmval;
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_master_bus(): gmval;
 
+[global, bind = typed_gml, type_hint=`uint64?`]
+function fmod_studio_system_get_bus_by_id(str_guid: string): gmval;
+
 // ============================================================
 // Studio System - VCAs
 // ============================================================
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_vca(path: string): gmval;
+
+[global, bind = typed_gml, type_hint=`uint64?`]
+function fmod_studio_system_get_vca_by_id(str_guid: string): gmval;
 
 // ============================================================
 // Studio System - Listener
@@ -2680,6 +3733,15 @@ function fmod_studio_system_set_listener_attributes(listener_index: real, x: rea
 
 [global, bind = typed_gml]
 function fmod_studio_system_set_listener_weight(listener_index: real, weight: real): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_num_listeners(): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioListenerAttributes`]
+function fmod_studio_system_get_listener_attributes(listener_index: real): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_listener_weight(listener_index: real): real;
 
 // ============================================================
 // Studio System - General
@@ -2700,8 +3762,14 @@ function fmod_studio_system_set_num_listeners(count: real): real;
 [global, bind = typed_gml]
 function fmod_studio_system_lookup_id(path: string): string;
 
+[global, bind = typed_gml]
+function fmod_studio_system_lookup_path(str_guid: string): string;
+
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_system_get_event_by_id(id: string): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_is_valid(): real;
 
 [global, bind = typed_gml]
 function fmod_studio_system_start_command_capture(
@@ -2717,6 +3785,98 @@ function fmod_studio_system_load_command_replay(
     filename: string,
     [type_hint=`FmodStudioCommandReplayFlags`] flags: gmval
 ): gmval;
+
+// ============================================================
+// Studio System - Sound Info
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodStudioSoundInfo`]
+function fmod_studio_system_get_sound_info(key: string): gmval;
+
+// ============================================================
+// Studio System - Parameters
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterValue`]
+function fmod_studio_system_get_parameter_by_id(id_data1: real, id_data2: real): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_parameter_by_id(
+    id_data1: real,
+    id_data2: real,
+    value: real,
+    ignore_seek_speed: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_system_get_parameter_description_by_id(id_data1: real, id_data2: real): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_system_get_parameter_description_by_name(name: string): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_parameter_description_count(): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_system_get_parameter_description_at(index: real): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_parameter_label_by_id(id_data1: real, id_data2: real, label_index: real): string;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_parameter_label_by_name(name: string, label_index: real): string;
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_parameter_by_id_with_label(
+    id_data1: real,
+    id_data2: real,
+    label: string,
+    ignore_seek_speed: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_parameter_by_name_with_label(name: string, label: string, ignore_seek_speed: real): real;
+
+// ============================================================
+// Studio System - Diagnostics
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodStudioSystemCPUUsage`]
+function fmod_studio_system_get_cpu_usage(): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioBufferUsage`]
+function fmod_studio_system_get_buffer_usage(): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_reset_buffer_usage(): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioMemoryUsage`]
+function fmod_studio_system_get_memory_usage(): gmval;
+
+// ============================================================
+// Studio System - Advanced Settings
+// ============================================================
+
+[global, bind = typed_gml, type_hint=`FmodStudioAdvancedSettings`]
+function fmod_studio_system_get_advanced_settings(): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_advanced_settings(
+    [type_hint=`FmodStudioAdvancedSettings`] settings: gmval
+): real;
+
+// ============================================================
+// Studio System - Callbacks & User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_callback(callback_mask: real): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_get_user_data(): real;
+
+[global, bind = typed_gml]
+function fmod_studio_system_set_user_data(user_data: real): real;
 
 }
 
@@ -2762,6 +3922,27 @@ function fmod_studio_bank_get_vca_at([type_hint=`uint64`] bank_ref: gmval, index
 
 [global, bind = typed_gml]
 function fmod_studio_bank_get_string_count([type_hint=`uint64`] bank_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_get_id([type_hint=`uint64`] bank_ref: gmval): string;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_is_valid([type_hint=`uint64`] bank_ref: gmval): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioStringInfo`]
+function fmod_studio_bank_get_string_info([type_hint=`uint64`] bank_ref: gmval, string_index: real): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_load_sample_data([type_hint=`uint64`] bank_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_unload_sample_data([type_hint=`uint64`] bank_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_get_user_data([type_hint=`uint64`] bank_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bank_set_user_data([type_hint=`uint64`] bank_ref: gmval, user_data: real): real;
 
 }
 
@@ -2811,6 +3992,98 @@ function fmod_studio_event_description_get_parameter_description_by_name(
 [global, bind = typed_gml]
 function fmod_studio_event_description_load_sample_data([type_hint=`uint64`] event_desc_ref: gmval): real;
 
+[global, bind = typed_gml]
+function fmod_studio_event_description_is_valid([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_is_3d([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_is_stream([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_is_doppler_enabled([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_id([type_hint=`uint64`] event_desc_ref: gmval): string;
+
+[global, bind = typed_gml, type_hint=`FmodMinMaxDistance`]
+function fmod_studio_event_description_get_min_max_distance([type_hint=`uint64`] event_desc_ref: gmval): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_sound_size([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_sample_loading_state([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_unload_sample_data([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_set_callback(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	callback_mask: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_user_data([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_set_user_data(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	user_data: real
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioUserProperty`]
+function fmod_studio_event_description_get_user_property(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	name: string
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioUserProperty`]
+function fmod_studio_event_description_get_user_property_at(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_user_property_count([type_hint=`uint64`] event_desc_ref: gmval): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_event_description_get_parameter_description_by_id(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	id_data1: real,
+	id_data2: real
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
+function fmod_studio_event_description_get_parameter_description_at(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_parameter_label_by_id(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	id_data1: real,
+	id_data2: real,
+	label_index: real
+): string;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_parameter_label_at(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	index: real,
+	label_index: real
+): string;
+
+[global, bind = typed_gml]
+function fmod_studio_event_description_get_parameter_label_by_name(
+	[type_hint=`uint64`] event_desc_ref: gmval,
+	name: string,
+	label_index: real
+): string;
+
 }
 
 group
@@ -2840,6 +4113,9 @@ function fmod_studio_event_instance_get_timeline_position([type_hint=`uint64`] i
 
 [global, bind = typed_gml]
 function fmod_studio_event_instance_set_timeline_position([type_hint=`uint64`] instance_ref: gmval, position: real): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_keyoff([type_hint=`uint64`] instance_ref: gmval): real;
 
 // ============================================================
 // Studio EventInstance - Volume & Pitch
@@ -2892,6 +4168,23 @@ function fmod_studio_event_instance_set_callback(
 	[type_hint=`FmodStudioEventCallbackType`] mask: gmval
 ): real;
 
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_parameter_by_id_with_label(
+	[type_hint=`uint64`] instance_ref: gmval,
+	id_data1: real,
+	id_data2: real,
+	label: string,
+	ignore_seek_speed: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_parameter_by_name_with_label(
+	[type_hint=`uint64`] instance_ref: gmval,
+	name: string,
+	label: string,
+	ignore_seek_speed: real
+): real;
+
 // ============================================================
 // Studio EventInstance - 3D
 // ============================================================
@@ -2899,9 +4192,66 @@ function fmod_studio_event_instance_set_callback(
 [global, bind = typed_gml]
 function fmod_studio_event_instance_set_3d_attributes([type_hint=`uint64`] instance_ref: gmval, x: real, y: real, z: real): real;
 
+[global, bind = typed_gml, type_hint=`FmodChannelControl3DAttributes`]
+function fmod_studio_event_instance_get_3d_attributes([type_hint=`uint64`] instance_ref: gmval): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodMinMaxDistance`]
+function fmod_studio_event_instance_get_min_max_distance([type_hint=`uint64`] instance_ref: gmval): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_get_listener_mask([type_hint=`uint64`] instance_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_listener_mask([type_hint=`uint64`] instance_ref: gmval, mask: real): real;
+
+// ============================================================
+// Studio EventInstance - Reverb
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_get_reverb_level([type_hint=`uint64`] instance_ref: gmval, index: real): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_reverb_level([type_hint=`uint64`] instance_ref: gmval, index: real, level: real): real;
+
+// ============================================================
+// Studio EventInstance - Properties
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_get_property([type_hint=`uint64`] instance_ref: gmval, [type_hint=`FmodStudioEventProperty`] property_type: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_property([type_hint=`uint64`] instance_ref: gmval, [type_hint=`FmodStudioEventProperty`] property_type: gmval, value: real): real;
+
+// ============================================================
+// Studio EventInstance - User Data
+// ============================================================
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_get_user_data([type_hint=`uint64`] instance_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_user_data([type_hint=`uint64`] instance_ref: gmval, user_data: real): real;
+
 // ============================================================
 // Studio EventInstance - General
 // ============================================================
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_is_valid([type_hint=`uint64`] instance_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_event_instance_is_virtual([type_hint=`uint64`] instance_ref: gmval): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_event_instance_get_channel_group([type_hint=`uint64`] instance_ref: gmval): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioCPUUsage`]
+function fmod_studio_event_instance_get_cpu_usage([type_hint=`uint64`] instance_ref: gmval): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioMemoryUsage`]
+function fmod_studio_event_instance_get_memory_usage([type_hint=`uint64`] instance_ref: gmval): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_event_instance_get_description([type_hint=`uint64`] instance_ref: gmval): gmval;
@@ -2938,6 +4288,39 @@ function fmod_studio_bus_stop_all_events([type_hint=`uint64`] bus_ref: gmval, st
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_bus_get_master_bus(): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_get_id([type_hint=`uint64`] bus_ref: gmval): string;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_is_valid([type_hint=`uint64`] bus_ref: gmval): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_bus_get_channel_group([type_hint=`uint64`] bus_ref: gmval): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_lock_channel_group([type_hint=`uint64`] bus_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_unlock_channel_group([type_hint=`uint64`] bus_ref: gmval): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioCPUUsage`]
+function fmod_studio_bus_get_cpu_usage([type_hint=`uint64`] bus_ref: gmval): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodStudioMemoryUsage`]
+function fmod_studio_bus_get_memory_usage([type_hint=`uint64`] bus_ref: gmval): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_get_mute([type_hint=`uint64`] bus_ref: gmval): real;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_set_mute([type_hint=`uint64`] bus_ref: gmval, mute: real): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_bus_get_port_index([type_hint=`uint64`] bus_ref: gmval): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_bus_set_port_index([type_hint=`uint64`] bus_ref: gmval, [type_hint=`uint64`] port_index: gmval): real;
 
 }
 
@@ -2983,6 +4366,84 @@ function fmod_studio_command_replay_get_command_count(
 [global, bind = typed_gml]
 function fmod_studio_command_replay_get_length(
 	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_command_replay_get_system_object(
+	[type_hint=`uint64`] replay_ref: gmval
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_is_valid(
+	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml, type_hint=`FmodStudioCommandInfo`]
+function fmod_studio_command_replay_get_command_info(
+	[type_hint=`uint64`] replay_ref: gmval,
+	command_index: real
+): gmval;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_command_string(
+	[type_hint=`uint64`] replay_ref: gmval,
+	command_index: real
+): string;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_command_at_time(
+	[type_hint=`uint64`] replay_ref: gmval,
+	time: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_seek_to_command(
+	[type_hint=`uint64`] replay_ref: gmval,
+	command_index: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_seek_to_time(
+	[type_hint=`uint64`] replay_ref: gmval,
+	time: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_set_bank_path(
+	[type_hint=`uint64`] replay_ref: gmval,
+	path: string
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_paused(
+	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_set_paused(
+	[type_hint=`uint64`] replay_ref: gmval,
+	paused: real
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_start(
+	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_stop(
+	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_get_user_data(
+	[type_hint=`uint64`] replay_ref: gmval
+): real;
+
+[global, bind = typed_gml]
+function fmod_studio_command_replay_set_user_data(
+	[type_hint=`uint64`] replay_ref: gmval,
+	user_data: real
 ): real;
 
 // ============================================================

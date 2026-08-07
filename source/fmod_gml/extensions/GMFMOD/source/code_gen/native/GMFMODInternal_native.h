@@ -687,8 +687,37 @@ namespace gm_structs
     struct FmodSoundOpenState;
     struct FmodSoundTag;
     struct FmodStudioParameterDescription;
+    struct FmodFadePoint;
+    struct FmodDistanceFilter;
+    struct FmodOcclusion;
+    struct FmodGeometryMaxPolygons;
+    struct FmodPolygonAttributes;
+    struct FmodReverbProperties;
+    struct FmodSoundLockLengths;
+    struct FmodMemoryStats;
+    struct FmodAdvancedSettings;
+    struct FmodSpeakerPosition;
+    struct FmodCPUUsage;
+    struct FmodFileUsage;
+    struct FmodStreamBufferSize;
+    struct FmodStudioStringInfo;
+    struct FmodStudioCPUUsage;
+    struct FmodStudioMemoryUsage;
+    struct FmodStudioCommandInfo;
+    struct FmodStudioCurrentCommand;
+    struct FmodStudioUserProperty;
+    struct FmodCreateSoundExInfo;
+    struct FmodStudioBufferInfo;
+    struct FmodStudioAdvancedSettings;
+    struct FmodStudioParameterValue;
     struct FmodListener3DAttributes;
     struct FmodChannelControl3DAttributes;
+    struct FmodGeometryRotation;
+    struct FmodReverb3DAttributes;
+    struct FmodStudioSystemCPUUsage;
+    struct FmodStudioSoundInfo;
+    struct FmodStudioBufferUsage;
+    struct FmodStudioListenerAttributes;
 
     struct FmodSoundDefaults
     {
@@ -871,6 +900,216 @@ namespace gm_structs
         gm_enums::FmodStudioParameterFlags flags;
     };
 
+    struct FmodFadePoint
+    {
+        double dsp_clock;
+        double volume;
+    };
+
+    struct FmodDistanceFilter
+    {
+        double custom;
+        double custom_level;
+        double center_freq;
+    };
+
+    struct FmodOcclusion
+    {
+        double direct;
+        double reverb;
+    };
+
+    struct FmodGeometryMaxPolygons
+    {
+        double max_polygons;
+        double max_vertices;
+    };
+
+    struct FmodPolygonAttributes
+    {
+        double direct_occlusion;
+        double reverb_occlusion;
+        double double_sided;
+    };
+
+    struct FmodReverbProperties
+    {
+        double decay_time;
+        double early_delay;
+        double late_delay;
+        double hf_reference;
+        double hf_decay_ratio;
+        double diffusion;
+        double density;
+        double low_shelf_frequency;
+        double low_shelf_gain;
+        double high_cut;
+        double early_late_mix;
+        double wet_level;
+    };
+
+    struct FmodSoundLockLengths
+    {
+        double length1;
+        double length2;
+    };
+
+    struct FmodMemoryStats
+    {
+        double current_alloced;
+        double max_alloced;
+    };
+
+    struct FmodAdvancedSettings
+    {
+        double max_mpeg_codecs;
+        double max_adpcm_codecs;
+        double max_xma_codecs;
+        double max_vorbis_codecs;
+        double max_at9_codecs;
+        double max_fadpcm_codecs;
+        double max_pcm_codecs;
+        double asio_num_channels;
+        double vol0_virtualvol;
+        double default_decode_buffer_size;
+        double profile_port;
+        double geometry_max_fade_time;
+        double distance_filter_center_freq;
+        double reverb3d_instance;
+        double dsp_buffer_pool_size;
+        double resampler_method;
+        double random_seed;
+        double max_convolution_threads;
+        double max_opus_codecs;
+    };
+
+    struct FmodSpeakerPosition
+    {
+        double x;
+        double y;
+        double active;
+    };
+
+    struct FmodCPUUsage
+    {
+        double dsp;
+        double stream;
+        double geometry;
+        double update;
+        double convolution1;
+        double convolution2;
+    };
+
+    struct FmodFileUsage
+    {
+        double sample_bytes_read;
+        double stream_bytes_read;
+        double other_bytes_read;
+    };
+
+    struct FmodStreamBufferSize
+    {
+        double file_buffer_size;
+        double file_buffer_size_type;
+    };
+
+    struct FmodStudioStringInfo
+    {
+        std::string guid;
+        std::string path;
+    };
+
+    struct FmodStudioCPUUsage
+    {
+        double exclusive;
+        double inclusive;
+    };
+
+    struct FmodStudioMemoryUsage
+    {
+        double exclusive;
+        double inclusive;
+        double sample_data;
+    };
+
+    struct FmodStudioCommandInfo
+    {
+        std::string command_name;
+        double parent_command_index;
+        double frame_time;
+        double instance_type;
+        double output_type;
+        double instance_handle;
+        double output_handle;
+    };
+
+    struct FmodStudioCurrentCommand
+    {
+        double command_index;
+        double current_time;
+    };
+
+    struct FmodStudioUserProperty
+    {
+        std::string name;
+        gm_enums::FmodStudioUserPropertyType type;
+        std::string string_value;
+        double int_value;
+        double bool_value;
+        double float_value;
+    };
+
+    struct FmodCreateSoundExInfo
+    {
+        double length;
+        double file_offset;
+        double num_channels;
+        double default_frequency;
+        gm_enums::FmodSoundFormat format;
+        double decode_buffer_size;
+        double initial_subsound;
+        double num_subsounds;
+        double inclusion_list_num;
+        std::string dls_name;
+        std::string encryption_key;
+        double max_polyphony;
+        double suggested_sound_type;
+        double file_buffer_size;
+        double channel_order;
+        std::uint64_t initial_sound_group;
+        double initial_seek_position;
+        double initial_seek_pos_type;
+        double ignore_set_filesystem;
+        double audio_queue_policy;
+        double min_midi_granularity;
+        double non_block_thread_id;
+    };
+
+    struct FmodStudioBufferInfo
+    {
+        double current_usage;
+        double peak_usage;
+        double capacity;
+        double stall_count;
+        double stall_time;
+    };
+
+    struct FmodStudioAdvancedSettings
+    {
+        double command_queue_size;
+        double handle_initial_size;
+        double studio_update_period;
+        double idle_sampledata_pool_size;
+        double streaming_schedule_delay;
+        std::string encryption_key;
+    };
+
+    struct FmodStudioParameterValue
+    {
+        double value;
+        double final_value;
+    };
+
     struct FmodListener3DAttributes
     {
         gm_structs::FmodVec3 position;
@@ -883,6 +1122,45 @@ namespace gm_structs
     {
         gm_structs::FmodVec3 position;
         gm_structs::FmodVec3 velocity;
+    };
+
+    struct FmodGeometryRotation
+    {
+        gm_structs::FmodVec3 forward;
+        gm_structs::FmodVec3 up;
+    };
+
+    struct FmodReverb3DAttributes
+    {
+        gm_structs::FmodVec3 position;
+        double min_distance;
+        double max_distance;
+    };
+
+    struct FmodStudioSystemCPUUsage
+    {
+        double studio_update;
+        gm_structs::FmodCPUUsage core;
+    };
+
+    struct FmodStudioSoundInfo
+    {
+        gm_structs::FmodCreateSoundExInfo ext_info;
+        std::string name_or_data;
+        gm_enums::FmodMode mode;
+        double sub_sound_index;
+    };
+
+    struct FmodStudioBufferUsage
+    {
+        gm_structs::FmodStudioBufferInfo command_queue;
+        gm_structs::FmodStudioBufferInfo handle;
+    };
+
+    struct FmodStudioListenerAttributes
+    {
+        gm_structs::FmodListener3DAttributes attributes;
+        gm_structs::FmodVec3 attenuation;
     };
 
 }
@@ -1356,6 +1634,518 @@ namespace gm::wire::codec
     }
 
     template<>
+    inline void writeValue<gm_structs::FmodFadePoint>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodFadePoint& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.dsp_clock);
+        gm::wire::codec::writeValue(_buf, obj.volume);
+    }
+
+    template<>
+    inline gm_structs::FmodFadePoint readValue<gm_structs::FmodFadePoint>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodFadePoint obj;
+        obj.dsp_clock = gm::wire::codec::readValue<double>(_buf);
+        obj.volume = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDistanceFilter>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDistanceFilter& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.custom);
+        gm::wire::codec::writeValue(_buf, obj.custom_level);
+        gm::wire::codec::writeValue(_buf, obj.center_freq);
+    }
+
+    template<>
+    inline gm_structs::FmodDistanceFilter readValue<gm_structs::FmodDistanceFilter>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDistanceFilter obj;
+        obj.custom = gm::wire::codec::readValue<double>(_buf);
+        obj.custom_level = gm::wire::codec::readValue<double>(_buf);
+        obj.center_freq = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodOcclusion>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodOcclusion& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.direct);
+        gm::wire::codec::writeValue(_buf, obj.reverb);
+    }
+
+    template<>
+    inline gm_structs::FmodOcclusion readValue<gm_structs::FmodOcclusion>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodOcclusion obj;
+        obj.direct = gm::wire::codec::readValue<double>(_buf);
+        obj.reverb = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodGeometryMaxPolygons>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodGeometryMaxPolygons& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.max_polygons);
+        gm::wire::codec::writeValue(_buf, obj.max_vertices);
+    }
+
+    template<>
+    inline gm_structs::FmodGeometryMaxPolygons readValue<gm_structs::FmodGeometryMaxPolygons>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodGeometryMaxPolygons obj;
+        obj.max_polygons = gm::wire::codec::readValue<double>(_buf);
+        obj.max_vertices = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodPolygonAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodPolygonAttributes& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.direct_occlusion);
+        gm::wire::codec::writeValue(_buf, obj.reverb_occlusion);
+        gm::wire::codec::writeValue(_buf, obj.double_sided);
+    }
+
+    template<>
+    inline gm_structs::FmodPolygonAttributes readValue<gm_structs::FmodPolygonAttributes>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodPolygonAttributes obj;
+        obj.direct_occlusion = gm::wire::codec::readValue<double>(_buf);
+        obj.reverb_occlusion = gm::wire::codec::readValue<double>(_buf);
+        obj.double_sided = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodReverbProperties>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodReverbProperties& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.decay_time);
+        gm::wire::codec::writeValue(_buf, obj.early_delay);
+        gm::wire::codec::writeValue(_buf, obj.late_delay);
+        gm::wire::codec::writeValue(_buf, obj.hf_reference);
+        gm::wire::codec::writeValue(_buf, obj.hf_decay_ratio);
+        gm::wire::codec::writeValue(_buf, obj.diffusion);
+        gm::wire::codec::writeValue(_buf, obj.density);
+        gm::wire::codec::writeValue(_buf, obj.low_shelf_frequency);
+        gm::wire::codec::writeValue(_buf, obj.low_shelf_gain);
+        gm::wire::codec::writeValue(_buf, obj.high_cut);
+        gm::wire::codec::writeValue(_buf, obj.early_late_mix);
+        gm::wire::codec::writeValue(_buf, obj.wet_level);
+    }
+
+    template<>
+    inline gm_structs::FmodReverbProperties readValue<gm_structs::FmodReverbProperties>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodReverbProperties obj;
+        obj.decay_time = gm::wire::codec::readValue<double>(_buf);
+        obj.early_delay = gm::wire::codec::readValue<double>(_buf);
+        obj.late_delay = gm::wire::codec::readValue<double>(_buf);
+        obj.hf_reference = gm::wire::codec::readValue<double>(_buf);
+        obj.hf_decay_ratio = gm::wire::codec::readValue<double>(_buf);
+        obj.diffusion = gm::wire::codec::readValue<double>(_buf);
+        obj.density = gm::wire::codec::readValue<double>(_buf);
+        obj.low_shelf_frequency = gm::wire::codec::readValue<double>(_buf);
+        obj.low_shelf_gain = gm::wire::codec::readValue<double>(_buf);
+        obj.high_cut = gm::wire::codec::readValue<double>(_buf);
+        obj.early_late_mix = gm::wire::codec::readValue<double>(_buf);
+        obj.wet_level = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSoundLockLengths>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSoundLockLengths& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.length1);
+        gm::wire::codec::writeValue(_buf, obj.length2);
+    }
+
+    template<>
+    inline gm_structs::FmodSoundLockLengths readValue<gm_structs::FmodSoundLockLengths>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSoundLockLengths obj;
+        obj.length1 = gm::wire::codec::readValue<double>(_buf);
+        obj.length2 = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodMemoryStats>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodMemoryStats& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.current_alloced);
+        gm::wire::codec::writeValue(_buf, obj.max_alloced);
+    }
+
+    template<>
+    inline gm_structs::FmodMemoryStats readValue<gm_structs::FmodMemoryStats>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodMemoryStats obj;
+        obj.current_alloced = gm::wire::codec::readValue<double>(_buf);
+        obj.max_alloced = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodAdvancedSettings>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodAdvancedSettings& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.max_mpeg_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_adpcm_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_xma_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_vorbis_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_at9_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_fadpcm_codecs);
+        gm::wire::codec::writeValue(_buf, obj.max_pcm_codecs);
+        gm::wire::codec::writeValue(_buf, obj.asio_num_channels);
+        gm::wire::codec::writeValue(_buf, obj.vol0_virtualvol);
+        gm::wire::codec::writeValue(_buf, obj.default_decode_buffer_size);
+        gm::wire::codec::writeValue(_buf, obj.profile_port);
+        gm::wire::codec::writeValue(_buf, obj.geometry_max_fade_time);
+        gm::wire::codec::writeValue(_buf, obj.distance_filter_center_freq);
+        gm::wire::codec::writeValue(_buf, obj.reverb3d_instance);
+        gm::wire::codec::writeValue(_buf, obj.dsp_buffer_pool_size);
+        gm::wire::codec::writeValue(_buf, obj.resampler_method);
+        gm::wire::codec::writeValue(_buf, obj.random_seed);
+        gm::wire::codec::writeValue(_buf, obj.max_convolution_threads);
+        gm::wire::codec::writeValue(_buf, obj.max_opus_codecs);
+    }
+
+    template<>
+    inline gm_structs::FmodAdvancedSettings readValue<gm_structs::FmodAdvancedSettings>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodAdvancedSettings obj;
+        obj.max_mpeg_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_adpcm_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_xma_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_vorbis_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_at9_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_fadpcm_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.max_pcm_codecs = gm::wire::codec::readValue<double>(_buf);
+        obj.asio_num_channels = gm::wire::codec::readValue<double>(_buf);
+        obj.vol0_virtualvol = gm::wire::codec::readValue<double>(_buf);
+        obj.default_decode_buffer_size = gm::wire::codec::readValue<double>(_buf);
+        obj.profile_port = gm::wire::codec::readValue<double>(_buf);
+        obj.geometry_max_fade_time = gm::wire::codec::readValue<double>(_buf);
+        obj.distance_filter_center_freq = gm::wire::codec::readValue<double>(_buf);
+        obj.reverb3d_instance = gm::wire::codec::readValue<double>(_buf);
+        obj.dsp_buffer_pool_size = gm::wire::codec::readValue<double>(_buf);
+        obj.resampler_method = gm::wire::codec::readValue<double>(_buf);
+        obj.random_seed = gm::wire::codec::readValue<double>(_buf);
+        obj.max_convolution_threads = gm::wire::codec::readValue<double>(_buf);
+        obj.max_opus_codecs = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodSpeakerPosition>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodSpeakerPosition& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.x);
+        gm::wire::codec::writeValue(_buf, obj.y);
+        gm::wire::codec::writeValue(_buf, obj.active);
+    }
+
+    template<>
+    inline gm_structs::FmodSpeakerPosition readValue<gm_structs::FmodSpeakerPosition>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodSpeakerPosition obj;
+        obj.x = gm::wire::codec::readValue<double>(_buf);
+        obj.y = gm::wire::codec::readValue<double>(_buf);
+        obj.active = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodCPUUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodCPUUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.dsp);
+        gm::wire::codec::writeValue(_buf, obj.stream);
+        gm::wire::codec::writeValue(_buf, obj.geometry);
+        gm::wire::codec::writeValue(_buf, obj.update);
+        gm::wire::codec::writeValue(_buf, obj.convolution1);
+        gm::wire::codec::writeValue(_buf, obj.convolution2);
+    }
+
+    template<>
+    inline gm_structs::FmodCPUUsage readValue<gm_structs::FmodCPUUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodCPUUsage obj;
+        obj.dsp = gm::wire::codec::readValue<double>(_buf);
+        obj.stream = gm::wire::codec::readValue<double>(_buf);
+        obj.geometry = gm::wire::codec::readValue<double>(_buf);
+        obj.update = gm::wire::codec::readValue<double>(_buf);
+        obj.convolution1 = gm::wire::codec::readValue<double>(_buf);
+        obj.convolution2 = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodFileUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodFileUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.sample_bytes_read);
+        gm::wire::codec::writeValue(_buf, obj.stream_bytes_read);
+        gm::wire::codec::writeValue(_buf, obj.other_bytes_read);
+    }
+
+    template<>
+    inline gm_structs::FmodFileUsage readValue<gm_structs::FmodFileUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodFileUsage obj;
+        obj.sample_bytes_read = gm::wire::codec::readValue<double>(_buf);
+        obj.stream_bytes_read = gm::wire::codec::readValue<double>(_buf);
+        obj.other_bytes_read = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStreamBufferSize>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStreamBufferSize& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.file_buffer_size);
+        gm::wire::codec::writeValue(_buf, obj.file_buffer_size_type);
+    }
+
+    template<>
+    inline gm_structs::FmodStreamBufferSize readValue<gm_structs::FmodStreamBufferSize>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStreamBufferSize obj;
+        obj.file_buffer_size = gm::wire::codec::readValue<double>(_buf);
+        obj.file_buffer_size_type = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioStringInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioStringInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.guid);
+        gm::wire::codec::writeValue(_buf, obj.path);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioStringInfo readValue<gm_structs::FmodStudioStringInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioStringInfo obj;
+        obj.guid = gm::wire::codec::readValue<std::string>(_buf);
+        obj.path = gm::wire::codec::readValue<std::string>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioCPUUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioCPUUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.exclusive);
+        gm::wire::codec::writeValue(_buf, obj.inclusive);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioCPUUsage readValue<gm_structs::FmodStudioCPUUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioCPUUsage obj;
+        obj.exclusive = gm::wire::codec::readValue<double>(_buf);
+        obj.inclusive = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioMemoryUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioMemoryUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.exclusive);
+        gm::wire::codec::writeValue(_buf, obj.inclusive);
+        gm::wire::codec::writeValue(_buf, obj.sample_data);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioMemoryUsage readValue<gm_structs::FmodStudioMemoryUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioMemoryUsage obj;
+        obj.exclusive = gm::wire::codec::readValue<double>(_buf);
+        obj.inclusive = gm::wire::codec::readValue<double>(_buf);
+        obj.sample_data = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioCommandInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioCommandInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.command_name);
+        gm::wire::codec::writeValue(_buf, obj.parent_command_index);
+        gm::wire::codec::writeValue(_buf, obj.frame_time);
+        gm::wire::codec::writeValue(_buf, obj.instance_type);
+        gm::wire::codec::writeValue(_buf, obj.output_type);
+        gm::wire::codec::writeValue(_buf, obj.instance_handle);
+        gm::wire::codec::writeValue(_buf, obj.output_handle);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioCommandInfo readValue<gm_structs::FmodStudioCommandInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioCommandInfo obj;
+        obj.command_name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.parent_command_index = gm::wire::codec::readValue<double>(_buf);
+        obj.frame_time = gm::wire::codec::readValue<double>(_buf);
+        obj.instance_type = gm::wire::codec::readValue<double>(_buf);
+        obj.output_type = gm::wire::codec::readValue<double>(_buf);
+        obj.instance_handle = gm::wire::codec::readValue<double>(_buf);
+        obj.output_handle = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioCurrentCommand>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioCurrentCommand& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.command_index);
+        gm::wire::codec::writeValue(_buf, obj.current_time);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioCurrentCommand readValue<gm_structs::FmodStudioCurrentCommand>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioCurrentCommand obj;
+        obj.command_index = gm::wire::codec::readValue<double>(_buf);
+        obj.current_time = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioUserProperty>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioUserProperty& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.type);
+        gm::wire::codec::writeValue(_buf, obj.string_value);
+        gm::wire::codec::writeValue(_buf, obj.int_value);
+        gm::wire::codec::writeValue(_buf, obj.bool_value);
+        gm::wire::codec::writeValue(_buf, obj.float_value);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioUserProperty readValue<gm_structs::FmodStudioUserProperty>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioUserProperty obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioUserPropertyType>(_buf);
+        obj.string_value = gm::wire::codec::readValue<std::string>(_buf);
+        obj.int_value = gm::wire::codec::readValue<double>(_buf);
+        obj.bool_value = gm::wire::codec::readValue<double>(_buf);
+        obj.float_value = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodCreateSoundExInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodCreateSoundExInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.length);
+        gm::wire::codec::writeValue(_buf, obj.file_offset);
+        gm::wire::codec::writeValue(_buf, obj.num_channels);
+        gm::wire::codec::writeValue(_buf, obj.default_frequency);
+        gm::wire::codec::writeValue(_buf, obj.format);
+        gm::wire::codec::writeValue(_buf, obj.decode_buffer_size);
+        gm::wire::codec::writeValue(_buf, obj.initial_subsound);
+        gm::wire::codec::writeValue(_buf, obj.num_subsounds);
+        gm::wire::codec::writeValue(_buf, obj.inclusion_list_num);
+        gm::wire::codec::writeValue(_buf, obj.dls_name);
+        gm::wire::codec::writeValue(_buf, obj.encryption_key);
+        gm::wire::codec::writeValue(_buf, obj.max_polyphony);
+        gm::wire::codec::writeValue(_buf, obj.suggested_sound_type);
+        gm::wire::codec::writeValue(_buf, obj.file_buffer_size);
+        gm::wire::codec::writeValue(_buf, obj.channel_order);
+        gm::wire::codec::writeValue(_buf, obj.initial_sound_group);
+        gm::wire::codec::writeValue(_buf, obj.initial_seek_position);
+        gm::wire::codec::writeValue(_buf, obj.initial_seek_pos_type);
+        gm::wire::codec::writeValue(_buf, obj.ignore_set_filesystem);
+        gm::wire::codec::writeValue(_buf, obj.audio_queue_policy);
+        gm::wire::codec::writeValue(_buf, obj.min_midi_granularity);
+        gm::wire::codec::writeValue(_buf, obj.non_block_thread_id);
+    }
+
+    template<>
+    inline gm_structs::FmodCreateSoundExInfo readValue<gm_structs::FmodCreateSoundExInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodCreateSoundExInfo obj;
+        obj.length = gm::wire::codec::readValue<double>(_buf);
+        obj.file_offset = gm::wire::codec::readValue<double>(_buf);
+        obj.num_channels = gm::wire::codec::readValue<double>(_buf);
+        obj.default_frequency = gm::wire::codec::readValue<double>(_buf);
+        obj.format = gm::wire::codec::readValue<gm_enums::FmodSoundFormat>(_buf);
+        obj.decode_buffer_size = gm::wire::codec::readValue<double>(_buf);
+        obj.initial_subsound = gm::wire::codec::readValue<double>(_buf);
+        obj.num_subsounds = gm::wire::codec::readValue<double>(_buf);
+        obj.inclusion_list_num = gm::wire::codec::readValue<double>(_buf);
+        obj.dls_name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.encryption_key = gm::wire::codec::readValue<std::string>(_buf);
+        obj.max_polyphony = gm::wire::codec::readValue<double>(_buf);
+        obj.suggested_sound_type = gm::wire::codec::readValue<double>(_buf);
+        obj.file_buffer_size = gm::wire::codec::readValue<double>(_buf);
+        obj.channel_order = gm::wire::codec::readValue<double>(_buf);
+        obj.initial_sound_group = gm::wire::codec::readValue<std::uint64_t>(_buf);
+        obj.initial_seek_position = gm::wire::codec::readValue<double>(_buf);
+        obj.initial_seek_pos_type = gm::wire::codec::readValue<double>(_buf);
+        obj.ignore_set_filesystem = gm::wire::codec::readValue<double>(_buf);
+        obj.audio_queue_policy = gm::wire::codec::readValue<double>(_buf);
+        obj.min_midi_granularity = gm::wire::codec::readValue<double>(_buf);
+        obj.non_block_thread_id = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioBufferInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioBufferInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.current_usage);
+        gm::wire::codec::writeValue(_buf, obj.peak_usage);
+        gm::wire::codec::writeValue(_buf, obj.capacity);
+        gm::wire::codec::writeValue(_buf, obj.stall_count);
+        gm::wire::codec::writeValue(_buf, obj.stall_time);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioBufferInfo readValue<gm_structs::FmodStudioBufferInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioBufferInfo obj;
+        obj.current_usage = gm::wire::codec::readValue<double>(_buf);
+        obj.peak_usage = gm::wire::codec::readValue<double>(_buf);
+        obj.capacity = gm::wire::codec::readValue<double>(_buf);
+        obj.stall_count = gm::wire::codec::readValue<double>(_buf);
+        obj.stall_time = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioAdvancedSettings>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioAdvancedSettings& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.command_queue_size);
+        gm::wire::codec::writeValue(_buf, obj.handle_initial_size);
+        gm::wire::codec::writeValue(_buf, obj.studio_update_period);
+        gm::wire::codec::writeValue(_buf, obj.idle_sampledata_pool_size);
+        gm::wire::codec::writeValue(_buf, obj.streaming_schedule_delay);
+        gm::wire::codec::writeValue(_buf, obj.encryption_key);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioAdvancedSettings readValue<gm_structs::FmodStudioAdvancedSettings>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioAdvancedSettings obj;
+        obj.command_queue_size = gm::wire::codec::readValue<double>(_buf);
+        obj.handle_initial_size = gm::wire::codec::readValue<double>(_buf);
+        obj.studio_update_period = gm::wire::codec::readValue<double>(_buf);
+        obj.idle_sampledata_pool_size = gm::wire::codec::readValue<double>(_buf);
+        obj.streaming_schedule_delay = gm::wire::codec::readValue<double>(_buf);
+        obj.encryption_key = gm::wire::codec::readValue<std::string>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioParameterValue>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioParameterValue& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.value);
+        gm::wire::codec::writeValue(_buf, obj.final_value);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioParameterValue readValue<gm_structs::FmodStudioParameterValue>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioParameterValue obj;
+        obj.value = gm::wire::codec::readValue<double>(_buf);
+        obj.final_value = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
     inline void writeValue<gm_structs::FmodListener3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodListener3DAttributes& obj)
     {
         gm::wire::codec::writeValue(_buf, obj.position);
@@ -1388,6 +2178,108 @@ namespace gm::wire::codec
         gm_structs::FmodChannelControl3DAttributes obj;
         obj.position = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
         obj.velocity = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodGeometryRotation>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodGeometryRotation& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.forward);
+        gm::wire::codec::writeValue(_buf, obj.up);
+    }
+
+    template<>
+    inline gm_structs::FmodGeometryRotation readValue<gm_structs::FmodGeometryRotation>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodGeometryRotation obj;
+        obj.forward = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
+        obj.up = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodReverb3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodReverb3DAttributes& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.position);
+        gm::wire::codec::writeValue(_buf, obj.min_distance);
+        gm::wire::codec::writeValue(_buf, obj.max_distance);
+    }
+
+    template<>
+    inline gm_structs::FmodReverb3DAttributes readValue<gm_structs::FmodReverb3DAttributes>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodReverb3DAttributes obj;
+        obj.position = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
+        obj.min_distance = gm::wire::codec::readValue<double>(_buf);
+        obj.max_distance = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioSystemCPUUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioSystemCPUUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.studio_update);
+        gm::wire::codec::writeValue(_buf, obj.core);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioSystemCPUUsage readValue<gm_structs::FmodStudioSystemCPUUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioSystemCPUUsage obj;
+        obj.studio_update = gm::wire::codec::readValue<double>(_buf);
+        obj.core = gm::wire::codec::readValue<gm_structs::FmodCPUUsage>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioSoundInfo>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioSoundInfo& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.ext_info);
+        gm::wire::codec::writeValue(_buf, obj.name_or_data);
+        gm::wire::codec::writeValue(_buf, obj.mode);
+        gm::wire::codec::writeValue(_buf, obj.sub_sound_index);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioSoundInfo readValue<gm_structs::FmodStudioSoundInfo>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioSoundInfo obj;
+        obj.ext_info = gm::wire::codec::readValue<gm_structs::FmodCreateSoundExInfo>(_buf);
+        obj.name_or_data = gm::wire::codec::readValue<std::string>(_buf);
+        obj.mode = gm::wire::codec::readValue<gm_enums::FmodMode>(_buf);
+        obj.sub_sound_index = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioBufferUsage>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioBufferUsage& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.command_queue);
+        gm::wire::codec::writeValue(_buf, obj.handle);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioBufferUsage readValue<gm_structs::FmodStudioBufferUsage>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioBufferUsage obj;
+        obj.command_queue = gm::wire::codec::readValue<gm_structs::FmodStudioBufferInfo>(_buf);
+        obj.handle = gm::wire::codec::readValue<gm_structs::FmodStudioBufferInfo>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodStudioListenerAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioListenerAttributes& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.attributes);
+        gm::wire::codec::writeValue(_buf, obj.attenuation);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioListenerAttributes readValue<gm_structs::FmodStudioListenerAttributes>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioListenerAttributes obj;
+        obj.attributes = gm::wire::codec::readValue<gm_structs::FmodListener3DAttributes>(_buf);
+        obj.attenuation = gm::wire::codec::readValue<gm_structs::FmodVec3>(_buf);
         return obj;
     }
 
@@ -1578,17 +2470,220 @@ namespace gm::wire::details
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodListener3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodFadePoint>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 26;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodChannelControl3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodDistanceFilter>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 27;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodOcclusion>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 28;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodGeometryMaxPolygons>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 29;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodPolygonAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 30;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodReverbProperties>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 31;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSoundLockLengths>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 32;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodMemoryStats>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 33;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodAdvancedSettings>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 34;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodSpeakerPosition>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 35;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodCPUUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 36;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodFileUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 37;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStreamBufferSize>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 38;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioStringInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 39;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioCPUUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 40;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioMemoryUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 41;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioCommandInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 42;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioCurrentCommand>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 43;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioUserProperty>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 44;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodCreateSoundExInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 45;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioBufferInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 46;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioAdvancedSettings>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 47;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioParameterValue>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 48;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodListener3DAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 49;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodChannelControl3DAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 50;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodGeometryRotation>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 51;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodReverb3DAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 52;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioSystemCPUUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 53;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioSoundInfo>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 54;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioBufferUsage>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 55;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioListenerAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 56;
     };
 
 }
@@ -1598,6 +2693,11 @@ void fmod_debug_initialize(gm_enums::FmodDebugFlags flags, gm_enums::FmodDebugMo
 std::string fmod_path_bundle(std::string_view filename);
 std::string fmod_path_user(std::string_view filename);
 std::string fmod_error_string(gm_enums::FmodResult result);
+double fmod_fetch_callbacks();
+double fmod_file_get_disk_busy();
+double fmod_file_set_disk_busy(double busy);
+gm_structs::FmodMemoryStats fmod_memory_get_stats(double blocking);
+double fmod_thread_set_attributes(double thread_type, double affinity, double priority);
 double fmod_channel_set_frequency(std::uint64_t channel_ref, double frequency);
 double fmod_channel_get_frequency(std::uint64_t channel_ref);
 double fmod_channel_set_priority(std::uint64_t channel_ref, double priority);
@@ -1609,6 +2709,7 @@ std::uint64_t fmod_channel_get_channel_group(std::uint64_t channel_ref);
 double fmod_channel_set_loop_count(std::uint64_t channel_ref, double loop_count);
 double fmod_channel_get_loop_count(std::uint64_t channel_ref);
 double fmod_channel_set_loop_points(std::uint64_t channel_ref, double loop_start, double loop_start_type, double loop_end, double loop_end_type);
+gm_structs::FmodLoopPoints fmod_channel_get_loop_points(std::uint64_t channel_ref, double start_type, double end_type);
 double fmod_channel_is_virtual(std::uint64_t channel_ref);
 double fmod_channel_get_index(std::uint64_t channel_ref);
 std::uint64_t fmod_channel_get_current_sound(std::uint64_t channel_ref);
@@ -1649,6 +2750,42 @@ gm_structs::FmodDriverInfo fmod_system_get_driver_info(double driver_id);
 std::uint64_t fmod_system_create_channel_group(std::string_view name);
 std::uint64_t fmod_system_play_dsp(std::uint64_t dsp_ref, std::uint64_t channel_group_ref, double paused);
 double fmod_system_select(std::uint64_t system_ref);
+double fmod_system_count();
+double fmod_system_get_version();
+std::uint64_t fmod_system_get_master_sound_group();
+gm_structs::FmodAdvancedSettings fmod_system_get_advanced_settings();
+double fmod_system_set_advanced_settings(const gm_structs::FmodAdvancedSettings& settings);
+std::string fmod_system_get_network_proxy();
+double fmod_system_set_network_proxy(std::string_view proxy);
+double fmod_system_get_network_timeout();
+double fmod_system_set_network_timeout(double timeout_ms);
+double fmod_system_get_speaker_mode_channels(gm_enums::FmodSpeakerMode mode);
+gm_structs::FmodSpeakerPosition fmod_system_get_speaker_position(double speaker);
+double fmod_system_set_speaker_position(double speaker, double x, double y, double active);
+gm_structs::FmodReverbProperties fmod_system_get_reverb_properties(double instance);
+double fmod_system_set_reverb_properties(double instance, const gm_structs::FmodReverbProperties& props);
+gm_structs::FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode source_speaker_mode, gm_enums::FmodSpeakerMode target_speaker_mode);
+gm_structs::FmodCPUUsage fmod_system_get_cpu_usage();
+gm_structs::FmodFileUsage fmod_system_get_file_usage();
+gm_structs::FmodStreamBufferSize fmod_system_get_stream_buffer_size();
+double fmod_system_get_3d_num_listeners();
+double fmod_system_set_3d_num_listeners(double num);
+double fmod_system_set_3d_rolloff_callback();
+double fmod_system_mixer_suspend();
+double fmod_system_mixer_resume();
+double fmod_system_lock_dsp();
+double fmod_system_unlock_dsp();
+double fmod_system_get_user_data();
+double fmod_system_set_user_data(double user_data);
+double fmod_system_attach_channel_group_to_port(double port_type, double port_index, std::uint64_t channel_group_ref, double pass_thru);
+double fmod_system_detach_channel_group_from_port(std::uint64_t channel_group_ref);
+std::uint64_t fmod_system_create_sound_group(std::string_view name);
+std::uint64_t fmod_system_create_geometry(double max_polygons, double max_vertices);
+std::optional<std::uint64_t> fmod_system_load_geometry(gm::wire::GMBuffer data, double data_size);
+gm_structs::FmodOcclusion fmod_system_get_geometry_occlusion(const gm_structs::FmodVec3& listener, const gm_structs::FmodVec3& source);
+double fmod_system_get_geometry_settings();
+double fmod_system_set_geometry_settings(double max_world_size);
+std::uint64_t fmod_system_create_reverb_3d();
 std::uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode);
 std::uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode);
 std::uint64_t fmod_system_play_sound(std::uint64_t sound_ref, std::uint64_t channel_group_ref, double pause);
@@ -1680,13 +2817,20 @@ double fmod_sound_set_music_speed(std::uint64_t sound_ref, double speed);
 double fmod_sound_get_music_speed(std::uint64_t sound_ref);
 double fmod_sound_set_sound_group(std::uint64_t sound_ref, std::uint64_t sound_group_ref);
 std::uint64_t fmod_sound_get_sound_group(std::uint64_t sound_ref);
+double fmod_sound_set_user_data(std::uint64_t sound_ref, double user_data);
+double fmod_sound_get_user_data(std::uint64_t sound_ref);
 double fmod_sound_release(std::uint64_t sound_ref);
 std::uint64_t fmod_sound_get_system_object(std::uint64_t sound_ref);
 gm_structs::FmodSoundOpenState fmod_sound_get_open_state(std::uint64_t sound_ref);
+double fmod_sound_get_num_tags(std::uint64_t sound_ref);
 gm_structs::FmodSoundTag fmod_sound_get_tag(std::uint64_t sound_ref, std::string_view name, double index);
 double fmod_sound_get_num_sub_sounds(std::uint64_t sound_ref);
 std::uint64_t fmod_sound_get_sub_sound(std::uint64_t sound_ref, double index);
+std::optional<std::uint64_t> fmod_sound_get_sub_sound_parent(std::uint64_t sound_ref);
 double fmod_sound_read_data(std::uint64_t sound_ref, gm::wire::GMBuffer data, double length);
+double fmod_sound_seek_data(std::uint64_t sound_ref, double pcm);
+gm_structs::FmodSoundLockLengths fmod_sound_lock(std::uint64_t sound_ref, double offset, double length, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2);
+double fmod_sound_unlock(std::uint64_t sound_ref, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2, double length1, double length2);
 double fmod_channel_group_get_num_channels(std::uint64_t channel_group_ref);
 std::uint64_t fmod_channel_group_get_channel(std::uint64_t channel_group_ref, double index);
 std::uint64_t fmod_channel_group_add_group(std::uint64_t channel_group_ref, std::uint64_t child_channel_group_ref, double propagate_dsp_clock);
@@ -1708,13 +2852,25 @@ double fmod_sound_group_get_num_sounds(std::uint64_t sound_group_ref);
 std::uint64_t fmod_sound_group_get_sound(std::uint64_t sound_group_ref, double sound_index);
 double fmod_sound_group_get_num_playing(std::uint64_t sound_group_ref);
 double fmod_sound_group_stop(std::uint64_t sound_group_ref);
+double fmod_sound_group_set_user_data(std::uint64_t sound_group_ref, double user_data);
+double fmod_sound_group_get_user_data(std::uint64_t sound_group_ref);
 std::string fmod_sound_group_get_name(std::uint64_t sound_group_ref);
 double fmod_sound_group_release(std::uint64_t sound_group_ref);
 std::uint64_t fmod_sound_group_get_system_object(std::uint64_t sound_group_ref);
 double fmod_reverb_3d_set_active(std::uint64_t reverb_3d_ref, double active);
 double fmod_reverb_3d_get_active(std::uint64_t reverb_3d_ref);
 double fmod_reverb_3d_set_properties(std::uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level);
+gm_structs::FmodReverbProperties fmod_reverb_3d_get_properties(std::uint64_t reverb_3d_ref);
+double fmod_reverb_3d_set_3d_attributes(std::uint64_t reverb_3d_ref, const gm_structs::FmodVec3& position, double min_distance, double max_distance);
+gm_structs::FmodReverb3DAttributes fmod_reverb_3d_get_3d_attributes(std::uint64_t reverb_3d_ref);
+double fmod_reverb_3d_set_user_data(std::uint64_t reverb_3d_ref, double user_data);
+double fmod_reverb_3d_get_user_data(std::uint64_t reverb_3d_ref);
 double fmod_reverb_3d_release(std::uint64_t reverb_3d_ref);
+double fmod_channel_control_add_fade_point(std::uint64_t channel_control_ref, double dsp_clock, double volume);
+double fmod_channel_control_remove_fade_points(std::uint64_t channel_control_ref, double dsp_clock_start, double dsp_clock_end);
+double fmod_channel_control_set_fade_point_ramp(std::uint64_t channel_control_ref, double dsp_clock, double volume);
+double fmod_channel_control_get_fade_point_count(std::uint64_t channel_control_ref);
+gm_structs::FmodFadePoint fmod_channel_control_get_fade_point_at(std::uint64_t channel_control_ref, double index);
 double fmod_channel_control_is_playing(std::uint64_t channel_control_ref);
 double fmod_channel_control_stop(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_paused(std::uint64_t channel_control_ref, double paused);
@@ -1735,15 +2891,27 @@ double fmod_channel_control_get_3d_doppler_level(std::uint64_t channel_control_r
 double fmod_channel_control_set_3d_level(std::uint64_t channel_control_ref, double level);
 double fmod_channel_control_get_3d_level(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_min_max_distance(std::uint64_t channel_control_ref, double min_dist, double max_dist);
+gm_structs::FmodMinMaxDistance fmod_channel_control_get_3d_min_max_distance(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_cone_settings(std::uint64_t channel_control_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume);
+gm_structs::FmodConeSettings fmod_channel_control_get_3d_cone_settings(std::uint64_t channel_control_ref);
+double fmod_channel_control_set_3d_cone_orientation(std::uint64_t channel_control_ref, const gm_structs::FmodVec3& orientation);
+gm_structs::FmodVec3 fmod_channel_control_get_3d_cone_orientation(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_occlusion(std::uint64_t channel_control_ref, double direct_occlusion, double reverb_occlusion);
+gm_structs::FmodOcclusion fmod_channel_control_get_3d_occlusion(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_attributes(std::uint64_t channel_control_ref, const gm_structs::FmodVec3& position, const gm_structs::FmodVec3& velocity);
 gm_structs::FmodChannelControl3DAttributes fmod_channel_control_get_3d_attributes(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_spread(std::uint64_t channel_control_ref, double angle);
 double fmod_channel_control_get_3d_spread(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_distance_filter(std::uint64_t channel_control_ref, double custom, double custom_level, double center_freq);
+gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(std::uint64_t channel_control_ref);
+double fmod_channel_control_set_3d_custom_rolloff(std::uint64_t channel_control_ref, const gm::wire::GMValue& points, double num_points);
+double fmod_channel_control_get_3d_custom_rolloff_count(std::uint64_t channel_control_ref);
+gm_structs::FmodVec3 fmod_channel_control_get_3d_custom_rolloff_at(std::uint64_t channel_control_ref, double index);
 double fmod_channel_control_set_pan(std::uint64_t channel_control_ref, double pan);
 double fmod_channel_control_set_mix_levels_output(std::uint64_t channel_control_ref, double front_left, double front_right, double center, double lfe, double surround_left, double surround_right, double back_left, double back_right);
+double fmod_channel_control_set_mix_levels_input(std::uint64_t channel_control_ref, double levels, double num_levels);
+double fmod_channel_control_set_mix_matrix(std::uint64_t channel_control_ref, double matrix, double out_channels, double in_channels, double in_channel_hop);
+gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(std::uint64_t channel_control_ref, double in_channel_hop);
 double fmod_channel_control_set_reverb_properties(std::uint64_t channel_control_ref, double reverb_instance, double wet);
 double fmod_channel_control_get_reverb_properties(std::uint64_t channel_control_ref, double reverb_instance);
 double fmod_channel_control_set_low_pass_gain(std::uint64_t channel_control_ref, double gain);
@@ -1754,6 +2922,8 @@ double fmod_channel_control_get_num_dsps(std::uint64_t channel_control_ref);
 std::uint64_t fmod_channel_control_get_dsp(std::uint64_t channel_control_ref, double index);
 double fmod_channel_control_set_dsp_index(std::uint64_t channel_control_ref, std::uint64_t dsp_ref, double chain_index);
 double fmod_channel_control_get_dsp_index(std::uint64_t channel_control_ref, std::uint64_t dsp_ref);
+double fmod_channel_control_set_user_data(std::uint64_t channel_control_ref, double user_data);
+double fmod_channel_control_get_user_data(std::uint64_t channel_control_ref);
 std::uint64_t fmod_channel_control_get_system_object(std::uint64_t channel_control_ref);
 gm_structs::FmodDelay fmod_channel_control_get_delay(std::uint64_t channel_ref);
 double fmod_channel_control_set_delay(std::uint64_t channel_ref, double dspclock_start, double dspclock_end, double stop_channels);
@@ -1808,11 +2978,24 @@ std::uint64_t fmod_dsp_connection_get_output(std::uint64_t connection_ref);
 double fmod_dsp_connection_get_type(std::uint64_t connection_ref);
 double fmod_dsp_connection_set_user_data(std::uint64_t connection_ref, double user_data);
 double fmod_dsp_connection_get_user_data(std::uint64_t connection_ref);
+double fmod_geometry_add_polygon(std::uint64_t geometry_ref, double direct_occlusion, double reverb_occlusion, double double_sided, double num_vertices, gm::wire::GMBuffer vertices);
 double fmod_geometry_set_polygon_attributes(std::uint64_t geometry_ref, double polygon_index, double direct_occlusion, double reverb_occlusion, double double_sided);
+gm_structs::FmodPolygonAttributes fmod_geometry_get_polygon_attributes(std::uint64_t geometry_ref, double polygon_index);
 double fmod_geometry_get_polygon_num_vertices(std::uint64_t geometry_ref, double polygon_index);
+double fmod_geometry_set_polygon_vertex(std::uint64_t geometry_ref, double polygon_index, double vertex_index, const gm_structs::FmodVec3& vertex);
+gm_structs::FmodVec3 fmod_geometry_get_polygon_vertex(std::uint64_t geometry_ref, double polygon_index, double vertex_index);
+double fmod_geometry_get_num_polygons(std::uint64_t geometry_ref);
+gm_structs::FmodGeometryMaxPolygons fmod_geometry_get_max_polygons(std::uint64_t geometry_ref);
 double fmod_geometry_set_position(std::uint64_t geometry_ref, double x, double y, double z);
+gm_structs::FmodVec3 fmod_geometry_get_position(std::uint64_t geometry_ref);
 double fmod_geometry_set_rotation(std::uint64_t geometry_ref, double forward_x, double forward_y, double forward_z, double up_x, double up_y, double up_z);
+gm_structs::FmodGeometryRotation fmod_geometry_get_rotation(std::uint64_t geometry_ref);
 double fmod_geometry_set_scale(std::uint64_t geometry_ref, double scale_x, double scale_y, double scale_z);
+gm_structs::FmodVec3 fmod_geometry_get_scale(std::uint64_t geometry_ref);
+double fmod_geometry_set_user_data(std::uint64_t geometry_ref, double user_data);
+double fmod_geometry_get_user_data(std::uint64_t geometry_ref);
+double fmod_geometry_get_active(std::uint64_t geometry_ref);
+double fmod_geometry_set_active(std::uint64_t geometry_ref, double active);
 double fmod_geometry_save(std::uint64_t geometry_ref, std::string_view filename);
 double fmod_geometry_release(std::uint64_t geometry_ref);
 std::uint64_t fmod_studio_system_create();
@@ -1827,22 +3010,50 @@ double fmod_studio_system_unload_all();
 double fmod_studio_system_get_bank_count();
 std::optional<std::uint64_t> fmod_studio_system_get_bank_at(double index);
 std::optional<std::uint64_t> fmod_studio_system_get_bank(std::string_view path);
+std::optional<std::uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_guid);
 std::optional<std::uint64_t> fmod_studio_system_get_event(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_create_event_instance(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_bus(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_master_bus();
+std::optional<std::uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_guid);
 std::optional<std::uint64_t> fmod_studio_system_get_vca(std::string_view path);
+std::optional<std::uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_guid);
 double fmod_studio_system_set_listener_attributes(double listener_index, double x, double y, double z);
 double fmod_studio_system_set_listener_weight(double listener_index, double weight);
+double fmod_studio_system_get_num_listeners();
+gm_structs::FmodStudioListenerAttributes fmod_studio_system_get_listener_attributes(double listener_index);
+double fmod_studio_system_get_listener_weight(double listener_index);
 double fmod_studio_system_set_parameter_by_name(std::string_view name, double value);
 double fmod_studio_system_get_parameter_by_name(std::string_view name);
 std::uint64_t fmod_studio_system_get_core_system();
 double fmod_studio_system_set_num_listeners(double count);
 std::string fmod_studio_system_lookup_id(std::string_view path);
+std::string fmod_studio_system_lookup_path(std::string_view str_guid);
 std::uint64_t fmod_studio_system_get_event_by_id(std::string_view id);
+double fmod_studio_system_is_valid();
 double fmod_studio_system_start_command_capture(std::string_view filename, gm_enums::FmodStudioCommandCaptureFlags flags);
 double fmod_studio_system_stop_command_capture();
 std::uint64_t fmod_studio_system_load_command_replay(std::string_view filename, gm_enums::FmodStudioCommandReplayFlags flags);
+gm_structs::FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key);
+gm_structs::FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1, double id_data2);
+double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, double ignore_seek_speed);
+gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2);
+gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_name(std::string_view name);
+double fmod_studio_system_get_parameter_description_count();
+gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_at(double index);
+std::string fmod_studio_system_get_parameter_label_by_id(double id_data1, double id_data2, double label_index);
+std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name, double label_index);
+double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, double ignore_seek_speed);
+double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, double ignore_seek_speed);
+gm_structs::FmodStudioSystemCPUUsage fmod_studio_system_get_cpu_usage();
+gm_structs::FmodStudioBufferUsage fmod_studio_system_get_buffer_usage();
+double fmod_studio_system_reset_buffer_usage();
+gm_structs::FmodStudioMemoryUsage fmod_studio_system_get_memory_usage();
+gm_structs::FmodStudioAdvancedSettings fmod_studio_system_get_advanced_settings();
+double fmod_studio_system_set_advanced_settings(const gm_structs::FmodStudioAdvancedSettings& settings);
+double fmod_studio_system_set_callback(double callback_mask);
+double fmod_studio_system_get_user_data();
+double fmod_studio_system_set_user_data(double user_data);
 double fmod_studio_bank_unload(std::uint64_t bank_ref);
 double fmod_studio_bank_get_loading_state(std::uint64_t bank_ref);
 double fmod_studio_bank_get_sample_loading_state(std::uint64_t bank_ref);
@@ -1855,6 +3066,13 @@ std::optional<std::uint64_t> fmod_studio_bank_get_bus_at(std::uint64_t bank_ref,
 double fmod_studio_bank_get_vca_count(std::uint64_t bank_ref);
 std::optional<std::uint64_t> fmod_studio_bank_get_vca_at(std::uint64_t bank_ref, double index);
 double fmod_studio_bank_get_string_count(std::uint64_t bank_ref);
+std::string fmod_studio_bank_get_id(std::uint64_t bank_ref);
+double fmod_studio_bank_is_valid(std::uint64_t bank_ref);
+gm_structs::FmodStudioStringInfo fmod_studio_bank_get_string_info(std::uint64_t bank_ref, double string_index);
+double fmod_studio_bank_load_sample_data(std::uint64_t bank_ref);
+double fmod_studio_bank_unload_sample_data(std::uint64_t bank_ref);
+double fmod_studio_bank_get_user_data(std::uint64_t bank_ref);
+double fmod_studio_bank_set_user_data(std::uint64_t bank_ref, double user_data);
 std::string fmod_studio_event_description_get_path(std::uint64_t event_desc_ref);
 std::optional<std::uint64_t> fmod_studio_event_description_create_instance(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_instance_count(std::uint64_t event_desc_ref);
@@ -1867,6 +3085,26 @@ double fmod_studio_event_description_get_parameter_count(std::uint64_t event_des
 double fmod_studio_event_description_release_all_instances(std::uint64_t event_desc_ref);
 gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_name(std::uint64_t event_desc_ref, std::string_view name);
 double fmod_studio_event_description_load_sample_data(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_is_valid(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_is_3d(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_is_stream(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_is_doppler_enabled(std::uint64_t event_desc_ref);
+std::string fmod_studio_event_description_get_id(std::uint64_t event_desc_ref);
+gm_structs::FmodMinMaxDistance fmod_studio_event_description_get_min_max_distance(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_get_sound_size(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_get_sample_loading_state(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_unload_sample_data(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_set_callback(std::uint64_t event_desc_ref, double callback_mask);
+double fmod_studio_event_description_get_user_data(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_set_user_data(std::uint64_t event_desc_ref, double user_data);
+gm_structs::FmodStudioUserProperty fmod_studio_event_description_get_user_property(std::uint64_t event_desc_ref, std::string_view name);
+gm_structs::FmodStudioUserProperty fmod_studio_event_description_get_user_property_at(std::uint64_t event_desc_ref, double index);
+double fmod_studio_event_description_get_user_property_count(std::uint64_t event_desc_ref);
+gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_id(std::uint64_t event_desc_ref, double id_data1, double id_data2);
+gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_at(std::uint64_t event_desc_ref, double index);
+std::string fmod_studio_event_description_get_parameter_label_by_id(std::uint64_t event_desc_ref, double id_data1, double id_data2, double label_index);
+std::string fmod_studio_event_description_get_parameter_label_at(std::uint64_t event_desc_ref, double index, double label_index);
+std::string fmod_studio_event_description_get_parameter_label_by_name(std::uint64_t event_desc_ref, std::string_view name, double label_index);
 double fmod_studio_event_instance_start(std::uint64_t instance_ref);
 double fmod_studio_event_instance_stop(std::uint64_t instance_ref, double stop_mode);
 double fmod_studio_event_instance_get_playback_state(std::uint64_t instance_ref);
@@ -1874,6 +3112,7 @@ double fmod_studio_event_instance_get_paused(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_paused(std::uint64_t instance_ref, double paused);
 double fmod_studio_event_instance_get_timeline_position(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_timeline_position(std::uint64_t instance_ref, double position);
+double fmod_studio_event_instance_keyoff(std::uint64_t instance_ref);
 double fmod_studio_event_instance_get_volume(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_volume(std::uint64_t instance_ref, double volume);
 double fmod_studio_event_instance_get_pitch(std::uint64_t instance_ref);
@@ -1884,7 +3123,24 @@ double fmod_studio_event_instance_get_parameter_count(std::uint64_t instance_ref
 double fmod_studio_event_instance_get_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2);
 double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2, double value);
 double fmod_studio_event_instance_set_callback(std::uint64_t instance_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType mask);
+double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, double ignore_seek_speed);
+double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, double ignore_seek_speed);
 double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, double x, double y, double z);
+gm_structs::FmodChannelControl3DAttributes fmod_studio_event_instance_get_3d_attributes(std::uint64_t instance_ref);
+gm_structs::FmodMinMaxDistance fmod_studio_event_instance_get_min_max_distance(std::uint64_t instance_ref);
+double fmod_studio_event_instance_get_listener_mask(std::uint64_t instance_ref);
+double fmod_studio_event_instance_set_listener_mask(std::uint64_t instance_ref, double mask);
+double fmod_studio_event_instance_get_reverb_level(std::uint64_t instance_ref, double index);
+double fmod_studio_event_instance_set_reverb_level(std::uint64_t instance_ref, double index, double level);
+double fmod_studio_event_instance_get_property(std::uint64_t instance_ref, gm_enums::FmodStudioEventProperty property_type);
+double fmod_studio_event_instance_set_property(std::uint64_t instance_ref, gm_enums::FmodStudioEventProperty property_type, double value);
+double fmod_studio_event_instance_get_user_data(std::uint64_t instance_ref);
+double fmod_studio_event_instance_set_user_data(std::uint64_t instance_ref, double user_data);
+double fmod_studio_event_instance_is_valid(std::uint64_t instance_ref);
+double fmod_studio_event_instance_is_virtual(std::uint64_t instance_ref);
+std::uint64_t fmod_studio_event_instance_get_channel_group(std::uint64_t instance_ref);
+gm_structs::FmodStudioCPUUsage fmod_studio_event_instance_get_cpu_usage(std::uint64_t instance_ref);
+gm_structs::FmodStudioMemoryUsage fmod_studio_event_instance_get_memory_usage(std::uint64_t instance_ref);
 std::optional<std::uint64_t> fmod_studio_event_instance_get_description(std::uint64_t instance_ref);
 double fmod_studio_event_instance_release(std::uint64_t instance_ref);
 std::string fmod_studio_bus_get_path(std::uint64_t bus_ref);
@@ -1894,6 +3150,17 @@ double fmod_studio_bus_get_paused(std::uint64_t bus_ref);
 double fmod_studio_bus_set_paused(std::uint64_t bus_ref, double paused);
 double fmod_studio_bus_stop_all_events(std::uint64_t bus_ref, double stop_mode);
 std::optional<std::uint64_t> fmod_studio_bus_get_master_bus();
+std::string fmod_studio_bus_get_id(std::uint64_t bus_ref);
+double fmod_studio_bus_is_valid(std::uint64_t bus_ref);
+std::uint64_t fmod_studio_bus_get_channel_group(std::uint64_t bus_ref);
+double fmod_studio_bus_lock_channel_group(std::uint64_t bus_ref);
+double fmod_studio_bus_unlock_channel_group(std::uint64_t bus_ref);
+gm_structs::FmodStudioCPUUsage fmod_studio_bus_get_cpu_usage(std::uint64_t bus_ref);
+gm_structs::FmodStudioMemoryUsage fmod_studio_bus_get_memory_usage(std::uint64_t bus_ref);
+double fmod_studio_bus_get_mute(std::uint64_t bus_ref);
+double fmod_studio_bus_set_mute(std::uint64_t bus_ref, double mute);
+std::uint64_t fmod_studio_bus_get_port_index(std::uint64_t bus_ref);
+double fmod_studio_bus_set_port_index(std::uint64_t bus_ref, std::uint64_t port_index);
 std::string fmod_studio_vca_get_path(std::uint64_t vca_ref);
 double fmod_studio_vca_get_volume(std::uint64_t vca_ref);
 double fmod_studio_vca_set_volume(std::uint64_t vca_ref, double volume);
@@ -1902,6 +3169,20 @@ double fmod_studio_command_replay_get_current_command(std::uint64_t replay_ref);
 double fmod_studio_command_replay_release(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_command_count(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_length(std::uint64_t replay_ref);
+std::uint64_t fmod_studio_command_replay_get_system_object(std::uint64_t replay_ref);
+double fmod_studio_command_replay_is_valid(std::uint64_t replay_ref);
+gm_structs::FmodStudioCommandInfo fmod_studio_command_replay_get_command_info(std::uint64_t replay_ref, double command_index);
+std::string fmod_studio_command_replay_get_command_string(std::uint64_t replay_ref, double command_index);
+double fmod_studio_command_replay_get_command_at_time(std::uint64_t replay_ref, double time);
+double fmod_studio_command_replay_seek_to_command(std::uint64_t replay_ref, double command_index);
+double fmod_studio_command_replay_seek_to_time(std::uint64_t replay_ref, double time);
+double fmod_studio_command_replay_set_bank_path(std::uint64_t replay_ref, std::string_view path);
+double fmod_studio_command_replay_get_paused(std::uint64_t replay_ref);
+double fmod_studio_command_replay_set_paused(std::uint64_t replay_ref, double paused);
+double fmod_studio_command_replay_start(std::uint64_t replay_ref);
+double fmod_studio_command_replay_stop(std::uint64_t replay_ref);
+double fmod_studio_command_replay_get_user_data(std::uint64_t replay_ref);
+double fmod_studio_command_replay_set_user_data(std::uint64_t replay_ref, double user_data);
 double fmod_studio_command_replay_set_frame_callback(std::uint64_t replay_ref, const std::optional<gm::wire::GMFunction>& callback);
 double fmod_studio_command_replay_set_create_instance_callback(std::uint64_t replay_ref, const std::optional<gm::wire::GMFunction>& callback);
 double fmod_studio_command_replay_set_load_bank_callback(std::uint64_t replay_ref, const std::optional<gm::wire::GMFunction>& callback);
