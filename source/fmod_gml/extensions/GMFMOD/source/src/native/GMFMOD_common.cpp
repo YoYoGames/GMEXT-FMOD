@@ -45,6 +45,22 @@ uint64_t packIndexIntoRef(uint32_t index, uint8_t type)
 	return packed;
 }
 
+static FMOD::System* g_selected_system = nullptr;
+
+FMOD::System* getCurrentSystem()
+{
+	if (g_selected_system != nullptr)
+		return g_selected_system;
+	if (map_systems.empty())
+		return nullptr;
+	return map_systems.begin()->second;
+}
+
+void setCurrentSystem(FMOD::System* system)
+{
+	g_selected_system = system;
+}
+
 struct CustomUserData
 {
 	uint32_t id = 0;

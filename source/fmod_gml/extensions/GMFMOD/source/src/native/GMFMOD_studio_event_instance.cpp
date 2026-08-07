@@ -1,6 +1,9 @@
 #include <native/GMFMODInternal_native.h>
 #include "GMFMOD_studio_event_instance.h"
 #include <optional>
+#include <mutex>
+#include <map>
+#include <string_view>
 
 using namespace gm_structs;
 
@@ -172,5 +175,119 @@ double fmod_studio_event_instance_release(const FmodStudioEventInstanceRef& inst
 	validate_fmod_studio_event_instance(instance_ref._ref, instance);
 	if (instance == nullptr) return 0;
 	g_fmod_last_result = instance->release();
+	return 0;
+}
+
+// ============================================================
+// Event Instance - Parameters by ID
+// ============================================================
+
+double fmod_studio_event_instance_get_parameter_by_id(const FmodStudioEventInstanceRef& instance_ref, double id_data1, double id_data2)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref._ref, instance);
+	if (instance == nullptr) return 0.0;
+
+	FMOD_STUDIO_PARAMETER_ID id{};
+	id.data1 = (unsigned int)id_data1;
+	id.data2 = (unsigned int)id_data2;
+
+	float value = 0.0f;
+	g_fmod_last_result = instance->getParameterByID(id, &value, nullptr);
+	return (double)value;
+}
+
+double fmod_studio_event_instance_set_parameter_by_id(const FmodStudioEventInstanceRef& instance_ref, double id_data1, double id_data2, double value)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref._ref, instance);
+	if (instance == nullptr) return 0;
+
+	FMOD_STUDIO_PARAMETER_ID id{};
+	id.data1 = (unsigned int)id_data1;
+	id.data2 = (unsigned int)id_data2;
+
+	g_fmod_last_result = instance->setParameterByID(id, (float)value, false);
+	return 0;
+}
+
+// ============================================================
+// Event Instance - Callbacks
+// ============================================================
+
+// Studio runs its update on a worker thread by default, so this map is touched
+// from both that thread and the game thread.
+static std::mutex g_event_instance_callback_mutex;
+static std::map<uintptr_t, gm::wire::GMFunction> g_event_instance_callbacks;
+
+static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_instance(
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
+	FMOD_STUDIO_EVENTINSTANCE* event,
+	void* parameters)
+{
+	if (event == nullptr)
+		return FMOD_OK;
+
+	// Keys are the truncated pointer the GML refs carry, so mask to match.
+	uintptr_t instance_ptr = reinterpret_cast<uintptr_t>(event) & 0xFFFFFFFFu;
+
+	std::optional<gm::wire::GMFunction> callback;
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
+		auto it = g_event_instance_callbacks.find(instance_ptr);
+		if (it == g_event_instance_callbacks.end())
+			return FMOD_OK;
+
+		callback = it->second;
+
+		// The instance is gone after this; drop the entry so a recycled
+		// pointer does not inherit this callback.
+		if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROYED)
+			g_event_instance_callbacks.erase(it);
+	}
+
+	FmodStudioEventInstanceRef ref{};
+	ref._ref = packIndexIntoRef((uint32_t)instance_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+
+	callback.value().call(ref, (double)type);
+	return FMOD_OK;
+}
+
+double fmod_studio_event_instance_set_callback(
+	const FmodStudioEventInstanceRef& instance_ref,
+	const std::optional<gm::wire::GMFunction>& callback,
+	enum gm_enums::FmodStudioEventCallbackType mask)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref._ref, instance);
+	if (instance == nullptr) return 0;
+
+	uintptr_t instance_ptr = reinterpret_cast<uintptr_t>(instance) & 0xFFFFFFFFu;
+
+	if (!callback.has_value())
+	{
+		{
+			std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
+			g_event_instance_callbacks.erase(instance_ptr);
+		}
+		g_fmod_last_result = instance->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
+		return 0;
+	}
+
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
+		g_event_instance_callbacks.insert_or_assign(instance_ptr, callback.value());
+	}
+
+	// DESTROYED is always requested so the map entry can be reclaimed.
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE fmod_mask =
+		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)mask | FMOD_STUDIO_EVENT_CALLBACK_DESTROYED;
+
+	g_fmod_last_result = instance->setCallback(CALLBACK_fmod_studio_event_instance, fmod_mask);
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
+		g_event_instance_callbacks.erase(instance_ptr);
+	}
 	return 0;
 }

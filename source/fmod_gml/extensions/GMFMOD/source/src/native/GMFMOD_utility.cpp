@@ -1,5 +1,6 @@
 #include <native/GMFMODInternal_native.h>
 #include "GMFMOD_common.h"
+#include "fmod_errors.h"
 #include <string>
 
 // ============================================================
@@ -18,6 +19,12 @@ void fmod_debug_initialize(
 	FMOD_DEBUG_FLAGS fmod_flags = (FMOD_DEBUG_FLAGS)(int)flags;
 	FMOD_DEBUG_MODE fmod_mode = (FMOD_DEBUG_MODE)(int)mode;
 	g_fmod_last_result = FMOD_Debug_Initialize(fmod_flags, fmod_mode, nullptr, nullptr);
+}
+
+std::string fmod_error_string(enum gm_enums::FmodResult result)
+{
+	// gm_enums::FmodResult mirrors FMOD_RESULT value-for-value.
+	return std::string(FMOD_ErrorString((FMOD_RESULT)(int)result));
 }
 
 std::string fmod_path_bundle(std::string_view filename)

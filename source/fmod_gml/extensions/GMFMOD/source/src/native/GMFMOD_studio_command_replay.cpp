@@ -213,3 +213,28 @@ double fmod_studio_command_replay_set_load_bank_callback(
 	}
 	return 0;
 }
+// ============================================================
+// Command Replay - Info
+// ============================================================
+
+double fmod_studio_command_replay_get_command_count(const FmodStudioCommandReplayRef& replay_ref)
+{
+	FMOD::Studio::CommandReplay* replay = nullptr;
+	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	if (replay == nullptr) return 0.0;
+
+	int count = 0;
+	g_fmod_last_result = replay->getCommandCount(&count);
+	return (double)count;
+}
+
+double fmod_studio_command_replay_get_length(const FmodStudioCommandReplayRef& replay_ref)
+{
+	FMOD::Studio::CommandReplay* replay = nullptr;
+	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	if (replay == nullptr) return 0.0;
+
+	float length = 0.0f;
+	g_fmod_last_result = replay->getLength(&length);
+	return (double)length;
+}

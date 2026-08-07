@@ -16,7 +16,16 @@ fmod_sound_set_3d_min_max_distance(sound_index_1,DISTANCEFACTOR*0.5,DISTANCEFACT
 
 channel1 = fmod_system_play_sound(sound_index_1,fmod_system_get_master_channel_group(),true)
 
-fmod_channel_control_set_3d_attributes(channel1,{x:point_1[0],y:point_1[1],z:point_1[2]},{x:0,y:0,z:0})
+var pos = new FmodVec3()
+pos.x = point_1[0]
+pos.y = point_1[1]
+pos.z = point_1[2]
+
+var vel = new FmodVec3()
+vel.x = 0
+vel.y = 0
+vel.z = 0
+fmod_channel_control_set_3d_attributes(channel1,pos,vel)
 
 fmod_channel_control_set_paused(channel1,false)
 
@@ -30,7 +39,16 @@ fmod_sound_set_3d_min_max_distance(sound_index_2,DISTANCEFACTOR*0.5,DISTANCEFACT
 
 channel2 = fmod_system_play_sound(sound_index_2,fmod_system_get_master_channel_group(),true)
 
-fmod_channel_control_set_3d_attributes(channel2, {x:point_2[0],y:point_2[1],z:point_2[2]},{x:0,y:0,z:0})
+var pos = new FmodVec3()
+pos.x = point_2[0]
+pos.y = point_2[1]
+pos.z = point_2[2]
+
+var vel = new FmodVec3()
+vel.x = 0
+vel.y = 0
+vel.z = 0
+fmod_channel_control_set_3d_attributes(channel2,pos,vel)
 
 fmod_channel_control_set_paused(channel2, false)
 

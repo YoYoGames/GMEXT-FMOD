@@ -2,7 +2,7 @@
 event_inherited();
 
 state = fmod_sound_get_open_state(sound_index);
-if (fmod_last_result() != FMOD_RESULT.OK) {
+if (fmod_last_result() != FmodResult.Ok) {
 	show_debug_message(fmod_error_string(fmod_last_result()));
 }
 
@@ -27,26 +27,26 @@ else
 */
 
 var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
-while (fmod_last_result() == FMOD_RESULT.OK)
+while (fmod_last_result() == FmodResult.Ok)
 {
 	// Move cursor to the begining of the buffer
 	buffer_seek(tag_data_buff, buffer_seek_start, 0);
 	
-	if (_tag.data_type == FMOD_TAGDATATYPE.STRING)
+	if (_tag.data_type == FmodTagDataType.String)
 	{
 		var _value = buffer_read(tag_data_buff, buffer_string);
 		tag_strings[tag_index] = $"{_tag.name}: {_value}";
 		tag_index = (tag_index + 1) % tag_count;
 			
-	    if (_tag.type == FMOD_TAGTYPE.PLAYLIST && _tag.name == "FILE")
+	    if (_tag.type == FmodTagType.Playlist && _tag.name == "FILE")
 	    {
 	        var _url = _value;
 			fmod_sound_release(sound_index);
 		
-	        sound_index = fmod_system_create_sound(_url, FMOD_MODE.CREATESTREAM | FMOD_MODE.NONBLOCKING /*, extra*/);
+	        sound_index = fmod_system_create_sound(_url, FmodMode.CreateStream | FmodMode.NonBlocking /*, extra*/);
 	    }
 	}
-	else if (_tag.type == FMOD_TAGTYPE.FMOD)
+	else if (_tag.type == FmodTagType.Fmod)
 	{
 	    /* When a song changes, the sample rate may also change, so compensate here. */
 	    if ((_tag.name == "Sample Rate Change") && channel_index != -1)

@@ -47,11 +47,11 @@ ms = fmod_sound_get_length(sound,FmodTimeUnit.Ms);
 music = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), false);
 
 // FFT DSP
-dsp_fft = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.FFT);
-fmod_channel_control_add_dsp(music, FMOD_CHANNELCONTROL_DSP_INDEX.FADER, dsp_fft);
-fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOW_TYPE, FMOD_DSP_FFT_WINDOW_TYPE.RECT);
+dsp_fft = fmod_system_create_dsp_by_type(FmodDspType.FFT);
+fmod_channel_control_add_dsp(music, FmodChannelControlDspIndex.Fader, dsp_fft);
+fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowType, FmodDspFftWindowType.Rect);
 windows_size = 16384
-fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 16384);
+fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowSize, 16384);
 
 // Create buffer for parameter data
 fft_buffer = buffer_create(18000, buffer_grow, 1);

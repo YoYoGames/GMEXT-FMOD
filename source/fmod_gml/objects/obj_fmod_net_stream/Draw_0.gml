@@ -5,16 +5,16 @@ var open_state_str = ""
 
 switch(state.open_state)
 {
-	case FMOD_OPENSTATE.BUFFERING: open_state_str = "BUFFERING" break;
-	case FMOD_OPENSTATE.CONNECTING: open_state_str = "CONNECTING" break;
-	case FMOD_OPENSTATE.ERROR: open_state_str = "ERROR" break;
-	//case FMOD_OPENSTATE.FORCEINT: open_state_str = "FORCEINT" break;
-	case FMOD_OPENSTATE.LOADING: open_state_str = "LOADING" break;
-	case FMOD_OPENSTATE.MAX: open_state_str = "MAX" break;
-	case FMOD_OPENSTATE.PLAYING: open_state_str = "PLAYING" break;
-	case FMOD_OPENSTATE.READY: open_state_str = "READY" break;
-	case FMOD_OPENSTATE.SEEKING: open_state_str = "SEEKING" break;
-	case FMOD_OPENSTATE.SETPOSITION: open_state_str = "SETPOSITION" break;
+	case FmodOpenState.Buffering: open_state_str = "BUFFERING" break;
+	case FmodOpenState.Connecting: open_state_str = "CONNECTING" break;
+	case FmodOpenState.Error: open_state_str = "ERROR" break;
+	//case FmodOpenState.FORCEINT: open_state_str = "FORCEINT" break;
+	case FmodOpenState.Loading: open_state_str = "LOADING" break;
+	case FmodOpenState.Max: open_state_str = "MAX" break;
+	case FmodOpenState.Playing: open_state_str = "PLAYING" break;
+	case FmodOpenState.Ready: open_state_str = "READY" break;
+	case FmodOpenState.Seeking: open_state_str = "SEEKING" break;
+	case FmodOpenState.SetPosition: open_state_str = "SETPOSITION" break;
 }
 
 draw_set_valign(fa_top);

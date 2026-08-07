@@ -48,6 +48,11 @@ extern uint32_t index_geometries;
 
 uint64_t packIndexIntoRef(uint32_t index, uint8_t type);
 
+// The system every "systemless" API call operates on. Defaults to the first
+// registered system; fmod_system_select() overrides it.
+FMOD::System* getCurrentSystem();
+void setCurrentSystem(FMOD::System* system);
+
 template <typename T>
 uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, T>& map);
 

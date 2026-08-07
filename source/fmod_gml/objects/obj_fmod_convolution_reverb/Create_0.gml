@@ -2,7 +2,7 @@
 mix = 1
 vol = 1
 
-fmod_system_set_software_format(48000, FMOD_SPEAKERMODE.STEREO, 0);
+fmod_system_set_software_format(48000, FmodSpeakerMode.Stereo, 0);
 
 /*
     Create a new channel group to hold the convolution DSP unit
@@ -17,8 +17,8 @@ main_channel_group_index = fmod_system_create_channel_group("main");
 /*
     Create the convultion DSP unit and set it as the tail of the channel group
 */
-reverb_dsp = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.CONVOLUTIONREVERB);
-fmod_channel_control_add_dsp(reverb_channel_group_index, FMOD_CHANNELCONTROL_DSP_INDEX.TAIL, reverb_dsp);
+reverb_dsp = fmod_system_create_dsp_by_type(FmodDspType.ConvolutionReverb);
+fmod_channel_control_add_dsp(reverb_channel_group_index, FmodChannelControlDspIndex.Tail, reverb_dsp);
 
 /*
     Open the impulse response wav file, but use FmodMode.OpenOnly as we want
@@ -44,13 +44,13 @@ var _buff = buffer_create(ir_data_length, buffer_fixed, 1);
 buffer_write(_buff, buffer_u16, ir_format.channels);
 fmod_sound_read_data(ir_sound_index, _buff, ir_data_length - 2, 2);
 
-fmod_dsp_set_parameter_data(reverb_dsp, FMOD_DSP_CONVOLUTION_REVERB_PARAM.IR, _buff, ir_data_length);
+fmod_dsp_set_parameter_data(reverb_dsp, FmodDspConvolution.Ir, _buff, ir_data_length);
 
 /*
     Don't pass any dry signal from the reverb unit, instead take the dry part
     of the mix from the main signal path
 */
-fmod_dsp_set_parameter_float(reverb_dsp, FMOD_DSP_CONVOLUTION_REVERB_PARAM.DRY, -80);
+fmod_dsp_set_parameter_float(reverb_dsp, FmodDspConvolution.Dry, -80);
 
 /*
     We can now free our copy of the IR data and release the sound object, the reverb unit 
@@ -68,8 +68,8 @@ channel_index = fmod_system_play_sound(sound_index, main_channel_group_index, tr
 /*
     Create a send connection between the channel head and the reverb unit
 */
-head_dsp = fmod_channel_control_get_dsp(channel_index, FMOD_CHANNELCONTROL_DSP_INDEX.HEAD);
-dsp_reverb_connection = fmod_dsp_add_input(reverb_dsp, head_dsp, FMOD_DSPCONNECTION_TYPE.SEND);
+head_dsp = fmod_channel_control_get_dsp(channel_index, FmodChannelControlDspIndex.Head);
+dsp_reverb_connection = fmod_dsp_add_input(reverb_dsp, head_dsp, FmodDspConnectionType.Send);
 
 /*
     Unpause the audio channel

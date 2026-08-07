@@ -1,6 +1,8 @@
 #include "GMFMOD_studio_system.h"
 #include <string_view>
 #include <optional>
+#include <cstdio>
+#include <string>
 
 using namespace gm_structs;
 
@@ -344,5 +346,112 @@ FmodSystemRef fmod_studio_system_get_core_system()
 		uint32_t system_id = registerOrFindResource(core_system, index_systems, map_systems);
 		result._ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
 	}
+	return result;
+}
+
+// ============================================================
+// Studio System - Listeners
+// ============================================================
+
+double fmod_studio_system_set_num_listeners(double count)
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return 0;
+
+	g_fmod_last_result = studio_system->setNumListeners((int)count);
+	return 0;
+}
+
+// ============================================================
+// Studio System - GUID Lookup
+// ============================================================
+
+std::string fmod_studio_system_lookup_id(std::string_view path)
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return std::string();
+
+	std::string path_str(path);
+	FMOD_GUID guid{};
+	g_fmod_last_result = studio_system->lookupID(path_str.c_str(), &guid);
+	if (g_fmod_last_result != FMOD_OK) return std::string();
+
+	char buffer[64]{};
+	std::snprintf(buffer, sizeof(buffer),
+		"{%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x}",
+		guid.Data1, guid.Data2, guid.Data3,
+		guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],
+		guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
+	return std::string(buffer);
+}
+
+FmodStudioEventDescriptionRef fmod_studio_system_get_event_by_id(std::string_view id)
+{
+	FmodStudioEventDescriptionRef result{};
+
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return result;
+
+	std::string id_str(id);
+	FMOD_GUID guid{};
+	g_fmod_last_result = FMOD::Studio::parseID(id_str.c_str(), &guid);
+	if (g_fmod_last_result != FMOD_OK) return result;
+
+	FMOD::Studio::EventDescription* event_desc = nullptr;
+	g_fmod_last_result = studio_system->getEventByID(&guid, &event_desc);
+	if (g_fmod_last_result != FMOD_OK || event_desc == nullptr) return result;
+
+	result._ref = packIndexIntoRef(
+		(uint32_t)reinterpret_cast<uintptr_t>(event_desc),
+		GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+	return result;
+}
+
+// ============================================================
+// Studio System - Command Capture & Replay
+// ============================================================
+
+double fmod_studio_system_start_command_capture(std::string_view filename, enum gm_enums::FmodStudioCommandCaptureFlags flags)
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return 0;
+
+	std::string filename_str(filename);
+	g_fmod_last_result = studio_system->startCommandCapture(
+		filename_str.c_str(), (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)(int)flags);
+	return 0;
+}
+
+double fmod_studio_system_stop_command_capture()
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return 0;
+
+	g_fmod_last_result = studio_system->stopCommandCapture();
+	return 0;
+}
+
+FmodStudioCommandReplayRef fmod_studio_system_load_command_replay(std::string_view filename, enum gm_enums::FmodStudioCommandReplayFlags flags)
+{
+	FmodStudioCommandReplayRef result{};
+
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return result;
+
+	std::string filename_str(filename);
+	FMOD::Studio::CommandReplay* replay = nullptr;
+	g_fmod_last_result = studio_system->loadCommandReplay(
+		filename_str.c_str(), (FMOD_STUDIO_COMMANDREPLAY_FLAGS)(int)flags, &replay);
+	if (g_fmod_last_result != FMOD_OK || replay == nullptr) return result;
+
+	result._ref = packIndexIntoRef(
+		(uint32_t)reinterpret_cast<uintptr_t>(replay),
+		GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 	return result;
 }

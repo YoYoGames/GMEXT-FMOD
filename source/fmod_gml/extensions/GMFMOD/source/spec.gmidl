@@ -1152,8 +1152,16 @@ class `[[FmodSoundTag]]` prototype Object
     [field, type_hint=`string`]
     property name: gmval { get; set; }
 
-    [field]
-    property value: gmval { get; set; }
+    // TODO: FMOD_TAG.data is a raw void* whose meaning depends on `datatype`. It is
+    // flattened to a string here so it is usable from GML, which is lossy: Binary tags
+    // come back empty, and Int/Float arrive as their decimal text. To expose every
+    // datatype losslessly, drop this field and give fmod_sound_get_tag a caller-supplied
+    // `[type_hint=buffer] data_buffer` out-param instead (see docs/Docs.js).
+    [field, type_hint=`string`]
+    property data: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property datalen: gmval { get; set; }
 
     [field, type_hint=`real`]
     property updated: gmval { get; set; }

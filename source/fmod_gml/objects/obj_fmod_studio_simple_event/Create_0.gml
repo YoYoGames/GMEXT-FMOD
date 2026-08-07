@@ -1,9 +1,9 @@
 
-master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"),FMOD_STUDIO_LOAD_BANK.NORMAL)
+master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("master: " + string(fmod_last_result()))
-master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"),FMOD_STUDIO_LOAD_BANK.NORMAL)
+master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("masterstrings: " + string(fmod_last_result()))
-sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("sfx.bank"),FMOD_STUDIO_LOAD_BANK.NORMAL)
+sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("sfx.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("sfx: " + string(fmod_last_result()))
 
 

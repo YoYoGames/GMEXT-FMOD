@@ -123,6 +123,19 @@ static jdouble __JNI_WRAPPER__GMFMOD_invocation_handler(JNIEnv* env, jclass /* G
     double __ret = __EXT_NATIVE__GMFMOD_invocation_handler((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
+// __GMFMOD_queue_buffer JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__GMFMOD_queue_buffer(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+
+    double __ret = __EXT_NATIVE__GMFMOD_queue_buffer((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
 // fmod_last_result JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_last_result_6249C1D416C4(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -163,6 +176,20 @@ static jstring __JNI_WRAPPER__fmod_path_user_B64A514AA734(JNIEnv* env, jclass /*
 {
     UtfChars __pin_filename(env, filename);
     const char* __out = __EXT_NATIVE__fmod_path_user((char *)__pin_filename.c_str());
+    jstring __j = __out ? env->NewStringUTF(__out) : nullptr;
+    return __j;
+}
+
+// fmod_error_string JNI wrapper signature: (Ljava/nio/ByteBuffer;D)Ljava/lang/String;
+static jstring __JNI_WRAPPER__fmod_error_string_FF361944BD9C(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return nullptr;
+    }
+    const char* __out = __EXT_NATIVE__fmod_error_string((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     jstring __j = __out ? env->NewStringUTF(__out) : nullptr;
     return __j;
 }
@@ -615,6 +642,150 @@ static jdouble __JNI_WRAPPER__fmod_system_is_recording_5DDABEBA55C5(JNIEnv* /* e
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_system_create_dsp JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_create_dsp_450EA531C930(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_create_dsp((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_create_dsp_by_type JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_create_dsp_by_type_00EB94D56285(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_create_dsp_by_type((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_get_dsp_buffer_size JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_dsp_buffer_size_B3AA94332F29(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_dsp_buffer_size((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_set_dsp_buffer_size JNI wrapper signature: (DD)D
+static jdouble __JNI_WRAPPER__fmod_system_set_dsp_buffer_size_A36C68FF0DD1(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble buff_size, jdouble num_buffers)
+{
+    double __ret = __EXT_NATIVE__fmod_system_set_dsp_buffer_size(static_cast<double>(buff_size), static_cast<double>(num_buffers));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_get_software_format JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_software_format_60B315289946(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_software_format((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_set_software_format JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_set_software_format_99DB2086D973(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_set_software_format((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_set_stream_buffer_size JNI wrapper signature: (DD)D
+static jdouble __JNI_WRAPPER__fmod_system_set_stream_buffer_size_3F450BCAFCE6(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble file_buffer_size, jdouble file_buffer_size_type)
+{
+    double __ret = __EXT_NATIVE__fmod_system_set_stream_buffer_size(static_cast<double>(file_buffer_size), static_cast<double>(file_buffer_size_type));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_get_driver_info JNI wrapper signature: (DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_driver_info_B33BB88F84CC(JNIEnv* env, jclass /* GMFMODBridge */, jdouble driver_id, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_driver_info(static_cast<double>(driver_id), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_create_channel_group JNI wrapper signature: (Ljava/lang/String;Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_create_channel_group_70C2F88726EC(JNIEnv* env, jclass /* GMFMODBridge */, jstring name, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    UtfChars __pin_name(env, name);
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_create_channel_group((char *)__pin_name.c_str(), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_play_dsp JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_play_dsp_46228D91CB54(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_play_dsp((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_system_select JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_select_8425306E3096(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_select((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_create_sound JNI wrapper signature: (Ljava/lang/String;DLjava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_system_create_sound_556A9A220B50(JNIEnv* env, jclass /* GMFMODBridge */, jstring name_or_data, jdouble mode, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -895,8 +1066,8 @@ static jdouble __JNI_WRAPPER__fmod_sound_set_3d_custom_rolloff_7E0A77A34700(JNIE
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_sound_get_3d_custom_rolloff JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_sound_get_3d_custom_rolloff_4F0E356FF51F(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+// fmod_sound_get_3d_custom_rolloff JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_3d_custom_rolloff_42C4F08E2DF5(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
     void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
     jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
@@ -904,13 +1075,7 @@ static jdouble __JNI_WRAPPER__fmod_sound_get_3d_custom_rolloff_4F0E356FF51F(JNIE
         throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
-    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
-    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
-        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    double __ret = __EXT_NATIVE__fmod_sound_get_3d_custom_rolloff((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    double __ret = __EXT_NATIVE__fmod_sound_get_3d_custom_rolloff((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -1098,6 +1263,89 @@ static jdouble __JNI_WRAPPER__fmod_sound_get_system_object_D1B750C37CB1(JNIEnv* 
         return 0.0;
     }
     double __ret = __EXT_NATIVE__fmod_sound_get_system_object((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_sound_get_open_state JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_open_state_9A2558E26FA9(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_get_open_state((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_sound_get_tag JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_tag_50F846711AA1(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_get_tag((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_sound_get_num_sub_sounds JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_num_sub_sounds_1F7905F18939(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_get_num_sub_sounds((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_sound_get_sub_sound JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_sub_sound_57D206BBAE9F(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_get_sub_sound((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_sound_read_data JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_read_data_6C47299CC2A2(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_read_data((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -1509,220 +1757,438 @@ static jdouble __JNI_WRAPPER__fmod_reverb_3d_release_4B32AF8092EA(JNIEnv* env, j
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_is_playing JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_is_playing_619D7AEB11F7(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_is_playing JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_is_playing_455D42F41C5E(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_is_playing(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_is_playing((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_stop JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_stop_EED24CB9F2B9(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_stop JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_stop_982F5E79BE37(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_stop(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_stop((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_paused JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_paused_992638FB6B99(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble paused)
+// fmod_channel_control_set_paused JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_paused_9C650601AF71(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_paused(static_cast<double>(channel_control_ref), static_cast<double>(paused));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_paused((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_paused JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_paused_6551A87C1C24(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_paused JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_paused_9DC102203267(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_paused(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_paused((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_mode JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_mode_F44AA1A66FCE(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble mode)
+// fmod_channel_control_set_mode JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_mode_BC365AD97A15(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_mode(static_cast<double>(channel_control_ref), static_cast<double>(mode));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_mode((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_mode JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_mode_45CD1D71D3FE(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_mode JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_mode_6CA9756A3CD6(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_mode(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_mode((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_pitch JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_pitch_97532B46F05A(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble pitch)
+// fmod_channel_control_set_pitch JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_pitch_4D5500CF3E76(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_pitch(static_cast<double>(channel_control_ref), static_cast<double>(pitch));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_pitch((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_pitch JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_pitch_8318FAF74370(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_pitch JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_pitch_C918AD58EA5A(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_pitch(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_pitch((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_audibility JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_audibility_7986D8FF9980(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_audibility JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_audibility_112934CF1160(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_audibility(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_audibility((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_volume JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_volume_891AF41BAE2D(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble volume)
+// fmod_channel_control_set_volume JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_volume_B5D5BF0C239C(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_volume(static_cast<double>(channel_control_ref), static_cast<double>(volume));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_volume((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_volume JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_volume_90AEDA133865(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_volume JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_volume_81A3EA748E66(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_volume(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_volume((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_volume_ramp JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_volume_ramp_FFB1509EB2DC(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble ramp)
+// fmod_channel_control_set_volume_ramp JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_volume_ramp_AC0C4FFC8F76(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_volume_ramp(static_cast<double>(channel_control_ref), static_cast<double>(ramp));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_volume_ramp((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_volume_ramp JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_volume_ramp_E9DFDB247778(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_volume_ramp JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_volume_ramp_89B559A2370D(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_volume_ramp(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_volume_ramp((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_mute JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_mute_DBC217E5E62C(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble mute)
+// fmod_channel_control_set_mute JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_mute_D95253A9A25F(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_mute(static_cast<double>(channel_control_ref), static_cast<double>(mute));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_mute((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_mute JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_mute_AEEB14AE909A(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_mute JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_mute_562DE0B3F9C3(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_mute(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_mute((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_doppler_level JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_doppler_level_DB681F42E6F8(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble level)
+// fmod_channel_control_set_3d_doppler_level JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_doppler_level_516E37E76FBA(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_doppler_level(static_cast<double>(channel_control_ref), static_cast<double>(level));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_doppler_level((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_3d_doppler_level JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_doppler_level_A8D0505F737C(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_3d_doppler_level JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_doppler_level_4A405184A989(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_doppler_level(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_doppler_level((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_level JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_level_1D3829E58B03(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble level)
+// fmod_channel_control_set_3d_level JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_level_B7DF5D6AC4CF(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_level(static_cast<double>(channel_control_ref), static_cast<double>(level));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_level((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_3d_level JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_level_2711E1E3D0D5(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_3d_level JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_level_044A824BFCBF(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_level(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_level((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_min_max_distance JNI wrapper signature: (DDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_min_max_distance_F5A3AD25ED82(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble min_dist, jdouble max_dist)
+// fmod_channel_control_set_3d_min_max_distance JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_min_max_distance_464527374A3E(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_min_max_distance(static_cast<double>(channel_control_ref), static_cast<double>(min_dist), static_cast<double>(max_dist));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_min_max_distance((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_cone_settings JNI wrapper signature: (DDDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_cone_settings_F41D36A5E50D(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble inside_cone_angle, jdouble outside_cone_angle, jdouble outside_volume)
+// fmod_channel_control_set_3d_cone_settings JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_cone_settings_3CAE20A7862D(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings(static_cast<double>(channel_control_ref), static_cast<double>(inside_cone_angle), static_cast<double>(outside_cone_angle), static_cast<double>(outside_volume));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_occlusion JNI wrapper signature: (DDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_occlusion_367B20E57E32(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble direct_occlusion, jdouble reverb_occlusion)
+// fmod_channel_control_set_3d_occlusion JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_occlusion_5AACCE83F8BC(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_occlusion(static_cast<double>(channel_control_ref), static_cast<double>(direct_occlusion), static_cast<double>(reverb_occlusion));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_occlusion((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_spread JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_spread_50D21EFE9ACC(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble angle)
+// fmod_channel_control_set_3d_attributes JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_attributes_0E16F35AEABB(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_spread(static_cast<double>(channel_control_ref), static_cast<double>(angle));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_attributes((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_3d_spread JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_spread_08BF0B1F6BE5(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_3d_attributes JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_attributes_4ACD61552310(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_spread(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_attributes((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_3d_distance_filter JNI wrapper signature: (DDDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_distance_filter_A577A89FBD37(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble custom, jdouble custom_level, jdouble center_freq)
+// fmod_channel_control_set_3d_spread JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_spread_A99926AC117E(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter(static_cast<double>(channel_control_ref), static_cast<double>(custom), static_cast<double>(custom_level), static_cast<double>(center_freq));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_spread((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_pan JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_pan_8E3F68834C87(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble pan)
+// fmod_channel_control_get_3d_spread JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_3d_spread_E08EF2611B75(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_pan(static_cast<double>(channel_control_ref), static_cast<double>(pan));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_3d_spread((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_mix_levels_output JNI wrapper signature: (DDDDDDDDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_mix_levels_output_E191059BF65C(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble front_left, jdouble front_right, jdouble center, jdouble lfe, jdouble surround_left, jdouble surround_right, jdouble back_left, jdouble back_right)
+// fmod_channel_control_set_3d_distance_filter JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_3d_distance_filter_11D8E20C9852(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_mix_levels_output(static_cast<double>(channel_control_ref), static_cast<double>(front_left), static_cast<double>(front_right), static_cast<double>(center), static_cast<double>(lfe), static_cast<double>(surround_left), static_cast<double>(surround_right), static_cast<double>(back_left), static_cast<double>(back_right));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_reverb_properties JNI wrapper signature: (DDD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_reverb_properties_3BA3E021742C(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble reverb_instance, jdouble wet)
+// fmod_channel_control_set_pan JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_pan_780D4EB93FD8(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_reverb_properties(static_cast<double>(channel_control_ref), static_cast<double>(reverb_instance), static_cast<double>(wet));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_pan((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_reverb_properties JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_reverb_properties_53411BD0D9B5(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble reverb_instance)
+// fmod_channel_control_set_mix_levels_output JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_mix_levels_output_7F581B81EA5D(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_reverb_properties(static_cast<double>(channel_control_ref), static_cast<double>(reverb_instance));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_mix_levels_output((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_set_low_pass_gain JNI wrapper signature: (DD)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_set_low_pass_gain_A7DB537A32DE(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble gain)
+// fmod_channel_control_set_reverb_properties JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_reverb_properties_A7467FEAABF6(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_set_low_pass_gain(static_cast<double>(channel_control_ref), static_cast<double>(gain));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_reverb_properties((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_low_pass_gain JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_low_pass_gain_37AEA7B0C633(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_reverb_properties JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_reverb_properties_3A407212FF03(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_low_pass_gain(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_reverb_properties((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_set_low_pass_gain JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_low_pass_gain_F0D1946644BE(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_low_pass_gain((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_get_low_pass_gain JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_low_pass_gain_DBA079C95C74(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_low_pass_gain((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -1752,23 +2218,35 @@ static jdouble __JNI_WRAPPER__fmod_channel_control_remove_dsp_310EC41E9026(JNIEn
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_num_dsps JNI wrapper signature: (D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_num_dsps_B389FD8FC7A1(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble channel_control_ref)
+// fmod_channel_control_get_num_dsps JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_num_dsps_B399D702EE79(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_num_dsps(static_cast<double>(channel_control_ref));
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_num_dsps((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_dsp JNI wrapper signature: (DDLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_dsp_3A5AB805E0AD(JNIEnv* env, jclass /* GMFMODBridge */, jdouble channel_control_ref, jdouble index, jobject __ret_buffer, jdouble __ret_buffer_length)
+// fmod_channel_control_get_dsp JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_dsp_879E062204FD(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
     void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
     jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
     if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
         throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_dsp(static_cast<double>(channel_control_ref), static_cast<double>(index), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_dsp((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -1798,16 +2276,86 @@ static jdouble __JNI_WRAPPER__fmod_channel_control_get_dsp_index_6862D8535516(JN
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_system_object JNI wrapper signature: (DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_system_object_A38F78C9F192(JNIEnv* env, jclass /* GMFMODBridge */, jdouble channel_control_ref, jobject __ret_buffer, jdouble __ret_buffer_length)
+// fmod_channel_control_get_system_object JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_system_object_568EB61DACAC(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
     void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
     jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
     if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
         throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_system_object(static_cast<double>(channel_control_ref), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_system_object((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_get_delay JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_delay_0191B4FFE103(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_delay((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_set_delay JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_delay_B2922404EDBD(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_delay((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_get_dsp_clock JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_dsp_clock_E2EE5EE82D3F(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_dsp_clock((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_control_set_callback JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_set_callback_8F7E78A38FE1(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_control_set_callback((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -2858,6 +3406,75 @@ static jdouble __JNI_WRAPPER__fmod_studio_system_get_core_system_97772879ADFC(JN
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_studio_system_set_num_listeners JNI wrapper signature: (D)D
+static jdouble __JNI_WRAPPER__fmod_studio_system_set_num_listeners_E82470E23F21(JNIEnv* /* env */, jclass /* GMFMODBridge */, jdouble count)
+{
+    double __ret = __EXT_NATIVE__fmod_studio_system_set_num_listeners(static_cast<double>(count));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_system_lookup_id JNI wrapper signature: (Ljava/lang/String;)Ljava/lang/String;
+static jstring __JNI_WRAPPER__fmod_studio_system_lookup_id_C7D4BD74DB48(JNIEnv* env, jclass /* GMFMODBridge */, jstring path)
+{
+    UtfChars __pin_path(env, path);
+    const char* __out = __EXT_NATIVE__fmod_studio_system_lookup_id((char *)__pin_path.c_str());
+    jstring __j = __out ? env->NewStringUTF(__out) : nullptr;
+    return __j;
+}
+
+// fmod_studio_system_get_event_by_id JNI wrapper signature: (Ljava/lang/String;Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_system_get_event_by_id_F7AF5DFC7836(JNIEnv* env, jclass /* GMFMODBridge */, jstring id, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    UtfChars __pin_id(env, id);
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_system_get_event_by_id((char *)__pin_id.c_str(), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_system_start_command_capture JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_system_start_command_capture_E87E09E26E8D(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_system_start_command_capture((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_system_stop_command_capture JNI wrapper signature: ()D
+static jdouble __JNI_WRAPPER__fmod_studio_system_stop_command_capture_0DD4E2926642(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+{
+    double __ret = __EXT_NATIVE__fmod_studio_system_stop_command_capture();
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_system_load_command_replay JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_system_load_command_replay_DEF98FD29B5E(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_system_load_command_replay((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_studio_bank_unload JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_bank_unload_F47519FDB70A(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
@@ -3182,6 +3799,38 @@ static jdouble __JNI_WRAPPER__fmod_studio_event_description_release_all_instance
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_studio_event_description_get_parameter_description_by_name JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_description_get_parameter_description_by_name_14EAF2E649FB(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_name((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_event_description_load_sample_data JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_description_load_sample_data_BF36012667A9(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_description_load_sample_data((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_studio_event_instance_start JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_event_instance_start_61FC51260B3A(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
@@ -3361,6 +4010,45 @@ static jdouble __JNI_WRAPPER__fmod_studio_event_instance_get_parameter_count_2F8
         return 0.0;
     }
     double __ret = __EXT_NATIVE__fmod_studio_event_instance_get_parameter_count((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_event_instance_get_parameter_by_id JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_instance_get_parameter_by_id_CF86024FF493(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_event_instance_set_parameter_by_id JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_id_7F75BBB5369F(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_event_instance_set_callback JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_instance_set_callback_0DCC3A1780BB(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_instance_set_callback((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -3580,6 +4268,32 @@ static jdouble __JNI_WRAPPER__fmod_studio_command_replay_release_FD431F66575E(JN
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_studio_command_replay_get_command_count JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_command_replay_get_command_count_46DA8E81D8F2(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_command_replay_get_command_count((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_studio_command_replay_get_length JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_command_replay_get_length_8D02D1A07643(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_command_replay_get_length((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_studio_command_replay_set_frame_callback JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_command_replay_set_frame_callback_84F5244B3520(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
@@ -3648,10 +4362,12 @@ extern "C" {
         // Registers all the native methods
         static const JNINativeMethod methods[] = {
             { "__EXT_JNI__GMFMOD_invocation_handler", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__GMFMOD_invocation_handler },
+            { "__EXT_JNI__GMFMOD_queue_buffer", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__GMFMOD_queue_buffer },
             { "__EXT_JNI__fmod_last_result", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_last_result_6249C1D416C4 },
             { "__EXT_JNI__fmod_debug_initialize", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_debug_initialize_0DBC9690DD4B },
             { "__EXT_JNI__fmod_path_bundle", "(Ljava/lang/String;)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_path_bundle_2E2B1F6C3282 },
             { "__EXT_JNI__fmod_path_user", "(Ljava/lang/String;)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_path_user_B64A514AA734 },
+            { "__EXT_JNI__fmod_error_string", "(Ljava/nio/ByteBuffer;D)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_error_string_FF361944BD9C },
             { "__EXT_JNI__fmod_channel_set_frequency", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_set_frequency_70589B43F62C },
             { "__EXT_JNI__fmod_channel_get_frequency", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_get_frequency_429DD34733EE },
             { "__EXT_JNI__fmod_channel_set_priority", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_set_priority_F5B225C05945 },
@@ -3692,6 +4408,17 @@ extern "C" {
             { "__EXT_JNI__fmod_system_record_start", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_record_start_BC2603A958C6 },
             { "__EXT_JNI__fmod_system_record_stop", "(D)D", (void*)__JNI_WRAPPER__fmod_system_record_stop_2B7493E670F2 },
             { "__EXT_JNI__fmod_system_is_recording", "(D)D", (void*)__JNI_WRAPPER__fmod_system_is_recording_5DDABEBA55C5 },
+            { "__EXT_JNI__fmod_system_create_dsp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_dsp_450EA531C930 },
+            { "__EXT_JNI__fmod_system_create_dsp_by_type", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_dsp_by_type_00EB94D56285 },
+            { "__EXT_JNI__fmod_system_get_dsp_buffer_size", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_dsp_buffer_size_B3AA94332F29 },
+            { "__EXT_JNI__fmod_system_set_dsp_buffer_size", "(DD)D", (void*)__JNI_WRAPPER__fmod_system_set_dsp_buffer_size_A36C68FF0DD1 },
+            { "__EXT_JNI__fmod_system_get_software_format", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_software_format_60B315289946 },
+            { "__EXT_JNI__fmod_system_set_software_format", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_software_format_99DB2086D973 },
+            { "__EXT_JNI__fmod_system_set_stream_buffer_size", "(DD)D", (void*)__JNI_WRAPPER__fmod_system_set_stream_buffer_size_3F450BCAFCE6 },
+            { "__EXT_JNI__fmod_system_get_driver_info", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_driver_info_B33BB88F84CC },
+            { "__EXT_JNI__fmod_system_create_channel_group", "(Ljava/lang/String;Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_channel_group_70C2F88726EC },
+            { "__EXT_JNI__fmod_system_play_dsp", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_play_dsp_46228D91CB54 },
+            { "__EXT_JNI__fmod_system_select", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_select_8425306E3096 },
             { "__EXT_JNI__fmod_system_create_sound", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_sound_556A9A220B50 },
             { "__EXT_JNI__fmod_system_create_stream", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_stream_3450451CFE13 },
             { "__EXT_JNI__fmod_system_play_sound", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_play_sound_C47F34216BD4 },
@@ -3711,7 +4438,7 @@ extern "C" {
             { "__EXT_JNI__fmod_sound_set_3d_cone_settings", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_set_3d_cone_settings_8874CA129864 },
             { "__EXT_JNI__fmod_sound_get_3d_cone_settings", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_3d_cone_settings_44D6F8746167 },
             { "__EXT_JNI__fmod_sound_set_3d_custom_rolloff", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_set_3d_custom_rolloff_7E0A77A34700 },
-            { "__EXT_JNI__fmod_sound_get_3d_custom_rolloff", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_3d_custom_rolloff_4F0E356FF51F },
+            { "__EXT_JNI__fmod_sound_get_3d_custom_rolloff", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_3d_custom_rolloff_42C4F08E2DF5 },
             { "__EXT_JNI__fmod_sound_get_num_sync_points", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_num_sync_points_1CFE5BF4A267 },
             { "__EXT_JNI__fmod_sound_get_sync_point", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_sync_point_83007CE4021B },
             { "__EXT_JNI__fmod_sound_add_sync_point", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_add_sync_point_B083120D67E8 },
@@ -3725,6 +4452,11 @@ extern "C" {
             { "__EXT_JNI__fmod_sound_get_sound_group", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_sound_group_C2E3ACB0149E },
             { "__EXT_JNI__fmod_sound_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_release_63F705F123E1 },
             { "__EXT_JNI__fmod_sound_get_system_object", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_system_object_D1B750C37CB1 },
+            { "__EXT_JNI__fmod_sound_get_open_state", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_open_state_9A2558E26FA9 },
+            { "__EXT_JNI__fmod_sound_get_tag", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_tag_50F846711AA1 },
+            { "__EXT_JNI__fmod_sound_get_num_sub_sounds", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_num_sub_sounds_1F7905F18939 },
+            { "__EXT_JNI__fmod_sound_get_sub_sound", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_sub_sound_57D206BBAE9F },
+            { "__EXT_JNI__fmod_sound_read_data", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_read_data_6C47299CC2A2 },
             { "__EXT_JNI__fmod_channel_group_get_num_channels", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_get_num_channels_6E044D61EC1C },
             { "__EXT_JNI__fmod_channel_group_get_channel", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_get_channel_EB520EBD29E4 },
             { "__EXT_JNI__fmod_channel_group_add_group", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_add_group_F18D17164BB0 },
@@ -3753,44 +4485,50 @@ extern "C" {
             { "__EXT_JNI__fmod_reverb_3d_get_active", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_reverb_3d_get_active_A50AC05B808E },
             { "__EXT_JNI__fmod_reverb_3d_set_properties", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_reverb_3d_set_properties_2B889D6F59C1 },
             { "__EXT_JNI__fmod_reverb_3d_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_reverb_3d_release_4B32AF8092EA },
-            { "__EXT_JNI__fmod_channel_control_is_playing", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_is_playing_619D7AEB11F7 },
-            { "__EXT_JNI__fmod_channel_control_stop", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_stop_EED24CB9F2B9 },
-            { "__EXT_JNI__fmod_channel_control_set_paused", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_paused_992638FB6B99 },
-            { "__EXT_JNI__fmod_channel_control_get_paused", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_paused_6551A87C1C24 },
-            { "__EXT_JNI__fmod_channel_control_set_mode", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mode_F44AA1A66FCE },
-            { "__EXT_JNI__fmod_channel_control_get_mode", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_mode_45CD1D71D3FE },
-            { "__EXT_JNI__fmod_channel_control_set_pitch", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_pitch_97532B46F05A },
-            { "__EXT_JNI__fmod_channel_control_get_pitch", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_pitch_8318FAF74370 },
-            { "__EXT_JNI__fmod_channel_control_get_audibility", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_audibility_7986D8FF9980 },
-            { "__EXT_JNI__fmod_channel_control_set_volume", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_volume_891AF41BAE2D },
-            { "__EXT_JNI__fmod_channel_control_get_volume", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_volume_90AEDA133865 },
-            { "__EXT_JNI__fmod_channel_control_set_volume_ramp", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_volume_ramp_FFB1509EB2DC },
-            { "__EXT_JNI__fmod_channel_control_get_volume_ramp", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_volume_ramp_E9DFDB247778 },
-            { "__EXT_JNI__fmod_channel_control_set_mute", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mute_DBC217E5E62C },
-            { "__EXT_JNI__fmod_channel_control_get_mute", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_mute_AEEB14AE909A },
-            { "__EXT_JNI__fmod_channel_control_set_3d_doppler_level", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_doppler_level_DB681F42E6F8 },
-            { "__EXT_JNI__fmod_channel_control_get_3d_doppler_level", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_doppler_level_A8D0505F737C },
-            { "__EXT_JNI__fmod_channel_control_set_3d_level", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_level_1D3829E58B03 },
-            { "__EXT_JNI__fmod_channel_control_get_3d_level", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_level_2711E1E3D0D5 },
-            { "__EXT_JNI__fmod_channel_control_set_3d_min_max_distance", "(DDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_min_max_distance_F5A3AD25ED82 },
-            { "__EXT_JNI__fmod_channel_control_set_3d_cone_settings", "(DDDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_cone_settings_F41D36A5E50D },
-            { "__EXT_JNI__fmod_channel_control_set_3d_occlusion", "(DDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_occlusion_367B20E57E32 },
-            { "__EXT_JNI__fmod_channel_control_set_3d_spread", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_spread_50D21EFE9ACC },
-            { "__EXT_JNI__fmod_channel_control_get_3d_spread", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_spread_08BF0B1F6BE5 },
-            { "__EXT_JNI__fmod_channel_control_set_3d_distance_filter", "(DDDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_distance_filter_A577A89FBD37 },
-            { "__EXT_JNI__fmod_channel_control_set_pan", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_pan_8E3F68834C87 },
-            { "__EXT_JNI__fmod_channel_control_set_mix_levels_output", "(DDDDDDDDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mix_levels_output_E191059BF65C },
-            { "__EXT_JNI__fmod_channel_control_set_reverb_properties", "(DDD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_reverb_properties_3BA3E021742C },
-            { "__EXT_JNI__fmod_channel_control_get_reverb_properties", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_reverb_properties_53411BD0D9B5 },
-            { "__EXT_JNI__fmod_channel_control_set_low_pass_gain", "(DD)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_low_pass_gain_A7DB537A32DE },
-            { "__EXT_JNI__fmod_channel_control_get_low_pass_gain", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_low_pass_gain_37AEA7B0C633 },
+            { "__EXT_JNI__fmod_channel_control_is_playing", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_is_playing_455D42F41C5E },
+            { "__EXT_JNI__fmod_channel_control_stop", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_stop_982F5E79BE37 },
+            { "__EXT_JNI__fmod_channel_control_set_paused", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_paused_9C650601AF71 },
+            { "__EXT_JNI__fmod_channel_control_get_paused", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_paused_9DC102203267 },
+            { "__EXT_JNI__fmod_channel_control_set_mode", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mode_BC365AD97A15 },
+            { "__EXT_JNI__fmod_channel_control_get_mode", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_mode_6CA9756A3CD6 },
+            { "__EXT_JNI__fmod_channel_control_set_pitch", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_pitch_4D5500CF3E76 },
+            { "__EXT_JNI__fmod_channel_control_get_pitch", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_pitch_C918AD58EA5A },
+            { "__EXT_JNI__fmod_channel_control_get_audibility", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_audibility_112934CF1160 },
+            { "__EXT_JNI__fmod_channel_control_set_volume", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_volume_B5D5BF0C239C },
+            { "__EXT_JNI__fmod_channel_control_get_volume", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_volume_81A3EA748E66 },
+            { "__EXT_JNI__fmod_channel_control_set_volume_ramp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_volume_ramp_AC0C4FFC8F76 },
+            { "__EXT_JNI__fmod_channel_control_get_volume_ramp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_volume_ramp_89B559A2370D },
+            { "__EXT_JNI__fmod_channel_control_set_mute", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mute_D95253A9A25F },
+            { "__EXT_JNI__fmod_channel_control_get_mute", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_mute_562DE0B3F9C3 },
+            { "__EXT_JNI__fmod_channel_control_set_3d_doppler_level", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_doppler_level_516E37E76FBA },
+            { "__EXT_JNI__fmod_channel_control_get_3d_doppler_level", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_doppler_level_4A405184A989 },
+            { "__EXT_JNI__fmod_channel_control_set_3d_level", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_level_B7DF5D6AC4CF },
+            { "__EXT_JNI__fmod_channel_control_get_3d_level", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_level_044A824BFCBF },
+            { "__EXT_JNI__fmod_channel_control_set_3d_min_max_distance", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_min_max_distance_464527374A3E },
+            { "__EXT_JNI__fmod_channel_control_set_3d_cone_settings", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_cone_settings_3CAE20A7862D },
+            { "__EXT_JNI__fmod_channel_control_set_3d_occlusion", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_occlusion_5AACCE83F8BC },
+            { "__EXT_JNI__fmod_channel_control_set_3d_attributes", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_attributes_0E16F35AEABB },
+            { "__EXT_JNI__fmod_channel_control_get_3d_attributes", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_attributes_4ACD61552310 },
+            { "__EXT_JNI__fmod_channel_control_set_3d_spread", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_spread_A99926AC117E },
+            { "__EXT_JNI__fmod_channel_control_get_3d_spread", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_3d_spread_E08EF2611B75 },
+            { "__EXT_JNI__fmod_channel_control_set_3d_distance_filter", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_3d_distance_filter_11D8E20C9852 },
+            { "__EXT_JNI__fmod_channel_control_set_pan", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_pan_780D4EB93FD8 },
+            { "__EXT_JNI__fmod_channel_control_set_mix_levels_output", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_mix_levels_output_7F581B81EA5D },
+            { "__EXT_JNI__fmod_channel_control_set_reverb_properties", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_reverb_properties_A7467FEAABF6 },
+            { "__EXT_JNI__fmod_channel_control_get_reverb_properties", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_reverb_properties_3A407212FF03 },
+            { "__EXT_JNI__fmod_channel_control_set_low_pass_gain", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_low_pass_gain_F0D1946644BE },
+            { "__EXT_JNI__fmod_channel_control_get_low_pass_gain", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_low_pass_gain_DBA079C95C74 },
             { "__EXT_JNI__fmod_channel_control_add_dsp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_add_dsp_562B0EDDBC8F },
             { "__EXT_JNI__fmod_channel_control_remove_dsp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_remove_dsp_310EC41E9026 },
-            { "__EXT_JNI__fmod_channel_control_get_num_dsps", "(D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_num_dsps_B389FD8FC7A1 },
-            { "__EXT_JNI__fmod_channel_control_get_dsp", "(DDLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_dsp_3A5AB805E0AD },
+            { "__EXT_JNI__fmod_channel_control_get_num_dsps", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_num_dsps_B399D702EE79 },
+            { "__EXT_JNI__fmod_channel_control_get_dsp", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_dsp_879E062204FD },
             { "__EXT_JNI__fmod_channel_control_set_dsp_index", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_dsp_index_F061F96A4ECF },
             { "__EXT_JNI__fmod_channel_control_get_dsp_index", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_dsp_index_6862D8535516 },
-            { "__EXT_JNI__fmod_channel_control_get_system_object", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_system_object_A38F78C9F192 },
+            { "__EXT_JNI__fmod_channel_control_get_system_object", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_system_object_568EB61DACAC },
+            { "__EXT_JNI__fmod_channel_control_get_delay", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_delay_0191B4FFE103 },
+            { "__EXT_JNI__fmod_channel_control_set_delay", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_delay_B2922404EDBD },
+            { "__EXT_JNI__fmod_channel_control_get_dsp_clock", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_dsp_clock_E2EE5EE82D3F },
+            { "__EXT_JNI__fmod_channel_control_set_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_callback_8F7E78A38FE1 },
             { "__EXT_JNI__fmod_dsp_add_input", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_dsp_add_input_937E03CD0BEC },
             { "__EXT_JNI__fmod_dsp_get_num_inputs", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_dsp_get_num_inputs_A28F83A2B8CF },
             { "__EXT_JNI__fmod_dsp_get_num_outputs", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_dsp_get_num_outputs_FD37DBEF7CD5 },
@@ -3869,6 +4607,12 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_system_set_parameter_by_name", "(Ljava/lang/String;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_set_parameter_by_name_3599201758EC },
             { "__EXT_JNI__fmod_studio_system_get_parameter_by_name", "(Ljava/lang/String;)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_parameter_by_name_70CA10FE98EB },
             { "__EXT_JNI__fmod_studio_system_get_core_system", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_core_system_97772879ADFC },
+            { "__EXT_JNI__fmod_studio_system_set_num_listeners", "(D)D", (void*)__JNI_WRAPPER__fmod_studio_system_set_num_listeners_E82470E23F21 },
+            { "__EXT_JNI__fmod_studio_system_lookup_id", "(Ljava/lang/String;)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_studio_system_lookup_id_C7D4BD74DB48 },
+            { "__EXT_JNI__fmod_studio_system_get_event_by_id", "(Ljava/lang/String;Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_event_by_id_F7AF5DFC7836 },
+            { "__EXT_JNI__fmod_studio_system_start_command_capture", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_start_command_capture_E87E09E26E8D },
+            { "__EXT_JNI__fmod_studio_system_stop_command_capture", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_stop_command_capture_0DD4E2926642 },
+            { "__EXT_JNI__fmod_studio_system_load_command_replay", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_load_command_replay_DEF98FD29B5E },
             { "__EXT_JNI__fmod_studio_bank_unload", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bank_unload_F47519FDB70A },
             { "__EXT_JNI__fmod_studio_bank_get_loading_state", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bank_get_loading_state_47FE5CA6F884 },
             { "__EXT_JNI__fmod_studio_bank_get_sample_loading_state", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bank_get_sample_loading_state_728B4A9E0BF2 },
@@ -3891,6 +4635,8 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_event_description_get_length", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_description_get_length_22F36A386FAC },
             { "__EXT_JNI__fmod_studio_event_description_get_parameter_count", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_description_get_parameter_count_5BB329552507 },
             { "__EXT_JNI__fmod_studio_event_description_release_all_instances", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_description_release_all_instances_8023D46F5FDE },
+            { "__EXT_JNI__fmod_studio_event_description_get_parameter_description_by_name", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_description_get_parameter_description_by_name_14EAF2E649FB },
+            { "__EXT_JNI__fmod_studio_event_description_load_sample_data", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_description_load_sample_data_BF36012667A9 },
             { "__EXT_JNI__fmod_studio_event_instance_start", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_start_61FC51260B3A },
             { "__EXT_JNI__fmod_studio_event_instance_stop", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_stop_574BE5A12BA3 },
             { "__EXT_JNI__fmod_studio_event_instance_get_playback_state", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_playback_state_F729AF8A956A },
@@ -3905,6 +4651,9 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_event_instance_set_parameter_by_name", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_name_4A29AACF2EB7 },
             { "__EXT_JNI__fmod_studio_event_instance_get_parameter_by_name", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_parameter_by_name_97A50AE1D807 },
             { "__EXT_JNI__fmod_studio_event_instance_get_parameter_count", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_parameter_count_2F8AFC7D8AA5 },
+            { "__EXT_JNI__fmod_studio_event_instance_get_parameter_by_id", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_parameter_by_id_CF86024FF493 },
+            { "__EXT_JNI__fmod_studio_event_instance_set_parameter_by_id", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_id_7F75BBB5369F },
+            { "__EXT_JNI__fmod_studio_event_instance_set_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_callback_0DCC3A1780BB },
             { "__EXT_JNI__fmod_studio_event_instance_set_3d_attributes", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_3d_attributes_2E5BE736BFE9 },
             { "__EXT_JNI__fmod_studio_event_instance_get_description", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_description_E5B8FD4246FC },
             { "__EXT_JNI__fmod_studio_event_instance_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_release_2F92CD38EE4F },
@@ -3921,6 +4670,8 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_command_replay_get_playback_state", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_get_playback_state_3F87FDC4F5E0 },
             { "__EXT_JNI__fmod_studio_command_replay_get_current_command", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_get_current_command_4ED9F1A615CF },
             { "__EXT_JNI__fmod_studio_command_replay_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_release_FD431F66575E },
+            { "__EXT_JNI__fmod_studio_command_replay_get_command_count", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_get_command_count_46DA8E81D8F2 },
+            { "__EXT_JNI__fmod_studio_command_replay_get_length", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_get_length_8D02D1A07643 },
             { "__EXT_JNI__fmod_studio_command_replay_set_frame_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_set_frame_callback_84F5244B3520 },
             { "__EXT_JNI__fmod_studio_command_replay_set_create_instance_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_set_create_instance_callback_53121DB34B41 },
             { "__EXT_JNI__fmod_studio_command_replay_set_load_bank_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_command_replay_set_load_bank_callback_7AD920A0B547 },

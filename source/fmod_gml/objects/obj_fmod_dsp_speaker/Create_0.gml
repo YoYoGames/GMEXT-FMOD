@@ -4,7 +4,7 @@ sound_file = fmod_path_bundle("drumloop.wav");
 /*
     In this special case we want to use stereo output and not worry about varying matrix sizes depending on user speaker mode.
 */
-fmod_system_set_software_format(48000, FMOD_SPEAKERMODE.STEREO, 0);
+fmod_system_set_software_format(48000, FmodSpeakerMode.Stereo, 0);
 
 /*
     Initialize the Sound
@@ -17,13 +17,13 @@ channel = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), 
 /*
     Create the DSP effects.
 */ 
-dsp_lowpass = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.LOWPASS);
-fmod_dsp_set_parameter_float(dsp_lowpass, FMOD_DSP_LOWPASS.CUTOFF, 1000);
-fmod_dsp_set_parameter_float(dsp_lowpass, FMOD_DSP_LOWPASS.RESONANCE, 4);
+dsp_lowpass = fmod_system_create_dsp_by_type(FmodDspType.LowPass);
+fmod_dsp_set_parameter_float(dsp_lowpass, FmodDspLowPass.Cutoff, 1000);
+fmod_dsp_set_parameter_float(dsp_lowpass, FmodDspLowPass.Resonance, 4);
 
-dsp_highpass = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.HIGHPASS)
-fmod_dsp_set_parameter_float(dsp_lowpass, FMOD_DSP_HIGHPASS.CUTOFF, 4000);
-fmod_dsp_set_parameter_float(dsp_lowpass, FMOD_DSP_HIGHPASS.RESONANCE, 4);
+dsp_highpass = fmod_system_create_dsp_by_type(FmodDspType.HighPass)
+fmod_dsp_set_parameter_float(dsp_lowpass, FmodDspHighPass.Cutoff, 4000);
+fmod_dsp_set_parameter_float(dsp_lowpass, FmodDspHighPass.Resonance, 4);
 
 
 /*
@@ -39,7 +39,7 @@ fmod_dsp_set_parameter_float(dsp_lowpass, FMOD_DSP_HIGHPASS.RESONANCE, 4);
 
 master_group_channel = fmod_system_get_master_channel_group();
 
-dsp_head = fmod_channel_control_get_dsp(master_group_channel, FMOD_CHANNELCONTROL_DSP_INDEX.HEAD)
+dsp_head = fmod_channel_control_get_dsp(master_group_channel, FmodChannelControlDspIndex.Head)
 
 dsp_channel_mixer_connection_info = fmod_dsp_get_input(dsp_head, 0); // { dsp_ref: <dsp_ref>, dsp_connection_ref: <dsp_connection_ref> }
 dsp_channel_mixer = dsp_channel_mixer_connection_info.dsp_ref
@@ -62,8 +62,8 @@ fmod_dsp_disconnect_from(dsp_head, dsp_channel_mixer);
               [DSPHIGHPASS]
 */
 
-lowpass_connection = fmod_dsp_add_input(dsp_head, dsp_lowpass, FmodDspConnectionType.Default);
-highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass, FmodDspConnectionType.Default);
+lowpass_connection = fmod_dsp_add_input(dsp_head, dsp_lowpass, FmodDspConnectionType.Standard);
+highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass, FmodDspConnectionType.Standard);
 
 /*
     Now connect the channelmixer to the 2 effects
@@ -75,8 +75,8 @@ highpass_connection = fmod_dsp_add_input(dsp_head, dsp_highpass, FmodDspConnecti
               [DSPHIGHPASS]
 */
 
-fmod_dsp_add_input(dsp_lowpass, dsp_channel_mixer, FmodDspConnectionType.Default); /* Ignore connection - we dont care about it. */
-fmod_dsp_add_input(dsp_highpass, dsp_channel_mixer, FmodDspConnectionType.Default); /* Ignore connection - we dont care about it. */
+fmod_dsp_add_input(dsp_lowpass, dsp_channel_mixer, FmodDspConnectionType.Standard); /* Ignore connection - we dont care about it. */
+fmod_dsp_add_input(dsp_highpass, dsp_channel_mixer, FmodDspConnectionType.Standard); /* Ignore connection - we dont care about it. */
 
 
 /*
@@ -105,7 +105,7 @@ var _highpass_matrix = [
 /* 
     Upgrade the signal coming from the channel mixer from mono to stereo.  Otherwise the lowpass and highpass will get mono signals 
 */
-fmod_dsp_set_channel_format(dsp_channel_mixer, 0, 0, FMOD_SPEAKERMODE.STEREO);
+fmod_dsp_set_channel_format(dsp_channel_mixer, 0, 0, FmodSpeakerMode.Stereo);
 
 /*
     Now set the above matrices.

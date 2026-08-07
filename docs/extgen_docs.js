@@ -26,6 +26,13 @@
  */
 
 /**
+ * @function_partial fmod_error_string
+ * @param {Enum.FmodResult} result
+ * @returns {String}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_channel_set_frequency
  * @param {Struct.FmodChannelRef} channel_ref
  * @param {Real} frequency
@@ -257,10 +264,10 @@
 /**
  * @function_partial fmod_system_set_3d_listener_attributes
  * @param {Real} listener_index
- * @param {Any} position
- * @param {Any} velocity
- * @param {Any} forward
- * @param {Any} up
+ * @param {Struct.FmodVec3} position
+ * @param {Struct.FmodVec3} velocity
+ * @param {Struct.FmodVec3} forward
+ * @param {Struct.FmodVec3} up
  * @returns {Real}
  * @function_end
  */
@@ -311,6 +318,86 @@
 /**
  * @function_partial fmod_system_is_recording
  * @param {Real} device_index
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_create_dsp
+ * @returns {Struct.FmodDSPRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_create_dsp_by_type
+ * @param {Enum.FmodDspType} dsp_type
+ * @returns {Struct.FmodDSPRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_dsp_buffer_size
+ * @returns {Struct.FmodDSPBufferSize}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_set_dsp_buffer_size
+ * @param {Real} buff_size
+ * @param {Real} num_buffers
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_software_format
+ * @returns {Struct.FmodSoftwareFormat}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_set_software_format
+ * @param {Real} sample_rate
+ * @param {Enum.FmodSpeakerMode} speaker_mode
+ * @param {Real} num_raw_speakers
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_set_stream_buffer_size
+ * @param {Real} file_buffer_size
+ * @param {Real} file_buffer_size_type
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_get_driver_info
+ * @param {Real} driver_id
+ * @returns {Struct.FmodDriverInfo}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_create_channel_group
+ * @param {String} name
+ * @returns {Struct.FmodChannelGroupRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_play_dsp
+ * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} paused
+ * @returns {Struct.FmodChannelRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_select
+ * @param {Struct.FmodSystemRef} system_ref
  * @returns {Real}
  * @function_end
  */
@@ -473,7 +560,6 @@
 /**
  * @function_partial fmod_sound_get_3d_custom_rolloff
  * @param {Struct.FmodSoundRef} sound_ref
- * @returns {Any}
  * @function_end
  */
 
@@ -576,6 +662,46 @@
  * @function_partial fmod_sound_get_system_object
  * @param {Struct.FmodSoundRef} sound_ref
  * @returns {Struct.FmodSystemRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_open_state
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Struct.FmodSoundOpenState}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_tag
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {String} name
+ * @param {Real} index
+ * @returns {Struct.FmodSoundTag}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_num_sub_sounds
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_get_sub_sound
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} index
+ * @returns {Struct.FmodSoundRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_sound_read_data
+ * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Buffer} data
+ * @param {Real} length
+ * @returns {Real}
  * @function_end
  */
 
@@ -799,21 +925,21 @@
 
 /**
  * @function_partial fmod_channel_control_is_playing
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_stop
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_paused
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} paused
  * @returns {Real}
  * @function_end
@@ -821,14 +947,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_paused
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_mode
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} mode
  * @returns {Real}
  * @function_end
@@ -836,14 +962,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_mode
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_pitch
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} pitch
  * @returns {Real}
  * @function_end
@@ -851,21 +977,21 @@
 
 /**
  * @function_partial fmod_channel_control_get_pitch
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_audibility
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_volume
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -873,14 +999,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_volume
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_volume_ramp
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} ramp
  * @returns {Real}
  * @function_end
@@ -888,14 +1014,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_volume_ramp
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_mute
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} mute
  * @returns {Real}
  * @function_end
@@ -903,14 +1029,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_mute
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_doppler_level
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} level
  * @returns {Real}
  * @function_end
@@ -918,14 +1044,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_doppler_level
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_level
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} level
  * @returns {Real}
  * @function_end
@@ -933,14 +1059,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_level
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_min_max_distance
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} min_dist
  * @param {Real} max_dist
  * @returns {Real}
@@ -949,7 +1075,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_3d_cone_settings
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} inside_cone_angle
  * @param {Real} outside_cone_angle
  * @param {Real} outside_volume
@@ -959,7 +1085,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_3d_occlusion
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} direct_occlusion
  * @param {Real} reverb_occlusion
  * @returns {Real}
@@ -967,8 +1093,24 @@
  */
 
 /**
+ * @function_partial fmod_channel_control_set_3d_attributes
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Struct.FmodVec3} position
+ * @param {Struct.FmodVec3} velocity
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_get_3d_attributes
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @returns {Struct.FmodChannelControl3DAttributes}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_channel_control_set_3d_spread
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} angle
  * @returns {Real}
  * @function_end
@@ -976,14 +1118,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_spread
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_distance_filter
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} custom
  * @param {Real} custom_level
  * @param {Real} center_freq
@@ -993,7 +1135,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_pan
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} pan
  * @returns {Real}
  * @function_end
@@ -1001,7 +1143,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_mix_levels_output
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} front_left
  * @param {Real} front_right
  * @param {Real} center
@@ -1016,7 +1158,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_reverb_properties
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} reverb_instance
  * @param {Real} wet
  * @returns {Real}
@@ -1025,7 +1167,7 @@
 
 /**
  * @function_partial fmod_channel_control_get_reverb_properties
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} reverb_instance
  * @returns {Real}
  * @function_end
@@ -1033,7 +1175,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_low_pass_gain
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} gain
  * @returns {Real}
  * @function_end
@@ -1041,14 +1183,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_low_pass_gain
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_add_dsp
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} dsp_chain_offset
  * @param {Struct.FmodDSPRef} dsp_ref
  * @returns {Real}
@@ -1057,7 +1199,7 @@
 
 /**
  * @function_partial fmod_channel_control_remove_dsp
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Struct.FmodDSPRef} dsp_ref
  * @returns {Real}
  * @function_end
@@ -1065,14 +1207,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_num_dsps
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_dsp
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Real} index
  * @returns {Struct.FmodDSPRef}
  * @function_end
@@ -1080,7 +1222,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_dsp_index
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Struct.FmodDSPRef} dsp_ref
  * @param {Real} chain_index
  * @returns {Real}
@@ -1089,7 +1231,7 @@
 
 /**
  * @function_partial fmod_channel_control_get_dsp_index
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @param {Struct.FmodDSPRef} dsp_ref
  * @returns {Real}
  * @function_end
@@ -1097,8 +1239,40 @@
 
 /**
  * @function_partial fmod_channel_control_get_system_object
- * @param {Real} channel_control_ref
+ * @param {Struct.FmodChannelControlRef} channel_control_ref
  * @returns {Struct.FmodSystemRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_get_delay
+ * @param {Struct.FmodChannelRef} channel_ref
+ * @returns {Struct.FmodDelay}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_set_delay
+ * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} dspclock_start
+ * @param {Real} dspclock_end
+ * @param {Real} stop_channels
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_get_dsp_clock
+ * @param {Struct.FmodChannelRef} channel_ref
+ * @returns {Struct.FmodDSPClock}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_set_callback
+ * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Function} [callback]
+ * @returns {Real}
  * @function_end
  */
 
@@ -1256,7 +1430,7 @@
  * @function_partial fmod_dsp_get_parameter_info
  * @param {Struct.FmodDSPRef} dsp_ref
  * @param {Real} index
- * @returns {Any}
+ * @returns {Struct.FmodDSPParameterInfo}
  * @function_end
  */
 
@@ -1697,6 +1871,49 @@
  */
 
 /**
+ * @function_partial fmod_studio_system_set_num_listeners
+ * @param {Real} count
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_system_lookup_id
+ * @param {String} path
+ * @returns {String}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_system_get_event_by_id
+ * @param {String} id
+ * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_system_start_command_capture
+ * @param {String} filename
+ * @param {Enum.FmodStudioCommandCaptureFlags} flags
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_system_stop_command_capture
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_system_load_command_replay
+ * @param {String} filename
+ * @param {Enum.FmodStudioCommandReplayFlags} flags
+ * @returns {Struct.FmodStudioCommandReplayRef}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_bank_unload
  * @param {Struct.FmodStudioBankRef} bank_ref
  * @returns {Real}
@@ -1855,6 +2072,21 @@
  */
 
 /**
+ * @function_partial fmod_studio_event_description_get_parameter_description_by_name
+ * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {String} name
+ * @returns {Struct.FmodStudioParameterDescription}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_description_load_sample_data
+ * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_event_instance_start
  * @param {Struct.FmodStudioEventInstanceRef} instance_ref
  * @returns {Real}
@@ -1956,6 +2188,34 @@
 /**
  * @function_partial fmod_studio_event_instance_get_parameter_count
  * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_instance_get_parameter_by_id
+ * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} id_data1
+ * @param {Real} id_data2
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_instance_set_parameter_by_id
+ * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} id_data1
+ * @param {Real} id_data2
+ * @param {Real} value
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_instance_set_callback
+ * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Function} [callback]
+ * @param {Enum.FmodStudioEventCallbackType} mask
  * @returns {Real}
  * @function_end
  */
@@ -2079,6 +2339,20 @@
  */
 
 /**
+ * @function_partial fmod_studio_command_replay_get_command_count
+ * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_command_replay_get_length
+ * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_command_replay_set_frame_callback
  * @param {Struct.FmodStudioCommandReplayRef} replay_ref
  * @param {Function} [callback]
@@ -2152,6 +2426,12 @@
 
 /**
  * @struct_partial FmodGeometryRef
+ * @member {Real} _ref
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodChannelControlRef
  * @member {Real} _ref
  * @struct_end
  */
@@ -2236,11 +2516,10 @@
  */
 
 /**
- * @struct_partial FmodListener3DAttributes
- * @member {Real} position
- * @member {Real} velocity
- * @member {Real} forward
- * @member {Real} up
+ * @struct_partial FmodVec3
+ * @member {Real} x
+ * @member {Real} y
+ * @member {Real} z
  * @struct_end
  */
 
@@ -2335,6 +2614,94 @@
  */
 
 /**
+ * @struct_partial FmodDSPBufferSize
+ * @member {Real} buff_size
+ * @member {Real} num_buffers
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoftwareFormat
+ * @member {Real} sample_rate
+ * @member {Enum.FmodSpeakerMode} speaker_mode
+ * @member {Real} num_raw_speakers
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDriverInfo
+ * @member {String} name
+ * @member {Enum.FmodSpeakerMode} speaker_mode
+ * @member {Real} sample_rate
+ * @member {Real} speaker_mode_channels
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDelay
+ * @member {Real} dspclock_start
+ * @member {Real} dspclock_end
+ * @member {Real} stop_channels
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPClock
+ * @member {Real} dspclock
+ * @member {Real} parent_clock
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundOpenState
+ * @member {Enum.FmodOpenState} open_state
+ * @member {Real} percent_buffered
+ * @member {Real} starving
+ * @member {Real} disk_busy
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundTag
+ * @member {Enum.FmodTagType} type
+ * @member {Enum.FmodTagDataType} datatype
+ * @member {String} name
+ * @member {String} data
+ * @member {Real} datalen
+ * @member {Real} updated
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioParameterDescription
+ * @member {String} name
+ * @member {Real} id_data1
+ * @member {Real} id_data2
+ * @member {Real} minimum
+ * @member {Real} maximum
+ * @member {Real} defaultvalue
+ * @member {Enum.FmodStudioUserPropertyType} type
+ * @member {Enum.FmodStudioParameterFlags} flags
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodListener3DAttributes
+ * @member {Struct.FmodVec3} position
+ * @member {Struct.FmodVec3} velocity
+ * @member {Struct.FmodVec3} forward
+ * @member {Struct.FmodVec3} up
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodChannelControl3DAttributes
+ * @member {Struct.FmodVec3} position
+ * @member {Struct.FmodVec3} velocity
+ * @struct_end
+ */
+
+/**
  * @enum_partial FmodResult
  * @member Ok
  * @member BadCommand
@@ -2355,20 +2722,29 @@
  * @member FileEof
  * @member FileEndOfData
  * @member FileNotFound
- * @member FileUnwanted
- * @member FormatUnsupported
- * @member Generic
+ * @member Format
+ * @member HeaderMismatch
+ * @member Http
+ * @member HttpAccess
+ * @member HttpProxyAuth
+ * @member HttpServerError
+ * @member HttpTimeout
+ * @member Initialization
+ * @member Initialized
+ * @member Internal
+ * @member InvalidFloat
  * @member InvalidHandle
  * @member InvalidParam
  * @member InvalidPosition
- * @member InvalidSpeakerMode
+ * @member InvalidSpeaker
+ * @member InvalidSyncPoint
  * @member InvalidThread
  * @member InvalidVector
- * @member MaxAudioEngines
+ * @member MaxAudible
  * @member Memory
  * @member MemoryCantPoint
  * @member Needs3D
- * @member NeedsSoftware
+ * @member NeedsHardware
  * @member NetConnect
  * @member NetSocketError
  * @member NetUrl
@@ -2380,56 +2756,35 @@
  * @member OutputFormat
  * @member OutputInit
  * @member OutputNoDriver
- * @member Record
- * @member ReverseStereo
- * @member Threading
- * @member TooManyChannels
- * @member TruncatedData
- * @member Unimplemented
- * @member Uninitialized
- * @member Unsupported
- * @member Update
- * @member Version
- * @member EventAlreadyLoaded
- * @member InternalError
- * @member InvalidSecret
- * @member MissingCallback
- * @member SampleMissing
  * @member Plugin
  * @member PluginMissing
  * @member PluginResource
  * @member PluginVersion
+ * @member Record
  * @member ReverbChannelGroup
  * @member ReverbInstance
  * @member SubSounds
  * @member SubSoundAllocated
  * @member SubSoundCantMove
  * @member TagNotFound
- * @member Http
- * @member HttpAccess
- * @member HttpProxyAuth
- * @member HttpServerError
- * @member HttpTimeout
- * @member InvalidFloat
- * @member InvalidSyncPoint
- * @member InvalidSpeaker
+ * @member TooManyChannels
+ * @member TruncatedData
+ * @member Unimplemented
+ * @member Uninitialized
+ * @member Unsupported
+ * @member Version
+ * @member EventAlreadyLoaded
+ * @member EventLiveUpdateBusy
+ * @member EventLiveUpdateMismatch
+ * @member EventLiveUpdateTimeout
+ * @member EventNotFound
+ * @member StudioUninitialized
+ * @member StudioNotLoaded
  * @member InvalidString
  * @member AlreadyLocked
  * @member NotLocked
  * @member RecordDisconnected
  * @member TooManySamples
- * @member StudioUninitialized
- * @member StudioNotLoaded
- * @member EventNotFound
- * @member EventLiveUpdateBusy
- * @member EventLiveUpdateMismatch
- * @member EventLiveUpdateTimeout
- * @member Format
- * @member Initialization
- * @member Initialized
- * @member Internal
- * @member MaxAudible
- * @member NeedsHardware
  * @enum_end
  */
 
@@ -2437,18 +2792,18 @@
  * @enum_partial FmodInitFlags
  * @member Normal
  * @member StreamFromUpdate
- * @member IgnoreTags
- * @member SyncMixDown
+ * @member MixFromUpdate
+ * @member RightHanded3D
+ * @member ClipOutput
+ * @member ChannelLowpass
+ * @member ChannelDistanceFilter
  * @member ProfileEnable
  * @member Vol0BecomesVirtual
- * @member GeometryUseCheap
- * @member ClipOutput
- * @member Unicode
- * @member TimerTickBaseClockSource
+ * @member GeometryUseClosest
+ * @member PreferDolbyDownmix
+ * @member ThreadUnsafe
  * @member ProfileMeterAll
  * @member MemoryTracking
- * @member ThreadUnsafe
- * @member ProfileMeterThreadLocks
  * @enum_end
  */
 
@@ -2460,10 +2815,7 @@
  * @member SynchronousUpdate
  * @member DeferredCallbacks
  * @member LoadFromUpdate
- * @member DebugOverlay
- * @member DisableSounds
- * @member DisableAllSamples
- * @member DisableCommandReplay
+ * @member MemoryTracking
  * @enum_end
  */
 
@@ -2492,6 +2844,7 @@
  * @member _3DInverseRollOff
  * @member _3DLinearRollOff
  * @member _3DLinearSquareRollOff
+ * @member _3DInverseTaperedRollOff
  * @member _3DCustomRollOff
  * @member _3DIgnoreGeometry
  * @member IgnoreTags
@@ -2522,6 +2875,7 @@
  * @member ItLowPass
  * @member HighPass
  * @member Echo
+ * @member Fader
  * @member Flange
  * @member Distortion
  * @member Normalize
@@ -2531,48 +2885,244 @@
  * @member Chorus
  * @member VstPlugin
  * @member WinampPlugin
- * @member Convolution
+ * @member ItEcho
+ * @member Compressor
+ * @member SfxReverb
+ * @member LowPassSimple
+ * @member Delay
+ * @member Tremolo
+ * @member LadspaPlugin
+ * @member Send
+ * @member Return
+ * @member HighPassSimple
+ * @member Pan
+ * @member ThreeEq
+ * @member FFT
+ * @member LoudnessMeter
+ * @member EnvelopeFollower
+ * @member ConvolutionReverb
  * @member ChannelMix
  * @member Transceiver
  * @member ObjectPan
  * @member MultibandEq
- * @member CompDynEq
  * @enum_end
  */
 
 /**
  * @enum_partial FmodDspConnectionType
- * @member Default
- * @member Dry
+ * @member Standard
+ * @member Sidechain
+ * @member Send
+ * @member SendSidechain
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspLowPass
+ * @member Cutoff
+ * @member Resonance
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspHighPass
+ * @member Cutoff
+ * @member Resonance
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspItLowPass
+ * @member Cutoff
+ * @member Resonance
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspEcho
+ * @member Delay
+ * @member Feedback
+ * @member DryLevel
+ * @member WetLevel
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspFlange
+ * @member Mix
+ * @member Depth
+ * @member Rate
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspDistortion
+ * @member Level
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspNormalize
+ * @member FadeTime
+ * @member Threshold
+ * @member MaxAmplitude
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspLimiter
+ * @member ReleaseTime
+ * @member Ceiling
+ * @member MaximizerGain
+ * @member Mode
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspParamEq
+ * @member Center
+ * @member Bandwidth
+ * @member Gain
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPitchShift
+ * @member Pitch
+ * @member FftSize
+ * @member Overlap
+ * @member MaxChannels
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspChorus
+ * @member Mix
+ * @member Rate
+ * @member Depth
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspMultibandEq
+ * @member AFilter
+ * @member AFrequency
+ * @member AQ
+ * @member AGain
+ * @member BFilter
+ * @member BFrequency
+ * @member BQ
+ * @member BGain
+ * @member CFilter
+ * @member CFrequency
+ * @member CQ
+ * @member CGain
+ * @member DFilter
+ * @member DFrequency
+ * @member DQ
+ * @member DGain
+ * @member EFilter
+ * @member EFrequency
+ * @member EQ
+ * @member EGain
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspMultibandEqFilterType
+ * @member Disabled
+ * @member Lowpass12db
+ * @member Lowpass24db
+ * @member Lowpass48db
+ * @member Highpass12db
+ * @member Highpass24db
+ * @member Highpass48db
+ * @member Lowshelf
+ * @member Highshelf
+ * @member Peaking
+ * @member Bandpass
+ * @member Notch
+ * @member Allpass
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspChannelMix
+ * @member OutputGain
+ * @member OutputGainCh0
+ * @member OutputGainCh1
+ * @member OutputGainCh2
+ * @member OutputGainCh3
+ * @member OutputGainCh4
+ * @member OutputGainCh5
+ * @member OutputGainCh6
+ * @member OutputGainCh7
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspTransceiver
+ * @member TransmitFreq
+ * @member ReceiveFreq
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspCompDynEq
+ * @member Threshold
+ * @member Ratio
+ * @member Attack
+ * @member Release
+ * @member GainMakeup
+ * @member UseSidechain
+ * @member Linked
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspFft
+ * @member WindowSize
+ * @member WindowType
+ * @member SpectrumData
+ * @member DominantFreq
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspFftWindowType
+ * @member Rect
+ * @member Triangle
+ * @member Hamming
+ * @member Hanning
+ * @member Blackman
+ * @member BlackmanHarris
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspOscillator
+ * @member Type
+ * @member Rate
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspOscillatorType
+ * @member Sine
+ * @member Square
+ * @member Sawup
+ * @member Sawdown
+ * @member Triangle
+ * @member Noise
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspConvolution
+ * @member Ir
  * @member Wet
- * @enum_end
- */
-
-/**
- * @enum_partial FmodDebugFlags
- * @member LevelNone
- * @member LevelError
- * @member LevelWarning
- * @member LevelLog
- * @member TypeMemory
- * @member TypeFile
- * @member TypeCodec
- * @member TypeTrace
- * @member DisplayTimeStamps
- * @member DisplayLineNumbers
- * @member DisplayCompress
- * @member DisplayThreadId
- * @member DisplayModule
- * @member DisplaySourceCodeLine
- * @enum_end
- */
-
-/**
- * @enum_partial FmodDebugMode
- * @member Tty
- * @member File
- * @member Callback
- * @member FilePlusTty
+ * @member Dry
+ * @member Linked
  * @enum_end
  */
 
@@ -2586,8 +3136,31 @@
  * @member Surround
  * @member _5Point1
  * @member _7Point1
- * @member _7Point1PointFront
- * @member _5Point1Rears
+ * @member _7Point1Point4
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDebugFlags
+ * @member LevelNone
+ * @member LevelError
+ * @member LevelWarning
+ * @member LevelLog
+ * @member TypeMemory
+ * @member TypeFile
+ * @member TypeCodec
+ * @member TypeTrace
+ * @member DisplayTimestamps
+ * @member DisplayLineNumbers
+ * @member DisplayThread
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDebugMode
+ * @member Tty
+ * @member File
+ * @member Callback
  * @enum_end
  */
 
@@ -2653,7 +3226,9 @@
  * @member NnAudio
  * @member WinSonic
  * @member AAudio
- * @member NativeAudio
+ * @member AudioWorklet
+ * @member Phase
+ * @member OhAudio
  * @enum_end
  */
 
@@ -2673,6 +3248,7 @@
  * @member Sustaining
  * @member Stopped
  * @member Starting
+ * @member Stopping
  * @enum_end
  */
 
@@ -2698,17 +3274,119 @@
  * @enum_partial FmodStudioParameterFlags
  * @member ReadOnly
  * @member Automatic
- * @member Interactive
+ * @member Global
+ * @member Discrete
  * @member Labeled
  * @enum_end
  */
 
 /**
  * @enum_partial FmodStudioUserPropertyType
- * @member String
  * @member Integer
- * @member Float
  * @member Boolean
+ * @member Float
+ * @member String
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodChannelControlDspIndex
+ * @member Head
+ * @member Fader
+ * @member Tail
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodOpenState
+ * @member Ready
+ * @member Loading
+ * @member Error
+ * @member Connecting
+ * @member Buffering
+ * @member Seeking
+ * @member Playing
+ * @member SetPosition
+ * @member Max
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodTagType
+ * @member Unknown
+ * @member Id3v1
+ * @member Id3v2
+ * @member VorbisComment
+ * @member ShoutCast
+ * @member IceCast
+ * @member Asf
+ * @member Midi
+ * @member Playlist
+ * @member Fmod
+ * @member User
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodTagDataType
+ * @member Binary
+ * @member Int
+ * @member Float
+ * @member String
+ * @member StringUtf16
+ * @member StringUtf16Be
+ * @member StringUtf8
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioLoadBankFlags
+ * @member Normal
+ * @member NonBlocking
+ * @member DecompressSamples
+ * @member Unencrypted
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioCommandCaptureFlags
+ * @member Normal
+ * @member FileFlush
+ * @member SkipInitialState
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioCommandReplayFlags
+ * @member Normal
+ * @member SkipCleanup
+ * @member FastForward
+ * @member SkipBankLoad
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioEventCallbackType
+ * @member Created
+ * @member Destroyed
+ * @member Starting
+ * @member Started
+ * @member Restarted
+ * @member Stopped
+ * @member StartFailed
+ * @member CreateProgrammerSound
+ * @member DestroyProgrammerSound
+ * @member PluginCreated
+ * @member PluginDestroyed
+ * @member TimelineMarker
+ * @member TimelineBeat
+ * @member SoundPlayed
+ * @member SoundStopped
+ * @member RealToVirtual
+ * @member VirtualToReal
+ * @member StartEventCommand
+ * @member NestedTimelineBeat
+ * @member All
  * @enum_end
  */
 

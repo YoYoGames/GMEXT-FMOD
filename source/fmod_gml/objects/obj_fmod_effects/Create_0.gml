@@ -5,21 +5,21 @@ channel_index = fmod_system_play_sound(sound_index, fmod_system_get_master_chann
 
 //Create some effects to play with
 
-dsp_lowpass = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.MULTIBAND_EQ) //(FMOD_DSP_TYPE.LOWPASS)
-fmod_dsp_set_parameter_int(dsp_lowpass,FMOD_DSP_MULTIBAND_EQ.A_FILTER,FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE.LOWPASS_12DB)
-fmod_dsp_set_parameter_float(dsp_lowpass,FMOD_DSP_MULTIBAND_EQ.A_FREQUENCY,2000)
-fmod_dsp_set_parameter_float(dsp_lowpass,FMOD_DSP_MULTIBAND_EQ.A_Q,0.707)
-fmod_dsp_set_parameter_float(dsp_lowpass,FMOD_DSP_MULTIBAND_EQ.A_GAIN,1000)
+dsp_lowpass = fmod_system_create_dsp_by_type(FmodDspType.MultibandEq) //(FmodDspType.LowPass)
+fmod_dsp_set_parameter_int(dsp_lowpass,FmodDspMultibandEq.AFilter,FmodDspMultibandEqFilterType.Lowpass12db)
+fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AFrequency,2000)
+fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AQ,0.707)
+fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AGain,1000)
 
-dsp_highpass = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.HIGHPASS)
-fmod_dsp_set_parameter_int(dsp_highpass,FMOD_DSP_MULTIBAND_EQ.A_FILTER,FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE.HIGHPASS_12DB)
-fmod_dsp_set_parameter_float(dsp_highpass,FMOD_DSP_MULTIBAND_EQ.A_FREQUENCY,8000)
-fmod_dsp_set_parameter_float(dsp_highpass,FMOD_DSP_MULTIBAND_EQ.A_Q,0.707)
-fmod_dsp_set_parameter_float(dsp_highpass,FMOD_DSP_MULTIBAND_EQ.A_GAIN,1000)
+dsp_highpass = fmod_system_create_dsp_by_type(FmodDspType.HighPass)
+fmod_dsp_set_parameter_int(dsp_highpass,FmodDspMultibandEq.AFilter,FmodDspMultibandEqFilterType.Highpass12db)
+fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AFrequency,8000)
+fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AQ,0.707)
+fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AGain,1000)
 
-dsp_echo = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.ECHO)
+dsp_echo = fmod_system_create_dsp_by_type(FmodDspType.Echo)
 
-dsp_flange = fmod_system_create_dsp_by_type(FMOD_DSP_TYPE.FLANGE)
+dsp_flange = fmod_system_create_dsp_by_type(FmodDspType.Flange)
 
 /*
     Add them to the channel group.  Each time an effect is added (to position 0) it pushes the others down the list.
