@@ -6,76 +6,76 @@ using namespace gm_structs;
 // Playback
 // ============================================================
 
-double fmod_channel_control_is_playing(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_is_playing(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	bool playing = false;
 	g_fmod_last_result = control->isPlaying(&playing);
 	return playing ? 1.0 : 0.0;
 }
 
-double fmod_channel_control_stop(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_stop(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->stop();
 	return 0;
 }
 
-double fmod_channel_control_set_paused(const FmodChannelControlRef& channel_control_ref, double paused)
+double fmod_channel_control_set_paused(uint64_t channel_control_ref, double paused)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setPaused(paused != 0.0);
 	return 0;
 }
 
-double fmod_channel_control_get_paused(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_paused(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	bool paused = false;
 	g_fmod_last_result = control->getPaused(&paused);
 	return paused ? 1.0 : 0.0;
 }
 
-double fmod_channel_control_set_mode(const FmodChannelControlRef& channel_control_ref, double mode)
+double fmod_channel_control_set_mode(uint64_t channel_control_ref, double mode)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setMode((FMOD_MODE)(int)mode);
 	return 0;
 }
 
-double fmod_channel_control_get_mode(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_mode(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	FMOD_MODE mode = FMOD_MODE(0);
 	g_fmod_last_result = control->getMode(&mode);
 	return (double)mode;
 }
 
-double fmod_channel_control_set_pitch(const FmodChannelControlRef& channel_control_ref, double pitch)
+double fmod_channel_control_set_pitch(uint64_t channel_control_ref, double pitch)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setPitch((float)pitch);
 	return 0;
 }
 
-double fmod_channel_control_get_pitch(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_pitch(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float pitch = 0.0f;
 	g_fmod_last_result = control->getPitch(&pitch);
@@ -86,67 +86,67 @@ double fmod_channel_control_get_pitch(const FmodChannelControlRef& channel_contr
 // Volume & Mute
 // ============================================================
 
-double fmod_channel_control_get_audibility(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_audibility(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float audibility = 0.0f;
 	g_fmod_last_result = control->getAudibility(&audibility);
 	return (double)audibility;
 }
 
-double fmod_channel_control_set_volume(const FmodChannelControlRef& channel_control_ref, double volume)
+double fmod_channel_control_set_volume(uint64_t channel_control_ref, double volume)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setVolume((float)volume);
 	return 0;
 }
 
-double fmod_channel_control_get_volume(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_volume(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float volume = 0.0f;
 	g_fmod_last_result = control->getVolume(&volume);
 	return (double)volume;
 }
 
-double fmod_channel_control_set_volume_ramp(const FmodChannelControlRef& channel_control_ref, double ramp)
+double fmod_channel_control_set_volume_ramp(uint64_t channel_control_ref, double ramp)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setVolumeRamp(ramp != 0.0);
 	return 0;
 }
 
-double fmod_channel_control_get_volume_ramp(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_volume_ramp(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	bool ramp = false;
 	g_fmod_last_result = control->getVolumeRamp(&ramp);
 	return ramp ? 1.0 : 0.0;
 }
 
-double fmod_channel_control_set_mute(const FmodChannelControlRef& channel_control_ref, double mute)
+double fmod_channel_control_set_mute(uint64_t channel_control_ref, double mute)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setMute(mute != 0.0);
 	return 0;
 }
 
-double fmod_channel_control_get_mute(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_mute(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	bool mute = false;
 	g_fmod_last_result = control->getMute(&mute);
@@ -157,94 +157,94 @@ double fmod_channel_control_get_mute(const FmodChannelControlRef& channel_contro
 // 3D Attributes
 // ============================================================
 
-double fmod_channel_control_set_3d_doppler_level(const FmodChannelControlRef& channel_control_ref, double level)
+double fmod_channel_control_set_3d_doppler_level(uint64_t channel_control_ref, double level)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DDopplerLevel((float)level);
 	return 0;
 }
 
-double fmod_channel_control_get_3d_doppler_level(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_3d_doppler_level(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float level = 0.0f;
 	g_fmod_last_result = control->get3DDopplerLevel(&level);
 	return (double)level;
 }
 
-double fmod_channel_control_set_3d_level(const FmodChannelControlRef& channel_control_ref, double level)
+double fmod_channel_control_set_3d_level(uint64_t channel_control_ref, double level)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DLevel((float)level);
 	return 0;
 }
 
-double fmod_channel_control_get_3d_level(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_3d_level(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float level = 0.0f;
 	g_fmod_last_result = control->get3DLevel(&level);
 	return (double)level;
 }
 
-double fmod_channel_control_set_3d_min_max_distance(const FmodChannelControlRef& channel_control_ref, double min_dist, double max_dist)
+double fmod_channel_control_set_3d_min_max_distance(uint64_t channel_control_ref, double min_dist, double max_dist)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DMinMaxDistance((float)min_dist, (float)max_dist);
 	return 0;
 }
 
-double fmod_channel_control_set_3d_cone_settings(const FmodChannelControlRef& channel_control_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume)
+double fmod_channel_control_set_3d_cone_settings(uint64_t channel_control_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DConeSettings((float)inside_cone_angle, (float)outside_cone_angle, (float)outside_volume);
 	return 0;
 }
 
-double fmod_channel_control_set_3d_occlusion(const FmodChannelControlRef& channel_control_ref, double direct_occlusion, double reverb_occlusion)
+double fmod_channel_control_set_3d_occlusion(uint64_t channel_control_ref, double direct_occlusion, double reverb_occlusion)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DOcclusion((float)direct_occlusion, (float)reverb_occlusion);
 	return 0;
 }
 
-double fmod_channel_control_set_3d_spread(const FmodChannelControlRef& channel_control_ref, double angle)
+double fmod_channel_control_set_3d_spread(uint64_t channel_control_ref, double angle)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DSpread((float)angle);
 	return 0;
 }
 
-double fmod_channel_control_get_3d_spread(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_3d_spread(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float angle = 0.0f;
 	g_fmod_last_result = control->get3DSpread(&angle);
 	return (double)angle;
 }
 
-double fmod_channel_control_set_3d_distance_filter(const FmodChannelControlRef& channel_control_ref, double custom, double custom_level, double center_freq)
+double fmod_channel_control_set_3d_distance_filter(uint64_t channel_control_ref, double custom, double custom_level, double center_freq)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->set3DDistanceFilter(custom != 0.0, (float)custom_level, (float)center_freq);
 	return 0;
@@ -254,19 +254,19 @@ double fmod_channel_control_set_3d_distance_filter(const FmodChannelControlRef& 
 // Panning & Mixing
 // ============================================================
 
-double fmod_channel_control_set_pan(const FmodChannelControlRef& channel_control_ref, double pan)
+double fmod_channel_control_set_pan(uint64_t channel_control_ref, double pan)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setPan((float)pan);
 	return 0;
 }
 
-double fmod_channel_control_set_mix_levels_output(const FmodChannelControlRef& channel_control_ref, double front_left, double front_right, double center, double lfe, double surround_left, double surround_right, double back_left, double back_right)
+double fmod_channel_control_set_mix_levels_output(uint64_t channel_control_ref, double front_left, double front_right, double center, double lfe, double surround_left, double surround_right, double back_left, double back_right)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setMixLevelsOutput((float)front_left, (float)front_right, (float)center, (float)lfe, (float)surround_left, (float)surround_right, (float)back_left, (float)back_right);
 	return 0;
@@ -276,38 +276,38 @@ double fmod_channel_control_set_mix_levels_output(const FmodChannelControlRef& c
 // Filtering
 // ============================================================
 
-double fmod_channel_control_set_reverb_properties(const FmodChannelControlRef& channel_control_ref, double reverb_instance, double wet)
+double fmod_channel_control_set_reverb_properties(uint64_t channel_control_ref, double reverb_instance, double wet)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setReverbProperties((int)reverb_instance, (float)wet);
 	return 0;
 }
 
-double fmod_channel_control_get_reverb_properties(const FmodChannelControlRef& channel_control_ref, double reverb_instance)
+double fmod_channel_control_get_reverb_properties(uint64_t channel_control_ref, double reverb_instance)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float wet = 0.0f;
 	g_fmod_last_result = control->getReverbProperties((int)reverb_instance, &wet);
 	return (double)wet;
 }
 
-double fmod_channel_control_set_low_pass_gain(const FmodChannelControlRef& channel_control_ref, double gain)
+double fmod_channel_control_set_low_pass_gain(uint64_t channel_control_ref, double gain)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setLowPassGain((float)gain);
 	return 0;
 }
 
-double fmod_channel_control_get_low_pass_gain(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_low_pass_gain(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	float gain = 0.0f;
 	g_fmod_last_result = control->getLowPassGain(&gain);
@@ -318,75 +318,75 @@ double fmod_channel_control_get_low_pass_gain(const FmodChannelControlRef& chann
 // DSP Chain
 // ============================================================
 
-double fmod_channel_control_add_dsp(const FmodChannelControlRef& channel_control_ref, double dsp_chain_offset, const FmodDSPRef& dsp_ref)
+double fmod_channel_control_add_dsp(uint64_t channel_control_ref, double dsp_chain_offset, uint64_t dsp_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref._ref, dsp);
+	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 	g_fmod_last_result = control->addDSP((int)dsp_chain_offset, dsp);
 	return 0;
 }
 
-double fmod_channel_control_remove_dsp(const FmodChannelControlRef& channel_control_ref, const FmodDSPRef& dsp_ref)
+double fmod_channel_control_remove_dsp(uint64_t channel_control_ref, uint64_t dsp_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref._ref, dsp);
+	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 	g_fmod_last_result = control->removeDSP(dsp);
 	return 0;
 }
 
-double fmod_channel_control_get_num_dsps(const FmodChannelControlRef& channel_control_ref)
+double fmod_channel_control_get_num_dsps(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	int num = 0;
 	g_fmod_last_result = control->getNumDSPs(&num);
 	return (double)num;
 }
 
-FmodDSPRef fmod_channel_control_get_dsp(const FmodChannelControlRef& channel_control_ref, double index)
+uint64_t fmod_channel_control_get_dsp(uint64_t channel_control_ref, double index)
 {
-	FmodDSPRef result{};
+	uint64_t result = 0;
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return result;
 	FMOD::DSP* dsp = nullptr;
 	g_fmod_last_result = control->getDSP((int)index, &dsp);
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
 		uint32_t dsp_id = registerOrFindResource(dsp, index_dsps, map_dsps);
-		result._ref = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
 	}
 	return result;
 }
 
-double fmod_channel_control_set_dsp_index(const FmodChannelControlRef& channel_control_ref, const FmodDSPRef& dsp_ref, double chain_index)
+double fmod_channel_control_set_dsp_index(uint64_t channel_control_ref, uint64_t dsp_ref, double chain_index)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref._ref, dsp);
+	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 	g_fmod_last_result = control->setDSPIndex(dsp, (int)chain_index);
 	return 0;
 }
 
-double fmod_channel_control_get_dsp_index(const FmodChannelControlRef& channel_control_ref, const FmodDSPRef& dsp_ref)
+double fmod_channel_control_get_dsp_index(uint64_t channel_control_ref, uint64_t dsp_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
 	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref._ref, dsp);
+	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0.0;
 	int index = 0;
 	g_fmod_last_result = control->getDSPIndex(dsp, &index);
@@ -397,26 +397,26 @@ double fmod_channel_control_get_dsp_index(const FmodChannelControlRef& channel_c
 // General
 // ============================================================
 
-FmodSystemRef fmod_channel_control_get_system_object(const FmodChannelControlRef& channel_control_ref)
+uint64_t fmod_channel_control_get_system_object(uint64_t channel_control_ref)
 {
-	FmodSystemRef result{};
+	uint64_t result = 0;
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return result;
 	FMOD::System* system = nullptr;
 	g_fmod_last_result = control->getSystemObject(&system);
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
 		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result._ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
 	}
 	return result;
 }
 
-double fmod_channel_control_set_3d_attributes(const FmodChannelControlRef& channel_control_ref, const gm_structs::FmodVec3& position, const gm_structs::FmodVec3& velocity)
+double fmod_channel_control_set_3d_attributes(uint64_t channel_control_ref, const gm_structs::FmodVec3& position, const gm_structs::FmodVec3& velocity)
 {
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 
 	FMOD_VECTOR fmod_position = {(float)position.x, (float)position.y, (float)position.z};
@@ -426,11 +426,11 @@ double fmod_channel_control_set_3d_attributes(const FmodChannelControlRef& chann
 	return 0;
 }
 
-FmodChannelControl3DAttributes fmod_channel_control_get_3d_attributes(const FmodChannelControlRef& channel_control_ref)
+FmodChannelControl3DAttributes fmod_channel_control_get_3d_attributes(uint64_t channel_control_ref)
 {
 	FmodChannelControl3DAttributes result{};
 	FMOD::ChannelControl* control = nullptr;
-	validate_fmod_channel_control(channel_control_ref._ref, control);
+	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return result;
 
 	FMOD_VECTOR position{}, velocity{};
@@ -451,11 +451,11 @@ FmodChannelControl3DAttributes fmod_channel_control_get_3d_attributes(const Fmod
 // Delay & DSP Clock
 // ============================================================
 
-FmodDelay fmod_channel_control_get_delay(const FmodChannelRef& channel_ref)
+FmodDelay fmod_channel_control_get_delay(uint64_t channel_ref)
 {
 	FmodDelay result{};
 	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref._ref, channel);
+	validate_fmod_channel(channel_ref, channel);
 	if (channel == nullptr) return result;
 
 	unsigned long long dspclock_start = 0, dspclock_end = 0;
@@ -468,10 +468,10 @@ FmodDelay fmod_channel_control_get_delay(const FmodChannelRef& channel_ref)
 	return result;
 }
 
-double fmod_channel_control_set_delay(const FmodChannelRef& channel_ref, double dspclock_start, double dspclock_end, double stop_channels)
+double fmod_channel_control_set_delay(uint64_t channel_ref, double dspclock_start, double dspclock_end, double stop_channels)
 {
 	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref._ref, channel);
+	validate_fmod_channel(channel_ref, channel);
 	if (channel == nullptr) return 0;
 
 	g_fmod_last_result = channel->setDelay(
@@ -481,11 +481,11 @@ double fmod_channel_control_set_delay(const FmodChannelRef& channel_ref, double 
 	return 0;
 }
 
-FmodDSPClock fmod_channel_control_get_dsp_clock(const FmodChannelRef& channel_ref)
+FmodDSPClock fmod_channel_control_get_dsp_clock(uint64_t channel_ref)
 {
 	FmodDSPClock result{};
 	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref._ref, channel);
+	validate_fmod_channel(channel_ref, channel);
 	if (channel == nullptr) return result;
 
 	unsigned long long dspclock = 0, parent_clock = 0;
@@ -519,8 +519,8 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	auto it = g_channel_callbacks.find(control_ptr);
 	if (it != g_channel_callbacks.end())
 	{
-		FmodChannelRef channel_ref{};
-		channel_ref._ref = packIndexIntoRef((uint32_t)control_ptr, GM_FMOD_TYPE_CHANNEL);
+		uint64_t channel_ref = 0;
+		channel_ref = packIndexIntoRef((uint32_t)control_ptr, GM_FMOD_TYPE_CHANNEL);
 
 		it->second.call(channel_ref, (double)(int)callbacktype);
 
@@ -532,10 +532,10 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	return FMOD_OK;
 }
 
-double fmod_channel_control_set_callback(const FmodChannelRef& channel_ref, const std::optional<gm::wire::GMFunction>& callback)
+double fmod_channel_control_set_callback(uint64_t channel_ref, const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref._ref, channel);
+	validate_fmod_channel(channel_ref, channel);
 	if (channel == nullptr) return 0;
 
 	uintptr_t control_ptr = reinterpret_cast<uintptr_t>(channel) & 0xFFFFFFFFu;

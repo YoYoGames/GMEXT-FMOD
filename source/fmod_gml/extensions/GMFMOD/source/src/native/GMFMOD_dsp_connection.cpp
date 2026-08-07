@@ -6,10 +6,10 @@ using namespace gm_structs;
 // DSP Connection - Mix Control
 // ============================================================
 
-double fmod_dsp_connection_set_mix(const FmodDSPConnectionRef& connection_ref, double volume)
+double fmod_dsp_connection_set_mix(uint64_t connection_ref, double volume)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;
@@ -18,10 +18,10 @@ double fmod_dsp_connection_set_mix(const FmodDSPConnectionRef& connection_ref, d
 	return 0;
 }
 
-double fmod_dsp_connection_get_mix(const FmodDSPConnectionRef& connection_ref)
+double fmod_dsp_connection_get_mix(uint64_t connection_ref)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;
@@ -32,14 +32,14 @@ double fmod_dsp_connection_get_mix(const FmodDSPConnectionRef& connection_ref)
 }
 
 double fmod_dsp_connection_set_mix_matrix(
-	const FmodDSPConnectionRef& connection_ref,
+	uint64_t connection_ref,
 	double matrix,
 	double out_channels,
 	double in_channels,
 	double in_channel_hop)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;
@@ -51,12 +51,12 @@ double fmod_dsp_connection_set_mix_matrix(
 }
 
 FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(
-	const FmodDSPConnectionRef& connection_ref,
+	uint64_t connection_ref,
 	double in_channel_hop)
 {
 	FmodDSPMixMatrix result{};
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 	{
@@ -77,11 +77,11 @@ FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(
 // DSP Connection - Input/Output Access
 // ============================================================
 
-FmodDSPRef fmod_dsp_connection_get_input(const FmodDSPConnectionRef& connection_ref)
+uint64_t fmod_dsp_connection_get_input(uint64_t connection_ref)
 {
-	FmodDSPRef result{};
+	uint64_t result = 0;
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return result;
@@ -92,16 +92,16 @@ FmodDSPRef fmod_dsp_connection_get_input(const FmodDSPConnectionRef& connection_
 	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
 	{
 		uint32_t dsp_id = registerOrFindResource(input_dsp, index_dsps, map_dsps);
-		result._ref = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
 	}
 	return result;
 }
 
-FmodDSPRef fmod_dsp_connection_get_output(const FmodDSPConnectionRef& connection_ref)
+uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 {
-	FmodDSPRef result{};
+	uint64_t result = 0;
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return result;
@@ -112,7 +112,7 @@ FmodDSPRef fmod_dsp_connection_get_output(const FmodDSPConnectionRef& connection
 	if (g_fmod_last_result == FMOD_OK && output_dsp != nullptr)
 	{
 		uint32_t dsp_id = registerOrFindResource(output_dsp, index_dsps, map_dsps);
-		result._ref = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
 	}
 	return result;
 }
@@ -121,10 +121,10 @@ FmodDSPRef fmod_dsp_connection_get_output(const FmodDSPConnectionRef& connection
 // DSP Connection - Properties
 // ============================================================
 
-double fmod_dsp_connection_get_type(const FmodDSPConnectionRef& connection_ref)
+double fmod_dsp_connection_get_type(uint64_t connection_ref)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;
@@ -138,10 +138,10 @@ double fmod_dsp_connection_get_type(const FmodDSPConnectionRef& connection_ref)
 // DSP Connection - User Data
 // ============================================================
 
-double fmod_dsp_connection_set_user_data(const FmodDSPConnectionRef& connection_ref, double user_data)
+double fmod_dsp_connection_set_user_data(uint64_t connection_ref, double user_data)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;
@@ -151,10 +151,10 @@ double fmod_dsp_connection_set_user_data(const FmodDSPConnectionRef& connection_
 	return 0;
 }
 
-double fmod_dsp_connection_get_user_data(const FmodDSPConnectionRef& connection_ref)
+double fmod_dsp_connection_get_user_data(uint64_t connection_ref)
 {
 	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref._ref, connection);
+	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
 		return 0;

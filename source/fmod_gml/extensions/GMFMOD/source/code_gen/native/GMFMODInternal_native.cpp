@@ -80,8 +80,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: frequency, type: Float64
     double frequency = gm::wire::codec::readValue<double>(__br);
@@ -94,8 +94,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_frequency(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_frequency(channel_ref);
     return static_cast<double>(__result);
@@ -105,8 +105,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_priority(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: priority, type: Float64
     double priority = gm::wire::codec::readValue<double>(__br);
@@ -119,8 +119,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_priority(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_priority(channel_ref);
     return static_cast<double>(__result);
@@ -130,8 +130,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_position(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: position, type: Float64
     double position = gm::wire::codec::readValue<double>(__br);
@@ -147,8 +147,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_position(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: time_unit, type: Float64
     double time_unit = gm::wire::codec::readValue<double>(__br);
@@ -161,11 +161,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_channel_group(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_set_channel_group(channel_ref, channel_group_ref);
     return static_cast<double>(__result);
@@ -175,13 +175,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_channel_group(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_channel_group(channel_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -190,8 +190,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_loop_count(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: loop_count, type: Float64
     double loop_count = gm::wire::codec::readValue<double>(__br);
@@ -204,8 +204,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_loop_count(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_loop_count(channel_ref);
     return static_cast<double>(__result);
@@ -215,8 +215,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_loop_points(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: loop_start, type: Float64
     double loop_start = gm::wire::codec::readValue<double>(__br);
@@ -238,8 +238,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_is_virtual(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_is_virtual(channel_ref);
     return static_cast<double>(__result);
@@ -249,8 +249,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_index(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_index(channel_ref);
     return static_cast<double>(__result);
@@ -260,13 +260,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_current_sound(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_current_sound(channel_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -275,13 +275,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_system_object(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_get_system_object(channel_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -291,7 +291,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create(char* __ret_buffer, double __re
     auto&& __result = fmod_system_create();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -306,8 +306,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_release(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: system_ref, type: struct FmodSystemRef
-    gm_structs::FmodSystemRef system_ref = gm::wire::codec::readValue<gm_structs::FmodSystemRef>(__br);
+    // field: system_ref, type: UInt64
+    std::uint64_t system_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_system_release(system_ref);
     return static_cast<double>(__result);
@@ -317,8 +317,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_close(char* __arg_buffer, double __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: system_ref, type: struct FmodSystemRef
-    gm_structs::FmodSystemRef system_ref = gm::wire::codec::readValue<gm_structs::FmodSystemRef>(__br);
+    // field: system_ref, type: UInt64
+    std::uint64_t system_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_system_close(system_ref);
     return static_cast<double>(__result);
@@ -341,7 +341,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_channel(double index, char* __ret_
     auto&& __result = fmod_system_get_channel(static_cast<double>(index));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -351,7 +351,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_master_channel_group(char* __ret_b
     auto&& __result = fmod_system_get_master_channel_group();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -476,8 +476,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_record_start(char* __arg_buffer, doubl
     // field: device_index, type: Float64
     double device_index = gm::wire::codec::readValue<double>(__br);
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: loop, type: Float64
     double loop = gm::wire::codec::readValue<double>(__br);
@@ -503,7 +503,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_dsp(char* __ret_buffer, double 
     auto&& __result = fmod_system_create_dsp();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -518,7 +518,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_dsp_by_type(char* __arg_buffer,
     auto&& __result = fmod_system_create_dsp_by_type(dsp_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -587,7 +587,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_channel_group(char* name, char*
     auto&& __result = fmod_system_create_channel_group(name);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -596,11 +596,11 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_dsp(char* __arg_buffer, double __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: paused, type: Float64
     double paused = gm::wire::codec::readValue<double>(__br);
@@ -608,7 +608,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_dsp(char* __arg_buffer, double __
     auto&& __result = fmod_system_play_dsp(dsp_ref, channel_group_ref, paused);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -617,8 +617,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_select(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: system_ref, type: struct FmodSystemRef
-    gm_structs::FmodSystemRef system_ref = gm::wire::codec::readValue<gm_structs::FmodSystemRef>(__br);
+    // field: system_ref, type: UInt64
+    std::uint64_t system_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_system_select(system_ref);
     return static_cast<double>(__result);
@@ -629,7 +629,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* name_or_data, doubl
     auto&& __result = fmod_system_create_sound(name_or_data, static_cast<double>(mode));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -639,7 +639,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* name_or_data, doub
     auto&& __result = fmod_system_create_stream(name_or_data, static_cast<double>(mode));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -648,11 +648,11 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_sound(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: pause, type: Float64
     double pause = gm::wire::codec::readValue<double>(__br);
@@ -660,7 +660,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_sound(char* __arg_buffer, double 
     auto&& __result = fmod_system_play_sound(sound_ref, channel_group_ref, pause);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -669,8 +669,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_length(char* __arg_buffer, double _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: length_type, type: Float64
     double length_type = gm::wire::codec::readValue<double>(__br);
@@ -683,8 +683,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_defaults(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: frequency, type: Float64
     double frequency = gm::wire::codec::readValue<double>(__br);
@@ -700,8 +700,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_mode(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: mode, type: Float64
     double mode = gm::wire::codec::readValue<double>(__br);
@@ -714,8 +714,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_mode(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_mode(sound_ref);
     return static_cast<double>(__result);
@@ -725,8 +725,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_format(char* __arg_buffer, double _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_format(sound_ref);
     return static_cast<double>(__result);
@@ -736,8 +736,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_sound_get_name(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_sound_get_name(sound_ref);
@@ -748,8 +748,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_defaults(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_defaults(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -763,8 +763,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_loop_count(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: count, type: Float64
     double count = gm::wire::codec::readValue<double>(__br);
@@ -777,8 +777,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_loop_count(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_loop_count(sound_ref);
     return static_cast<double>(__result);
@@ -788,8 +788,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_loop_points(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: loop_start, type: Float64
     double loop_start = gm::wire::codec::readValue<double>(__br);
@@ -811,8 +811,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_loop_points(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: start_type, type: Float64
     double start_type = gm::wire::codec::readValue<double>(__br);
@@ -832,8 +832,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_3d_min_max_distance(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: min, type: Float64
     double min = gm::wire::codec::readValue<double>(__br);
@@ -849,8 +849,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_3d_min_max_distance(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_3d_min_max_distance(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -864,8 +864,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_3d_cone_settings(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: inside_cone_angle, type: Float64
     double inside_cone_angle = gm::wire::codec::readValue<double>(__br);
@@ -884,8 +884,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_3d_cone_settings(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_3d_cone_settings(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -899,8 +899,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_3d_custom_rolloff(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: points, type: Any
     gm::wire::GMValue points = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
@@ -916,8 +916,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_3d_custom_rolloff(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     fmod_sound_get_3d_custom_rolloff(sound_ref);
     return 0;
@@ -927,8 +927,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_sync_points(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_num_sync_points(sound_ref);
     return static_cast<double>(__result);
@@ -938,8 +938,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sync_point(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: sync_point_index, type: Float64
     double sync_point_index = gm::wire::codec::readValue<double>(__br);
@@ -959,8 +959,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_add_sync_point(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: offset, type: Float64
     double offset = gm::wire::codec::readValue<double>(__br);
@@ -979,8 +979,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_delete_sync_point(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: sync_point_index, type: Float64
     double sync_point_index = gm::wire::codec::readValue<double>(__br);
@@ -993,8 +993,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_music_num_channels(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_music_num_channels(sound_ref);
     return static_cast<double>(__result);
@@ -1004,8 +1004,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_music_channel_volume(char* __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: channel_index, type: Float64
     double channel_index = gm::wire::codec::readValue<double>(__br);
@@ -1021,8 +1021,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_music_channel_volume(char* __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: channel_index, type: Float64
     double channel_index = gm::wire::codec::readValue<double>(__br);
@@ -1035,8 +1035,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_music_speed(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: speed, type: Float64
     double speed = gm::wire::codec::readValue<double>(__br);
@@ -1049,8 +1049,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_music_speed(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_music_speed(sound_ref);
     return static_cast<double>(__result);
@@ -1060,11 +1060,11 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_sound_group(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_set_sound_group(sound_ref, sound_group_ref);
     return static_cast<double>(__result);
@@ -1074,13 +1074,13 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sound_group(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_sound_group(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1089,8 +1089,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_release(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_release(sound_ref);
     return static_cast<double>(__result);
@@ -1100,13 +1100,13 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_system_object(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_system_object(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1115,8 +1115,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_open_state(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_open_state(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1130,8 +1130,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_tag(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: name, type: String
     std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
@@ -1151,8 +1151,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_sub_sounds(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_num_sub_sounds(sound_ref);
     return static_cast<double>(__result);
@@ -1162,8 +1162,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sub_sound(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -1171,7 +1171,7 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sub_sound(char* __arg_buffer, doubl
     auto&& __result = fmod_sound_get_sub_sound(sound_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1180,8 +1180,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_read_data(char* __arg_buffer, double __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_ref, type: struct FmodSoundRef
-    gm_structs::FmodSoundRef sound_ref = gm::wire::codec::readValue<gm_structs::FmodSoundRef>(__br);
+    // field: sound_ref, type: UInt64
+    std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: data, type: Buffer
     gm::wire::GMBuffer data = __buffer_queue.front();
@@ -1198,8 +1198,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_num_channels(char* __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_group_get_num_channels(channel_group_ref);
     return static_cast<double>(__result);
@@ -1209,8 +1209,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_channel(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -1218,7 +1218,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_channel(char* __arg_buffer,
     auto&& __result = fmod_channel_group_get_channel(channel_group_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1227,11 +1227,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_add_group(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: child_channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef child_channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: child_channel_group_ref, type: UInt64
+    std::uint64_t child_channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: propagate_dsp_clock, type: Float64
     double propagate_dsp_clock = gm::wire::codec::readValue<double>(__br);
@@ -1239,7 +1239,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_add_group(char* __arg_buffer, d
     auto&& __result = fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref, propagate_dsp_clock);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPConnectionRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1248,8 +1248,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_num_groups(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_group_get_num_groups(channel_group_ref);
     return static_cast<double>(__result);
@@ -1259,8 +1259,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_group(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: group_index, type: Float64
     double group_index = gm::wire::codec::readValue<double>(__br);
@@ -1268,7 +1268,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_group(char* __arg_buffer, d
     auto&& __result = fmod_channel_group_get_group(channel_group_ref, group_index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1277,13 +1277,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_parent_group(char* __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_group_get_parent_group(channel_group_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodChannelGroupRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1292,8 +1292,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_channel_group_get_name(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_channel_group_get_name(channel_group_ref);
@@ -1304,8 +1304,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_release(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_group_release(channel_group_ref);
     return static_cast<double>(__result);
@@ -1315,13 +1315,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_system_object(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_group_ref, type: struct FmodChannelGroupRef
-    gm_structs::FmodChannelGroupRef channel_group_ref = gm::wire::codec::readValue<gm_structs::FmodChannelGroupRef>(__br);
+    // field: channel_group_ref, type: UInt64
+    std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_group_get_system_object(channel_group_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1330,8 +1330,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_max_audible(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: max_audible, type: Float64
     double max_audible = gm::wire::codec::readValue<double>(__br);
@@ -1344,8 +1344,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_max_audible(sound_group_ref);
     return static_cast<double>(__result);
@@ -1355,8 +1355,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_max_audible_behavior(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: behavior, type: Float64
     double behavior = gm::wire::codec::readValue<double>(__br);
@@ -1369,8 +1369,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_max_audible_behavior(sound_group_ref);
     return static_cast<double>(__result);
@@ -1380,8 +1380,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_mute_fade_speed(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: speed, type: Float64
     double speed = gm::wire::codec::readValue<double>(__br);
@@ -1394,8 +1394,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_mute_fade_speed(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_mute_fade_speed(sound_group_ref);
     return static_cast<double>(__result);
@@ -1405,8 +1405,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_volume(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -1419,8 +1419,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_volume(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_volume(sound_group_ref);
     return static_cast<double>(__result);
@@ -1430,8 +1430,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_num_sounds(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_num_sounds(sound_group_ref);
     return static_cast<double>(__result);
@@ -1441,8 +1441,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_sound(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: sound_index, type: Float64
     double sound_index = gm::wire::codec::readValue<double>(__br);
@@ -1450,7 +1450,7 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_sound(char* __arg_buffer, dou
     auto&& __result = fmod_sound_group_get_sound(sound_group_ref, sound_index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSoundRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1459,8 +1459,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_num_playing(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_num_playing(sound_group_ref);
     return static_cast<double>(__result);
@@ -1470,8 +1470,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_stop(char* __arg_buffer, double _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_stop(sound_group_ref);
     return static_cast<double>(__result);
@@ -1481,8 +1481,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_sound_group_get_name(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_sound_group_get_name(sound_group_ref);
@@ -1493,8 +1493,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_release(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_release(sound_group_ref);
     return static_cast<double>(__result);
@@ -1504,13 +1504,13 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_system_object(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: sound_group_ref, type: struct FmodSoundGroupRef
-    gm_structs::FmodSoundGroupRef sound_group_ref = gm::wire::codec::readValue<gm_structs::FmodSoundGroupRef>(__br);
+    // field: sound_group_ref, type: UInt64
+    std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_system_object(sound_group_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1519,8 +1519,8 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_active(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: reverb_3d_ref, type: struct FmodReverb3DRef
-    gm_structs::FmodReverb3DRef reverb_3d_ref = gm::wire::codec::readValue<gm_structs::FmodReverb3DRef>(__br);
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: active, type: Float64
     double active = gm::wire::codec::readValue<double>(__br);
@@ -1533,8 +1533,8 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_get_active(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: reverb_3d_ref, type: struct FmodReverb3DRef
-    gm_structs::FmodReverb3DRef reverb_3d_ref = gm::wire::codec::readValue<gm_structs::FmodReverb3DRef>(__br);
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_reverb_3d_get_active(reverb_3d_ref);
     return static_cast<double>(__result);
@@ -1544,8 +1544,8 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_properties(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: reverb_3d_ref, type: struct FmodReverb3DRef
-    gm_structs::FmodReverb3DRef reverb_3d_ref = gm::wire::codec::readValue<gm_structs::FmodReverb3DRef>(__br);
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: decay_time, type: Float64
     double decay_time = gm::wire::codec::readValue<double>(__br);
@@ -1591,8 +1591,8 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_release(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: reverb_3d_ref, type: struct FmodReverb3DRef
-    gm_structs::FmodReverb3DRef reverb_3d_ref = gm::wire::codec::readValue<gm_structs::FmodReverb3DRef>(__br);
+    // field: reverb_3d_ref, type: UInt64
+    std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_reverb_3d_release(reverb_3d_ref);
     return static_cast<double>(__result);
@@ -1602,8 +1602,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_is_playing(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_is_playing(channel_control_ref);
     return static_cast<double>(__result);
@@ -1613,8 +1613,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_stop(char* __arg_buffer, doub
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_stop(channel_control_ref);
     return static_cast<double>(__result);
@@ -1624,8 +1624,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_paused(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: paused, type: Float64
     double paused = gm::wire::codec::readValue<double>(__br);
@@ -1638,8 +1638,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_paused(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_paused(channel_control_ref);
     return static_cast<double>(__result);
@@ -1649,8 +1649,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mode(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: mode, type: Float64
     double mode = gm::wire::codec::readValue<double>(__br);
@@ -1663,8 +1663,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mode(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_mode(channel_control_ref);
     return static_cast<double>(__result);
@@ -1674,8 +1674,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pitch(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: pitch, type: Float64
     double pitch = gm::wire::codec::readValue<double>(__br);
@@ -1688,8 +1688,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_pitch(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_pitch(channel_control_ref);
     return static_cast<double>(__result);
@@ -1699,8 +1699,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_audibility(char* __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_audibility(channel_control_ref);
     return static_cast<double>(__result);
@@ -1710,8 +1710,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_volume(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -1724,8 +1724,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_volume(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_volume(channel_control_ref);
     return static_cast<double>(__result);
@@ -1735,8 +1735,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_volume_ramp(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: ramp, type: Float64
     double ramp = gm::wire::codec::readValue<double>(__br);
@@ -1749,8 +1749,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_volume_ramp(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_volume_ramp(channel_control_ref);
     return static_cast<double>(__result);
@@ -1760,8 +1760,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mute(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: mute, type: Float64
     double mute = gm::wire::codec::readValue<double>(__br);
@@ -1774,8 +1774,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mute(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_mute(channel_control_ref);
     return static_cast<double>(__result);
@@ -1785,8 +1785,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_doppler_level(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: level, type: Float64
     double level = gm::wire::codec::readValue<double>(__br);
@@ -1799,8 +1799,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_doppler_level(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_3d_doppler_level(channel_control_ref);
     return static_cast<double>(__result);
@@ -1810,8 +1810,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_level(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: level, type: Float64
     double level = gm::wire::codec::readValue<double>(__br);
@@ -1824,8 +1824,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_level(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_3d_level(channel_control_ref);
     return static_cast<double>(__result);
@@ -1835,8 +1835,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_min_max_distance(char*
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: min_dist, type: Float64
     double min_dist = gm::wire::codec::readValue<double>(__br);
@@ -1852,8 +1852,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_cone_settings(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: inside_cone_angle, type: Float64
     double inside_cone_angle = gm::wire::codec::readValue<double>(__br);
@@ -1872,8 +1872,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_occlusion(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: direct_occlusion, type: Float64
     double direct_occlusion = gm::wire::codec::readValue<double>(__br);
@@ -1889,8 +1889,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_attributes(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: position, type: struct FmodVec3
     gm_structs::FmodVec3 position = gm::wire::codec::readValue<gm_structs::FmodVec3>(__br);
@@ -1906,8 +1906,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_attributes(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_3d_attributes(channel_control_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1921,8 +1921,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_spread(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: angle, type: Float64
     double angle = gm::wire::codec::readValue<double>(__br);
@@ -1935,8 +1935,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_spread(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_3d_spread(channel_control_ref);
     return static_cast<double>(__result);
@@ -1946,8 +1946,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter(char* 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: custom, type: Float64
     double custom = gm::wire::codec::readValue<double>(__br);
@@ -1966,8 +1966,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pan(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: pan, type: Float64
     double pan = gm::wire::codec::readValue<double>(__br);
@@ -1980,8 +1980,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_output(char* _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: front_left, type: Float64
     double front_left = gm::wire::codec::readValue<double>(__br);
@@ -2015,8 +2015,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_reverb_properties(char* _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: reverb_instance, type: Float64
     double reverb_instance = gm::wire::codec::readValue<double>(__br);
@@ -2032,8 +2032,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_reverb_properties(char* _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: reverb_instance, type: Float64
     double reverb_instance = gm::wire::codec::readValue<double>(__br);
@@ -2046,8 +2046,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_low_pass_gain(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: gain, type: Float64
     double gain = gm::wire::codec::readValue<double>(__br);
@@ -2060,8 +2060,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_low_pass_gain(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_low_pass_gain(channel_control_ref);
     return static_cast<double>(__result);
@@ -2071,14 +2071,14 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_add_dsp(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: dsp_chain_offset, type: Float64
     double dsp_chain_offset = gm::wire::codec::readValue<double>(__br);
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp_ref);
     return static_cast<double>(__result);
@@ -2088,11 +2088,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_remove_dsp(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_remove_dsp(channel_control_ref, dsp_ref);
     return static_cast<double>(__result);
@@ -2102,8 +2102,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_num_dsps(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_num_dsps(channel_control_ref);
     return static_cast<double>(__result);
@@ -2113,8 +2113,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_dsp(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2122,7 +2122,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_dsp(char* __arg_buffer, d
     auto&& __result = fmod_channel_control_get_dsp(channel_control_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2131,11 +2131,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_dsp_index(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: chain_index, type: Float64
     double chain_index = gm::wire::codec::readValue<double>(__br);
@@ -2148,11 +2148,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_dsp_index(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_dsp_index(channel_control_ref, dsp_ref);
     return static_cast<double>(__result);
@@ -2162,13 +2162,13 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_system_object(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_control_ref, type: struct FmodChannelControlRef
-    gm_structs::FmodChannelControlRef channel_control_ref = gm::wire::codec::readValue<gm_structs::FmodChannelControlRef>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_system_object(channel_control_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2177,8 +2177,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_delay(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_delay(channel_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2192,8 +2192,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_delay(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: dspclock_start, type: Float64
     double dspclock_start = gm::wire::codec::readValue<double>(__br);
@@ -2212,8 +2212,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_dsp_clock(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_dsp_clock(channel_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2227,8 +2227,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_callback(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: struct FmodChannelRef
-    gm_structs::FmodChannelRef channel_ref = gm::wire::codec::readValue<gm_structs::FmodChannelRef>(__br);
+    // field: channel_ref, type: UInt64
+    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -2245,11 +2245,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_add_input(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: dsp_input_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_input_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_input_ref, type: UInt64
+    std::uint64_t dsp_input_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: dsp_connection_type, type: Float64
     double dsp_connection_type = gm::wire::codec::readValue<double>(__br);
@@ -2257,7 +2257,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_add_input(char* __arg_buffer, double __ar
     auto&& __result = fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPConnectionRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2266,8 +2266,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_num_inputs(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_num_inputs(dsp_ref);
     return static_cast<double>(__result);
@@ -2277,8 +2277,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_num_outputs(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_num_outputs(dsp_ref);
     return static_cast<double>(__result);
@@ -2288,8 +2288,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_disconnect_all(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: inputs, type: Float64
     double inputs = gm::wire::codec::readValue<double>(__br);
@@ -2305,8 +2305,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_num_parameters(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_num_parameters(dsp_ref);
     return static_cast<double>(__result);
@@ -2316,8 +2316,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_float(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2333,8 +2333,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_float(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2347,8 +2347,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_int(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2364,8 +2364,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_int(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2378,8 +2378,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_bool(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2395,8 +2395,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_bool(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2409,8 +2409,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_release(char* __arg_buffer, double __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     fmod_dsp_release(dsp_ref);
     return 0;
@@ -2420,13 +2420,13 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_system_object(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_system_object(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2435,8 +2435,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_input(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2444,7 +2444,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_input(char* __arg_buffer, double __ar
     auto&& __result = fmod_dsp_get_input(dsp_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2453,8 +2453,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2462,7 +2462,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output(char* __arg_buffer, double __a
     auto&& __result = fmod_dsp_get_output(dsp_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPConnectionRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2471,11 +2471,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_disconnect_from(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: target_dsp, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef target_dsp = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: target_dsp, type: UInt64
+    std::uint64_t target_dsp = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     fmod_dsp_disconnect_from(dsp_ref, target_dsp);
     return 0;
@@ -2485,8 +2485,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_data_parameter_index(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: data_type, type: Float64
     double data_type = gm::wire::codec::readValue<double>(__br);
@@ -2499,8 +2499,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_data(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2519,8 +2519,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_data(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2539,8 +2539,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_info(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -2557,8 +2557,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_channel_format(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: channel_mask, type: Float64
     double channel_mask = gm::wire::codec::readValue<double>(__br);
@@ -2574,8 +2574,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_channel_format(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_channel_format(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2589,8 +2589,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output_channel_format(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_output_channel_format(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2604,8 +2604,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_metering_info(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_metering_info(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2619,8 +2619,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_metering_enabled(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: input_enabled, type: Float64
     double input_enabled = gm::wire::codec::readValue<double>(__br);
@@ -2636,8 +2636,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_metering_enabled(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_metering_enabled(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2651,8 +2651,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_active(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: active, type: Float64
     double active = gm::wire::codec::readValue<double>(__br);
@@ -2665,8 +2665,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_active(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_active(dsp_ref);
     return static_cast<double>(__result);
@@ -2676,8 +2676,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_bypass(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: bypass, type: Float64
     double bypass = gm::wire::codec::readValue<double>(__br);
@@ -2690,8 +2690,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_bypass(char* __arg_buffer, double __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_bypass(dsp_ref);
     return static_cast<double>(__result);
@@ -2701,8 +2701,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_wet_dry_mix(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: prewet, type: Float64
     double prewet = gm::wire::codec::readValue<double>(__br);
@@ -2721,8 +2721,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_wet_dry_mix(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_wet_dry_mix(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2736,8 +2736,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_idle(char* __arg_buffer, double __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_idle(dsp_ref);
     return static_cast<double>(__result);
@@ -2747,8 +2747,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_reset(char* __arg_buffer, double __arg_bu
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     fmod_dsp_reset(dsp_ref);
     return 0;
@@ -2758,8 +2758,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_type(char* __arg_buffer, double __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_type(dsp_ref);
     return static_cast<double>(__result);
@@ -2769,8 +2769,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_info(char* __arg_buffer, double __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_info(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2784,8 +2784,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_cpu_usage(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_cpu_usage(dsp_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -2799,8 +2799,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_user_data(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: user_data, type: Float64
     double user_data = gm::wire::codec::readValue<double>(__br);
@@ -2813,8 +2813,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_user_data(char* __arg_buffer, double 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_user_data(dsp_ref);
     return static_cast<double>(__result);
@@ -2824,8 +2824,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_callback(char* __arg_buffer, double _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: dsp_ref, type: struct FmodDSPRef
-    gm_structs::FmodDSPRef dsp_ref = gm::wire::codec::readValue<gm_structs::FmodDSPRef>(__br);
+    // field: dsp_ref, type: UInt64
+    std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -2842,8 +2842,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_mix(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -2856,8 +2856,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_mix(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_mix(connection_ref);
     return static_cast<double>(__result);
@@ -2867,8 +2867,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_mix_matrix(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: matrix, type: Float64
     double matrix = gm::wire::codec::readValue<double>(__br);
@@ -2890,8 +2890,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_mix_matrix(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: in_channel_hop, type: Float64
     double in_channel_hop = gm::wire::codec::readValue<double>(__br);
@@ -2908,13 +2908,13 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_input(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_input(connection_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2923,13 +2923,13 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_output(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_output(connection_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodDSPRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -2938,8 +2938,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_type(char* __arg_buffer, d
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_type(connection_ref);
     return static_cast<double>(__result);
@@ -2949,8 +2949,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_user_data(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: user_data, type: Float64
     double user_data = gm::wire::codec::readValue<double>(__br);
@@ -2963,8 +2963,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_user_data(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: connection_ref, type: struct FmodDSPConnectionRef
-    gm_structs::FmodDSPConnectionRef connection_ref = gm::wire::codec::readValue<gm_structs::FmodDSPConnectionRef>(__br);
+    // field: connection_ref, type: UInt64
+    std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_user_data(connection_ref);
     return static_cast<double>(__result);
@@ -2974,8 +2974,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_polygon_attributes(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: polygon_index, type: Float64
     double polygon_index = gm::wire::codec::readValue<double>(__br);
@@ -2997,8 +2997,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_get_polygon_num_vertices(char* __arg
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: polygon_index, type: Float64
     double polygon_index = gm::wire::codec::readValue<double>(__br);
@@ -3011,8 +3011,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_position(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: x, type: Float64
     double x = gm::wire::codec::readValue<double>(__br);
@@ -3031,8 +3031,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_rotation(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: forward_x, type: Float64
     double forward_x = gm::wire::codec::readValue<double>(__br);
@@ -3060,8 +3060,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_scale(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: scale_x, type: Float64
     double scale_x = gm::wire::codec::readValue<double>(__br);
@@ -3080,8 +3080,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_save(char* __arg_buffer, double __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: filename, type: String
     std::string_view filename = gm::wire::codec::readValue<std::string_view>(__br);
@@ -3094,8 +3094,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_release(char* __arg_buffer, double _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: geometry_ref, type: struct FmodGeometryRef
-    gm_structs::FmodGeometryRef geometry_ref = gm::wire::codec::readValue<gm_structs::FmodGeometryRef>(__br);
+    // field: geometry_ref, type: UInt64
+    std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_geometry_release(geometry_ref);
     return static_cast<double>(__result);
@@ -3106,7 +3106,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_create(char* __ret_buffer, doub
     auto&& __result = fmod_studio_system_create();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodStudioSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3146,7 +3146,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* filename, 
     auto&& __result = fmod_studio_system_load_bank_file(filename, static_cast<double>(flags));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBankRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3156,7 +3156,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* data, do
     auto&& __result = fmod_studio_system_load_bank_memory(data, static_cast<double>(flags));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBankRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3178,7 +3178,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank_at(double index, char*
     auto&& __result = fmod_studio_system_get_bank_at(static_cast<double>(index));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBankRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3188,7 +3188,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank(char* path, char* __re
     auto&& __result = fmod_studio_system_get_bank(path);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBankRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3198,7 +3198,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_event(char* path, char* __r
     auto&& __result = fmod_studio_system_get_event(path);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventDescriptionRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3208,7 +3208,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_create_event_instance(char* pat
     auto&& __result = fmod_studio_system_create_event_instance(path);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventInstanceRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3218,7 +3218,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bus(char* path, char* __ret
     auto&& __result = fmod_studio_system_get_bus(path);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBusRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3228,7 +3228,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_master_bus(char* __ret_buff
     auto&& __result = fmod_studio_system_get_master_bus();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBusRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3238,7 +3238,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca(char* path, char* __ret
     auto&& __result = fmod_studio_system_get_vca(path);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioVCARef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3272,7 +3272,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system(char* __ret_buf
     auto&& __result = fmod_studio_system_get_core_system();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodSystemRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3295,7 +3295,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_event_by_id(char* id, char*
     auto&& __result = fmod_studio_system_get_event_by_id(id);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodStudioEventDescriptionRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3333,7 +3333,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_command_replay(char* __arg
     auto&& __result = fmod_studio_system_load_command_replay(filename, flags);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodStudioCommandReplayRef
+    // return: __result, type: UInt64
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3342,8 +3342,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_unload(bank_ref);
     return static_cast<double>(__result);
@@ -3353,8 +3353,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_loading_state(bank_ref);
     return static_cast<double>(__result);
@@ -3364,8 +3364,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_sample_loading_state(bank_ref);
     return static_cast<double>(__result);
@@ -3375,8 +3375,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_bank_get_path(char* __arg_buffer, doubl
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_studio_bank_get_path(bank_ref);
@@ -3387,13 +3387,13 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_parent_studio_system(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_parent_studio_system(bank_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioSystemRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3402,8 +3402,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_event_count(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_event_count(bank_ref);
     return static_cast<double>(__result);
@@ -3413,8 +3413,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_event_at(char* __arg_buffer, 
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -3422,7 +3422,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_event_at(char* __arg_buffer, 
     auto&& __result = fmod_studio_bank_get_event_at(bank_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventDescriptionRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3431,8 +3431,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_bus_count(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_bus_count(bank_ref);
     return static_cast<double>(__result);
@@ -3442,8 +3442,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_bus_at(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -3451,7 +3451,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_bus_at(char* __arg_buffer, do
     auto&& __result = fmod_studio_bank_get_bus_at(bank_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBusRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3460,8 +3460,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_vca_count(char* __arg_buffer,
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_vca_count(bank_ref);
     return static_cast<double>(__result);
@@ -3471,8 +3471,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_vca_at(char* __arg_buffer, do
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -3480,7 +3480,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_vca_at(char* __arg_buffer, do
     auto&& __result = fmod_studio_bank_get_vca_at(bank_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioVCARef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3489,8 +3489,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_string_count(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bank_ref, type: struct FmodStudioBankRef
-    gm_structs::FmodStudioBankRef bank_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBankRef>(__br);
+    // field: bank_ref, type: UInt64
+    std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_string_count(bank_ref);
     return static_cast<double>(__result);
@@ -3500,8 +3500,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_path(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_studio_event_description_get_path(event_desc_ref);
@@ -3512,13 +3512,13 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_create_instance(char
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_create_instance(event_desc_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventInstanceRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3527,8 +3527,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_instance_count(c
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_get_instance_count(event_desc_ref);
     return static_cast<double>(__result);
@@ -3538,8 +3538,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_instance_at(char
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
@@ -3547,7 +3547,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_instance_at(char
     auto&& __result = fmod_studio_event_description_get_instance_at(event_desc_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventInstanceRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3556,8 +3556,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_snapshot(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_is_snapshot(event_desc_ref);
     return static_cast<double>(__result);
@@ -3567,8 +3567,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_one_shot(char* __
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_is_one_shot(event_desc_ref);
     return static_cast<double>(__result);
@@ -3578,8 +3578,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_has_sustain_point(ch
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_has_sustain_point(event_desc_ref);
     return static_cast<double>(__result);
@@ -3589,8 +3589,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_length(char* __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_get_length(event_desc_ref);
     return static_cast<double>(__result);
@@ -3600,8 +3600,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_parameter_count(
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_get_parameter_count(event_desc_ref);
     return static_cast<double>(__result);
@@ -3611,8 +3611,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_release_all_instance
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_release_all_instances(event_desc_ref);
     return static_cast<double>(__result);
@@ -3622,8 +3622,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_parameter_descri
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: name, type: String
     std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
@@ -3640,8 +3640,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_load_sample_data(cha
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    gm_structs::FmodStudioEventDescriptionRef event_desc_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventDescriptionRef>(__br);
+    // field: event_desc_ref, type: UInt64
+    std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_load_sample_data(event_desc_ref);
     return static_cast<double>(__result);
@@ -3651,8 +3651,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_start(char* __arg_buffe
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_start(instance_ref);
     return static_cast<double>(__result);
@@ -3662,8 +3662,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_stop(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: stop_mode, type: Float64
     double stop_mode = gm::wire::codec::readValue<double>(__br);
@@ -3676,8 +3676,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_playback_state(instance_ref);
     return static_cast<double>(__result);
@@ -3687,8 +3687,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_paused(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_paused(instance_ref);
     return static_cast<double>(__result);
@@ -3698,8 +3698,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_paused(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: paused, type: Float64
     double paused = gm::wire::codec::readValue<double>(__br);
@@ -3712,8 +3712,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_timeline_position(c
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_timeline_position(instance_ref);
     return static_cast<double>(__result);
@@ -3723,8 +3723,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_timeline_position(c
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: position, type: Float64
     double position = gm::wire::codec::readValue<double>(__br);
@@ -3737,8 +3737,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_volume(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_volume(instance_ref);
     return static_cast<double>(__result);
@@ -3748,8 +3748,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_volume(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -3762,8 +3762,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_pitch(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_pitch(instance_ref);
     return static_cast<double>(__result);
@@ -3773,8 +3773,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_pitch(char* __arg_b
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: pitch, type: Float64
     double pitch = gm::wire::codec::readValue<double>(__br);
@@ -3787,8 +3787,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name(c
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: name, type: String
     std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
@@ -3804,8 +3804,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_name(c
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: name, type: String
     std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
@@ -3818,8 +3818,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_parameter_count(cha
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_parameter_count(instance_ref);
     return static_cast<double>(__result);
@@ -3829,8 +3829,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id(cha
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: id_data1, type: Float64
     double id_data1 = gm::wire::codec::readValue<double>(__br);
@@ -3846,8 +3846,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id(cha
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: id_data1, type: Float64
     double id_data1 = gm::wire::codec::readValue<double>(__br);
@@ -3866,8 +3866,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_callback(char* __ar
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -3887,8 +3887,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes(char*
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: x, type: Float64
     double x = gm::wire::codec::readValue<double>(__br);
@@ -3907,13 +3907,13 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_description(char* _
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_description(instance_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioEventDescriptionRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3922,8 +3922,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_release(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: instance_ref, type: struct FmodStudioEventInstanceRef
-    gm_structs::FmodStudioEventInstanceRef instance_ref = gm::wire::codec::readValue<gm_structs::FmodStudioEventInstanceRef>(__br);
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_release(instance_ref);
     return static_cast<double>(__result);
@@ -3933,8 +3933,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_bus_get_path(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_studio_bus_get_path(bus_ref);
@@ -3945,8 +3945,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_volume(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bus_get_volume(bus_ref);
     return static_cast<double>(__result);
@@ -3956,8 +3956,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_volume(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -3970,8 +3970,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_paused(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bus_get_paused(bus_ref);
     return static_cast<double>(__result);
@@ -3981,8 +3981,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_paused(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: paused, type: Float64
     double paused = gm::wire::codec::readValue<double>(__br);
@@ -3995,8 +3995,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_stop_all_events(char* __arg_buffer
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: bus_ref, type: struct FmodStudioBusRef
-    gm_structs::FmodStudioBusRef bus_ref = gm::wire::codec::readValue<gm_structs::FmodStudioBusRef>(__br);
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: stop_mode, type: Float64
     double stop_mode = gm::wire::codec::readValue<double>(__br);
@@ -4010,7 +4010,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_master_bus(char* __ret_buffer,
     auto&& __result = fmod_studio_bus_get_master_bus();
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: optional<struct FmodStudioBusRef>
+    // return: __result, type: optional<UInt64>
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -4019,8 +4019,8 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_vca_get_path(char* __arg_buffer, double
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: vca_ref, type: struct FmodStudioVCARef
-    gm_structs::FmodStudioVCARef vca_ref = gm::wire::codec::readValue<gm_structs::FmodStudioVCARef>(__br);
+    // field: vca_ref, type: UInt64
+    std::uint64_t vca_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     static std::string __result;
     __result = fmod_studio_vca_get_path(vca_ref);
@@ -4031,8 +4031,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_vca_get_volume(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: vca_ref, type: struct FmodStudioVCARef
-    gm_structs::FmodStudioVCARef vca_ref = gm::wire::codec::readValue<gm_structs::FmodStudioVCARef>(__br);
+    // field: vca_ref, type: UInt64
+    std::uint64_t vca_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_vca_get_volume(vca_ref);
     return static_cast<double>(__result);
@@ -4042,8 +4042,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_vca_set_volume(char* __arg_buffer, dou
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: vca_ref, type: struct FmodStudioVCARef
-    gm_structs::FmodStudioVCARef vca_ref = gm::wire::codec::readValue<gm_structs::FmodStudioVCARef>(__br);
+    // field: vca_ref, type: UInt64
+    std::uint64_t vca_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: volume, type: Float64
     double volume = gm::wire::codec::readValue<double>(__br);
@@ -4056,8 +4056,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_playback_state(replay_ref);
     return static_cast<double>(__result);
@@ -4067,8 +4067,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_current_command(cha
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_current_command(replay_ref);
     return static_cast<double>(__result);
@@ -4078,8 +4078,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_release(char* __arg_buf
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_release(replay_ref);
     return static_cast<double>(__result);
@@ -4089,8 +4089,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_command_count(char*
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_command_count(replay_ref);
     return static_cast<double>(__result);
@@ -4100,8 +4100,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_length(char* __arg_
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_length(replay_ref);
     return static_cast<double>(__result);
@@ -4111,8 +4111,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_frame_callback(char
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -4129,8 +4129,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_create_instance_cal
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -4147,8 +4147,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_load_bank_callback(
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: replay_ref, type: struct FmodStudioCommandReplayRef
-    gm_structs::FmodStudioCommandReplayRef replay_ref = gm::wire::codec::readValue<gm_structs::FmodStudioCommandReplayRef>(__br);
+    // field: replay_ref, type: UInt64
+    std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;

@@ -6,16 +6,16 @@ using namespace gm_structs;
 // System - Creation & Initialization
 // ============================================================
 
-FmodSystemRef fmod_system_create()
+uint64_t fmod_system_create()
 {
-	FmodSystemRef result{};
+	uint64_t result = 0;
 	FMOD::System* system = nullptr;
 	g_fmod_last_result = FMOD::System_Create(&system);
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
 		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result._ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
 	}
 	return result;
 }
@@ -34,10 +34,10 @@ double fmod_system_init(double max_channels, double flags)
 	return 0;
 }
 
-double fmod_system_release(const FmodSystemRef& system_ref)
+double fmod_system_release(uint64_t system_ref)
 {
 	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref._ref, system);
+	validate_fmod_system(system_ref, system);
 
 	if (system == nullptr)
 		return 0;
@@ -52,10 +52,10 @@ double fmod_system_release(const FmodSystemRef& system_ref)
 	return 0;
 }
 
-double fmod_system_select(const FmodSystemRef& system_ref)
+double fmod_system_select(uint64_t system_ref)
 {
 	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref._ref, system);
+	validate_fmod_system(system_ref, system);
 
 	if (system == nullptr)
 		return 0;
@@ -65,10 +65,10 @@ double fmod_system_select(const FmodSystemRef& system_ref)
 	return 0;
 }
 
-double fmod_system_close(const FmodSystemRef& system_ref)
+double fmod_system_close(uint64_t system_ref)
 {
 	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref._ref, system);
+	validate_fmod_system(system_ref, system);
 
 	if (system == nullptr)
 		return 0;
@@ -109,9 +109,9 @@ double fmod_system_get_channels_playing()
 // System - Channel Management
 // ============================================================
 
-FmodChannelRef fmod_system_get_channel(double index)
+uint64_t fmod_system_get_channel(double index)
 {
-	FmodChannelRef result{};
+	uint64_t result = 0;
 
 	if (getCurrentSystem() == nullptr)
 	{
@@ -126,14 +126,14 @@ FmodChannelRef fmod_system_get_channel(double index)
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
 		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result._ref = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }
 
-FmodChannelGroupRef fmod_system_get_master_channel_group()
+uint64_t fmod_system_get_master_channel_group()
 {
-	FmodChannelGroupRef result{};
+	uint64_t result = 0;
 
 	if (getCurrentSystem() == nullptr)
 	{
@@ -148,7 +148,7 @@ FmodChannelGroupRef fmod_system_get_master_channel_group()
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
 		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result._ref = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
 	}
 	return result;
 }
@@ -418,7 +418,7 @@ double fmod_system_get_record_position(double device_index)
 	return (double)position;
 }
 
-double fmod_system_record_start(double device_index, const FmodSoundRef& sound_ref, double loop)
+double fmod_system_record_start(double device_index, uint64_t sound_ref, double loop)
 {
 	if (getCurrentSystem() == nullptr)
 	{
@@ -428,7 +428,7 @@ double fmod_system_record_start(double device_index, const FmodSoundRef& sound_r
 
 	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref._ref, sound);
+	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
 		return 0;
@@ -468,9 +468,9 @@ double fmod_system_is_recording(double device_index)
 // System - DSP
 // ============================================================
 
-FmodDSPRef fmod_system_create_dsp()
+uint64_t fmod_system_create_dsp()
 {
-	FmodDSPRef result{};
+	uint64_t result = 0;
 
 	if (getCurrentSystem() == nullptr)
 	{
@@ -485,14 +485,14 @@ FmodDSPRef fmod_system_create_dsp()
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
 		uint32_t dsp_id = registerOrFindResource(dsp, index_dsps, map_dsps);
-		result._ref = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
 	}
 	return result;
 }
 
-FmodDSPRef fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
+uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 {
-	FmodDSPRef result{};
+	uint64_t result = 0;
 
 	if (getCurrentSystem() == nullptr)
 	{
@@ -507,7 +507,7 @@ FmodDSPRef fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
 		uint32_t dsp_id = registerOrFindResource(dsp, index_dsps, map_dsps);
-		result._ref = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
 	}
 	return result;
 }
@@ -626,9 +626,9 @@ FmodDriverInfo fmod_system_get_driver_info(double driver_id)
 // System - Channel Groups
 // ============================================================
 
-FmodChannelGroupRef fmod_system_create_channel_group(std::string_view name)
+uint64_t fmod_system_create_channel_group(std::string_view name)
 {
-	FmodChannelGroupRef result{};
+	uint64_t result = 0;
 
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -644,23 +644,23 @@ FmodChannelGroupRef fmod_system_create_channel_group(std::string_view name)
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
 		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result._ref = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
 	}
 	return result;
 }
 
-FmodChannelRef fmod_system_play_dsp(const FmodDSPRef& dsp_ref, const FmodChannelGroupRef& channel_group_ref, double paused)
+uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, double paused)
 {
-	FmodChannelRef result{};
+	uint64_t result = 0;
 
 	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref._ref, dsp);
+	validate_fmod_dsp(dsp_ref, dsp);
 
 	if (dsp == nullptr)
 		return result;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
@@ -678,7 +678,7 @@ FmodChannelRef fmod_system_play_dsp(const FmodDSPRef& dsp_ref, const FmodChannel
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
 		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result._ref = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }

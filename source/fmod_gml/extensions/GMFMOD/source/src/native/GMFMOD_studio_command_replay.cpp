@@ -24,8 +24,8 @@ static FMOD_RESULT CALLBACK_fmod_studio_command_replay_frame(
 	auto it = g_command_replay_callbacks.find(replay_ptr);
 	if (it != g_command_replay_callbacks.end() && it->second.frame_callback)
 	{
-		FmodStudioCommandReplayRef replay_ref{};
-		replay_ref._ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
+		uint64_t replay_ref = 0;
+		replay_ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 
 		it->second.frame_callback.value().call(
 			replay_ref,
@@ -49,11 +49,11 @@ static FMOD_RESULT CALLBACK_fmod_studio_command_replay_create_instance(
 	auto it = g_command_replay_callbacks.find(replay_ptr);
 	if (it != g_command_replay_callbacks.end() && it->second.create_instance_callback)
 	{
-		FmodStudioCommandReplayRef replay_ref{};
-		replay_ref._ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
+		uint64_t replay_ref = 0;
+		replay_ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 
-		FmodStudioEventDescriptionRef desc_ref{};
-		desc_ref._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_description),
+		uint64_t desc_ref = 0;
+		desc_ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_description),
 			GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 
 		it->second.create_instance_callback.value().call(
@@ -80,8 +80,8 @@ static FMOD_RESULT CALLBACK_fmod_studio_command_replay_load_bank(
 	auto it = g_command_replay_callbacks.find(replay_ptr);
 	if (it != g_command_replay_callbacks.end() && it->second.load_bank_callback)
 	{
-		FmodStudioCommandReplayRef replay_ref{};
-		replay_ref._ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
+		uint64_t replay_ref = 0;
+		replay_ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 
 		it->second.load_bank_callback.value().call(
 			replay_ref,
@@ -93,48 +93,48 @@ static FMOD_RESULT CALLBACK_fmod_studio_command_replay_load_bank(
 	return FMOD_OK;
 }
 
-double fmod_studio_command_replay_get_playback_state(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_get_playback_state(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0.0;
 	FMOD_STUDIO_PLAYBACK_STATE state = FMOD_STUDIO_PLAYBACK_STOPPED;
 	g_fmod_last_result = replay->getPlaybackState(&state);
 	return (double)state;
 }
 
-double fmod_studio_command_replay_start(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_start(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 	g_fmod_last_result = replay->start();
 	return 0;
 }
 
-double fmod_studio_command_replay_stop(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_stop(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 	g_fmod_last_result = replay->stop();
 	return 0;
 }
 
-double fmod_studio_command_replay_get_current_command(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_get_current_command(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0.0;
 	// getCurrentCommand signature may differ in this SDK version
 	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
 	return 0.0;
 }
 
-double fmod_studio_command_replay_release(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_release(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
 	// Clean up callbacks
@@ -146,11 +146,11 @@ double fmod_studio_command_replay_release(const FmodStudioCommandReplayRef& repl
 }
 
 double fmod_studio_command_replay_set_frame_callback(
-	const FmodStudioCommandReplayRef& replay_ref,
+	uint64_t replay_ref,
 	const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
 	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
@@ -169,11 +169,11 @@ double fmod_studio_command_replay_set_frame_callback(
 }
 
 double fmod_studio_command_replay_set_create_instance_callback(
-	const FmodStudioCommandReplayRef& replay_ref,
+	uint64_t replay_ref,
 	const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
 	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
@@ -192,11 +192,11 @@ double fmod_studio_command_replay_set_create_instance_callback(
 }
 
 double fmod_studio_command_replay_set_load_bank_callback(
-	const FmodStudioCommandReplayRef& replay_ref,
+	uint64_t replay_ref,
 	const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
 	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
@@ -217,10 +217,10 @@ double fmod_studio_command_replay_set_load_bank_callback(
 // Command Replay - Info
 // ============================================================
 
-double fmod_studio_command_replay_get_command_count(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_get_command_count(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0.0;
 
 	int count = 0;
@@ -228,10 +228,10 @@ double fmod_studio_command_replay_get_command_count(const FmodStudioCommandRepla
 	return (double)count;
 }
 
-double fmod_studio_command_replay_get_length(const FmodStudioCommandReplayRef& replay_ref)
+double fmod_studio_command_replay_get_length(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref._ref, replay);
+	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0.0;
 
 	float length = 0.0f;

@@ -5,10 +5,10 @@
 
 using namespace gm_structs;
 
-std::string fmod_studio_bus_get_path(const FmodStudioBusRef& bus_ref)
+std::string fmod_studio_bus_get_path(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return "";
 	char path[256] = {};
 	int capacity = sizeof(path);
@@ -16,54 +16,54 @@ std::string fmod_studio_bus_get_path(const FmodStudioBusRef& bus_ref)
 	return std::string(path);
 }
 
-double fmod_studio_bus_get_volume(const FmodStudioBusRef& bus_ref)
+double fmod_studio_bus_get_volume(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0.0;
 	float volume = 0.0f;
 	g_fmod_last_result = bus->getVolume(&volume);
 	return (double)volume;
 }
 
-double fmod_studio_bus_set_volume(const FmodStudioBusRef& bus_ref, double volume)
+double fmod_studio_bus_set_volume(uint64_t bus_ref, double volume)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0;
 	g_fmod_last_result = bus->setVolume((float)volume);
 	return 0;
 }
 
-double fmod_studio_bus_get_paused(const FmodStudioBusRef& bus_ref)
+double fmod_studio_bus_get_paused(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0.0;
 	bool paused = false;
 	g_fmod_last_result = bus->getPaused(&paused);
 	return paused ? 1.0 : 0.0;
 }
 
-double fmod_studio_bus_set_paused(const FmodStudioBusRef& bus_ref, double paused)
+double fmod_studio_bus_set_paused(uint64_t bus_ref, double paused)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0;
 	g_fmod_last_result = bus->setPaused(paused != 0.0);
 	return 0;
 }
 
-double fmod_studio_bus_stop_all_events(const FmodStudioBusRef& bus_ref, double stop_mode)
+double fmod_studio_bus_stop_all_events(uint64_t bus_ref, double stop_mode)
 {
 	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref._ref, bus);
+	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0;
 	g_fmod_last_result = bus->stopAllEvents((FMOD_STUDIO_STOP_MODE)(int)stop_mode);
 	return 0;
 }
 
-std::optional<FmodStudioBusRef> fmod_studio_bus_get_master_bus()
+std::optional<uint64_t> fmod_studio_bus_get_master_bus()
 {
 	// This is a static/global operation, handled at system level
 	// Use fmod_studio_system_get_master_bus instead

@@ -654,261 +654,6 @@ enum FmodStudioEventCallbackType
 // #####################################################################
 
 /**
- * @returns {Struct.FmodChannelRef}
- */
-function FmodChannelRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 287688359;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodChannelGroupRef}
- */
-function FmodChannelGroupRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1748069326;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodSoundRef}
- */
-function FmodSoundRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 237087423;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodSystemRef}
- */
-function FmodSystemRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 3684475095;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodDSPConnectionRef}
- */
-function FmodDSPConnectionRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 67812655;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodSoundGroupRef}
- */
-function FmodSoundGroupRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1515681958;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodReverb3DRef}
- */
-function FmodReverb3DRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1101904757;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodDSPRef}
- */
-function FmodDSPRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 4021659635;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodGeometryRef}
- */
-function FmodGeometryRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 55360464;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodChannelControlRef}
- */
-function FmodChannelControlRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1336959156;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioSystemRef}
- */
-function FmodStudioSystemRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1633751673;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioBankRef}
- */
-function FmodStudioBankRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 2085290352;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioBusRef}
- */
-function FmodStudioBusRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1572912022;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioEventInstanceRef}
- */
-function FmodStudioEventInstanceRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1079537513;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioEventDescriptionRef}
- */
-function FmodStudioEventDescriptionRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 2708661012;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioVCARef}
- */
-function FmodStudioVCARef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 706235938;
-
-    self._ref = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioCommandReplayRef}
- */
-function FmodStudioCommandReplayRef() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 1846997058;
-
-    self._ref = undefined;
-
-}
-
-/**
  * @returns {Struct.FmodSoundDefaults}
  */
 function FmodSoundDefaults() constructor
@@ -1386,720 +1131,6 @@ function FmodChannelControl3DAttributes() constructor
 // #####################################################################
 // # Codecs
 // #####################################################################
-
-/**
- * @func __FmodChannelRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodChannelRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodChannelRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodChannelRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodChannelRef}
- * @ignore
- */
-function __FmodChannelRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodChannelRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodChannelGroupRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodChannelGroupRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodChannelGroupRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodChannelGroupRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodChannelGroupRef}
- * @ignore
- */
-function __FmodChannelGroupRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodChannelGroupRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodSoundRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodSoundRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodSoundRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodSoundRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodSoundRef}
- * @ignore
- */
-function __FmodSoundRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodSoundRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodSystemRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodSystemRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodSystemRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodSystemRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodSystemRef}
- * @ignore
- */
-function __FmodSystemRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodSystemRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodDSPConnectionRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodDSPConnectionRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodDSPConnectionRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodDSPConnectionRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodDSPConnectionRef}
- * @ignore
- */
-function __FmodDSPConnectionRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodDSPConnectionRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodSoundGroupRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodSoundGroupRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodSoundGroupRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodSoundGroupRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodSoundGroupRef}
- * @ignore
- */
-function __FmodSoundGroupRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodSoundGroupRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodReverb3DRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodReverb3DRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodReverb3DRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodReverb3DRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodReverb3DRef}
- * @ignore
- */
-function __FmodReverb3DRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodReverb3DRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodDSPRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodDSPRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodDSPRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodDSPRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodDSPRef}
- * @ignore
- */
-function __FmodDSPRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodDSPRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodGeometryRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodGeometryRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodGeometryRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodGeometryRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodGeometryRef}
- * @ignore
- */
-function __FmodGeometryRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodGeometryRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodChannelControlRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodChannelControlRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodChannelControlRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodChannelControlRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodChannelControlRef}
- * @ignore
- */
-function __FmodChannelControlRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodChannelControlRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioSystemRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioSystemRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioSystemRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioSystemRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioSystemRef}
- * @ignore
- */
-function __FmodStudioSystemRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioSystemRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioBankRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioBankRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioBankRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioBankRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioBankRef}
- * @ignore
- */
-function __FmodStudioBankRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioBankRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioBusRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioBusRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioBusRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioBusRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioBusRef}
- * @ignore
- */
-function __FmodStudioBusRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioBusRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioEventInstanceRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioEventInstanceRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioEventInstanceRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioEventInstanceRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioEventInstanceRef}
- * @ignore
- */
-function __FmodStudioEventInstanceRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioEventInstanceRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioEventDescriptionRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioEventDescriptionRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioEventDescriptionRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioEventDescriptionRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioEventDescriptionRef}
- * @ignore
- */
-function __FmodStudioEventDescriptionRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioEventDescriptionRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioVCARef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioVCARef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioVCARef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioVCARef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioVCARef}
- * @ignore
- */
-function __FmodStudioVCARef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioVCARef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioCommandReplayRef_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioCommandReplayRef} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioCommandReplayRef_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        if (!is_numeric(self._ref)) show_error($"{_where} :: self._ref expected number", true);
-        buffer_write(_buffer, buffer_u64, self._ref);
-
-    }
-}
-
-/**
- * @func __FmodStudioCommandReplayRef_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioCommandReplayRef}
- * @ignore
- */
-function __FmodStudioCommandReplayRef_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioCommandReplayRef();
-    with (_inst)
-    {
-        // field: _ref, type: UInt64
-        self._ref = buffer_read(_buffer, buffer_u64);
-
-    }
-
-    return _inst;
-}
 
 /**
  * @func __FmodSoundDefaults_encode(_inst, _buffer, _offset, _where)
@@ -3766,7 +2797,7 @@ function fmod_error_string(_result)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _frequency
  * @returns {Real}
  */
@@ -3777,9 +2808,9 @@ function fmod_channel_set_frequency(_channel_ref, _frequency)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _frequency, type: Float64
     if (!is_numeric(_frequency)) show_error($"{_GMFUNCTION_} :: _frequency expected number", true);
@@ -3791,7 +2822,7 @@ function fmod_channel_set_frequency(_channel_ref, _frequency)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Real}
  */
 function fmod_channel_get_frequency(_channel_ref)
@@ -3801,9 +2832,9 @@ function fmod_channel_get_frequency(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __return_value__ = __fmod_channel_get_frequency(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -3811,7 +2842,7 @@ function fmod_channel_get_frequency(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _priority
  * @returns {Real}
  */
@@ -3822,9 +2853,9 @@ function fmod_channel_set_priority(_channel_ref, _priority)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _priority, type: Float64
     if (!is_numeric(_priority)) show_error($"{_GMFUNCTION_} :: _priority expected number", true);
@@ -3836,7 +2867,7 @@ function fmod_channel_set_priority(_channel_ref, _priority)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Real}
  */
 function fmod_channel_get_priority(_channel_ref)
@@ -3846,9 +2877,9 @@ function fmod_channel_get_priority(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __return_value__ = __fmod_channel_get_priority(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -3856,7 +2887,7 @@ function fmod_channel_get_priority(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _position
  * @param {Real} _time_unit
  * @returns {Real}
@@ -3868,9 +2899,9 @@ function fmod_channel_set_position(_channel_ref, _position, _time_unit)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _position, type: Float64
     if (!is_numeric(_position)) show_error($"{_GMFUNCTION_} :: _position expected number", true);
@@ -3886,7 +2917,7 @@ function fmod_channel_set_position(_channel_ref, _position, _time_unit)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _time_unit
  * @returns {Real}
  */
@@ -3897,9 +2928,9 @@ function fmod_channel_get_position(_channel_ref, _time_unit)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _time_unit, type: Float64
     if (!is_numeric(_time_unit)) show_error($"{_GMFUNCTION_} :: _time_unit expected number", true);
@@ -3911,8 +2942,8 @@ function fmod_channel_get_position(_channel_ref, _time_unit)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_ref
+ * @param {Real} _channel_group_ref
  * @returns {Real}
  */
 function fmod_channel_set_channel_group(_channel_ref, _channel_group_ref)
@@ -3922,13 +2953,13 @@ function fmod_channel_set_channel_group(_channel_ref, _channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __return_value__ = __fmod_channel_set_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -3936,8 +2967,8 @@ function fmod_channel_set_channel_group(_channel_ref, _channel_group_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
- * @returns {Struct.FmodChannelGroupRef}
+ * @param {Real} _channel_ref
+ * @returns {Real}
  */
 function fmod_channel_get_channel_group(_channel_ref)
 {
@@ -3946,21 +2977,21 @@ function fmod_channel_get_channel_group(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_get_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _loop_count
  * @returns {Real}
  */
@@ -3971,9 +3002,9 @@ function fmod_channel_set_loop_count(_channel_ref, _loop_count)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _loop_count, type: Float64
     if (!is_numeric(_loop_count)) show_error($"{_GMFUNCTION_} :: _loop_count expected number", true);
@@ -3985,7 +3016,7 @@ function fmod_channel_set_loop_count(_channel_ref, _loop_count)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Real}
  */
 function fmod_channel_get_loop_count(_channel_ref)
@@ -3995,9 +3026,9 @@ function fmod_channel_get_loop_count(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __return_value__ = __fmod_channel_get_loop_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4005,7 +3036,7 @@ function fmod_channel_get_loop_count(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _loop_start
  * @param {Real} _loop_start_type
  * @param {Real} _loop_end
@@ -4019,9 +3050,9 @@ function fmod_channel_set_loop_points(_channel_ref, _loop_start, _loop_start_typ
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _loop_start, type: Float64
     if (!is_numeric(_loop_start)) show_error($"{_GMFUNCTION_} :: _loop_start expected number", true);
@@ -4045,7 +3076,7 @@ function fmod_channel_set_loop_points(_channel_ref, _loop_start, _loop_start_typ
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Real}
  */
 function fmod_channel_is_virtual(_channel_ref)
@@ -4055,9 +3086,9 @@ function fmod_channel_is_virtual(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __return_value__ = __fmod_channel_is_virtual(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4065,7 +3096,7 @@ function fmod_channel_is_virtual(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Real}
  */
 function fmod_channel_get_index(_channel_ref)
@@ -4075,9 +3106,9 @@ function fmod_channel_get_index(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __return_value__ = __fmod_channel_get_index(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4085,8 +3116,8 @@ function fmod_channel_get_index(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
- * @returns {Struct.FmodSoundRef}
+ * @param {Real} _channel_ref
+ * @returns {Real}
  */
 function fmod_channel_get_current_sound(_channel_ref)
 {
@@ -4095,22 +3126,22 @@ function fmod_channel_get_current_sound(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_get_current_sound(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _channel_ref
+ * @returns {Real}
  */
 function fmod_channel_get_system_object(_channel_ref)
 {
@@ -4119,21 +3150,21 @@ function fmod_channel_get_system_object(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @returns {Struct.FmodSystemRef}
+ * @returns {Real}
  */
 function fmod_system_create()
 {
@@ -4145,7 +3176,7 @@ function fmod_system_create()
     var __return_value__ = __fmod_system_create(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -4153,7 +3184,7 @@ function fmod_system_create()
 
 
 /**
- * @param {Struct.FmodSystemRef} _system_ref
+ * @param {Real} _system_ref
  * @returns {Real}
  */
 function fmod_system_release(_system_ref)
@@ -4163,9 +3194,9 @@ function fmod_system_release(_system_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _system_ref, type: struct FmodSystemRef
-    if (_system_ref.__uid != 3684475095) show_error($"{_GMFUNCTION_} :: _system_ref expected FmodSystemRef", true);
-    __FmodSystemRef_encode(_system_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _system_ref, type: UInt64
+    if (!is_numeric(_system_ref)) show_error($"{_GMFUNCTION_} :: _system_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _system_ref);
 
     var __return_value__ = __fmod_system_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4173,7 +3204,7 @@ function fmod_system_release(_system_ref)
 }
 
 /**
- * @param {Struct.FmodSystemRef} _system_ref
+ * @param {Real} _system_ref
  * @returns {Real}
  */
 function fmod_system_close(_system_ref)
@@ -4183,9 +3214,9 @@ function fmod_system_close(_system_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _system_ref, type: struct FmodSystemRef
-    if (_system_ref.__uid != 3684475095) show_error($"{_GMFUNCTION_} :: _system_ref expected FmodSystemRef", true);
-    __FmodSystemRef_encode(_system_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _system_ref, type: UInt64
+    if (!is_numeric(_system_ref)) show_error($"{_GMFUNCTION_} :: _system_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _system_ref);
 
     var __return_value__ = __fmod_system_close(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4200,7 +3231,7 @@ function fmod_system_close(_system_ref)
 
 /**
  * @param {Real} _index
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  */
 function fmod_system_get_channel(_index)
 {
@@ -4212,12 +3243,12 @@ function fmod_system_get_channel(_index)
     var __return_value__ = __fmod_system_get_channel(_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  */
 function fmod_system_get_master_channel_group()
 {
@@ -4229,7 +3260,7 @@ function fmod_system_get_master_channel_group()
     var __return_value__ = __fmod_system_get_master_channel_group(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -4358,7 +3389,7 @@ function fmod_system_get_record_driver_info(_record_driver_index)
 
 /**
  * @param {Real} _device_index
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _loop
  * @returns {Real}
  */
@@ -4373,9 +3404,9 @@ function fmod_system_record_start(_device_index, _sound_ref, _loop)
     if (!is_numeric(_device_index)) show_error($"{_GMFUNCTION_} :: _device_index expected number", true);
     buffer_write(__args_buffer, buffer_f64, _device_index);
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _loop, type: Float64
     if (!is_numeric(_loop)) show_error($"{_GMFUNCTION_} :: _loop expected number", true);
@@ -4393,7 +3424,7 @@ function fmod_system_record_start(_device_index, _sound_ref, _loop)
 
 
 /**
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  */
 function fmod_system_create_dsp()
 {
@@ -4405,13 +3436,13 @@ function fmod_system_create_dsp()
     var __return_value__ = __fmod_system_create_dsp(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
  * @param {Enum.FmodDspType} _dsp_type
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  */
 function fmod_system_create_dsp_by_type(_dsp_type)
 {
@@ -4430,7 +3461,7 @@ function fmod_system_create_dsp_by_type(_dsp_type)
     var __return_value__ = __fmod_system_create_dsp_by_type(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -4525,7 +3556,7 @@ function fmod_system_get_driver_info(_driver_id)
 
 /**
  * @param {String} _name
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  */
 function fmod_system_create_channel_group(_name)
 {
@@ -4537,15 +3568,15 @@ function fmod_system_create_channel_group(_name)
     var __return_value__ = __fmod_system_create_channel_group(_name, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _dsp_ref
+ * @param {Real} _channel_group_ref
  * @param {Real} _paused
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  */
 function fmod_system_play_dsp(_dsp_ref, _channel_group_ref, _paused)
 {
@@ -4554,13 +3585,13 @@ function fmod_system_play_dsp(_dsp_ref, _channel_group_ref, _paused)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
@@ -4571,12 +3602,12 @@ function fmod_system_play_dsp(_dsp_ref, _channel_group_ref, _paused)
     var __return_value__ = __fmod_system_play_dsp(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSystemRef} _system_ref
+ * @param {Real} _system_ref
  * @returns {Real}
  */
 function fmod_system_select(_system_ref)
@@ -4586,9 +3617,9 @@ function fmod_system_select(_system_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _system_ref, type: struct FmodSystemRef
-    if (_system_ref.__uid != 3684475095) show_error($"{_GMFUNCTION_} :: _system_ref expected FmodSystemRef", true);
-    __FmodSystemRef_encode(_system_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _system_ref, type: UInt64
+    if (!is_numeric(_system_ref)) show_error($"{_GMFUNCTION_} :: _system_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _system_ref);
 
     var __return_value__ = __fmod_system_select(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4598,7 +3629,7 @@ function fmod_system_select(_system_ref)
 /**
  * @param {String} _name_or_data
  * @param {Real} _mode
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  */
 function fmod_system_create_sound(_name_or_data, _mode)
 {
@@ -4610,14 +3641,14 @@ function fmod_system_create_sound(_name_or_data, _mode)
     var __return_value__ = __fmod_system_create_sound(_name_or_data, _mode, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
  * @param {String} _name_or_data
  * @param {Real} _mode
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  */
 function fmod_system_create_stream(_name_or_data, _mode)
 {
@@ -4629,15 +3660,15 @@ function fmod_system_create_stream(_name_or_data, _mode)
     var __return_value__ = __fmod_system_create_stream(_name_or_data, _mode, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _sound_ref
+ * @param {Real} _channel_group_ref
  * @param {Real} _pause
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  */
 function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
 {
@@ -4646,13 +3677,13 @@ function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     // param: _pause, type: Float64
     if (!is_numeric(_pause)) show_error($"{_GMFUNCTION_} :: _pause expected number", true);
@@ -4663,12 +3694,12 @@ function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
     var __return_value__ = __fmod_system_play_sound(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _length_type
  * @returns {Real}
  */
@@ -4679,9 +3710,9 @@ function fmod_sound_get_length(_sound_ref, _length_type)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _length_type, type: Float64
     if (!is_numeric(_length_type)) show_error($"{_GMFUNCTION_} :: _length_type expected number", true);
@@ -4693,7 +3724,7 @@ function fmod_sound_get_length(_sound_ref, _length_type)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _frequency
  * @param {Real} _priority
  * @returns {Real}
@@ -4705,9 +3736,9 @@ function fmod_sound_set_defaults(_sound_ref, _frequency, _priority)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _frequency, type: Float64
     if (!is_numeric(_frequency)) show_error($"{_GMFUNCTION_} :: _frequency expected number", true);
@@ -4723,7 +3754,7 @@ function fmod_sound_set_defaults(_sound_ref, _frequency, _priority)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _mode
  * @returns {Real}
  */
@@ -4734,9 +3765,9 @@ function fmod_sound_set_mode(_sound_ref, _mode)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _mode, type: Float64
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
@@ -4748,7 +3779,7 @@ function fmod_sound_set_mode(_sound_ref, _mode)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_mode(_sound_ref)
@@ -4758,9 +3789,9 @@ function fmod_sound_get_mode(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_mode(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4768,7 +3799,7 @@ function fmod_sound_get_mode(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_format(_sound_ref)
@@ -4778,9 +3809,9 @@ function fmod_sound_get_format(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_format(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4788,7 +3819,7 @@ function fmod_sound_get_format(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {String}
  */
 function fmod_sound_get_name(_sound_ref)
@@ -4798,9 +3829,9 @@ function fmod_sound_get_name(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4808,7 +3839,7 @@ function fmod_sound_get_name(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Struct.FmodSoundDefaults}
  */
 function fmod_sound_get_defaults(_sound_ref)
@@ -4818,9 +3849,9 @@ function fmod_sound_get_defaults(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -4832,7 +3863,7 @@ function fmod_sound_get_defaults(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _count
  * @returns {Real}
  */
@@ -4843,9 +3874,9 @@ function fmod_sound_set_loop_count(_sound_ref, _count)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _count, type: Float64
     if (!is_numeric(_count)) show_error($"{_GMFUNCTION_} :: _count expected number", true);
@@ -4857,7 +3888,7 @@ function fmod_sound_set_loop_count(_sound_ref, _count)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_loop_count(_sound_ref)
@@ -4867,9 +3898,9 @@ function fmod_sound_get_loop_count(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_loop_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -4877,7 +3908,7 @@ function fmod_sound_get_loop_count(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _loop_start
  * @param {Real} _loop_start_type
  * @param {Real} _loop_end
@@ -4891,9 +3922,9 @@ function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _loop_start, type: Float64
     if (!is_numeric(_loop_start)) show_error($"{_GMFUNCTION_} :: _loop_start expected number", true);
@@ -4917,7 +3948,7 @@ function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _start_type
  * @param {Real} _end_type
  * @returns {Struct.FmodLoopPoints}
@@ -4929,9 +3960,9 @@ function fmod_sound_get_loop_points(_sound_ref, _start_type, _end_type)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _start_type, type: Float64
     if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
@@ -4951,7 +3982,7 @@ function fmod_sound_get_loop_points(_sound_ref, _start_type, _end_type)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _min
  * @param {Real} _max
  * @returns {Real}
@@ -4963,9 +3994,9 @@ function fmod_sound_set_3d_min_max_distance(_sound_ref, _min, _max)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _min, type: Float64
     if (!is_numeric(_min)) show_error($"{_GMFUNCTION_} :: _min expected number", true);
@@ -4981,7 +4012,7 @@ function fmod_sound_set_3d_min_max_distance(_sound_ref, _min, _max)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Struct.FmodSoundMinMaxDistance}
  */
 function fmod_sound_get_3d_min_max_distance(_sound_ref)
@@ -4991,9 +4022,9 @@ function fmod_sound_get_3d_min_max_distance(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -5005,7 +4036,7 @@ function fmod_sound_get_3d_min_max_distance(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _inside_cone_angle
  * @param {Real} _outside_cone_angle
  * @param {Real} _outside_volume
@@ -5018,9 +4049,9 @@ function fmod_sound_set_3d_cone_settings(_sound_ref, _inside_cone_angle, _outsid
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _inside_cone_angle, type: Float64
     if (!is_numeric(_inside_cone_angle)) show_error($"{_GMFUNCTION_} :: _inside_cone_angle expected number", true);
@@ -5040,7 +4071,7 @@ function fmod_sound_set_3d_cone_settings(_sound_ref, _inside_cone_angle, _outsid
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Struct.FmodConeSettings}
  */
 function fmod_sound_get_3d_cone_settings(_sound_ref)
@@ -5050,9 +4081,9 @@ function fmod_sound_get_3d_cone_settings(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -5064,7 +4095,7 @@ function fmod_sound_get_3d_cone_settings(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Any} _points
  * @param {Real} _num_points
  * @returns {Real}
@@ -5076,9 +4107,9 @@ function fmod_sound_set_3d_custom_rolloff(_sound_ref, _points, _num_points)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _points, type: Any
 
@@ -5094,7 +4125,7 @@ function fmod_sound_set_3d_custom_rolloff(_sound_ref, _points, _num_points)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  */
 function fmod_sound_get_3d_custom_rolloff(_sound_ref)
 {
@@ -5103,9 +4134,9 @@ function fmod_sound_get_3d_custom_rolloff(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_3d_custom_rolloff(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5113,7 +4144,7 @@ function fmod_sound_get_3d_custom_rolloff(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_num_sync_points(_sound_ref)
@@ -5123,9 +4154,9 @@ function fmod_sound_get_num_sync_points(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_num_sync_points(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5133,7 +4164,7 @@ function fmod_sound_get_num_sync_points(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _sync_point_index
  * @param {Real} _offset_type
  * @returns {Struct.FmodSyncPointInfo}
@@ -5145,9 +4176,9 @@ function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _sync_point_index, type: Float64
     if (!is_numeric(_sync_point_index)) show_error($"{_GMFUNCTION_} :: _sync_point_index expected number", true);
@@ -5167,7 +4198,7 @@ function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _offset
  * @param {Real} _offset_type
  * @param {String} _name
@@ -5180,9 +4211,9 @@ function fmod_sound_add_sync_point(_sound_ref, _offset, _offset_type, _name)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _offset, type: Float64
     if (!is_numeric(_offset)) show_error($"{_GMFUNCTION_} :: _offset expected number", true);
@@ -5203,7 +4234,7 @@ function fmod_sound_add_sync_point(_sound_ref, _offset, _offset_type, _name)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _sync_point_index
  * @returns {Real}
  */
@@ -5214,9 +4245,9 @@ function fmod_sound_delete_sync_point(_sound_ref, _sync_point_index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _sync_point_index, type: Float64
     if (!is_numeric(_sync_point_index)) show_error($"{_GMFUNCTION_} :: _sync_point_index expected number", true);
@@ -5228,7 +4259,7 @@ function fmod_sound_delete_sync_point(_sound_ref, _sync_point_index)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_music_num_channels(_sound_ref)
@@ -5238,9 +4269,9 @@ function fmod_sound_get_music_num_channels(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_music_num_channels(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5248,7 +4279,7 @@ function fmod_sound_get_music_num_channels(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _channel_index
  * @param {Real} _volume
  * @returns {Real}
@@ -5260,9 +4291,9 @@ function fmod_sound_set_music_channel_volume(_sound_ref, _channel_index, _volume
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _channel_index, type: Float64
     if (!is_numeric(_channel_index)) show_error($"{_GMFUNCTION_} :: _channel_index expected number", true);
@@ -5278,7 +4309,7 @@ function fmod_sound_set_music_channel_volume(_sound_ref, _channel_index, _volume
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _channel_index
  * @returns {Real}
  */
@@ -5289,9 +4320,9 @@ function fmod_sound_get_music_channel_volume(_sound_ref, _channel_index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _channel_index, type: Float64
     if (!is_numeric(_channel_index)) show_error($"{_GMFUNCTION_} :: _channel_index expected number", true);
@@ -5303,7 +4334,7 @@ function fmod_sound_get_music_channel_volume(_sound_ref, _channel_index)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _speed
  * @returns {Real}
  */
@@ -5314,9 +4345,9 @@ function fmod_sound_set_music_speed(_sound_ref, _speed)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _speed, type: Float64
     if (!is_numeric(_speed)) show_error($"{_GMFUNCTION_} :: _speed expected number", true);
@@ -5328,7 +4359,7 @@ function fmod_sound_set_music_speed(_sound_ref, _speed)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_music_speed(_sound_ref)
@@ -5338,9 +4369,9 @@ function fmod_sound_get_music_speed(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_music_speed(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5348,8 +4379,8 @@ function fmod_sound_get_music_speed(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_set_sound_group(_sound_ref, _sound_group_ref)
@@ -5359,13 +4390,13 @@ function fmod_sound_set_sound_group(_sound_ref, _sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_set_sound_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5373,8 +4404,8 @@ function fmod_sound_set_sound_group(_sound_ref, _sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
- * @returns {Struct.FmodSoundGroupRef}
+ * @param {Real} _sound_ref
+ * @returns {Real}
  */
 function fmod_sound_get_sound_group(_sound_ref)
 {
@@ -5383,21 +4414,21 @@ function fmod_sound_get_sound_group(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_sound_get_sound_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_release(_sound_ref)
@@ -5407,9 +4438,9 @@ function fmod_sound_release(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5417,8 +4448,8 @@ function fmod_sound_release(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _sound_ref
+ * @returns {Real}
  */
 function fmod_sound_get_system_object(_sound_ref)
 {
@@ -5427,21 +4458,21 @@ function fmod_sound_get_system_object(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_sound_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Struct.FmodSoundOpenState}
  */
 function fmod_sound_get_open_state(_sound_ref)
@@ -5451,9 +4482,9 @@ function fmod_sound_get_open_state(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -5465,7 +4496,7 @@ function fmod_sound_get_open_state(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {String} _name
  * @param {Real} _index
  * @returns {Struct.FmodSoundTag}
@@ -5477,9 +4508,9 @@ function fmod_sound_get_tag(_sound_ref, _name, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
@@ -5500,7 +4531,7 @@ function fmod_sound_get_tag(_sound_ref, _name, _index)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @returns {Real}
  */
 function fmod_sound_get_num_sub_sounds(_sound_ref)
@@ -5510,9 +4541,9 @@ function fmod_sound_get_num_sub_sounds(_sound_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     var __return_value__ = __fmod_sound_get_num_sub_sounds(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5520,9 +4551,9 @@ function fmod_sound_get_num_sub_sounds(_sound_ref)
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Real} _index
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  */
 function fmod_sound_get_sub_sound(_sound_ref, _index)
 {
@@ -5531,9 +4562,9 @@ function fmod_sound_get_sub_sound(_sound_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -5544,12 +4575,12 @@ function fmod_sound_get_sub_sound(_sound_ref, _index)
     var __return_value__ = __fmod_sound_get_sub_sound(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundRef} _sound_ref
+ * @param {Real} _sound_ref
  * @param {Id.Buffer} _data
  * @param {Real} _length
  * @returns {Real}
@@ -5561,9 +4592,9 @@ function fmod_sound_read_data(_sound_ref, _data, _length)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_ref, type: struct FmodSoundRef
-    if (_sound_ref.__uid != 237087423) show_error($"{_GMFUNCTION_} :: _sound_ref expected FmodSoundRef", true);
-    __FmodSoundRef_encode(_sound_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_ref, type: UInt64
+    if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_ref);
 
     // param: _data, type: Buffer
     if (!buffer_exists(_data)) show_error($"{_GMFUNCTION_} :: _data expected Id.Buffer", true);
@@ -5579,7 +4610,7 @@ function fmod_sound_read_data(_sound_ref, _data, _length)
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @returns {Real}
  */
 function fmod_channel_group_get_num_channels(_channel_group_ref)
@@ -5589,9 +4620,9 @@ function fmod_channel_group_get_num_channels(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __return_value__ = __fmod_channel_group_get_num_channels(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5599,9 +4630,9 @@ function fmod_channel_group_get_num_channels(_channel_group_ref)
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @param {Real} _index
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  */
 function fmod_channel_group_get_channel(_channel_group_ref, _index)
 {
@@ -5610,9 +4641,9 @@ function fmod_channel_group_get_channel(_channel_group_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -5623,15 +4654,15 @@ function fmod_channel_group_get_channel(_channel_group_ref, _index)
     var __return_value__ = __fmod_channel_group_get_channel(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
- * @param {Struct.FmodChannelGroupRef} _child_channel_group_ref
+ * @param {Real} _channel_group_ref
+ * @param {Real} _child_channel_group_ref
  * @param {Real} _propagate_dsp_clock
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  */
 function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_ref, _propagate_dsp_clock)
 {
@@ -5640,13 +4671,13 @@ function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_r
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
-    // param: _child_channel_group_ref, type: struct FmodChannelGroupRef
-    if (_child_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _child_channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_child_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _child_channel_group_ref, type: UInt64
+    if (!is_numeric(_child_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _child_channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _child_channel_group_ref);
 
     // param: _propagate_dsp_clock, type: Float64
     if (!is_numeric(_propagate_dsp_clock)) show_error($"{_GMFUNCTION_} :: _propagate_dsp_clock expected number", true);
@@ -5657,12 +4688,12 @@ function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_r
     var __return_value__ = __fmod_channel_group_add_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPConnectionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @returns {Real}
  */
 function fmod_channel_group_get_num_groups(_channel_group_ref)
@@ -5672,9 +4703,9 @@ function fmod_channel_group_get_num_groups(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __return_value__ = __fmod_channel_group_get_num_groups(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5682,9 +4713,9 @@ function fmod_channel_group_get_num_groups(_channel_group_ref)
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @param {Real} _group_index
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  */
 function fmod_channel_group_get_group(_channel_group_ref, _group_index)
 {
@@ -5693,9 +4724,9 @@ function fmod_channel_group_get_group(_channel_group_ref, _group_index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     // param: _group_index, type: Float64
     if (!is_numeric(_group_index)) show_error($"{_GMFUNCTION_} :: _group_index expected number", true);
@@ -5706,13 +4737,13 @@ function fmod_channel_group_get_group(_channel_group_ref, _group_index)
     var __return_value__ = __fmod_channel_group_get_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
- * @returns {Struct.FmodChannelGroupRef}
+ * @param {Real} _channel_group_ref
+ * @returns {Real}
  */
 function fmod_channel_group_get_parent_group(_channel_group_ref)
 {
@@ -5721,21 +4752,21 @@ function fmod_channel_group_get_parent_group(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_group_get_parent_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodChannelGroupRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @returns {String}
  */
 function fmod_channel_group_get_name(_channel_group_ref)
@@ -5745,9 +4776,9 @@ function fmod_channel_group_get_name(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __return_value__ = __fmod_channel_group_get_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5755,7 +4786,7 @@ function fmod_channel_group_get_name(_channel_group_ref)
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
+ * @param {Real} _channel_group_ref
  * @returns {Real}
  */
 function fmod_channel_group_release(_channel_group_ref)
@@ -5765,9 +4796,9 @@ function fmod_channel_group_release(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __return_value__ = __fmod_channel_group_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5775,8 +4806,8 @@ function fmod_channel_group_release(_channel_group_ref)
 }
 
 /**
- * @param {Struct.FmodChannelGroupRef} _channel_group_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _channel_group_ref
+ * @returns {Real}
  */
 function fmod_channel_group_get_system_object(_channel_group_ref)
 {
@@ -5785,21 +4816,21 @@ function fmod_channel_group_get_system_object(_channel_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_group_ref, type: struct FmodChannelGroupRef
-    if (_channel_group_ref.__uid != 1748069326) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected FmodChannelGroupRef", true);
-    __FmodChannelGroupRef_encode(_channel_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_group_ref, type: UInt64
+    if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_group_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_group_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @param {Real} _max_audible
  * @returns {Real}
  */
@@ -5810,9 +4841,9 @@ function fmod_sound_group_set_max_audible(_sound_group_ref, _max_audible)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     // param: _max_audible, type: Float64
     if (!is_numeric(_max_audible)) show_error($"{_GMFUNCTION_} :: _max_audible expected number", true);
@@ -5824,7 +4855,7 @@ function fmod_sound_group_set_max_audible(_sound_group_ref, _max_audible)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_max_audible(_sound_group_ref)
@@ -5834,9 +4865,9 @@ function fmod_sound_group_get_max_audible(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_max_audible(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5844,7 +4875,7 @@ function fmod_sound_group_get_max_audible(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @param {Real} _behavior
  * @returns {Real}
  */
@@ -5855,9 +4886,9 @@ function fmod_sound_group_set_max_audible_behavior(_sound_group_ref, _behavior)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     // param: _behavior, type: Float64
     if (!is_numeric(_behavior)) show_error($"{_GMFUNCTION_} :: _behavior expected number", true);
@@ -5869,7 +4900,7 @@ function fmod_sound_group_set_max_audible_behavior(_sound_group_ref, _behavior)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_max_audible_behavior(_sound_group_ref)
@@ -5879,9 +4910,9 @@ function fmod_sound_group_get_max_audible_behavior(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_max_audible_behavior(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5889,7 +4920,7 @@ function fmod_sound_group_get_max_audible_behavior(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @param {Real} _speed
  * @returns {Real}
  */
@@ -5900,9 +4931,9 @@ function fmod_sound_group_set_mute_fade_speed(_sound_group_ref, _speed)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     // param: _speed, type: Float64
     if (!is_numeric(_speed)) show_error($"{_GMFUNCTION_} :: _speed expected number", true);
@@ -5914,7 +4945,7 @@ function fmod_sound_group_set_mute_fade_speed(_sound_group_ref, _speed)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_mute_fade_speed(_sound_group_ref)
@@ -5924,9 +4955,9 @@ function fmod_sound_group_get_mute_fade_speed(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_mute_fade_speed(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5934,7 +4965,7 @@ function fmod_sound_group_get_mute_fade_speed(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -5945,9 +4976,9 @@ function fmod_sound_group_set_volume(_sound_group_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -5959,7 +4990,7 @@ function fmod_sound_group_set_volume(_sound_group_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_volume(_sound_group_ref)
@@ -5969,9 +5000,9 @@ function fmod_sound_group_get_volume(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5979,7 +5010,7 @@ function fmod_sound_group_get_volume(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_num_sounds(_sound_group_ref)
@@ -5989,9 +5020,9 @@ function fmod_sound_group_get_num_sounds(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_num_sounds(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -5999,9 +5030,9 @@ function fmod_sound_group_get_num_sounds(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @param {Real} _sound_index
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  */
 function fmod_sound_group_get_sound(_sound_group_ref, _sound_index)
 {
@@ -6010,9 +5041,9 @@ function fmod_sound_group_get_sound(_sound_group_ref, _sound_index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     // param: _sound_index, type: Float64
     if (!is_numeric(_sound_index)) show_error($"{_GMFUNCTION_} :: _sound_index expected number", true);
@@ -6023,12 +5054,12 @@ function fmod_sound_group_get_sound(_sound_group_ref, _sound_index)
     var __return_value__ = __fmod_sound_group_get_sound(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSoundRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_get_num_playing(_sound_group_ref)
@@ -6038,9 +5069,9 @@ function fmod_sound_group_get_num_playing(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_num_playing(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6048,7 +5079,7 @@ function fmod_sound_group_get_num_playing(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_stop(_sound_group_ref)
@@ -6058,9 +5089,9 @@ function fmod_sound_group_stop(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_stop(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6068,7 +5099,7 @@ function fmod_sound_group_stop(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {String}
  */
 function fmod_sound_group_get_name(_sound_group_ref)
@@ -6078,9 +5109,9 @@ function fmod_sound_group_get_name(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_get_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6088,7 +5119,7 @@ function fmod_sound_group_get_name(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
+ * @param {Real} _sound_group_ref
  * @returns {Real}
  */
 function fmod_sound_group_release(_sound_group_ref)
@@ -6098,9 +5129,9 @@ function fmod_sound_group_release(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __return_value__ = __fmod_sound_group_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6108,8 +5139,8 @@ function fmod_sound_group_release(_sound_group_ref)
 }
 
 /**
- * @param {Struct.FmodSoundGroupRef} _sound_group_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _sound_group_ref
+ * @returns {Real}
  */
 function fmod_sound_group_get_system_object(_sound_group_ref)
 {
@@ -6118,21 +5149,21 @@ function fmod_sound_group_get_system_object(_sound_group_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _sound_group_ref, type: struct FmodSoundGroupRef
-    if (_sound_group_ref.__uid != 1515681958) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected FmodSoundGroupRef", true);
-    __FmodSoundGroupRef_encode(_sound_group_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _sound_group_ref, type: UInt64
+    if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _sound_group_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_sound_group_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodReverb3DRef} _reverb_3d_ref
+ * @param {Real} _reverb_3d_ref
  * @param {Real} _active
  * @returns {Real}
  */
@@ -6143,9 +5174,9 @@ function fmod_reverb_3d_set_active(_reverb_3d_ref, _active)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _reverb_3d_ref, type: struct FmodReverb3DRef
-    if (_reverb_3d_ref.__uid != 1101904757) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected FmodReverb3DRef", true);
-    __FmodReverb3DRef_encode(_reverb_3d_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _reverb_3d_ref, type: UInt64
+    if (!is_numeric(_reverb_3d_ref)) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _reverb_3d_ref);
 
     // param: _active, type: Float64
     if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
@@ -6157,7 +5188,7 @@ function fmod_reverb_3d_set_active(_reverb_3d_ref, _active)
 }
 
 /**
- * @param {Struct.FmodReverb3DRef} _reverb_3d_ref
+ * @param {Real} _reverb_3d_ref
  * @returns {Real}
  */
 function fmod_reverb_3d_get_active(_reverb_3d_ref)
@@ -6167,9 +5198,9 @@ function fmod_reverb_3d_get_active(_reverb_3d_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _reverb_3d_ref, type: struct FmodReverb3DRef
-    if (_reverb_3d_ref.__uid != 1101904757) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected FmodReverb3DRef", true);
-    __FmodReverb3DRef_encode(_reverb_3d_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _reverb_3d_ref, type: UInt64
+    if (!is_numeric(_reverb_3d_ref)) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _reverb_3d_ref);
 
     var __return_value__ = __fmod_reverb_3d_get_active(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6177,7 +5208,7 @@ function fmod_reverb_3d_get_active(_reverb_3d_ref)
 }
 
 /**
- * @param {Struct.FmodReverb3DRef} _reverb_3d_ref
+ * @param {Real} _reverb_3d_ref
  * @param {Real} _decay_time
  * @param {Real} _early_delay
  * @param {Real} _late_delay
@@ -6199,9 +5230,9 @@ function fmod_reverb_3d_set_properties(_reverb_3d_ref, _decay_time, _early_delay
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _reverb_3d_ref, type: struct FmodReverb3DRef
-    if (_reverb_3d_ref.__uid != 1101904757) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected FmodReverb3DRef", true);
-    __FmodReverb3DRef_encode(_reverb_3d_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _reverb_3d_ref, type: UInt64
+    if (!is_numeric(_reverb_3d_ref)) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _reverb_3d_ref);
 
     // param: _decay_time, type: Float64
     if (!is_numeric(_decay_time)) show_error($"{_GMFUNCTION_} :: _decay_time expected number", true);
@@ -6257,7 +5288,7 @@ function fmod_reverb_3d_set_properties(_reverb_3d_ref, _decay_time, _early_delay
 }
 
 /**
- * @param {Struct.FmodReverb3DRef} _reverb_3d_ref
+ * @param {Real} _reverb_3d_ref
  * @returns {Real}
  */
 function fmod_reverb_3d_release(_reverb_3d_ref)
@@ -6267,9 +5298,9 @@ function fmod_reverb_3d_release(_reverb_3d_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _reverb_3d_ref, type: struct FmodReverb3DRef
-    if (_reverb_3d_ref.__uid != 1101904757) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected FmodReverb3DRef", true);
-    __FmodReverb3DRef_encode(_reverb_3d_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _reverb_3d_ref, type: UInt64
+    if (!is_numeric(_reverb_3d_ref)) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _reverb_3d_ref);
 
     var __return_value__ = __fmod_reverb_3d_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6277,7 +5308,7 @@ function fmod_reverb_3d_release(_reverb_3d_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_is_playing(_channel_control_ref)
@@ -6287,9 +5318,9 @@ function fmod_channel_control_is_playing(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_is_playing(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6297,7 +5328,7 @@ function fmod_channel_control_is_playing(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_stop(_channel_control_ref)
@@ -6307,9 +5338,9 @@ function fmod_channel_control_stop(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_stop(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6317,7 +5348,7 @@ function fmod_channel_control_stop(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _paused
  * @returns {Real}
  */
@@ -6328,9 +5359,9 @@ function fmod_channel_control_set_paused(_channel_control_ref, _paused)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    //if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
@@ -6342,7 +5373,7 @@ function fmod_channel_control_set_paused(_channel_control_ref, _paused)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_paused(_channel_control_ref)
@@ -6352,9 +5383,9 @@ function fmod_channel_control_get_paused(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6362,7 +5393,7 @@ function fmod_channel_control_get_paused(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _mode
  * @returns {Real}
  */
@@ -6373,9 +5404,9 @@ function fmod_channel_control_set_mode(_channel_control_ref, _mode)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _mode, type: Float64
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
@@ -6387,7 +5418,7 @@ function fmod_channel_control_set_mode(_channel_control_ref, _mode)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_mode(_channel_control_ref)
@@ -6397,9 +5428,9 @@ function fmod_channel_control_get_mode(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_mode(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6407,7 +5438,7 @@ function fmod_channel_control_get_mode(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _pitch
  * @returns {Real}
  */
@@ -6418,9 +5449,9 @@ function fmod_channel_control_set_pitch(_channel_control_ref, _pitch)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _pitch, type: Float64
     if (!is_numeric(_pitch)) show_error($"{_GMFUNCTION_} :: _pitch expected number", true);
@@ -6432,7 +5463,7 @@ function fmod_channel_control_set_pitch(_channel_control_ref, _pitch)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_pitch(_channel_control_ref)
@@ -6442,9 +5473,9 @@ function fmod_channel_control_get_pitch(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_pitch(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6452,7 +5483,7 @@ function fmod_channel_control_get_pitch(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_audibility(_channel_control_ref)
@@ -6462,9 +5493,9 @@ function fmod_channel_control_get_audibility(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_audibility(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6472,7 +5503,7 @@ function fmod_channel_control_get_audibility(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -6483,9 +5514,9 @@ function fmod_channel_control_set_volume(_channel_control_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -6497,7 +5528,7 @@ function fmod_channel_control_set_volume(_channel_control_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_volume(_channel_control_ref)
@@ -6507,9 +5538,9 @@ function fmod_channel_control_get_volume(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6517,7 +5548,7 @@ function fmod_channel_control_get_volume(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _ramp
  * @returns {Real}
  */
@@ -6528,9 +5559,9 @@ function fmod_channel_control_set_volume_ramp(_channel_control_ref, _ramp)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _ramp, type: Float64
     if (!is_numeric(_ramp)) show_error($"{_GMFUNCTION_} :: _ramp expected number", true);
@@ -6542,7 +5573,7 @@ function fmod_channel_control_set_volume_ramp(_channel_control_ref, _ramp)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_volume_ramp(_channel_control_ref)
@@ -6552,9 +5583,9 @@ function fmod_channel_control_get_volume_ramp(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_volume_ramp(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6562,7 +5593,7 @@ function fmod_channel_control_get_volume_ramp(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _mute
  * @returns {Real}
  */
@@ -6573,9 +5604,9 @@ function fmod_channel_control_set_mute(_channel_control_ref, _mute)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _mute, type: Float64
     if (!is_numeric(_mute)) show_error($"{_GMFUNCTION_} :: _mute expected number", true);
@@ -6587,7 +5618,7 @@ function fmod_channel_control_set_mute(_channel_control_ref, _mute)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_mute(_channel_control_ref)
@@ -6597,9 +5628,9 @@ function fmod_channel_control_get_mute(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_mute(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6607,7 +5638,7 @@ function fmod_channel_control_get_mute(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _level
  * @returns {Real}
  */
@@ -6618,9 +5649,9 @@ function fmod_channel_control_set_3d_doppler_level(_channel_control_ref, _level)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _level, type: Float64
     if (!is_numeric(_level)) show_error($"{_GMFUNCTION_} :: _level expected number", true);
@@ -6632,7 +5663,7 @@ function fmod_channel_control_set_3d_doppler_level(_channel_control_ref, _level)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_3d_doppler_level(_channel_control_ref)
@@ -6642,9 +5673,9 @@ function fmod_channel_control_get_3d_doppler_level(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_3d_doppler_level(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6652,7 +5683,7 @@ function fmod_channel_control_get_3d_doppler_level(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _level
  * @returns {Real}
  */
@@ -6663,9 +5694,9 @@ function fmod_channel_control_set_3d_level(_channel_control_ref, _level)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _level, type: Float64
     if (!is_numeric(_level)) show_error($"{_GMFUNCTION_} :: _level expected number", true);
@@ -6677,7 +5708,7 @@ function fmod_channel_control_set_3d_level(_channel_control_ref, _level)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_3d_level(_channel_control_ref)
@@ -6687,9 +5718,9 @@ function fmod_channel_control_get_3d_level(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_3d_level(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6697,7 +5728,7 @@ function fmod_channel_control_get_3d_level(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _min_dist
  * @param {Real} _max_dist
  * @returns {Real}
@@ -6709,9 +5740,9 @@ function fmod_channel_control_set_3d_min_max_distance(_channel_control_ref, _min
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _min_dist, type: Float64
     if (!is_numeric(_min_dist)) show_error($"{_GMFUNCTION_} :: _min_dist expected number", true);
@@ -6727,7 +5758,7 @@ function fmod_channel_control_set_3d_min_max_distance(_channel_control_ref, _min
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _inside_cone_angle
  * @param {Real} _outside_cone_angle
  * @param {Real} _outside_volume
@@ -6740,9 +5771,9 @@ function fmod_channel_control_set_3d_cone_settings(_channel_control_ref, _inside
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _inside_cone_angle, type: Float64
     if (!is_numeric(_inside_cone_angle)) show_error($"{_GMFUNCTION_} :: _inside_cone_angle expected number", true);
@@ -6762,7 +5793,7 @@ function fmod_channel_control_set_3d_cone_settings(_channel_control_ref, _inside
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _direct_occlusion
  * @param {Real} _reverb_occlusion
  * @returns {Real}
@@ -6774,9 +5805,9 @@ function fmod_channel_control_set_3d_occlusion(_channel_control_ref, _direct_occ
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _direct_occlusion, type: Float64
     if (!is_numeric(_direct_occlusion)) show_error($"{_GMFUNCTION_} :: _direct_occlusion expected number", true);
@@ -6792,7 +5823,7 @@ function fmod_channel_control_set_3d_occlusion(_channel_control_ref, _direct_occ
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Struct.FmodVec3} _position
  * @param {Struct.FmodVec3} _velocity
  * @returns {Real}
@@ -6804,9 +5835,9 @@ function fmod_channel_control_set_3d_attributes(_channel_control_ref, _position,
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    //if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _position, type: struct FmodVec3
     if (_position.__uid != 266577632) show_error($"{_GMFUNCTION_} :: _position expected FmodVec3", true);
@@ -6822,7 +5853,7 @@ function fmod_channel_control_set_3d_attributes(_channel_control_ref, _position,
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Struct.FmodChannelControl3DAttributes}
  */
 function fmod_channel_control_get_3d_attributes(_channel_control_ref)
@@ -6832,9 +5863,9 @@ function fmod_channel_control_get_3d_attributes(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -6846,7 +5877,7 @@ function fmod_channel_control_get_3d_attributes(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _angle
  * @returns {Real}
  */
@@ -6857,9 +5888,9 @@ function fmod_channel_control_set_3d_spread(_channel_control_ref, _angle)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _angle, type: Float64
     if (!is_numeric(_angle)) show_error($"{_GMFUNCTION_} :: _angle expected number", true);
@@ -6871,7 +5902,7 @@ function fmod_channel_control_set_3d_spread(_channel_control_ref, _angle)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_3d_spread(_channel_control_ref)
@@ -6881,9 +5912,9 @@ function fmod_channel_control_get_3d_spread(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_3d_spread(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -6891,7 +5922,7 @@ function fmod_channel_control_get_3d_spread(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _custom
  * @param {Real} _custom_level
  * @param {Real} _center_freq
@@ -6904,9 +5935,9 @@ function fmod_channel_control_set_3d_distance_filter(_channel_control_ref, _cust
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _custom, type: Float64
     if (!is_numeric(_custom)) show_error($"{_GMFUNCTION_} :: _custom expected number", true);
@@ -6926,7 +5957,7 @@ function fmod_channel_control_set_3d_distance_filter(_channel_control_ref, _cust
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _pan
  * @returns {Real}
  */
@@ -6937,9 +5968,9 @@ function fmod_channel_control_set_pan(_channel_control_ref, _pan)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _pan, type: Float64
     if (!is_numeric(_pan)) show_error($"{_GMFUNCTION_} :: _pan expected number", true);
@@ -6951,7 +5982,7 @@ function fmod_channel_control_set_pan(_channel_control_ref, _pan)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _front_left
  * @param {Real} _front_right
  * @param {Real} _center
@@ -6969,9 +6000,9 @@ function fmod_channel_control_set_mix_levels_output(_channel_control_ref, _front
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _front_left, type: Float64
     if (!is_numeric(_front_left)) show_error($"{_GMFUNCTION_} :: _front_left expected number", true);
@@ -7011,7 +6042,7 @@ function fmod_channel_control_set_mix_levels_output(_channel_control_ref, _front
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _reverb_instance
  * @param {Real} _wet
  * @returns {Real}
@@ -7023,9 +6054,9 @@ function fmod_channel_control_set_reverb_properties(_channel_control_ref, _rever
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _reverb_instance, type: Float64
     if (!is_numeric(_reverb_instance)) show_error($"{_GMFUNCTION_} :: _reverb_instance expected number", true);
@@ -7041,7 +6072,7 @@ function fmod_channel_control_set_reverb_properties(_channel_control_ref, _rever
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _reverb_instance
  * @returns {Real}
  */
@@ -7052,9 +6083,9 @@ function fmod_channel_control_get_reverb_properties(_channel_control_ref, _rever
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _reverb_instance, type: Float64
     if (!is_numeric(_reverb_instance)) show_error($"{_GMFUNCTION_} :: _reverb_instance expected number", true);
@@ -7066,7 +6097,7 @@ function fmod_channel_control_get_reverb_properties(_channel_control_ref, _rever
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _gain
  * @returns {Real}
  */
@@ -7077,9 +6108,9 @@ function fmod_channel_control_set_low_pass_gain(_channel_control_ref, _gain)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _gain, type: Float64
     if (!is_numeric(_gain)) show_error($"{_GMFUNCTION_} :: _gain expected number", true);
@@ -7091,7 +6122,7 @@ function fmod_channel_control_set_low_pass_gain(_channel_control_ref, _gain)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_low_pass_gain(_channel_control_ref)
@@ -7101,9 +6132,9 @@ function fmod_channel_control_get_low_pass_gain(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_low_pass_gain(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7111,9 +6142,9 @@ function fmod_channel_control_get_low_pass_gain(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _dsp_chain_offset
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_channel_control_add_dsp(_channel_control_ref, _dsp_chain_offset, _dsp_ref)
@@ -7123,17 +6154,17 @@ function fmod_channel_control_add_dsp(_channel_control_ref, _dsp_chain_offset, _
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _dsp_chain_offset, type: Float64
     if (!is_numeric(_dsp_chain_offset)) show_error($"{_GMFUNCTION_} :: _dsp_chain_offset expected number", true);
     buffer_write(__args_buffer, buffer_f64, _dsp_chain_offset);
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_channel_control_add_dsp(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7141,8 +6172,8 @@ function fmod_channel_control_add_dsp(_channel_control_ref, _dsp_chain_offset, _
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _channel_control_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_channel_control_remove_dsp(_channel_control_ref, _dsp_ref)
@@ -7152,13 +6183,13 @@ function fmod_channel_control_remove_dsp(_channel_control_ref, _dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_channel_control_remove_dsp(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7166,7 +6197,7 @@ function fmod_channel_control_remove_dsp(_channel_control_ref, _dsp_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_num_dsps(_channel_control_ref)
@@ -7176,9 +6207,9 @@ function fmod_channel_control_get_num_dsps(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __return_value__ = __fmod_channel_control_get_num_dsps(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7186,9 +6217,9 @@ function fmod_channel_control_get_num_dsps(_channel_control_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
+ * @param {Real} _channel_control_ref
  * @param {Real} _index
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  */
 function fmod_channel_control_get_dsp(_channel_control_ref, _index)
 {
@@ -7197,9 +6228,9 @@ function fmod_channel_control_get_dsp(_channel_control_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7210,13 +6241,13 @@ function fmod_channel_control_get_dsp(_channel_control_ref, _index)
     var __return_value__ = __fmod_channel_control_get_dsp(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _channel_control_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _chain_index
  * @returns {Real}
  */
@@ -7227,13 +6258,13 @@ function fmod_channel_control_set_dsp_index(_channel_control_ref, _dsp_ref, _cha
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _chain_index, type: Float64
     if (!is_numeric(_chain_index)) show_error($"{_GMFUNCTION_} :: _chain_index expected number", true);
@@ -7245,8 +6276,8 @@ function fmod_channel_control_set_dsp_index(_channel_control_ref, _dsp_ref, _cha
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _channel_control_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_channel_control_get_dsp_index(_channel_control_ref, _dsp_ref)
@@ -7256,13 +6287,13 @@ function fmod_channel_control_get_dsp_index(_channel_control_ref, _dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_channel_control_get_dsp_index(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7270,8 +6301,8 @@ function fmod_channel_control_get_dsp_index(_channel_control_ref, _dsp_ref)
 }
 
 /**
- * @param {Struct.FmodChannelControlRef} _channel_control_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _channel_control_ref
+ * @returns {Real}
  */
 function fmod_channel_control_get_system_object(_channel_control_ref)
 {
@@ -7280,21 +6311,21 @@ function fmod_channel_control_get_system_object(_channel_control_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_control_ref, type: struct FmodChannelControlRef
-    if (_channel_control_ref.__uid != 1336959156) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected FmodChannelControlRef", true);
-    __FmodChannelControlRef_encode(_channel_control_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_control_ref, type: UInt64
+    if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_control_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_channel_control_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Struct.FmodDelay}
  */
 function fmod_channel_control_get_delay(_channel_ref)
@@ -7304,9 +6335,9 @@ function fmod_channel_control_get_delay(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -7318,7 +6349,7 @@ function fmod_channel_control_get_delay(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Real} _dspclock_start
  * @param {Real} _dspclock_end
  * @param {Real} _stop_channels
@@ -7331,9 +6362,9 @@ function fmod_channel_control_set_delay(_channel_ref, _dspclock_start, _dspclock
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _dspclock_start, type: Float64
     if (!is_numeric(_dspclock_start)) show_error($"{_GMFUNCTION_} :: _dspclock_start expected number", true);
@@ -7353,7 +6384,7 @@ function fmod_channel_control_set_delay(_channel_ref, _dspclock_start, _dspclock
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @returns {Struct.FmodDSPClock}
  */
 function fmod_channel_control_get_dsp_clock(_channel_ref)
@@ -7363,9 +6394,9 @@ function fmod_channel_control_get_dsp_clock(_channel_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -7377,7 +6408,7 @@ function fmod_channel_control_get_dsp_clock(_channel_ref)
 }
 
 /**
- * @param {Struct.FmodChannelRef} _channel_ref
+ * @param {Real} _channel_ref
  * @param {Function} _callback
  * @returns {Real}
  */
@@ -7390,9 +6421,9 @@ function fmod_channel_control_set_callback(_channel_ref, _callback)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _channel_ref, type: struct FmodChannelRef
-    if (_channel_ref.__uid != 287688359) show_error($"{_GMFUNCTION_} :: _channel_ref expected FmodChannelRef", true);
-    __FmodChannelRef_encode(_channel_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _channel_ref, type: UInt64
+    if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _channel_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -7413,10 +6444,10 @@ function fmod_channel_control_set_callback(_channel_ref, _callback)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
- * @param {Struct.FmodDSPRef} _dsp_input_ref
+ * @param {Real} _dsp_ref
+ * @param {Real} _dsp_input_ref
  * @param {Real} _dsp_connection_type
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  */
 function fmod_dsp_add_input(_dsp_ref, _dsp_input_ref, _dsp_connection_type)
 {
@@ -7425,13 +6456,13 @@ function fmod_dsp_add_input(_dsp_ref, _dsp_input_ref, _dsp_connection_type)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
-    // param: _dsp_input_ref, type: struct FmodDSPRef
-    if (_dsp_input_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_input_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_input_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_input_ref, type: UInt64
+    if (!is_numeric(_dsp_input_ref)) show_error($"{_GMFUNCTION_} :: _dsp_input_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_input_ref);
 
     // param: _dsp_connection_type, type: Float64
     if (!is_numeric(_dsp_connection_type)) show_error($"{_GMFUNCTION_} :: _dsp_connection_type expected number", true);
@@ -7442,12 +6473,12 @@ function fmod_dsp_add_input(_dsp_ref, _dsp_input_ref, _dsp_connection_type)
     var __return_value__ = __fmod_dsp_add_input(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPConnectionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_num_inputs(_dsp_ref)
@@ -7457,9 +6488,9 @@ function fmod_dsp_get_num_inputs(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_num_inputs(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7467,7 +6498,7 @@ function fmod_dsp_get_num_inputs(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_num_outputs(_dsp_ref)
@@ -7477,9 +6508,9 @@ function fmod_dsp_get_num_outputs(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_num_outputs(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7487,7 +6518,7 @@ function fmod_dsp_get_num_outputs(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _inputs
  * @param {Real} _outputs
  * @returns {Real}
@@ -7499,9 +6530,9 @@ function fmod_dsp_disconnect_all(_dsp_ref, _inputs, _outputs)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _inputs, type: Float64
     if (!is_numeric(_inputs)) show_error($"{_GMFUNCTION_} :: _inputs expected number", true);
@@ -7517,7 +6548,7 @@ function fmod_dsp_disconnect_all(_dsp_ref, _inputs, _outputs)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_num_parameters(_dsp_ref)
@@ -7527,9 +6558,9 @@ function fmod_dsp_get_num_parameters(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_num_parameters(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7537,7 +6568,7 @@ function fmod_dsp_get_num_parameters(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
  */
@@ -7548,9 +6579,9 @@ function fmod_dsp_set_parameter_float(_dsp_ref, _index, _value)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7566,7 +6597,7 @@ function fmod_dsp_set_parameter_float(_dsp_ref, _index, _value)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @returns {Real}
  */
@@ -7577,9 +6608,9 @@ function fmod_dsp_get_parameter_float(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7591,7 +6622,7 @@ function fmod_dsp_get_parameter_float(_dsp_ref, _index)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
  */
@@ -7602,9 +6633,9 @@ function fmod_dsp_set_parameter_int(_dsp_ref, _index, _value)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7620,7 +6651,7 @@ function fmod_dsp_set_parameter_int(_dsp_ref, _index, _value)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @returns {Real}
  */
@@ -7631,9 +6662,9 @@ function fmod_dsp_get_parameter_int(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7645,7 +6676,7 @@ function fmod_dsp_get_parameter_int(_dsp_ref, _index)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @param {Real} _value
  */
@@ -7656,9 +6687,9 @@ function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7674,7 +6705,7 @@ function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @returns {Real}
  */
@@ -7685,9 +6716,9 @@ function fmod_dsp_get_parameter_bool(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7699,7 +6730,7 @@ function fmod_dsp_get_parameter_bool(_dsp_ref, _index)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  */
 function fmod_dsp_release(_dsp_ref)
 {
@@ -7708,9 +6739,9 @@ function fmod_dsp_release(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7718,8 +6749,8 @@ function fmod_dsp_release(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} _dsp_ref
+ * @returns {Real}
  */
 function fmod_dsp_get_system_object(_dsp_ref)
 {
@@ -7728,23 +6759,23 @@ function fmod_dsp_get_system_object(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_dsp_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  */
 function fmod_dsp_get_input(_dsp_ref, _index)
 {
@@ -7753,9 +6784,9 @@ function fmod_dsp_get_input(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7766,14 +6797,14 @@ function fmod_dsp_get_input(_dsp_ref, _index)
     var __return_value__ = __fmod_dsp_get_input(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  */
 function fmod_dsp_get_output(_dsp_ref, _index)
 {
@@ -7782,9 +6813,9 @@ function fmod_dsp_get_output(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7795,13 +6826,13 @@ function fmod_dsp_get_output(_dsp_ref, _index)
     var __return_value__ = __fmod_dsp_get_output(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPConnectionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
- * @param {Struct.FmodDSPRef} _target_dsp
+ * @param {Real} _dsp_ref
+ * @param {Real} _target_dsp
  */
 function fmod_dsp_disconnect_from(_dsp_ref, _target_dsp)
 {
@@ -7810,13 +6841,13 @@ function fmod_dsp_disconnect_from(_dsp_ref, _target_dsp)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
-    // param: _target_dsp, type: struct FmodDSPRef
-    if (_target_dsp.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _target_dsp expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_target_dsp, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _target_dsp, type: UInt64
+    if (!is_numeric(_target_dsp)) show_error($"{_GMFUNCTION_} :: _target_dsp expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _target_dsp);
 
     var __return_value__ = __fmod_dsp_disconnect_from(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -7824,7 +6855,7 @@ function fmod_dsp_disconnect_from(_dsp_ref, _target_dsp)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _data_type
  * @returns {Real}
  */
@@ -7835,9 +6866,9 @@ function fmod_dsp_get_data_parameter_index(_dsp_ref, _data_type)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _data_type, type: Float64
     if (!is_numeric(_data_type)) show_error($"{_GMFUNCTION_} :: _data_type expected number", true);
@@ -7849,7 +6880,7 @@ function fmod_dsp_get_data_parameter_index(_dsp_ref, _data_type)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @param {Any} _buffer
  * @param {Real} _length
@@ -7861,9 +6892,9 @@ function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7883,7 +6914,7 @@ function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @param {Any} _buffer
  * @param {Real} _length
@@ -7896,9 +6927,9 @@ function fmod_dsp_get_parameter_data(_dsp_ref, _index, _buffer, _length)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7918,7 +6949,7 @@ function fmod_dsp_get_parameter_data(_dsp_ref, _index, _buffer, _length)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _index
  * @returns {Struct.FmodDSPParameterInfo}
  */
@@ -7929,9 +6960,9 @@ function fmod_dsp_get_parameter_info(_dsp_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -7947,7 +6978,7 @@ function fmod_dsp_get_parameter_info(_dsp_ref, _index)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _channel_mask
  * @param {Real} _num_channels
  */
@@ -7958,9 +6989,9 @@ function fmod_dsp_set_channel_format(_dsp_ref, _channel_mask, _num_channels)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _channel_mask, type: Float64
     if (!is_numeric(_channel_mask)) show_error($"{_GMFUNCTION_} :: _channel_mask expected number", true);
@@ -7976,7 +7007,7 @@ function fmod_dsp_set_channel_format(_dsp_ref, _channel_mask, _num_channels)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPChannelFormat}
  */
 function fmod_dsp_get_channel_format(_dsp_ref)
@@ -7986,9 +7017,9 @@ function fmod_dsp_get_channel_format(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8000,7 +7031,7 @@ function fmod_dsp_get_channel_format(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPChannelFormat}
  */
 function fmod_dsp_get_output_channel_format(_dsp_ref)
@@ -8010,9 +7041,9 @@ function fmod_dsp_get_output_channel_format(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8024,7 +7055,7 @@ function fmod_dsp_get_output_channel_format(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPMeteringInfo}
  */
 function fmod_dsp_get_metering_info(_dsp_ref)
@@ -8034,9 +7065,9 @@ function fmod_dsp_get_metering_info(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8048,7 +7079,7 @@ function fmod_dsp_get_metering_info(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _input_enabled
  * @param {Real} _output_enabled
  */
@@ -8059,9 +7090,9 @@ function fmod_dsp_set_metering_enabled(_dsp_ref, _input_enabled, _output_enabled
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _input_enabled, type: Float64
     if (!is_numeric(_input_enabled)) show_error($"{_GMFUNCTION_} :: _input_enabled expected number", true);
@@ -8077,7 +7108,7 @@ function fmod_dsp_set_metering_enabled(_dsp_ref, _input_enabled, _output_enabled
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPMeteringEnabled}
  */
 function fmod_dsp_get_metering_enabled(_dsp_ref)
@@ -8087,9 +7118,9 @@ function fmod_dsp_get_metering_enabled(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8101,7 +7132,7 @@ function fmod_dsp_get_metering_enabled(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _active
  */
 function fmod_dsp_set_active(_dsp_ref, _active)
@@ -8111,9 +7142,9 @@ function fmod_dsp_set_active(_dsp_ref, _active)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _active, type: Float64
     if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
@@ -8125,7 +7156,7 @@ function fmod_dsp_set_active(_dsp_ref, _active)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_active(_dsp_ref)
@@ -8135,9 +7166,9 @@ function fmod_dsp_get_active(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_active(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8145,7 +7176,7 @@ function fmod_dsp_get_active(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _bypass
  */
 function fmod_dsp_set_bypass(_dsp_ref, _bypass)
@@ -8155,9 +7186,9 @@ function fmod_dsp_set_bypass(_dsp_ref, _bypass)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _bypass, type: Float64
     if (!is_numeric(_bypass)) show_error($"{_GMFUNCTION_} :: _bypass expected number", true);
@@ -8169,7 +7200,7 @@ function fmod_dsp_set_bypass(_dsp_ref, _bypass)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_bypass(_dsp_ref)
@@ -8179,9 +7210,9 @@ function fmod_dsp_get_bypass(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_bypass(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8189,7 +7220,7 @@ function fmod_dsp_get_bypass(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _prewet
  * @param {Real} _postwet
  * @param {Real} _dry
@@ -8201,9 +7232,9 @@ function fmod_dsp_set_wet_dry_mix(_dsp_ref, _prewet, _postwet, _dry)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _prewet, type: Float64
     if (!is_numeric(_prewet)) show_error($"{_GMFUNCTION_} :: _prewet expected number", true);
@@ -8223,7 +7254,7 @@ function fmod_dsp_set_wet_dry_mix(_dsp_ref, _prewet, _postwet, _dry)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPWetDryMix}
  */
 function fmod_dsp_get_wet_dry_mix(_dsp_ref)
@@ -8233,9 +7264,9 @@ function fmod_dsp_get_wet_dry_mix(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8247,7 +7278,7 @@ function fmod_dsp_get_wet_dry_mix(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_idle(_dsp_ref)
@@ -8257,9 +7288,9 @@ function fmod_dsp_get_idle(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_idle(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8267,7 +7298,7 @@ function fmod_dsp_get_idle(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  */
 function fmod_dsp_reset(_dsp_ref)
 {
@@ -8276,9 +7307,9 @@ function fmod_dsp_reset(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_reset(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8286,7 +7317,7 @@ function fmod_dsp_reset(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_type(_dsp_ref)
@@ -8296,9 +7327,9 @@ function fmod_dsp_get_type(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_type(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8306,7 +7337,7 @@ function fmod_dsp_get_type(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPInfo}
  */
 function fmod_dsp_get_info(_dsp_ref)
@@ -8316,9 +7347,9 @@ function fmod_dsp_get_info(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8330,7 +7361,7 @@ function fmod_dsp_get_info(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Struct.FmodDSPCPUUsage}
  */
 function fmod_dsp_get_cpu_usage(_dsp_ref)
@@ -8340,9 +7371,9 @@ function fmod_dsp_get_cpu_usage(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -8354,7 +7385,7 @@ function fmod_dsp_get_cpu_usage(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Real} _user_data
  * @returns {Real}
  */
@@ -8365,9 +7396,9 @@ function fmod_dsp_set_user_data(_dsp_ref, _user_data)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
@@ -8379,7 +7410,7 @@ function fmod_dsp_set_user_data(_dsp_ref, _user_data)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @returns {Real}
  */
 function fmod_dsp_get_user_data(_dsp_ref)
@@ -8389,9 +7420,9 @@ function fmod_dsp_get_user_data(_dsp_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     var __return_value__ = __fmod_dsp_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8399,7 +7430,7 @@ function fmod_dsp_get_user_data(_dsp_ref)
 }
 
 /**
- * @param {Struct.FmodDSPRef} _dsp_ref
+ * @param {Real} _dsp_ref
  * @param {Function} _callback
  * @returns {Real}
  */
@@ -8412,9 +7443,9 @@ function fmod_dsp_set_callback(_dsp_ref, _callback)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _dsp_ref, type: struct FmodDSPRef
-    if (_dsp_ref.__uid != 4021659635) show_error($"{_GMFUNCTION_} :: _dsp_ref expected FmodDSPRef", true);
-    __FmodDSPRef_encode(_dsp_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _dsp_ref, type: UInt64
+    if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _dsp_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -8435,7 +7466,7 @@ function fmod_dsp_set_callback(_dsp_ref, _callback)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -8446,9 +7477,9 @@ function fmod_dsp_connection_set_mix(_connection_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -8460,7 +7491,7 @@ function fmod_dsp_connection_set_mix(_connection_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @returns {Real}
  */
 function fmod_dsp_connection_get_mix(_connection_ref)
@@ -8470,9 +7501,9 @@ function fmod_dsp_connection_get_mix(_connection_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     var __return_value__ = __fmod_dsp_connection_get_mix(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8480,7 +7511,7 @@ function fmod_dsp_connection_get_mix(_connection_ref)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @param {Real} _matrix
  * @param {Real} _out_channels
  * @param {Real} _in_channels
@@ -8494,9 +7525,9 @@ function fmod_dsp_connection_set_mix_matrix(_connection_ref, _matrix, _out_chann
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     // param: _matrix, type: Float64
     if (!is_numeric(_matrix)) show_error($"{_GMFUNCTION_} :: _matrix expected number", true);
@@ -8520,7 +7551,7 @@ function fmod_dsp_connection_set_mix_matrix(_connection_ref, _matrix, _out_chann
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @param {Real} _in_channel_hop
  * @returns {Struct.FmodDSPMixMatrix}
  */
@@ -8531,9 +7562,9 @@ function fmod_dsp_connection_get_mix_matrix(_connection_ref, _in_channel_hop)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     // param: _in_channel_hop, type: Float64
     if (!is_numeric(_in_channel_hop)) show_error($"{_GMFUNCTION_} :: _in_channel_hop expected number", true);
@@ -8549,8 +7580,8 @@ function fmod_dsp_connection_get_mix_matrix(_connection_ref, _in_channel_hop)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
- * @returns {Struct.FmodDSPRef}
+ * @param {Real} _connection_ref
+ * @returns {Real}
  */
 function fmod_dsp_connection_get_input(_connection_ref)
 {
@@ -8559,22 +7590,22 @@ function fmod_dsp_connection_get_input(_connection_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_dsp_connection_get_input(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
- * @returns {Struct.FmodDSPRef}
+ * @param {Real} _connection_ref
+ * @returns {Real}
  */
 function fmod_dsp_connection_get_output(_connection_ref)
 {
@@ -8583,21 +7614,21 @@ function fmod_dsp_connection_get_output(_connection_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_dsp_connection_get_output(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodDSPRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @returns {Real}
  */
 function fmod_dsp_connection_get_type(_connection_ref)
@@ -8607,9 +7638,9 @@ function fmod_dsp_connection_get_type(_connection_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     var __return_value__ = __fmod_dsp_connection_get_type(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8617,7 +7648,7 @@ function fmod_dsp_connection_get_type(_connection_ref)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @param {Real} _user_data
  * @returns {Real}
  */
@@ -8628,9 +7659,9 @@ function fmod_dsp_connection_set_user_data(_connection_ref, _user_data)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
@@ -8642,7 +7673,7 @@ function fmod_dsp_connection_set_user_data(_connection_ref, _user_data)
 }
 
 /**
- * @param {Struct.FmodDSPConnectionRef} _connection_ref
+ * @param {Real} _connection_ref
  * @returns {Real}
  */
 function fmod_dsp_connection_get_user_data(_connection_ref)
@@ -8652,9 +7683,9 @@ function fmod_dsp_connection_get_user_data(_connection_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _connection_ref, type: struct FmodDSPConnectionRef
-    if (_connection_ref.__uid != 67812655) show_error($"{_GMFUNCTION_} :: _connection_ref expected FmodDSPConnectionRef", true);
-    __FmodDSPConnectionRef_encode(_connection_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _connection_ref, type: UInt64
+    if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _connection_ref);
 
     var __return_value__ = __fmod_dsp_connection_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8662,7 +7693,7 @@ function fmod_dsp_connection_get_user_data(_connection_ref)
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {Real} _polygon_index
  * @param {Real} _direct_occlusion
  * @param {Real} _reverb_occlusion
@@ -8676,9 +7707,9 @@ function fmod_geometry_set_polygon_attributes(_geometry_ref, _polygon_index, _di
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _polygon_index, type: Float64
     if (!is_numeric(_polygon_index)) show_error($"{_GMFUNCTION_} :: _polygon_index expected number", true);
@@ -8702,7 +7733,7 @@ function fmod_geometry_set_polygon_attributes(_geometry_ref, _polygon_index, _di
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {Real} _polygon_index
  * @returns {Real}
  */
@@ -8713,9 +7744,9 @@ function fmod_geometry_get_polygon_num_vertices(_geometry_ref, _polygon_index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _polygon_index, type: Float64
     if (!is_numeric(_polygon_index)) show_error($"{_GMFUNCTION_} :: _polygon_index expected number", true);
@@ -8727,7 +7758,7 @@ function fmod_geometry_get_polygon_num_vertices(_geometry_ref, _polygon_index)
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {Real} _x
  * @param {Real} _y
  * @param {Real} _z
@@ -8740,9 +7771,9 @@ function fmod_geometry_set_position(_geometry_ref, _x, _y, _z)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _x, type: Float64
     if (!is_numeric(_x)) show_error($"{_GMFUNCTION_} :: _x expected number", true);
@@ -8762,7 +7793,7 @@ function fmod_geometry_set_position(_geometry_ref, _x, _y, _z)
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {Real} _forward_x
  * @param {Real} _forward_y
  * @param {Real} _forward_z
@@ -8778,9 +7809,9 @@ function fmod_geometry_set_rotation(_geometry_ref, _forward_x, _forward_y, _forw
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _forward_x, type: Float64
     if (!is_numeric(_forward_x)) show_error($"{_GMFUNCTION_} :: _forward_x expected number", true);
@@ -8812,7 +7843,7 @@ function fmod_geometry_set_rotation(_geometry_ref, _forward_x, _forward_y, _forw
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {Real} _scale_x
  * @param {Real} _scale_y
  * @param {Real} _scale_z
@@ -8825,9 +7856,9 @@ function fmod_geometry_set_scale(_geometry_ref, _scale_x, _scale_y, _scale_z)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _scale_x, type: Float64
     if (!is_numeric(_scale_x)) show_error($"{_GMFUNCTION_} :: _scale_x expected number", true);
@@ -8847,7 +7878,7 @@ function fmod_geometry_set_scale(_geometry_ref, _scale_x, _scale_y, _scale_z)
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @param {String} _filename
  * @returns {Real}
  */
@@ -8858,9 +7889,9 @@ function fmod_geometry_save(_geometry_ref, _filename)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     // param: _filename, type: String
     if (!is_string(_filename)) show_error($"{_GMFUNCTION_} :: _filename expected string", true);
@@ -8873,7 +7904,7 @@ function fmod_geometry_save(_geometry_ref, _filename)
 }
 
 /**
- * @param {Struct.FmodGeometryRef} _geometry_ref
+ * @param {Real} _geometry_ref
  * @returns {Real}
  */
 function fmod_geometry_release(_geometry_ref)
@@ -8883,9 +7914,9 @@ function fmod_geometry_release(_geometry_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _geometry_ref, type: struct FmodGeometryRef
-    if (_geometry_ref.__uid != 55360464) show_error($"{_GMFUNCTION_} :: _geometry_ref expected FmodGeometryRef", true);
-    __FmodGeometryRef_encode(_geometry_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _geometry_ref, type: UInt64
+    if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _geometry_ref);
 
     var __return_value__ = __fmod_geometry_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -8893,7 +7924,7 @@ function fmod_geometry_release(_geometry_ref)
 }
 
 /**
- * @returns {Struct.FmodStudioSystemRef}
+ * @returns {Real}
  */
 function fmod_studio_system_create()
 {
@@ -8905,7 +7936,7 @@ function fmod_studio_system_create()
     var __return_value__ = __fmod_studio_system_create(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -8927,7 +7958,7 @@ function fmod_studio_system_create()
 /**
  * @param {String} _filename
  * @param {Real} _flags
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  */
 function fmod_studio_system_load_bank_file(_filename, _flags)
 {
@@ -8941,7 +7972,7 @@ function fmod_studio_system_load_bank_file(_filename, _flags)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBankRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -8953,7 +7984,7 @@ function fmod_studio_system_load_bank_file(_filename, _flags)
 /**
  * @param {String} _data
  * @param {Real} _flags
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  */
 function fmod_studio_system_load_bank_memory(_data, _flags)
 {
@@ -8967,7 +7998,7 @@ function fmod_studio_system_load_bank_memory(_data, _flags)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBankRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -8984,7 +8015,7 @@ function fmod_studio_system_load_bank_memory(_data, _flags)
 
 /**
  * @param {Real} _index
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_bank_at(_index)
 {
@@ -8998,7 +8029,7 @@ function fmod_studio_system_get_bank_at(_index)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBankRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9009,7 +8040,7 @@ function fmod_studio_system_get_bank_at(_index)
 
 /**
  * @param {String} _path
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_bank(_path)
 {
@@ -9023,7 +8054,7 @@ function fmod_studio_system_get_bank(_path)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBankRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9034,7 +8065,7 @@ function fmod_studio_system_get_bank(_path)
 
 /**
  * @param {String} _path
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_event(_path)
 {
@@ -9048,7 +8079,7 @@ function fmod_studio_system_get_event(_path)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventDescriptionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9059,7 +8090,7 @@ function fmod_studio_system_get_event(_path)
 
 /**
  * @param {String} _path
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @returns {Real}
  */
 function fmod_studio_system_create_event_instance(_path)
 {
@@ -9073,7 +8104,7 @@ function fmod_studio_system_create_event_instance(_path)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventInstanceRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9084,7 +8115,7 @@ function fmod_studio_system_create_event_instance(_path)
 
 /**
  * @param {String} _path
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_bus(_path)
 {
@@ -9098,7 +8129,7 @@ function fmod_studio_system_get_bus(_path)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBusRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9108,7 +8139,7 @@ function fmod_studio_system_get_bus(_path)
 }
 
 /**
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_master_bus()
 {
@@ -9122,7 +8153,7 @@ function fmod_studio_system_get_master_bus()
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBusRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9133,7 +8164,7 @@ function fmod_studio_system_get_master_bus()
 
 /**
  * @param {String} _path
- * @returns {Struct.FmodStudioVCARef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_vca(_path)
 {
@@ -9147,7 +8178,7 @@ function fmod_studio_system_get_vca(_path)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioVCARef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9169,7 +8200,7 @@ function fmod_studio_system_get_vca(_path)
 
 
 /**
- * @returns {Struct.FmodSystemRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_core_system()
 {
@@ -9181,7 +8212,7 @@ function fmod_studio_system_get_core_system()
     var __return_value__ = __fmod_studio_system_get_core_system(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -9193,7 +8224,7 @@ function fmod_studio_system_get_core_system()
 
 /**
  * @param {String} _id
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  */
 function fmod_studio_system_get_event_by_id(_id)
 {
@@ -9205,7 +8236,7 @@ function fmod_studio_system_get_event_by_id(_id)
     var __return_value__ = __fmod_studio_system_get_event_by_id(_id, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioEventDescriptionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
@@ -9242,7 +8273,7 @@ function fmod_studio_system_start_command_capture(_filename, _flags)
 /**
  * @param {String} _filename
  * @param {Enum.FmodStudioCommandReplayFlags} _flags
- * @returns {Struct.FmodStudioCommandReplayRef}
+ * @returns {Real}
  */
 function fmod_studio_system_load_command_replay(_filename, _flags)
 {
@@ -9266,12 +8297,12 @@ function fmod_studio_system_load_command_replay(_filename, _flags)
     var __return_value__ = __fmod_studio_system_load_command_replay(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioCommandReplayRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
     return __result__;
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_unload(_bank_ref)
@@ -9281,9 +8312,9 @@ function fmod_studio_bank_unload(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_unload(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9291,7 +8322,7 @@ function fmod_studio_bank_unload(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_loading_state(_bank_ref)
@@ -9301,9 +8332,9 @@ function fmod_studio_bank_get_loading_state(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_loading_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9311,7 +8342,7 @@ function fmod_studio_bank_get_loading_state(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_sample_loading_state(_bank_ref)
@@ -9321,9 +8352,9 @@ function fmod_studio_bank_get_sample_loading_state(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_sample_loading_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9331,7 +8362,7 @@ function fmod_studio_bank_get_sample_loading_state(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {String}
  */
 function fmod_studio_bank_get_path(_bank_ref)
@@ -9341,9 +8372,9 @@ function fmod_studio_bank_get_path(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9351,8 +8382,8 @@ function fmod_studio_bank_get_path(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
- * @returns {Struct.FmodStudioSystemRef}
+ * @param {Real} _bank_ref
+ * @returns {Real}
  */
 function fmod_studio_bank_get_parent_studio_system(_bank_ref)
 {
@@ -9361,9 +8392,9 @@ function fmod_studio_bank_get_parent_studio_system(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -9372,7 +8403,7 @@ function fmod_studio_bank_get_parent_studio_system(_bank_ref)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioSystemRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9382,7 +8413,7 @@ function fmod_studio_bank_get_parent_studio_system(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_event_count(_bank_ref)
@@ -9392,9 +8423,9 @@ function fmod_studio_bank_get_event_count(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_event_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9402,9 +8433,9 @@ function fmod_studio_bank_get_event_count(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @param {Real} _index
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  */
 function fmod_studio_bank_get_event_at(_bank_ref, _index)
 {
@@ -9413,9 +8444,9 @@ function fmod_studio_bank_get_event_at(_bank_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -9428,7 +8459,7 @@ function fmod_studio_bank_get_event_at(_bank_ref, _index)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventDescriptionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9438,7 +8469,7 @@ function fmod_studio_bank_get_event_at(_bank_ref, _index)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_bus_count(_bank_ref)
@@ -9448,9 +8479,9 @@ function fmod_studio_bank_get_bus_count(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_bus_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9458,9 +8489,9 @@ function fmod_studio_bank_get_bus_count(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @param {Real} _index
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  */
 function fmod_studio_bank_get_bus_at(_bank_ref, _index)
 {
@@ -9469,9 +8500,9 @@ function fmod_studio_bank_get_bus_at(_bank_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -9484,7 +8515,7 @@ function fmod_studio_bank_get_bus_at(_bank_ref, _index)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBusRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9494,7 +8525,7 @@ function fmod_studio_bank_get_bus_at(_bank_ref, _index)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_vca_count(_bank_ref)
@@ -9504,9 +8535,9 @@ function fmod_studio_bank_get_vca_count(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_vca_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9514,9 +8545,9 @@ function fmod_studio_bank_get_vca_count(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @param {Real} _index
- * @returns {Struct.FmodStudioVCARef}
+ * @returns {Real}
  */
 function fmod_studio_bank_get_vca_at(_bank_ref, _index)
 {
@@ -9525,9 +8556,9 @@ function fmod_studio_bank_get_vca_at(_bank_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -9540,7 +8571,7 @@ function fmod_studio_bank_get_vca_at(_bank_ref, _index)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioVCARef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9550,7 +8581,7 @@ function fmod_studio_bank_get_vca_at(_bank_ref, _index)
 }
 
 /**
- * @param {Struct.FmodStudioBankRef} _bank_ref
+ * @param {Real} _bank_ref
  * @returns {Real}
  */
 function fmod_studio_bank_get_string_count(_bank_ref)
@@ -9560,9 +8591,9 @@ function fmod_studio_bank_get_string_count(_bank_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bank_ref, type: struct FmodStudioBankRef
-    if (_bank_ref.__uid != 2085290352) show_error($"{_GMFUNCTION_} :: _bank_ref expected FmodStudioBankRef", true);
-    __FmodStudioBankRef_encode(_bank_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bank_ref, type: UInt64
+    if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bank_ref);
 
     var __return_value__ = __fmod_studio_bank_get_string_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9570,7 +8601,7 @@ function fmod_studio_bank_get_string_count(_bank_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {String}
  */
 function fmod_studio_event_description_get_path(_event_desc_ref)
@@ -9580,9 +8611,9 @@ function fmod_studio_event_description_get_path(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9590,8 +8621,8 @@ function fmod_studio_event_description_get_path(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @param {Real} _event_desc_ref
+ * @returns {Real}
  */
 function fmod_studio_event_description_create_instance(_event_desc_ref)
 {
@@ -9600,9 +8631,9 @@ function fmod_studio_event_description_create_instance(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -9611,7 +8642,7 @@ function fmod_studio_event_description_create_instance(_event_desc_ref)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventInstanceRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9621,7 +8652,7 @@ function fmod_studio_event_description_create_instance(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_get_instance_count(_event_desc_ref)
@@ -9631,9 +8662,9 @@ function fmod_studio_event_description_get_instance_count(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_get_instance_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9641,9 +8672,9 @@ function fmod_studio_event_description_get_instance_count(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @param {Real} _index
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @returns {Real}
  */
 function fmod_studio_event_description_get_instance_at(_event_desc_ref, _index)
 {
@@ -9652,9 +8683,9 @@ function fmod_studio_event_description_get_instance_at(_event_desc_ref, _index)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
@@ -9667,7 +8698,7 @@ function fmod_studio_event_description_get_instance_at(_event_desc_ref, _index)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventInstanceRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -9677,7 +8708,7 @@ function fmod_studio_event_description_get_instance_at(_event_desc_ref, _index)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_is_snapshot(_event_desc_ref)
@@ -9687,9 +8718,9 @@ function fmod_studio_event_description_is_snapshot(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_is_snapshot(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9697,7 +8728,7 @@ function fmod_studio_event_description_is_snapshot(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_is_one_shot(_event_desc_ref)
@@ -9707,9 +8738,9 @@ function fmod_studio_event_description_is_one_shot(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_is_one_shot(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9717,7 +8748,7 @@ function fmod_studio_event_description_is_one_shot(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_has_sustain_point(_event_desc_ref)
@@ -9727,9 +8758,9 @@ function fmod_studio_event_description_has_sustain_point(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_has_sustain_point(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9737,7 +8768,7 @@ function fmod_studio_event_description_has_sustain_point(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_get_length(_event_desc_ref)
@@ -9747,9 +8778,9 @@ function fmod_studio_event_description_get_length(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_get_length(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9757,7 +8788,7 @@ function fmod_studio_event_description_get_length(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_get_parameter_count(_event_desc_ref)
@@ -9767,9 +8798,9 @@ function fmod_studio_event_description_get_parameter_count(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_get_parameter_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9777,7 +8808,7 @@ function fmod_studio_event_description_get_parameter_count(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_release_all_instances(_event_desc_ref)
@@ -9787,9 +8818,9 @@ function fmod_studio_event_description_release_all_instances(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_release_all_instances(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9797,7 +8828,7 @@ function fmod_studio_event_description_release_all_instances(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @param {String} _name
  * @returns {Struct.FmodStudioParameterDescription}
  */
@@ -9808,9 +8839,9 @@ function fmod_studio_event_description_get_parameter_description_by_name(_event_
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
@@ -9827,7 +8858,7 @@ function fmod_studio_event_description_get_parameter_description_by_name(_event_
 }
 
 /**
- * @param {Struct.FmodStudioEventDescriptionRef} _event_desc_ref
+ * @param {Real} _event_desc_ref
  * @returns {Real}
  */
 function fmod_studio_event_description_load_sample_data(_event_desc_ref)
@@ -9837,9 +8868,9 @@ function fmod_studio_event_description_load_sample_data(_event_desc_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _event_desc_ref, type: struct FmodStudioEventDescriptionRef
-    if (_event_desc_ref.__uid != 2708661012) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected FmodStudioEventDescriptionRef", true);
-    __FmodStudioEventDescriptionRef_encode(_event_desc_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _event_desc_ref, type: UInt64
+    if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
 
     var __return_value__ = __fmod_studio_event_description_load_sample_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9847,7 +8878,7 @@ function fmod_studio_event_description_load_sample_data(_event_desc_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_start(_instance_ref)
@@ -9857,9 +8888,9 @@ function fmod_studio_event_instance_start(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_start(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9867,7 +8898,7 @@ function fmod_studio_event_instance_start(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _stop_mode
  * @returns {Real}
  */
@@ -9878,9 +8909,9 @@ function fmod_studio_event_instance_stop(_instance_ref, _stop_mode)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _stop_mode, type: Float64
     if (!is_numeric(_stop_mode)) show_error($"{_GMFUNCTION_} :: _stop_mode expected number", true);
@@ -9892,7 +8923,7 @@ function fmod_studio_event_instance_stop(_instance_ref, _stop_mode)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_playback_state(_instance_ref)
@@ -9902,9 +8933,9 @@ function fmod_studio_event_instance_get_playback_state(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_playback_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9912,7 +8943,7 @@ function fmod_studio_event_instance_get_playback_state(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_paused(_instance_ref)
@@ -9922,9 +8953,9 @@ function fmod_studio_event_instance_get_paused(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9932,7 +8963,7 @@ function fmod_studio_event_instance_get_paused(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _paused
  * @returns {Real}
  */
@@ -9943,9 +8974,9 @@ function fmod_studio_event_instance_set_paused(_instance_ref, _paused)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
@@ -9957,7 +8988,7 @@ function fmod_studio_event_instance_set_paused(_instance_ref, _paused)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_timeline_position(_instance_ref)
@@ -9967,9 +8998,9 @@ function fmod_studio_event_instance_get_timeline_position(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_timeline_position(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -9977,7 +9008,7 @@ function fmod_studio_event_instance_get_timeline_position(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _position
  * @returns {Real}
  */
@@ -9988,9 +9019,9 @@ function fmod_studio_event_instance_set_timeline_position(_instance_ref, _positi
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _position, type: Float64
     if (!is_numeric(_position)) show_error($"{_GMFUNCTION_} :: _position expected number", true);
@@ -10002,7 +9033,7 @@ function fmod_studio_event_instance_set_timeline_position(_instance_ref, _positi
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_volume(_instance_ref)
@@ -10012,9 +9043,9 @@ function fmod_studio_event_instance_get_volume(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10022,7 +9053,7 @@ function fmod_studio_event_instance_get_volume(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -10033,9 +9064,9 @@ function fmod_studio_event_instance_set_volume(_instance_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -10047,7 +9078,7 @@ function fmod_studio_event_instance_set_volume(_instance_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_pitch(_instance_ref)
@@ -10057,9 +9088,9 @@ function fmod_studio_event_instance_get_pitch(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_pitch(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10067,7 +9098,7 @@ function fmod_studio_event_instance_get_pitch(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _pitch
  * @returns {Real}
  */
@@ -10078,9 +9109,9 @@ function fmod_studio_event_instance_set_pitch(_instance_ref, _pitch)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _pitch, type: Float64
     if (!is_numeric(_pitch)) show_error($"{_GMFUNCTION_} :: _pitch expected number", true);
@@ -10092,7 +9123,7 @@ function fmod_studio_event_instance_set_pitch(_instance_ref, _pitch)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {String} _name
  * @param {Real} _value
  * @returns {Real}
@@ -10104,9 +9135,9 @@ function fmod_studio_event_instance_set_parameter_by_name(_instance_ref, _name, 
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
@@ -10123,7 +9154,7 @@ function fmod_studio_event_instance_set_parameter_by_name(_instance_ref, _name, 
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {String} _name
  * @returns {Real}
  */
@@ -10134,9 +9165,9 @@ function fmod_studio_event_instance_get_parameter_by_name(_instance_ref, _name)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
@@ -10149,7 +9180,7 @@ function fmod_studio_event_instance_get_parameter_by_name(_instance_ref, _name)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_get_parameter_count(_instance_ref)
@@ -10159,9 +9190,9 @@ function fmod_studio_event_instance_get_parameter_count(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_get_parameter_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10169,7 +9200,7 @@ function fmod_studio_event_instance_get_parameter_count(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _id_data1
  * @param {Real} _id_data2
  * @returns {Real}
@@ -10181,9 +9212,9 @@ function fmod_studio_event_instance_get_parameter_by_id(_instance_ref, _id_data1
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
@@ -10199,7 +9230,7 @@ function fmod_studio_event_instance_get_parameter_by_id(_instance_ref, _id_data1
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _id_data1
  * @param {Real} _id_data2
  * @param {Real} _value
@@ -10212,9 +9243,9 @@ function fmod_studio_event_instance_set_parameter_by_id(_instance_ref, _id_data1
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
@@ -10234,7 +9265,7 @@ function fmod_studio_event_instance_set_parameter_by_id(_instance_ref, _id_data1
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Function} _callback
  * @param {Enum.FmodStudioEventCallbackType} _mask
  * @returns {Real}
@@ -10248,9 +9279,9 @@ function fmod_studio_event_instance_set_callback(_instance_ref, _callback, _mask
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -10276,7 +9307,7 @@ function fmod_studio_event_instance_set_callback(_instance_ref, _callback, _mask
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @param {Real} _x
  * @param {Real} _y
  * @param {Real} _z
@@ -10289,9 +9320,9 @@ function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     // param: _x, type: Float64
     if (!is_numeric(_x)) show_error($"{_GMFUNCTION_} :: _x expected number", true);
@@ -10311,8 +9342,8 @@ function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @param {Real} _instance_ref
+ * @returns {Real}
  */
 function fmod_studio_event_instance_get_description(_instance_ref)
 {
@@ -10321,9 +9352,9 @@ function fmod_studio_event_instance_get_description(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __ret_buffer = __ext_core_get_ret_buffer();
 
@@ -10332,7 +9363,7 @@ function fmod_studio_event_instance_get_description(_instance_ref)
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioEventDescriptionRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -10342,7 +9373,7 @@ function fmod_studio_event_instance_get_description(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioEventInstanceRef} _instance_ref
+ * @param {Real} _instance_ref
  * @returns {Real}
  */
 function fmod_studio_event_instance_release(_instance_ref)
@@ -10352,9 +9383,9 @@ function fmod_studio_event_instance_release(_instance_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _instance_ref, type: struct FmodStudioEventInstanceRef
-    if (_instance_ref.__uid != 1079537513) show_error($"{_GMFUNCTION_} :: _instance_ref expected FmodStudioEventInstanceRef", true);
-    __FmodStudioEventInstanceRef_encode(_instance_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _instance_ref);
 
     var __return_value__ = __fmod_studio_event_instance_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10362,7 +9393,7 @@ function fmod_studio_event_instance_release(_instance_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @returns {String}
  */
 function fmod_studio_bus_get_path(_bus_ref)
@@ -10372,9 +9403,9 @@ function fmod_studio_bus_get_path(_bus_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     var __return_value__ = __fmod_studio_bus_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10382,7 +9413,7 @@ function fmod_studio_bus_get_path(_bus_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @returns {Real}
  */
 function fmod_studio_bus_get_volume(_bus_ref)
@@ -10392,9 +9423,9 @@ function fmod_studio_bus_get_volume(_bus_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     var __return_value__ = __fmod_studio_bus_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10402,7 +9433,7 @@ function fmod_studio_bus_get_volume(_bus_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -10413,9 +9444,9 @@ function fmod_studio_bus_set_volume(_bus_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -10427,7 +9458,7 @@ function fmod_studio_bus_set_volume(_bus_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @returns {Real}
  */
 function fmod_studio_bus_get_paused(_bus_ref)
@@ -10437,9 +9468,9 @@ function fmod_studio_bus_get_paused(_bus_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     var __return_value__ = __fmod_studio_bus_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10447,7 +9478,7 @@ function fmod_studio_bus_get_paused(_bus_ref)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @param {Real} _paused
  * @returns {Real}
  */
@@ -10458,9 +9489,9 @@ function fmod_studio_bus_set_paused(_bus_ref, _paused)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
@@ -10472,7 +9503,7 @@ function fmod_studio_bus_set_paused(_bus_ref, _paused)
 }
 
 /**
- * @param {Struct.FmodStudioBusRef} _bus_ref
+ * @param {Real} _bus_ref
  * @param {Real} _stop_mode
  * @returns {Real}
  */
@@ -10483,9 +9514,9 @@ function fmod_studio_bus_stop_all_events(_bus_ref, _stop_mode)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _bus_ref, type: struct FmodStudioBusRef
-    if (_bus_ref.__uid != 1572912022) show_error($"{_GMFUNCTION_} :: _bus_ref expected FmodStudioBusRef", true);
-    __FmodStudioBusRef_encode(_bus_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _bus_ref);
 
     // param: _stop_mode, type: Float64
     if (!is_numeric(_stop_mode)) show_error($"{_GMFUNCTION_} :: _stop_mode expected number", true);
@@ -10497,7 +9528,7 @@ function fmod_studio_bus_stop_all_events(_bus_ref, _stop_mode)
 }
 
 /**
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  */
 function fmod_studio_bus_get_master_bus()
 {
@@ -10511,7 +9542,7 @@ function fmod_studio_bus_get_master_bus()
     var __result__ = undefined;
     if (buffer_read(__ret_buffer, buffer_bool))
     {
-        __result__ = __FmodStudioBusRef_decode(__ret_buffer, buffer_tell(__ret_buffer));
+        __result__ = buffer_read(__ret_buffer, buffer_u64);
     }
     else
     {
@@ -10521,7 +9552,7 @@ function fmod_studio_bus_get_master_bus()
 }
 
 /**
- * @param {Struct.FmodStudioVCARef} _vca_ref
+ * @param {Real} _vca_ref
  * @returns {String}
  */
 function fmod_studio_vca_get_path(_vca_ref)
@@ -10531,9 +9562,9 @@ function fmod_studio_vca_get_path(_vca_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _vca_ref, type: struct FmodStudioVCARef
-    if (_vca_ref.__uid != 706235938) show_error($"{_GMFUNCTION_} :: _vca_ref expected FmodStudioVCARef", true);
-    __FmodStudioVCARef_encode(_vca_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _vca_ref, type: UInt64
+    if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _vca_ref);
 
     var __return_value__ = __fmod_studio_vca_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10541,7 +9572,7 @@ function fmod_studio_vca_get_path(_vca_ref)
 }
 
 /**
- * @param {Struct.FmodStudioVCARef} _vca_ref
+ * @param {Real} _vca_ref
  * @returns {Real}
  */
 function fmod_studio_vca_get_volume(_vca_ref)
@@ -10551,9 +9582,9 @@ function fmod_studio_vca_get_volume(_vca_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _vca_ref, type: struct FmodStudioVCARef
-    if (_vca_ref.__uid != 706235938) show_error($"{_GMFUNCTION_} :: _vca_ref expected FmodStudioVCARef", true);
-    __FmodStudioVCARef_encode(_vca_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _vca_ref, type: UInt64
+    if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _vca_ref);
 
     var __return_value__ = __fmod_studio_vca_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10561,7 +9592,7 @@ function fmod_studio_vca_get_volume(_vca_ref)
 }
 
 /**
- * @param {Struct.FmodStudioVCARef} _vca_ref
+ * @param {Real} _vca_ref
  * @param {Real} _volume
  * @returns {Real}
  */
@@ -10572,9 +9603,9 @@ function fmod_studio_vca_set_volume(_vca_ref, _volume)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _vca_ref, type: struct FmodStudioVCARef
-    if (_vca_ref.__uid != 706235938) show_error($"{_GMFUNCTION_} :: _vca_ref expected FmodStudioVCARef", true);
-    __FmodStudioVCARef_encode(_vca_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _vca_ref, type: UInt64
+    if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _vca_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
@@ -10586,7 +9617,7 @@ function fmod_studio_vca_set_volume(_vca_ref, _volume)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @returns {Real}
  */
 function fmod_studio_command_replay_get_playback_state(_replay_ref)
@@ -10596,9 +9627,9 @@ function fmod_studio_command_replay_get_playback_state(_replay_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     var __return_value__ = __fmod_studio_command_replay_get_playback_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10606,7 +9637,7 @@ function fmod_studio_command_replay_get_playback_state(_replay_ref)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @returns {Real}
  */
 function fmod_studio_command_replay_get_current_command(_replay_ref)
@@ -10616,9 +9647,9 @@ function fmod_studio_command_replay_get_current_command(_replay_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     var __return_value__ = __fmod_studio_command_replay_get_current_command(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10626,7 +9657,7 @@ function fmod_studio_command_replay_get_current_command(_replay_ref)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @returns {Real}
  */
 function fmod_studio_command_replay_release(_replay_ref)
@@ -10636,9 +9667,9 @@ function fmod_studio_command_replay_release(_replay_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     var __return_value__ = __fmod_studio_command_replay_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10646,7 +9677,7 @@ function fmod_studio_command_replay_release(_replay_ref)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @returns {Real}
  */
 function fmod_studio_command_replay_get_command_count(_replay_ref)
@@ -10656,9 +9687,9 @@ function fmod_studio_command_replay_get_command_count(_replay_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     var __return_value__ = __fmod_studio_command_replay_get_command_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10666,7 +9697,7 @@ function fmod_studio_command_replay_get_command_count(_replay_ref)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @returns {Real}
  */
 function fmod_studio_command_replay_get_length(_replay_ref)
@@ -10676,9 +9707,9 @@ function fmod_studio_command_replay_get_length(_replay_ref)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     var __return_value__ = __fmod_studio_command_replay_get_length(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
 
@@ -10686,7 +9717,7 @@ function fmod_studio_command_replay_get_length(_replay_ref)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @param {Function} _callback
  * @returns {Real}
  */
@@ -10699,9 +9730,9 @@ function fmod_studio_command_replay_set_frame_callback(_replay_ref, _callback)
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -10722,7 +9753,7 @@ function fmod_studio_command_replay_set_frame_callback(_replay_ref, _callback)
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @param {Function} _callback
  * @returns {Real}
  */
@@ -10735,9 +9766,9 @@ function fmod_studio_command_replay_set_create_instance_callback(_replay_ref, _c
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -10758,7 +9789,7 @@ function fmod_studio_command_replay_set_create_instance_callback(_replay_ref, _c
 }
 
 /**
- * @param {Struct.FmodStudioCommandReplayRef} _replay_ref
+ * @param {Real} _replay_ref
  * @param {Function} _callback
  * @returns {Real}
  */
@@ -10771,9 +9802,9 @@ function fmod_studio_command_replay_set_load_bank_callback(_replay_ref, _callbac
 
     var __args_buffer = __ext_core_get_args_buffer();
 
-    // param: _replay_ref, type: struct FmodStudioCommandReplayRef
-    if (_replay_ref.__uid != 1846997058) show_error($"{_GMFUNCTION_} :: _replay_ref expected FmodStudioCommandReplayRef", true);
-    __FmodStudioCommandReplayRef_encode(_replay_ref, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    // param: _replay_ref, type: UInt64
+    if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
@@ -10797,23 +9828,6 @@ function fmod_studio_command_replay_set_load_bank_callback(_replay_ref, _callbac
 function __GMFMOD_get_decoders()
 {
     static __decoders__ = [
-        __FmodChannelRef_decode,
-        __FmodChannelGroupRef_decode,
-        __FmodSoundRef_decode,
-        __FmodSystemRef_decode,
-        __FmodDSPConnectionRef_decode,
-        __FmodSoundGroupRef_decode,
-        __FmodReverb3DRef_decode,
-        __FmodDSPRef_decode,
-        __FmodGeometryRef_decode,
-        __FmodChannelControlRef_decode,
-        __FmodStudioSystemRef_decode,
-        __FmodStudioBankRef_decode,
-        __FmodStudioBusRef_decode,
-        __FmodStudioEventInstanceRef_decode,
-        __FmodStudioEventDescriptionRef_decode,
-        __FmodStudioVCARef_decode,
-        __FmodStudioCommandReplayRef_decode,
         __FmodSoundDefaults_decode,
         __FmodLoopPoints_decode,
         __FmodSoundMinMaxDistance_decode,

@@ -34,7 +34,7 @@
 
 /**
  * @function_partial fmod_channel_set_frequency
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} frequency
  * @returns {Real}
  * @function_end
@@ -42,14 +42,14 @@
 
 /**
  * @function_partial fmod_channel_get_frequency
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_set_priority
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} priority
  * @returns {Real}
  * @function_end
@@ -57,14 +57,14 @@
 
 /**
  * @function_partial fmod_channel_get_priority
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_set_position
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} position
  * @param {Real} time_unit
  * @returns {Real}
@@ -73,7 +73,7 @@
 
 /**
  * @function_partial fmod_channel_get_position
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} time_unit
  * @returns {Real}
  * @function_end
@@ -81,22 +81,22 @@
 
 /**
  * @function_partial fmod_channel_set_channel_group
- * @param {Struct.FmodChannelRef} channel_ref
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_ref
+ * @param {Real} channel_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_get_channel_group
- * @param {Struct.FmodChannelRef} channel_ref
- * @returns {Struct.FmodChannelGroupRef}
+ * @param {Real} channel_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_set_loop_count
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} loop_count
  * @returns {Real}
  * @function_end
@@ -104,14 +104,14 @@
 
 /**
  * @function_partial fmod_channel_get_loop_count
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_set_loop_points
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} loop_start
  * @param {Real} loop_start_type
  * @param {Real} loop_end
@@ -122,35 +122,35 @@
 
 /**
  * @function_partial fmod_channel_is_virtual
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_get_index
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_get_current_sound
- * @param {Struct.FmodChannelRef} channel_ref
- * @returns {Struct.FmodSoundRef}
+ * @param {Real} channel_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_get_system_object
- * @param {Struct.FmodChannelRef} channel_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} channel_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_create
- * @returns {Struct.FmodSystemRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -164,14 +164,14 @@
 
 /**
  * @function_partial fmod_system_release
- * @param {Struct.FmodSystemRef} system_ref
+ * @param {Real} system_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_close
- * @param {Struct.FmodSystemRef} system_ref
+ * @param {Real} system_ref
  * @returns {Real}
  * @function_end
  */
@@ -191,13 +191,13 @@
 /**
  * @function_partial fmod_system_get_channel
  * @param {Real} index
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_get_master_channel_group
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -302,7 +302,7 @@
 /**
  * @function_partial fmod_system_record_start
  * @param {Real} device_index
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} loop
  * @returns {Real}
  * @function_end
@@ -324,14 +324,14 @@
 
 /**
  * @function_partial fmod_system_create_dsp
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_create_dsp_by_type
  * @param {Enum.FmodDspType} dsp_type
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -382,22 +382,22 @@
 /**
  * @function_partial fmod_system_create_channel_group
  * @param {String} name
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_play_dsp
- * @param {Struct.FmodDSPRef} dsp_ref
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} dsp_ref
+ * @param {Real} channel_group_ref
  * @param {Real} paused
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_select
- * @param {Struct.FmodSystemRef} system_ref
+ * @param {Real} system_ref
  * @returns {Real}
  * @function_end
  */
@@ -406,7 +406,7 @@
  * @function_partial fmod_system_create_sound
  * @param {String} name_or_data
  * @param {Real} mode
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -414,22 +414,22 @@
  * @function_partial fmod_system_create_stream
  * @param {String} name_or_data
  * @param {Real} mode
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_play_sound
- * @param {Struct.FmodSoundRef} sound_ref
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} sound_ref
+ * @param {Real} channel_group_ref
  * @param {Real} pause
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_length
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} length_type
  * @returns {Real}
  * @function_end
@@ -437,7 +437,7 @@
 
 /**
  * @function_partial fmod_sound_set_defaults
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} frequency
  * @param {Real} priority
  * @returns {Real}
@@ -446,7 +446,7 @@
 
 /**
  * @function_partial fmod_sound_set_mode
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} mode
  * @returns {Real}
  * @function_end
@@ -454,35 +454,35 @@
 
 /**
  * @function_partial fmod_sound_get_mode
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_format
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_name
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_defaults
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Struct.FmodSoundDefaults}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_loop_count
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} count
  * @returns {Real}
  * @function_end
@@ -490,14 +490,14 @@
 
 /**
  * @function_partial fmod_sound_get_loop_count
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_loop_points
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} loop_start
  * @param {Real} loop_start_type
  * @param {Real} loop_end
@@ -508,7 +508,7 @@
 
 /**
  * @function_partial fmod_sound_get_loop_points
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} start_type
  * @param {Real} end_type
  * @returns {Struct.FmodLoopPoints}
@@ -517,7 +517,7 @@
 
 /**
  * @function_partial fmod_sound_set_3d_min_max_distance
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} min
  * @param {Real} max
  * @returns {Real}
@@ -526,14 +526,14 @@
 
 /**
  * @function_partial fmod_sound_get_3d_min_max_distance
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Struct.FmodSoundMinMaxDistance}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_3d_cone_settings
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} inside_cone_angle
  * @param {Real} outside_cone_angle
  * @param {Real} outside_volume
@@ -543,14 +543,14 @@
 
 /**
  * @function_partial fmod_sound_get_3d_cone_settings
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Struct.FmodConeSettings}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_3d_custom_rolloff
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Any} points
  * @param {Real} num_points
  * @returns {Real}
@@ -559,20 +559,20 @@
 
 /**
  * @function_partial fmod_sound_get_3d_custom_rolloff
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_num_sync_points
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_sync_point
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} sync_point_index
  * @param {Real} offset_type
  * @returns {Struct.FmodSyncPointInfo}
@@ -581,7 +581,7 @@
 
 /**
  * @function_partial fmod_sound_add_sync_point
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} offset
  * @param {Real} offset_type
  * @param {String} name
@@ -591,7 +591,7 @@
 
 /**
  * @function_partial fmod_sound_delete_sync_point
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} sync_point_index
  * @returns {Real}
  * @function_end
@@ -599,14 +599,14 @@
 
 /**
  * @function_partial fmod_sound_get_music_num_channels
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_music_channel_volume
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} channel_index
  * @param {Real} volume
  * @returns {Real}
@@ -615,7 +615,7 @@
 
 /**
  * @function_partial fmod_sound_get_music_channel_volume
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} channel_index
  * @returns {Real}
  * @function_end
@@ -623,7 +623,7 @@
 
 /**
  * @function_partial fmod_sound_set_music_speed
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} speed
  * @returns {Real}
  * @function_end
@@ -631,50 +631,50 @@
 
 /**
  * @function_partial fmod_sound_get_music_speed
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_set_sound_group
- * @param {Struct.FmodSoundRef} sound_ref
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_sound_group
- * @param {Struct.FmodSoundRef} sound_ref
- * @returns {Struct.FmodSoundGroupRef}
+ * @param {Real} sound_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_release
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_system_object
- * @param {Struct.FmodSoundRef} sound_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} sound_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_open_state
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Struct.FmodSoundOpenState}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_tag
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {String} name
  * @param {Real} index
  * @returns {Struct.FmodSoundTag}
@@ -683,22 +683,22 @@
 
 /**
  * @function_partial fmod_sound_get_num_sub_sounds
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_get_sub_sound
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Real} index
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_read_data
- * @param {Struct.FmodSoundRef} sound_ref
+ * @param {Real} sound_ref
  * @param {Buffer} data
  * @param {Real} length
  * @returns {Real}
@@ -707,74 +707,74 @@
 
 /**
  * @function_partial fmod_channel_group_get_num_channels
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_channel
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @param {Real} index
- * @returns {Struct.FmodChannelRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_add_group
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
- * @param {Struct.FmodChannelGroupRef} child_channel_group_ref
+ * @param {Real} channel_group_ref
+ * @param {Real} child_channel_group_ref
  * @param {Real} propagate_dsp_clock
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_num_groups
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_group
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @param {Real} group_index
- * @returns {Struct.FmodChannelGroupRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_parent_group
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
- * @returns {Struct.FmodChannelGroupRef}
+ * @param {Real} channel_group_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_name
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_release
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
+ * @param {Real} channel_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_group_get_system_object
- * @param {Struct.FmodChannelGroupRef} channel_group_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} channel_group_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_set_max_audible
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @param {Real} max_audible
  * @returns {Real}
  * @function_end
@@ -782,14 +782,14 @@
 
 /**
  * @function_partial fmod_sound_group_get_max_audible
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_set_max_audible_behavior
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @param {Real} behavior
  * @returns {Real}
  * @function_end
@@ -797,14 +797,14 @@
 
 /**
  * @function_partial fmod_sound_group_get_max_audible_behavior
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_set_mute_fade_speed
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @param {Real} speed
  * @returns {Real}
  * @function_end
@@ -812,14 +812,14 @@
 
 /**
  * @function_partial fmod_sound_group_get_mute_fade_speed
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_set_volume
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -827,64 +827,64 @@
 
 /**
  * @function_partial fmod_sound_group_get_volume
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_get_num_sounds
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_get_sound
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @param {Real} sound_index
- * @returns {Struct.FmodSoundRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_get_num_playing
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_stop
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_get_name
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_release
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
+ * @param {Real} sound_group_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_sound_group_get_system_object
- * @param {Struct.FmodSoundGroupRef} sound_group_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} sound_group_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_reverb_3d_set_active
- * @param {Struct.FmodReverb3DRef} reverb_3d_ref
+ * @param {Real} reverb_3d_ref
  * @param {Real} active
  * @returns {Real}
  * @function_end
@@ -892,14 +892,14 @@
 
 /**
  * @function_partial fmod_reverb_3d_get_active
- * @param {Struct.FmodReverb3DRef} reverb_3d_ref
+ * @param {Real} reverb_3d_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_reverb_3d_set_properties
- * @param {Struct.FmodReverb3DRef} reverb_3d_ref
+ * @param {Real} reverb_3d_ref
  * @param {Real} decay_time
  * @param {Real} early_delay
  * @param {Real} late_delay
@@ -918,28 +918,28 @@
 
 /**
  * @function_partial fmod_reverb_3d_release
- * @param {Struct.FmodReverb3DRef} reverb_3d_ref
+ * @param {Real} reverb_3d_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_is_playing
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_stop
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_paused
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} paused
  * @returns {Real}
  * @function_end
@@ -947,14 +947,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_paused
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_mode
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} mode
  * @returns {Real}
  * @function_end
@@ -962,14 +962,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_mode
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_pitch
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} pitch
  * @returns {Real}
  * @function_end
@@ -977,21 +977,21 @@
 
 /**
  * @function_partial fmod_channel_control_get_pitch
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_audibility
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_volume
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -999,14 +999,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_volume
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_volume_ramp
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} ramp
  * @returns {Real}
  * @function_end
@@ -1014,14 +1014,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_volume_ramp
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_mute
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} mute
  * @returns {Real}
  * @function_end
@@ -1029,14 +1029,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_mute
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_doppler_level
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} level
  * @returns {Real}
  * @function_end
@@ -1044,14 +1044,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_doppler_level
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_level
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} level
  * @returns {Real}
  * @function_end
@@ -1059,14 +1059,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_level
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_min_max_distance
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} min_dist
  * @param {Real} max_dist
  * @returns {Real}
@@ -1075,7 +1075,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_3d_cone_settings
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} inside_cone_angle
  * @param {Real} outside_cone_angle
  * @param {Real} outside_volume
@@ -1085,7 +1085,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_3d_occlusion
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} direct_occlusion
  * @param {Real} reverb_occlusion
  * @returns {Real}
@@ -1094,7 +1094,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_3d_attributes
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Struct.FmodVec3} position
  * @param {Struct.FmodVec3} velocity
  * @returns {Real}
@@ -1103,14 +1103,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_attributes
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Struct.FmodChannelControl3DAttributes}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_spread
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} angle
  * @returns {Real}
  * @function_end
@@ -1118,14 +1118,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_3d_spread
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_3d_distance_filter
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} custom
  * @param {Real} custom_level
  * @param {Real} center_freq
@@ -1135,7 +1135,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_pan
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} pan
  * @returns {Real}
  * @function_end
@@ -1143,7 +1143,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_mix_levels_output
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} front_left
  * @param {Real} front_right
  * @param {Real} center
@@ -1158,7 +1158,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_reverb_properties
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} reverb_instance
  * @param {Real} wet
  * @returns {Real}
@@ -1167,7 +1167,7 @@
 
 /**
  * @function_partial fmod_channel_control_get_reverb_properties
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} reverb_instance
  * @returns {Real}
  * @function_end
@@ -1175,7 +1175,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_low_pass_gain
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} gain
  * @returns {Real}
  * @function_end
@@ -1183,47 +1183,47 @@
 
 /**
  * @function_partial fmod_channel_control_get_low_pass_gain
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_add_dsp
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} dsp_chain_offset
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_remove_dsp
- * @param {Struct.FmodChannelControlRef} channel_control_ref
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} channel_control_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_num_dsps
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_dsp
- * @param {Struct.FmodChannelControlRef} channel_control_ref
+ * @param {Real} channel_control_ref
  * @param {Real} index
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_dsp_index
- * @param {Struct.FmodChannelControlRef} channel_control_ref
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} channel_control_ref
+ * @param {Real} dsp_ref
  * @param {Real} chain_index
  * @returns {Real}
  * @function_end
@@ -1231,29 +1231,29 @@
 
 /**
  * @function_partial fmod_channel_control_get_dsp_index
- * @param {Struct.FmodChannelControlRef} channel_control_ref
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} channel_control_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_system_object
- * @param {Struct.FmodChannelControlRef} channel_control_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} channel_control_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_get_delay
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Struct.FmodDelay}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_delay
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Real} dspclock_start
  * @param {Real} dspclock_end
  * @param {Real} stop_channels
@@ -1263,14 +1263,14 @@
 
 /**
  * @function_partial fmod_channel_control_get_dsp_clock
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @returns {Struct.FmodDSPClock}
  * @function_end
  */
 
 /**
  * @function_partial fmod_channel_control_set_callback
- * @param {Struct.FmodChannelRef} channel_ref
+ * @param {Real} channel_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
@@ -1278,30 +1278,30 @@
 
 /**
  * @function_partial fmod_dsp_add_input
- * @param {Struct.FmodDSPRef} dsp_ref
- * @param {Struct.FmodDSPRef} dsp_input_ref
+ * @param {Real} dsp_ref
+ * @param {Real} dsp_input_ref
  * @param {Real} dsp_connection_type
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_num_inputs
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_num_outputs
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_disconnect_all
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} inputs
  * @param {Real} outputs
  * @returns {Real}
@@ -1310,14 +1310,14 @@
 
 /**
  * @function_partial fmod_dsp_get_num_parameters
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_parameter_float
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @param {Real} value
  * @function_end
@@ -1325,7 +1325,7 @@
 
 /**
  * @function_partial fmod_dsp_get_parameter_float
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @returns {Real}
  * @function_end
@@ -1333,7 +1333,7 @@
 
 /**
  * @function_partial fmod_dsp_set_parameter_int
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @param {Real} value
  * @function_end
@@ -1341,7 +1341,7 @@
 
 /**
  * @function_partial fmod_dsp_get_parameter_int
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @returns {Real}
  * @function_end
@@ -1349,7 +1349,7 @@
 
 /**
  * @function_partial fmod_dsp_set_parameter_bool
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @param {Real} value
  * @function_end
@@ -1357,7 +1357,7 @@
 
 /**
  * @function_partial fmod_dsp_get_parameter_bool
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @returns {Real}
  * @function_end
@@ -1365,43 +1365,43 @@
 
 /**
  * @function_partial fmod_dsp_release
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_system_object
- * @param {Struct.FmodDSPRef} dsp_ref
- * @returns {Struct.FmodSystemRef}
+ * @param {Real} dsp_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_input
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
- * @returns {Struct.FmodDSPRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_output
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
- * @returns {Struct.FmodDSPConnectionRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_disconnect_from
- * @param {Struct.FmodDSPRef} dsp_ref
- * @param {Struct.FmodDSPRef} target_dsp
+ * @param {Real} dsp_ref
+ * @param {Real} target_dsp
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_data_parameter_index
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} data_type
  * @returns {Real}
  * @function_end
@@ -1409,7 +1409,7 @@
 
 /**
  * @function_partial fmod_dsp_set_parameter_data
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @param {Any} buffer
  * @param {Real} length
@@ -1418,7 +1418,7 @@
 
 /**
  * @function_partial fmod_dsp_get_parameter_data
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @param {Any} buffer
  * @param {Real} length
@@ -1428,7 +1428,7 @@
 
 /**
  * @function_partial fmod_dsp_get_parameter_info
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} index
  * @returns {Struct.FmodDSPParameterInfo}
  * @function_end
@@ -1436,7 +1436,7 @@
 
 /**
  * @function_partial fmod_dsp_set_channel_format
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} channel_mask
  * @param {Real} num_channels
  * @function_end
@@ -1444,28 +1444,28 @@
 
 /**
  * @function_partial fmod_dsp_get_channel_format
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPChannelFormat}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_output_channel_format
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPChannelFormat}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_metering_info
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPMeteringInfo}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_metering_enabled
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} input_enabled
  * @param {Real} output_enabled
  * @function_end
@@ -1473,42 +1473,42 @@
 
 /**
  * @function_partial fmod_dsp_get_metering_enabled
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPMeteringEnabled}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_active
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} active
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_active
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_bypass
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} bypass
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_bypass
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_wet_dry_mix
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} prewet
  * @param {Real} postwet
  * @param {Real} dry
@@ -1517,48 +1517,48 @@
 
 /**
  * @function_partial fmod_dsp_get_wet_dry_mix
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPWetDryMix}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_idle
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_reset
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_type
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_info
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPInfo}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_get_cpu_usage
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Struct.FmodDSPCPUUsage}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_user_data
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Real} user_data
  * @returns {Real}
  * @function_end
@@ -1566,14 +1566,14 @@
 
 /**
  * @function_partial fmod_dsp_get_user_data
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_set_callback
- * @param {Struct.FmodDSPRef} dsp_ref
+ * @param {Real} dsp_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
@@ -1581,7 +1581,7 @@
 
 /**
  * @function_partial fmod_dsp_connection_set_mix
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -1589,14 +1589,14 @@
 
 /**
  * @function_partial fmod_dsp_connection_get_mix
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_connection_set_mix_matrix
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @param {Real} matrix
  * @param {Real} out_channels
  * @param {Real} in_channels
@@ -1607,7 +1607,7 @@
 
 /**
  * @function_partial fmod_dsp_connection_get_mix_matrix
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @param {Real} in_channel_hop
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
@@ -1615,28 +1615,28 @@
 
 /**
  * @function_partial fmod_dsp_connection_get_input
- * @param {Struct.FmodDSPConnectionRef} connection_ref
- * @returns {Struct.FmodDSPRef}
+ * @param {Real} connection_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_connection_get_output
- * @param {Struct.FmodDSPConnectionRef} connection_ref
- * @returns {Struct.FmodDSPRef}
+ * @param {Real} connection_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_connection_get_type
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_dsp_connection_set_user_data
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @param {Real} user_data
  * @returns {Real}
  * @function_end
@@ -1644,14 +1644,14 @@
 
 /**
  * @function_partial fmod_dsp_connection_get_user_data
- * @param {Struct.FmodDSPConnectionRef} connection_ref
+ * @param {Real} connection_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_geometry_set_polygon_attributes
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {Real} polygon_index
  * @param {Real} direct_occlusion
  * @param {Real} reverb_occlusion
@@ -1662,7 +1662,7 @@
 
 /**
  * @function_partial fmod_geometry_get_polygon_num_vertices
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {Real} polygon_index
  * @returns {Real}
  * @function_end
@@ -1670,7 +1670,7 @@
 
 /**
  * @function_partial fmod_geometry_set_position
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {Real} x
  * @param {Real} y
  * @param {Real} z
@@ -1680,7 +1680,7 @@
 
 /**
  * @function_partial fmod_geometry_set_rotation
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {Real} forward_x
  * @param {Real} forward_y
  * @param {Real} forward_z
@@ -1693,7 +1693,7 @@
 
 /**
  * @function_partial fmod_geometry_set_scale
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {Real} scale_x
  * @param {Real} scale_y
  * @param {Real} scale_z
@@ -1703,7 +1703,7 @@
 
 /**
  * @function_partial fmod_geometry_save
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @param {String} filename
  * @returns {Real}
  * @function_end
@@ -1711,14 +1711,14 @@
 
 /**
  * @function_partial fmod_geometry_release
- * @param {Struct.FmodGeometryRef} geometry_ref
+ * @param {Real} geometry_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_create
- * @returns {Struct.FmodStudioSystemRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1759,7 +1759,7 @@
  * @function_partial fmod_studio_system_load_bank_file
  * @param {String} filename
  * @param {Real} flags
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1767,7 +1767,7 @@
  * @function_partial fmod_studio_system_load_bank_memory
  * @param {String} data
  * @param {Real} flags
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1786,48 +1786,48 @@
 /**
  * @function_partial fmod_studio_system_get_bank_at
  * @param {Real} index
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_bank
  * @param {String} path
- * @returns {Struct.FmodStudioBankRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_event
  * @param {String} path
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_create_event_instance
  * @param {String} path
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_bus
  * @param {String} path
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_master_bus
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_vca
  * @param {String} path
- * @returns {Struct.FmodStudioVCARef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1866,7 +1866,7 @@
 
 /**
  * @function_partial fmod_studio_system_get_core_system
- * @returns {Struct.FmodSystemRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1887,7 +1887,7 @@
 /**
  * @function_partial fmod_studio_system_get_event_by_id
  * @param {String} id
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  * @function_end
  */
 
@@ -1909,171 +1909,171 @@
  * @function_partial fmod_studio_system_load_command_replay
  * @param {String} filename
  * @param {Enum.FmodStudioCommandReplayFlags} flags
- * @returns {Struct.FmodStudioCommandReplayRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_unload
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_loading_state
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_sample_loading_state
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_path
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_parent_studio_system
- * @param {Struct.FmodStudioBankRef} bank_ref
- * @returns {Struct.FmodStudioSystemRef}
+ * @param {Real} bank_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_event_count
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_event_at
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @param {Real} index
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_bus_count
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_bus_at
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @param {Real} index
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_vca_count
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_vca_at
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @param {Real} index
- * @returns {Struct.FmodStudioVCARef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_string_count
- * @param {Struct.FmodStudioBankRef} bank_ref
+ * @param {Real} bank_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_path
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_create_instance
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @param {Real} event_desc_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_instance_count
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_instance_at
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @param {Real} index
- * @returns {Struct.FmodStudioEventInstanceRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_snapshot
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_one_shot
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_has_sustain_point
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_length
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_parameter_count
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_release_all_instances
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_get_parameter_description_by_name
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @param {String} name
  * @returns {Struct.FmodStudioParameterDescription}
  * @function_end
@@ -2081,21 +2081,21 @@
 
 /**
  * @function_partial fmod_studio_event_description_load_sample_data
- * @param {Struct.FmodStudioEventDescriptionRef} event_desc_ref
+ * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_start
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_stop
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} stop_mode
  * @returns {Real}
  * @function_end
@@ -2103,21 +2103,21 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_playback_state
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_get_paused
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_paused
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} paused
  * @returns {Real}
  * @function_end
@@ -2125,14 +2125,14 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_timeline_position
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_timeline_position
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} position
  * @returns {Real}
  * @function_end
@@ -2140,14 +2140,14 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_volume
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_volume
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -2155,14 +2155,14 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_pitch
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_pitch
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} pitch
  * @returns {Real}
  * @function_end
@@ -2170,7 +2170,7 @@
 
 /**
  * @function_partial fmod_studio_event_instance_set_parameter_by_name
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {String} name
  * @param {Real} value
  * @returns {Real}
@@ -2179,7 +2179,7 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_parameter_by_name
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {String} name
  * @returns {Real}
  * @function_end
@@ -2187,14 +2187,14 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_parameter_count
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_get_parameter_by_id
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} id_data1
  * @param {Real} id_data2
  * @returns {Real}
@@ -2203,7 +2203,7 @@
 
 /**
  * @function_partial fmod_studio_event_instance_set_parameter_by_id
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} id_data1
  * @param {Real} id_data2
  * @param {Real} value
@@ -2213,7 +2213,7 @@
 
 /**
  * @function_partial fmod_studio_event_instance_set_callback
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Function} [callback]
  * @param {Enum.FmodStudioEventCallbackType} mask
  * @returns {Real}
@@ -2222,7 +2222,7 @@
 
 /**
  * @function_partial fmod_studio_event_instance_set_3d_attributes
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @param {Real} x
  * @param {Real} y
  * @param {Real} z
@@ -2232,35 +2232,35 @@
 
 /**
  * @function_partial fmod_studio_event_instance_get_description
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
- * @returns {Struct.FmodStudioEventDescriptionRef}
+ * @param {Real} instance_ref
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_release
- * @param {Struct.FmodStudioEventInstanceRef} instance_ref
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_get_path
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_get_volume
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_set_volume
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -2268,14 +2268,14 @@
 
 /**
  * @function_partial fmod_studio_bus_get_paused
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_set_paused
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @param {Real} paused
  * @returns {Real}
  * @function_end
@@ -2283,7 +2283,7 @@
 
 /**
  * @function_partial fmod_studio_bus_stop_all_events
- * @param {Struct.FmodStudioBusRef} bus_ref
+ * @param {Real} bus_ref
  * @param {Real} stop_mode
  * @returns {Real}
  * @function_end
@@ -2291,27 +2291,27 @@
 
 /**
  * @function_partial fmod_studio_bus_get_master_bus
- * @returns {Struct.FmodStudioBusRef}
+ * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_vca_get_path
- * @param {Struct.FmodStudioVCARef} vca_ref
+ * @param {Real} vca_ref
  * @returns {String}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_vca_get_volume
- * @param {Struct.FmodStudioVCARef} vca_ref
+ * @param {Real} vca_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_vca_set_volume
- * @param {Struct.FmodStudioVCARef} vca_ref
+ * @param {Real} vca_ref
  * @param {Real} volume
  * @returns {Real}
  * @function_end
@@ -2319,42 +2319,42 @@
 
 /**
  * @function_partial fmod_studio_command_replay_get_playback_state
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_get_current_command
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_release
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_get_command_count
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_get_length
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_set_frame_callback
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
@@ -2362,7 +2362,7 @@
 
 /**
  * @function_partial fmod_studio_command_replay_set_create_instance_callback
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
@@ -2370,112 +2370,10 @@
 
 /**
  * @function_partial fmod_studio_command_replay_set_load_bank_callback
- * @param {Struct.FmodStudioCommandReplayRef} replay_ref
+ * @param {Real} replay_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
- */
-
-/**
- * @struct_partial FmodChannelRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodChannelGroupRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodSoundRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodSystemRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodDSPConnectionRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodSoundGroupRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodReverb3DRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodDSPRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodGeometryRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodChannelControlRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioSystemRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioBankRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioBusRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioEventInstanceRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioEventDescriptionRef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioVCARef
- * @member {Real} _ref
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioCommandReplayRef
- * @member {Real} _ref
- * @struct_end
  */
 
 /**

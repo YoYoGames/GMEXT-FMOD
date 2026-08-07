@@ -60,6 +60,27 @@ template <typename T>
 uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
 
 // ============================================================
+// Reference Layout
+// ============================================================
+
+// Every handle handed to GML is a plain 64-bit integer packed by
+// packIndexIntoRef():
+//
+//     10bit      |     8bit      |      32bit
+//   extension    |     type      |       ref
+//
+// The extension code rejects handles minted by some other GM extension; the
+// type code rejects passing e.g. a sound ref to a channel call. The low 32
+// bits are either a registry index (map-backed types) or the truncated
+// pointer itself (pointer-backed types).
+
+#define GM_FMOD_EXT 0x01
+
+#define gm_fmod_ref_ext(ref) ((uint32_t)(((uint64_t)(ref) >> 40) & 0x3FF))
+#define gm_fmod_ref_type(ref) ((uint8_t)(((uint64_t)(ref) >> 32) & 0xFF))
+#define gm_fmod_ref_id(ref) ((uint32_t)((uint64_t)(ref) & 0xFFFFFFFF))
+
+// ============================================================
 // Type Codes
 // ============================================================
 
@@ -89,234 +110,102 @@ uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
 // Validation Macros
 // ============================================================
 
+// A rejected ref leaves `output` null and sets g_fmod_last_result; every
+// call site already null-checks before touching the handle.
+#define gm_fmod_ref_reject(output) \
+	{ \
+		g_fmod_last_result = (FMOD_RESULT)-2; \
+		output = nullptr; \
+	}
+
+// Payload is the truncated pointer itself.
+#define validate_fmod_ref_ptr(ref, type_code, cpp_type, output) \
+	{ \
+		if (gm_fmod_ref_ext(ref) == GM_FMOD_EXT && gm_fmod_ref_type(ref) == (type_code)) \
+		{ \
+			output = reinterpret_cast<cpp_type*>(static_cast<uintptr_t>(gm_fmod_ref_id(ref))); \
+		} \
+		else gm_fmod_ref_reject(output) \
+	}
+
+// Payload is an index into a registry map.
+#define validate_fmod_ref_map(ref, type_code, cpp_type, map, output) \
+	{ \
+		auto _search = (map).find(gm_fmod_ref_id(ref)); \
+		if (gm_fmod_ref_ext(ref) == GM_FMOD_EXT && gm_fmod_ref_type(ref) == (type_code) \
+			&& _search != (map).end()) \
+		{ \
+			output = (cpp_type*)_search->second; \
+		} \
+		else gm_fmod_ref_reject(output) \
+	}
+
 #define validate_fmod_channel(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Channel*>(static_cast<uintptr_t>(_ref_id)); \
-	}
-
-#define validate_fmod_channel_group(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_channel_groups.find(_ref_id); search != map_channel_groups.end()) \
-		{ \
-			output = (FMOD::ChannelGroup*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_sound(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_sounds.find(_ref_id); search != map_sounds.end()) \
-		{ \
-			output = (FMOD::Sound*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_system(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_systems.find(_ref_id); search != map_systems.end()) \
-		{ \
-			output = (FMOD::System*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_sound_group(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_sound_groups.find(_ref_id); search != map_sound_groups.end()) \
-		{ \
-			output = (FMOD::SoundGroup*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_reverb_3d(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_reverbs.find(_ref_id); search != map_reverbs.end()) \
-		{ \
-			output = (FMOD::Reverb3D*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_dsp(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_dsps.find(_ref_id); search != map_dsps.end()) \
-		{ \
-			output = (FMOD::DSP*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_dsp_connection(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_dsp_connections.find(_ref_id); search != map_dsp_connections.end()) \
-		{ \
-			output = (FMOD::DSPConnection*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_geometry(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		if (auto search = map_geometries.find(_ref_id); search != map_geometries.end()) \
-		{ \
-			output = (FMOD::Geometry*)search->second; \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-#define validate_fmod_channel_control(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		uint32_t _ref_type = (_ref >> 32) & 0xFF; \
-		if (_ref_type == GM_FMOD_TYPE_CHANNEL) \
-		{ \
-			output = reinterpret_cast<FMOD::ChannelControl*>(static_cast<uintptr_t>(_ref_id)); \
-		} \
-		else if (_ref_type == GM_FMOD_TYPE_CHANNEL_GROUP) \
-		{ \
-			if (auto search = map_channel_groups.find(_ref_id); search != map_channel_groups.end()) \
-			{ \
-				output = (FMOD::ChannelControl*)search->second; \
-			} \
-			else \
-			{ \
-				g_fmod_last_result = (FMOD_RESULT)-2; \
-				output = nullptr; \
-			} \
-		} \
-		else \
-		{ \
-			g_fmod_last_result = (FMOD_RESULT)-2; \
-			output = nullptr; \
-		} \
-	}
-
-// ============================================================
-// Studio Validation Macros
-// ============================================================
+	validate_fmod_ref_ptr(ref, GM_FMOD_TYPE_CHANNEL, FMOD::Channel, output)
 
 #define validate_fmod_studio_system(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::System*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_SYSTEM, FMOD::Studio::System, output)
 
 #define validate_fmod_studio_bank(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::Bank*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_BANK, FMOD::Studio::Bank, output)
 
 #define validate_fmod_studio_bus(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::Bus*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_BUS, FMOD::Studio::Bus, output)
 
 #define validate_fmod_studio_event_instance(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::EventInstance*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE, FMOD::Studio::EventInstance, output)
 
 #define validate_fmod_studio_event_description(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::EventDescription*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION, FMOD::Studio::EventDescription, output)
 
 #define validate_fmod_studio_vca(ref, output) \
-	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::VCA*>(static_cast<uintptr_t>(_ref_id)); \
-	}
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_VCA, FMOD::Studio::VCA, output)
 
 #define validate_fmod_studio_command_replay(ref, output) \
+	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY, FMOD::Studio::CommandReplay, output)
+
+#define validate_fmod_channel_group(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_CHANNEL_GROUP, FMOD::ChannelGroup, map_channel_groups, output)
+
+#define validate_fmod_sound(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SOUND, FMOD::Sound, map_sounds, output)
+
+#define validate_fmod_system(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SYSTEM, FMOD::System, map_systems, output)
+
+#define validate_fmod_sound_group(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SOUND_GROUP, FMOD::SoundGroup, map_sound_groups, output)
+
+#define validate_fmod_reverb_3d(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_REVERB_3D, FMOD::Reverb3D, map_reverbs, output)
+
+#define validate_fmod_dsp(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_DSP, FMOD::DSP, map_dsps, output)
+
+#define validate_fmod_dsp_connection(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_DSP_CONNECTION, FMOD::DSPConnection, map_dsp_connections, output)
+
+#define validate_fmod_geometry(ref, output) \
+	validate_fmod_ref_map(ref, GM_FMOD_TYPE_GEOMETRY, FMOD::Geometry, map_geometries, output)
+
+// ChannelControl is the common base: a channel ref or a channel group ref
+// are both acceptable here.
+#define validate_fmod_channel_control(ref, output) \
 	{ \
-		uint64_t _ref = (uint64_t)ref; \
-		uint32_t _ref_id = _ref & 0xFFFFFFFF; \
-		output = reinterpret_cast<FMOD::Studio::CommandReplay*>(static_cast<uintptr_t>(_ref_id)); \
+		if (gm_fmod_ref_ext(ref) != GM_FMOD_EXT) gm_fmod_ref_reject(output) \
+		else if (gm_fmod_ref_type(ref) == GM_FMOD_TYPE_CHANNEL) \
+		{ \
+			output = reinterpret_cast<FMOD::ChannelControl*>(static_cast<uintptr_t>(gm_fmod_ref_id(ref))); \
+		} \
+		else if (gm_fmod_ref_type(ref) == GM_FMOD_TYPE_CHANNEL_GROUP) \
+		{ \
+			auto _search = map_channel_groups.find(gm_fmod_ref_id(ref)); \
+			if (_search != map_channel_groups.end()) \
+				output = (FMOD::ChannelControl*)_search->second; \
+			else gm_fmod_ref_reject(output) \
+		} \
+		else gm_fmod_ref_reject(output) \
 	}
-
-// ============================================================
-// Reference Type Using Declarations
-// ============================================================
-
-using FmodSystemRef = gm_structs::FmodSystemRef;
-using FmodChannelRef = gm_structs::FmodChannelRef;
-using FmodChannelGroupRef = gm_structs::FmodChannelGroupRef;
-using FmodSoundRef = gm_structs::FmodSoundRef;
-using FmodDSPRef = gm_structs::FmodDSPRef;
-using FmodDSPConnectionRef = gm_structs::FmodDSPConnectionRef;
-using FmodSoundGroupRef = gm_structs::FmodSoundGroupRef;
-using FmodReverb3DRef = gm_structs::FmodReverb3DRef;
-using FmodGeometryRef = gm_structs::FmodGeometryRef;
-using FmodStudioSystemRef = gm_structs::FmodStudioSystemRef;
-using FmodStudioBankRef = gm_structs::FmodStudioBankRef;
-using FmodStudioBusRef = gm_structs::FmodStudioBusRef;
-using FmodStudioEventInstanceRef = gm_structs::FmodStudioEventInstanceRef;
-using FmodStudioEventDescriptionRef = gm_structs::FmodStudioEventDescriptionRef;
-using FmodStudioVCARef = gm_structs::FmodStudioVCARef;
-using FmodStudioCommandReplayRef = gm_structs::FmodStudioCommandReplayRef;
 
 // ============================================================
 // Callback Contexts

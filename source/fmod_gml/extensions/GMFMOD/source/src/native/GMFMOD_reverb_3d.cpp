@@ -6,10 +6,10 @@ using namespace gm_structs;
 // Reverb3D - Configuration
 // ============================================================
 
-double fmod_reverb_3d_set_active(const FmodReverb3DRef& reverb_3d_ref, double active)
+double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, double active)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref._ref, reverb_3d);
+	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	if (reverb_3d == nullptr)
 		return 0;
@@ -18,10 +18,10 @@ double fmod_reverb_3d_set_active(const FmodReverb3DRef& reverb_3d_ref, double ac
 	return 0;
 }
 
-double fmod_reverb_3d_get_active(const FmodReverb3DRef& reverb_3d_ref)
+double fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref._ref, reverb_3d);
+	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	if (reverb_3d == nullptr)
 		return 0.0;
@@ -31,10 +31,10 @@ double fmod_reverb_3d_get_active(const FmodReverb3DRef& reverb_3d_ref)
 	return active ? 1.0 : 0.0;
 }
 
-double fmod_reverb_3d_set_properties(const FmodReverb3DRef& reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level)
+double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref._ref, reverb_3d);
+	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	if (reverb_3d == nullptr)
 		return 0;
@@ -61,10 +61,10 @@ double fmod_reverb_3d_set_properties(const FmodReverb3DRef& reverb_3d_ref, doubl
 // Reverb3D - General
 // ============================================================
 
-double fmod_reverb_3d_release(const FmodReverb3DRef& reverb_3d_ref)
+double fmod_reverb_3d_release(uint64_t reverb_3d_ref)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref._ref, reverb_3d);
+	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	if (reverb_3d == nullptr)
 		return 0;

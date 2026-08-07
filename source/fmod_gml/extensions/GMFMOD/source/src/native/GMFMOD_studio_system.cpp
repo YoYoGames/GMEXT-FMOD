@@ -12,9 +12,9 @@ static uint64_t g_studio_system_ref = 0;
 // Studio System - Lifetime
 // ============================================================
 
-FmodStudioSystemRef fmod_studio_system_create()
+uint64_t fmod_studio_system_create()
 {
-	FmodStudioSystemRef result{};
+	uint64_t result = 0;
 	if (g_studio_system_ref != 0) return result;
 
 	FMOD::Studio::System* studio_system = nullptr;
@@ -30,7 +30,7 @@ FmodStudioSystemRef fmod_studio_system_create()
 	}
 
 	g_studio_system_ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(studio_system), GM_FMOD_STUDIO_TYPE_SYSTEM);
-	result._ref = g_studio_system_ref;
+	result = g_studio_system_ref;
 	return result;
 }
 
@@ -100,7 +100,7 @@ double fmod_studio_system_flush_sample_loading()
 // Studio System - Banks
 // ============================================================
 
-std::optional<FmodStudioBankRef> fmod_studio_system_load_bank_file(std::string_view filename, double flags)
+std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, double flags)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -110,14 +110,14 @@ std::optional<FmodStudioBankRef> fmod_studio_system_load_bank_file(std::string_v
 	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)(int)flags, &bank);
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
 	{
-		FmodStudioBankRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
 		return result;
 	}
 	return std::nullopt;
 }
 
-std::optional<FmodStudioBankRef> fmod_studio_system_load_bank_memory(std::string_view data, double flags)
+std::optional<uint64_t> fmod_studio_system_load_bank_memory(std::string_view data, double flags)
 {
 	// loadBankMemory signature doesn't match this SDK version
 	// Use loadBankFile instead
@@ -146,7 +146,7 @@ double fmod_studio_system_get_bank_count()
 	return (double)count;
 }
 
-std::optional<FmodStudioBankRef> fmod_studio_system_get_bank_at(double index)
+std::optional<uint64_t> fmod_studio_system_get_bank_at(double index)
 {
 	// getBankAt is not available in this SDK version
 	// Use getBank with path instead
@@ -154,7 +154,7 @@ std::optional<FmodStudioBankRef> fmod_studio_system_get_bank_at(double index)
 	return std::nullopt;
 }
 
-std::optional<FmodStudioBankRef> fmod_studio_system_get_bank(std::string_view path)
+std::optional<uint64_t> fmod_studio_system_get_bank(std::string_view path)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -164,8 +164,8 @@ std::optional<FmodStudioBankRef> fmod_studio_system_get_bank(std::string_view pa
 	g_fmod_last_result = studio_system->getBank(path.data(), &bank);
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
 	{
-		FmodStudioBankRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
 		return result;
 	}
 	return std::nullopt;
@@ -175,7 +175,7 @@ std::optional<FmodStudioBankRef> fmod_studio_system_get_bank(std::string_view pa
 // Studio System - Events
 // ============================================================
 
-std::optional<FmodStudioEventDescriptionRef> fmod_studio_system_get_event(std::string_view path)
+std::optional<uint64_t> fmod_studio_system_get_event(std::string_view path)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -185,14 +185,14 @@ std::optional<FmodStudioEventDescriptionRef> fmod_studio_system_get_event(std::s
 	g_fmod_last_result = studio_system->getEvent(path.data(), &event_desc);
 	if (g_fmod_last_result == FMOD_OK && event_desc != nullptr)
 	{
-		FmodStudioEventDescriptionRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_desc), GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_desc), GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 		return result;
 	}
 	return std::nullopt;
 }
 
-std::optional<FmodStudioEventInstanceRef> fmod_studio_system_create_event_instance(std::string_view path)
+std::optional<uint64_t> fmod_studio_system_create_event_instance(std::string_view path)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -212,8 +212,8 @@ std::optional<FmodStudioEventInstanceRef> fmod_studio_system_create_event_instan
 	}
 	if (g_fmod_last_result == FMOD_OK && instance != nullptr)
 	{
-		FmodStudioEventInstanceRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(instance), GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(instance), GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
 		return result;
 	}
 	return std::nullopt;
@@ -223,7 +223,7 @@ std::optional<FmodStudioEventInstanceRef> fmod_studio_system_create_event_instan
 // Studio System - Buses
 // ============================================================
 
-std::optional<FmodStudioBusRef> fmod_studio_system_get_bus(std::string_view path)
+std::optional<uint64_t> fmod_studio_system_get_bus(std::string_view path)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -233,14 +233,14 @@ std::optional<FmodStudioBusRef> fmod_studio_system_get_bus(std::string_view path
 	g_fmod_last_result = studio_system->getBus(path.data(), &bus);
 	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
 	{
-		FmodStudioBusRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
 		return result;
 	}
 	return std::nullopt;
 }
 
-std::optional<FmodStudioBusRef> fmod_studio_system_get_master_bus()
+std::optional<uint64_t> fmod_studio_system_get_master_bus()
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -250,8 +250,8 @@ std::optional<FmodStudioBusRef> fmod_studio_system_get_master_bus()
 	g_fmod_last_result = studio_system->getBus("bus:/", &bus);
 	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
 	{
-		FmodStudioBusRef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
 		return result;
 	}
 	return std::nullopt;
@@ -261,7 +261,7 @@ std::optional<FmodStudioBusRef> fmod_studio_system_get_master_bus()
 // Studio System - VCAs
 // ============================================================
 
-std::optional<FmodStudioVCARef> fmod_studio_system_get_vca(std::string_view path)
+std::optional<uint64_t> fmod_studio_system_get_vca(std::string_view path)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -271,8 +271,8 @@ std::optional<FmodStudioVCARef> fmod_studio_system_get_vca(std::string_view path
 	g_fmod_last_result = studio_system->getVCA(path.data(), &vca);
 	if (g_fmod_last_result == FMOD_OK && vca != nullptr)
 	{
-		FmodStudioVCARef result{};
-		result._ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(vca), GM_FMOD_STUDIO_TYPE_VCA);
+		uint64_t result = 0;
+		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(vca), GM_FMOD_STUDIO_TYPE_VCA);
 		return result;
 	}
 	return std::nullopt;
@@ -332,9 +332,9 @@ double fmod_studio_system_get_parameter_by_name(std::string_view name)
 	return (double)value;
 }
 
-FmodSystemRef fmod_studio_system_get_core_system()
+uint64_t fmod_studio_system_get_core_system()
 {
-	FmodSystemRef result{};
+	uint64_t result = 0;
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return result;
@@ -344,7 +344,7 @@ FmodSystemRef fmod_studio_system_get_core_system()
 	if (g_fmod_last_result == FMOD_OK && core_system != nullptr)
 	{
 		uint32_t system_id = registerOrFindResource(core_system, index_systems, map_systems);
-		result._ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
 	}
 	return result;
 }
@@ -387,9 +387,9 @@ std::string fmod_studio_system_lookup_id(std::string_view path)
 	return std::string(buffer);
 }
 
-FmodStudioEventDescriptionRef fmod_studio_system_get_event_by_id(std::string_view id)
+uint64_t fmod_studio_system_get_event_by_id(std::string_view id)
 {
-	FmodStudioEventDescriptionRef result{};
+	uint64_t result = 0;
 
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -404,7 +404,7 @@ FmodStudioEventDescriptionRef fmod_studio_system_get_event_by_id(std::string_vie
 	g_fmod_last_result = studio_system->getEventByID(&guid, &event_desc);
 	if (g_fmod_last_result != FMOD_OK || event_desc == nullptr) return result;
 
-	result._ref = packIndexIntoRef(
+	result = packIndexIntoRef(
 		(uint32_t)reinterpret_cast<uintptr_t>(event_desc),
 		GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 	return result;
@@ -436,9 +436,9 @@ double fmod_studio_system_stop_command_capture()
 	return 0;
 }
 
-FmodStudioCommandReplayRef fmod_studio_system_load_command_replay(std::string_view filename, enum gm_enums::FmodStudioCommandReplayFlags flags)
+uint64_t fmod_studio_system_load_command_replay(std::string_view filename, enum gm_enums::FmodStudioCommandReplayFlags flags)
 {
-	FmodStudioCommandReplayRef result{};
+	uint64_t result = 0;
 
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -450,7 +450,7 @@ FmodStudioCommandReplayRef fmod_studio_system_load_command_replay(std::string_vi
 		filename_str.c_str(), (FMOD_STUDIO_COMMANDREPLAY_FLAGS)(int)flags, &replay);
 	if (g_fmod_last_result != FMOD_OK || replay == nullptr) return result;
 
-	result._ref = packIndexIntoRef(
+	result = packIndexIntoRef(
 		(uint32_t)reinterpret_cast<uintptr_t>(replay),
 		GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 	return result;

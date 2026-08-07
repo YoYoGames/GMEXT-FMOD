@@ -7,10 +7,10 @@ using namespace gm_structs;
 // ChannelGroup - Channel Management
 // ============================================================
 
-double fmod_channel_group_get_num_channels(const FmodChannelGroupRef& channel_group_ref)
+double fmod_channel_group_get_num_channels(uint64_t channel_group_ref)
 {
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return 0.0;
@@ -20,12 +20,12 @@ double fmod_channel_group_get_num_channels(const FmodChannelGroupRef& channel_gr
 	return (double)num_channels;
 }
 
-FmodChannelRef fmod_channel_group_get_channel(const FmodChannelGroupRef& channel_group_ref, double index)
+uint64_t fmod_channel_group_get_channel(uint64_t channel_group_ref, double index)
 {
-	FmodChannelRef result{};
+	uint64_t result = 0;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
@@ -36,7 +36,7 @@ FmodChannelRef fmod_channel_group_get_channel(const FmodChannelGroupRef& channel
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
 		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result._ref = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }
@@ -45,18 +45,18 @@ FmodChannelRef fmod_channel_group_get_channel(const FmodChannelGroupRef& channel
 // ChannelGroup - Group Management
 // ============================================================
 
-FmodDSPConnectionRef fmod_channel_group_add_group(const FmodChannelGroupRef& channel_group_ref, const FmodChannelGroupRef& child_channel_group_ref, double propagate_dsp_clock)
+uint64_t fmod_channel_group_add_group(uint64_t channel_group_ref, uint64_t child_channel_group_ref, double propagate_dsp_clock)
 {
-	FmodDSPConnectionRef result{};
+	uint64_t result = 0;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
 
 	FMOD::ChannelGroup* child_channel_group = nullptr;
-	validate_fmod_channel_group(child_channel_group_ref._ref, child_channel_group);
+	validate_fmod_channel_group(child_channel_group_ref, child_channel_group);
 
 	if (child_channel_group == nullptr)
 		return result;
@@ -67,15 +67,15 @@ FmodDSPConnectionRef fmod_channel_group_add_group(const FmodChannelGroupRef& cha
 	if (g_fmod_last_result == FMOD_OK && dsp_connection != nullptr)
 	{
 		uint32_t dsp_connection_id = registerOrFindResource(dsp_connection, index_dsp_connections, map_dsp_connections);
-		result._ref = packIndexIntoRef(dsp_connection_id, GM_FMOD_TYPE_DSP_CONNECTION);
+		result = packIndexIntoRef(dsp_connection_id, GM_FMOD_TYPE_DSP_CONNECTION);
 	}
 	return result;
 }
 
-double fmod_channel_group_get_num_groups(const FmodChannelGroupRef& channel_group_ref)
+double fmod_channel_group_get_num_groups(uint64_t channel_group_ref)
 {
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return 0.0;
@@ -85,12 +85,12 @@ double fmod_channel_group_get_num_groups(const FmodChannelGroupRef& channel_grou
 	return (double)num_groups;
 }
 
-FmodChannelGroupRef fmod_channel_group_get_group(const FmodChannelGroupRef& channel_group_ref, double group_index)
+uint64_t fmod_channel_group_get_group(uint64_t channel_group_ref, double group_index)
 {
-	FmodChannelGroupRef result{};
+	uint64_t result = 0;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
@@ -101,17 +101,17 @@ FmodChannelGroupRef fmod_channel_group_get_group(const FmodChannelGroupRef& chan
 	if (g_fmod_last_result == FMOD_OK && child_group != nullptr)
 	{
 		uint32_t group_id = registerOrFindResource(child_group, index_channel_groups, map_channel_groups);
-		result._ref = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
 	}
 	return result;
 }
 
-FmodChannelGroupRef fmod_channel_group_get_parent_group(const FmodChannelGroupRef& channel_group_ref)
+uint64_t fmod_channel_group_get_parent_group(uint64_t channel_group_ref)
 {
-	FmodChannelGroupRef result{};
+	uint64_t result = 0;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
@@ -122,7 +122,7 @@ FmodChannelGroupRef fmod_channel_group_get_parent_group(const FmodChannelGroupRe
 	if (g_fmod_last_result == FMOD_OK && parent_group != nullptr)
 	{
 		uint32_t parent_id = registerOrFindResource(parent_group, index_channel_groups, map_channel_groups);
-		result._ref = packIndexIntoRef(parent_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		result = packIndexIntoRef(parent_id, GM_FMOD_TYPE_CHANNEL_GROUP);
 	}
 	return result;
 }
@@ -131,10 +131,10 @@ FmodChannelGroupRef fmod_channel_group_get_parent_group(const FmodChannelGroupRe
 // ChannelGroup - General
 // ============================================================
 
-std::string fmod_channel_group_get_name(const FmodChannelGroupRef& channel_group_ref)
+std::string fmod_channel_group_get_name(uint64_t channel_group_ref)
 {
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return "";
@@ -144,10 +144,10 @@ std::string fmod_channel_group_get_name(const FmodChannelGroupRef& channel_group
 	return std::string(buffer);
 }
 
-double fmod_channel_group_release(const FmodChannelGroupRef& channel_group_ref)
+double fmod_channel_group_release(uint64_t channel_group_ref)
 {
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return 0;
@@ -160,12 +160,12 @@ double fmod_channel_group_release(const FmodChannelGroupRef& channel_group_ref)
 	return 0;
 }
 
-FmodSystemRef fmod_channel_group_get_system_object(const FmodChannelGroupRef& channel_group_ref)
+uint64_t fmod_channel_group_get_system_object(uint64_t channel_group_ref)
 {
-	FmodSystemRef result{};
+	uint64_t result = 0;
 
 	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref._ref, channel_group);
+	validate_fmod_channel_group(channel_group_ref, channel_group);
 
 	if (channel_group == nullptr)
 		return result;
@@ -176,7 +176,7 @@ FmodSystemRef fmod_channel_group_get_system_object(const FmodChannelGroupRef& ch
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
 		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result._ref = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
 	}
 	return result;
 }
