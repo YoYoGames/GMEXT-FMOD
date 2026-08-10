@@ -192,28 +192,25 @@ namespace gm_enums
         ParamEq = 12,
         PitchShift = 13,
         Chorus = 14,
-        VstPlugin = 15,
-        WinampPlugin = 16,
-        ItEcho = 17,
-        Compressor = 18,
-        SfxReverb = 19,
-        LowPassSimple = 20,
-        Delay = 21,
-        Tremolo = 22,
-        LadspaPlugin = 23,
-        Send = 24,
-        Return = 25,
-        HighPassSimple = 26,
-        Pan = 27,
-        ThreeEq = 28,
-        FFT = 29,
-        LoudnessMeter = 30,
-        EnvelopeFollower = 31,
-        ConvolutionReverb = 32,
-        ChannelMix = 33,
-        Transceiver = 34,
-        ObjectPan = 35,
-        MultibandEq = 36
+        ItEcho = 15,
+        Compressor = 16,
+        SfxReverb = 17,
+        LowPassSimple = 18,
+        Delay = 19,
+        Tremolo = 20,
+        Send = 21,
+        Return = 22,
+        HighPassSimple = 23,
+        Pan = 24,
+        ThreeEq = 25,
+        FFT = 26,
+        LoudnessMeter = 27,
+        ConvolutionReverb = 28,
+        ChannelMix = 29,
+        Transceiver = 30,
+        ObjectPan = 31,
+        MultibandEq = 32,
+        MultibandDynamics = 33
     };
 
     enum class FmodDspConnectionType : std::int64_t
@@ -374,8 +371,14 @@ namespace gm_enums
     {
         WindowSize = 0,
         WindowType = 1,
-        SpectrumData = 2,
-        DominantFreq = 3
+        BandStartFreq = 2,
+        BandStopFreq = 3,
+        SpectrumData = 4,
+        Rms = 5,
+        SpectralCentroid = 6,
+        ImmediateMode = 7,
+        Downmix = 8,
+        Channel = 9
     };
 
     enum class FmodDspFftWindowType : std::int64_t
@@ -423,6 +426,12 @@ namespace gm_enums
         _5Point1 = 6,
         _7Point1 = 7,
         _7Point1Point4 = 8
+    };
+
+    enum class FmodDriverState : std::int64_t
+    {
+        Connected = 1,
+        Default = 2
     };
 
     enum class FmodDebugFlags : std::int64_t
@@ -767,8 +776,10 @@ namespace gm_structs
     struct FmodRecordDriverInfo
     {
         std::string name;
-        double speaker_mode;
+        gm_enums::FmodSpeakerMode speaker_mode;
+        double speaker_mode_channels;
         double sample_rate;
+        gm_enums::FmodDriverState state;
     };
 
     struct FmodDSPMixMatrix
@@ -1290,7 +1301,9 @@ namespace gm::wire::codec
     {
         gm::wire::codec::writeValue(_buf, obj.name);
         gm::wire::codec::writeValue(_buf, obj.speaker_mode);
+        gm::wire::codec::writeValue(_buf, obj.speaker_mode_channels);
         gm::wire::codec::writeValue(_buf, obj.sample_rate);
+        gm::wire::codec::writeValue(_buf, obj.state);
     }
 
     template<>
@@ -1298,8 +1311,10 @@ namespace gm::wire::codec
     {
         gm_structs::FmodRecordDriverInfo obj;
         obj.name = gm::wire::codec::readValue<std::string>(_buf);
-        obj.speaker_mode = gm::wire::codec::readValue<double>(_buf);
+        obj.speaker_mode = gm::wire::codec::readValue<gm_enums::FmodSpeakerMode>(_buf);
+        obj.speaker_mode_channels = gm::wire::codec::readValue<double>(_buf);
         obj.sample_rate = gm::wire::codec::readValue<double>(_buf);
+        obj.state = gm::wire::codec::readValue<gm_enums::FmodDriverState>(_buf);
         return obj;
     }
 
@@ -2787,6 +2802,7 @@ double fmod_system_get_geometry_settings();
 double fmod_system_set_geometry_settings(double max_world_size);
 std::uint64_t fmod_system_create_reverb_3d();
 std::uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode);
+std::uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const gm_structs::FmodCreateSoundExInfo& ex_info);
 std::uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode);
 std::uint64_t fmod_system_play_sound(std::uint64_t sound_ref, std::uint64_t channel_group_ref, double pause);
 double fmod_sound_get_length(std::uint64_t sound_ref, double length_type);

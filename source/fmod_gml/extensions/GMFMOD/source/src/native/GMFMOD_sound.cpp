@@ -20,7 +20,83 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
 
 	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
-	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(int)mode, nullptr, &sound);
+
+	FMOD_CREATESOUNDEXINFO* ex_info = nullptr;
+	FMOD_CREATESOUNDEXINFO default_user_sound = {};
+
+	// A user sound has no file to take its format from, and createSound rejects a
+	// null exinfo in that case. Fall back to a generic stereo buffer so the call
+	// still succeeds - callers that care about the format (recording into the
+	// sound, for instance) should use fmod_system_create_sound_ex instead.
+	if ((int)mode & FMOD_OPENUSER && name_or_data.empty())
+	{
+		default_user_sound.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+		default_user_sound.numchannels = 2;
+		default_user_sound.defaultfrequency = 44100;
+		default_user_sound.format = FMOD_SOUND_FORMAT_PCM16;
+		default_user_sound.length = 44100 * 5 * 2 * sizeof(short); // 5 seconds stereo PCM16
+		ex_info = &default_user_sound;
+	}
+
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(int)mode, ex_info, &sound);
+
+	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
+	{
+		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
+		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+	}
+	return result;
+}
+
+uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const FmodCreateSoundExInfo& ex_info)
+{
+	uint64_t result = 0;
+
+	if (getCurrentSystem() == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return result;
+	}
+
+	FMOD::System* system = getCurrentSystem();
+	FMOD::Sound* sound = nullptr;
+
+	FMOD_CREATESOUNDEXINFO info = {};
+	info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+	info.length = (unsigned int)ex_info.length;
+	info.fileoffset = (unsigned int)ex_info.file_offset;
+	info.numchannels = (int)ex_info.num_channels;
+	info.defaultfrequency = (int)ex_info.default_frequency;
+	info.format = (FMOD_SOUND_FORMAT)(int)ex_info.format;
+	info.decodebuffersize = (unsigned int)ex_info.decode_buffer_size;
+	info.initialsubsound = (int)ex_info.initial_subsound;
+	info.numsubsounds = (int)ex_info.num_subsounds;
+	info.inclusionlistnum = (int)ex_info.inclusion_list_num;
+	info.maxpolyphony = (int)ex_info.max_polyphony;
+	info.suggestedsoundtype = (FMOD_SOUND_TYPE)(int)ex_info.suggested_sound_type;
+	info.filebuffersize = (int)ex_info.file_buffer_size;
+	info.channelorder = (FMOD_CHANNELORDER)(int)ex_info.channel_order;
+	info.initialseekposition = (unsigned int)ex_info.initial_seek_position;
+	info.initialseekpostype = (FMOD_TIMEUNIT)(unsigned int)ex_info.initial_seek_pos_type;
+	info.ignoresetfilesystem = (int)ex_info.ignore_set_filesystem;
+	info.audioqueuepolicy = (unsigned int)ex_info.audio_queue_policy;
+	info.minmidigranularity = (unsigned int)ex_info.min_midi_granularity;
+	info.nonblockthreadid = (int)ex_info.non_block_thread_id;
+
+	// Empty strings mean "not supplied" - FMOD expects a null pointer there.
+	if (!ex_info.dls_name.empty())
+		info.dlsname = ex_info.dls_name.c_str();
+	if (!ex_info.encryption_key.empty())
+		info.encryptionkey = ex_info.encryption_key.c_str();
+
+	if (ex_info.initial_sound_group != 0)
+	{
+		FMOD::SoundGroup* sound_group = nullptr;
+		validate_fmod_sound_group(ex_info.initial_sound_group, sound_group);
+		info.initialsoundgroup = (FMOD_SOUNDGROUP*)sound_group;
+	}
+
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(int)mode, &info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{

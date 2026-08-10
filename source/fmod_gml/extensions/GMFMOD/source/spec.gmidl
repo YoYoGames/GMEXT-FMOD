@@ -188,28 +188,25 @@ enum FmodDspType
 	ParamEq = 12,
 	PitchShift = 13,
 	Chorus = 14,
-	VstPlugin = 15,
-	WinampPlugin = 16,
-	ItEcho = 17,
-	Compressor = 18,
-	SfxReverb = 19,
-	LowPassSimple = 20,
-	Delay = 21,
-	Tremolo = 22,
-	LadspaPlugin = 23,
-	Send = 24,
-	Return = 25,
-	HighPassSimple = 26,
-	Pan = 27,
-	ThreeEq = 28,
-	FFT = 29,
-	LoudnessMeter = 30,
-	EnvelopeFollower = 31,
-	ConvolutionReverb = 32,
-	ChannelMix = 33,
-	Transceiver = 34,
-	ObjectPan = 35,
-	MultibandEq = 36,
+	ItEcho = 15,
+	Compressor = 16,
+	SfxReverb = 17,
+	LowPassSimple = 18,
+	Delay = 19,
+	Tremolo = 20,
+	Send = 21,
+	Return = 22,
+	HighPassSimple = 23,
+	Pan = 24,
+	ThreeEq = 25,
+	FFT = 26,
+	LoudnessMeter = 27,
+	ConvolutionReverb = 28,
+	ChannelMix = 29,
+	Transceiver = 30,
+	ObjectPan = 31,
+	MultibandEq = 32,
+	MultibandDynamics = 33,
 }
 
 [global, bind = typed_gml]
@@ -392,8 +389,14 @@ enum FmodDspFft
 {
 	WindowSize = 0,
 	WindowType = 1,
-	SpectrumData = 2,
-	DominantFreq = 3,
+	BandStartFreq = 2,
+	BandStopFreq = 3,
+	SpectrumData = 4,
+	Rms = 5,
+	SpectralCentroid = 6,
+	ImmediateMode = 7,
+	Downmix = 8,
+	Channel = 9,
 }
 
 [global, bind = typed_gml]
@@ -446,6 +449,13 @@ enum FmodSpeakerMode
 	_5Point1 = 6,
 	_7Point1 = 7,
 	_7Point1Point4 = 8,
+}
+
+[global, bind = typed_gml]
+enum FmodDriverState
+{
+	Connected = 0x00000001,
+	Default = 0x00000002,
 }
 
 [global, bind = typed_gml]
@@ -813,11 +823,17 @@ class `[[FmodRecordDriverInfo]]` prototype Object
     [field, type_hint=`string`]
     property name: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodSpeakerMode`]
     property speaker_mode: gmval { get; set; }
 
     [field, type_hint=`real`]
+    property speaker_mode_channels: gmval { get; set; }
+
+    [field, type_hint=`real`]
     property sample_rate: gmval { get; set; }
+
+    [field, type_hint=`FmodDriverState`]
+    property state: gmval { get; set; }
 }
 
 [global]
@@ -1419,70 +1435,70 @@ class `[[FmodStudioUserProperty]]` prototype Object
 [global]
 class `[[FmodCreateSoundExInfo]]` prototype Object
 {
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property length: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property file_offset: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property num_channels: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property default_frequency: gmval { get; set; }
 
-    [field, type_hint=`FmodSoundFormat`]
+    [field, type_hint=`FmodSoundFormat`, value = 0]
     property format: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property decode_buffer_size: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property initial_subsound: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property num_subsounds: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property inclusion_list_num: gmval { get; set; }
 
-    [field, type_hint=`string`]
+    [field, type_hint=`string`, value = ""]
     property dls_name: gmval { get; set; }
 
-    [field, type_hint=`string`]
+    [field, type_hint=`string`, value = ""]
     property encryption_key: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property max_polyphony: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property suggested_sound_type: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property file_buffer_size: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property channel_order: gmval { get; set; }
 
-    [field, type_hint=`uint64`]
+    [field, type_hint=`uint64`, value = 0]
     property initial_sound_group: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property initial_seek_position: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property initial_seek_pos_type: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property ignore_set_filesystem: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property audio_queue_policy: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property min_midi_granularity: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`real`, value = 0]
     property non_block_thread_id: gmval { get; set; }
 }
 
@@ -2164,6 +2180,16 @@ group
 function fmod_system_create_sound(
     name_or_data: string,
     mode: real
+): gmval;
+
+// Same as fmod_system_create_sound, but describes the sound being created.
+// Required for FmodMode.OpenUser sounds, whose format cannot be inferred from
+// a file.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_sound_ex(
+    name_or_data: string,
+    mode: real,
+    [type_hint=`FmodCreateSoundExInfo`] ex_info: gmval
 ): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64`]

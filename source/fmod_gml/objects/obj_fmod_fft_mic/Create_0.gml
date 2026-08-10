@@ -6,7 +6,6 @@ if(os_type == os_android)
 		os_request_permission("android.permission.RECORD_AUDIO")
 }
 
-// fmod_system_get_record_num_drivers returns the driver count directly.
 var _num_drivers = fmod_system_get_record_num_drivers()
 
 show_debug_message($"drivers_num: {_num_drivers}");
@@ -15,55 +14,45 @@ if (_num_drivers == 0)
 {
     instance_destroy();
 	show_debug_message("[FMOD] No recording devices found/plugged in! Aborting...")
+	exit;
 }
 
-// FmodRecordDriverInfo carries { name, speaker_mode, sample_rate }.
 var _driver_info_struct = fmod_system_get_record_driver_info(0);
 
 /*
     Determine latency in samples.
 */
 native_rate = _driver_info_struct.sample_rate;
-// The driver's channel count is not reported, so derive it from the speaker mode.
-switch (_driver_info_struct.speaker_mode)
-{
-	case FmodSpeakerMode.Mono:           native_channels = 1;  break;
-	case FmodSpeakerMode.Quad:           native_channels = 4;  break;
-	case FmodSpeakerMode.Surround:       native_channels = 5;  break;
-	case FmodSpeakerMode._5Point1:       native_channels = 6;  break;
-	case FmodSpeakerMode._7Point1:       native_channels = 8;  break;
-	case FmodSpeakerMode._7Point1Point4: native_channels = 12; break;
-	default:                             native_channels = 2;  break;
-}
+native_channels = _driver_info_struct.speaker_mode_channels;
 
-// TODO: FMOD_CREATESOUNDEXINFO is not exposed by the ExtGen port yet, so the
-// user-created sound cannot be described. Re-enable once fmod_system_create_sound
-// accepts an ex_info argument again.
-//var _extras = {
-//	num_channels: native_channels,
-//	format: FmodSoundFormat.Pcm16,
-//	default_frequency: native_rate,
-//	length: native_rate * buffer_sizeof(buffer_u16) * native_channels / 4
-//}
+// A user created sound has no file to describe it, so the format has to be
+// spelled out - hence create_sound_ex instead of create_sound.
+var _extras = new FmodCreateSoundExInfo();
+_extras.num_channels = native_channels;
+_extras.format = FmodSoundFormat.Pcm16;
+_extras.default_frequency = native_rate;
+_extras.length = native_rate * buffer_sizeof(buffer_u16) * native_channels / 4;
 
 /*
     Create user sound to record into, then start recording.
 */
-sound = fmod_system_create_sound("", FmodMode.LoopOn | FmodMode.OpenUser /*, _extras*/)
+sound = fmod_system_create_sound_ex("", FmodMode.LoopOn | FmodMode.OpenUser, _extras)
 
 fmod_system_record_start(DEVICE_INDEX, sound, true);
 
 length = fmod_sound_get_length(sound,FmodTimeUnit.Pcm);
 ms = fmod_sound_get_length(sound,FmodTimeUnit.Ms);
 
-music = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), false);
+// Start paused - playback begins in Step once there is recorded data to read
+music = fmod_system_play_sound(sound, fmod_system_get_master_channel_group(), true);
+playback_started = false;
 
 // FFT DSP
 dsp_fft = fmod_system_create_dsp_by_type(FmodDspType.FFT);
 fmod_channel_control_add_dsp(music, FmodChannelControlDspIndex.Fader, dsp_fft);
 fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowType, FmodDspFftWindowType.Rect);
 windows_size = 16384
-fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowSize, 16384);
+fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowSize, windows_size);
 
 // Create buffer for parameter data
 fft_buffer = buffer_create(18000, buffer_grow, 1);

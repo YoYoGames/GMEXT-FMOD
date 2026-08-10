@@ -399,8 +399,10 @@ FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_ind
 	g_fmod_last_result = system->getRecordDriverInfo((int)record_driver_index, name, sizeof(name), &guid, &system_rate, &speaker_mode, &speaker_mode_channels, &state);
 
 	result.name = std::string(name);
-	result.speaker_mode = (double)speaker_mode;
+	result.speaker_mode = (gm_enums::FmodSpeakerMode)(int)speaker_mode;
+	result.speaker_mode_channels = (double)speaker_mode_channels;
 	result.sample_rate = (double)system_rate;
+	result.state = (gm_enums::FmodDriverState)(int)state;
 	return result;
 }
 

@@ -230,19 +230,78 @@ void fmod_dsp_set_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	// Note: buffer handling requires proper conversion from GMValue
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	if (buffer.data() != nullptr && length > 0)
+	{
+		g_fmod_last_result = dsp->setParameterData((int)index, buffer.data(), (unsigned int)length);
+	}
+	else
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+	}
 }
 
+// Returns the number of bytes the parameter needs. The caller passes the size
+// of its own buffer as `length`; when that is too small nothing is written and
+// the required size is still returned, so GML can resize and try again.
 double fmod_dsp_get_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 
-	// Note: buffer handling requires proper conversion from GMValue
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
-	return 0;
+	void* data = nullptr;
+	unsigned int data_length = 0;
+
+	g_fmod_last_result = dsp->getParameterData((int)index, &data, &data_length, nullptr, 0);
+
+	if (g_fmod_last_result != FMOD_OK || data == nullptr)
+		return 0;
+
+	// The writable window is the smaller of what GML says it passed and what the
+	// buffer actually holds.
+	uint64_t capacity = buffer.data() != nullptr ? buffer.length() : 0;
+	if (length > 0 && (uint64_t)length < capacity)
+		capacity = (uint64_t)length;
+
+	FMOD_DSP_TYPE dsp_type = FMOD_DSP_TYPE_UNKNOWN;
+	g_fmod_last_result = dsp->getType(&dsp_type);
+	if (g_fmod_last_result != FMOD_OK)
+		return 0;
+
+	// FMOD_DSP_PARAMETER_FFT holds pointers to each channel's spectrum, so a raw
+	// memcpy of the struct would hand GML 32 dangling addresses. Flatten it into
+	// [length:s32][num_channels:s32][f32 spectrum per channel] instead.
+	if (dsp_type == FMOD_DSP_TYPE_FFT && (int)index == FMOD_DSP_FFT_SPECTRUMDATA)
+	{
+		const FMOD_DSP_PARAMETER_FFT* fft = (const FMOD_DSP_PARAMETER_FFT*)data;
+
+		uint64_t required = sizeof(int) * 2
+			+ sizeof(float) * (uint64_t)fft->numchannels * (uint64_t)fft->length;
+
+		if (required > capacity)
+			return (double)required;
+
+		char* out = (char*)buffer.data();
+		size_t offset = 0;
+
+		std::memcpy(out + offset, &fft->length, sizeof(int));
+		offset += sizeof(int);
+		std::memcpy(out + offset, &fft->numchannels, sizeof(int));
+		offset += sizeof(int);
+
+		const size_t channel_bytes = sizeof(float) * (size_t)fft->length;
+		for (int channel_idx = 0; channel_idx < fft->numchannels; channel_idx++)
+		{
+			std::memcpy(out + offset, fft->spectrum[channel_idx], channel_bytes);
+			offset += channel_bytes;
+		}
+		return (double)required;
+	}
+
+	if (data_length > 0 && (uint64_t)data_length <= capacity)
+		std::memcpy(buffer.data(), data, (size_t)data_length);
+
+	return (double)data_length;
 }
 
 FmodDSPParameterInfo fmod_dsp_get_parameter_info(uint64_t dsp_ref, double index)

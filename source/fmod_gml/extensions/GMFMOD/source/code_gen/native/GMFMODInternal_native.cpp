@@ -1020,6 +1020,27 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* name_or_data, doubl
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_ex(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: name_or_data, type: String
+    std::string_view name_or_data = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: mode, type: Float64
+    double mode = gm::wire::codec::readValue<double>(__br);
+
+    // field: ex_info, type: struct FmodCreateSoundExInfo
+    gm_structs::FmodCreateSoundExInfo ex_info = gm::wire::codec::readValue<gm_structs::FmodCreateSoundExInfo>(__br);
+
+    auto&& __result = fmod_system_create_sound_ex(name_or_data, mode, ex_info);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_create_stream(name_or_data, static_cast<double>(mode));

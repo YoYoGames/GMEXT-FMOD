@@ -185,28 +185,25 @@ enum FmodDspType
     ParamEq = 12,
     PitchShift = 13,
     Chorus = 14,
-    VstPlugin = 15,
-    WinampPlugin = 16,
-    ItEcho = 17,
-    Compressor = 18,
-    SfxReverb = 19,
-    LowPassSimple = 20,
-    Delay = 21,
-    Tremolo = 22,
-    LadspaPlugin = 23,
-    Send = 24,
-    Return = 25,
-    HighPassSimple = 26,
-    Pan = 27,
-    ThreeEq = 28,
-    FFT = 29,
-    LoudnessMeter = 30,
-    EnvelopeFollower = 31,
-    ConvolutionReverb = 32,
-    ChannelMix = 33,
-    Transceiver = 34,
-    ObjectPan = 35,
-    MultibandEq = 36
+    ItEcho = 15,
+    Compressor = 16,
+    SfxReverb = 17,
+    LowPassSimple = 18,
+    Delay = 19,
+    Tremolo = 20,
+    Send = 21,
+    Return = 22,
+    HighPassSimple = 23,
+    Pan = 24,
+    ThreeEq = 25,
+    FFT = 26,
+    LoudnessMeter = 27,
+    ConvolutionReverb = 28,
+    ChannelMix = 29,
+    Transceiver = 30,
+    ObjectPan = 31,
+    MultibandEq = 32,
+    MultibandDynamics = 33
 }
 
 enum FmodDspConnectionType
@@ -367,8 +364,14 @@ enum FmodDspFft
 {
     WindowSize = 0,
     WindowType = 1,
-    SpectrumData = 2,
-    DominantFreq = 3
+    BandStartFreq = 2,
+    BandStopFreq = 3,
+    SpectrumData = 4,
+    Rms = 5,
+    SpectralCentroid = 6,
+    ImmediateMode = 7,
+    Downmix = 8,
+    Channel = 9
 }
 
 enum FmodDspFftWindowType
@@ -416,6 +419,12 @@ enum FmodSpeakerMode
     _5Point1 = 6,
     _7Point1 = 7,
     _7Point1Point4 = 8
+}
+
+enum FmodDriverState
+{
+    Connected = 1,
+    Default = 2
 }
 
 enum FmodDebugFlags
@@ -781,7 +790,9 @@ function FmodRecordDriverInfo() constructor
 
     self.name = undefined;
     self.speaker_mode = undefined;
+    self.speaker_mode_channels = undefined;
     self.sample_rate = undefined;
+    self.state = undefined;
 
 }
 
@@ -1454,28 +1465,28 @@ function FmodCreateSoundExInfo() constructor
      */
     static __uid = 506452871;
 
-    self.length = undefined;
-    self.file_offset = undefined;
-    self.num_channels = undefined;
-    self.default_frequency = undefined;
-    self.format = undefined;
-    self.decode_buffer_size = undefined;
-    self.initial_subsound = undefined;
-    self.num_subsounds = undefined;
-    self.inclusion_list_num = undefined;
-    self.dls_name = undefined;
-    self.encryption_key = undefined;
-    self.max_polyphony = undefined;
-    self.suggested_sound_type = undefined;
-    self.file_buffer_size = undefined;
-    self.channel_order = undefined;
-    self.initial_sound_group = undefined;
-    self.initial_seek_position = undefined;
-    self.initial_seek_pos_type = undefined;
-    self.ignore_set_filesystem = undefined;
-    self.audio_queue_policy = undefined;
-    self.min_midi_granularity = undefined;
-    self.non_block_thread_id = undefined;
+    self.length = 0;
+    self.file_offset = 0;
+    self.num_channels = 0;
+    self.default_frequency = 0;
+    self.format = 0;
+    self.decode_buffer_size = 0;
+    self.initial_subsound = 0;
+    self.num_subsounds = 0;
+    self.inclusion_list_num = 0;
+    self.dls_name = "";
+    self.encryption_key = "";
+    self.max_polyphony = 0;
+    self.suggested_sound_type = 0;
+    self.file_buffer_size = 0;
+    self.channel_order = 0;
+    self.initial_sound_group = 0;
+    self.initial_seek_position = 0;
+    self.initial_seek_pos_type = 0;
+    self.ignore_set_filesystem = 0;
+    self.audio_queue_policy = 0;
+    self.min_midi_granularity = 0;
+    self.non_block_thread_id = 0;
 
 }
 
@@ -2055,13 +2066,23 @@ function __FmodRecordDriverInfo_encode(_inst, _buffer, _offset, _where = _GMFUNC
         buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
         buffer_write(_buffer, buffer_string, self.name);
 
-        // field: speaker_mode, type: Float64
+        // field: speaker_mode, type: enum FmodSpeakerMode
+
         if (!is_numeric(self.speaker_mode)) show_error($"{_where} :: self.speaker_mode expected number", true);
-        buffer_write(_buffer, buffer_f64, self.speaker_mode);
+        buffer_write(_buffer, buffer_u64, self.speaker_mode);
+
+        // field: speaker_mode_channels, type: Float64
+        if (!is_numeric(self.speaker_mode_channels)) show_error($"{_where} :: self.speaker_mode_channels expected number", true);
+        buffer_write(_buffer, buffer_f64, self.speaker_mode_channels);
 
         // field: sample_rate, type: Float64
         if (!is_numeric(self.sample_rate)) show_error($"{_where} :: self.sample_rate expected number", true);
         buffer_write(_buffer, buffer_f64, self.sample_rate);
+
+        // field: state, type: enum FmodDriverState
+
+        if (!is_numeric(self.state)) show_error($"{_where} :: self.state expected number", true);
+        buffer_write(_buffer, buffer_u64, self.state);
 
     }
 }
@@ -2084,11 +2105,17 @@ function __FmodRecordDriverInfo_decode(_buffer, _offset)
         buffer_read(_buffer, buffer_u32);
         self.name = buffer_read(_buffer, buffer_string);
 
-        // field: speaker_mode, type: Float64
-        self.speaker_mode = buffer_read(_buffer, buffer_f64);
+        // field: speaker_mode, type: enum FmodSpeakerMode
+        self.speaker_mode = buffer_read(_buffer, buffer_u64);
+
+        // field: speaker_mode_channels, type: Float64
+        self.speaker_mode_channels = buffer_read(_buffer, buffer_f64);
 
         // field: sample_rate, type: Float64
         self.sample_rate = buffer_read(_buffer, buffer_f64);
+
+        // field: state, type: enum FmodDriverState
+        self.state = buffer_read(_buffer, buffer_u64);
 
     }
 
@@ -6655,6 +6682,41 @@ function fmod_system_create_sound(_name_or_data, _mode)
     var __ret_buffer = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_system_create_sound(_name_or_data, _mode, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    return __result__;
+}
+
+/**
+ * @param {String} _name_or_data
+ * @param {Real} _mode
+ * @param {Struct.FmodCreateSoundExInfo} _ex_info
+ * @returns {Real}
+ */
+function fmod_system_create_sound_ex(_name_or_data, _mode, _ex_info)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _name_or_data, type: String
+    if (!is_string(_name_or_data)) show_error($"{_GMFUNCTION_} :: _name_or_data expected string", true);
+    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name_or_data));
+    buffer_write(__args_buffer, buffer_string, _name_or_data);
+
+    // param: _mode, type: Float64
+    if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
+    buffer_write(__args_buffer, buffer_f64, _mode);
+
+    // param: _ex_info, type: struct FmodCreateSoundExInfo
+    if (_ex_info.__uid != 506452871) show_error($"{_GMFUNCTION_} :: _ex_info expected FmodCreateSoundExInfo", true);
+    __FmodCreateSoundExInfo_encode(_ex_info, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_create_sound_ex(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
 
     var __result__ = undefined;
     __result__ = buffer_read(__ret_buffer, buffer_u64);

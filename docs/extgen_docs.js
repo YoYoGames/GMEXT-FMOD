@@ -700,6 +700,15 @@
  */
 
 /**
+ * @function_partial fmod_system_create_sound_ex
+ * @param {String} name_or_data
+ * @param {Real} mode
+ * @param {Struct.FmodCreateSoundExInfo} ex_info
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_create_stream
  * @param {String} name_or_data
  * @param {Real} mode
@@ -3820,8 +3829,10 @@
 /**
  * @struct_partial FmodRecordDriverInfo
  * @member {String} name
- * @member {Real} speaker_mode
+ * @member {Enum.FmodSpeakerMode} speaker_mode
+ * @member {Real} speaker_mode_channels
  * @member {Real} sample_rate
+ * @member {Enum.FmodDriverState} state
  * @struct_end
  */
 
@@ -4448,15 +4459,12 @@
  * @member ParamEq
  * @member PitchShift
  * @member Chorus
- * @member VstPlugin
- * @member WinampPlugin
  * @member ItEcho
  * @member Compressor
  * @member SfxReverb
  * @member LowPassSimple
  * @member Delay
  * @member Tremolo
- * @member LadspaPlugin
  * @member Send
  * @member Return
  * @member HighPassSimple
@@ -4464,12 +4472,12 @@
  * @member ThreeEq
  * @member FFT
  * @member LoudnessMeter
- * @member EnvelopeFollower
  * @member ConvolutionReverb
  * @member ChannelMix
  * @member Transceiver
  * @member ObjectPan
  * @member MultibandEq
+ * @member MultibandDynamics
  * @enum_end
  */
 
@@ -4648,8 +4656,14 @@
  * @enum_partial FmodDspFft
  * @member WindowSize
  * @member WindowType
+ * @member BandStartFreq
+ * @member BandStopFreq
  * @member SpectrumData
- * @member DominantFreq
+ * @member Rms
+ * @member SpectralCentroid
+ * @member ImmediateMode
+ * @member Downmix
+ * @member Channel
  * @enum_end
  */
 
@@ -4702,6 +4716,13 @@
  * @member _5Point1
  * @member _7Point1
  * @member _7Point1Point4
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDriverState
+ * @member Connected
+ * @member Default
  * @enum_end
  */
 

@@ -1241,6 +1241,25 @@ static jdouble __JNI_WRAPPER__fmod_system_create_sound_556A9A220B50(JNIEnv* env,
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_system_create_sound_ex JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_create_sound_ex_BB671D796864(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_create_sound_ex((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_create_stream JNI wrapper signature: (Ljava/lang/String;DLjava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_system_create_stream_3450451CFE13(JNIEnv* env, jclass /* GMFMODBridge */, jstring name_or_data, jdouble mode, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -6921,6 +6940,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_set_geometry_settings", "(D)D", (void*)__JNI_WRAPPER__fmod_system_set_geometry_settings_BF985FA98FE1 },
             { "__EXT_JNI__fmod_system_create_reverb_3d", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_reverb_3d_4F7FEA98AF95 },
             { "__EXT_JNI__fmod_system_create_sound", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_sound_556A9A220B50 },
+            { "__EXT_JNI__fmod_system_create_sound_ex", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_sound_ex_BB671D796864 },
             { "__EXT_JNI__fmod_system_create_stream", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_stream_3450451CFE13 },
             { "__EXT_JNI__fmod_system_play_sound", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_play_sound_C47F34216BD4 },
             { "__EXT_JNI__fmod_sound_get_length", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_length_0F3D7E887EFD },
