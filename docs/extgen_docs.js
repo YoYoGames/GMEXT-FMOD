@@ -1965,7 +1965,7 @@
  * @function_partial fmod_dsp_set_parameter_data
  * @param {Real} dsp_ref
  * @param {Real} index
- * @param {Any} buffer
+ * @param {Buffer} buffer
  * @param {Real} length
  * @function_end
  */
@@ -1974,7 +1974,7 @@
  * @function_partial fmod_dsp_get_parameter_data
  * @param {Real} dsp_ref
  * @param {Real} index
- * @param {Any} buffer
+ * @param {Buffer} buffer
  * @param {Real} length
  * @returns {Real}
  * @function_end

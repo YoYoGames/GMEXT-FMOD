@@ -10783,7 +10783,7 @@ function fmod_dsp_get_data_parameter_index(_dsp_ref, _data_type)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @param {Any} _buffer
+ * @param {Id.Buffer} _buffer
  * @param {Real} _length
  */
 function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
@@ -10801,9 +10801,9 @@ function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
     buffer_write(__args_buffer, buffer_f64, _index);
 
-    // param: _buffer, type: Any
-
-    __ext_core_buffer_marshal_value(__args_buffer, _buffer);
+    // param: _buffer, type: Buffer
+    if (!buffer_exists(_buffer)) show_error($"{_GMFUNCTION_} :: _buffer expected Id.Buffer", true);
+    __GMFMOD_queue_buffer(buffer_get_address(_buffer), buffer_get_size(_buffer));
 
     // param: _length, type: Float64
     if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
@@ -10817,7 +10817,7 @@ function fmod_dsp_set_parameter_data(_dsp_ref, _index, _buffer, _length)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @param {Any} _buffer
+ * @param {Id.Buffer} _buffer
  * @param {Real} _length
  * @returns {Real}
  */
@@ -10836,9 +10836,9 @@ function fmod_dsp_get_parameter_data(_dsp_ref, _index, _buffer, _length)
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
     buffer_write(__args_buffer, buffer_f64, _index);
 
-    // param: _buffer, type: Any
-
-    __ext_core_buffer_marshal_value(__args_buffer, _buffer);
+    // param: _buffer, type: Buffer
+    if (!buffer_exists(_buffer)) show_error($"{_GMFUNCTION_} :: _buffer expected Id.Buffer", true);
+    __GMFMOD_queue_buffer(buffer_get_address(_buffer), buffer_get_size(_buffer));
 
     // param: _length, type: Float64
     if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);

@@ -3408,8 +3408,9 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_data(char* __arg_buffer, do
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
 
-    // field: buffer, type: Any
-    gm::wire::GMValue buffer = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+    // field: buffer, type: Buffer
+    gm::wire::GMBuffer buffer = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: length, type: Float64
     double length = gm::wire::codec::readValue<double>(__br);
@@ -3428,8 +3429,9 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_parameter_data(char* __arg_buffer, do
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
 
-    // field: buffer, type: Any
-    gm::wire::GMValue buffer = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+    // field: buffer, type: Buffer
+    gm::wire::GMBuffer buffer = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: length, type: Float64
     double length = gm::wire::codec::readValue<double>(__br);

@@ -3277,7 +3277,7 @@ function fmod_dsp_get_data_parameter_index(
 function fmod_dsp_set_parameter_data(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real,
-    buffer: gmval,
+    [type_hint=`buffer`]buffer: gmval,
     length: real
 ): unit;
 
@@ -3285,7 +3285,7 @@ function fmod_dsp_set_parameter_data(
 function fmod_dsp_get_parameter_data(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real,
-    buffer: gmval,
+    [type_hint=`buffer`]buffer: gmval,
     length: real
 ): real;
 

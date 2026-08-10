@@ -224,7 +224,7 @@ double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, double data_type)
 	return (double)param_index;
 }
 
-void fmod_dsp_set_parameter_data(uint64_t dsp_ref, double index, const gm::wire::GMValue& buffer, double length)
+void fmod_dsp_set_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
@@ -234,7 +234,7 @@ void fmod_dsp_set_parameter_data(uint64_t dsp_ref, double index, const gm::wire:
 	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
 }
 
-double fmod_dsp_get_parameter_data(uint64_t dsp_ref, double index, const gm::wire::GMValue& buffer, double length)
+double fmod_dsp_get_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
