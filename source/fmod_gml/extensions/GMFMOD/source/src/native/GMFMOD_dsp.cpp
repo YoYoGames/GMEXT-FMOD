@@ -508,8 +508,7 @@ double fmod_dsp_set_user_data(uint64_t dsp_ref, double user_data)
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 
-	void* user_ptr = reinterpret_cast<void*>((uintptr_t)user_data);
-	g_fmod_last_result = dsp->setUserData(user_ptr);
+	setResourceUserData(dsp, user_data);
 	return 0;
 }
 
@@ -519,9 +518,7 @@ double fmod_dsp_get_user_data(uint64_t dsp_ref)
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0.0;
 
-	void* user_ptr = nullptr;
-	g_fmod_last_result = dsp->getUserData(&user_ptr);
-	return (double)(uintptr_t)user_ptr;
+	return getResourceUserData(dsp);
 }
 
 double fmod_dsp_set_callback(uint64_t dsp_ref, const std::optional<gm::wire::GMFunction>& callback)

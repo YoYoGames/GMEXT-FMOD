@@ -146,8 +146,7 @@ double fmod_dsp_connection_set_user_data(uint64_t connection_ref, double user_da
 	if (connection == nullptr)
 		return 0;
 
-	void* user_ptr = reinterpret_cast<void*>((uintptr_t)user_data);
-	g_fmod_last_result = connection->setUserData(user_ptr);
+	setResourceUserData(connection, user_data);
 	return 0;
 }
 
@@ -159,7 +158,5 @@ double fmod_dsp_connection_get_user_data(uint64_t connection_ref)
 	if (connection == nullptr)
 		return 0;
 
-	void* user_ptr = nullptr;
-	g_fmod_last_result = connection->getUserData(&user_ptr);
-	return (double)(uintptr_t)user_ptr;
+	return getResourceUserData(connection);
 }

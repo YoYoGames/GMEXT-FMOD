@@ -27,6 +27,46 @@ std::string fmod_error_string(enum gm_enums::FmodResult result)
 	return std::string(FMOD_ErrorString((FMOD_RESULT)(int)result));
 }
 
+double fmod_fetch_callbacks()
+{
+	// No callback detail can reach GML today (see GMFMOD_common.h) - this just
+	// drains the fired-callback counter so callers can at least detect activity.
+	return (double)g_fmod_callback_count.exchange(0);
+}
+
+double fmod_file_get_disk_busy()
+{
+	int busy = 0;
+	g_fmod_last_result = FMOD::File_GetDiskBusy(&busy);
+	return (double)busy;
+}
+
+double fmod_file_set_disk_busy(double busy)
+{
+	g_fmod_last_result = FMOD::File_SetDiskBusy((int)busy);
+	return 0;
+}
+
+gm_structs::FmodMemoryStats fmod_memory_get_stats(double blocking)
+{
+	gm_structs::FmodMemoryStats result{};
+	int current_alloced = 0, max_alloced = 0;
+	g_fmod_last_result = FMOD::Memory_GetStats(&current_alloced, &max_alloced, blocking != 0.0);
+	result.current_alloced = (double)current_alloced;
+	result.max_alloced = (double)max_alloced;
+	return result;
+}
+
+double fmod_thread_set_attributes(double thread_type, double affinity, double priority)
+{
+	g_fmod_last_result = FMOD::Thread_SetAttributes(
+		(FMOD_THREAD_TYPE)(int)thread_type,
+		(FMOD_THREAD_AFFINITY)(long long)affinity,
+		(FMOD_THREAD_PRIORITY)(int)priority,
+		FMOD_THREAD_STACK_SIZE_DEFAULT);
+	return 0;
+}
+
 std::string fmod_path_bundle(std::string_view filename)
 {
 	// Return bundled asset path (typically DataFiles/ or similar)

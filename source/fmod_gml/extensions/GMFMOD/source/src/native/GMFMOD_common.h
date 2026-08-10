@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <optional>
+#include <atomic>
 #include <native/GMFMODInternal_native.h>
 
 // ============================================================
@@ -58,6 +59,27 @@ uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, 
 
 template <typename T>
 uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
+
+// Reads/writes the `data` field of a map-registered resource's existing
+// CustomUserData (allocated by registerOrFindResource). Never calls the
+// resource's native setUserData directly - that slot is already owned by the
+// registry bookkeeping.
+template <typename T>
+double getResourceUserData(T resource);
+
+template <typename T>
+void setResourceUserData(T resource, double data);
+
+// user_data storage for pointer-identified types (Channel, ChannelControl,
+// and Studio objects) which have no registry-owned CustomUserData slot.
+extern std::map<uintptr_t, double> g_user_data;
+
+// Shared counter for the mask-only callback stubs (event description /
+// studio system callbacks currently have no GMFunction parameter, so there
+// is no path to deliver payloads to GML). Each callback-owning file's own
+// trampoline increments this on every fired event; fmod_fetch_callbacks()
+// (GMFMOD_utility.cpp) drains and returns the count.
+extern std::atomic<uint64_t> g_fmod_callback_count;
 
 // ============================================================
 // Reference Layout

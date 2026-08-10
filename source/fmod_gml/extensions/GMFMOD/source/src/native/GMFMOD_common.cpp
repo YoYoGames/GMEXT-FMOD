@@ -120,3 +120,50 @@ template uint32_t unregisterResource<FMOD::DSP*>(FMOD::DSP*, std::map<uint32_t, 
 template uint32_t unregisterResource<FMOD::DSPConnection*>(FMOD::DSPConnection*, std::map<uint32_t, FMOD::DSPConnection*>&);
 template uint32_t unregisterResource<FMOD::Reverb3D*>(FMOD::Reverb3D*, std::map<uint32_t, FMOD::Reverb3D*>&);
 template uint32_t unregisterResource<FMOD::Geometry*>(FMOD::Geometry*, std::map<uint32_t, FMOD::Geometry*>&);
+
+// ============================================================
+// User Data (map-registered resources)
+// ============================================================
+
+template <typename T>
+double getResourceUserData(T resource)
+{
+	if (resource == nullptr) return 0.0;
+	void* userData = nullptr;
+	resource->getUserData(&userData);
+	if (userData == nullptr) return 0.0;
+	return static_cast<CustomUserData*>(userData)->data;
+}
+
+template <typename T>
+void setResourceUserData(T resource, double data)
+{
+	if (resource == nullptr) return;
+	void* userData = nullptr;
+	resource->getUserData(&userData);
+	if (userData != nullptr)
+		static_cast<CustomUserData*>(userData)->data = data;
+}
+
+template double getResourceUserData<FMOD::DSP*>(FMOD::DSP*);
+template void setResourceUserData<FMOD::DSP*>(FMOD::DSP*, double);
+template double getResourceUserData<FMOD::DSPConnection*>(FMOD::DSPConnection*);
+template void setResourceUserData<FMOD::DSPConnection*>(FMOD::DSPConnection*, double);
+template double getResourceUserData<FMOD::System*>(FMOD::System*);
+template void setResourceUserData<FMOD::System*>(FMOD::System*, double);
+template double getResourceUserData<FMOD::Sound*>(FMOD::Sound*);
+template void setResourceUserData<FMOD::Sound*>(FMOD::Sound*, double);
+template double getResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*);
+template void setResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*, double);
+template double getResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*);
+template void setResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*, double);
+template double getResourceUserData<FMOD::Geometry*>(FMOD::Geometry*);
+template void setResourceUserData<FMOD::Geometry*>(FMOD::Geometry*, double);
+
+// ============================================================
+// User Data (pointer-identified resources)
+// ============================================================
+
+std::map<uintptr_t, double> g_user_data;
+
+std::atomic<uint64_t> g_fmod_callback_count{ 0 };

@@ -223,3 +223,22 @@ uint64_t fmod_sound_group_get_system_object(uint64_t sound_group_ref)
 	}
 	return result;
 }
+
+double fmod_sound_group_set_user_data(uint64_t sound_group_ref, double user_data)
+{
+	FMOD::SoundGroup* sound_group = nullptr;
+	validate_fmod_sound_group(sound_group_ref, sound_group);
+	if (sound_group == nullptr) return 0;
+
+	setResourceUserData(sound_group, user_data);
+	return 0;
+}
+
+double fmod_sound_group_get_user_data(uint64_t sound_group_ref)
+{
+	FMOD::SoundGroup* sound_group = nullptr;
+	validate_fmod_sound_group(sound_group_ref, sound_group);
+	if (sound_group == nullptr) return 0.0;
+
+	return getResourceUserData(sound_group);
+}

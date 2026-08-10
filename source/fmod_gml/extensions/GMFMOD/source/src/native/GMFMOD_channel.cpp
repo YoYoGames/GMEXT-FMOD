@@ -177,6 +177,24 @@ double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, dou
 	return 0;
 }
 
+FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, double start_type, double end_type)
+{
+	FmodLoopPoints result{};
+	FMOD::Channel* channel = nullptr;
+	validate_fmod_channel(channel_ref, channel);
+	if (channel == nullptr) return result;
+
+	unsigned int loop_start = 0, loop_end = 0;
+	g_fmod_last_result = channel->getLoopPoints(
+		&loop_start, (FMOD_TIMEUNIT)(int)start_type,
+		&loop_end, (FMOD_TIMEUNIT)(int)end_type
+	);
+
+	result.loop_start = (double)loop_start;
+	result.loop_end = (double)loop_end;
+	return result;
+}
+
 // ============================================================
 // Channel - Status
 // ============================================================

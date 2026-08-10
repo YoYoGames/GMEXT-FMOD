@@ -5,17 +5,13 @@ channel_index = fmod_system_play_sound(sound_index, fmod_system_get_master_chann
 
 //Create some effects to play with
 
-dsp_lowpass = fmod_system_create_dsp_by_type(FmodDspType.MultibandEq) //(FmodDspType.LowPass)
-fmod_dsp_set_parameter_int(dsp_lowpass,FmodDspMultibandEq.AFilter,FmodDspMultibandEqFilterType.Lowpass12db)
-fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AFrequency,2000)
-fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AQ,0.707)
-fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspMultibandEq.AGain,1000)
+dsp_lowpass = fmod_system_create_dsp_by_type(FmodDspType.LowPass)
+fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspLowPass.Cutoff,2000)
+fmod_dsp_set_parameter_float(dsp_lowpass,FmodDspLowPass.Resonance,0.707)
 
 dsp_highpass = fmod_system_create_dsp_by_type(FmodDspType.HighPass)
-fmod_dsp_set_parameter_int(dsp_highpass,FmodDspMultibandEq.AFilter,FmodDspMultibandEqFilterType.Highpass12db)
-fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AFrequency,8000)
-fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AQ,0.707)
-fmod_dsp_set_parameter_float(dsp_highpass,FmodDspMultibandEq.AGain,1000)
+fmod_dsp_set_parameter_float(dsp_highpass,FmodDspHighPass.Cutoff,8000)
+fmod_dsp_set_parameter_float(dsp_highpass,FmodDspHighPass.Resonance,0.707)
 
 dsp_echo = fmod_system_create_dsp_by_type(FmodDspType.Echo)
 

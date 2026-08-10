@@ -1,4 +1,5 @@
 #include "GMFMOD_channel_control.h"
+#include <vector>
 
 using namespace gm_structs;
 
@@ -250,6 +251,128 @@ double fmod_channel_control_set_3d_distance_filter(uint64_t channel_control_ref,
 	return 0;
 }
 
+gm_structs::FmodMinMaxDistance fmod_channel_control_get_3d_min_max_distance(uint64_t channel_control_ref)
+{
+	FmodMinMaxDistance result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	float min_dist = 0.0f, max_dist = 0.0f;
+	g_fmod_last_result = control->get3DMinMaxDistance(&min_dist, &max_dist);
+	result.min_distance = (double)min_dist;
+	result.max_distance = (double)max_dist;
+	return result;
+}
+
+gm_structs::FmodConeSettings fmod_channel_control_get_3d_cone_settings(uint64_t channel_control_ref)
+{
+	FmodConeSettings result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	float inside_cone_angle = 0.0f, outside_cone_angle = 0.0f, outside_volume = 0.0f;
+	g_fmod_last_result = control->get3DConeSettings(&inside_cone_angle, &outside_cone_angle, &outside_volume);
+	result.inside_cone_angle = (double)inside_cone_angle;
+	result.outside_cone_angle = (double)outside_cone_angle;
+	result.outside_volume = (double)outside_volume;
+	return result;
+}
+
+double fmod_channel_control_set_3d_cone_orientation(uint64_t channel_control_ref, const gm_structs::FmodVec3& orientation)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+	FMOD_VECTOR fmod_orientation = {(float)orientation.x, (float)orientation.y, (float)orientation.z};
+	g_fmod_last_result = control->set3DConeOrientation(&fmod_orientation);
+	return 0;
+}
+
+gm_structs::FmodVec3 fmod_channel_control_get_3d_cone_orientation(uint64_t channel_control_ref)
+{
+	FmodVec3 result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	FMOD_VECTOR orientation{};
+	g_fmod_last_result = control->get3DConeOrientation(&orientation);
+	result.x = (double)orientation.x;
+	result.y = (double)orientation.y;
+	result.z = (double)orientation.z;
+	return result;
+}
+
+gm_structs::FmodOcclusion fmod_channel_control_get_3d_occlusion(uint64_t channel_control_ref)
+{
+	FmodOcclusion result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	float direct = 0.0f, reverb = 0.0f;
+	g_fmod_last_result = control->get3DOcclusion(&direct, &reverb);
+	result.direct = (double)direct;
+	result.reverb = (double)reverb;
+	return result;
+}
+
+gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(uint64_t channel_control_ref)
+{
+	FmodDistanceFilter result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	bool custom = false;
+	float custom_level = 0.0f, center_freq = 0.0f;
+	g_fmod_last_result = control->get3DDistanceFilter(&custom, &custom_level, &center_freq);
+	result.custom = custom ? 1.0 : 0.0;
+	result.custom_level = (double)custom_level;
+	result.center_freq = (double)center_freq;
+	return result;
+}
+
+double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, const gm::wire::GMValue& points, double num_points)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+
+	// The wire format for an array of struct elements (FmodVec3 points) has no
+	// decoder in this codebase yet - every other GMValue-typed buffer parameter
+	// (Sound::set3DCustomRolloff, DSP::set/getParameterData, DSPConnection's mix
+	// matrix below) is likewise left unsupported pending real array/struct wire
+	// support.
+	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	return 0;
+}
+
+double fmod_channel_control_get_3d_custom_rolloff_count(uint64_t channel_control_ref)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0.0;
+	FMOD_VECTOR* points = nullptr;
+	int num_points = 0;
+	g_fmod_last_result = control->get3DCustomRolloff(&points, &num_points);
+	return (double)num_points;
+}
+
+gm_structs::FmodVec3 fmod_channel_control_get_3d_custom_rolloff_at(uint64_t channel_control_ref, double index)
+{
+	FmodVec3 result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+	FMOD_VECTOR* points = nullptr;
+	int num_points = 0;
+	g_fmod_last_result = control->get3DCustomRolloff(&points, &num_points);
+	if (g_fmod_last_result != FMOD_OK || points == nullptr || (int)index < 0 || (int)index >= num_points)
+		return result;
+	result.x = (double)points[(int)index].x;
+	result.y = (double)points[(int)index].y;
+	result.z = (double)points[(int)index].z;
+	return result;
+}
+
 // ============================================================
 // Panning & Mixing
 // ============================================================
@@ -270,6 +393,47 @@ double fmod_channel_control_set_mix_levels_output(uint64_t channel_control_ref, 
 	if (control == nullptr) return 0;
 	g_fmod_last_result = control->setMixLevelsOutput((float)front_left, (float)front_right, (float)center, (float)lfe, (float)surround_left, (float)surround_right, (float)back_left, (float)back_right);
 	return 0;
+}
+
+double fmod_channel_control_set_mix_levels_input(uint64_t channel_control_ref, double levels, double num_levels)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+
+	// levels is a scalar in the generated signature (the spec did not attach an
+	// array/buffer hint to this parameter), so there is no way to pass the real
+	// per-channel level array - same structural limit as set_mix_matrix below.
+	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	return 0;
+}
+
+double fmod_channel_control_set_mix_matrix(uint64_t channel_control_ref, double matrix, double out_channels, double in_channels, double in_channel_hop)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+
+	// matrix is a scalar in the generated signature - same limitation already
+	// present in DSPConnection::setMixMatrix (GMFMOD_dsp_connection.cpp).
+	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	return 0;
+}
+
+gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(uint64_t channel_control_ref, double in_channel_hop)
+{
+	FmodDSPMixMatrix result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+
+	int out_channels = 0, in_channels = 0;
+	g_fmod_last_result = control->getMixMatrix(nullptr, &out_channels, &in_channels, (int)in_channel_hop);
+
+	result.out_channels = (double)out_channels;
+	result.in_channels = (double)in_channels;
+	result.matrix = 0.0;
+	return result;
 }
 
 // ============================================================
@@ -494,6 +658,93 @@ FmodDSPClock fmod_channel_control_get_dsp_clock(uint64_t channel_ref)
 	result.dspclock = (double)dspclock;
 	result.parent_clock = (double)parent_clock;
 	return result;
+}
+
+// ============================================================
+// Fade Points
+// ============================================================
+
+double fmod_channel_control_add_fade_point(uint64_t channel_control_ref, double dsp_clock, double volume)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+	g_fmod_last_result = control->addFadePoint((unsigned long long)dsp_clock, (float)volume);
+	return 0;
+}
+
+double fmod_channel_control_remove_fade_points(uint64_t channel_control_ref, double dsp_clock_start, double dsp_clock_end)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+	g_fmod_last_result = control->removeFadePoints((unsigned long long)dsp_clock_start, (unsigned long long)dsp_clock_end);
+	return 0;
+}
+
+double fmod_channel_control_set_fade_point_ramp(uint64_t channel_control_ref, double dsp_clock, double volume)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+	g_fmod_last_result = control->setFadePointRamp((unsigned long long)dsp_clock, (float)volume);
+	return 0;
+}
+
+double fmod_channel_control_get_fade_point_count(uint64_t channel_control_ref)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0.0;
+	unsigned int num_points = 0;
+	g_fmod_last_result = control->getFadePoints(&num_points, nullptr, nullptr);
+	return (double)num_points;
+}
+
+FmodFadePoint fmod_channel_control_get_fade_point_at(uint64_t channel_control_ref, double index)
+{
+	FmodFadePoint result{};
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return result;
+
+	unsigned int num_points = 0;
+	g_fmod_last_result = control->getFadePoints(&num_points, nullptr, nullptr);
+	if (g_fmod_last_result != FMOD_OK || (int)index < 0 || (unsigned int)index >= num_points)
+		return result;
+
+	std::vector<unsigned long long> dspclocks(num_points);
+	std::vector<float> volumes(num_points);
+	g_fmod_last_result = control->getFadePoints(&num_points, dspclocks.data(), volumes.data());
+	if (g_fmod_last_result != FMOD_OK)
+		return result;
+
+	result.dsp_clock = (double)dspclocks[(size_t)index];
+	result.volume = (double)volumes[(size_t)index];
+	return result;
+}
+
+// ============================================================
+// User Data
+// ============================================================
+
+double fmod_channel_control_set_user_data(uint64_t channel_control_ref, double user_data)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0;
+	g_user_data[reinterpret_cast<uintptr_t>(control)] = user_data;
+	return 0;
+}
+
+double fmod_channel_control_get_user_data(uint64_t channel_control_ref)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0.0;
+	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(control));
+	if (it == g_user_data.end()) return 0.0;
+	return it->second;
 }
 
 // ============================================================

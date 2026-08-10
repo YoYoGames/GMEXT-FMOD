@@ -73,6 +73,15 @@ double fmod_studio_event_instance_set_timeline_position(uint64_t instance_ref, d
 	return 0;
 }
 
+double fmod_studio_event_instance_keyoff(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+	g_fmod_last_result = instance->keyOff();
+	return 0;
+}
+
 double fmod_studio_event_instance_get_volume(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
@@ -209,6 +218,222 @@ double fmod_studio_event_instance_set_parameter_by_id(uint64_t instance_ref, dou
 
 	g_fmod_last_result = instance->setParameterByID(id, (float)value, false);
 	return 0;
+}
+
+double fmod_studio_event_instance_set_parameter_by_id_with_label(
+	uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, double ignore_seek_speed)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+
+	FMOD_STUDIO_PARAMETER_ID id{};
+	id.data1 = (unsigned int)id_data1;
+	id.data2 = (unsigned int)id_data2;
+
+	std::string label_str(label);
+	g_fmod_last_result = instance->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed != 0.0);
+	return 0;
+}
+
+double fmod_studio_event_instance_set_parameter_by_name_with_label(
+	uint64_t instance_ref, std::string_view name, std::string_view label, double ignore_seek_speed)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+
+	std::string name_str(name);
+	std::string label_str(label);
+	g_fmod_last_result = instance->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed != 0.0);
+	return 0;
+}
+
+// ============================================================
+// Event Instance - 3D Attributes
+// ============================================================
+
+FmodChannelControl3DAttributes fmod_studio_event_instance_get_3d_attributes(uint64_t instance_ref)
+{
+	FmodChannelControl3DAttributes result{};
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return result;
+
+	FMOD_3D_ATTRIBUTES attributes{};
+	g_fmod_last_result = instance->get3DAttributes(&attributes);
+	result.position.x = (double)attributes.position.x;
+	result.position.y = (double)attributes.position.y;
+	result.position.z = (double)attributes.position.z;
+	result.velocity.x = (double)attributes.velocity.x;
+	result.velocity.y = (double)attributes.velocity.y;
+	result.velocity.z = (double)attributes.velocity.z;
+	return result;
+}
+
+FmodMinMaxDistance fmod_studio_event_instance_get_min_max_distance(uint64_t instance_ref)
+{
+	FmodMinMaxDistance result{};
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return result;
+
+	float min_distance = 0.0f, max_distance = 0.0f;
+	g_fmod_last_result = instance->getMinMaxDistance(&min_distance, &max_distance);
+	result.min_distance = (double)min_distance;
+	result.max_distance = (double)max_distance;
+	return result;
+}
+
+double fmod_studio_event_instance_get_listener_mask(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	unsigned int mask = 0;
+	g_fmod_last_result = instance->getListenerMask(&mask);
+	return (double)mask;
+}
+
+double fmod_studio_event_instance_set_listener_mask(uint64_t instance_ref, double mask)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+	g_fmod_last_result = instance->setListenerMask((unsigned int)mask);
+	return 0;
+}
+
+// ============================================================
+// Event Instance - Reverb / Properties
+// ============================================================
+
+double fmod_studio_event_instance_get_reverb_level(uint64_t instance_ref, double index)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	float level = 0.0f;
+	g_fmod_last_result = instance->getReverbLevel((int)index, &level);
+	return (double)level;
+}
+
+double fmod_studio_event_instance_set_reverb_level(uint64_t instance_ref, double index, double level)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+	g_fmod_last_result = instance->setReverbLevel((int)index, (float)level);
+	return 0;
+}
+
+double fmod_studio_event_instance_get_property(uint64_t instance_ref, enum gm_enums::FmodStudioEventProperty property_type)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	float value = 0.0f;
+	g_fmod_last_result = instance->getProperty((FMOD_STUDIO_EVENT_PROPERTY)(int)property_type, &value);
+	return (double)value;
+}
+
+double fmod_studio_event_instance_set_property(uint64_t instance_ref, enum gm_enums::FmodStudioEventProperty property_type, double value)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+	g_fmod_last_result = instance->setProperty((FMOD_STUDIO_EVENT_PROPERTY)(int)property_type, (float)value);
+	return 0;
+}
+
+// ============================================================
+// Event Instance - User Data
+// ============================================================
+
+double fmod_studio_event_instance_get_user_data(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(instance));
+	return it != g_user_data.end() ? it->second : 0.0;
+}
+
+double fmod_studio_event_instance_set_user_data(uint64_t instance_ref, double user_data)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+	g_user_data[reinterpret_cast<uintptr_t>(instance)] = user_data;
+	return 0;
+}
+
+// ============================================================
+// Event Instance - Status / Diagnostics
+// ============================================================
+
+double fmod_studio_event_instance_is_valid(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	return instance->isValid() ? 1.0 : 0.0;
+}
+
+double fmod_studio_event_instance_is_virtual(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0.0;
+	bool is_virtual = false;
+	g_fmod_last_result = instance->isVirtual(&is_virtual);
+	return is_virtual ? 1.0 : 0.0;
+}
+
+uint64_t fmod_studio_event_instance_get_channel_group(uint64_t instance_ref)
+{
+	uint64_t result = 0;
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return result;
+
+	FMOD::ChannelGroup* channel_group = nullptr;
+	g_fmod_last_result = instance->getChannelGroup(&channel_group);
+	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
+	{
+		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
+		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+	}
+	return result;
+}
+
+FmodStudioCPUUsage fmod_studio_event_instance_get_cpu_usage(uint64_t instance_ref)
+{
+	FmodStudioCPUUsage result{};
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return result;
+
+	unsigned int exclusive = 0, inclusive = 0;
+	g_fmod_last_result = instance->getCPUUsage(&exclusive, &inclusive);
+	result.exclusive = (double)exclusive;
+	result.inclusive = (double)inclusive;
+	return result;
+}
+
+FmodStudioMemoryUsage fmod_studio_event_instance_get_memory_usage(uint64_t instance_ref)
+{
+	FmodStudioMemoryUsage result{};
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return result;
+
+	FMOD_STUDIO_MEMORY_USAGE usage{};
+	g_fmod_last_result = instance->getMemoryUsage(&usage);
+	result.exclusive = (double)usage.exclusive;
+	result.inclusive = (double)usage.inclusive;
+	result.sample_data = (double)usage.sampledata;
+	return result;
 }
 
 // ============================================================

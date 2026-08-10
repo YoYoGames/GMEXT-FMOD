@@ -253,6 +253,29 @@ uint64_t fmod_sound_get_system_object(uint64_t sound_ref)
 	return result;
 }
 
+double fmod_sound_set_user_data(uint64_t sound_ref, double user_data)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return 0;
+
+	setResourceUserData(sound, user_data);
+	return 0;
+}
+
+double fmod_sound_get_user_data(uint64_t sound_ref)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return 0.0;
+
+	return getResourceUserData(sound);
+}
+
 // ============================================================
 // Sound - Tags
 // ============================================================
@@ -400,6 +423,19 @@ FmodSoundTag fmod_sound_get_tag(uint64_t sound_ref, std::string_view name, doubl
 	result.updated = tag.updated ? 1.0 : 0.0;
 
 	return result;
+}
+
+double fmod_sound_get_num_tags(uint64_t sound_ref)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return 0.0;
+
+	int num_tags = 0, num_tags_updated = 0;
+	g_fmod_last_result = sound->getNumTags(&num_tags, &num_tags_updated);
+	return (double)num_tags;
 }
 
 // ============================================================
@@ -777,6 +813,24 @@ uint64_t fmod_sound_get_sub_sound(uint64_t sound_ref, double index)
 	return result;
 }
 
+std::optional<uint64_t> fmod_sound_get_sub_sound_parent(uint64_t sound_ref)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return std::nullopt;
+
+	FMOD::Sound* parent = nullptr;
+	g_fmod_last_result = sound->getSubSoundParent(&parent);
+
+	if (g_fmod_last_result != FMOD_OK || parent == nullptr)
+		return std::nullopt;
+
+	uint32_t sound_id = registerOrFindResource(parent, index_sounds, map_sounds);
+	return packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+}
+
 // ============================================================
 // Sound - Raw Data
 // ============================================================
@@ -805,4 +859,92 @@ double fmod_sound_read_data(uint64_t sound_ref, gm::wire::GMBuffer data, double 
 	unsigned int read = 0;
 	g_fmod_last_result = sound->readData(buffer, (unsigned int)requested, &read);
 	return (double)read;
+}
+
+double fmod_sound_seek_data(uint64_t sound_ref, double pcm)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return 0;
+
+	g_fmod_last_result = sound->seekData((unsigned int)pcm);
+	return 0;
+}
+
+// FMOD hands back internal buffer pointers on lock() that must be passed back
+// unmodified to unlock() - they can't cross the GML wire, so we shadow them here
+// keyed by sound pointer between the two calls.
+static std::map<uintptr_t, std::pair<void*, void*>> g_sound_lock_ptrs;
+
+FmodSoundLockLengths fmod_sound_lock(uint64_t sound_ref, double offset, double length, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2)
+{
+	FmodSoundLockLengths result{};
+
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return result;
+
+	void* ptr1 = nullptr;
+	void* ptr2 = nullptr;
+	unsigned int len1 = 0, len2 = 0;
+	g_fmod_last_result = sound->lock((unsigned int)offset, (unsigned int)length, &ptr1, &ptr2, &len1, &len2);
+
+	if (g_fmod_last_result != FMOD_OK)
+		return result;
+
+	if (ptr1 != nullptr && len1 > 0 && buffer1.data() != nullptr)
+	{
+		uint64_t copy_len = (uint64_t)len1 < buffer1.length() ? (uint64_t)len1 : buffer1.length();
+		memcpy(buffer1.data(), ptr1, (size_t)copy_len);
+	}
+	if (ptr2 != nullptr && len2 > 0 && buffer2.data() != nullptr)
+	{
+		uint64_t copy_len = (uint64_t)len2 < buffer2.length() ? (uint64_t)len2 : buffer2.length();
+		memcpy(buffer2.data(), ptr2, (size_t)copy_len);
+	}
+
+	g_sound_lock_ptrs[reinterpret_cast<uintptr_t>(sound)] = { ptr1, ptr2 };
+
+	result.length1 = (double)len1;
+	result.length2 = (double)len2;
+	return result;
+}
+
+double fmod_sound_unlock(uint64_t sound_ref, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2, double length1, double length2)
+{
+	FMOD::Sound* sound = nullptr;
+	validate_fmod_sound(sound_ref, sound);
+
+	if (sound == nullptr)
+		return 0;
+
+	uintptr_t key = reinterpret_cast<uintptr_t>(sound);
+	auto it = g_sound_lock_ptrs.find(key);
+	if (it == g_sound_lock_ptrs.end())
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	void* ptr1 = it->second.first;
+	void* ptr2 = it->second.second;
+
+	if (ptr1 != nullptr && buffer1.data() != nullptr && length1 > 0.0)
+	{
+		uint64_t copy_len = (uint64_t)length1 < buffer1.length() ? (uint64_t)length1 : buffer1.length();
+		memcpy(ptr1, buffer1.data(), (size_t)copy_len);
+	}
+	if (ptr2 != nullptr && buffer2.data() != nullptr && length2 > 0.0)
+	{
+		uint64_t copy_len = (uint64_t)length2 < buffer2.length() ? (uint64_t)length2 : buffer2.length();
+		memcpy(ptr2, buffer2.data(), (size_t)copy_len);
+	}
+
+	g_fmod_last_result = sound->unlock(ptr1, ptr2, (unsigned int)length1, (unsigned int)length2);
+	g_sound_lock_ptrs.erase(it);
+	return 0;
 }
