@@ -44,6 +44,7 @@
     {"$GMFolder":"","%Name":"Font","folderPath":"folders/GM Extensions Assets/Font.yy","name":"Font","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/GM Extensions Assets/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/GM Extensions Assets/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"GMFMODStudio","folderPath":"folders/GMFMODStudio.yy","name":"GMFMODStudio","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
@@ -84,6 +85,7 @@
   "resources":[
     {"id":{"name":"ExtensionCore","path":"extensions/ExtensionCore/ExtensionCore.yy",},},
     {"id":{"name":"GMFMOD","path":"extensions/GMFMOD/GMFMOD.yy",},},
+    {"id":{"name":"GMFMODStudio","path":"extensions/GMFMODStudio/GMFMODStudio.yy",},},
     {"id":{"name":"fnt_gm_15","path":"fonts/fnt_gm_15/fnt_gm_15.yy",},},
     {"id":{"name":"fnt_gm_20","path":"fonts/fnt_gm_20/fnt_gm_20.yy",},},
     {"id":{"name":"fnt_gm_30","path":"fonts/fnt_gm_30/fnt_gm_30.yy",},},
@@ -189,6 +191,7 @@
     {"id":{"name":"rm_fmod_studio_simple_event","path":"rooms/rm_fmod_studio_simple_event/rm_fmod_studio_simple_event.yy",},},
     {"id":{"name":"ExtensionCore_api","path":"scripts/ExtensionCore_api/ExtensionCore_api.yy",},},
     {"id":{"name":"GMFMOD_API","path":"scripts/GMFMOD_API/GMFMOD_API.yy",},},
+    {"id":{"name":"GMFMODStudio_API","path":"scripts/GMFMODStudio_API/GMFMODStudio_API.yy",},},
     {"id":{"name":"spr_gm_background","path":"sprites/spr_gm_background/spr_gm_background.yy",},},
     {"id":{"name":"spr_gm_button","path":"sprites/spr_gm_button/spr_gm_button.yy",},},
     {"id":{"name":"spr_gm_textbox","path":"sprites/spr_gm_textbox/spr_gm_textbox.yy",},},

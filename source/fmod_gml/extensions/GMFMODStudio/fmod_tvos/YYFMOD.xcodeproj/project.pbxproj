@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A1BE0A62CECE33900D35C29 /* Fmod_tvOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */; };
+		6A592C702B10A854004CA709 /* ExtBufferIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C6F2B10A854004CA709 /* ExtBufferIO.cpp */; };
+		6A592C872B10A89B004CA709 /* Fmod_Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C732B10A89B004CA709 /* Fmod_Tools.cpp */; };
+		6A592C882B10A89B004CA709 /* Fmod_Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C742B10A89B004CA709 /* Fmod_Geometry.cpp */; };
+		6A592C892B10A89B004CA709 /* Fmod_Studio_Bus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C752B10A89B004CA709 /* Fmod_Studio_Bus.cpp */; };
+		6A592C8A2B10A89B004CA709 /* Fmod_SoundGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C762B10A89B004CA709 /* Fmod_SoundGroup.cpp */; };
+		6A592C8B2B10A89B004CA709 /* Fmod_Studio_VCA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C772B10A89B004CA709 /* Fmod_Studio_VCA.cpp */; };
+		6A592C8C2B10A89B004CA709 /* Fmod_System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C782B10A89B004CA709 /* Fmod_System.cpp */; };
+		6A592C8D2B10A89B004CA709 /* Fmod_Studio_System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C792B10A89B004CA709 /* Fmod_Studio_System.cpp */; };
+		6A592C8E2B10A89B004CA709 /* Fmod_Reverb3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C7A2B10A89B004CA709 /* Fmod_Reverb3D.cpp */; };
+		6A592C8F2B10A89B004CA709 /* Fmod_Studio_EventInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C7B2B10A89B004CA709 /* Fmod_Studio_EventInstance.cpp */; };
+		6A592C902B10A89B004CA709 /* Fmod_Studio_EventDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C7D2B10A89B004CA709 /* Fmod_Studio_EventDescription.cpp */; };
+		6A592C912B10A89B004CA709 /* Fmod_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C7E2B10A89B004CA709 /* Fmod_DSP.cpp */; };
+		6A592C922B10A89B004CA709 /* Fmod_ChannelGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C7F2B10A89B004CA709 /* Fmod_ChannelGroup.cpp */; };
+		6A592C932B10A89B004CA709 /* Fmod_Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C802B10A89B004CA709 /* Fmod_Sound.cpp */; };
+		6A592C942B10A89B004CA709 /* Fmod_Channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C812B10A89B004CA709 /* Fmod_Channel.cpp */; };
+		6A592C952B10A89B004CA709 /* Fmod_Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C822B10A89B004CA709 /* Fmod_Common.cpp */; };
+		6A592C962B10A89B004CA709 /* Fmod_Studio_Bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C832B10A89B004CA709 /* Fmod_Studio_Bank.cpp */; };
+		6A592C972B10A89B004CA709 /* Fmod_ChannelControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */; };
+		6A592C982B10A89B004CA709 /* Fmod_DSPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */; };
+		6A592C992B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6A1BE0A42CECE33900D35C29 /* Fmod_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fmod_tvOS.h; sourceTree = "<group>"; };
+		6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Fmod_tvOS.mm; sourceTree = "<group>"; };
+		6A592C612B10A73C004CA709 /* libYYFMOD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYFMOD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A592C6E2B10A854004CA709 /* ExtBufferIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtBufferIO.h; path = ../fmod_cpp/ExtBufferIO.h; sourceTree = SOURCE_ROOT; };
+		6A592C6F2B10A854004CA709 /* ExtBufferIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExtBufferIO.cpp; path = ../fmod_cpp/ExtBufferIO.cpp; sourceTree = SOURCE_ROOT; };
+		6A592C732B10A89B004CA709 /* Fmod_Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Tools.cpp; sourceTree = "<group>"; };
+		6A592C742B10A89B004CA709 /* Fmod_Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Geometry.cpp; sourceTree = "<group>"; };
+		6A592C752B10A89B004CA709 /* Fmod_Studio_Bus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_Bus.cpp; sourceTree = "<group>"; };
+		6A592C762B10A89B004CA709 /* Fmod_SoundGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_SoundGroup.cpp; sourceTree = "<group>"; };
+		6A592C772B10A89B004CA709 /* Fmod_Studio_VCA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_VCA.cpp; sourceTree = "<group>"; };
+		6A592C782B10A89B004CA709 /* Fmod_System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_System.cpp; sourceTree = "<group>"; };
+		6A592C792B10A89B004CA709 /* Fmod_Studio_System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_System.cpp; sourceTree = "<group>"; };
+		6A592C7A2B10A89B004CA709 /* Fmod_Reverb3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Reverb3D.cpp; sourceTree = "<group>"; };
+		6A592C7B2B10A89B004CA709 /* Fmod_Studio_EventInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_EventInstance.cpp; sourceTree = "<group>"; };
+		6A592C7C2B10A89B004CA709 /* Fmod_Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fmod_Tools.h; sourceTree = "<group>"; };
+		6A592C7D2B10A89B004CA709 /* Fmod_Studio_EventDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_EventDescription.cpp; sourceTree = "<group>"; };
+		6A592C7E2B10A89B004CA709 /* Fmod_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSP.cpp; sourceTree = "<group>"; };
+		6A592C7F2B10A89B004CA709 /* Fmod_ChannelGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelGroup.cpp; sourceTree = "<group>"; };
+		6A592C802B10A89B004CA709 /* Fmod_Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Sound.cpp; sourceTree = "<group>"; };
+		6A592C812B10A89B004CA709 /* Fmod_Channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Channel.cpp; sourceTree = "<group>"; };
+		6A592C822B10A89B004CA709 /* Fmod_Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Common.cpp; sourceTree = "<group>"; };
+		6A592C832B10A89B004CA709 /* Fmod_Studio_Bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_Bank.cpp; sourceTree = "<group>"; };
+		6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_ChannelControl.cpp; sourceTree = "<group>"; };
+		6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_DSPConnection.cpp; sourceTree = "<group>"; };
+		6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fmod_Studio_CommandReplay.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A592C5E2B10A73C004CA709 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A592C582B10A73C004CA709 = {
+			isa = PBXGroup;
+			children = (
+				6A1BE0A42CECE33900D35C29 /* Fmod_tvOS.h */,
+				6A1BE0A52CECE33900D35C29 /* Fmod_tvOS.mm */,
+				6A592C722B10A878004CA709 /* Fmod GML */,
+				6A592C6D2B10A833004CA709 /* BufferTool */,
+				6A592C622B10A73C004CA709 /* Products */,
+				6A592C9D2B10AADF004CA709 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6A592C622B10A73C004CA709 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A592C612B10A73C004CA709 /* libYYFMOD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A592C6D2B10A833004CA709 /* BufferTool */ = {
+			isa = PBXGroup;
+			children = (
+				6A592C6F2B10A854004CA709 /* ExtBufferIO.cpp */,
+				6A592C6E2B10A854004CA709 /* ExtBufferIO.h */,
+			);
+			name = BufferTool;
+			path = ../fmod_cpp;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A592C722B10A878004CA709 /* Fmod GML */ = {
+			isa = PBXGroup;
+			children = (
+				6A592C812B10A89B004CA709 /* Fmod_Channel.cpp */,
+				6A592C842B10A89B004CA709 /* Fmod_ChannelControl.cpp */,
+				6A592C7F2B10A89B004CA709 /* Fmod_ChannelGroup.cpp */,
+				6A592C822B10A89B004CA709 /* Fmod_Common.cpp */,
+				6A592C7E2B10A89B004CA709 /* Fmod_DSP.cpp */,
+				6A592C852B10A89B004CA709 /* Fmod_DSPConnection.cpp */,
+				6A592C742B10A89B004CA709 /* Fmod_Geometry.cpp */,
+				6A592C7A2B10A89B004CA709 /* Fmod_Reverb3D.cpp */,
+				6A592C802B10A89B004CA709 /* Fmod_Sound.cpp */,
+				6A592C762B10A89B004CA709 /* Fmod_SoundGroup.cpp */,
+				6A592C832B10A89B004CA709 /* Fmod_Studio_Bank.cpp */,
+				6A592C752B10A89B004CA709 /* Fmod_Studio_Bus.cpp */,
+				6A592C862B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp */,
+				6A592C7D2B10A89B004CA709 /* Fmod_Studio_EventDescription.cpp */,
+				6A592C7B2B10A89B004CA709 /* Fmod_Studio_EventInstance.cpp */,
+				6A592C792B10A89B004CA709 /* Fmod_Studio_System.cpp */,
+				6A592C772B10A89B004CA709 /* Fmod_Studio_VCA.cpp */,
+				6A592C782B10A89B004CA709 /* Fmod_System.cpp */,
+				6A592C732B10A89B004CA709 /* Fmod_Tools.cpp */,
+				6A592C7C2B10A89B004CA709 /* Fmod_Tools.h */,
+			);
+			name = "Fmod GML";
+			path = ../fmod_cpp;
+			sourceTree = "<group>";
+		};
+		6A592C9D2B10AADF004CA709 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A592C602B10A73C004CA709 /* YYFMOD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A592C6A2B10A73C004CA709 /* Build configuration list for PBXNativeTarget "YYFMOD" */;
+			buildPhases = (
+				6A592C5D2B10A73C004CA709 /* Sources */,
+				6A592C5E2B10A73C004CA709 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YYFMOD;
+			productName = YYFMOD;
+			productReference = 6A592C612B10A73C004CA709 /* libYYFMOD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A592C592B10A73C004CA709 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6A592C602B10A73C004CA709 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = 6A592C5C2B10A73C004CA709 /* Build configuration list for PBXProject "YYFMOD" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A592C582B10A73C004CA709;
+			productRefGroup = 6A592C622B10A73C004CA709 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A592C602B10A73C004CA709 /* YYFMOD */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A592C5D2B10A73C004CA709 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A592C8D2B10A89B004CA709 /* Fmod_Studio_System.cpp in Sources */,
+				6A592C8F2B10A89B004CA709 /* Fmod_Studio_EventInstance.cpp in Sources */,
+				6A592C942B10A89B004CA709 /* Fmod_Channel.cpp in Sources */,
+				6A592C8B2B10A89B004CA709 /* Fmod_Studio_VCA.cpp in Sources */,
+				6A592C932B10A89B004CA709 /* Fmod_Sound.cpp in Sources */,
+				6A592C922B10A89B004CA709 /* Fmod_ChannelGroup.cpp in Sources */,
+				6A592C992B10A89B004CA709 /* Fmod_Studio_CommandReplay.cpp in Sources */,
+				6A1BE0A62CECE33900D35C29 /* Fmod_tvOS.mm in Sources */,
+				6A592C8A2B10A89B004CA709 /* Fmod_SoundGroup.cpp in Sources */,
+				6A592C882B10A89B004CA709 /* Fmod_Geometry.cpp in Sources */,
+				6A592C912B10A89B004CA709 /* Fmod_DSP.cpp in Sources */,
+				6A592C702B10A854004CA709 /* ExtBufferIO.cpp in Sources */,
+				6A592C982B10A89B004CA709 /* Fmod_DSPConnection.cpp in Sources */,
+				6A592C892B10A89B004CA709 /* Fmod_Studio_Bus.cpp in Sources */,
+				6A592C8C2B10A89B004CA709 /* Fmod_System.cpp in Sources */,
+				6A592C902B10A89B004CA709 /* Fmod_Studio_EventDescription.cpp in Sources */,
+				6A592C972B10A89B004CA709 /* Fmod_ChannelControl.cpp in Sources */,
+				6A592C962B10A89B004CA709 /* Fmod_Studio_Bank.cpp in Sources */,
+				6A592C872B10A89B004CA709 /* Fmod_Tools.cpp in Sources */,
+				6A592C952B10A89B004CA709 /* Fmod_Common.cpp in Sources */,
+				6A592C8E2B10A89B004CA709 /* Fmod_Reverb3D.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6A592C682B10A73C004CA709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6A592C692B10A73C004CA709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6A592C6B2B10A73C004CA709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C9E7J7HL3D;
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/core/inc\"",
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/studio/inc\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/core/lib\"",
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/studio/lib\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		6A592C6C2B10A73C004CA709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C9E7J7HL3D;
+				HEADER_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/core/inc\"",
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/studio/inc\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/core/lib\"",
+					"\"$(PROJECT_DIR)/../../../../fmod_sdk/FMOD Studio API iOS/api/studio/lib\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A592C5C2B10A73C004CA709 /* Build configuration list for PBXProject "YYFMOD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A592C682B10A73C004CA709 /* Debug */,
+				6A592C692B10A73C004CA709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A592C6A2B10A73C004CA709 /* Build configuration list for PBXNativeTarget "YYFMOD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A592C6B2B10A73C004CA709 /* Debug */,
+				6A592C6C2B10A73C004CA709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6A592C592B10A73C004CA709 /* Project object */;
+}

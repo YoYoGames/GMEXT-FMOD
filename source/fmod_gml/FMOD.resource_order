@@ -30,9 +30,11 @@
     {"name":"Font","order":1,"path":"folders/GM Extensions Assets/Font.yy",},
     {"name":"Objects","order":2,"path":"folders/GM Extensions Assets/Objects.yy",},
     {"name":"Sprites","order":3,"path":"folders/GM Extensions Assets/Sprites.yy",},
+    {"name":"GMFMODStudio","order":4,"path":"folders/GMFMODStudio.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"GMFMOD","order":7,"path":"extensions/GMFMOD/GMFMOD.yy",},
+    {"name":"GMFMODStudio","order":1,"path":"extensions/GMFMODStudio/GMFMODStudio.yy",},
     {"name":"fnt_gm_20","order":1,"path":"fonts/fnt_gm_20/fnt_gm_20.yy",},
     {"name":"fnt_gm_30","order":2,"path":"fonts/fnt_gm_30/fnt_gm_30.yy",},
     {"name":"obj_fmod_channel_groups_mute","order":2,"path":"objects/obj_fmod_channel_groups_mute/obj_fmod_channel_groups_mute.yy",},

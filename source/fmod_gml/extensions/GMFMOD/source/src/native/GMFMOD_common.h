@@ -1,7 +1,6 @@
 #pragma once
 
 #include "fmod.hpp"
-#include "fmod_studio.hpp"
 #include <cstdint>
 #include <map>
 #include <string>

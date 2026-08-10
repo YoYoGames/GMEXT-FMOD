@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GMFMODStudio_API",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GMFMODStudio_API",
+  "parent":{
+    "name":"GMFMODStudio",
+    "path":"folders/GMFMODStudio.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

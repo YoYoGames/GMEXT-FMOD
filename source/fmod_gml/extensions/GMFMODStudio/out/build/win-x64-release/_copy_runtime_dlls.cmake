@@ -1,0 +1,10 @@
+    if(NOT DEFINED dlls OR dlls STREQUAL "")
+      message(STATUS "No runtime DLLs to copy")
+      return()
+    endif()
+    foreach(f IN LISTS dlls)
+      if(EXISTS "${f}")
+        file(COPY "${f}" DESTINATION "${dst}")
+      endif()
+    endforeach()
+  

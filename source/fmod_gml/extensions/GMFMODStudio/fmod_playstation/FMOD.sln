@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YYFMOD", "FMOD\FMOD.vcxproj", "{B5B06561-AF31-42FF-AB16-22D1BB09440F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ORBIS = Debug|ORBIS
+		Debug|Prospero = Debug|Prospero
+		Release|ORBIS = Release|ORBIS
+		Release|Prospero = Release|Prospero
+		Release-AutoBuild|ORBIS = Release-AutoBuild|ORBIS
+		Release-AutoBuild|Prospero = Release-AutoBuild|Prospero
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Debug|ORBIS.ActiveCfg = Debug|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Debug|ORBIS.Build.0 = Debug|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Debug|Prospero.ActiveCfg = Debug|Prospero
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Debug|Prospero.Build.0 = Debug|Prospero
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release|ORBIS.ActiveCfg = Release|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release|ORBIS.Build.0 = Release|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release|Prospero.ActiveCfg = Release|Prospero
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release|Prospero.Build.0 = Release|Prospero
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release-AutoBuild|ORBIS.ActiveCfg = Release-AutoBuild|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release-AutoBuild|ORBIS.Build.0 = Release-AutoBuild|ORBIS
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release-AutoBuild|Prospero.ActiveCfg = Release-AutoBuild|Prospero
+		{B5B06561-AF31-42FF-AB16-22D1BB09440F}.Release-AutoBuild|Prospero.Build.0 = Release-AutoBuild|Prospero
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06BC0196-6613-4706-B2C5-43855BC250C1}
+	EndGlobalSection
+EndGlobal
