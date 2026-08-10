@@ -354,15 +354,7 @@
         {"$GMProxyFile":"","%Name":"libfmodL.prx","name":"libfmodL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":59,},
         {"$GMProxyFile":"","%Name":"fmodL.dll","name":"fmodL.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
       ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
-    {"$GMExtensionFile":"v1","%Name":"libfmodstudioL.dylib","constants":[],"copyToTargets":576460756598390786,"filename":"libfmodstudioL.dylib","final":"","functions":[
-        {"$GMExtensionFunction":"","%Name":"__libfmodstudioL_load__","argCount":0,"args":[],"documentation":"","externalName":"__libfmodstudioL_load__","help":"","hidden":true,"kind":1,"name":"__libfmodstudioL_load__","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
-      ],"init":"__libfmodstudioL_load__","kind":1,"name":"libfmodstudioL.dylib","origname":"","ProxyFiles":[
-        {"$GMProxyFile":"","%Name":"libfmodstudioL.prx","name":"libfmodstudioL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":32,},
-        {"$GMProxyFile":"","%Name":"libfmodstudioL.prx","name":"libfmodstudioL.prx","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":59,},
-        {"$GMProxyFile":"","%Name":"fmodstudioL.dll","name":"fmodstudioL.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
-      ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
     {"$GMExtensionFile":"v1","%Name":"fmod.dll","constants":[],"copyToTargets":64,"filename":"fmod.dll","final":"","functions":[],"init":"","kind":4,"name":"fmod.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
-    {"$GMExtensionFile":"v1","%Name":"fmodstudio.dll","constants":[],"copyToTargets":64,"filename":"fmodstudio.dll","final":"","functions":[],"init":"","kind":4,"name":"fmodstudio.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,
