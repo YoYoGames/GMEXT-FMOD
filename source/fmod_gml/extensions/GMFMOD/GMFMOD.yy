@@ -355,6 +355,7 @@
         {"$GMProxyFile":"","%Name":"fmodL.dll","name":"fmodL.dll","resourceType":"GMProxyFile","resourceVersion":"2.0","TargetMask":61,},
       ],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
     {"$GMExtensionFile":"v1","%Name":"fmod.dll","constants":[],"copyToTargets":64,"filename":"fmod.dll","final":"","functions":[],"init":"","kind":4,"name":"fmod.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+    {"$GMExtensionFile":"v1","%Name":"","constants":[],"copyToTargets":-1,"filename":"fmodL.dll","final":"","functions":[],"init":"","kind":1,"name":"","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,

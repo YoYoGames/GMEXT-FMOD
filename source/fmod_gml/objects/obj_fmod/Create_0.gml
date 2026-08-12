@@ -5,7 +5,10 @@ var _max_channels = 1024
 var _flags_core = FmodInitFlags.Normal;
 var _flags_studio = FmodStudioInitFlags.LiveUpdate;
 
-#macro USE_FMOD_STUDIO true
+// Auto-detects the Studio extension so the demo falls back to Core-only when
+// GMFMODStudio is disabled or removed from the project. Hardcode to false to
+// force the Core path even while GMFMODStudio is present.
+#macro USE_FMOD_STUDIO extension_exists("GMFMODStudio")
 #macro USE_DEBUG_CALLBACKS false
 
 if (USE_DEBUG_CALLBACKS) {

@@ -71,20 +71,14 @@ exit %ERRORLEVEL%
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%WIN_SDK_PATH%" SDK_PATH
 
-    :: Get library file paths
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x64\fmodL.dll"
+    :: Get library file path (studio only - GMFMOD is responsible for fmodL.dll)
     set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x64\fmodstudioL.dll"
 
     :: Asset hash match
-    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals %SDK_STUDIO_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying Windows (64 bit) dependencies"
-    if not exist "fmodL.dll" call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "fmodstudioL.dll" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "fmodstudioL.dll"
-    )
+    if not exist "fmodstudioL.dll" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "fmodstudioL.dll"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

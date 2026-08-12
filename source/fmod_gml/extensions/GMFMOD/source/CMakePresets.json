@@ -43,7 +43,8 @@
       "hidden": false,
       "inherits": "base-vs",
       "cacheVariables": {
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebugDLL",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug",
+        "EXT_TP_FMOD_USE_LOGGING": "ON",
         "EXT_OUTPUT_DIR": "../"
       }
     },
@@ -53,7 +54,8 @@
       "hidden": false,
       "inherits": "base-vs",
       "cacheVariables": {
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded",
+        "EXT_TP_FMOD_USE_LOGGING": "ON",
         "EXT_OUTPUT_DIR": "../"
       }
     },
