@@ -172,7 +172,7 @@ std::atomic<uint64_t> g_fmod_callback_count{ 0 };
 // Utility Functions
 // ============================================================
 
-enum gm_enums::FmodStudioResult fmod_last_result()
+enum gm_enums::FmodStudioResult fmod_studio_last_result()
 {
 	return (enum gm_enums::FmodStudioResult)g_fmod_last_result;
 }

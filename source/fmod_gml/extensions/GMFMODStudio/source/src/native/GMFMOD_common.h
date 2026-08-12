@@ -14,7 +14,7 @@
 // ============================================================
 
 extern FMOD_RESULT g_fmod_last_result;
-extern enum gm_enums::FmodStudioResult fmod_last_result();
+extern enum gm_enums::FmodStudioResult fmod_studio_last_result();
 extern void fmod_debug_initialize(enum gm_enums::FmodStudioDebugFlags flags, enum gm_enums::FmodStudioDebugMode mode);
 extern std::string fmod_path_bundle(std::string_view filename);
 extern std::string fmod_path_user(std::string_view filename);

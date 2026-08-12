@@ -30,11 +30,6 @@ call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
 call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 call %Utils% optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
 
-:: Enable Studio?
-call %Utils% optionGetValue "enableStudio" ENABLE_STUDIO
-set "ENABLE_STUDIO_FLAG=1"
-if "%ENABLE_STUDIO%"=="True" set "ENABLE_STUDIO_FLAG=1"
-
 :: Error String
 set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%SDK_VERSION%)."
 
@@ -84,29 +79,23 @@ exit /b 0
     call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
 
     set "SDK_CORE_SOURCE_FILE="
-    set "SDK_STUDIO_SOURCE_FILE="
 
     :: Check device vs simulator build
     if "%YYTARGET_type%"=="platformdevice_type_device" (
         :: Device
         set "SDK_CORE_SOURCE_FILE=libfmodL_iphoneos.a"
-        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphoneos.a"
 
         :: Delete the simulator static dependencies (if they exist)
         call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphonesimulator.a"
-        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodstudioL_iphonesimulator.a"
     ) else (
         :: Simulator
         set "SDK_CORE_SOURCE_FILE=libfmodL_iphonesimulator.a"
-        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_iphonesimulator.a"
 
         :: Delete the device static dependecies (if they exist)
         call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphoneos.a"
-        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodstudioL_iphoneos.a"
     )
 
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%SDK_STUDIO_SOURCE_FILE%"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -117,8 +106,6 @@ exit /b 0
     pushd "%EXTENSION_DIR%\iOSSource"
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
     call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
-    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
     popd
 
 exit /b 0
@@ -129,29 +116,23 @@ exit /b 0
     call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
 
     set "SDK_CORE_SOURCE_FILE="
-    set "SDK_STUDIO_SOURCE_FILE="
 
     :: Check device vs simulator build
     if "%YYTARGET_type%"=="platformdevice_type_device" (
         :: Device
         set "SDK_CORE_SOURCE_FILE=libfmodL_appletvos.a"
-        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvos.a"
 
         :: Delete the simulator static dependencies (if they exist)
         call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvsimulator.a"
-        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodstudioL_appletvsimulator.a"
     ) else (
         :: Simulator
         set "SDK_CORE_SOURCE_FILE=libfmodL_appletvsimulator.a"
-        set "SDK_STUDIO_SOURCE_FILE=libfmodstudioL_appletvsimulator.a"
 
         :: Delete the device static dependecies (if they exist)
         call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvos.a"
-        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodstudioL_appletvos.a"
     )
 
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\%SDK_STUDIO_SOURCE_FILE%"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -162,8 +143,6 @@ exit /b 0
     pushd "%EXTENSION_DIR%\tvOSSource"
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
     call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "%SDK_STUDIO_SOURCE_FILE%"
-    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\inc" "Fmod Studio\"
     popd
     
 exit /b 0
@@ -255,17 +234,11 @@ exit /b 0
         exit /b 1
     )
 
-    :: Library file paths
+    :: Library file path (core only - GMFMODStudio ships fmodstudioL.dll)
     set "SDK_CORE_SOURCE=%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmodL.dll"
-    set "SDK_STUDIO_SOURCE=%SDK_PATH%\api\studio\lib\%PLATFORM_PATH%\fmodstudioL.dll"
 
     echo Copying Xbox (%PLATFORM_PATH%) dependencies
     call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\fmodL.dll"
-
-    if "%ENABLE_STUDIO_FLAG%"=="1" (
-        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "%EXTENSION_DIR%\fmodstudioL.dll"
-    )
-
 
 exit /b 0
 
@@ -305,17 +278,11 @@ exit /b 0
     :: Copy libs to GML project
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
 
-    :: Get library file paths
+    :: Get library file path (core only - GMFMODStudio ships libfmodstudioL.prx)
     set "SDK_CORE_SOURCE=%FMOD_SDK_PATH%\api\core\lib\libfmodL.prx"
-    set "SDK_STUDIO_SOURCE=%FMOD_SDK_PATH%\api\studio\lib\libfmodstudioL.prx"
 
     echo "Copying %YYPLATFORM_name% dependencies"
     call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\libfmodL.prx"
-
-    :: Copy studio libs if enabled
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        call %Utils% itemCopyTo "%SDK_STUDIO_SOURCE%" "%EXTENSION_DIR%\libfmodstudioL.prx"
-    )
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

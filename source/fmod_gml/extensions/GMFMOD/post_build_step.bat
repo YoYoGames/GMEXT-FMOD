@@ -40,11 +40,6 @@ call %Utils% optionGetValue "ps4SdkPath" PS4_SDK_PATH
 call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
 call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 
-:: Enable Studio? 
-call %Utils% optionGetValue "enableStudio" ENABLE_STUDIO
-set "ENABLE_STUDIO_FLAG=1"
-if "%ENABLE_STUDIO%"=="True" set "ENABLE_STUDIO_FLAG=1"
-
 :: Error String
 set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%SDK_VERSION%)."
 
@@ -87,9 +82,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%MACOS_SDK_PATH%" SDK_PATH
 
-    :: Get library file paths
+    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudioL.dylib)
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmodL.dylib"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\libfmodstudioL.dylib"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %MACOS_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -111,10 +105,6 @@ exit /b 0
         :: This is used for YYC compilation
         call %Utils% itemCopyTo %SDK_CORE_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmodL.dylib"
 
-        :: Copy studio libs if enabled
-        if %ENABLE_STUDIO_FLAG% == 1 (
-            call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmodstudioL.dylib"
-        )
         endlocal
     )
 exit /b 0
@@ -125,9 +115,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%LINUX_SDK_PATH%" SDK_PATH
 
-    :: Get library file paths
+    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudio.so.14)
     set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmod.so.14"
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x86_64\libfmodstudio.so.14"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -144,9 +133,6 @@ exit /b 0
     :: Update the zip file with the required SDKs
     mkdir _temp\assets
     call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmod.so.14"
-    if %ENABLE_STUDIO_FLAG% == 1 (
-        if not exist "_temp\assets\libfmodstudio.so.14" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "_temp\assets\libfmodstudio.so.14"
-    )
     call %Utils% zipUpdate "_temp" "!YYprojectName!.zip"
     rmdir /s /q _temp
 
@@ -172,11 +158,9 @@ exit /b 0
         echo "Copying Android (arm64-v8a) dependencies"
         if not exist "arm64-v8a" mkdir "arm64-v8a"
         if not exist "arm64-v8a\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" "arm64-v8a\libfmodL.so"
-        if not exist "arm64-v8a\libfmodstudioL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\arm64-v8a\libfmodstudioL.so" "arm64-v8a\libfmodstudioL.so"
     ) else (
         if exist "arm64-v8a" (
             call %Utils% itemDelete "arm64-v8a\libfmodL.so"
-            call %Utils% itemDelete "arm64-v8a\libfmodstudioL.so"
         )
     )
 
@@ -185,11 +169,9 @@ exit /b 0
         echo "Copying Android (armeabi-v7a) dependencies"
         if not exist "armeabi-v7a" mkdir "armeabi-v7a"
         if not exist "armeabi-v7a\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmodL.so" "armeabi-v7a\libfmodL.so"
-        if not exist "armeabi-v7a\libfmodstudioL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\armeabi-v7a\libfmodstudioL.so" "armeabi-v7a\libfmodstudioL.so"
     ) else (
         if exist "armeabi-v7a" (
             call %Utils% itemDelete "armeabi-v7a\libfmodL.so"
-            call %Utils% itemDelete "armeabi-v7a\libfmodstudioL.so"
         )
     )
 
@@ -198,11 +180,9 @@ exit /b 0
         echo "Copying Android (x86-64) dependencies"
         if not exist "x86-64" mkdir "x86-64"
         if not exist "x86-64\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86-64\libfmodL.so" "x86-64\libfmodL.so"
-        if not exist "x86-64\libfmodstudioL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\x86-64\libfmodstudioL.so" "x86-64\libfmodstudioL.so"
     ) else (
         if exist "x86-64" (
             call %Utils% itemDelete "x86-64\libfmodL.so"
-            call %Utils% itemDelete "x86-64\libfmodstudioL.so"
         )
     )
 

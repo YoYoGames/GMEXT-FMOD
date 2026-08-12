@@ -71,6 +71,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_driver_info(double driver_id, char
 GMEXPORT double __EXT_NATIVE__fmod_system_create_channel_group(char* name, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_play_dsp(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_select(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_system_adopt(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_count();
 GMEXPORT double __EXT_NATIVE__fmod_system_get_version();
 GMEXPORT double __EXT_NATIVE__fmod_system_get_master_sound_group(char* __ret_buffer, double __ret_buffer_length);

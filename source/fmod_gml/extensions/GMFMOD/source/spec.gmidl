@@ -1669,6 +1669,16 @@ function fmod_system_select(
     [type_hint=`uint64`] system_ref: gmval
 ): real;
 
+// Registers an FMOD::System created outside this extension (pass the pointer
+// from fmod_studio_system_get_core_system_ptr()) and makes it current, so the
+// systemless core API operates on it. Returns a system ref valid here.
+// The adopted system stays owned by its creator: fmod_system_release() will
+// neither release nor unregister it.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_adopt(
+    [type_hint=`uint64`] system_ptr: gmval
+): gmval;
+
 // ============================================================
 // System - Diagnostics & Configuration
 // ============================================================

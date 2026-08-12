@@ -1,7 +1,0 @@
-﻿  ExtBufferIO.cpp
-  Fmod_Channel.cpp
-  In file included from D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\FMOD\fmod_cpp\Fmod_Channel.cpp:2:
-D:\Github\GMEXT-FMOD\source\fmod_gml\extensions\FMOD\fmod_cpp/Fmod_Tools.h(7,10): fatal error : 'fmod.hpp' file not found
-  #include "fmod.hpp"
-           ^~~~~~~~~~
-  1 error generated.

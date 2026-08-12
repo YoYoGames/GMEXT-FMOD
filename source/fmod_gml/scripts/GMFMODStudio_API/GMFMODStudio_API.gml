@@ -2414,6 +2414,40 @@ function fmod_studio_system_get_core_system()
     return __result__;
 }
 
+/**
+ * @returns {Real}
+ */
+function fmod_studio_system_get_core_system_ptr()
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_studio_system_get_core_system_ptr(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    return __result__;
+}
+
+/**
+ * @returns {Enum.FmodStudioResult}
+ */
+function fmod_studio_last_result()
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_studio_last_result(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    return __result__;
+}
+
 // Skipping function fmod_studio_system_set_num_listeners (no wrapper is required)
 
 

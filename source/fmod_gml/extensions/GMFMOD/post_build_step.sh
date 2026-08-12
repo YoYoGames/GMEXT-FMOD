@@ -6,6 +6,9 @@ source "$(dirname "$0")/scriptUtils.sh"
 
 # ######################################################################################
 # Script Functions
+#
+# GMFMOD ships the FMOD Core runtime only. The FMOD Studio runtime is shipped by
+# the separate GMFMODStudio extension when the project uses it.
 
 # ----------------------------------------------------------------------------------------------------
 setupmacOS() {
@@ -14,29 +17,20 @@ setupmacOS() {
     pathResolveExisting "$YYprojectDir" "$MACOS_SDK_PATH" SDK_PATH
 
     SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
-    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/libfmodstudioL.dylib"
 
-    for f in "${SDK_CORE_SOURCE}" "${SDK_STUDIO_SOURCE}"; do
-        # Skip empty vars
-        [ -n "$f" ] || continue
-
-        if [ ! -e "$f" ]; then
-            logWarning "Not found: $f"
-            continue
+    if [ ! -e "$SDK_CORE_SOURCE" ]; then
+        logError "Not found: $SDK_CORE_SOURCE"
+    elif xattr -p com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
+        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        if xattr -d com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
+            logInformation "Removed quarantine from '$SDK_CORE_SOURCE'"
+        else
+            logError "Failed to remove quarantine from '$SDK_CORE_SOURCE' (permissions/path?)."
         fi
-
-        if xattr -p com.apple.quarantine "$f" >/dev/null 2>&1; then
-            logWarning "'$(basename "$f")' is quarantined. Removing com.apple.quarantine…"
-            if xattr -d com.apple.quarantine "$f" >/dev/null 2>&1; then
-                logInformation "Removed quarantine from '$f'"
-            else
-                logError "Failed to remove quarantine from '$f' (permissions/path?)."
-            fi
-        fi
-    done
+    fi
 
     # assertFileHashEquals $SDK_CORE_SOURCE $MACOS_SDK_HASH "$ERROR_SDK_HASH"
-    
+
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
 
@@ -44,14 +38,11 @@ setupmacOS() {
         assertXcodeToolsInstalled
 
         # Code sign the original library binary
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libYYFMOD.dylib"
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMOD.dylib"
 
         # Copy and code sign dependencies
         itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
         codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
-
-        itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
 
         # If there is an extra game.zip file here then this is a package command
         # Update the libraries inside the zip file (used for packaging)
@@ -60,10 +51,9 @@ setupmacOS() {
 
             mkdir "./${TEMP_FOLDER}"
 
-            itemCopyTo "./libYYFMOD.dylib" "${TEMP_FOLDER}/assets/libYYFMOD.dylib"
+            itemCopyTo "./libGMFMOD.dylib" "${TEMP_FOLDER}/assets/libGMFMOD.dylib"
             itemCopyTo "./libfmodL.dylib" "${TEMP_FOLDER}/assets/libfmodL.dylib"
-            itemCopyTo "./libfmodstudioL.dylib" "${TEMP_FOLDER}/assets/libfmodstudioL.dylib"
-    
+
             zipUpdate "${TEMP_FOLDER}" "game.zip"
             rm -r ${TEMP_FOLDER}
         fi
@@ -78,7 +68,6 @@ setupmacOS() {
         YYfixedProjectName="${YYprojectName// /_}"
 
         itemCopyTo "$SDK_CORE_SOURCE" "${YYfixedProjectName}/${YYfixedProjectName}/Supporting Files/libfmodL.dylib"
-        itemCopyTo "$SDK_STUDIO_SOURCE" "${YYfixedProjectName}/${YYfixedProjectName}/Supporting Files/libfmodstudioL.dylib"
     fi
 }
 
@@ -87,26 +76,17 @@ setupMac() {
     pathResolveExisting "$YYprojectDir" "$MACOS_SDK_PATH" SDK_PATH
 
     SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
-    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/libfmodstudioL.dylib"
 
-    for f in "${SDK_CORE_SOURCE}" "${SDK_STUDIO_SOURCE}"; do
-        # Skip empty vars
-        [ -n "$f" ] || continue
-
-        if [ ! -e "$f" ]; then
-            logWarning "Not found: $f"
-            continue
+    if [ ! -e "$SDK_CORE_SOURCE" ]; then
+        logError "Not found: $SDK_CORE_SOURCE"
+    elif xattr -p com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
+        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        if xattr -d com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
+            logInformation "Removed quarantine from '$SDK_CORE_SOURCE'"
+        else
+            logError "Failed to remove quarantine from '$SDK_CORE_SOURCE' (permissions/path?)."
         fi
-
-        if xattr -p com.apple.quarantine "$f" >/dev/null 2>&1; then
-            logWarning "'$(basename "$f")' is quarantined. Removing com.apple.quarantine…"
-            if xattr -d com.apple.quarantine "$f" >/dev/null 2>&1; then
-                logInformation "Removed quarantine from '$f'"
-            else
-                logError "Failed to remove quarantine from '$f' (permissions/path?)."
-            fi
-        fi
-    done
+    fi
 
     echo "Copying macOS (64 bit) dependencies"
 
@@ -116,14 +96,11 @@ setupMac() {
     assertXcodeToolsInstalled
 
     # Code sign the original library binary
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libYYFMOD.dylib"
+    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMOD.dylib"
 
     # Copy and code sign dependencies
     itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
     codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
-
-    itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
 
     popd >/dev/null
 }
@@ -134,33 +111,28 @@ setupLinux() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$LINUX_SDK_PATH" SDK_PATH
 
-    # Get library file paths
+    # Get library file path
     SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmod.so.14"
-    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so.14"
 
     # assertFileHashEquals $SDK_CORE_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
 
     echo "Copying Linux (64 bit) dependencies"
-    
+
     # When running from CLI 'YYprojectName' will not be set, use 'YYprojectPath' instead.
     if [ -z "$YYprojectName" ]; then
         YYprojectName=$(basename "${YYprojectPath%.*}")
     fi
 
-    # Replace spaces with underscores (this matches the assetcompiler output)
-    YYfixedProjectName="${YYprojectName// /_}"
-
     TEMP_FOLDER="${YYprojectName}___temp___"
-    
+
     mkdir "./${TEMP_FOLDER}"
     itemCopyTo "$SDK_CORE_SOURCE" "${TEMP_FOLDER}/assets/libfmod.so.14"
-    itemCopyTo "$SDK_STUDIO_SOURCE" "${TEMP_FOLDER}/assets/libfmodstudio.so.14"
     zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
     rm -r ${TEMP_FOLDER}
 }
 
 # ----------------------------------------------------------------------------------------------------
-setupAndroid() {    
+setupAndroid() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$ANDROID_SDK_PATH" SDK_PATH
 
@@ -173,11 +145,9 @@ setupAndroid() {
         echo "Copying Android (arm64-v8a) dependencies"
         [[ ! -d "arm64-v8a/" ]] && mkdir "arm64-v8a"
         [[ ! -f "arm64-v8a/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" "arm64-v8a/libfmodL.so"
-        [[ ! -f "arm64-v8a/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/studio/lib/arm64-v8a/libfmodstudioL.so" "arm64-v8a/libfmodstudioL.so"
     else
-        if exist "arm64-v8a"; then
+        if [ -d "arm64-v8a" ]; then
             itemDelete "arm64-v8a/libfmodL.so"
-            itemDelete "arm64-v8a/libfmodstudioL.so"
         fi
     fi
 
@@ -186,11 +156,9 @@ setupAndroid() {
         echo "Copying Android (armeabi-v7a) dependencies"
         [[ ! -d "armeabi-v7a/" ]] && mkdir "armeabi-v7a"
         [[ ! -f "armeabi-v7a/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/armeabi-v7a/libfmodL.so" "armeabi-v7a/libfmodL.so"
-        [[ ! -f "armeabi-v7a/libfmodstudioL.so" ]] && itemCopyTo "$SDK_PATH/api/studio/lib/armeabi-v7a/libfmodstudioL.so" "armeabi-v7a/libfmodstudioL.so"
     else
-        if exist "armeabi-v7a"; then
+        if [ -d "armeabi-v7a" ]; then
             itemDelete "armeabi-v7a/libfmodL.so"
-            itemDelete "armeabi-v7a/libfmodstudioL.so"
         fi
     fi
 
@@ -199,11 +167,9 @@ setupAndroid() {
         echo "Copying Android (x86-64) dependencies"
         [[ ! -d "x86-64" ]] && mkdir "x86-64"
         [[ ! -f "x86-64/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/x86-64/libfmodL.so" "x86-64/libfmodL.so"
-        [[ ! -f "x86-64/libfmodstudioL.so" ]] && itemCopyTo "$SDK_PATH/api/studio/lib/x86-64/libfmodstudioL.so" "x86-64/libfmodstudioL.so"
     else
-        if exist "x86-64"; then
+        if [ -d "x86-64" ]; then
             itemDelete "x86-64/libfmodL.so"
-            itemDelete "x86-64/libfmodstudioL.so"
         fi
     fi
 
@@ -211,35 +177,13 @@ setupAndroid() {
 }
 
 # ----------------------------------------------------------------------------------------------------
-setupiOS() {
-    # Nothing to do here
-    :
-}
-
-# ----------------------------------------------------------------------------------------------------
-setupXbox() {
-    # Nothing to do here
-    :
-}
-
-# ----------------------------------------------------------------------------------------------------
-setupPlaystation() {
-    # Nothing to do here
-    :
-}
-
-# ----------------------------------------------------------------------------------------------------
-setupSwitch() {
-    # Nothing to do here
-    :
-}
-
-
-# ----------------------------------------------------------------------------------------------------
-setupSwitch2() {
-    # Nothing to do here for Switch2/Ounce post-build.
-    :
-}
+# iOS / tvOS / Xbox / Playstation / Switch stage their dependencies in pre_build_step.
+setupiOS() { :; }
+setuptvOS() { :; }
+setupXbox() { :; }
+setupPlaystation() { :; }
+setupSwitch() { :; }
+setupSwitch2() { :; }
 
 # ######################################################################################
 # Script Logic
@@ -275,18 +219,11 @@ optionGetValue "macosSdkPath" MACOS_SDK_PATH
 optionGetValue "linuxSdkPath" LINUX_SDK_PATH
 optionGetValue "iosSdkPath" IOS_SDK_PATH
 optionGetValue "androidSdkPath" ANDROID_SDK_PATH
-optionGetValue "xboxSdkPath" XBOX_SDK_PATH
+optionGetValue "gdkSdkPath" GDK_SDK_PATH
 optionGetValue "ps4SdkPath" PS4_SDK_PATH
 optionGetValue "ps5SdkPath" PS5_SDK_PATH
 optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
-
-# Enable Studio?
-optionGetValue "enableStudio" ENABLE_STUDIO
-ENABLE_STUDIO_FLAG=1
-if [[ "$ENABLE_STUDIO" == "True" ]]; then 
-    ENABLE_STUDIO_FLAG=1
-fi
 
 # Error String
 ERROR_SDK_HASH="Invalid FMOD SDK version, sha256 hash mismatch (expected v$SDK_VERSION)."
@@ -295,7 +232,6 @@ ERROR_SDK_HASH="Invalid FMOD SDK version, sha256 hash mismatch (expected v$SDK_V
 pushd "$YYoutputFolder" >/dev/null
 
 # Call setup method depending on the platform
-# NOTE: the setup method can be (:setupmacOS or :setupLinux)
 setup$YYPLATFORM_name
 
 popd >/dev/null

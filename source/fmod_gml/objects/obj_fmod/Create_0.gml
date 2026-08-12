@@ -19,16 +19,23 @@ if (USE_FMOD_STUDIO) {
 	/*
 		If you are only using Studio you need this.
 	*/
-	fmod_studio_system_create();	
-	show_debug_message("fmod_studio_system_create: " + string(fmod_last_result()));
-	
+	fmod_studio_system_create();
+	show_debug_message("fmod_studio_system_create: " + string(fmod_studio_last_result()));
+
 	fmod_studio_system_init(_max_channels, _flags_studio, _flags_core);
-	show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
+	show_debug_message("fmod_studio_system_init: " + string(fmod_studio_last_result()));
 	
 	/*
-		FMOD Studio will create an initialize an underlying core system to work with.
+		FMOD Studio creates and initializes an underlying core system to work with.
+
+		GMFMOD and GMFMODStudio are separate DLLs with separate handle registries,
+		so the ref from fmod_studio_system_get_core_system() means nothing to the
+		core extension. Hand the raw pointer over instead: fmod_system_adopt()
+		registers that same system in GMFMOD and selects it, so the systemless
+		core API (fmod_system_create_sound, etc.) drives Studio's core system.
 	*/
-	fmod_main_system = fmod_studio_system_get_core_system();
+	fmod_main_system = fmod_system_adopt(fmod_studio_system_get_core_system_ptr());
+	show_debug_message("fmod_system_adopt: " + string(fmod_last_result()));
 }
 else {
 	/*

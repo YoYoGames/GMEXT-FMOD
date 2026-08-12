@@ -27,8 +27,13 @@ if(NOT FMOD_SDK_ROOT)
     ABSOLUTE)
 endif()
 
+# MUST match GMFMODStudio's setting. Both extensions load into the same process,
+# so if one links fmodL.dll and the other fmod.dll the process ends up with two
+# separate copies of FMOD Core - an FMOD::System created by one is meaningless to
+# the other, which breaks fmod_studio_system_get_core_system_ptr() -> fmod_system_adopt().
+# Defaulted ON here (not in CMakePresets.json) because extgen regenerates presets.
 option(EXT_TP_FMOD_USE_LOGGING
-       "Force the FMOD logging (L) libraries in every config" OFF)
+       "Force the FMOD logging (L) libraries in every config" ON)
 
 message(STATUS "[third_party] FMOD_SDK_ROOT = ${FMOD_SDK_ROOT}")
 

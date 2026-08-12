@@ -1076,6 +1076,8 @@ double fmod_studio_system_get_listener_weight(double listener_index);
 double fmod_studio_system_set_parameter_by_name(std::string_view name, double value);
 double fmod_studio_system_get_parameter_by_name(std::string_view name);
 std::uint64_t fmod_studio_system_get_core_system();
+std::uint64_t fmod_studio_system_get_core_system_ptr();
+gm_enums::FmodStudioResult fmod_studio_last_result();
 double fmod_studio_system_set_num_listeners(double count);
 std::string fmod_studio_system_lookup_id(std::string_view path);
 std::string fmod_studio_system_lookup_path(std::string_view str_guid);

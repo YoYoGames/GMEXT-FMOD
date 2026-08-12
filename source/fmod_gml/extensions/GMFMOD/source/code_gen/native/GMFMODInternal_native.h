@@ -2161,6 +2161,7 @@ gm_structs::FmodDriverInfo fmod_system_get_driver_info(double driver_id);
 std::uint64_t fmod_system_create_channel_group(std::string_view name);
 std::uint64_t fmod_system_play_dsp(std::uint64_t dsp_ref, std::uint64_t channel_group_ref, double paused);
 double fmod_system_select(std::uint64_t system_ref);
+std::uint64_t fmod_system_adopt(std::uint64_t system_ptr);
 double fmod_system_count();
 double fmod_system_get_version();
 std::uint64_t fmod_system_get_master_sound_group();

@@ -751,6 +751,20 @@ function fmod_studio_system_get_parameter_by_name(name: string): real;
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_system_get_core_system(): gmval;
 
+// Raw FMOD::System* of the Studio-owned core system, as an integer.
+// The ref returned by fmod_studio_system_get_core_system() indexes this
+// extension's own registry and is meaningless to the GMFMOD extension, which
+// links its own copy of the registry. Pass this pointer to fmod_system_adopt()
+// (GMFMOD) to register the same system there.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_system_get_core_system_ptr(): gmval;
+
+// Result of the last call into THIS extension. GMFMOD's fmod_last_result()
+// reads the core DLL's own state and never reflects a Studio call, so Studio
+// failures are invisible without this.
+[global, bind = typed_gml, type_hint=`FmodStudioResult`]
+function fmod_studio_last_result(): gmval;
+
 [global, bind = typed_gml]
 function fmod_studio_system_set_num_listeners(count: real): real;
 

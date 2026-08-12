@@ -478,6 +478,22 @@ uint64_t fmod_studio_system_get_core_system()
 	return result;
 }
 
+uint64_t fmod_studio_system_get_core_system_ptr()
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return 0;
+
+	FMOD::System* core_system = nullptr;
+	g_fmod_last_result = studio_system->getCoreSystem(&core_system);
+	if (g_fmod_last_result != FMOD_OK || core_system == nullptr) return 0;
+
+	// Handed to GMFMOD's fmod_system_adopt(). Deliberately does not touch the
+	// system's user-data slot: that slot is owned by this extension's registry
+	// and must not be shared across the DLL boundary.
+	return static_cast<uint64_t>(reinterpret_cast<uintptr_t>(core_system));
+}
+
 // ============================================================
 // Studio System - Listeners
 // ============================================================

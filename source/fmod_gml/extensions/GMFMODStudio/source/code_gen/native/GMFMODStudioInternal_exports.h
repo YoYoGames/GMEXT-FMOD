@@ -34,6 +34,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_listener_weight(double list
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_name(char* name, double value);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_by_name(char* name);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system(char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system_ptr(char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_last_result(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_num_listeners(double count);
 GMEXPORT char* __EXT_NATIVE__fmod_studio_system_lookup_id(char* path);
 GMEXPORT char* __EXT_NATIVE__fmod_studio_system_lookup_path(char* str_guid);

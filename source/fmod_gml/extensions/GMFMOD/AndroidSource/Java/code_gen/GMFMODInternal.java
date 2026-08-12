@@ -260,6 +260,10 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_select(__arg_buffer, __arg_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_system_adopt(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_system_adopt(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_system_count()
     {
         return __EXT_JNI__fmod_system_count();

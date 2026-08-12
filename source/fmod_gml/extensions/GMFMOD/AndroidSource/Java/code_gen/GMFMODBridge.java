@@ -81,6 +81,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_create_channel_group(String name, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_play_dsp(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_select(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_system_adopt(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_count();
     public static native double __EXT_JNI__fmod_system_get_version();
     public static native double __EXT_JNI__fmod_system_get_master_sound_group(ByteBuffer __ret_buffer, double __ret_buffer_length);

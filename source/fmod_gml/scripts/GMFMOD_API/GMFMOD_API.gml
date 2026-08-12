@@ -4984,6 +4984,30 @@ function fmod_system_select(_system_ref)
     return __return_value__;
 }
 
+/**
+ * @param {Real} _system_ptr
+ * @returns {Real}
+ */
+function fmod_system_adopt(_system_ptr)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer = __ext_core_get_args_buffer();
+
+    // param: _system_ptr, type: UInt64
+    if (!is_numeric(_system_ptr)) show_error($"{_GMFUNCTION_} :: _system_ptr expected number", true);
+    buffer_write(__args_buffer, buffer_u64, _system_ptr);
+
+    var __ret_buffer = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_adopt(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    return __result__;
+}
+
 // Skipping function fmod_system_count (no wrapper is required)
 
 

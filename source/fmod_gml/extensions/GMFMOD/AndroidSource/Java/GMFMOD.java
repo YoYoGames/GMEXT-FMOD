@@ -1,4 +1,6 @@
 package ${YYAndroidPackageName};
+import java.lang.String;
+import java.nio.ByteBuffer;
 
-public class GMFMOD extends GMFMODInternal {
+public final class GMFMOD extends GMFMODInternal {
 }

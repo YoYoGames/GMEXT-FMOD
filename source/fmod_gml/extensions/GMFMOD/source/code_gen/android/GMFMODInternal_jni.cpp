@@ -846,6 +846,25 @@ static jdouble __JNI_WRAPPER__fmod_system_select_8425306E3096(JNIEnv* env, jclas
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_system_adopt JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_adopt_CEDC5DEC3560(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_adopt((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_count JNI wrapper signature: ()D
 static jdouble __JNI_WRAPPER__fmod_system_count_06DB18CE9B64(JNIEnv* /* env */, jclass /* GMFMODBridge */)
 {
@@ -4435,6 +4454,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_create_channel_group", "(Ljava/lang/String;Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_channel_group_70C2F88726EC },
             { "__EXT_JNI__fmod_system_play_dsp", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_play_dsp_46228D91CB54 },
             { "__EXT_JNI__fmod_system_select", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_select_8425306E3096 },
+            { "__EXT_JNI__fmod_system_adopt", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_adopt_CEDC5DEC3560 },
             { "__EXT_JNI__fmod_system_count", "()D", (void*)__JNI_WRAPPER__fmod_system_count_06DB18CE9B64 },
             { "__EXT_JNI__fmod_system_get_version", "()D", (void*)__JNI_WRAPPER__fmod_system_get_version_567BB033F722 },
             { "__EXT_JNI__fmod_system_get_master_sound_group", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_master_sound_group_92389719ED6A },

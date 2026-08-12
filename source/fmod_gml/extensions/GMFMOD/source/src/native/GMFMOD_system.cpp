@@ -1,6 +1,14 @@
 #include "GMFMOD_system.h"
 
+#include <set>
+
 using namespace gm_structs;
+
+// Systems handed to us by another extension (see fmod_system_adopt). They are
+// registered in our map so the systemless API can reach them, but their
+// lifetime - and their FMOD user-data slot, which the owning extension's
+// registry allocated on its own heap - belongs to whoever created them.
+static std::set<FMOD::System*> g_adopted_systems;
 
 // ============================================================
 // System - Creation & Initialization
@@ -34,6 +42,38 @@ double fmod_system_init(double max_channels, double flags)
 	return 0;
 }
 
+uint64_t fmod_system_adopt(uint64_t system_ptr)
+{
+	if (system_ptr == 0)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	FMOD::System* system = reinterpret_cast<FMOD::System*>(static_cast<uintptr_t>(system_ptr));
+
+	// Not registerOrFindResource(): the owning extension already claimed this
+	// system's user-data slot, so that helper would hand back the owner's index
+	// without ever inserting into our map.
+	for (const auto& entry : map_systems)
+	{
+		if (entry.second == system)
+		{
+			setCurrentSystem(system);
+			g_fmod_last_result = FMOD_OK;
+			return packIndexIntoRef(entry.first, GM_FMOD_TYPE_SYSTEM);
+		}
+	}
+
+	uint32_t system_id = ++index_systems;
+	map_systems.insert({ system_id, system });
+	g_adopted_systems.insert(system);
+
+	setCurrentSystem(system);
+	g_fmod_last_result = FMOD_OK;
+	return packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+}
+
 double fmod_system_release(uint64_t system_ref)
 {
 	FMOD::System* system = nullptr;
@@ -41,6 +81,27 @@ double fmod_system_release(uint64_t system_ref)
 
 	if (system == nullptr)
 		return 0;
+
+	// Adopted systems are owned elsewhere (Studio releases its own core system).
+	// Releasing here would double-free, and unregisterResource would delete a
+	// CustomUserData allocated by the other DLL's heap.
+	if (g_adopted_systems.count(system) != 0)
+	{
+		if (getCurrentSystem() == system)
+			setCurrentSystem(nullptr);
+
+		for (auto it = map_systems.begin(); it != map_systems.end(); ++it)
+		{
+			if (it->second == system)
+			{
+				map_systems.erase(it);
+				break;
+			}
+		}
+		g_adopted_systems.erase(system);
+		g_fmod_last_result = FMOD_OK;
+		return 0;
+	}
 
 	g_fmod_last_result = system->release();
 	if (g_fmod_last_result == FMOD_OK)

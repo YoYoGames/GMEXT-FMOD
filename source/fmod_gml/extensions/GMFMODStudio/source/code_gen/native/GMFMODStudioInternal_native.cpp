@@ -243,6 +243,26 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system(char* __ret_buf
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system_ptr(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_system_get_core_system_ptr();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_last_result(char* __ret_buffer, double __ret_buffer_length)
+{
+    auto&& __result = fmod_studio_last_result();
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioResult
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_num_listeners(double count)
 {
     auto&& __result = fmod_studio_system_set_num_listeners(static_cast<double>(count));

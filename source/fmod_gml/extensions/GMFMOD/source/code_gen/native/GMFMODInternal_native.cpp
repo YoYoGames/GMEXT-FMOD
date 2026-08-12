@@ -679,6 +679,21 @@ GMEXPORT double __EXT_NATIVE__fmod_system_select(char* __arg_buffer, double __ar
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_system_adopt(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: system_ptr, type: UInt64
+    std::uint64_t system_ptr = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_system_adopt(system_ptr);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_system_count()
 {
     auto&& __result = fmod_system_count();
