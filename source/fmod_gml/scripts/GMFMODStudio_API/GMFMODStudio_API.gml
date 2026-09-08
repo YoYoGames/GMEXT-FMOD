@@ -2030,12 +2030,12 @@ function fmod_studio_system_create()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_create(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_create(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2064,14 +2064,14 @@ function fmod_studio_system_load_bank_file(_filename, _flags)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_load_bank_file(_filename, _flags, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_load_bank_file(_filename, _flags, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2090,14 +2090,14 @@ function fmod_studio_system_load_bank_memory(_data, _flags)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_load_bank_memory(_data, _flags, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_load_bank_memory(_data, _flags, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2121,14 +2121,14 @@ function fmod_studio_system_get_bank_at(_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_bank_at(_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_bank_at(_index, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2146,14 +2146,14 @@ function fmod_studio_system_get_bank(_path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_bank(_path, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_bank(_path, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2171,14 +2171,14 @@ function fmod_studio_system_get_bank_by_id(_str_guid)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_bank_by_id(_str_guid, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_bank_by_id(_str_guid, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2196,14 +2196,14 @@ function fmod_studio_system_get_event(_path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_event(_path, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_event(_path, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2221,14 +2221,14 @@ function fmod_studio_system_create_event_instance(_path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_create_event_instance(_path, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_create_event_instance(_path, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2246,14 +2246,14 @@ function fmod_studio_system_get_bus(_path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_bus(_path, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_bus(_path, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2270,14 +2270,14 @@ function fmod_studio_system_get_master_bus()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_master_bus(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_master_bus(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2295,14 +2295,14 @@ function fmod_studio_system_get_bus_by_id(_str_guid)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_bus_by_id(_str_guid, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_bus_by_id(_str_guid, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2320,14 +2320,14 @@ function fmod_studio_system_get_vca(_path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_vca(_path, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_vca(_path, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2345,14 +2345,14 @@ function fmod_studio_system_get_vca_by_id(_str_guid)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_vca_by_id(_str_guid, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_vca_by_id(_str_guid, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2379,12 +2379,12 @@ function fmod_studio_system_get_listener_attributes(_listener_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_listener_attributes(_listener_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_listener_attributes(_listener_index, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioListenerAttributes_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioListenerAttributes_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2405,12 +2405,12 @@ function fmod_studio_system_get_core_system()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_core_system(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_core_system(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2422,12 +2422,12 @@ function fmod_studio_system_get_core_system_ptr()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_core_system_ptr(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_core_system_ptr(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2439,12 +2439,12 @@ function fmod_studio_last_result()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_last_result(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_last_result(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2466,12 +2466,12 @@ function fmod_studio_system_get_event_by_id(_id)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_event_by_id(_id, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_event_by_id(_id, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2488,19 +2488,19 @@ function fmod_studio_system_start_command_capture(_filename, _flags)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _filename, type: String
     if (!is_string(_filename)) show_error($"{_GMFUNCTION_} :: _filename expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_filename));
-    buffer_write(__args_buffer, buffer_string, _filename);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_filename));
+    buffer_write(__args_buffer__, buffer_string, _filename);
 
     // param: _flags, type: enum FmodStudioCommandCaptureFlags
 
     if (!is_numeric(_flags)) show_error($"{_GMFUNCTION_} :: _flags expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _flags);
+    buffer_write(__args_buffer__, buffer_u64, _flags);
 
-    var __return_value__ = __fmod_studio_system_start_command_capture(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_system_start_command_capture(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2518,24 +2518,24 @@ function fmod_studio_system_load_command_replay(_filename, _flags)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _filename, type: String
     if (!is_string(_filename)) show_error($"{_GMFUNCTION_} :: _filename expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_filename));
-    buffer_write(__args_buffer, buffer_string, _filename);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_filename));
+    buffer_write(__args_buffer__, buffer_string, _filename);
 
     // param: _flags, type: enum FmodStudioCommandReplayFlags
 
     if (!is_numeric(_flags)) show_error($"{_GMFUNCTION_} :: _flags expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _flags);
+    buffer_write(__args_buffer__, buffer_u64, _flags);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_load_command_replay(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_load_command_replay(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -2548,12 +2548,12 @@ function fmod_studio_system_get_sound_info(_key)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_sound_info(_key, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_sound_info(_key, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioSoundInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioSoundInfo_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2567,12 +2567,12 @@ function fmod_studio_system_get_parameter_by_id(_id_data1, _id_data2)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_parameter_by_id(_id_data1, _id_data2, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_parameter_by_id(_id_data1, _id_data2, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterValue_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterValue_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2589,12 +2589,12 @@ function fmod_studio_system_get_parameter_description_by_id(_id_data1, _id_data2
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_parameter_description_by_id(_id_data1, _id_data2, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_parameter_description_by_id(_id_data1, _id_data2, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2607,12 +2607,12 @@ function fmod_studio_system_get_parameter_description_by_name(_name)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_parameter_description_by_name(_name, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_parameter_description_by_name(_name, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2628,12 +2628,12 @@ function fmod_studio_system_get_parameter_description_at(_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_parameter_description_at(_index, buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_parameter_description_at(_index, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2657,12 +2657,12 @@ function fmod_studio_system_get_cpu_usage()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_cpu_usage(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_cpu_usage(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioSystemCPUUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioSystemCPUUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2674,12 +2674,12 @@ function fmod_studio_system_get_buffer_usage()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_buffer_usage(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_buffer_usage(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioBufferUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioBufferUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2694,12 +2694,12 @@ function fmod_studio_system_get_memory_usage()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_memory_usage(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_memory_usage(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2711,12 +2711,12 @@ function fmod_studio_system_get_advanced_settings()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_get_advanced_settings(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_system_get_advanced_settings(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioAdvancedSettings_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioAdvancedSettings_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -2729,13 +2729,13 @@ function fmod_studio_system_set_advanced_settings(_settings)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _settings, type: struct FmodStudioAdvancedSettings
     if (_settings.__uid != 3186888222) show_error($"{_GMFUNCTION_} :: _settings expected FmodStudioAdvancedSettings", true);
-    __FmodStudioAdvancedSettings_encode(_settings, __args_buffer, buffer_tell(__args_buffer), _GMFUNCTION_);
+    __FmodStudioAdvancedSettings_encode(_settings, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
 
-    var __return_value__ = __fmod_studio_system_set_advanced_settings(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_system_set_advanced_settings(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2758,13 +2758,13 @@ function fmod_studio_bank_unload(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_unload(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_unload(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2778,13 +2778,13 @@ function fmod_studio_bank_get_loading_state(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_loading_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_loading_state(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2798,13 +2798,13 @@ function fmod_studio_bank_get_sample_loading_state(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_sample_loading_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_sample_loading_state(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2818,13 +2818,13 @@ function fmod_studio_bank_get_path(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_path(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2838,20 +2838,20 @@ function fmod_studio_bank_get_parent_studio_system(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bank_get_parent_studio_system(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bank_get_parent_studio_system(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2869,13 +2869,13 @@ function fmod_studio_bank_get_event_count(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_event_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_event_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2890,24 +2890,24 @@ function fmod_studio_bank_get_event_at(_bank_ref, _index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bank_get_event_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bank_get_event_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2925,13 +2925,13 @@ function fmod_studio_bank_get_bus_count(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_bus_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_bus_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -2946,24 +2946,24 @@ function fmod_studio_bank_get_bus_at(_bank_ref, _index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bank_get_bus_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bank_get_bus_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -2981,13 +2981,13 @@ function fmod_studio_bank_get_vca_count(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_vca_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_vca_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3002,24 +3002,24 @@ function fmod_studio_bank_get_vca_at(_bank_ref, _index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bank_get_vca_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bank_get_vca_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -3037,13 +3037,13 @@ function fmod_studio_bank_get_string_count(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_string_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_string_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3057,13 +3057,13 @@ function fmod_studio_bank_get_id(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3077,13 +3077,13 @@ function fmod_studio_bank_is_valid(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_is_valid(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3098,22 +3098,22 @@ function fmod_studio_bank_get_string_info(_bank_ref, _string_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
     // param: _string_index, type: Float64
     if (!is_numeric(_string_index)) show_error($"{_GMFUNCTION_} :: _string_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _string_index);
+    buffer_write(__args_buffer__, buffer_f64, _string_index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bank_get_string_info(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bank_get_string_info(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioStringInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioStringInfo_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3126,13 +3126,13 @@ function fmod_studio_bank_load_sample_data(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_load_sample_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_load_sample_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3146,13 +3146,13 @@ function fmod_studio_bank_unload_sample_data(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_unload_sample_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_unload_sample_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3166,13 +3166,13 @@ function fmod_studio_bank_get_user_data(_bank_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
-    var __return_value__ = __fmod_studio_bank_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_get_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3187,17 +3187,17 @@ function fmod_studio_bank_set_user_data(_bank_ref, _user_data)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bank_ref, type: UInt64
     if (!is_numeric(_bank_ref)) show_error($"{_GMFUNCTION_} :: _bank_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bank_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bank_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _user_data);
+    buffer_write(__args_buffer__, buffer_f64, _user_data);
 
-    var __return_value__ = __fmod_studio_bank_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bank_set_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3211,13 +3211,13 @@ function fmod_studio_event_description_get_path(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_path(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3231,20 +3231,20 @@ function fmod_studio_event_description_create_instance(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_create_instance(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_create_instance(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -3262,13 +3262,13 @@ function fmod_studio_event_description_get_instance_count(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_instance_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_instance_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3283,24 +3283,24 @@ function fmod_studio_event_description_get_instance_at(_event_desc_ref, _index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_instance_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_instance_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -3318,13 +3318,13 @@ function fmod_studio_event_description_is_snapshot(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_snapshot(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_snapshot(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3338,13 +3338,13 @@ function fmod_studio_event_description_is_one_shot(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_one_shot(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_one_shot(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3358,13 +3358,13 @@ function fmod_studio_event_description_has_sustain_point(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_has_sustain_point(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_has_sustain_point(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3378,13 +3378,13 @@ function fmod_studio_event_description_get_length(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_length(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_length(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3398,13 +3398,13 @@ function fmod_studio_event_description_get_parameter_count(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3418,13 +3418,13 @@ function fmod_studio_event_description_release_all_instances(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_release_all_instances(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_release_all_instances(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3439,23 +3439,23 @@ function fmod_studio_event_description_get_parameter_description_by_name(_event_
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_description_by_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_description_by_name(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3468,13 +3468,13 @@ function fmod_studio_event_description_load_sample_data(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_load_sample_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_load_sample_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3488,13 +3488,13 @@ function fmod_studio_event_description_is_valid(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_valid(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3508,13 +3508,13 @@ function fmod_studio_event_description_is_3d(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_3d(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_3d(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3528,13 +3528,13 @@ function fmod_studio_event_description_is_stream(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_stream(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_stream(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3548,13 +3548,13 @@ function fmod_studio_event_description_is_doppler_enabled(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_is_doppler_enabled(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_is_doppler_enabled(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3568,13 +3568,13 @@ function fmod_studio_event_description_get_id(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3588,18 +3588,18 @@ function fmod_studio_event_description_get_min_max_distance(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_min_max_distance(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_min_max_distance(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioMinMaxDistance_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioMinMaxDistance_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3612,13 +3612,13 @@ function fmod_studio_event_description_get_sound_size(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_sound_size(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_sound_size(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3632,13 +3632,13 @@ function fmod_studio_event_description_get_sample_loading_state(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_sample_loading_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_sample_loading_state(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3652,13 +3652,13 @@ function fmod_studio_event_description_unload_sample_data(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_unload_sample_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_unload_sample_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3673,17 +3673,17 @@ function fmod_studio_event_description_set_callback(_event_desc_ref, _callback_m
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _callback_mask, type: Float64
     if (!is_numeric(_callback_mask)) show_error($"{_GMFUNCTION_} :: _callback_mask expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _callback_mask);
+    buffer_write(__args_buffer__, buffer_f64, _callback_mask);
 
-    var __return_value__ = __fmod_studio_event_description_set_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_set_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3697,13 +3697,13 @@ function fmod_studio_event_description_get_user_data(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3718,17 +3718,17 @@ function fmod_studio_event_description_set_user_data(_event_desc_ref, _user_data
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _user_data);
+    buffer_write(__args_buffer__, buffer_f64, _user_data);
 
-    var __return_value__ = __fmod_studio_event_description_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_set_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3743,23 +3743,23 @@ function fmod_studio_event_description_get_user_property(_event_desc_ref, _name)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_user_property(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_user_property(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioUserProperty_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioUserProperty_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3773,22 +3773,22 @@ function fmod_studio_event_description_get_user_property_at(_event_desc_ref, _in
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_user_property_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_user_property_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioUserProperty_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioUserProperty_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3801,13 +3801,13 @@ function fmod_studio_event_description_get_user_property_count(_event_desc_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    var __return_value__ = __fmod_studio_event_description_get_user_property_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_user_property_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3823,26 +3823,26 @@ function fmod_studio_event_description_get_parameter_description_by_id(_event_de
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data1);
+    buffer_write(__args_buffer__, buffer_f64, _id_data1);
 
     // param: _id_data2, type: Float64
     if (!is_numeric(_id_data2)) show_error($"{_GMFUNCTION_} :: _id_data2 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data2);
+    buffer_write(__args_buffer__, buffer_f64, _id_data2);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_description_by_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_description_by_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3856,22 +3856,22 @@ function fmod_studio_event_description_get_parameter_description_at(_event_desc_
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_description_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_description_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioParameterDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -3887,25 +3887,25 @@ function fmod_studio_event_description_get_parameter_label_by_id(_event_desc_ref
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data1);
+    buffer_write(__args_buffer__, buffer_f64, _id_data1);
 
     // param: _id_data2, type: Float64
     if (!is_numeric(_id_data2)) show_error($"{_GMFUNCTION_} :: _id_data2 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data2);
+    buffer_write(__args_buffer__, buffer_f64, _id_data2);
 
     // param: _label_index, type: Float64
     if (!is_numeric(_label_index)) show_error($"{_GMFUNCTION_} :: _label_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _label_index);
+    buffer_write(__args_buffer__, buffer_f64, _label_index);
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_label_by_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_label_by_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3921,21 +3921,21 @@ function fmod_studio_event_description_get_parameter_label_at(_event_desc_ref, _
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
     // param: _label_index, type: Float64
     if (!is_numeric(_label_index)) show_error($"{_GMFUNCTION_} :: _label_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _label_index);
+    buffer_write(__args_buffer__, buffer_f64, _label_index);
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_label_at(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_label_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3951,22 +3951,22 @@ function fmod_studio_event_description_get_parameter_label_by_name(_event_desc_r
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _event_desc_ref, type: UInt64
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _event_desc_ref);
+    buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
     // param: _label_index, type: Float64
     if (!is_numeric(_label_index)) show_error($"{_GMFUNCTION_} :: _label_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _label_index);
+    buffer_write(__args_buffer__, buffer_f64, _label_index);
 
-    var __return_value__ = __fmod_studio_event_description_get_parameter_label_by_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_description_get_parameter_label_by_name(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -3980,13 +3980,13 @@ function fmod_studio_event_instance_start(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_start(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_start(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4001,17 +4001,17 @@ function fmod_studio_event_instance_stop(_instance_ref, _stop_mode)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _stop_mode, type: Float64
     if (!is_numeric(_stop_mode)) show_error($"{_GMFUNCTION_} :: _stop_mode expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _stop_mode);
+    buffer_write(__args_buffer__, buffer_f64, _stop_mode);
 
-    var __return_value__ = __fmod_studio_event_instance_stop(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_stop(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4025,13 +4025,13 @@ function fmod_studio_event_instance_get_playback_state(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_playback_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_playback_state(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4045,13 +4045,13 @@ function fmod_studio_event_instance_get_paused(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4066,17 +4066,17 @@ function fmod_studio_event_instance_set_paused(_instance_ref, _paused)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _paused);
+    buffer_write(__args_buffer__, buffer_f64, _paused);
 
-    var __return_value__ = __fmod_studio_event_instance_set_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4090,13 +4090,13 @@ function fmod_studio_event_instance_get_timeline_position(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_timeline_position(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_timeline_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4111,17 +4111,17 @@ function fmod_studio_event_instance_set_timeline_position(_instance_ref, _positi
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _position, type: Float64
     if (!is_numeric(_position)) show_error($"{_GMFUNCTION_} :: _position expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _position);
+    buffer_write(__args_buffer__, buffer_f64, _position);
 
-    var __return_value__ = __fmod_studio_event_instance_set_timeline_position(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_timeline_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4135,13 +4135,13 @@ function fmod_studio_event_instance_keyoff(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_keyoff(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_keyoff(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4155,13 +4155,13 @@ function fmod_studio_event_instance_get_volume(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4176,17 +4176,17 @@ function fmod_studio_event_instance_set_volume(_instance_ref, _volume)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _volume);
+    buffer_write(__args_buffer__, buffer_f64, _volume);
 
-    var __return_value__ = __fmod_studio_event_instance_set_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4200,13 +4200,13 @@ function fmod_studio_event_instance_get_pitch(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_pitch(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_pitch(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4221,17 +4221,17 @@ function fmod_studio_event_instance_set_pitch(_instance_ref, _pitch)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _pitch, type: Float64
     if (!is_numeric(_pitch)) show_error($"{_GMFUNCTION_} :: _pitch expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _pitch);
+    buffer_write(__args_buffer__, buffer_f64, _pitch);
 
-    var __return_value__ = __fmod_studio_event_instance_set_pitch(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_pitch(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4247,22 +4247,22 @@ function fmod_studio_event_instance_set_parameter_by_name(_instance_ref, _name, 
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
     // param: _value, type: Float64
     if (!is_numeric(_value)) show_error($"{_GMFUNCTION_} :: _value expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _value);
+    buffer_write(__args_buffer__, buffer_f64, _value);
 
-    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_name(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4277,18 +4277,18 @@ function fmod_studio_event_instance_get_parameter_by_name(_instance_ref, _name)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
-    var __return_value__ = __fmod_studio_event_instance_get_parameter_by_name(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_parameter_by_name(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4302,13 +4302,13 @@ function fmod_studio_event_instance_get_parameter_count(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_parameter_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_parameter_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4324,21 +4324,21 @@ function fmod_studio_event_instance_get_parameter_by_id(_instance_ref, _id_data1
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data1);
+    buffer_write(__args_buffer__, buffer_f64, _id_data1);
 
     // param: _id_data2, type: Float64
     if (!is_numeric(_id_data2)) show_error($"{_GMFUNCTION_} :: _id_data2 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data2);
+    buffer_write(__args_buffer__, buffer_f64, _id_data2);
 
-    var __return_value__ = __fmod_studio_event_instance_get_parameter_by_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_parameter_by_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4355,25 +4355,25 @@ function fmod_studio_event_instance_set_parameter_by_id(_instance_ref, _id_data1
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data1);
+    buffer_write(__args_buffer__, buffer_f64, _id_data1);
 
     // param: _id_data2, type: Float64
     if (!is_numeric(_id_data2)) show_error($"{_GMFUNCTION_} :: _id_data2 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data2);
+    buffer_write(__args_buffer__, buffer_f64, _id_data2);
 
     // param: _value, type: Float64
     if (!is_numeric(_value)) show_error($"{_GMFUNCTION_} :: _value expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _value);
+    buffer_write(__args_buffer__, buffer_f64, _value);
 
-    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4391,31 +4391,31 @@ function fmod_studio_event_instance_set_callback(_instance_ref, _callback, _mask
 
     var __dispatcher__ = __GMFMODStudio_get_dispatcher();
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
     {
-        buffer_write(__args_buffer, buffer_bool, false);
+        buffer_write(__args_buffer__, buffer_bool, false);
     }
     else
     {
-        buffer_write(__args_buffer, buffer_bool, true);
+        buffer_write(__args_buffer__, buffer_bool, true);
         if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
         var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
-        buffer_write(__args_buffer, buffer_u64, _callback_handle);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
     }
 
     // param: _mask, type: enum FmodStudioEventCallbackType
 
     if (!is_numeric(_mask)) show_error($"{_GMFUNCTION_} :: _mask expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _mask);
+    buffer_write(__args_buffer__, buffer_u64, _mask);
 
-    var __return_value__ = __fmod_studio_event_instance_set_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4433,30 +4433,30 @@ function fmod_studio_event_instance_set_parameter_by_id_with_label(_instance_ref
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _id_data1, type: Float64
     if (!is_numeric(_id_data1)) show_error($"{_GMFUNCTION_} :: _id_data1 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data1);
+    buffer_write(__args_buffer__, buffer_f64, _id_data1);
 
     // param: _id_data2, type: Float64
     if (!is_numeric(_id_data2)) show_error($"{_GMFUNCTION_} :: _id_data2 expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _id_data2);
+    buffer_write(__args_buffer__, buffer_f64, _id_data2);
 
     // param: _label, type: String
     if (!is_string(_label)) show_error($"{_GMFUNCTION_} :: _label expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_label));
-    buffer_write(__args_buffer, buffer_string, _label);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_label));
+    buffer_write(__args_buffer__, buffer_string, _label);
 
     // param: _ignore_seek_speed, type: Float64
     if (!is_numeric(_ignore_seek_speed)) show_error($"{_GMFUNCTION_} :: _ignore_seek_speed expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _ignore_seek_speed);
+    buffer_write(__args_buffer__, buffer_f64, _ignore_seek_speed);
 
-    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_id_with_label(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_id_with_label(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4473,27 +4473,27 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(_instance_r
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_name));
-    buffer_write(__args_buffer, buffer_string, _name);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name));
+    buffer_write(__args_buffer__, buffer_string, _name);
 
     // param: _label, type: String
     if (!is_string(_label)) show_error($"{_GMFUNCTION_} :: _label expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_label));
-    buffer_write(__args_buffer, buffer_string, _label);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_label));
+    buffer_write(__args_buffer__, buffer_string, _label);
 
     // param: _ignore_seek_speed, type: Float64
     if (!is_numeric(_ignore_seek_speed)) show_error($"{_GMFUNCTION_} :: _ignore_seek_speed expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _ignore_seek_speed);
+    buffer_write(__args_buffer__, buffer_f64, _ignore_seek_speed);
 
-    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_name_with_label(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_parameter_by_name_with_label(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4510,25 +4510,25 @@ function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _x, type: Float64
     if (!is_numeric(_x)) show_error($"{_GMFUNCTION_} :: _x expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _x);
+    buffer_write(__args_buffer__, buffer_f64, _x);
 
     // param: _y, type: Float64
     if (!is_numeric(_y)) show_error($"{_GMFUNCTION_} :: _y expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _y);
+    buffer_write(__args_buffer__, buffer_f64, _y);
 
     // param: _z, type: Float64
     if (!is_numeric(_z)) show_error($"{_GMFUNCTION_} :: _z expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _z);
+    buffer_write(__args_buffer__, buffer_f64, _z);
 
-    var __return_value__ = __fmod_studio_event_instance_set_3d_attributes(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_3d_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4542,18 +4542,18 @@ function fmod_studio_event_instance_get_3d_attributes(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_3d_attributes(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_3d_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioChannelControl3DAttributes_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioChannelControl3DAttributes_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -4566,18 +4566,18 @@ function fmod_studio_event_instance_get_min_max_distance(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_min_max_distance(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_min_max_distance(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioMinMaxDistance_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioMinMaxDistance_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -4590,13 +4590,13 @@ function fmod_studio_event_instance_get_listener_mask(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_listener_mask(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_listener_mask(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4611,17 +4611,17 @@ function fmod_studio_event_instance_set_listener_mask(_instance_ref, _mask)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _mask, type: Float64
     if (!is_numeric(_mask)) show_error($"{_GMFUNCTION_} :: _mask expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _mask);
+    buffer_write(__args_buffer__, buffer_f64, _mask);
 
-    var __return_value__ = __fmod_studio_event_instance_set_listener_mask(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_listener_mask(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4636,17 +4636,17 @@ function fmod_studio_event_instance_get_reverb_level(_instance_ref, _index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
-    var __return_value__ = __fmod_studio_event_instance_get_reverb_level(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_reverb_level(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4662,21 +4662,21 @@ function fmod_studio_event_instance_set_reverb_level(_instance_ref, _index, _lev
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _index, type: Float64
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _index);
+    buffer_write(__args_buffer__, buffer_f64, _index);
 
     // param: _level, type: Float64
     if (!is_numeric(_level)) show_error($"{_GMFUNCTION_} :: _level expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _level);
+    buffer_write(__args_buffer__, buffer_f64, _level);
 
-    var __return_value__ = __fmod_studio_event_instance_set_reverb_level(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_reverb_level(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4691,18 +4691,18 @@ function fmod_studio_event_instance_get_property(_instance_ref, _property_type)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _property_type, type: enum FmodStudioEventProperty
 
     if (!is_numeric(_property_type)) show_error($"{_GMFUNCTION_} :: _property_type expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _property_type);
+    buffer_write(__args_buffer__, buffer_u64, _property_type);
 
-    var __return_value__ = __fmod_studio_event_instance_get_property(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_property(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4718,22 +4718,22 @@ function fmod_studio_event_instance_set_property(_instance_ref, _property_type, 
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _property_type, type: enum FmodStudioEventProperty
 
     if (!is_numeric(_property_type)) show_error($"{_GMFUNCTION_} :: _property_type expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _property_type);
+    buffer_write(__args_buffer__, buffer_u64, _property_type);
 
     // param: _value, type: Float64
     if (!is_numeric(_value)) show_error($"{_GMFUNCTION_} :: _value expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _value);
+    buffer_write(__args_buffer__, buffer_f64, _value);
 
-    var __return_value__ = __fmod_studio_event_instance_set_property(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_property(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4747,13 +4747,13 @@ function fmod_studio_event_instance_get_user_data(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4768,17 +4768,17 @@ function fmod_studio_event_instance_set_user_data(_instance_ref, _user_data)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _user_data);
+    buffer_write(__args_buffer__, buffer_f64, _user_data);
 
-    var __return_value__ = __fmod_studio_event_instance_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_set_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4792,13 +4792,13 @@ function fmod_studio_event_instance_is_valid(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_is_valid(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4812,13 +4812,13 @@ function fmod_studio_event_instance_is_virtual(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_is_virtual(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_is_virtual(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4832,18 +4832,18 @@ function fmod_studio_event_instance_get_channel_group(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_channel_group(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -4856,18 +4856,18 @@ function fmod_studio_event_instance_get_cpu_usage(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_cpu_usage(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_cpu_usage(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioCPUUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioCPUUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -4880,18 +4880,18 @@ function fmod_studio_event_instance_get_memory_usage(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_memory_usage(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_memory_usage(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -4904,20 +4904,20 @@ function fmod_studio_event_instance_get_description(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_event_instance_get_description(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_event_instance_get_description(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -4935,13 +4935,13 @@ function fmod_studio_event_instance_release(_instance_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _instance_ref, type: UInt64
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _instance_ref);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    var __return_value__ = __fmod_studio_event_instance_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_event_instance_release(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4955,13 +4955,13 @@ function fmod_studio_bus_get_path(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_get_path(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4975,13 +4975,13 @@ function fmod_studio_bus_get_volume(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_get_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -4996,17 +4996,17 @@ function fmod_studio_bus_set_volume(_bus_ref, _volume)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _volume);
+    buffer_write(__args_buffer__, buffer_f64, _volume);
 
-    var __return_value__ = __fmod_studio_bus_set_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_set_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5020,13 +5020,13 @@ function fmod_studio_bus_get_paused(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5041,17 +5041,17 @@ function fmod_studio_bus_set_paused(_bus_ref, _paused)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _paused);
+    buffer_write(__args_buffer__, buffer_f64, _paused);
 
-    var __return_value__ = __fmod_studio_bus_set_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_set_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5066,17 +5066,17 @@ function fmod_studio_bus_stop_all_events(_bus_ref, _stop_mode)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
     // param: _stop_mode, type: Float64
     if (!is_numeric(_stop_mode)) show_error($"{_GMFUNCTION_} :: _stop_mode expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _stop_mode);
+    buffer_write(__args_buffer__, buffer_f64, _stop_mode);
 
-    var __return_value__ = __fmod_studio_bus_stop_all_events(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_stop_all_events(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5089,14 +5089,14 @@ function fmod_studio_bus_get_master_bus()
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bus_get_master_bus(buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bus_get_master_bus(buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    if (buffer_read(__ret_buffer, buffer_bool))
+    if (buffer_read(__ret_buffer__, buffer_bool))
     {
-        __result__ = buffer_read(__ret_buffer, buffer_u64);
+        __result__ = buffer_read(__ret_buffer__, buffer_u64);
     }
     else
     {
@@ -5114,13 +5114,13 @@ function fmod_studio_bus_get_id(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_get_id(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_get_id(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5134,13 +5134,13 @@ function fmod_studio_bus_is_valid(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_is_valid(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5154,18 +5154,18 @@ function fmod_studio_bus_get_channel_group(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bus_get_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bus_get_channel_group(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -5178,13 +5178,13 @@ function fmod_studio_bus_lock_channel_group(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_lock_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_lock_channel_group(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5198,13 +5198,13 @@ function fmod_studio_bus_unlock_channel_group(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_unlock_channel_group(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_unlock_channel_group(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5218,18 +5218,18 @@ function fmod_studio_bus_get_cpu_usage(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bus_get_cpu_usage(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bus_get_cpu_usage(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioCPUUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioCPUUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -5242,18 +5242,18 @@ function fmod_studio_bus_get_memory_usage(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bus_get_memory_usage(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bus_get_memory_usage(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioMemoryUsage_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -5266,13 +5266,13 @@ function fmod_studio_bus_get_mute(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __return_value__ = __fmod_studio_bus_get_mute(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_get_mute(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5287,17 +5287,17 @@ function fmod_studio_bus_set_mute(_bus_ref, _mute)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
     // param: _mute, type: Float64
     if (!is_numeric(_mute)) show_error($"{_GMFUNCTION_} :: _mute expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _mute);
+    buffer_write(__args_buffer__, buffer_f64, _mute);
 
-    var __return_value__ = __fmod_studio_bus_set_mute(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_set_mute(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5311,18 +5311,18 @@ function fmod_studio_bus_get_port_index(_bus_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_bus_get_port_index(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_bus_get_port_index(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -5336,17 +5336,17 @@ function fmod_studio_bus_set_port_index(_bus_ref, _port_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _bus_ref, type: UInt64
     if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _bus_ref);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
 
     // param: _port_index, type: UInt64
     if (!is_numeric(_port_index)) show_error($"{_GMFUNCTION_} :: _port_index expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _port_index);
+    buffer_write(__args_buffer__, buffer_u64, _port_index);
 
-    var __return_value__ = __fmod_studio_bus_set_port_index(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_bus_set_port_index(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5360,13 +5360,13 @@ function fmod_studio_vca_get_path(_vca_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _vca_ref, type: UInt64
     if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _vca_ref);
+    buffer_write(__args_buffer__, buffer_u64, _vca_ref);
 
-    var __return_value__ = __fmod_studio_vca_get_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_vca_get_path(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5380,13 +5380,13 @@ function fmod_studio_vca_get_volume(_vca_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _vca_ref, type: UInt64
     if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _vca_ref);
+    buffer_write(__args_buffer__, buffer_u64, _vca_ref);
 
-    var __return_value__ = __fmod_studio_vca_get_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_vca_get_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5401,17 +5401,17 @@ function fmod_studio_vca_set_volume(_vca_ref, _volume)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _vca_ref, type: UInt64
     if (!is_numeric(_vca_ref)) show_error($"{_GMFUNCTION_} :: _vca_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _vca_ref);
+    buffer_write(__args_buffer__, buffer_u64, _vca_ref);
 
     // param: _volume, type: Float64
     if (!is_numeric(_volume)) show_error($"{_GMFUNCTION_} :: _volume expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _volume);
+    buffer_write(__args_buffer__, buffer_f64, _volume);
 
-    var __return_value__ = __fmod_studio_vca_set_volume(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_vca_set_volume(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5425,13 +5425,13 @@ function fmod_studio_command_replay_get_playback_state(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_playback_state(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_playback_state(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5445,13 +5445,13 @@ function fmod_studio_command_replay_get_current_command(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_current_command(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_current_command(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5465,13 +5465,13 @@ function fmod_studio_command_replay_release(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_release(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_release(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5485,13 +5485,13 @@ function fmod_studio_command_replay_get_command_count(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_command_count(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_command_count(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5505,13 +5505,13 @@ function fmod_studio_command_replay_get_length(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_length(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_length(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5525,18 +5525,18 @@ function fmod_studio_command_replay_get_system_object(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_command_replay_get_system_object(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_system_object(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer, buffer_u64);
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
     return __result__;
 }
 
@@ -5549,13 +5549,13 @@ function fmod_studio_command_replay_is_valid(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_is_valid(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5570,22 +5570,22 @@ function fmod_studio_command_replay_get_command_info(_replay_ref, _command_index
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _command_index, type: Float64
     if (!is_numeric(_command_index)) show_error($"{_GMFUNCTION_} :: _command_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _command_index);
+    buffer_write(__args_buffer__, buffer_f64, _command_index);
 
-    var __ret_buffer = __ext_core_get_ret_buffer();
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_command_replay_get_command_info(buffer_get_address(__args_buffer), buffer_tell(__args_buffer), buffer_get_address(__ret_buffer), buffer_get_size(__ret_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_command_info(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioCommandInfo_decode(__ret_buffer, buffer_tell(__ret_buffer));
+    __result__ = __FmodStudioCommandInfo_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -5599,17 +5599,17 @@ function fmod_studio_command_replay_get_command_string(_replay_ref, _command_ind
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _command_index, type: Float64
     if (!is_numeric(_command_index)) show_error($"{_GMFUNCTION_} :: _command_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _command_index);
+    buffer_write(__args_buffer__, buffer_f64, _command_index);
 
-    var __return_value__ = __fmod_studio_command_replay_get_command_string(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_command_string(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5624,17 +5624,17 @@ function fmod_studio_command_replay_get_command_at_time(_replay_ref, _time)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _time, type: Float64
     if (!is_numeric(_time)) show_error($"{_GMFUNCTION_} :: _time expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _time);
+    buffer_write(__args_buffer__, buffer_f64, _time);
 
-    var __return_value__ = __fmod_studio_command_replay_get_command_at_time(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_command_at_time(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5649,17 +5649,17 @@ function fmod_studio_command_replay_seek_to_command(_replay_ref, _command_index)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _command_index, type: Float64
     if (!is_numeric(_command_index)) show_error($"{_GMFUNCTION_} :: _command_index expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _command_index);
+    buffer_write(__args_buffer__, buffer_f64, _command_index);
 
-    var __return_value__ = __fmod_studio_command_replay_seek_to_command(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_seek_to_command(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5674,17 +5674,17 @@ function fmod_studio_command_replay_seek_to_time(_replay_ref, _time)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _time, type: Float64
     if (!is_numeric(_time)) show_error($"{_GMFUNCTION_} :: _time expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _time);
+    buffer_write(__args_buffer__, buffer_f64, _time);
 
-    var __return_value__ = __fmod_studio_command_replay_seek_to_time(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_seek_to_time(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5699,18 +5699,18 @@ function fmod_studio_command_replay_set_bank_path(_replay_ref, _path)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _path, type: String
     if (!is_string(_path)) show_error($"{_GMFUNCTION_} :: _path expected string", true);
-    buffer_write(__args_buffer, buffer_u32, string_byte_length(_path));
-    buffer_write(__args_buffer, buffer_string, _path);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_path));
+    buffer_write(__args_buffer__, buffer_string, _path);
 
-    var __return_value__ = __fmod_studio_command_replay_set_bank_path(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_bank_path(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5724,13 +5724,13 @@ function fmod_studio_command_replay_get_paused(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5745,17 +5745,17 @@ function fmod_studio_command_replay_set_paused(_replay_ref, _paused)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _paused, type: Float64
     if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _paused);
+    buffer_write(__args_buffer__, buffer_f64, _paused);
 
-    var __return_value__ = __fmod_studio_command_replay_set_paused(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5769,13 +5769,13 @@ function fmod_studio_command_replay_start(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_start(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_start(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5789,13 +5789,13 @@ function fmod_studio_command_replay_stop(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_stop(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_stop(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5809,13 +5809,13 @@ function fmod_studio_command_replay_get_user_data(_replay_ref)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
-    var __return_value__ = __fmod_studio_command_replay_get_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_get_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5830,17 +5830,17 @@ function fmod_studio_command_replay_set_user_data(_replay_ref, _user_data)
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _user_data, type: Float64
     if (!is_numeric(_user_data)) show_error($"{_GMFUNCTION_} :: _user_data expected number", true);
-    buffer_write(__args_buffer, buffer_f64, _user_data);
+    buffer_write(__args_buffer__, buffer_f64, _user_data);
 
-    var __return_value__ = __fmod_studio_command_replay_set_user_data(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_user_data(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5857,26 +5857,26 @@ function fmod_studio_command_replay_set_frame_callback(_replay_ref, _callback)
 
     var __dispatcher__ = __GMFMODStudio_get_dispatcher();
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
     {
-        buffer_write(__args_buffer, buffer_bool, false);
+        buffer_write(__args_buffer__, buffer_bool, false);
     }
     else
     {
-        buffer_write(__args_buffer, buffer_bool, true);
+        buffer_write(__args_buffer__, buffer_bool, true);
         if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
         var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
-        buffer_write(__args_buffer, buffer_u64, _callback_handle);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
     }
 
-    var __return_value__ = __fmod_studio_command_replay_set_frame_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_frame_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5893,26 +5893,26 @@ function fmod_studio_command_replay_set_create_instance_callback(_replay_ref, _c
 
     var __dispatcher__ = __GMFMODStudio_get_dispatcher();
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
     {
-        buffer_write(__args_buffer, buffer_bool, false);
+        buffer_write(__args_buffer__, buffer_bool, false);
     }
     else
     {
-        buffer_write(__args_buffer, buffer_bool, true);
+        buffer_write(__args_buffer__, buffer_bool, true);
         if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
         var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
-        buffer_write(__args_buffer, buffer_u64, _callback_handle);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
     }
 
-    var __return_value__ = __fmod_studio_command_replay_set_create_instance_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_create_instance_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5929,26 +5929,26 @@ function fmod_studio_command_replay_set_load_bank_callback(_replay_ref, _callbac
 
     var __dispatcher__ = __GMFMODStudio_get_dispatcher();
 
-    var __args_buffer = __ext_core_get_args_buffer();
+    var __args_buffer__ = __ext_core_get_args_buffer();
 
     // param: _replay_ref, type: UInt64
     if (!is_numeric(_replay_ref)) show_error($"{_GMFUNCTION_} :: _replay_ref expected number", true);
-    buffer_write(__args_buffer, buffer_u64, _replay_ref);
+    buffer_write(__args_buffer__, buffer_u64, _replay_ref);
 
     // param: _callback, type: optional<Function>
     if (is_undefined(_callback))
     {
-        buffer_write(__args_buffer, buffer_bool, false);
+        buffer_write(__args_buffer__, buffer_bool, false);
     }
     else
     {
-        buffer_write(__args_buffer, buffer_bool, true);
+        buffer_write(__args_buffer__, buffer_bool, true);
         if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
         var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
-        buffer_write(__args_buffer, buffer_u64, _callback_handle);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
     }
 
-    var __return_value__ = __fmod_studio_command_replay_set_load_bank_callback(buffer_get_address(__args_buffer), buffer_tell(__args_buffer));
+    var __return_value__ = __fmod_studio_command_replay_set_load_bank_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
     return __return_value__;
 }
@@ -5992,3 +5992,8 @@ function __GMFMODStudio_is_available()
     static __available__ = extension_exists("GMFMODStudio");
     return __available__;
 }
+// #####################################################################
+// # Exports
+// #####################################################################
+
+#export FmodStudioResult, FmodStudioDebugFlags, FmodStudioDebugMode, FmodStudioInitFlags, FmodStudioLoadingState, FmodStudioPlaybackState, FmodStudioStopMode, FmodStudioEventProperty, FmodStudioParameterFlags, FmodStudioUserPropertyType, FmodStudioLoadBankFlags, FmodStudioCommandCaptureFlags, FmodStudioCommandReplayFlags, FmodStudioEventCallbackType, FmodStudioMode, FmodStudioSoundFormat, FmodStudioParameterDescription, FmodStudioStringInfo, FmodStudioCPUUsage, FmodStudioMemoryUsage, FmodStudioCommandInfo, FmodStudioCurrentCommand, FmodStudioUserProperty, FmodStudioVec3, FmodStudioMinMaxDistance, FmodStudioCoreCPUUsage, FmodStudioCreateSoundExInfo, FmodStudioBufferInfo, FmodStudioAdvancedSettings, FmodStudioParameterValue, FmodStudioListener3DAttributes, FmodStudioChannelControl3DAttributes, FmodStudioSystemCPUUsage, FmodStudioSoundInfo, FmodStudioBufferUsage, FmodStudioListenerAttributes, fmod_studio_system_create, fmod_studio_system_load_bank_file, fmod_studio_system_load_bank_memory, fmod_studio_system_get_bank_at, fmod_studio_system_get_bank, fmod_studio_system_get_bank_by_id, fmod_studio_system_get_event, fmod_studio_system_create_event_instance, fmod_studio_system_get_bus, fmod_studio_system_get_master_bus, fmod_studio_system_get_bus_by_id, fmod_studio_system_get_vca, fmod_studio_system_get_vca_by_id, fmod_studio_system_get_listener_attributes, fmod_studio_system_get_core_system, fmod_studio_system_get_core_system_ptr, fmod_studio_last_result, fmod_studio_system_get_event_by_id, fmod_studio_system_start_command_capture, fmod_studio_system_load_command_replay, fmod_studio_system_get_sound_info, fmod_studio_system_get_parameter_by_id, fmod_studio_system_get_parameter_description_by_id, fmod_studio_system_get_parameter_description_by_name, fmod_studio_system_get_parameter_description_at, fmod_studio_system_get_cpu_usage, fmod_studio_system_get_buffer_usage, fmod_studio_system_get_memory_usage, fmod_studio_system_get_advanced_settings, fmod_studio_system_set_advanced_settings, fmod_studio_bank_unload, fmod_studio_bank_get_loading_state, fmod_studio_bank_get_sample_loading_state, fmod_studio_bank_get_path, fmod_studio_bank_get_parent_studio_system, fmod_studio_bank_get_event_count, fmod_studio_bank_get_event_at, fmod_studio_bank_get_bus_count, fmod_studio_bank_get_bus_at, fmod_studio_bank_get_vca_count, fmod_studio_bank_get_vca_at, fmod_studio_bank_get_string_count, fmod_studio_bank_get_id, fmod_studio_bank_is_valid, fmod_studio_bank_get_string_info, fmod_studio_bank_load_sample_data, fmod_studio_bank_unload_sample_data, fmod_studio_bank_get_user_data, fmod_studio_bank_set_user_data, fmod_studio_event_description_get_path, fmod_studio_event_description_create_instance, fmod_studio_event_description_get_instance_count, fmod_studio_event_description_get_instance_at, fmod_studio_event_description_is_snapshot, fmod_studio_event_description_is_one_shot, fmod_studio_event_description_has_sustain_point, fmod_studio_event_description_get_length, fmod_studio_event_description_get_parameter_count, fmod_studio_event_description_release_all_instances, fmod_studio_event_description_get_parameter_description_by_name, fmod_studio_event_description_load_sample_data, fmod_studio_event_description_is_valid, fmod_studio_event_description_is_3d, fmod_studio_event_description_is_stream, fmod_studio_event_description_is_doppler_enabled, fmod_studio_event_description_get_id, fmod_studio_event_description_get_min_max_distance, fmod_studio_event_description_get_sound_size, fmod_studio_event_description_get_sample_loading_state, fmod_studio_event_description_unload_sample_data, fmod_studio_event_description_set_callback, fmod_studio_event_description_get_user_data, fmod_studio_event_description_set_user_data, fmod_studio_event_description_get_user_property, fmod_studio_event_description_get_user_property_at, fmod_studio_event_description_get_user_property_count, fmod_studio_event_description_get_parameter_description_by_id, fmod_studio_event_description_get_parameter_description_at, fmod_studio_event_description_get_parameter_label_by_id, fmod_studio_event_description_get_parameter_label_at, fmod_studio_event_description_get_parameter_label_by_name, fmod_studio_event_instance_start, fmod_studio_event_instance_stop, fmod_studio_event_instance_get_playback_state, fmod_studio_event_instance_get_paused, fmod_studio_event_instance_set_paused, fmod_studio_event_instance_get_timeline_position, fmod_studio_event_instance_set_timeline_position, fmod_studio_event_instance_keyoff, fmod_studio_event_instance_get_volume, fmod_studio_event_instance_set_volume, fmod_studio_event_instance_get_pitch, fmod_studio_event_instance_set_pitch, fmod_studio_event_instance_set_parameter_by_name, fmod_studio_event_instance_get_parameter_by_name, fmod_studio_event_instance_get_parameter_count, fmod_studio_event_instance_get_parameter_by_id, fmod_studio_event_instance_set_parameter_by_id, fmod_studio_event_instance_set_callback, fmod_studio_event_instance_set_parameter_by_id_with_label, fmod_studio_event_instance_set_parameter_by_name_with_label, fmod_studio_event_instance_set_3d_attributes, fmod_studio_event_instance_get_3d_attributes, fmod_studio_event_instance_get_min_max_distance, fmod_studio_event_instance_get_listener_mask, fmod_studio_event_instance_set_listener_mask, fmod_studio_event_instance_get_reverb_level, fmod_studio_event_instance_set_reverb_level, fmod_studio_event_instance_get_property, fmod_studio_event_instance_set_property, fmod_studio_event_instance_get_user_data, fmod_studio_event_instance_set_user_data, fmod_studio_event_instance_is_valid, fmod_studio_event_instance_is_virtual, fmod_studio_event_instance_get_channel_group, fmod_studio_event_instance_get_cpu_usage, fmod_studio_event_instance_get_memory_usage, fmod_studio_event_instance_get_description, fmod_studio_event_instance_release, fmod_studio_bus_get_path, fmod_studio_bus_get_volume, fmod_studio_bus_set_volume, fmod_studio_bus_get_paused, fmod_studio_bus_set_paused, fmod_studio_bus_stop_all_events, fmod_studio_bus_get_master_bus, fmod_studio_bus_get_id, fmod_studio_bus_is_valid, fmod_studio_bus_get_channel_group, fmod_studio_bus_lock_channel_group, fmod_studio_bus_unlock_channel_group, fmod_studio_bus_get_cpu_usage, fmod_studio_bus_get_memory_usage, fmod_studio_bus_get_mute, fmod_studio_bus_set_mute, fmod_studio_bus_get_port_index, fmod_studio_bus_set_port_index, fmod_studio_vca_get_path, fmod_studio_vca_get_volume, fmod_studio_vca_set_volume, fmod_studio_command_replay_get_playback_state, fmod_studio_command_replay_get_current_command, fmod_studio_command_replay_release, fmod_studio_command_replay_get_command_count, fmod_studio_command_replay_get_length, fmod_studio_command_replay_get_system_object, fmod_studio_command_replay_is_valid, fmod_studio_command_replay_get_command_info, fmod_studio_command_replay_get_command_string, fmod_studio_command_replay_get_command_at_time, fmod_studio_command_replay_seek_to_command, fmod_studio_command_replay_seek_to_time, fmod_studio_command_replay_set_bank_path, fmod_studio_command_replay_get_paused, fmod_studio_command_replay_set_paused, fmod_studio_command_replay_start, fmod_studio_command_replay_stop, fmod_studio_command_replay_get_user_data, fmod_studio_command_replay_set_user_data, fmod_studio_command_replay_set_frame_callback, fmod_studio_command_replay_set_create_instance_callback, fmod_studio_command_replay_set_load_bank_callback

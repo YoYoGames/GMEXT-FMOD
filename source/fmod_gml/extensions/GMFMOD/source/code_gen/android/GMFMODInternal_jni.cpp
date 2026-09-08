@@ -20,6 +20,12 @@ static jmethodID g_mid_GetExtensionOption = nullptr;
 extern "C" jint JNI_OnLoad(JavaVM* vm, void*) { g_vm = vm; return JNI_VERSION_1_6; }
 
 static void throwIAE(JNIEnv* env, const char* msg) {
+    // FindClass aborts the process outright if an exception is already pending,
+    // so log and clear whatever is in flight before raising our own.
+    if (env->ExceptionCheck()) {
+        env->ExceptionDescribe();
+        env->ExceptionClear();
+    }
     jclass iae = env->FindClass("java/lang/IllegalArgumentException");
     if (iae) env->ThrowNew(iae, msg);
 }
@@ -65,7 +71,7 @@ static const char* __JNI_JAVA__GetExtensionOption(const char* extName, const cha
     tls_result.clear();
 
     ScopedEnv scoped;
-    if (!g_bridgeClass || !g_mid_GetExtensionOption) {
+    if (!scoped.env || !g_bridgeClass || !g_mid_GetExtensionOption) {
         return nullptr;
     }
 
@@ -4377,8 +4383,14 @@ extern "C" {
                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
             );
             if (!g_mid_GetExtensionOption) {
-                throwIAE(env, "Failed to bind __EXT_JAVA__GetExtensionOption");
-                return;
+                // Log and carry on: this runs from the bridge's <clinit>, so
+                // throwing here becomes ExceptionInInitializerError and takes
+                // the whole app down over a lookup helper. Extension options
+                // just read back empty (see ExtUtils::GetExtensionOption).
+                // The usual cause is R8 shrinking the method away -- the keep
+                // rules live in ExtensionCore's <YYAndroidProguard> block.
+                env->ExceptionDescribe();
+                env->ExceptionClear();
             }
         }
 
