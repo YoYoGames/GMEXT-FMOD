@@ -73,7 +73,7 @@ exit %ERRORLEVEL%
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying Windows (64 bit) dependencies"
-    if not exist "fmodL.dll" call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -151,13 +151,13 @@ exit /b 0
     pushd "%ExtensionPath%\AndroidSource\libs"
 
     :: Handle common architecture
-    if not exist "fmod.jar" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\fmod.jar" "fmod.jar"
+    call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\fmod.jar" "fmod.jar"
 
     :: Handle arm64-v8a architecture
     if "%YYPLATFORM_option_android_arch_arm64%"=="True" (
         echo "Copying Android (arm64-v8a) dependencies"
         if not exist "arm64-v8a" mkdir "arm64-v8a"
-        if not exist "arm64-v8a\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" "arm64-v8a\libfmodL.so"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" "arm64-v8a\libfmodL.so"
     ) else (
         if exist "arm64-v8a" (
             call %Utils% itemDelete "arm64-v8a\libfmodL.so"
@@ -168,21 +168,21 @@ exit /b 0
     if "%YYPLATFORM_option_android_arch_armv7%"=="True" (
         echo "Copying Android (armeabi-v7a) dependencies"
         if not exist "armeabi-v7a" mkdir "armeabi-v7a"
-        if not exist "armeabi-v7a\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmodL.so" "armeabi-v7a\libfmodL.so"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmodL.so" "armeabi-v7a\libfmodL.so"
     ) else (
         if exist "armeabi-v7a" (
             call %Utils% itemDelete "armeabi-v7a\libfmodL.so"
         )
     )
 
-    :: Handle x86-64 architecture
+    :: Handle x86_64 architecture
     if "%YYPLATFORM_option_android_arch_x86_64%"=="True" (
-        echo "Copying Android (x86-64) dependencies"
-        if not exist "x86-64" mkdir "x86-64"
-        if not exist "x86-64\libfmodL.so" call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86-64\libfmodL.so" "x86-64\libfmodL.so"
+        echo "Copying Android (x86_64) dependencies"
+        if not exist "x86_64" mkdir "x86_64"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86_64\libfmodL.so" "x86_64\libfmodL.so"
     ) else (
-        if exist "x86-64" (
-            call %Utils% itemDelete "x86-64\libfmodL.so"
+        if exist "x86_64" (
+            call %Utils% itemDelete "x86_64\libfmodL.so"
         )
     )
 
@@ -207,11 +207,5 @@ exit /b 0
 :: ----------------------------------------------------------------------------------------------------
 :setupSwitch
     :: Nothing to do here
-exit /b 0
-
-
-:: ----------------------------------------------------------------------------------------------------
-:setupSwitch2
-    :: Nothing to do here for Switch2/Ounce post-build.
 exit /b 0
 

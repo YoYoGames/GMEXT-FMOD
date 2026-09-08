@@ -34,80 +34,10 @@ setupAndroid() {
 
 # ----------------------------------------------------------------------------------------------------
 setupiOS() {
-    # Resolve the SDK path (must exist)
-    pathResolveExisting "$YYprojectDir" "$IOS_SDK_PATH" SDK_PATH
-
-    # Initialize source file variables
-    SDK_CORE_SOURCE_FILE=""
-
-    # Check device vs simulator build
-    if [[ "$YYTARGET_type" == "platformdevice_type_device" ]]; then
-        # Device-specific source files
-        SDK_CORE_SOURCE_FILE="libfmodL_iphoneos.a"
-
-        # Delete simulator static dependencies if they exist
-        itemDelete "$EXTENSION_DIR/iOSSource/libfmodL_iphonesimulator.a"
-    else
-        # Simulator-specific source files
-        SDK_CORE_SOURCE_FILE="libfmodL_iphonesimulator.a"
-
-        # Delete device static dependencies if they exist
-        itemDelete "$EXTENSION_DIR/iOSSource/libfmodL_iphoneos.a"
-    fi
-
-    # Define full source path (core only - GMFMODStudio stages the Studio lib)
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/$SDK_CORE_SOURCE_FILE"
-
-    # Asset hash match
-    # assertFileHashEquals $SDK_CORE_SOURCE $IOS_SDK_HASH "$ERROR_SDK_HASH"
-
-    echo "Copying iOS (arm64) dependencies"
-
-    # Always copy to avoid version mismatch
-    pushd "$EXTENSION_DIR/iOSSource" >/dev/null
-    itemCopyTo "$SDK_CORE_SOURCE" $SDK_CORE_SOURCE_FILE
-    itemCopyTo "$SDK_PATH/api/core/inc" "Fmod Core/"
-    popd >/dev/null
-
-}
-
-# ----------------------------------------------------------------------------------------------------
-setuptvOS() {
-    # Resolve the SDK path (must exist)
-    pathResolveExisting "$YYprojectDir" "$IOS_SDK_PATH" SDK_PATH
-
-    # Initialize source file variables
-    SDK_CORE_SOURCE_FILE=""
-
-    # Check device vs simulator build
-    if [[ "$YYTARGET_type" == "platformdevice_type_device" ]]; then
-        # Device-specific source files
-        SDK_CORE_SOURCE_FILE="libfmodL_appletvos.a"
-
-        # Delete simulator static dependencies if they exist
-        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodL_appletvsimulator.a"
-    else
-        # Simulator-specific source files
-        SDK_CORE_SOURCE_FILE="libfmodL_appletvsimulator.a"
-
-        # Delete device static dependencies if they exist
-        itemDelete "$EXTENSION_DIR/tvOSSource/libfmodL_appletvos.a"
-    fi
-
-    # Define full source path (core only - GMFMODStudio stages the Studio lib)
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/$SDK_CORE_SOURCE_FILE"
-
-    # Asset hash match
-    # assertFileHashEquals $SDK_CORE_SOURCE $IOS_SDK_HASH "$ERROR_SDK_HASH"
-
-    echo "Copying tvOS (arm64) dependencies"
-
-    # Always copy to avoid version mismatch
-    pushd "$EXTENSION_DIR/tvOSSource" >/dev/null
-    itemCopyTo "$SDK_CORE_SOURCE" $SDK_CORE_SOURCE_FILE
-    itemCopyTo "$SDK_PATH/api/core/inc" "Fmod Core/"
-    popd >/dev/null
-    
+    # Nothing to do here. Under "ios": {"mode": "native"} the FMOD iOS static libraries are
+    # linked straight from the vendored SDK by source/third_party/CMakeLists.txt, so there is
+    # no iOSSource folder to stage into.
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -125,22 +55,6 @@ setupPlaystation() {
 # ----------------------------------------------------------------------------------------------------
 setupSwitch() {
     # Nothing to do here
-    :
-}
-
-
-# ----------------------------------------------------------------------------------------------------
-setupSwitch2() {
-    if [[ -z "${SWITCH2_SDK_PATH:-}" ]]; then
-        logError "Extension option 'switch2SdkPath' is empty. Set it to the FMOD Switch 2 SDK path."
-    fi
-
-    pathResolveExisting "$YYprojectDir" "$SWITCH2_SDK_PATH" SDK_PATH
-
-    # Optional hash check. Matches Switch 1 behavior: currently bypassed/commented.
-    # assertFileHashEquals "$SDK_PATH/api/core/lib/libfmodL.a" "$SWITCH2_SDK_HASH" "$ERROR_SDK_HASH"
-
-    # Nothing else to do here on shell build path unless YoYo adds a non-Windows Switch2 pipeline.
     :
 }
 

@@ -11,6 +11,22 @@ source "$(dirname "$0")/scriptUtils.sh"
 # the separate GMFMODStudio extension when the project uses it.
 
 # ----------------------------------------------------------------------------------------------------
+# Sign with the hardened runtime so the export passes notarization. Only signs when an identity is
+# set, so unsigned local builds still succeed.
+_fmod_codesign() {
+    local target="$1"
+
+    [ -f "$target" ] || return 0
+
+    if [ -n "${YYPLATFORM_option_mac_signing_identity}" ]; then
+        assertXcodeToolsInstalled
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "$target"
+    else
+        logWarning "No mac signing identity set; skipping explicit signing of '$(basename "$target")' (GameMaker will sign the bundle)."
+    fi
+}
+
+# ----------------------------------------------------------------------------------------------------
 setupmacOS() {
 
     # Resolve the SDK path (must exist)
@@ -21,7 +37,7 @@ setupmacOS() {
     if [ ! -e "$SDK_CORE_SOURCE" ]; then
         logError "Not found: $SDK_CORE_SOURCE"
     elif xattr -p com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
-        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine..."
         if xattr -d com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
             logInformation "Removed quarantine from '$SDK_CORE_SOURCE'"
         else
@@ -34,15 +50,12 @@ setupmacOS() {
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
 
-        # Assert if xcode-tools are installed (required)
-        assertXcodeToolsInstalled
-
         # Code sign the original library binary
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMOD.dylib"
+        _fmod_codesign "./libGMFMOD.dylib"
 
         # Copy and code sign dependencies
         itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
+        _fmod_codesign "./libfmodL.dylib"
 
         # If there is an extra game.zip file here then this is a package command
         # Update the libraries inside the zip file (used for packaging)
@@ -80,7 +93,7 @@ setupMac() {
     if [ ! -e "$SDK_CORE_SOURCE" ]; then
         logError "Not found: $SDK_CORE_SOURCE"
     elif xattr -p com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
-        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        logWarning "'$(basename "$SDK_CORE_SOURCE")' is quarantined. Removing com.apple.quarantine..."
         if xattr -d com.apple.quarantine "$SDK_CORE_SOURCE" >/dev/null 2>&1; then
             logInformation "Removed quarantine from '$SDK_CORE_SOURCE'"
         else
@@ -92,16 +105,12 @@ setupMac() {
 
     pushd "./build/assets/" >/dev/null
 
-    # Assert if xcode-tools are installed (required)
-    assertXcodeToolsInstalled
-
     # Code sign the original library binary
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMOD.dylib"
+    _fmod_codesign "./libGMFMOD.dylib"
 
     # Copy and code sign dependencies
     itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodL.dylib"
-
+    _fmod_codesign "./libfmodL.dylib"
     popd >/dev/null
 }
 
@@ -140,11 +149,14 @@ setupAndroid() {
 
     pushd "$ExtensionPath/AndroidSource/libs" >/dev/null
 
+    # Handle common architecture
+    itemCopyTo "$SDK_PATH/api/core/lib/fmod.jar" "fmod.jar"
+
     # Handle arm64-v8a architecture
     if [[ "$YYPLATFORM_option_android_arch_arm64" == "True" ]]; then
         echo "Copying Android (arm64-v8a) dependencies"
         [[ ! -d "arm64-v8a/" ]] && mkdir "arm64-v8a"
-        [[ ! -f "arm64-v8a/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" "arm64-v8a/libfmodL.so"
+        itemCopyTo "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" "arm64-v8a/libfmodL.so"
     else
         if [ -d "arm64-v8a" ]; then
             itemDelete "arm64-v8a/libfmodL.so"
@@ -155,21 +167,21 @@ setupAndroid() {
     if [[ "$YYPLATFORM_option_android_arch_armv7" == "True" ]]; then
         echo "Copying Android (armeabi-v7a) dependencies"
         [[ ! -d "armeabi-v7a/" ]] && mkdir "armeabi-v7a"
-        [[ ! -f "armeabi-v7a/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/armeabi-v7a/libfmodL.so" "armeabi-v7a/libfmodL.so"
+        itemCopyTo "$SDK_PATH/api/core/lib/armeabi-v7a/libfmodL.so" "armeabi-v7a/libfmodL.so"
     else
         if [ -d "armeabi-v7a" ]; then
             itemDelete "armeabi-v7a/libfmodL.so"
         fi
     fi
 
-    # Handle x86-64 architecture
+    # Handle x86_64 architecture
     if [[ "$YYPLATFORM_option_android_arch_x86_64" == "True" ]]; then
-        echo "Copying Android (x86-64) dependencies"
-        [[ ! -d "x86-64" ]] && mkdir "x86-64"
-        [[ ! -f "x86-64/libfmodL.so" ]] && itemCopyTo "$SDK_PATH/api/core/lib/x86-64/libfmodL.so" "x86-64/libfmodL.so"
+        echo "Copying Android (x86_64) dependencies"
+        [[ ! -d "x86_64" ]] && mkdir "x86_64"
+        itemCopyTo "$SDK_PATH/api/core/lib/x86_64/libfmodL.so" "x86_64/libfmodL.so"
     else
-        if [ -d "x86-64" ]; then
-            itemDelete "x86-64/libfmodL.so"
+        if [ -d "x86_64" ]; then
+            itemDelete "x86_64/libfmodL.so"
         fi
     fi
 
@@ -179,11 +191,9 @@ setupAndroid() {
 # ----------------------------------------------------------------------------------------------------
 # iOS / tvOS / Xbox / Playstation / Switch stage their dependencies in pre_build_step.
 setupiOS() { :; }
-setuptvOS() { :; }
 setupXbox() { :; }
 setupPlaystation() { :; }
 setupSwitch() { :; }
-setupSwitch2() { :; }
 
 # ######################################################################################
 # Script Logic
@@ -211,7 +221,6 @@ optionGetValue "xboxSeriesSdkHash" XBOX_SERIES_SDK_HASH
 optionGetValue "ps4SdkHash" PS4_SDK_HASH
 optionGetValue "ps5SdkHash" PS5_SDK_HASH
 optionGetValue "switchSdkHash" SWITCH_SDK_HASH
-optionGetValue "switch2SdkHash" SWITCH2_SDK_HASH
 
 # SDK Paths
 optionGetValue "winSdkPath" WIN_SDK_PATH
@@ -223,7 +232,6 @@ optionGetValue "gdkSdkPath" GDK_SDK_PATH
 optionGetValue "ps4SdkPath" PS4_SDK_PATH
 optionGetValue "ps5SdkPath" PS5_SDK_PATH
 optionGetValue "switchSdkPath" SWITCH_SDK_PATH
-optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
 
 # Error String
 ERROR_SDK_HASH="Invalid FMOD SDK version, sha256 hash mismatch (expected v$SDK_VERSION)."

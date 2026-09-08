@@ -28,7 +28,6 @@ call %Utils% optionGetValue "gdkSdkPath" GDK_SDK_PATH
 call %Utils% optionGetValue "ps4SdkPath" PS4_SDK_PATH
 call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
 call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
-call %Utils% optionGetValue "switch2SdkPath" SWITCH2_SDK_PATH
 
 :: Error String
 set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%SDK_VERSION%)."
@@ -75,76 +74,9 @@ exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupiOS
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
-
-    set "SDK_CORE_SOURCE_FILE="
-
-    :: Check device vs simulator build
-    if "%YYTARGET_type%"=="platformdevice_type_device" (
-        :: Device
-        set "SDK_CORE_SOURCE_FILE=libfmodL_iphoneos.a"
-
-        :: Delete the simulator static dependencies (if they exist)
-        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphonesimulator.a"
-    ) else (
-        :: Simulator
-        set "SDK_CORE_SOURCE_FILE=libfmodL_iphonesimulator.a"
-
-        :: Delete the device static dependecies (if they exist)
-        call %Utils% itemDelete "%EXTENSION_DIR%\iOSSource\libfmodL_iphoneos.a"
-    )
-
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    echo "Copying iOS (arm64) dependencies"
-
-    :: Always copy to avoid version mismatch
-    pushd "%EXTENSION_DIR%\iOSSource"
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
-    call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    popd
-
-exit /b 0
-
-:: ----------------------------------------------------------------------------------------------------
-:setuptvOS
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%IOS_SDK_PATH%" SDK_PATH
-
-    set "SDK_CORE_SOURCE_FILE="
-
-    :: Check device vs simulator build
-    if "%YYTARGET_type%"=="platformdevice_type_device" (
-        :: Device
-        set "SDK_CORE_SOURCE_FILE=libfmodL_appletvos.a"
-
-        :: Delete the simulator static dependencies (if they exist)
-        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvsimulator.a"
-    ) else (
-        :: Simulator
-        set "SDK_CORE_SOURCE_FILE=libfmodL_appletvsimulator.a"
-
-        :: Delete the device static dependecies (if they exist)
-        call %Utils% itemDelete "%EXTENSION_DIR%\tvOSSource\libfmodL_appletvos.a"
-    )
-
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\%SDK_CORE_SOURCE_FILE%"
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %IOS_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    echo "Copying tvOS (arm64) dependencies"
-
-    :: Always copy to avoid version mismatch
-    pushd "%EXTENSION_DIR%\tvOSSource"
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "%SDK_CORE_SOURCE_FILE%"
-    call %Utils% itemCopyTo "%SDK_PATH%\api\core\inc" "Fmod Core\"
-    popd
-    
+    :: Nothing to do here. Under "ios": {"mode": "native"} the FMOD iOS static libraries are
+    :: linked straight from the vendored SDK by source/third_party/CMakeLists.txt, so there is
+    :: no iOSSource folder to stage into.
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -302,48 +234,6 @@ exit /b 0
     :: Build libraries
     call "%YYPREF_visual_studio_path%"
     msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
-
-    :: Extract the directory part from the full path
-    call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
-
-    :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%EXTENSION_DIR%\YYFMOD.nro"
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%EXTENSION_DIR%\YYFMOD.nrr"
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrs" "%EXTENSION_DIR%\YYFMOD.nrs"
-
-exit /b 0
-
-
-:: ----------------------------------------------------------------------------------------------------
-:setupSwitch2
-    :: Build Nintendo Switch 2 / Ounce native library using the extension option:
-    :: switch2SdkPath
-    set "CONFIGURATION=Release-AutoBuild"
-    set "PLATFORM=Ounce64"
-
-    if "%SWITCH2_SDK_PATH%"=="" (
-        call %Utils% logError "Extension option 'switch2SdkPath' is empty. Set it to the FMOD Switch 2 SDK path."
-        exit /b 1
-    )
-
-    :: Resolve the FMOD Switch 2 SDK path (must exist)
-    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH2_SDK_PATH%" FMOD_SDK_PATH
-
-    :: Optional hash check. Matches Switch 1 behavior: currently bypassed/commented.
-    :: call %Utils% assertFileHashEquals "%FMOD_SDK_PATH%\api\core\lib\libfmodL.a" %SWITCH2_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    :: Resolve the Switch2/Ounce solution path (must exist)
-    set "SWITCH2_VS_PATH=.\fmod_switch2\FMOD.sln"
-    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH2_VS_PATH%" SOLUTION_PATH
-
-    :: Build libraries
-    call "%YYPREF_visual_studio_path%"
-    msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
-
-    if errorlevel 1 (
-        call %Utils% logError "Switch2/Ounce FMOD native build failed."
-        exit /b 1
-    )
 
     :: Extract the directory part from the full path
     call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR

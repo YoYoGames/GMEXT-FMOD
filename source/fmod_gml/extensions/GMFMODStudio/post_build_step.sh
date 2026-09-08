@@ -18,6 +18,22 @@ setupWindows() {
 }
 
 # ----------------------------------------------------------------------------------------------------
+# Sign with the hardened runtime so the export passes notarization. Only signs when an identity is
+# set, so unsigned local builds still succeed.
+_fmodstudio_codesign() {
+    local target="$1"
+
+    [ -f "$target" ] || return 0
+
+    if [ -n "${YYPLATFORM_option_mac_signing_identity}" ]; then
+        assertXcodeToolsInstalled
+        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "$target"
+    else
+        logWarning "No mac signing identity set; skipping explicit signing of '$(basename "$target")' (GameMaker will sign the bundle)."
+    fi
+}
+
+# ----------------------------------------------------------------------------------------------------
 setupmacOS() {
 
     # Resolve the SDK path (must exist)
@@ -28,7 +44,7 @@ setupmacOS() {
     if [ ! -e "$SDK_STUDIO_SOURCE" ]; then
         logError "Not found: $SDK_STUDIO_SOURCE"
     elif xattr -p com.apple.quarantine "$SDK_STUDIO_SOURCE" >/dev/null 2>&1; then
-        logWarning "'$(basename "$SDK_STUDIO_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        logWarning "'$(basename "$SDK_STUDIO_SOURCE")' is quarantined. Removing com.apple.quarantine..."
         if xattr -d com.apple.quarantine "$SDK_STUDIO_SOURCE" >/dev/null 2>&1; then
             logInformation "Removed quarantine from '$SDK_STUDIO_SOURCE'"
         else
@@ -41,15 +57,12 @@ setupmacOS() {
     echo "Copying macOS (64 bit) dependencies"
     if [[ "$YYTARGET_runtime" == "VM" ]]; then
 
-        # Assert if xcode-tools are installed (required)
-        assertXcodeToolsInstalled
-
         # Code sign the original library binary
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMODStudio.dylib"
+        _fmodstudio_codesign "./libGMFMODStudio.dylib"
 
         # Copy and code sign dependencies
         itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
-        codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
+        _fmodstudio_codesign "./libfmodstudioL.dylib"
 
         # If there is an extra game.zip file here then this is a package command
         # Update the libraries inside the zip file (used for packaging)
@@ -87,7 +100,7 @@ setupMac() {
     if [ ! -e "$SDK_STUDIO_SOURCE" ]; then
         logError "Not found: $SDK_STUDIO_SOURCE"
     elif xattr -p com.apple.quarantine "$SDK_STUDIO_SOURCE" >/dev/null 2>&1; then
-        logWarning "'$(basename "$SDK_STUDIO_SOURCE")' is quarantined. Removing com.apple.quarantine…"
+        logWarning "'$(basename "$SDK_STUDIO_SOURCE")' is quarantined. Removing com.apple.quarantine..."
         if xattr -d com.apple.quarantine "$SDK_STUDIO_SOURCE" >/dev/null 2>&1; then
             logInformation "Removed quarantine from '$SDK_STUDIO_SOURCE'"
         else
@@ -99,16 +112,12 @@ setupMac() {
 
     pushd "./build/assets/" >/dev/null
 
-    # Assert if xcode-tools are installed (required)
-    assertXcodeToolsInstalled
-
     # Code sign the original library binary
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libGMFMODStudio.dylib"
+    _fmodstudio_codesign "./libGMFMODStudio.dylib"
 
     # Copy and code sign dependencies
     itemCopyTo "$SDK_STUDIO_SOURCE" "./libfmodstudioL.dylib"
-    codesign -s "${YYPLATFORM_option_mac_signing_identity}" -f --timestamp --verbose --options runtime "./libfmodstudioL.dylib"
-
+    _fmodstudio_codesign "./libfmodstudioL.dylib"
     popd >/dev/null
 }
 
