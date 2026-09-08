@@ -12,20 +12,6 @@
  */
 
 /**
- * @function_partial fmod_path_bundle
- * @param {String} filename
- * @returns {String}
- * @function_end
- */
-
-/**
- * @function_partial fmod_path_user
- * @param {String} filename
- * @returns {String}
- * @function_end
- */
-
-/**
  * @function_partial fmod_error_string
  * @param {Enum.FmodResult} result
  * @returns {String}
@@ -35,6 +21,11 @@
 /**
  * @function_partial fmod_fetch_callbacks
  * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_shutdown
  * @function_end
  */
 

@@ -22,10 +22,9 @@ std::string fmod_studio_bus_get_path(uint64_t bus_ref)
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return "";
-	char path[256] = {};
-	int capacity = sizeof(path);
-	g_fmod_last_result = bus->getPath(path, capacity, nullptr);
-	return std::string(path);
+	return fmod_read_string([bus](char* buf, int size, int* got) {
+		return bus->getPath(buf, size, got);
+	});
 }
 
 double fmod_studio_bus_get_volume(uint64_t bus_ref)
@@ -77,10 +76,9 @@ double fmod_studio_bus_stop_all_events(uint64_t bus_ref, double stop_mode)
 
 std::optional<uint64_t> fmod_studio_bus_get_master_bus()
 {
-	// This is a static/global operation, handled at system level
-	// Use fmod_studio_system_get_master_bus instead
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
-	return std::nullopt;
+	// The master bus is a property of the Studio system, not of any one bus, so this is the same
+	// lookup fmod_studio_system_get_master_bus does. Delegating keeps one implementation.
+	return fmod_studio_system_get_master_bus();
 }
 
 std::string fmod_studio_bus_get_id(uint64_t bus_ref)

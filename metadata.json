@@ -8,7 +8,7 @@
             "extensionFile": "source/fmod_gml/extensions/GMFMOD/GMFMOD.yy",
             "packageId": "com.yoyogames.fmodext",
             "packageName": "FMOD Ext",
-            "packageVersion": "1.2.1",
+            "packageVersion": "2.0.0",
             "packageFormat": "LTS22",
             "includeFolders": null,
             "includeResources": null,

@@ -8,10 +8,9 @@ std::string fmod_studio_vca_get_path(uint64_t vca_ref)
 	FMOD::Studio::VCA* vca = nullptr;
 	validate_fmod_studio_vca(vca_ref, vca);
 	if (vca == nullptr) return "";
-	char path[256] = {};
-	int capacity = sizeof(path);
-	g_fmod_last_result = vca->getPath(path, capacity, nullptr);
-	return std::string(path);
+	return fmod_read_string([vca](char* buf, int size, int* got) {
+		return vca->getPath(buf, size, got);
+	});
 }
 
 double fmod_studio_vca_get_volume(uint64_t vca_ref)

@@ -38,7 +38,7 @@ double fmod_system_init(double max_channels, double flags)
 	}
 
 	system = getCurrentSystem();
-	g_fmod_last_result = system->init((int)max_channels, (FMOD_INITFLAGS)(int)flags, nullptr);
+	g_fmod_last_result = system->init((int)max_channels, (FMOD_INITFLAGS)fmod_flag_word(flags), nullptr);
 	return 0;
 }
 
@@ -103,14 +103,40 @@ double fmod_system_release(uint64_t system_ref)
 		return 0;
 	}
 
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	if (getCurrentSystem() == system)
+		setCurrentSystem(nullptr);
+	unregisterResource(system, map_systems);
 	g_fmod_last_result = system->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		if (getCurrentSystem() == system)
-			setCurrentSystem(nullptr);
-		unregisterResource(system, map_systems);
-	}
 	return 0;
+}
+
+// Marked finish_fn in spec.gmidl, so the runtime calls it on game end and on
+// game_restart(). Without it the native layer keeps every registry, the
+// selected system and all callback state across a restart, while the GML side
+// starts from nothing.
+void fmod_shutdown()
+{
+	// Adopted systems belong to whoever created them - GMFMODStudio releases its
+	// own core system - and shutdown order between the two DLLs is not defined,
+	// so an adopted system may already be gone. Never dereference one here.
+	for (auto& entry : map_systems)
+	{
+		FMOD::System* system = entry.second;
+		if (system == nullptr) continue;
+		if (g_adopted_systems.count(system) != 0) continue;
+		system->release();
+	}
+
+	g_adopted_systems.clear();
+	setCurrentSystem(nullptr);
+
+	fmod_channel_control_reset_state();
+	fmod_sound_reset_state();
+	fmod_registry_clear_all();
+
+	g_fmod_last_result = FMOD_OK;
 }
 
 double fmod_system_select(uint64_t system_ref)
@@ -186,8 +212,7 @@ uint64_t fmod_system_get_channel(double index)
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }
@@ -541,15 +566,10 @@ uint64_t fmod_system_create_dsp()
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
-	FMOD::DSP* dsp = nullptr;
-	g_fmod_last_result = system->createDSP(nullptr, &dsp);
-
-	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
-	{
-		uint32_t dsp_id = registerOrFindResource(dsp, index_dsps, map_dsps);
-		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
-	}
+	// createDSP's first parameter is the FMOD_DSP_DESCRIPTION defining the custom DSP, and it is not
+	// optional. This function takes none, so no call can succeed - fail here rather than hand FMOD a
+	// null description. Use fmod_system_create_dsp_by_type for the built-in effects.
+	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
 	return result;
 }
 
@@ -656,7 +676,7 @@ double fmod_system_set_stream_buffer_size(double file_buffer_size, double file_b
 		return 0;
 	}
 
-	g_fmod_last_result = system->setStreamBufferSize((unsigned int)file_buffer_size, (FMOD_TIMEUNIT)(int)file_buffer_size_type);
+	g_fmod_last_result = system->setStreamBufferSize((unsigned int)file_buffer_size, (FMOD_TIMEUNIT)fmod_flag_word(file_buffer_size_type));
 	return 0;
 }
 
@@ -740,8 +760,7 @@ uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, doub
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }

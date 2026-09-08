@@ -72,7 +72,7 @@ double fmod_channel_set_position(uint64_t channel_ref, double position, double t
 	if (channel == nullptr)
 		return 0;
 
-	g_fmod_last_result = channel->setPosition((unsigned int)position, (FMOD_TIMEUNIT)(int)time_unit);
+	g_fmod_last_result = channel->setPosition((unsigned int)position, (FMOD_TIMEUNIT)fmod_flag_word(time_unit));
 	return 0;
 }
 
@@ -85,7 +85,7 @@ double fmod_channel_get_position(uint64_t channel_ref, double time_unit)
 		return 0.0;
 
 	unsigned int position = 0;
-	g_fmod_last_result = channel->getPosition(&position, (FMOD_TIMEUNIT)(int)time_unit);
+	g_fmod_last_result = channel->getPosition(&position, (FMOD_TIMEUNIT)fmod_flag_word(time_unit));
 	return (double)position;
 }
 
@@ -171,8 +171,8 @@ double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, dou
 		return 0;
 
 	g_fmod_last_result = channel->setLoopPoints(
-		(unsigned int)loop_start, (FMOD_TIMEUNIT)(int)loop_start_type,
-		(unsigned int)loop_end, (FMOD_TIMEUNIT)(int)loop_end_type
+		(unsigned int)loop_start, (FMOD_TIMEUNIT)fmod_flag_word(loop_start_type),
+		(unsigned int)loop_end, (FMOD_TIMEUNIT)fmod_flag_word(loop_end_type)
 	);
 	return 0;
 }
@@ -186,8 +186,8 @@ FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, double start_t
 
 	unsigned int loop_start = 0, loop_end = 0;
 	g_fmod_last_result = channel->getLoopPoints(
-		&loop_start, (FMOD_TIMEUNIT)(int)start_type,
-		&loop_end, (FMOD_TIMEUNIT)(int)end_type
+		&loop_start, (FMOD_TIMEUNIT)fmod_flag_word(start_type),
+		&loop_end, (FMOD_TIMEUNIT)fmod_flag_word(end_type)
 	);
 
 	result.loop_start = (double)loop_start;

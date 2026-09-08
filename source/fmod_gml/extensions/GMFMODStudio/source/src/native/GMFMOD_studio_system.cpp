@@ -16,7 +16,12 @@ static uint64_t g_studio_system_ref = 0;
 uint64_t fmod_studio_system_create()
 {
 	uint64_t result = 0;
-	if (g_studio_system_ref != 0) return result;
+	if (g_studio_system_ref != 0)
+	{
+		// Without this the caller reads whatever the previous call left behind.
+		g_fmod_last_result = FMOD_ERR_INITIALIZED;
+		return result;
+	}
 
 	FMOD::Studio::System* studio_system = nullptr;
 	g_fmod_last_result = FMOD::Studio::System::create(&studio_system);
@@ -30,20 +35,39 @@ uint64_t fmod_studio_system_create()
 		// Store core system ref
 	}
 
-	g_studio_system_ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(studio_system), GM_FMOD_STUDIO_TYPE_SYSTEM);
+	g_studio_system_ref = packPointerIntoRef(studio_system, GM_FMOD_STUDIO_TYPE_SYSTEM);
 	result = g_studio_system_ref;
 	return result;
 }
 
 double fmod_studio_system_init(double max_channels, double studio_flags, double core_flags)
 {
-	TRACE("fmod_studio_system_init EXT CALLED");
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)(int)studio_flags, (FMOD_INITFLAGS)(int)core_flags, nullptr);
+	g_fmod_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)fmod_flag_word(studio_flags), (FMOD_INITFLAGS)fmod_flag_word(core_flags), nullptr);
 	return 0;
+}
+
+// Marked finish_fn in spec.gmidl, so the runtime calls it on game end and on
+// game_restart(). Releasing the Studio system also releases the core system it
+// owns - which is the same object GMFMOD may be holding as an adopted system,
+// and why GMFMOD's own shutdown never dereferences one.
+void fmod_studio_shutdown()
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system != nullptr)
+		studio_system->release();
+
+	g_studio_system_ref = 0;
+
+	fmod_studio_event_instance_reset_state();
+	fmod_studio_command_replay_reset_state();
+	fmod_registry_clear_all();
+
+	g_fmod_last_result = FMOD_OK;
 }
 
 double fmod_studio_system_release()
@@ -108,11 +132,11 @@ std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filen
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)(int)flags, &bank);
+	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)fmod_flag_word(flags), &bank);
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
 		return result;
 	}
 	return std::nullopt;
@@ -120,8 +144,9 @@ std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filen
 
 std::optional<uint64_t> fmod_studio_system_load_bank_memory(std::string_view data, double flags)
 {
-	// loadBankMemory signature doesn't match this SDK version
-	// Use loadBankFile instead
+	// Studio::System::loadBankMemory exists and takes (buffer, length, mode, flags, bank), but this
+	// function's GMIDL parameter is a string, and a GML string cannot carry the NUL bytes a .bank file
+	// is full of. Reaching this needs a buffer parameter in spec.gmidl; use loadBankFile until then.
 	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
 	return std::nullopt;
 }
@@ -164,7 +189,7 @@ std::optional<uint64_t> fmod_studio_system_get_bank_at(double index)
 	FMOD::Studio::Bank* bank = banks[(size_t)idx];
 	if (bank == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+	return packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
 }
 
 std::optional<uint64_t> fmod_studio_system_get_bank(std::string_view path)
@@ -178,7 +203,7 @@ std::optional<uint64_t> fmod_studio_system_get_bank(std::string_view path)
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
 		return result;
 	}
 	return std::nullopt;
@@ -214,7 +239,7 @@ std::optional<uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_g
 	g_fmod_last_result = studio_system->getBankByID(&guid, &bank);
 	if (g_fmod_last_result != FMOD_OK || bank == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bank), GM_FMOD_STUDIO_TYPE_BANK);
+	return packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
 }
 
 // ============================================================
@@ -232,7 +257,7 @@ std::optional<uint64_t> fmod_studio_system_get_event(std::string_view path)
 	if (g_fmod_last_result == FMOD_OK && event_desc != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_desc), GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		result = packPointerIntoRef(event_desc, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 		return result;
 	}
 	return std::nullopt;
@@ -259,7 +284,7 @@ std::optional<uint64_t> fmod_studio_system_create_event_instance(std::string_vie
 	if (g_fmod_last_result == FMOD_OK && instance != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(instance), GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+		result = packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
 		return result;
 	}
 	return std::nullopt;
@@ -280,7 +305,7 @@ std::optional<uint64_t> fmod_studio_system_get_bus(std::string_view path)
 	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+		result = packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
 		return result;
 	}
 	return std::nullopt;
@@ -297,7 +322,7 @@ std::optional<uint64_t> fmod_studio_system_get_master_bus()
 	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+		result = packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
 		return result;
 	}
 	return std::nullopt;
@@ -316,7 +341,7 @@ std::optional<uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_gu
 	g_fmod_last_result = studio_system->getBusByID(&guid, &bus);
 	if (g_fmod_last_result != FMOD_OK || bus == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+	return packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
 }
 
 // ============================================================
@@ -334,7 +359,7 @@ std::optional<uint64_t> fmod_studio_system_get_vca(std::string_view path)
 	if (g_fmod_last_result == FMOD_OK && vca != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(vca), GM_FMOD_STUDIO_TYPE_VCA);
+		result = packPointerIntoRef(vca, GM_FMOD_STUDIO_TYPE_VCA);
 		return result;
 	}
 	return std::nullopt;
@@ -353,7 +378,7 @@ std::optional<uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_gu
 	g_fmod_last_result = studio_system->getVCAByID(&guid, &vca);
 	if (g_fmod_last_result != FMOD_OK || vca == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(vca), GM_FMOD_STUDIO_TYPE_VCA);
+	return packPointerIntoRef(vca, GM_FMOD_STUDIO_TYPE_VCA);
 }
 
 // ============================================================
@@ -541,10 +566,9 @@ std::string fmod_studio_system_lookup_path(std::string_view str_guid)
 	FMOD_GUID guid{};
 	if (!parse_guid_string(str_guid, guid)) return std::string();
 
-	char path[256] = {};
-	g_fmod_last_result = studio_system->lookupPath(&guid, path, sizeof(path), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(path);
+	return fmod_read_string([studio_system, &guid](char* buf, int size, int* got) {
+		return studio_system->lookupPath(&guid, buf, size, got);
+	});
 }
 
 uint64_t fmod_studio_system_get_event_by_id(std::string_view id)
@@ -591,7 +615,7 @@ double fmod_studio_system_start_command_capture(std::string_view filename, enum 
 
 	std::string filename_str(filename);
 	g_fmod_last_result = studio_system->startCommandCapture(
-		filename_str.c_str(), (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)(int)flags);
+		filename_str.c_str(), (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)(std::uint64_t)flags);
 	return 0;
 }
 
@@ -616,7 +640,7 @@ uint64_t fmod_studio_system_load_command_replay(std::string_view filename, enum 
 	std::string filename_str(filename);
 	FMOD::Studio::CommandReplay* replay = nullptr;
 	g_fmod_last_result = studio_system->loadCommandReplay(
-		filename_str.c_str(), (FMOD_STUDIO_COMMANDREPLAY_FLAGS)(int)flags, &replay);
+		filename_str.c_str(), (FMOD_STUDIO_COMMANDREPLAY_FLAGS)(std::uint64_t)flags, &replay);
 	if (g_fmod_last_result != FMOD_OK || replay == nullptr) return result;
 
 	result = packIndexIntoRef(
@@ -823,10 +847,9 @@ std::string fmod_studio_system_get_parameter_label_by_id(double id_data1, double
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	char label[256] = {};
-	g_fmod_last_result = studio_system->getParameterLabelByID(id, (int)label_index, label, sizeof(label), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(label);
+	return fmod_read_string([studio_system, id, label_index](char* buf, int size, int* got) {
+		return studio_system->getParameterLabelByID(id, (int)label_index, buf, size, got);
+	});
 }
 
 std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name, double label_index)
@@ -836,10 +859,9 @@ std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name
 	if (studio_system == nullptr) return std::string();
 
 	std::string name_str(name);
-	char label[256] = {};
-	g_fmod_last_result = studio_system->getParameterLabelByName(name_str.c_str(), (int)label_index, label, sizeof(label), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(label);
+	return fmod_read_string([studio_system, &name_str, label_index](char* buf, int size, int* got) {
+		return studio_system->getParameterLabelByName(name_str.c_str(), (int)label_index, buf, size, got);
+	});
 }
 
 // ============================================================
@@ -984,7 +1006,7 @@ double fmod_studio_system_set_callback(double callback_mask)
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->setCallback(CALLBACK_fmod_studio_system, (FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)(int)callback_mask);
+	g_fmod_last_result = studio_system->setCallback(CALLBACK_fmod_studio_system, (FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)fmod_flag_word(callback_mask));
 	return 0;
 }
 
@@ -998,6 +1020,7 @@ double fmod_studio_system_get_user_data()
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0.0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(studio_system));
 	return it != g_user_data.end() ? it->second : 0.0;
 }
@@ -1008,6 +1031,7 @@ double fmod_studio_system_set_user_data(double user_data)
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data[reinterpret_cast<uintptr_t>(studio_system)] = user_data;
 	return 0;
 }

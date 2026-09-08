@@ -50,20 +50,6 @@ GMEXPORT double __EXT_NATIVE__fmod_debug_initialize(char* __arg_buffer, double _
     return 0;
 }
 
-GMEXPORT char* __EXT_NATIVE__fmod_path_bundle(char* filename)
-{
-    static std::string __result;
-    __result = fmod_path_bundle(filename);
-    return (char*)__result.c_str();
-}
-
-GMEXPORT char* __EXT_NATIVE__fmod_path_user(char* filename)
-{
-    static std::string __result;
-    __result = fmod_path_user(filename);
-    return (char*)__result.c_str();
-}
-
 GMEXPORT char* __EXT_NATIVE__fmod_error_string(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -80,6 +66,12 @@ GMEXPORT double __EXT_NATIVE__fmod_fetch_callbacks()
 {
     auto&& __result = fmod_fetch_callbacks();
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_shutdown()
+{
+    fmod_shutdown();
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_file_get_disk_busy()

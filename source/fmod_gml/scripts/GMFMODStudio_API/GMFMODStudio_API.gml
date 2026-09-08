@@ -2448,6 +2448,9 @@ function fmod_studio_last_result()
     return __result__;
 }
 
+// Skipping function fmod_studio_shutdown (no wrapper is required)
+
+
 // Skipping function fmod_studio_system_set_num_listeners (no wrapper is required)
 
 

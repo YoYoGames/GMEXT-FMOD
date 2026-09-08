@@ -3,20 +3,25 @@
 #include "fmod.hpp"
 #include <cstdint>
 #include <map>
+#include <set>
 #include <string>
 #include <optional>
 #include <atomic>
+#include <mutex>
 #include <native/GMFMODInternal_native.h>
 
 // ============================================================
 // Global State
 // ============================================================
 
-extern FMOD_RESULT g_fmod_last_result;
+// Written by every exported function and by the callback trampolines, which
+// on the Studio side run on Studio's own worker thread - so the store has to
+// be atomic. (That makes the race safe; it does not make "the last result"
+// meaningful when a background callback can land between a call and the read.
+// Returning the code per-call instead is an API change, left to the owner.)
+extern std::atomic<FMOD_RESULT> g_fmod_last_result;
 extern enum gm_enums::FmodResult fmod_last_result();
 extern void fmod_debug_initialize(enum gm_enums::FmodDebugFlags flags, enum gm_enums::FmodDebugMode mode);
-extern std::string fmod_path_bundle(std::string_view filename);
-extern std::string fmod_path_user(std::string_view filename);
 
 extern std::map<uint32_t, FMOD::System*> map_systems;
 extern uint32_t index_systems;
@@ -48,6 +53,18 @@ extern uint32_t index_geometries;
 
 uint64_t packIndexIntoRef(uint32_t index, uint8_t type);
 
+// Pointer-backed handles (Channel, ChannelControl and every Studio type) carry
+// the object address in the low 32 bits. FMOD's opaque handles fit there by
+// construction, but if a future SDK ever widens one, two objects would silently
+// alias onto the same ref - so fail loudly instead of quietly.
+uint64_t packPointerIntoRef(const void* pointer, uint8_t type);
+
+// A GML double carrying a 32-bit flag word. Converting one through a signed int
+// is undefined at or above 0x80000000, and FMOD_VIRTUAL_PLAYFROMSTART,
+// FMOD_SYSTEM_CALLBACK_ALL and FMOD_STUDIO_EVENT_CALLBACK_ALL all sit there.
+// Out-of-range values clamp rather than wrap.
+uint32_t fmod_flag_word(double value);
+
 // The system every "systemless" API call operates on. Defaults to the first
 // registered system; fmod_system_select() overrides it.
 FMOD::System* getCurrentSystem();
@@ -71,6 +88,7 @@ void setResourceUserData(T resource, double data);
 
 // user_data storage for pointer-identified types (Channel, ChannelControl,
 // and Studio objects) which have no registry-owned CustomUserData slot.
+extern std::mutex g_user_data_mutex;
 extern std::map<uintptr_t, double> g_user_data;
 
 // Shared counter for the mask-only callback stubs (event description /
@@ -79,6 +97,18 @@ extern std::map<uintptr_t, double> g_user_data;
 // trampoline increments this on every fired event; fmod_fetch_callbacks()
 // (GMFMOD_utility.cpp) drains and returns the count.
 extern std::atomic<uint64_t> g_fmod_callback_count;
+
+// ============================================================
+// Per-module state hooks
+// ============================================================
+
+// Each file owning a file-local map exposes a reset entry point rather than
+// promoting the map to a global. fmod_shutdown() drives them all.
+FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control);
+void fmod_channel_control_reset_state();
+void fmod_sound_forget_lock(const void* sound);
+void fmod_sound_reset_state();
+void fmod_registry_clear_all();
 
 // ============================================================
 // Reference Layout
@@ -135,7 +165,7 @@ extern std::atomic<uint64_t> g_fmod_callback_count;
 // call site already null-checks before touching the handle.
 #define gm_fmod_ref_reject(output) \
 	{ \
-		g_fmod_last_result = (FMOD_RESULT)-2; \
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE; \
 		output = nullptr; \
 	}
 

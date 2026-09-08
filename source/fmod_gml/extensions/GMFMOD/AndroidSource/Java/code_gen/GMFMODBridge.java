@@ -21,10 +21,9 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__GMFMOD_queue_buffer(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_last_result(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_debug_initialize(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native String __EXT_JNI__fmod_path_bundle(String filename);
-    public static native String __EXT_JNI__fmod_path_user(String filename);
     public static native String __EXT_JNI__fmod_error_string(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_fetch_callbacks();
+    public static native double __EXT_JNI__fmod_shutdown();
     public static native double __EXT_JNI__fmod_file_get_disk_busy();
     public static native double __EXT_JNI__fmod_file_set_disk_busy(double busy);
     public static native double __EXT_JNI__fmod_memory_get_stats(double blocking, ByteBuffer __ret_buffer, double __ret_buffer_length);

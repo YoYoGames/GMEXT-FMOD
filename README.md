@@ -3,6 +3,12 @@ Repository for GameMaker's FMOD Extension
 
 This repository was created with the intent of presenting users with the latest version available of the extension (even previous to marketplace updates) and also provide a way for the community to contribute with bug fixes and feature implementation.
 
+> [!IMPORTANT]
+> Version 2.0.0 is a breaking rewrite. The single FMOD extension is now two - GMFMOD (Core) and
+> GMFMODStudio (Studio) - and the GML surface changed with it: the `*_list` functions were replaced
+> by `*_at` / `*_count` pairs, and `fmod_system_adopt` and `fmod_studio_last_result` are new.
+> Projects using 1.2.x need code changes. See the wiki for the migration detail.
+
 This repository ships two extensions, each with its own native source folder and its own CMake build:
 
 * FMOD Core (`GMFMOD`): `source/fmod_gml/extensions/GMFMOD/source/` - Windows, macOS, Linux, Android, iOS
@@ -23,7 +29,7 @@ In order to use this extension you will require to [download the FMOD SDK v2.03]
 > [!IMPORTANT]
 > To set up the FMOD extension asset in the IDE, double-click on it and complete the necessary information in the [Extension Options](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Extensions.htm).
 >
-> Check the [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for detailed information.
+> Check the [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for detailed information.
 
 If you are compiling this extension locally you will need to place the SDKs inside `source/fmod_sdk/` following the given folder structure:
 

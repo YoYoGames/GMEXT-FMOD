@@ -2101,10 +2101,9 @@ namespace gm::wire::details
 
 gm_enums::FmodResult fmod_last_result();
 void fmod_debug_initialize(gm_enums::FmodDebugFlags flags, gm_enums::FmodDebugMode mode);
-std::string fmod_path_bundle(std::string_view filename);
-std::string fmod_path_user(std::string_view filename);
 std::string fmod_error_string(gm_enums::FmodResult result);
 double fmod_fetch_callbacks();
+void fmod_shutdown();
 double fmod_file_get_disk_busy();
 double fmod_file_set_disk_busy(double busy);
 gm_structs::FmodMemoryStats fmod_memory_get_stats(double blocking);

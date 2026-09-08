@@ -23,6 +23,14 @@ double fmod_studio_bank_unload(uint64_t bank_ref)
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return 0;
+
+	// The bank handle dies with the unload; drop its user data so a recycled
+	// handle does not inherit it.
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data.erase(reinterpret_cast<uintptr_t>(bank));
+	}
+
 	g_fmod_last_result = bank->unload();
 	return 0;
 }
@@ -52,15 +60,15 @@ std::string fmod_studio_bank_get_path(uint64_t bank_ref)
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return "";
-	char path[256] = {};
-	int capacity = sizeof(path);
-	g_fmod_last_result = bank->getPath(path, capacity, nullptr);
-	return std::string(path);
+	return fmod_read_string([bank](char* buf, int size, int* got) {
+		return bank->getPath(buf, size, got);
+	});
 }
 
 std::optional<uint64_t> fmod_studio_bank_get_parent_studio_system(uint64_t bank_ref)
 {
-	// getSystem is not available in this SDK version
+	// The Studio API gives Bank no getSystem - only EventInstance and CommandReplay have one - so a
+	// bank cannot report its owning system. There is one Studio system here anyway.
 	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
 	return std::nullopt;
 }
@@ -92,7 +100,7 @@ std::optional<uint64_t> fmod_studio_bank_get_event_at(uint64_t bank_ref, double 
 	FMOD::Studio::EventDescription* event_desc = events[(size_t)idx];
 	if (event_desc == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_desc), GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+	return packPointerIntoRef(event_desc, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 }
 
 double fmod_studio_bank_get_bus_count(uint64_t bank_ref)
@@ -122,7 +130,7 @@ std::optional<uint64_t> fmod_studio_bank_get_bus_at(uint64_t bank_ref, double in
 	FMOD::Studio::Bus* bus = buses[(size_t)idx];
 	if (bus == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(bus), GM_FMOD_STUDIO_TYPE_BUS);
+	return packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
 }
 
 double fmod_studio_bank_get_vca_count(uint64_t bank_ref)
@@ -152,7 +160,7 @@ std::optional<uint64_t> fmod_studio_bank_get_vca_at(uint64_t bank_ref, double in
 	FMOD::Studio::VCA* vca = vcas[(size_t)idx];
 	if (vca == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(vca), GM_FMOD_STUDIO_TYPE_VCA);
+	return packPointerIntoRef(vca, GM_FMOD_STUDIO_TYPE_VCA);
 }
 
 double fmod_studio_bank_get_string_count(uint64_t bank_ref)
@@ -195,12 +203,13 @@ FmodStudioStringInfo fmod_studio_bank_get_string_info(uint64_t bank_ref, double 
 	if (bank == nullptr) return result;
 
 	FMOD_GUID guid{};
-	char path[256] = {};
-	g_fmod_last_result = bank->getStringInfo((int)string_index, &guid, path, sizeof(path), nullptr);
+	std::string path = fmod_read_string([bank, string_index, &guid](char* buf, int size, int* got) {
+		return bank->getStringInfo((int)string_index, &guid, buf, size, got);
+	});
 	if (g_fmod_last_result != FMOD_OK) return result;
 
 	result.guid = format_guid(guid);
-	result.path = std::string(path);
+	result.path = path;
 	return result;
 }
 
@@ -230,6 +239,7 @@ double fmod_studio_bank_get_user_data(uint64_t bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return 0.0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(bank));
 	return it != g_user_data.end() ? it->second : 0.0;
 }
@@ -240,6 +250,7 @@ double fmod_studio_bank_set_user_data(uint64_t bank_ref, double user_data)
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return 0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data[reinterpret_cast<uintptr_t>(bank)] = user_data;
 	return 0;
 }

@@ -168,24 +168,6 @@ static jdouble __JNI_WRAPPER__fmod_debug_initialize_0DBC9690DD4B(JNIEnv* env, jc
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_path_bundle JNI wrapper signature: (Ljava/lang/String;)Ljava/lang/String;
-static jstring __JNI_WRAPPER__fmod_path_bundle_2E2B1F6C3282(JNIEnv* env, jclass /* GMFMODBridge */, jstring filename)
-{
-    UtfChars __pin_filename(env, filename);
-    const char* __out = __EXT_NATIVE__fmod_path_bundle((char *)__pin_filename.c_str());
-    jstring __j = __out ? env->NewStringUTF(__out) : nullptr;
-    return __j;
-}
-
-// fmod_path_user JNI wrapper signature: (Ljava/lang/String;)Ljava/lang/String;
-static jstring __JNI_WRAPPER__fmod_path_user_B64A514AA734(JNIEnv* env, jclass /* GMFMODBridge */, jstring filename)
-{
-    UtfChars __pin_filename(env, filename);
-    const char* __out = __EXT_NATIVE__fmod_path_user((char *)__pin_filename.c_str());
-    jstring __j = __out ? env->NewStringUTF(__out) : nullptr;
-    return __j;
-}
-
 // fmod_error_string JNI wrapper signature: (Ljava/nio/ByteBuffer;D)Ljava/lang/String;
 static jstring __JNI_WRAPPER__fmod_error_string_FF361944BD9C(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
@@ -204,6 +186,13 @@ static jstring __JNI_WRAPPER__fmod_error_string_FF361944BD9C(JNIEnv* env, jclass
 static jdouble __JNI_WRAPPER__fmod_fetch_callbacks_4FCF476C4D87(JNIEnv* /* env */, jclass /* GMFMODBridge */)
 {
     double __ret = __EXT_NATIVE__fmod_fetch_callbacks();
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_shutdown JNI wrapper signature: ()D
+static jdouble __JNI_WRAPPER__fmod_shutdown_BE5695C7F239(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+{
+    double __ret = __EXT_NATIVE__fmod_shutdown();
     return static_cast<jdouble>(__ret);
 }
 
@@ -4406,10 +4395,9 @@ extern "C" {
             { "__EXT_JNI__GMFMOD_queue_buffer", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__GMFMOD_queue_buffer },
             { "__EXT_JNI__fmod_last_result", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_last_result_6249C1D416C4 },
             { "__EXT_JNI__fmod_debug_initialize", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_debug_initialize_0DBC9690DD4B },
-            { "__EXT_JNI__fmod_path_bundle", "(Ljava/lang/String;)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_path_bundle_2E2B1F6C3282 },
-            { "__EXT_JNI__fmod_path_user", "(Ljava/lang/String;)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_path_user_B64A514AA734 },
             { "__EXT_JNI__fmod_error_string", "(Ljava/nio/ByteBuffer;D)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_error_string_FF361944BD9C },
             { "__EXT_JNI__fmod_fetch_callbacks", "()D", (void*)__JNI_WRAPPER__fmod_fetch_callbacks_4FCF476C4D87 },
+            { "__EXT_JNI__fmod_shutdown", "()D", (void*)__JNI_WRAPPER__fmod_shutdown_BE5695C7F239 },
             { "__EXT_JNI__fmod_file_get_disk_busy", "()D", (void*)__JNI_WRAPPER__fmod_file_get_disk_busy_88FAFB9E0151 },
             { "__EXT_JNI__fmod_file_set_disk_busy", "(D)D", (void*)__JNI_WRAPPER__fmod_file_set_disk_busy_77F1854DF7EA },
             { "__EXT_JNI__fmod_memory_get_stats", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_memory_get_stats_8D12BC4F1295 },

@@ -6580,7 +6580,7 @@ function fmod_studio_system_create() {}
  * 
  * The `flags` parameter is passed to ${func.fmod_system_init} to initialize the core.
  * 
- * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
+ * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
  * @param {constant.FMOD_STUDIO_INIT} studio_flags Studio system initialization flags.
@@ -6613,7 +6613,7 @@ function fmod_studio_system_release() {}
  *
  * This function updates the FMOD Studio System.
  * 
- * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
+ * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @func_end
  */
@@ -7619,7 +7619,7 @@ function fmod_system_count() {}
  * 
  * [[Note: ${function.fmod_system_set_output} can be called before or after ${function.fmod_system_init} on Android, GameCore, UWP, Windows and Mac. Other platforms can only call this before ${function.fmod_system_init}.]]
  * 
- * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
+ * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @param {real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * @param {constant.FMOD_INIT} flags The initialization flags. More than one mode can be set at once by combining them with the OR operator.
@@ -7686,7 +7686,7 @@ function fmod_system_close(system_ref) {}
  * 
  * If `FMOD_INIT.STREAM_FROM_UPDATE` is used, this function will update the stream engine. Combining this with the non realtime output will mean smoother captured output.
  * 
- * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/GettingStarted) for examples on initialising and updating FMOD systems.
+ * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @func_end
  */
@@ -9156,8 +9156,8 @@ function fmod_last_result() {}
  * 
  * @section Guides
  * @desc This section contains guides to get started with the FMOD extension.
- * @ref page.GettingStarted
- * @ref page.GeneralInformation
+ * @ref page.getting_started
+ * @ref page.general_information
  * @section_end
  * 
  * @section FMOD Core Modules

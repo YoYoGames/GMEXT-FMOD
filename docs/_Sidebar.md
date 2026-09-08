@@ -1,8 +1,8 @@
 ### [FMOD Extension](Home)
 ### Guides
 
- * ${page.GettingStarted}
- * ${page.GeneralInformation}
+ * ${page.getting_started}
+ * ${page.general_information}
 
 ### FMOD Core Reference
 

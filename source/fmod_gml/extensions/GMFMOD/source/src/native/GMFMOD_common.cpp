@@ -4,7 +4,7 @@
 // Global State Definitions
 // ============================================================
 
-FMOD_RESULT g_fmod_last_result = FMOD_OK;
+std::atomic<FMOD_RESULT> g_fmod_last_result{ FMOD_OK };
 
 std::map<uint32_t, FMOD::System*> map_systems;
 uint32_t index_systems = 0;
@@ -45,6 +45,24 @@ uint64_t packIndexIntoRef(uint32_t index, uint8_t type)
 	return packed;
 }
 
+uint64_t packPointerIntoRef(const void* pointer, uint8_t type)
+{
+	uintptr_t address = reinterpret_cast<uintptr_t>(pointer);
+	if ((uint64_t)address > 0xFFFFFFFFull)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return 0;
+	}
+	return packIndexIntoRef((uint32_t)address, type);
+}
+
+uint32_t fmod_flag_word(double value)
+{
+	if (!(value > 0.0)) return 0;
+	if (value >= 4294967295.0) return 0xFFFFFFFFu;
+	return (uint32_t)value;
+}
+
 static FMOD::System* g_selected_system = nullptr;
 
 FMOD::System* getCurrentSystem()
@@ -68,6 +86,12 @@ struct CustomUserData
 	double data = 0.0;
 };
 
+// These are owned by the FMOD object's user-data slot, which is not somewhere
+// shutdown can safely read from: by then a Sound may already have been released
+// by the game. Keeping the allocations here as well means teardown can free
+// them without dereferencing anything FMOD owns.
+static std::set<CustomUserData*> g_custom_user_data;
+
 template <typename T>
 uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, T>& map)
 {
@@ -78,6 +102,7 @@ uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, 
 		map.insert({ ++index, resource });
 		CustomUserData* customUserData = new CustomUserData();
 		customUserData->id = index;
+		g_custom_user_data.insert(customUserData);
 		resource->setUserData(static_cast<void*>(customUserData));
 		return index;
 	}
@@ -92,6 +117,8 @@ uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map)
 	if (userData != nullptr)
 	{
 		uint32_t resource_id = static_cast<CustomUserData*>(userData)->id;
+		resource->setUserData(nullptr);
+		g_custom_user_data.erase((CustomUserData*)userData);
 		delete (CustomUserData*)userData;
 		map.erase(resource_id);
 		return resource_id;
@@ -155,6 +182,8 @@ template double getResourceUserData<FMOD::Sound*>(FMOD::Sound*);
 template void setResourceUserData<FMOD::Sound*>(FMOD::Sound*, double);
 template double getResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*);
 template void setResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*, double);
+template double getResourceUserData<FMOD::ChannelGroup*>(FMOD::ChannelGroup*);
+template void setResourceUserData<FMOD::ChannelGroup*>(FMOD::ChannelGroup*, double);
 template double getResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*);
 template void setResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*, double);
 template double getResourceUserData<FMOD::Geometry*>(FMOD::Geometry*);
@@ -164,6 +193,41 @@ template void setResourceUserData<FMOD::Geometry*>(FMOD::Geometry*, double);
 // User Data (pointer-identified resources)
 // ============================================================
 
+std::mutex g_user_data_mutex;
 std::map<uintptr_t, double> g_user_data;
 
 std::atomic<uint64_t> g_fmod_callback_count{ 0 };
+
+// ============================================================
+// Teardown
+// ============================================================
+
+void fmod_registry_clear_all()
+{
+	// System::release() has already freed everything its systems owned, so the
+	// registries are cleared rather than walked - every pointer in them is dead
+	// by this point.
+	for (CustomUserData* entry : g_custom_user_data)
+		delete entry;
+	g_custom_user_data.clear();
+
+	map_systems.clear();
+	map_sounds.clear();
+	map_channel_groups.clear();
+	map_dsps.clear();
+	map_sound_groups.clear();
+	map_dsp_connections.clear();
+	map_reverbs.clear();
+	map_geometries.clear();
+
+	index_systems = 0;
+	index_sounds = 0;
+	index_channel_groups = 0;
+	index_dsps = 0;
+	index_sound_groups = 0;
+	index_dsp_connections = 0;
+	index_reverbs = 0;
+	index_geometries = 0;
+
+	g_fmod_callback_count.store(0);
+}

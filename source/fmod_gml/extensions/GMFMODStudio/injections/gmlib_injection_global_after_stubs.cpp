@@ -36,5 +36,11 @@ void Shutdown_GMFMODStudio()
     FunctionPointer fnHandle = nullptr;
     void* libHandle = nullptr;
 
+    libHandle = ExtUtils_GetLibraryHandle("GMFMODStudio.ext");
+    if (libHandle)
+    {
+        fnHandle = (FunctionPointer)SharedLibrary_GetFunctionAddress(libHandle, "__EXT_NATIVE__fmod_studio_shutdown");
+        if (fnHandle) fnHandle();
+    }
     isInitialized = false;
 }

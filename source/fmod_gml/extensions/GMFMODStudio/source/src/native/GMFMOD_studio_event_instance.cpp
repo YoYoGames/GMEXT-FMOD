@@ -144,9 +144,15 @@ double fmod_studio_event_instance_get_parameter_count(uint64_t instance_ref)
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0.0;
-	// getParameterCount is not available in this SDK version
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
-	return 0.0;
+
+	// EventInstance has no parameter count of its own; the count belongs to the description.
+	FMOD::Studio::EventDescription* event_desc = nullptr;
+	g_fmod_last_result = instance->getDescription(&event_desc);
+	if (g_fmod_last_result != FMOD_OK || event_desc == nullptr) return 0.0;
+
+	int count = 0;
+	g_fmod_last_result = event_desc->getParameterDescriptionCount(&count);
+	return (double)count;
 }
 
 double fmod_studio_event_instance_set_3d_attributes(uint64_t instance_ref, double x, double y, double z)
@@ -172,7 +178,7 @@ std::optional<uint64_t> fmod_studio_event_instance_get_description(uint64_t inst
 	if (g_fmod_last_result == FMOD_OK && event_desc != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_desc), GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		result = packPointerIntoRef(event_desc, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 		return result;
 	}
 	return std::nullopt;
@@ -183,6 +189,14 @@ double fmod_studio_event_instance_release(uint64_t instance_ref)
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
+
+	// The DESTROYED callback reclaims the callback entry, but only for instances
+	// that registered one; the user-data entry has no such signal at all.
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data.erase(reinterpret_cast<uintptr_t>(instance));
+	}
+
 	g_fmod_last_result = instance->release();
 	return 0;
 }
@@ -355,6 +369,7 @@ double fmod_studio_event_instance_get_user_data(uint64_t instance_ref)
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0.0;
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(instance));
 	return it != g_user_data.end() ? it->second : 0.0;
 }
@@ -364,6 +379,7 @@ double fmod_studio_event_instance_set_user_data(uint64_t instance_ref, double us
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data[reinterpret_cast<uintptr_t>(instance)] = user_data;
 	return 0;
 }
@@ -444,6 +460,12 @@ FmodStudioMemoryUsage fmod_studio_event_instance_get_memory_usage(uint64_t insta
 // from both that thread and the game thread.
 static std::mutex g_event_instance_callback_mutex;
 static std::map<uintptr_t, gm::wire::GMFunction> g_event_instance_callbacks;
+
+void fmod_studio_event_instance_reset_state()
+{
+	std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
+	g_event_instance_callbacks.clear();
+}
 
 static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_instance(
 	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,

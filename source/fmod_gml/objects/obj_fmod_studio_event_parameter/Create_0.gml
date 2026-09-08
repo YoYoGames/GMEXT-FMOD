@@ -1,9 +1,9 @@
 
-master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"),FmodStudioLoadBankFlags.Normal);
+master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.bank"),FmodStudioLoadBankFlags.Normal);
 show_debug_message("master: " + fmod_error_string(fmod_last_result()));
-master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"),FmodStudioLoadBankFlags.Normal);
+master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.strings.bank"),FmodStudioLoadBankFlags.Normal);
 show_debug_message("masterstrings: " + fmod_error_string(fmod_last_result()));
-sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("sfx.bank"),FmodStudioLoadBankFlags.Normal);
+sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("SFX.bank"),FmodStudioLoadBankFlags.Normal);
 show_debug_message("SFX: " + fmod_error_string(fmod_last_result()));
 
 footsteps_event = fmod_studio_system_get_event("event:/Character/Player Footsteps")

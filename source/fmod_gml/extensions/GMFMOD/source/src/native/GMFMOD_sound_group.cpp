@@ -195,11 +195,10 @@ double fmod_sound_group_release(uint64_t sound_group_ref)
 	if (sound_group == nullptr)
 		return 0;
 
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(sound_group, map_sound_groups);
 	g_fmod_last_result = sound_group->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(sound_group, map_sound_groups);
-	}
 	return 0;
 }
 

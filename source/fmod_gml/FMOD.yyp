@@ -1,4 +1,4 @@
-{
+﻿{
   "$GMProject":"v1",
   "%Name":"FMOD",
   "AudioGroups":[
@@ -63,14 +63,12 @@
     {"$GMIncludedFile":"","%Name":"truck_idle_off_05.wav","CopyToMask":-1,"filePath":"datafiles/granular","name":"truck_idle_off_05.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"truck_idle_off_06.wav","CopyToMask":-1,"filePath":"datafiles/granular","name":"truck_idle_off_06.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"jaguar.wav","CopyToMask":-1,"filePath":"datafiles","name":"jaguar.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"master.bank","CopyToMask":-1,"filePath":"datafiles","name":"master.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Master.bank","CopyToMask":-1,"filePath":"datafiles","name":"Master.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"master.strings.bank","CopyToMask":-1,"filePath":"datafiles","name":"master.strings.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Master.strings.bank","CopyToMask":-1,"filePath":"datafiles","name":"Master.strings.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Music.bank","CopyToMask":-1,"filePath":"datafiles","name":"Music.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"sfx.bank","CopyToMask":-1,"filePath":"datafiles","name":"sfx.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"SFX.bank","CopyToMask":-1,"filePath":"datafiles","name":"SFX.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"singing.wav","CopyToMask":-1,"filePath":"datafiles","name":"singing.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"swish.wav","CopyToMask":-1,"filePath":"datafiles","name":"swish.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"standrews.wav","CopyToMask":-1,"filePath":"datafiles","name":"standrews.wav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Vehicles.bank","CopyToMask":-1,"filePath":"datafiles","name":"Vehicles.bank","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"wave_vorbis.fsb","CopyToMask":-1,"filePath":"datafiles","name":"wave_vorbis.fsb","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -190,6 +188,7 @@
     {"id":{"name":"rm_fmod_studio_recording_playback","path":"rooms/rm_fmod_studio_recording_playback/rm_fmod_studio_recording_playback.yy",},},
     {"id":{"name":"rm_fmod_studio_simple_event","path":"rooms/rm_fmod_studio_simple_event/rm_fmod_studio_simple_event.yy",},},
     {"id":{"name":"ExtensionCore_api","path":"scripts/ExtensionCore_api/ExtensionCore_api.yy",},},
+    {"id":{"name":"Fmod_Functions","path":"scripts/Fmod_Functions/Fmod_Functions.yy",},},
     {"id":{"name":"GMFMOD_API","path":"scripts/GMFMOD_API/GMFMOD_API.yy",},},
     {"id":{"name":"GMFMODStudio_API","path":"scripts/GMFMODStudio_API/GMFMODStudio_API.yy",},},
     {"id":{"name":"spr_gm_background","path":"sprites/spr_gm_background/spr_gm_background.yy",},},

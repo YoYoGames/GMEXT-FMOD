@@ -2,13 +2,13 @@
 
 RECORD_FILENAME = "playback.cmd.txt";
 
-master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"),FmodStudioLoadBankFlags.Normal)
+master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("master: " + string(fmod_last_result()))
-master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"),FmodStudioLoadBankFlags.Normal)
+master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.strings.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("masterstrings: " + string(fmod_last_result()))
-sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("sfx.bank"),FmodStudioLoadBankFlags.Normal)
+sfx_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("SFX.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("sfx: " + string(fmod_last_result()))
-vehicles_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("vehicles.bank"),FmodStudioLoadBankFlags.Normal)
+vehicles_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Vehicles.bank"),FmodStudioLoadBankFlags.Normal)
 show_debug_message("vehicles: " + string(fmod_last_result()))
 vehicle_guid = fmod_studio_system_get_event("event:/Vehicles/Ride-on Mower")
 show_debug_message(vehicle_guid);

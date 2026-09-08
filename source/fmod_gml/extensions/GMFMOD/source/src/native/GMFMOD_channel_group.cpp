@@ -35,8 +35,7 @@ uint64_t fmod_channel_group_get_channel(uint64_t channel_group_ref, double index
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }
@@ -152,11 +151,10 @@ double fmod_channel_group_release(uint64_t channel_group_ref)
 	if (channel_group == nullptr)
 		return 0;
 
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(channel_group, map_channel_groups);
 	g_fmod_last_result = channel_group->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(channel_group, map_channel_groups);
-	}
 	return 0;
 }
 

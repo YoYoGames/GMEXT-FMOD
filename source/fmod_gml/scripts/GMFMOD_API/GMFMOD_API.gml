@@ -4063,12 +4063,6 @@ function fmod_debug_initialize(_flags, _mode)
     return __return_value__;
 }
 
-// Skipping function fmod_path_bundle (no wrapper is required)
-
-
-// Skipping function fmod_path_user (no wrapper is required)
-
-
 /**
  * @param {Enum.FmodResult} _result
  * @returns {String}
@@ -4091,6 +4085,9 @@ function fmod_error_string(_result)
 }
 
 // Skipping function fmod_fetch_callbacks (no wrapper is required)
+
+
+// Skipping function fmod_shutdown (no wrapper is required)
 
 
 // Skipping function fmod_file_get_disk_busy (no wrapper is required)

@@ -5,10 +5,9 @@
 @interface GMFMODInternal : NSObject
 - (double)__EXT_NATIVE__fmod_last_result:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_debug_initialize:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (char*)__EXT_NATIVE__fmod_path_bundle:(char*)filename;
-- (char*)__EXT_NATIVE__fmod_path_user:(char*)filename;
 - (char*)__EXT_NATIVE__fmod_error_string:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_fetch_callbacks;
+- (double)__EXT_NATIVE__fmod_shutdown;
 - (double)__EXT_NATIVE__fmod_file_get_disk_busy;
 - (double)__EXT_NATIVE__fmod_file_set_disk_busy:(double)busy;
 - (double)__EXT_NATIVE__fmod_memory_get_stats:(double)blocking arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;

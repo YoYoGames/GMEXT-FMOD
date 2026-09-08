@@ -765,6 +765,12 @@ function fmod_studio_system_get_core_system_ptr(): gmval;
 [global, bind = typed_gml, type_hint=`FmodStudioResult`]
 function fmod_studio_last_result(): gmval;
 
+// finish_fn: the runtime calls this on game end and on game_restart(). Releasing
+// the Studio system also releases the core system it owns, which is the same
+// object GMFMOD may hold as an adopted system.
+[global, finish_fn, bind = typed_gml]
+function fmod_studio_shutdown(): unit;
+
 [global, bind = typed_gml]
 function fmod_studio_system_set_num_listeners(count: real): real;
 

@@ -4,6 +4,31 @@
 
 using namespace gm_structs;
 
+// FMOD hands back internal buffer pointers on lock() that must be passed back
+// unmodified to unlock() - they can't cross the GML wire, so we shadow them here
+// keyed by sound pointer between the two calls. The lengths come with them:
+// they are the only record of how large the locked region actually is, and
+// nothing GML passes to unlock() can be trusted to bound a write into it.
+struct FmodSoundLockRecord
+{
+	void* ptr1 = nullptr;
+	void* ptr2 = nullptr;
+	unsigned int len1 = 0;
+	unsigned int len2 = 0;
+};
+
+static std::map<uintptr_t, FmodSoundLockRecord> g_sound_lock_ptrs;
+
+void fmod_sound_forget_lock(const void* sound)
+{
+	g_sound_lock_ptrs.erase(reinterpret_cast<uintptr_t>(sound));
+}
+
+void fmod_sound_reset_state()
+{
+	g_sound_lock_ptrs.clear();
+}
+
 // ============================================================
 // Sound - Creation & Loading
 // ============================================================
@@ -38,7 +63,7 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
 		ex_info = &default_user_sound;
 	}
 
-	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(int)mode, ex_info, &sound);
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), ex_info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -71,13 +96,16 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 	info.decodebuffersize = (unsigned int)ex_info.decode_buffer_size;
 	info.initialsubsound = (int)ex_info.initial_subsound;
 	info.numsubsounds = (int)ex_info.num_subsounds;
-	info.inclusionlistnum = (int)ex_info.inclusion_list_num;
+	// FMOD reads inclusionlist[0..inclusionlistnum), and nothing in this API can
+	// supply that pointer - so the count has to stay zero, whatever GML passed.
+	info.inclusionlist = nullptr;
+	info.inclusionlistnum = 0;
 	info.maxpolyphony = (int)ex_info.max_polyphony;
 	info.suggestedsoundtype = (FMOD_SOUND_TYPE)(int)ex_info.suggested_sound_type;
 	info.filebuffersize = (int)ex_info.file_buffer_size;
 	info.channelorder = (FMOD_CHANNELORDER)(int)ex_info.channel_order;
 	info.initialseekposition = (unsigned int)ex_info.initial_seek_position;
-	info.initialseekpostype = (FMOD_TIMEUNIT)(unsigned int)ex_info.initial_seek_pos_type;
+	info.initialseekpostype = (FMOD_TIMEUNIT)fmod_flag_word(ex_info.initial_seek_pos_type);
 	info.ignoresetfilesystem = (int)ex_info.ignore_set_filesystem;
 	info.audioqueuepolicy = (unsigned int)ex_info.audio_queue_policy;
 	info.minmidigranularity = (unsigned int)ex_info.min_midi_granularity;
@@ -96,7 +124,7 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 		info.initialsoundgroup = (FMOD_SOUNDGROUP*)sound_group;
 	}
 
-	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(int)mode, &info, &sound);
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), &info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -118,7 +146,7 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode)
 
 	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
-	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)(int)mode, nullptr, &sound);
+	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), nullptr, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -156,8 +184,7 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-		uint32_t channel_id = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(channel));
-		result = packIndexIntoRef(channel_id, GM_FMOD_TYPE_CHANNEL);
+			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
 	}
 	return result;
 }
@@ -175,7 +202,7 @@ double fmod_sound_get_length(uint64_t sound_ref, double length_type)
 		return 0.0;
 
 	unsigned int length = 0;
-	g_fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)(int)length_type);
+	g_fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)fmod_flag_word(length_type));
 	return (double)length;
 }
 
@@ -199,7 +226,7 @@ double fmod_sound_set_mode(uint64_t sound_ref, double mode)
 	if (sound == nullptr)
 		return 0;
 
-	g_fmod_last_result = sound->setMode((FMOD_MODE)(int)mode);
+	g_fmod_last_result = sound->setMode((FMOD_MODE)fmod_flag_word(mode));
 	return 0;
 }
 
@@ -254,8 +281,8 @@ double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, double 
 		return 0;
 
 	g_fmod_last_result = sound->setLoopPoints(
-		(unsigned int)loop_start, (FMOD_TIMEUNIT)(int)loop_start_type,
-		(unsigned int)loop_end, (FMOD_TIMEUNIT)(int)loop_end_type
+		(unsigned int)loop_start, (FMOD_TIMEUNIT)fmod_flag_word(loop_start_type),
+		(unsigned int)loop_end, (FMOD_TIMEUNIT)fmod_flag_word(loop_end_type)
 	);
 	return 0;
 }
@@ -300,11 +327,11 @@ double fmod_sound_release(uint64_t sound_ref)
 	if (sound == nullptr)
 		return 0;
 
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(sound, map_sounds);
+	fmod_sound_forget_lock(sound);
 	g_fmod_last_result = sound->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(sound, map_sounds);
-	}
 	return 0;
 }
 
@@ -416,7 +443,7 @@ static std::string fmod_tag_utf16_to_utf8(const unsigned char* bytes, unsigned i
 	return out;
 }
 
-// TODO: lossy by construction — see the `data` field note in spec.gmidl. Binary tags
+// TODO: lossy by construction - see the `data` field note in spec.gmidl. Binary tags
 // return an empty string because they cannot survive the round trip; swap this for a
 // caller-supplied buffer out-param to expose them.
 static std::string fmod_tag_data_to_string(const FMOD_TAG& tag)
@@ -578,8 +605,8 @@ FmodLoopPoints fmod_sound_get_loop_points(uint64_t sound_ref, double start_type,
 
 	unsigned int loop_start = 0, loop_end = 0;
 	g_fmod_last_result = sound->getLoopPoints(
-		&loop_start, (FMOD_TIMEUNIT)(int)start_type,
-		&loop_end, (FMOD_TIMEUNIT)(int)end_type
+		&loop_start, (FMOD_TIMEUNIT)fmod_flag_word(start_type),
+		&loop_end, (FMOD_TIMEUNIT)fmod_flag_word(end_type)
 	);
 	result.loop_start = (double)loop_start;
 	result.loop_end = (double)loop_end;
@@ -678,7 +705,7 @@ FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_poin
 	g_fmod_last_result = sound->getSyncPoint((int)sync_point_index, &sync_point);
 	if (g_fmod_last_result == FMOD_OK)
 	{
-		g_fmod_last_result = sound->getSyncPointInfo(sync_point, nullptr, 0, &offset, (FMOD_TIMEUNIT)(int)offset_type);
+		g_fmod_last_result = sound->getSyncPointInfo(sync_point, nullptr, 0, &offset, (FMOD_TIMEUNIT)fmod_flag_word(offset_type));
 		result.offset = (double)offset;
 	}
 	return result;
@@ -693,7 +720,7 @@ double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, double offse
 		return 0;
 
 	FMOD_SYNCPOINT* sync_point = nullptr;
-	g_fmod_last_result = sound->addSyncPoint((unsigned int)offset, (FMOD_TIMEUNIT)(int)offset_type, name.data(), &sync_point);
+	g_fmod_last_result = sound->addSyncPoint((unsigned int)offset, (FMOD_TIMEUNIT)fmod_flag_word(offset_type), name.data(), &sync_point);
 	return (double)(uintptr_t)sync_point;
 }
 
@@ -949,11 +976,6 @@ double fmod_sound_seek_data(uint64_t sound_ref, double pcm)
 	return 0;
 }
 
-// FMOD hands back internal buffer pointers on lock() that must be passed back
-// unmodified to unlock() - they can't cross the GML wire, so we shadow them here
-// keyed by sound pointer between the two calls.
-static std::map<uintptr_t, std::pair<void*, void*>> g_sound_lock_ptrs;
-
 FmodSoundLockLengths fmod_sound_lock(uint64_t sound_ref, double offset, double length, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2)
 {
 	FmodSoundLockLengths result{};
@@ -983,7 +1005,7 @@ FmodSoundLockLengths fmod_sound_lock(uint64_t sound_ref, double offset, double l
 		memcpy(buffer2.data(), ptr2, (size_t)copy_len);
 	}
 
-	g_sound_lock_ptrs[reinterpret_cast<uintptr_t>(sound)] = { ptr1, ptr2 };
+	g_sound_lock_ptrs[reinterpret_cast<uintptr_t>(sound)] = { ptr1, ptr2, len1, len2 };
 
 	result.length1 = (double)len1;
 	result.length2 = (double)len2;
@@ -1006,21 +1028,27 @@ double fmod_sound_unlock(uint64_t sound_ref, gm::wire::GMBuffer buffer1, gm::wir
 		return 0;
 	}
 
-	void* ptr1 = it->second.first;
-	void* ptr2 = it->second.second;
+	void* ptr1 = it->second.ptr1;
+	void* ptr2 = it->second.ptr2;
+	const uint64_t locked1 = it->second.len1;
+	const uint64_t locked2 = it->second.len2;
 
+	// The locked region's real size is what lock() returned, not what GML says.
 	if (ptr1 != nullptr && buffer1.data() != nullptr && length1 > 0.0)
 	{
 		uint64_t copy_len = (uint64_t)length1 < buffer1.length() ? (uint64_t)length1 : buffer1.length();
+		if (copy_len > locked1) copy_len = locked1;
 		memcpy(ptr1, buffer1.data(), (size_t)copy_len);
 	}
 	if (ptr2 != nullptr && buffer2.data() != nullptr && length2 > 0.0)
 	{
 		uint64_t copy_len = (uint64_t)length2 < buffer2.length() ? (uint64_t)length2 : buffer2.length();
+		if (copy_len > locked2) copy_len = locked2;
 		memcpy(ptr2, buffer2.data(), (size_t)copy_len);
 	}
 
-	g_fmod_last_result = sound->unlock(ptr1, ptr2, (unsigned int)length1, (unsigned int)length2);
+	// FMOD expects back exactly the lengths it handed out.
+	g_fmod_last_result = sound->unlock(ptr1, ptr2, it->second.len1, it->second.len2);
 	g_sound_lock_ptrs.erase(it);
 	return 0;
 }

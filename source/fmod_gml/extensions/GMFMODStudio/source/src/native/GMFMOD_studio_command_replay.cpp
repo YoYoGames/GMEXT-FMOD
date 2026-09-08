@@ -11,7 +11,14 @@ using namespace gm_structs;
 // Callback Storage
 // ============================================================
 
+std::mutex g_command_replay_callback_mutex;
 std::map<uintptr_t, FmodCommandReplayCallbackContext> g_command_replay_callbacks;
+
+void fmod_studio_command_replay_reset_state()
+{
+	std::lock_guard<std::mutex> lock(g_command_replay_callback_mutex);
+	g_command_replay_callbacks.clear();
+}
 
 // ============================================================
 // Native Callback Handlers
@@ -55,8 +62,7 @@ static FMOD_RESULT CALLBACK_fmod_studio_command_replay_create_instance(
 		replay_ref = packIndexIntoRef((uint32_t)replay_ptr, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
 
 		uint64_t desc_ref = 0;
-		desc_ref = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(event_description),
-			GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		desc_ref = packPointerIntoRef(event_description, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
 
 		it->second.create_instance_callback.value().call(
 			replay_ref,
@@ -143,7 +149,14 @@ double fmod_studio_command_replay_release(uint64_t replay_ref)
 
 	// Clean up callbacks
 	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	g_command_replay_callbacks.erase(replay_ptr);
+	{
+		std::lock_guard<std::mutex> lock(g_command_replay_callback_mutex);
+		g_command_replay_callbacks.erase(replay_ptr);
+	}
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data.erase(replay_ptr);
+	}
 
 	g_fmod_last_result = replay->release();
 	return 0;
@@ -253,7 +266,7 @@ uint64_t fmod_studio_command_replay_get_system_object(uint64_t replay_ref)
 	g_fmod_last_result = replay->getSystem(&system);
 	if (g_fmod_last_result != FMOD_OK || system == nullptr) return 0;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(system), GM_FMOD_STUDIO_TYPE_SYSTEM);
+	return packPointerIntoRef(system, GM_FMOD_STUDIO_TYPE_SYSTEM);
 }
 
 double fmod_studio_command_replay_is_valid(uint64_t replay_ref)
@@ -292,6 +305,9 @@ std::string fmod_studio_command_replay_get_command_string(uint64_t replay_ref, d
 	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return std::string();
 
+	// getCommandString has no `retrieved` out-parameter (fmod_studio.hpp:373), so
+	// unlike every other Studio string getter there is no size handshake to use -
+	// a longer command string is truncated and FMOD offers no way to learn it.
 	char buffer[256] = {};
 	g_fmod_last_result = replay->getCommandString((int)command_index, buffer, sizeof(buffer));
 	if (g_fmod_last_result != FMOD_OK) return std::string();
@@ -368,6 +384,7 @@ double fmod_studio_command_replay_get_user_data(uint64_t replay_ref)
 	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0.0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(replay));
 	return it != g_user_data.end() ? it->second : 0.0;
 }
@@ -378,6 +395,7 @@ double fmod_studio_command_replay_set_user_data(uint64_t replay_ref, double user
 	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data[reinterpret_cast<uintptr_t>(replay)] = user_data;
 	return 0;
 }

@@ -20,14 +20,6 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_debug_initialize(__arg_buffer, __arg_buffer_length);
     }
-    public String __EXT_NATIVE__fmod_path_bundle(String filename)
-    {
-        return __EXT_JNI__fmod_path_bundle(filename);
-    }
-    public String __EXT_NATIVE__fmod_path_user(String filename)
-    {
-        return __EXT_JNI__fmod_path_user(filename);
-    }
     public String __EXT_NATIVE__fmod_error_string(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
         return __EXT_JNI__fmod_error_string(__arg_buffer, __arg_buffer_length);
@@ -35,6 +27,10 @@ public class GMFMODInternal extends RunnerSocial {
     public double __EXT_NATIVE__fmod_fetch_callbacks()
     {
         return __EXT_JNI__fmod_fetch_callbacks();
+    }
+    public double __EXT_NATIVE__fmod_shutdown()
+    {
+        return __EXT_JNI__fmod_shutdown();
     }
     public double __EXT_NATIVE__fmod_file_get_disk_busy()
     {

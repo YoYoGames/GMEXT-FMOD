@@ -36,5 +36,11 @@ void Shutdown_GMFMOD()
     FunctionPointer fnHandle = nullptr;
     void* libHandle = nullptr;
 
+    libHandle = ExtUtils_GetLibraryHandle("GMFMOD.ext");
+    if (libHandle)
+    {
+        fnHandle = (FunctionPointer)SharedLibrary_GetFunctionAddress(libHandle, "__EXT_NATIVE__fmod_shutdown");
+        if (fnHandle) fnHandle();
+    }
     isInitialized = false;
 }

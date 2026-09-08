@@ -149,10 +149,9 @@ double fmod_reverb_3d_release(uint64_t reverb_3d_ref)
 	if (reverb_3d == nullptr)
 		return 0;
 
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(reverb_3d, map_reverbs);
 	g_fmod_last_result = reverb_3d->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(reverb_3d, map_reverbs);
-	}
 	return 0;
 }

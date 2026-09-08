@@ -206,6 +206,11 @@
  */
 
 /**
+ * @function_partial fmod_studio_shutdown
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_system_set_num_listeners
  * @param {Real} count
  * @returns {Real}

@@ -16,7 +16,7 @@
   "copyToTargets": 3035426161732616398,
   "description": "",
   "exportToGame": true,
-  "extensionVersion": "1.2.1",
+  "extensionVersion": "2.0.0",
   "files": [
     {
       "$GMExtensionFile": "v1",
@@ -24,7 +24,7 @@
       "constants": [],
       "copyToTargets": 2891310973656760526,
       "filename": "GMFMOD.ext",
-      "final": "",
+      "final": "fmod_shutdown",
       "functions": [
         {
           "$GMExtensionFunction": "",
@@ -64,40 +64,6 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_path_bundle",
-          "argCount": 1,
-          "args": [
-            1
-          ],
-          "documentation": "@param {String} filename\r\n@returns {String}",
-          "externalName": "__EXT_NATIVE__fmod_path_bundle",
-          "help": "",
-          "hidden": false,
-          "kind": 4,
-          "name": "fmod_path_bundle",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 1
-        },
-        {
-          "$GMExtensionFunction": "",
-          "%Name": "fmod_path_user",
-          "argCount": 1,
-          "args": [
-            1
-          ],
-          "documentation": "@param {String} filename\r\n@returns {String}",
-          "externalName": "__EXT_NATIVE__fmod_path_user",
-          "help": "",
-          "hidden": false,
-          "kind": 4,
-          "name": "fmod_path_user",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 1
-        },
-        {
-          "$GMExtensionFunction": "",
           "%Name": "__fmod_error_string",
           "argCount": 2,
           "args": [
@@ -125,6 +91,21 @@
           "hidden": false,
           "kind": 4,
           "name": "fmod_fetch_callbacks",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "fmod_shutdown",
+          "argCount": 0,
+          "args": [],
+          "documentation": "@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_shutdown",
+          "help": "",
+          "hidden": false,
+          "kind": 4,
+          "name": "fmod_shutdown",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -5957,7 +5938,7 @@
   "installdir": "",
   "iosCocoaPodDependencies": "",
   "iosCocoaPods": "",
-  "ioscodeinjection": "\u003CYYIosPlist\u003E\r\n\r\n\u003Ckey\u003ENSMicrophoneUsageDescription\u003C/key\u003E\n\u003Cstring\u003E${YYEXTOPT_FMOD_iosMicAccessDesc}\u003C/string\u003E\n\r\n\u003C/YYIosPlist\u003E",
+  "ioscodeinjection": "\u003CYYIosPlist\u003E\r\n\r\n\u003Ckey\u003ENSMicrophoneUsageDescription\u003C/key\u003E\n\u003Cstring\u003E${YYEXTOPT_GMFMOD_iosMicAccessDesc}\u003C/string\u003E\n\r\n\u003C/YYIosPlist\u003E",
   "iosdelegatename": "",
   "iosplistinject": "\r\n\r\n\r\n\r\n",
   "iosProps": true,
@@ -5998,7 +5979,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "winSdkPath",
-      "defaultValue": "D:\\Github\\GMEXT-FMOD\\source\\fmod_sdk\\FMOD Studio API Windows",
+      "defaultValue": "../fmod_sdk/FMOD Studio API Windows",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Windows SDK",
       "exportToINI": true,
@@ -6014,7 +5995,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "macosSdkPath",
-      "defaultValue": "D:\\Github\\GMEXT-FMOD\\source\\fmod_sdk\\FMOD Studio API macOS",
+      "defaultValue": "../fmod_sdk/FMOD Studio API macOS",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "macOS SDK",
       "exportToINI": false,
@@ -6030,7 +6011,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "linuxSdkPath",
-      "defaultValue": "D:\\Github\\GMEXT-FMOD\\source\\fmod_sdk\\FMOD Studio API Linux",
+      "defaultValue": "../fmod_sdk/FMOD Studio API Linux",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Linux SDK",
       "exportToINI": true,
@@ -6062,7 +6043,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "androidSdkPath",
-      "defaultValue": "D:\\Github\\GMEXT-FMOD\\source\\fmod_sdk\\FMOD Studio API Android",
+      "defaultValue": "../fmod_sdk/FMOD Studio API Android",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Android SDK",
       "exportToINI": false,
@@ -6078,7 +6059,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "iosSdkPath",
-      "defaultValue": "",
+      "defaultValue": "../fmod_sdk/FMOD Studio API iOS",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "iOS SDK",
       "exportToINI": false,
@@ -6110,7 +6091,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "ps4SdkPath",
-      "defaultValue": "",
+      "defaultValue": "../fmod_sdk/FMOD Studio API PS4",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Playstation 4 SDK",
       "exportToINI": false,
@@ -6126,7 +6107,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "ps5SdkPath",
-      "defaultValue": "",
+      "defaultValue": "../fmod_sdk/FMOD Studio API PS5",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Playstation 5 SDK",
       "exportToINI": false,
@@ -6142,7 +6123,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "gdkSdkPath",
-      "defaultValue": "",
+      "defaultValue": "../fmod_sdk/FMOD Studio API Game Core",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "GDK SDK",
       "exportToINI": false,
@@ -6158,7 +6139,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "switchSdkPath",
-      "defaultValue": "",
+      "defaultValue": "../fmod_sdk/FMOD Studio API Switch",
       "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
       "displayName": "Switch SDK",
       "exportToINI": false,
@@ -6167,22 +6148,6 @@
       "hidden": false,
       "listItems": [],
       "name": "switchSdkPath",
-      "optType": 4,
-      "resourceType": "GMExtensionOption",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMExtensionOption": "",
-      "%Name": "switch2SdkPath",
-      "defaultValue": "",
-      "description": "This is the path to the folder containing the \u0022api\u0022 subfolder.",
-      "displayName": "Switch 2 SDK",
-      "exportToINI": false,
-      "extensionId": null,
-      "guid": "59d9053a-b8b8-4416-bc3c-38cbf6e16b86",
-      "hidden": false,
-      "listItems": [],
-      "name": "switch2SdkPath",
       "optType": 4,
       "resourceType": "GMExtensionOption",
       "resourceVersion": "2.0"
@@ -6280,22 +6245,6 @@
       "listItems": [],
       "name": "tvosMicAccessDesc",
       "optType": 2,
-      "resourceType": "GMExtensionOption",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMExtensionOption": "",
-      "%Name": "enableStudio",
-      "defaultValue": "True",
-      "description": "",
-      "displayName": "Enable",
-      "exportToINI": false,
-      "extensionId": null,
-      "guid": "0b9245eb-e6d6-4763-87c8-5fc0e4f67b65",
-      "hidden": true,
-      "listItems": [],
-      "name": "enableStudio",
-      "optType": 0,
       "resourceType": "GMExtensionOption",
       "resourceVersion": "2.0"
     },
@@ -6497,22 +6446,6 @@
     },
     {
       "$GMExtensionOption": "",
-      "%Name": "switch2SdkHash",
-      "defaultValue": "---",
-      "description": "",
-      "displayName": "",
-      "exportToINI": false,
-      "extensionId": null,
-      "guid": "d9d29db5-8478-48e3-88eb-78dd5a56b2da",
-      "hidden": true,
-      "listItems": [],
-      "name": "switch2SdkHash",
-      "optType": 2,
-      "resourceType": "GMExtensionOption",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMExtensionOption": "",
       "%Name": "sdkVersion",
       "defaultValue": "2.03",
       "description": "",
@@ -6619,10 +6552,10 @@
   "resourceVersion": "2.0",
   "sourcedir": "",
   "supportedTargets": -1,
-  "tvosclassname": "Fmod_iOS",
+  "tvosclassname": "GMFMOD",
   "tvosCocoaPodDependencies": "",
   "tvosCocoaPods": "",
-  "tvoscodeinjection": "\u003CYYIosPlist\u003E\r\n\r\n\u003Ckey\u003ENSMicrophoneUsageDescription\u003C/key\u003E\r\n\u003Cstring\u003E${YYEXTOPT_FMOD_tvosMicAccessDesc}\u003C/string\u003E\r\n\r\n\u003C/YYIosPlist\u003E",
+  "tvoscodeinjection": "\u003CYYIosPlist\u003E\r\n\r\n\u003Ckey\u003ENSMicrophoneUsageDescription\u003C/key\u003E\r\n\u003Cstring\u003E${YYEXTOPT_GMFMOD_tvosMicAccessDesc}\u003C/string\u003E\r\n\r\n\u003C/YYIosPlist\u003E",
   "tvosdelegatename": null,
   "tvosmaccompilerflags": "",
   "tvosmaclinkerflags": "",

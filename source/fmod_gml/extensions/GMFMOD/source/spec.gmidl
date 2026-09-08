@@ -1285,18 +1285,18 @@ function fmod_debug_initialize(
 ): unit;
 
 [global, bind = typed_gml]
-function fmod_path_bundle(filename: string): string;
-
-[global, bind = typed_gml]
-function fmod_path_user(filename: string): string;
-
-[global, bind = typed_gml]
 function fmod_error_string(
     [type_hint=`FmodResult`] result: gmval
 ): string;
 
 [global, bind = typed_gml]
 function fmod_fetch_callbacks(): real;
+
+// finish_fn: the runtime calls this on game end and on game_restart(), which is
+// what stops the registries, the selected system and the callback maps from
+// surviving a restart the GML side knows nothing about.
+[global, finish_fn, bind = typed_gml]
+function fmod_shutdown(): unit;
 
 }
 

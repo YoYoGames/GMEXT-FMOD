@@ -266,10 +266,9 @@ double fmod_geometry_release(uint64_t geometry_ref)
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
 	if (geometry == nullptr) return 0;
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(geometry, map_geometries);
 	g_fmod_last_result = geometry->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(geometry, map_geometries);
-	}
 	return 0;
 }

@@ -263,6 +263,12 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_last_result(char* __ret_buffer, double
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_shutdown()
+{
+    fmod_studio_shutdown();
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_num_listeners(double count)
 {
     auto&& __result = fmod_studio_system_set_num_listeners(static_cast<double>(count));

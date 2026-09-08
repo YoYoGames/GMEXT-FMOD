@@ -13,10 +13,9 @@ std::string fmod_studio_event_description_get_path(uint64_t event_desc_ref)
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return "";
-	char path[256] = {};
-	int capacity = sizeof(path);
-	g_fmod_last_result = event_desc->getPath(path, capacity, nullptr);
-	return std::string(path);
+	return fmod_read_string([event_desc](char* buf, int size, int* got) {
+		return event_desc->getPath(buf, size, got);
+	});
 }
 
 std::optional<uint64_t> fmod_studio_event_description_create_instance(uint64_t event_desc_ref)
@@ -29,7 +28,7 @@ std::optional<uint64_t> fmod_studio_event_description_create_instance(uint64_t e
 	if (g_fmod_last_result == FMOD_OK && instance != nullptr)
 	{
 		uint64_t result = 0;
-		result = packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(instance), GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+		result = packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
 		return result;
 	}
 	return std::nullopt;
@@ -62,7 +61,7 @@ std::optional<uint64_t> fmod_studio_event_description_get_instance_at(uint64_t e
 	FMOD::Studio::EventInstance* instance = instances[(size_t)idx];
 	if (instance == nullptr) return std::nullopt;
 
-	return packIndexIntoRef((uint32_t)reinterpret_cast<uintptr_t>(instance), GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+	return packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
 }
 
 double fmod_studio_event_description_is_snapshot(uint64_t event_desc_ref)
@@ -301,7 +300,7 @@ double fmod_studio_event_description_set_callback(uint64_t event_desc_ref, doubl
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return 0;
 
-	g_fmod_last_result = event_desc->setCallback(CALLBACK_fmod_studio_event_description, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)(int)callback_mask);
+	g_fmod_last_result = event_desc->setCallback(CALLBACK_fmod_studio_event_description, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)fmod_flag_word(callback_mask));
 	return 0;
 }
 
@@ -315,6 +314,7 @@ double fmod_studio_event_description_get_user_data(uint64_t event_desc_ref)
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return 0.0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(event_desc));
 	return it != g_user_data.end() ? it->second : 0.0;
 }
@@ -325,6 +325,7 @@ double fmod_studio_event_description_set_user_data(uint64_t event_desc_ref, doub
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return 0;
 
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data[reinterpret_cast<uintptr_t>(event_desc)] = user_data;
 	return 0;
 }
@@ -461,10 +462,9 @@ std::string fmod_studio_event_description_get_parameter_label_by_id(
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	char label[256] = {};
-	g_fmod_last_result = event_desc->getParameterLabelByID(id, (int)label_index, label, sizeof(label), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(label);
+	return fmod_read_string([event_desc, id, label_index](char* buf, int size, int* got) {
+		return event_desc->getParameterLabelByID(id, (int)label_index, buf, size, got);
+	});
 }
 
 std::string fmod_studio_event_description_get_parameter_label_at(
@@ -474,10 +474,9 @@ std::string fmod_studio_event_description_get_parameter_label_at(
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return std::string();
 
-	char label[256] = {};
-	g_fmod_last_result = event_desc->getParameterLabelByIndex((int)index, (int)label_index, label, sizeof(label), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(label);
+	return fmod_read_string([event_desc, index, label_index](char* buf, int size, int* got) {
+		return event_desc->getParameterLabelByIndex((int)index, (int)label_index, buf, size, got);
+	});
 }
 
 std::string fmod_studio_event_description_get_parameter_label_by_name(
@@ -488,8 +487,7 @@ std::string fmod_studio_event_description_get_parameter_label_by_name(
 	if (event_desc == nullptr) return std::string();
 
 	std::string name_str(name);
-	char label[256] = {};
-	g_fmod_last_result = event_desc->getParameterLabelByName(name_str.c_str(), (int)label_index, label, sizeof(label), nullptr);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
-	return std::string(label);
+	return fmod_read_string([event_desc, &name_str, label_index](char* buf, int size, int* got) {
+		return event_desc->getParameterLabelByName(name_str.c_str(), (int)label_index, buf, size, got);
+	});
 }

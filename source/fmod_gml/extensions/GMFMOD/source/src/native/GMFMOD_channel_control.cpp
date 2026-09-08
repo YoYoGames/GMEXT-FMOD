@@ -50,7 +50,7 @@ double fmod_channel_control_set_mode(uint64_t channel_control_ref, double mode)
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->setMode((FMOD_MODE)(int)mode);
+	g_fmod_last_result = control->setMode((FMOD_MODE)fmod_flag_word(mode));
 	return 0;
 }
 
@@ -728,12 +728,41 @@ FmodFadePoint fmod_channel_control_get_fade_point_at(uint64_t channel_control_re
 // User Data
 // ============================================================
 
+// ChannelGroups are registry-backed and already carry a data slot inside the
+// CustomUserData the registry allocated for them, so they use it. That leaves
+// g_user_data holding Channels and nothing else, which is what lets the
+// CALLBACK_END path below clear it completely rather than partially.
 double fmod_channel_control_set_user_data(uint64_t channel_control_ref, double user_data)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_user_data[reinterpret_cast<uintptr_t>(control)] = user_data;
+
+	if (gm_fmod_ref_type(channel_control_ref) == GM_FMOD_TYPE_CHANNEL_GROUP)
+	{
+		setResourceUserData((FMOD::ChannelGroup*)control, user_data);
+		g_fmod_last_result = FMOD_OK;
+		return 0;
+	}
+
+	const uintptr_t control_ptr = reinterpret_cast<uintptr_t>(control);
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data[control_ptr] = user_data;
+	}
+
+	// Without a callback installed there is no end-of-life signal for a Channel,
+	// so the entry above would outlive the channel and be inherited by whatever
+	// FMOD recycles the handle for. The trampoline is a no-op when GML registered
+	// no callback of its own; it is here purely so CALLBACK_END arrives. If it
+	// cannot be installed the channel is already gone, so drop the entry again
+	// rather than leave one nothing will ever reclaim.
+	g_fmod_last_result = fmod_channel_control_arm_end_hook(control);
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data.erase(control_ptr);
+	}
 	return 0;
 }
 
@@ -742,6 +771,14 @@ double fmod_channel_control_get_user_data(uint64_t channel_control_ref)
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0.0;
+
+	if (gm_fmod_ref_type(channel_control_ref) == GM_FMOD_TYPE_CHANNEL_GROUP)
+	{
+		g_fmod_last_result = FMOD_OK;
+		return getResourceUserData((FMOD::ChannelGroup*)control);
+	}
+
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(control));
 	if (it == g_user_data.end()) return 0.0;
 	return it->second;
@@ -751,8 +788,12 @@ double fmod_channel_control_get_user_data(uint64_t channel_control_ref)
 // Callbacks
 // ============================================================
 
-// ChannelControl callbacks are dispatched from System::update() on the thread
-// that calls it, so this map needs no locking.
+// FMOD Core dispatches ChannelControl callbacks from System::update() on the
+// calling thread, so contention here is unlikely - but that is a property of
+// how FMOD schedules rather than anything this code enforces, and the map is
+// reachable from fmod_channel_control_set_callback on the game thread either
+// way. Lock it, and fire the GML callback only after the lock is released.
+static std::mutex g_channel_callback_mutex;
 static std::map<uintptr_t, gm::wire::GMFunction> g_channel_callbacks;
 
 static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
@@ -767,20 +808,53 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 
 	// Keys are the truncated pointer the GML refs carry, so mask to match.
 	uintptr_t control_ptr = reinterpret_cast<uintptr_t>(channelcontrol) & 0xFFFFFFFFu;
-	auto it = g_channel_callbacks.find(control_ptr);
-	if (it != g_channel_callbacks.end())
+	const bool ended = (callbacktype == FMOD_CHANNELCONTROL_CALLBACK_END);
+
+	std::optional<gm::wire::GMFunction> callback;
 	{
-		uint64_t channel_ref = 0;
-		channel_ref = packIndexIntoRef((uint32_t)control_ptr, GM_FMOD_TYPE_CHANNEL);
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+		auto it = g_channel_callbacks.find(control_ptr);
+		if (it != g_channel_callbacks.end())
+		{
+			callback = it->second;
 
-		it->second.call(channel_ref, (double)(int)callbacktype);
+			// The channel handle dies once playback ends; drop the entry so a
+			// recycled pointer does not inherit this callback.
+			if (ended)
+				g_channel_callbacks.erase(it);
+		}
+	}
 
-		// The channel handle dies once playback ends; drop the entry so a
-		// recycled pointer does not inherit this callback.
-		if (callbacktype == FMOD_CHANNELCONTROL_CALLBACK_END)
-			g_channel_callbacks.erase(it);
+	// Runs whether or not GML registered a callback - set_user_data arms this
+	// hook precisely so the user-data entry gets an end-of-life signal too.
+	if (ended)
+	{
+		std::lock_guard<std::mutex> lock(g_user_data_mutex);
+		g_user_data.erase(control_ptr);
+	}
+
+	if (callback.has_value())
+	{
+		uint64_t channel_ref = packIndexIntoRef((uint32_t)control_ptr, GM_FMOD_TYPE_CHANNEL);
+		callback.value().call(channel_ref, (double)(int)callbacktype);
 	}
 	return FMOD_OK;
+}
+
+FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control)
+{
+	if (control == nullptr) return FMOD_ERR_INVALID_HANDLE;
+	return control->setCallback(CALLBACK_fmod_channel_control);
+}
+
+void fmod_channel_control_reset_state()
+{
+	{
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+		g_channel_callbacks.clear();
+	}
+	std::lock_guard<std::mutex> lock(g_user_data_mutex);
+	g_user_data.clear();
 }
 
 double fmod_channel_control_set_callback(uint64_t channel_ref, const std::optional<gm::wire::GMFunction>& callback)
@@ -793,14 +867,31 @@ double fmod_channel_control_set_callback(uint64_t channel_ref, const std::option
 
 	if (!callback.has_value())
 	{
-		g_channel_callbacks.erase(control_ptr);
-		g_fmod_last_result = channel->setCallback(nullptr);
+		{
+			std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+			g_channel_callbacks.erase(control_ptr);
+		}
+
+		// Keep the trampoline installed while this channel still has user data
+		// to reclaim; clearing it would strip the only CALLBACK_END we get.
+		bool keep_hook = false;
+		{
+			std::lock_guard<std::mutex> lock(g_user_data_mutex);
+			keep_hook = g_user_data.count(control_ptr) != 0;
+		}
+		g_fmod_last_result = channel->setCallback(keep_hook ? CALLBACK_fmod_channel_control : nullptr);
 		return 0;
 	}
 
-	g_channel_callbacks.insert_or_assign(control_ptr, callback.value());
+	{
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+		g_channel_callbacks.insert_or_assign(control_ptr, callback.value());
+	}
 	g_fmod_last_result = channel->setCallback(CALLBACK_fmod_channel_control);
 	if (g_fmod_last_result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
 		g_channel_callbacks.erase(control_ptr);
+	}
 	return 0;
 }

@@ -131,11 +131,10 @@ void fmod_dsp_release(uint64_t dsp_ref)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
+	// Unregister first: unregisterResource reads the object's user-data slot,
+	// which is gone once release() has run.
+	unregisterResource(dsp, map_dsps);
 	g_fmod_last_result = dsp->release();
-	if (g_fmod_last_result == FMOD_OK)
-	{
-		unregisterResource(dsp, map_dsps);
-	}
 }
 
 uint64_t fmod_dsp_get_system_object(uint64_t dsp_ref)
@@ -333,7 +332,7 @@ void fmod_dsp_set_channel_format(uint64_t dsp_ref, double channel_mask, double n
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)(uint32_t)channel_mask, (int)num_channels, FMOD_SPEAKERMODE_DEFAULT);
+	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)fmod_flag_word(channel_mask), (int)num_channels, FMOD_SPEAKERMODE_DEFAULT);
 }
 
 FmodDSPChannelFormat fmod_dsp_get_channel_format(uint64_t dsp_ref)

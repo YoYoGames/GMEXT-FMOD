@@ -96,14 +96,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_debug_initialize(__arg_buffer, __arg_buffer_length);
 }
-- (char*)__EXT_NATIVE__fmod_path_bundle:(char*)filename
-{
-    return __EXT_NATIVE__fmod_path_bundle(filename);
-}
-- (char*)__EXT_NATIVE__fmod_path_user:(char*)filename
-{
-    return __EXT_NATIVE__fmod_path_user(filename);
-}
 - (char*)__EXT_NATIVE__fmod_error_string:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_error_string(__arg_buffer, __arg_buffer_length);
@@ -111,6 +103,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_fetch_callbacks
 {
     return __EXT_NATIVE__fmod_fetch_callbacks();
+}
+- (double)__EXT_NATIVE__fmod_shutdown
+{
+    return __EXT_NATIVE__fmod_shutdown();
 }
 - (double)__EXT_NATIVE__fmod_file_get_disk_busy
 {
