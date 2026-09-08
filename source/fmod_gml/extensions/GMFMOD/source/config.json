@@ -26,7 +26,7 @@
     },
   "extras": {
     "docs": { 
-      "outputFile": "../../../../../docs/extgen_docs.js"
+      "outputFile": "../../../../../docs/extgen_docs_core.js"
     }
   },
     "build": {
