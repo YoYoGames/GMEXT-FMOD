@@ -3,21 +3,16 @@ Repository for GameMaker's FMOD Extension
 
 This repository was created with the intent of presenting users with the latest version available of the extension (even previous to marketplace updates) and also provide a way for the community to contribute with bug fixes and feature implementation.
 
-This extension will work on Desktop, Mobile and Consoles.
+This repository ships two extensions, each with its own native source folder and its own CMake build:
 
-* Windows: `source/fmod_gml/extensions/FMOD/fmod_windows/`
-* MacOS: `source/fmod_gml/extensions/FMOD/fmod_macos/`
-* Linux: `source/fmod_gml/extensions/FMOD/fmod_linux/`
-* Android: `source/fmod_gml/extensions/FMOD/fmod_android/`
-* iOS: `source/fmod_gml/extensions/FMOD/fmod_ios/`
-* Switch: `source/fmod_gml/extensions/FMOD/fmod_switch/`
-* Playstation: `source/fmod_gml/extensions/FMOD/fmod_playstation/`
-* XboxOne & SeriesX|S: `source/fmod_gml/extensions/FMOD/fmod_gdk/`
+* FMOD Core (`GMFMOD`): `source/fmod_gml/extensions/GMFMOD/source/` - Windows, macOS, Linux, Android, iOS
+* FMOD Studio (`GMFMODStudio`): `source/fmod_gml/extensions/GMFMODStudio/source/` - Windows, macOS, Linux
+
+The source is organised per extension rather than per platform: the C++ implementation under each
+`source/src/native/` is shared by every target, and `source/CMakePresets.json` lists the presets to
+build it with.
 
 After compilation the exported dll/dylib/so files is automatically copied into the extension folder inside the included GameMaker project folder.
-
-> [!NOTE]
-> The console exports don't include pre-compiled binaries so they will be compiled during GameMaker project's build time automatically.
 
 <br>
 

@@ -1,1 +1,54 @@
-{"gitHubUrl":"https://github.com/YoYoGames/GMEXT-FMOD","projectFile":"source/fmod_gml/FMOD.yyp","projectVersion":"LTS22","releaseTemplate":"templates/release_body.md","extensionMetaData":[{"extensionFile":"source/fmod_gml/extensions/FMOD/FMOD.yy","packageId":"com.yoyogames.fmodext","packageName":"FMOD Ext","packageVersion":"1.2.1","packageFormat":"LTS22","includeFolders":null,"includeResources":null,"excludeFolders":null,"excludeResources":null,"postRemovals":["**/.vs/","**/.vsc/","extensions/FMOD/YYFMOD_xbox*.dll","extensions/FMOD/*.prx","extensions/FMOD/*.nro","extensions/FMOD/*.nrr","extensions/FMOD/**/fmod.jar","extensions/FMOD/**/*fmodL*.*","extensions/FMOD/**/*fmodstudioL*.*","extensions/FMOD/**/Fmod Core/","extensions/FMOD/**/Fmod Studio/","extensions/FMOD/fmod_android/out/","extensions/FMOD/fmod_gdk/**/Gaming.Xbox.*.x64/","extensions/FMOD/fmod_playstation/**/ORBIS/","extensions/FMOD/fmod_playstation/**/Prospero/","extensions/FMOD/fmod_switch/**/NX64/","extensions/FMOD/fmod_windows/**/x64/","*.user","xcuserdata/","!extensions/FMOD/libfmodL.dylib","!extensions/FMOD/libfmodstudioL.dylib","*.sh-e"]}],"documentationFolder":null}
+{
+    "gitHubUrl": "https://github.com/YoYoGames/GMEXT-FMOD",
+    "projectFile": "source/fmod_gml/FMOD.yyp",
+    "projectVersion": "LTS22",
+    "releaseTemplate": "templates/release_body.md",
+    "extensionMetaData": [
+        {
+            "extensionFile": "source/fmod_gml/extensions/GMFMOD/GMFMOD.yy",
+            "packageId": "com.yoyogames.fmodext",
+            "packageName": "FMOD Ext",
+            "packageVersion": "1.2.1",
+            "packageFormat": "LTS22",
+            "includeFolders": null,
+            "includeResources": null,
+            "excludeFolders": null,
+            "excludeResources": null,
+            "postRemovals": [
+                "**/.vs/",
+                "**/.vsc/",
+                "**/*.exp",
+                "**/*.ilk",
+                "**/*.lib",
+                "**/*.pdb",
+                "**/*.exe",
+                "**/Debug/",
+                "**/Release/",
+                "**/source/out/",
+                ".DS_Store",
+                "*.user",
+                "xcuserdata/",
+                "*.sh-e",
+                "/Build/",
+                "extensions/**/fmod.dll",
+                "extensions/**/fmodL.dll",
+                "extensions/**/fmodstudio.dll",
+                "extensions/**/fmodstudioL.dll",
+                "extensions/**/libfmod*.so*",
+                "extensions/**/libfmod*.dylib",
+                "extensions/**/fmod.jar",
+                "extensions/**/*.aar",
+                "extensions/**/Fmod Core/",
+                "extensions/**/Fmod Studio/",
+                "extensions/**/YYFMOD_xbox*.dll",
+                "extensions/**/*.prx",
+                "extensions/**/*.nro",
+                "extensions/**/*.nrr",
+                "!extensions/GMFMOD/libfmodL.dylib",
+                "!extensions/GMFMODStudio/libfmodstudioL.dylib"
+            ]
+        }
+    ],
+    "documentationFolder": null,
+    "prefabMetaData": null
+}
