@@ -62,3 +62,9 @@ source/fmod_gml/Build/
 
 # Backup files
 source/fmod_gml/extensions/**/*.bak
+
+# The two .dylib placeholders both .yy files declare as extension files. They are zero-byte
+# on purpose - post_build_step writes the real bytes at game-build time - but GameMaker needs
+# them present to reference them in the generated Xcode project.
+!source/fmod_gml/extensions/GMFMOD/libfmodL.dylib
+!source/fmod_gml/extensions/GMFMODStudio/libfmodstudioL.dylib
