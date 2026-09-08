@@ -119,7 +119,7 @@ setupLinux() {
     pathResolveExisting "$YYprojectDir" "$LINUX_SDK_PATH" SDK_PATH
 
     # Get library file path
-    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so.14"
+    SDK_STUDIO_SOURCE="$SDK_PATH/api/studio/lib/x86_64/libfmodstudioL.so.14"
 
     # assertFileHashEquals $SDK_STUDIO_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
 
@@ -133,7 +133,7 @@ setupLinux() {
     TEMP_FOLDER="${YYprojectName}___temp___"
 
     mkdir "./${TEMP_FOLDER}"
-    itemCopyTo "$SDK_STUDIO_SOURCE" "${TEMP_FOLDER}/assets/libfmodstudio.so.14"
+    itemCopyTo "$SDK_STUDIO_SOURCE" "${TEMP_FOLDER}/assets/libfmodstudioL.so.14"
     zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
     rm -r ${TEMP_FOLDER}
 }

@@ -104,7 +104,7 @@ exit /b 0
     call %Utils% pathResolveExisting "%YYprojectDir%" "%LINUX_SDK_PATH%" SDK_PATH
 
     :: Get library file path (studio only)
-    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x86_64\libfmodstudio.so.14"
+    set SDK_STUDIO_SOURCE="%SDK_PATH%\api\studio\lib\x86_64\libfmodstudioL.so.14"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_STUDIO_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -120,7 +120,7 @@ exit /b 0
 
     :: Update the zip file with the required SDKs
     mkdir _temp\assets
-    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "_temp\assets\libfmodstudio.so.14"
+    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "_temp\assets\libfmodstudioL.so.14"
     call %Utils% zipUpdate "_temp" "!YYprojectName!.zip"
     rmdir /s /q _temp
 

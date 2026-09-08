@@ -115,8 +115,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%LINUX_SDK_PATH%" SDK_PATH
 
-    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudio.so.14)
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmod.so.14"
+    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudioL.so.14)
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmodL.so.14"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -132,7 +132,7 @@ exit /b 0
 
     :: Update the zip file with the required SDKs
     mkdir _temp\assets
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmod.so.14"
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmodL.so.14"
     call %Utils% zipUpdate "_temp" "!YYprojectName!.zip"
     rmdir /s /q _temp
 
