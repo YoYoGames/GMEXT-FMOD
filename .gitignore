@@ -16,37 +16,42 @@ source/fmod_sdk/
 # FMOD DEMO options
 source/fmod_gml/options/
 
-# YYFMOD pre-compiled console binaries
-source/fmod_gml/extensions/FMOD/YYFMOD_xbox*.dll
-source/fmod_gml/extensions/FMOD/*.prx
-source/fmod_gml/extensions/FMOD/*.nro
-source/fmod_gml/extensions/FMOD/*.nrr
+# FMOD SDK redistributables. The build-step scripts stage these at game-build time,
+# so they must never be committed - they are FMOD's to distribute, not ours. Matched
+# on filename rather than on an extension folder path: the previous rules were scoped
+# to extensions/FMOD/ and stopped matching the moment that folder was split in two.
+source/fmod_gml/extensions/**/fmod.dll
+source/fmod_gml/extensions/**/fmodL.dll
+source/fmod_gml/extensions/**/fmodstudio.dll
+source/fmod_gml/extensions/**/fmodstudioL.dll
+source/fmod_gml/extensions/**/libfmod*.so*
+source/fmod_gml/extensions/**/libfmod*.dylib
+source/fmod_gml/extensions/**/fmod.jar
+source/fmod_gml/extensions/**/*.aar
+source/fmod_gml/extensions/**/Fmod Core/
+source/fmod_gml/extensions/**/Fmod Studio/
 
-# FMOD SDK dependencies
-source/fmod_gml/extensions/FMOD/**/fmod.jar
-source/fmod_gml/extensions/FMOD/**/*fmodL*.*
-source/fmod_gml/extensions/FMOD/**/*fmodstudioL*.*
-source/fmod_gml/extensions/FMOD/**/Fmod Core/
-source/fmod_gml/extensions/FMOD/**/Fmod Studio/
+# Pre-compiled console binaries
+source/fmod_gml/extensions/**/YYFMOD_xbox*.dll
+source/fmod_gml/extensions/**/*.prx
+source/fmod_gml/extensions/**/*.nro
+source/fmod_gml/extensions/**/*.nrr
 
-# YYFMOD build solutions (temp & output)
-source/fmod_gml/extensions/FMOD/fmod_android/out/
-source/fmod_gml/extensions/FMOD/fmod_gdk/**/Gaming.Xbox.*.x64/
-source/fmod_gml/extensions/FMOD/fmod_playstation/**/ORBIS/
-source/fmod_gml/extensions/FMOD/fmod_playstation/**/Prospero/
-source/fmod_gml/extensions/FMOD/fmod_switch/**/NX64/
-source/fmod_gml/extensions/FMOD/fmod_switch2/**/Ounce64/
-source/fmod_gml/extensions/FMOD/fmod_windows/**/x64/
-source/fmod_gml/extensions/FMOD/fmod_ios/build/*
-source/fmod_gml/extensions/FMOD/fmod_tvos/build/*
+# Native build solutions (temp & output)
+source/fmod_gml/extensions/**/source/out/
+source/fmod_gml/extensions/**/fmod_android/out/
+source/fmod_gml/extensions/**/fmod_gdk/**/Gaming.Xbox.*.x64/
+source/fmod_gml/extensions/**/fmod_playstation/**/ORBIS/
+source/fmod_gml/extensions/**/fmod_playstation/**/Prospero/
+source/fmod_gml/extensions/**/fmod_switch/**/NX64/
+source/fmod_gml/extensions/**/fmod_switch2/**/Ounce64/
+source/fmod_gml/extensions/**/fmod_windows/**/x64/
+source/fmod_gml/extensions/**/fmod_ios/build/*
+source/fmod_gml/extensions/**/fmod_tvos/build/*
 
 # XCode and VS userdata
 *.user
 xcuserdata/
-
-# Allow macOS dylib placeholders 
-!source/fmod_gml/extensions/FMOD/libfmodL.dylib
-!source/fmod_gml/extensions/FMOD/libfmodstudioL.dylib
 
 # Igor artifacts
 *.sh-e
@@ -56,4 +61,4 @@ output/
 source/fmod_gml/Build/
 
 # Backup files
-source/fmod_gml/extensions/FMOD/*.bak
+source/fmod_gml/extensions/**/*.bak

@@ -123,10 +123,9 @@ if(WIN32)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core)
 
-  _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_FMOD_WIN_CORE_LIB_DIR}/${_core_dbg}.dll>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_WIN_CORE_LIB_DIR}/${_core_rel}.dll>
-  )
+  # No runtime staging here: on desktop that is the build-step scripts' job, and
+  # copying the SDK into the extension folder is what put FMOD's redistributables
+  # into git in the first place.
 
 # =============================================================================
 # APPLE: split iOS/tvOS (mobile, static) vs macOS (desktop, dylib)
@@ -203,10 +202,9 @@ elseif(APPLE)
 
     target_link_libraries(ext_third_party INTERFACE fmod_core)
 
-    _ext_tp_append_runtime(
-      $<$<CONFIG:Debug>:${_FMOD_MAC_CORE_LIB_DIR}/lib${_core_dbg}.dylib>
-      $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_MAC_CORE_LIB_DIR}/lib${_core_rel}.dylib>
-    )
+    # No runtime staging here: on desktop that is the build-step scripts' job, and
+    # copying the SDK into the extension folder is what put FMOD's redistributables
+    # into git in the first place.
   endif()
 
 # =============================================================================
@@ -277,10 +275,9 @@ elseif(UNIX)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core)
 
-  _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_core_dbg_so}>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_core_rel_so}>
-  )
+  # No runtime staging here: on desktop that is the build-step scripts' job, and
+  # copying the SDK into the extension folder is what put FMOD's redistributables
+  # into git in the first place.
 endif()
 
 # =============================================================================
