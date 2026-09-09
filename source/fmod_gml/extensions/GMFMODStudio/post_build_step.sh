@@ -149,50 +149,10 @@ setupLinux() {
 
 # ----------------------------------------------------------------------------------------------------
 setupAndroid() {
-    # Resolve the SDK path (must exist)
-    pathResolveExisting "$YYprojectDir" "$ANDROID_SDK_PATH" SDK_PATH
-
-    # assertFileHashEquals "$SDK_PATH/api/studio/lib/arm64-v8a/libfmodstudio.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
-
-    pushd "$ExtensionPath/AndroidSource/libs" >/dev/null
-
-    # No fmod.jar and no libfmod.so here - GMFMOD stages both, and a second copy
-    # at the same path in the same APK is a duplicate-class build failure.
-
-    # Handle arm64-v8a architecture
-    if [[ "$YYPLATFORM_option_android_arch_arm64" == "True" ]]; then
-        echo "Copying Android (arm64-v8a) dependencies"
-        [[ ! -d "arm64-v8a/" ]] && mkdir "arm64-v8a"
-        itemCopyTo "$SDK_PATH/api/studio/lib/arm64-v8a/libfmodstudio.so" "arm64-v8a/libfmodstudio.so"
-    else
-        if [ -d "arm64-v8a" ]; then
-            itemDelete "arm64-v8a/libfmodstudio.so"
-        fi
-    fi
-
-    # Handle armeabi-v7a architecture
-    if [[ "$YYPLATFORM_option_android_arch_armv7" == "True" ]]; then
-        echo "Copying Android (armeabi-v7a) dependencies"
-        [[ ! -d "armeabi-v7a/" ]] && mkdir "armeabi-v7a"
-        itemCopyTo "$SDK_PATH/api/studio/lib/armeabi-v7a/libfmodstudio.so" "armeabi-v7a/libfmodstudio.so"
-    else
-        if [ -d "armeabi-v7a" ]; then
-            itemDelete "armeabi-v7a/libfmodstudio.so"
-        fi
-    fi
-
-    # Handle x86_64 architecture
-    if [[ "$YYPLATFORM_option_android_arch_x86_64" == "True" ]]; then
-        echo "Copying Android (x86_64) dependencies"
-        [[ ! -d "x86_64" ]] && mkdir "x86_64"
-        itemCopyTo "$SDK_PATH/api/studio/lib/x86_64/libfmodstudio.so" "x86_64/libfmodstudio.so"
-    else
-        if [ -d "x86_64" ]; then
-            itemDelete "x86_64/libfmodstudio.so"
-        fi
-    fi
-
-    popd >/dev/null
+    # Nothing to do here. The Android runtime is staged by pre_build_step: it goes into
+    # the extension's own AndroidSource/libs, which the asset compiler reads before this
+    # script runs.
+    :
 }
 
 # ----------------------------------------------------------------------------------------------------

@@ -103,36 +103,28 @@ if(WIN32)
     ext_third_party INTERFACE "${_FMOD_WIN_ROOT}/api/core/inc"
                                "${_FMOD_WIN_ROOT}/api/studio/inc")
 
-  add_library(fmod_core SHARED IMPORTED GLOBAL)
-  set_target_properties(
-    fmod_core
-    PROPERTIES
-      IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_IMPLIB_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
-      IMPORTED_IMPLIB_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
-      IMPORTED_LOCATION_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
-      IMPORTED_LOCATION_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
-      MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
-      MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
+  # Link the import library by path instead of declaring a SHARED IMPORTED
+  # target. An imported target carrying IMPORTED_LOCATION is picked up by
+  # $<TARGET_RUNTIME_DLLS:> in the generated
+  # cmake/windows/extgen_post_build.cmake, which copies FMOD's redistributable
+  # into the extension folder. It does that independently of
+  # EXT_TP_RUNTIME_DLLS, so there is no staging call to remove - the target
+  # itself has to go. Staging the runtime is post_build_step.bat's job.
+  # Same shape as GMEXT-Steamworks.
+  set(_FMOD_WIN_CORE_IMPLIB
+      "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib")
+  set(_FMOD_WIN_STUDIO_IMPLIB
+      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}_vc.lib")
+  foreach(_lib IN ITEMS "${_FMOD_WIN_CORE_IMPLIB}" "${_FMOD_WIN_STUDIO_IMPLIB}")
+    if(NOT EXISTS "${_lib}")
+      message(FATAL_ERROR "Missing FMOD import library: ${_lib}")
+    endif()
+  endforeach()
 
-  add_library(fmod_studio SHARED IMPORTED GLOBAL)
-  set_target_properties(
-    fmod_studio
-    PROPERTIES
-      IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_IMPLIB_DEBUG
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}_vc.lib"
-      IMPORTED_IMPLIB_RELEASE
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}_vc.lib"
-      IMPORTED_LOCATION_DEBUG
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}.dll"
-      IMPORTED_LOCATION_RELEASE
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}.dll"
-      MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
-      MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
-  target_link_libraries(fmod_studio INTERFACE fmod_core)
-
-  target_link_libraries(ext_third_party INTERFACE fmod_core fmod_studio)
+  # Core before Studio: Studio's import lib depends on Core's symbols, and the
+  # ordering used to come from target_link_libraries(fmod_studio ... fmod_core).
+  target_link_libraries(ext_third_party INTERFACE "${_FMOD_WIN_CORE_IMPLIB}"
+                                                  "${_FMOD_WIN_STUDIO_IMPLIB}")
 
   # No runtime staging here: on desktop that is the build-step scripts' job, and
   # copying the SDK into the extension folder is what put FMOD's redistributables
@@ -284,14 +276,15 @@ elseif(ANDROID)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core fmod_studio)
 
-  # Studio's runtime only. GMFMOD stages libfmod.so and fmod.jar into its own
-  # AndroidSource/libs, and both extensions land in the same APK - staging Core
-  # here as well would put a second copy of the same file at the same path.
-  # Same split as the desktop build-step scripts, which copy fmodstudio only.
-  _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so>
-  )
+  # No runtime staging here either. The generated Android post-build copies
+  # EXT_TP_RUNTIME_DLLS into AndroidSource/libs/<abi>/, which is the extension's
+  # own source folder - gitignored, so it never reaches anyone who did not build
+  # this extension themselves. The delivery that ships is pre_build_step's, and
+  # it has to be pre_build_step because the asset compiler reads AndroidSource/
+  # before post_build_step runs.
+  # When it is restored there, it stages Studio's runtime only: GMFMOD stages
+  # libfmod.so and fmod.jar, both extensions land in the same APK, and a second
+  # copy of Core would collide at the same path.
 
 # =============================================================================
 # LINUX (versioned .so; only x86_64 ships the unversioned dev symlink)

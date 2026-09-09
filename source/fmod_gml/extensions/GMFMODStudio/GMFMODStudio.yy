@@ -3584,24 +3584,6 @@
       "resourceVersion": "2.0",
       "uncompress": false,
       "usesRunnerInterface": false
-    },
-    {
-      "$GMExtensionFile": "v1",
-      "%Name": "",
-      "constants": [],
-      "copyToTargets": -1,
-      "filename": "fmodstudio.dll",
-      "final": "",
-      "functions": [],
-      "init": "",
-      "kind": 1,
-      "name": "",
-      "origname": "",
-      "ProxyFiles": [],
-      "resourceType": "GMExtensionFile",
-      "resourceVersion": "2.0",
-      "uncompress": false,
-      "usesRunnerInterface": false
     }
   ],
   "gradleinject": "",

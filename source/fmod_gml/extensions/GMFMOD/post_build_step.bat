@@ -1,6 +1,5 @@
 @echo off
 set Utils="%~dp0scriptUtils.bat"
-set ExtensionPath="%~dp0"
 
 :: ######################################################################################
 :: Script Logic
@@ -142,51 +141,10 @@ exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupAndroid
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%ANDROID_SDK_PATH%" SDK_PATH
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals "%SDK_PATH%\api\core\lib\arm64-v8a\libfmod.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    pushd "%ExtensionPath%\AndroidSource\libs"
-
-    :: Handle common architecture
-    call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\fmod.jar" "fmod.jar"
-
-    :: Handle arm64-v8a architecture
-    if "%YYPLATFORM_option_android_arch_arm64%"=="True" (
-        echo "Copying Android (arm64-v8a) dependencies"
-        if not exist "arm64-v8a" mkdir "arm64-v8a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmod.so" "arm64-v8a\libfmod.so"
-    ) else (
-        if exist "arm64-v8a" (
-            call %Utils% itemDelete "arm64-v8a\libfmod.so"
-        )
-    )
-
-    :: Handle armeabi-v7a architecture
-    if "%YYPLATFORM_option_android_arch_armv7%"=="True" (
-        echo "Copying Android (armeabi-v7a) dependencies"
-        if not exist "armeabi-v7a" mkdir "armeabi-v7a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmod.so" "armeabi-v7a\libfmod.so"
-    ) else (
-        if exist "armeabi-v7a" (
-            call %Utils% itemDelete "armeabi-v7a\libfmod.so"
-        )
-    )
-
-    :: Handle x86_64 architecture
-    if "%YYPLATFORM_option_android_arch_x86_64%"=="True" (
-        echo "Copying Android (x86_64) dependencies"
-        if not exist "x86_64" mkdir "x86_64"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86_64\libfmod.so" "x86_64\libfmod.so"
-    ) else (
-        if exist "x86_64" (
-            call %Utils% itemDelete "x86_64\libfmod.so"
-        )
-    )
-
-    popd
+    :: Nothing to do here. The Android runtime is staged by pre_build_step: it goes into
+    :: the extension's own AndroidSource\libs, which the asset compiler reads before this
+    :: script runs. The label has to stay - cmd fails the build if 'call :setupAndroid'
+    :: finds no label.
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

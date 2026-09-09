@@ -1,6 +1,5 @@
 @echo off
 set Utils="%~dp0scriptUtils.bat"
-set ExtensionPath="%~dp0"
 
 :: ######################################################################################
 :: Script Logic
@@ -65,7 +64,7 @@ exit %ERRORLEVEL%
     :: call %Utils% assertFileHashEquals %SDK_STUDIO_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying Windows (64 bit) dependencies"
-    if not exist "fmodstudio.dll" call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "fmodstudio.dll"
+    call %Utils% itemCopyTo %SDK_STUDIO_SOURCE% "fmodstudio.dll"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -134,51 +133,10 @@ exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupAndroid
-    :: Resolve the SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%ANDROID_SDK_PATH%" SDK_PATH
-
-    :: Asset hash match
-    :: call %Utils% assertFileHashEquals "%SDK_PATH%\api\studio\lib\arm64-v8a\libfmodstudio.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
-
-    pushd "%ExtensionPath%\AndroidSource\libs"
-
-    :: No fmod.jar and no libfmod.so here - GMFMOD stages both, and a second copy
-    :: at the same path in the same APK is a duplicate-class build failure.
-
-    :: Handle arm64-v8a architecture
-    if "%YYPLATFORM_option_android_arch_arm64%"=="True" (
-        echo "Copying Android (arm64-v8a) dependencies"
-        if not exist "arm64-v8a" mkdir "arm64-v8a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\arm64-v8a\libfmodstudio.so" "arm64-v8a\libfmodstudio.so"
-    ) else (
-        if exist "arm64-v8a" (
-            call %Utils% itemDelete "arm64-v8a\libfmodstudio.so"
-        )
-    )
-
-    :: Handle armeabi-v7a architecture
-    if "%YYPLATFORM_option_android_arch_armv7%"=="True" (
-        echo "Copying Android (armeabi-v7a) dependencies"
-        if not exist "armeabi-v7a" mkdir "armeabi-v7a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\armeabi-v7a\libfmodstudio.so" "armeabi-v7a\libfmodstudio.so"
-    ) else (
-        if exist "armeabi-v7a" (
-            call %Utils% itemDelete "armeabi-v7a\libfmodstudio.so"
-        )
-    )
-
-    :: Handle x86_64 architecture
-    if "%YYPLATFORM_option_android_arch_x86_64%"=="True" (
-        echo "Copying Android (x86_64) dependencies"
-        if not exist "x86_64" mkdir "x86_64"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\x86_64\libfmodstudio.so" "x86_64\libfmodstudio.so"
-    ) else (
-        if exist "x86_64" (
-            call %Utils% itemDelete "x86_64\libfmodstudio.so"
-        )
-    )
-
-    popd
+    :: Nothing to do here. The Android runtime is staged by pre_build_step: it goes into
+    :: the extension's own AndroidSource\libs, which the asset compiler reads before this
+    :: script runs. The label has to stay - cmd fails the build if 'call :setupAndroid'
+    :: finds no label.
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

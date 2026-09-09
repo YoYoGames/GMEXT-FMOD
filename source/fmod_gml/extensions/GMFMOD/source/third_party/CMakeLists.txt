@@ -99,19 +99,22 @@ if(WIN32)
   target_include_directories(
     ext_third_party INTERFACE "${_FMOD_WIN_ROOT}/api/core/inc")
 
-  add_library(fmod_core SHARED IMPORTED GLOBAL)
-  set_target_properties(
-    fmod_core
-    PROPERTIES
-      IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_IMPLIB_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
-      IMPORTED_IMPLIB_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
-      IMPORTED_LOCATION_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
-      IMPORTED_LOCATION_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
-      MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
-      MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
+  # Link the import library by path instead of declaring a SHARED IMPORTED
+  # target. An imported target carrying IMPORTED_LOCATION is picked up by
+  # $<TARGET_RUNTIME_DLLS:> in the generated
+  # cmake/windows/extgen_post_build.cmake, which copies FMOD's redistributable
+  # into the extension folder. It does that independently of
+  # EXT_TP_RUNTIME_DLLS, so there is no staging call to remove - the target
+  # itself has to go. Staging the runtime is post_build_step.bat's job.
+  # Same shape as GMEXT-Steamworks.
+  set(_FMOD_WIN_CORE_IMPLIB
+      "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib")
+  if(NOT EXISTS "${_FMOD_WIN_CORE_IMPLIB}")
+    message(
+      FATAL_ERROR "Missing FMOD Core import library: ${_FMOD_WIN_CORE_IMPLIB}")
+  endif()
 
-  target_link_libraries(ext_third_party INTERFACE fmod_core)
+  target_link_libraries(ext_third_party INTERFACE "${_FMOD_WIN_CORE_IMPLIB}")
 
   # No runtime staging here: on desktop that is the build-step scripts' job, and
   # copying the SDK into the extension folder is what put FMOD's redistributables
@@ -217,10 +220,12 @@ elseif(ANDROID)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core)
 
-  _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_FMOD_AND_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.so>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.so>
-  )
+  # No runtime staging here either. The generated Android post-build copies
+  # EXT_TP_RUNTIME_DLLS into AndroidSource/libs/<abi>/, which is the extension's
+  # own source folder - gitignored, so it never reaches anyone who did not build
+  # this extension themselves. The delivery that ships is pre_build_step's, and
+  # it has to be pre_build_step because the asset compiler reads AndroidSource/
+  # before post_build_step runs.
 
 # =============================================================================
 # LINUX (versioned .so; only x86_64 ships the unversioned dev symlink)
