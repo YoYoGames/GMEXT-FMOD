@@ -70,7 +70,14 @@ var _flags_studio = FmodStudioInitFlags.LiveUpdate;
 #macro USE_FMOD_STUDIO true // Are we using FMOD studio (true) or just core (false)?
 #macro USE_DEBUG_CALLBACKS false // Should debugging be initialised?
 
-/* If we enable debug callbacks in the macro above set them ON */
+/*
+    If we enable debug callbacks in the macro above set them ON.
+
+    Note that this extension ships the non-logging build of FMOD, so
+    fmod_debug_initialize() always fails with FmodStudioResult.Unsupported.
+    It is kept here because the call is harmless and the extension can be
+    rebuilt against FMOD's logging (fmodL) libraries if you need it.
+*/
 if (USE_DEBUG_CALLBACKS)
 {
     fmod_debug_initialize(FmodStudioDebugFlags.LevelLog, FmodStudioDebugMode.Callback);

@@ -66,14 +66,14 @@ exit %ERRORLEVEL%
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%WIN_SDK_PATH%" SDK_PATH
 
-    :: Get library file path (core only - GMFMODStudio is responsible for fmodstudioL.dll)
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x64\fmodL.dll"
+    :: Get library file path (core only - GMFMODStudio is responsible for fmodstudio.dll)
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x64\fmod.dll"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %WIN_SDK_HASH% "%ERROR_SDK_HASH%"
 
     echo "Copying Windows (64 bit) dependencies"
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmodL.dll"
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "fmod.dll"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
@@ -82,8 +82,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%MACOS_SDK_PATH%" SDK_PATH
 
-    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudioL.dylib)
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmodL.dylib"
+    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudio.dylib)
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\libfmod.dylib"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %MACOS_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -103,7 +103,7 @@ exit /b 0
         set YYfixedProjectName=!YYprojectName: =_!
 
         :: This is used for YYC compilation
-        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmodL.dylib"
+        call %Utils% itemCopyTo %SDK_CORE_SOURCE% "!YYfixedProjectName!\!YYfixedProjectName!\Supporting Files\libfmod.dylib"
 
         endlocal
     )
@@ -115,8 +115,8 @@ exit /b 0
     :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%LINUX_SDK_PATH%" SDK_PATH
 
-    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudioL.so.14)
-    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmodL.so.14"
+    :: Get library file path (core only - GMFMODStudio is responsible for libfmodstudio.so.14)
+    set SDK_CORE_SOURCE="%SDK_PATH%\api\core\lib\x86_64\libfmod.so.14"
 
     :: Asset hash match
     :: call %Utils% assertFileHashEquals %SDK_CORE_SOURCE% %LINUX_SDK_HASH% "%ERROR_SDK_HASH%"
@@ -132,7 +132,7 @@ exit /b 0
 
     :: Update the zip file with the required SDKs
     mkdir _temp\assets
-    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmodL.so.14"
+    call %Utils% itemCopyTo %SDK_CORE_SOURCE% "_temp\assets\libfmod.so.14"
     call %Utils% zipUpdate "_temp" "!YYprojectName!.zip"
     rmdir /s /q _temp
 
@@ -146,7 +146,7 @@ exit /b 0
     call %Utils% pathResolveExisting "%YYprojectDir%" "%ANDROID_SDK_PATH%" SDK_PATH
 
     :: Asset hash match
-    :: call %Utils% assertFileHashEquals "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
+    :: call %Utils% assertFileHashEquals "%SDK_PATH%\api\core\lib\arm64-v8a\libfmod.so" %ANDROID_SDK_HASH% "%ERROR_SDK_HASH%"
 
     pushd "%ExtensionPath%\AndroidSource\libs"
 
@@ -157,10 +157,10 @@ exit /b 0
     if "%YYPLATFORM_option_android_arch_arm64%"=="True" (
         echo "Copying Android (arm64-v8a) dependencies"
         if not exist "arm64-v8a" mkdir "arm64-v8a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmodL.so" "arm64-v8a\libfmodL.so"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\arm64-v8a\libfmod.so" "arm64-v8a\libfmod.so"
     ) else (
         if exist "arm64-v8a" (
-            call %Utils% itemDelete "arm64-v8a\libfmodL.so"
+            call %Utils% itemDelete "arm64-v8a\libfmod.so"
         )
     )
 
@@ -168,10 +168,10 @@ exit /b 0
     if "%YYPLATFORM_option_android_arch_armv7%"=="True" (
         echo "Copying Android (armeabi-v7a) dependencies"
         if not exist "armeabi-v7a" mkdir "armeabi-v7a"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmodL.so" "armeabi-v7a\libfmodL.so"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\armeabi-v7a\libfmod.so" "armeabi-v7a\libfmod.so"
     ) else (
         if exist "armeabi-v7a" (
-            call %Utils% itemDelete "armeabi-v7a\libfmodL.so"
+            call %Utils% itemDelete "armeabi-v7a\libfmod.so"
         )
     )
 
@@ -179,10 +179,10 @@ exit /b 0
     if "%YYPLATFORM_option_android_arch_x86_64%"=="True" (
         echo "Copying Android (x86_64) dependencies"
         if not exist "x86_64" mkdir "x86_64"
-        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86_64\libfmodL.so" "x86_64\libfmodL.so"
+        call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\x86_64\libfmod.so" "x86_64\libfmod.so"
     ) else (
         if exist "x86_64" (
-            call %Utils% itemDelete "x86_64\libfmodL.so"
+            call %Utils% itemDelete "x86_64\libfmod.so"
         )
     )
 

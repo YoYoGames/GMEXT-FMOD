@@ -1760,6 +1760,8 @@ function fmod_memory_get_stats(blocking) {}
  * 
  * ${function.fmod_last_result} will return `FmodStudioResult.Unsupported` when using the non-logging (release) versions of FMOD.
  * 
+ * > **NOTE**: This extension ships the non-logging build of FMOD on every platform, so this function always fails with `FmodStudioResult.Unsupported`. Using it requires rebuilding the extension's native libraries against FMOD's logging (`fmodL`) build.
+ * 
  * Note that:
  * 
  * * `FmodStudioDebugFlags.LevelLog` produces informational, warning and error messages.

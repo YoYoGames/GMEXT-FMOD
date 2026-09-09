@@ -32,7 +32,7 @@ setupmacOS() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$MACOS_SDK_PATH" SDK_PATH
 
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmod.dylib"
 
     if [ ! -e "$SDK_CORE_SOURCE" ]; then
         logError "Not found: $SDK_CORE_SOURCE"
@@ -54,8 +54,8 @@ setupmacOS() {
         _fmod_codesign "./libGMFMOD.dylib"
 
         # Copy and code sign dependencies
-        itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
-        _fmod_codesign "./libfmodL.dylib"
+        itemCopyTo "$SDK_CORE_SOURCE" "./libfmod.dylib"
+        _fmod_codesign "./libfmod.dylib"
 
         # If there is an extra game.zip file here then this is a package command
         # Update the libraries inside the zip file (used for packaging)
@@ -65,7 +65,7 @@ setupmacOS() {
             mkdir "./${TEMP_FOLDER}"
 
             itemCopyTo "./libGMFMOD.dylib" "${TEMP_FOLDER}/assets/libGMFMOD.dylib"
-            itemCopyTo "./libfmodL.dylib" "${TEMP_FOLDER}/assets/libfmodL.dylib"
+            itemCopyTo "./libfmod.dylib" "${TEMP_FOLDER}/assets/libfmod.dylib"
 
             zipUpdate "${TEMP_FOLDER}" "game.zip"
             rm -r ${TEMP_FOLDER}
@@ -80,7 +80,7 @@ setupmacOS() {
         # Replace spaces with underscores (this matches the assetcompiler output)
         YYfixedProjectName="${YYprojectName// /_}"
 
-        itemCopyTo "$SDK_CORE_SOURCE" "${YYfixedProjectName}/${YYfixedProjectName}/Supporting Files/libfmodL.dylib"
+        itemCopyTo "$SDK_CORE_SOURCE" "${YYfixedProjectName}/${YYfixedProjectName}/Supporting Files/libfmod.dylib"
     fi
 }
 
@@ -88,7 +88,7 @@ setupMac() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$MACOS_SDK_PATH" SDK_PATH
 
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmodL.dylib"
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/libfmod.dylib"
 
     if [ ! -e "$SDK_CORE_SOURCE" ]; then
         logError "Not found: $SDK_CORE_SOURCE"
@@ -109,8 +109,8 @@ setupMac() {
     _fmod_codesign "./libGMFMOD.dylib"
 
     # Copy and code sign dependencies
-    itemCopyTo "$SDK_CORE_SOURCE" "./libfmodL.dylib"
-    _fmod_codesign "./libfmodL.dylib"
+    itemCopyTo "$SDK_CORE_SOURCE" "./libfmod.dylib"
+    _fmod_codesign "./libfmod.dylib"
     popd >/dev/null
 }
 
@@ -121,7 +121,7 @@ setupLinux() {
     pathResolveExisting "$YYprojectDir" "$LINUX_SDK_PATH" SDK_PATH
 
     # Get library file path
-    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmodL.so.14"
+    SDK_CORE_SOURCE="$SDK_PATH/api/core/lib/x86_64/libfmod.so.14"
 
     # assertFileHashEquals $SDK_CORE_SOURCE $LINUX_SDK_HASH "$ERROR_SDK_HASH"
 
@@ -135,7 +135,7 @@ setupLinux() {
     TEMP_FOLDER="${YYprojectName}___temp___"
 
     mkdir "./${TEMP_FOLDER}"
-    itemCopyTo "$SDK_CORE_SOURCE" "${TEMP_FOLDER}/assets/libfmodL.so.14"
+    itemCopyTo "$SDK_CORE_SOURCE" "${TEMP_FOLDER}/assets/libfmod.so.14"
     zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
     rm -r ${TEMP_FOLDER}
 }
@@ -145,7 +145,7 @@ setupAndroid() {
     # Resolve the SDK path (must exist)
     pathResolveExisting "$YYprojectDir" "$ANDROID_SDK_PATH" SDK_PATH
 
-    # assertFileHashEquals "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
+    # assertFileHashEquals "$SDK_PATH/api/core/lib/arm64-v8a/libfmod.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
 
     pushd "$ExtensionPath/AndroidSource/libs" >/dev/null
 
@@ -156,10 +156,10 @@ setupAndroid() {
     if [[ "$YYPLATFORM_option_android_arch_arm64" == "True" ]]; then
         echo "Copying Android (arm64-v8a) dependencies"
         [[ ! -d "arm64-v8a/" ]] && mkdir "arm64-v8a"
-        itemCopyTo "$SDK_PATH/api/core/lib/arm64-v8a/libfmodL.so" "arm64-v8a/libfmodL.so"
+        itemCopyTo "$SDK_PATH/api/core/lib/arm64-v8a/libfmod.so" "arm64-v8a/libfmod.so"
     else
         if [ -d "arm64-v8a" ]; then
-            itemDelete "arm64-v8a/libfmodL.so"
+            itemDelete "arm64-v8a/libfmod.so"
         fi
     fi
 
@@ -167,10 +167,10 @@ setupAndroid() {
     if [[ "$YYPLATFORM_option_android_arch_armv7" == "True" ]]; then
         echo "Copying Android (armeabi-v7a) dependencies"
         [[ ! -d "armeabi-v7a/" ]] && mkdir "armeabi-v7a"
-        itemCopyTo "$SDK_PATH/api/core/lib/armeabi-v7a/libfmodL.so" "armeabi-v7a/libfmodL.so"
+        itemCopyTo "$SDK_PATH/api/core/lib/armeabi-v7a/libfmod.so" "armeabi-v7a/libfmod.so"
     else
         if [ -d "armeabi-v7a" ]; then
-            itemDelete "armeabi-v7a/libfmodL.so"
+            itemDelete "armeabi-v7a/libfmod.so"
         fi
     fi
 
@@ -178,10 +178,10 @@ setupAndroid() {
     if [[ "$YYPLATFORM_option_android_arch_x86_64" == "True" ]]; then
         echo "Copying Android (x86_64) dependencies"
         [[ ! -d "x86_64" ]] && mkdir "x86_64"
-        itemCopyTo "$SDK_PATH/api/core/lib/x86_64/libfmodL.so" "x86_64/libfmodL.so"
+        itemCopyTo "$SDK_PATH/api/core/lib/x86_64/libfmod.so" "x86_64/libfmod.so"
     else
         if [ -d "x86_64" ]; then
-            itemDelete "x86_64/libfmodL.so"
+            itemDelete "x86_64/libfmod.so"
         fi
     fi
 

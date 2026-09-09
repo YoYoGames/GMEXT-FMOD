@@ -4,12 +4,11 @@ cmake_minimum_required(VERSION 3.18)
 # third_party: wires the vendored FMOD SDK into a single INTERFACE target
 # (ext_third_party) for every supported platform.
 #
-# FMOD ships two libraries per platform: "core" (fmod/fmodL) and "studio"
-# (fmodstudio/fmodstudioL), where studio depends on core. The only variant
-# axis FMOD's own binaries expose is logging (L) vs non-logging - it does not
-# ship separate Debug/Release builds. By default this maps Debug configs to
-# the logging libraries and Release-like configs to the non-logging ones;
-# EXT_TP_FMOD_USE_LOGGING forces logging in every config.
+# FMOD ships two libraries per platform: "core" (fmod) and "studio"
+# (fmodstudio), where studio depends on core. FMOD ships no Debug/Release split -
+# the only variant axis its binaries expose is logging (the L suffix) vs
+# non-logging - and this extension always links the non-logging build. See the
+# _FMOD_CORE_LIB note below.
 # =============================================================================
 
 add_library(ext_third_party INTERFACE)
@@ -28,13 +27,24 @@ if(NOT FMOD_SDK_ROOT)
     ABSOLUTE)
 endif()
 
-# MUST match GMFMOD's setting. Both extensions load into the same process, so if
-# one links fmodL.dll and the other fmod.dll the process ends up with two separate
-# copies of FMOD Core - an FMOD::System created by one is meaningless to the other,
-# which breaks fmod_studio_system_get_core_system_ptr() -> fmod_system_adopt().
-# Defaulted ON here (not in CMakePresets.json) because extgen regenerates presets.
-option(EXT_TP_FMOD_USE_LOGGING
-       "Force the FMOD logging (L) libraries in every config" ON)
+# FMOD ships a logging build of each library alongside the normal one - fmodL
+# next to fmod. It is a development aid: extra validation, verbose output, and
+# the only build in which fmod_debug_initialize() does anything.
+#
+# The extension always links the non-logging build, and there is deliberately no
+# switch for it. Shipping the L build was reported as a bug against the pre-port
+# extension, and it is not a choice an end user could make anyway: the basename
+# is baked into the wrapper's PE import table / ELF DT_NEEDED at link time, so
+# picking the other one means a different GMFMODStudio binary, not a different
+# setting. A GameMaker extension option is a runtime value and cannot rewrite a
+# prebuilt binary's imports or change which files get packaged.
+#
+# GMFMOD does the same. Both extensions load into one process, and mixing
+# the two builds would give it two separate copies of FMOD Core - an
+# FMOD::System created by one being meaningless to the other, which breaks
+# fmod_studio_system_get_core_system_ptr() -> fmod_system_adopt().
+set(_FMOD_CORE_LIB "fmod")
+set(_FMOD_STUDIO_LIB "fmodstudio")
 
 message(STATUS "[third_party] FMOD_SDK_ROOT = ${FMOD_SDK_ROOT}")
 
@@ -53,23 +63,6 @@ function(_ext_tp_append_runtime)
   set(_EXT_TP_RUNTIME_DLLS
       "${_EXT_TP_RUNTIME_DLLS}"
       PARENT_SCOPE)
-endfunction()
-
-# Helper: given a library root name (e.g. "fmod", "fmodstudio"), resolve the
-# Debug and Release basenames according to EXT_TP_FMOD_USE_LOGGING.
-function(_fmod_pick_variant outDebugVar outReleaseVar rootName)
-  set(${outDebugVar}
-      "${rootName}L"
-      PARENT_SCOPE)
-  if(EXT_TP_FMOD_USE_LOGGING)
-    set(${outReleaseVar}
-        "${rootName}L"
-        PARENT_SCOPE)
-  else()
-    set(${outReleaseVar}
-        "${rootName}"
-        PARENT_SCOPE)
-  endif()
 endfunction()
 
 # Helper (Linux only): resolve the actual .so on disk for a given basename.
@@ -110,18 +103,15 @@ if(WIN32)
     ext_third_party INTERFACE "${_FMOD_WIN_ROOT}/api/core/inc"
                                "${_FMOD_WIN_ROOT}/api/studio/inc")
 
-  _fmod_pick_variant(_core_dbg _core_rel fmod)
-  _fmod_pick_variant(_studio_dbg _studio_rel fmodstudio)
-
   add_library(fmod_core SHARED IMPORTED GLOBAL)
   set_target_properties(
     fmod_core
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_IMPLIB_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_core_dbg}_vc.lib"
-      IMPORTED_IMPLIB_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_core_rel}_vc.lib"
-      IMPORTED_LOCATION_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_core_dbg}.dll"
-      IMPORTED_LOCATION_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_core_rel}.dll"
+      IMPORTED_IMPLIB_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
+      IMPORTED_IMPLIB_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}_vc.lib"
+      IMPORTED_LOCATION_DEBUG "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
+      IMPORTED_LOCATION_RELEASE "${_FMOD_WIN_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.dll"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
 
@@ -131,13 +121,13 @@ if(WIN32)
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
       IMPORTED_IMPLIB_DEBUG
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_studio_dbg}_vc.lib"
+      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}_vc.lib"
       IMPORTED_IMPLIB_RELEASE
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_studio_rel}_vc.lib"
+      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}_vc.lib"
       IMPORTED_LOCATION_DEBUG
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_studio_dbg}.dll"
+      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}.dll"
       IMPORTED_LOCATION_RELEASE
-      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_studio_rel}.dll"
+      "${_FMOD_WIN_STUDIO_LIB_DIR}/${_FMOD_STUDIO_LIB}.dll"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
   target_link_libraries(fmod_studio INTERFACE fmod_core)
@@ -177,18 +167,15 @@ elseif(APPLE)
       ext_third_party INTERFACE "${_FMOD_IOS_ROOT}/api/core/inc"
                                  "${_FMOD_IOS_ROOT}/api/studio/inc")
 
-    _fmod_pick_variant(_core_dbg _core_rel fmod)
-    _fmod_pick_variant(_studio_dbg _studio_rel fmodstudio)
-
     add_library(fmod_core STATIC IMPORTED GLOBAL)
     set_target_properties(
       fmod_core
       PROPERTIES
         IMPORTED_CONFIGURATIONS "Debug;Release"
         IMPORTED_LOCATION_DEBUG
-        "${_FMOD_IOS_CORE_LIB_DIR}/lib${_core_dbg}_${_FMOD_APPLE_SLICE}.a"
+        "${_FMOD_IOS_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}_${_FMOD_APPLE_SLICE}.a"
         IMPORTED_LOCATION_RELEASE
-        "${_FMOD_IOS_CORE_LIB_DIR}/lib${_core_rel}_${_FMOD_APPLE_SLICE}.a"
+        "${_FMOD_IOS_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}_${_FMOD_APPLE_SLICE}.a"
         MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
         MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
 
@@ -198,9 +185,9 @@ elseif(APPLE)
       PROPERTIES
         IMPORTED_CONFIGURATIONS "Debug;Release"
         IMPORTED_LOCATION_DEBUG
-        "${_FMOD_IOS_STUDIO_LIB_DIR}/lib${_studio_dbg}_${_FMOD_APPLE_SLICE}.a"
+        "${_FMOD_IOS_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}_${_FMOD_APPLE_SLICE}.a"
         IMPORTED_LOCATION_RELEASE
-        "${_FMOD_IOS_STUDIO_LIB_DIR}/lib${_studio_rel}_${_FMOD_APPLE_SLICE}.a"
+        "${_FMOD_IOS_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}_${_FMOD_APPLE_SLICE}.a"
         MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
         MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
     target_link_libraries(fmod_studio INTERFACE fmod_core)
@@ -225,18 +212,15 @@ elseif(APPLE)
       ext_third_party INTERFACE "${_FMOD_MAC_ROOT}/api/core/inc"
                                  "${_FMOD_MAC_ROOT}/api/studio/inc")
 
-    _fmod_pick_variant(_core_dbg _core_rel fmod)
-    _fmod_pick_variant(_studio_dbg _studio_rel fmodstudio)
-
     add_library(fmod_core SHARED IMPORTED GLOBAL)
     set_target_properties(
       fmod_core
       PROPERTIES
         IMPORTED_CONFIGURATIONS "Debug;Release"
         IMPORTED_LOCATION_DEBUG
-        "${_FMOD_MAC_CORE_LIB_DIR}/lib${_core_dbg}.dylib"
+        "${_FMOD_MAC_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.dylib"
         IMPORTED_LOCATION_RELEASE
-        "${_FMOD_MAC_CORE_LIB_DIR}/lib${_core_rel}.dylib"
+        "${_FMOD_MAC_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.dylib"
         MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
         MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
 
@@ -246,9 +230,9 @@ elseif(APPLE)
       PROPERTIES
         IMPORTED_CONFIGURATIONS "Debug;Release"
         IMPORTED_LOCATION_DEBUG
-        "${_FMOD_MAC_STUDIO_LIB_DIR}/lib${_studio_dbg}.dylib"
+        "${_FMOD_MAC_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.dylib"
         IMPORTED_LOCATION_RELEASE
-        "${_FMOD_MAC_STUDIO_LIB_DIR}/lib${_studio_rel}.dylib"
+        "${_FMOD_MAC_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.dylib"
         MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
         MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
     target_link_libraries(fmod_studio INTERFACE fmod_core)
@@ -274,17 +258,14 @@ elseif(ANDROID)
     ext_third_party INTERFACE "${_FMOD_AND_ROOT}/api/core/inc"
                                "${_FMOD_AND_ROOT}/api/studio/inc")
 
-  _fmod_pick_variant(_core_dbg _core_rel fmod)
-  _fmod_pick_variant(_studio_dbg _studio_rel fmodstudio)
-
   add_library(fmod_core SHARED IMPORTED GLOBAL)
   set_target_properties(
     fmod_core
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_LOCATION_DEBUG "${_FMOD_AND_CORE_LIB_DIR}/lib${_core_dbg}.so"
+      IMPORTED_LOCATION_DEBUG "${_FMOD_AND_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.so"
       IMPORTED_LOCATION_RELEASE
-      "${_FMOD_AND_CORE_LIB_DIR}/lib${_core_rel}.so"
+      "${_FMOD_AND_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.so"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
 
@@ -294,22 +275,22 @@ elseif(ANDROID)
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
       IMPORTED_LOCATION_DEBUG
-      "${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_dbg}.so"
+      "${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so"
       IMPORTED_LOCATION_RELEASE
-      "${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_rel}.so"
+      "${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
   target_link_libraries(fmod_studio INTERFACE fmod_core)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core fmod_studio)
 
-  # Studio's runtime only. GMFMOD stages libfmod(L).so and fmod.jar into its own
+  # Studio's runtime only. GMFMOD stages libfmod.so and fmod.jar into its own
   # AndroidSource/libs, and both extensions land in the same APK - staging Core
   # here as well would put a second copy of the same file at the same path.
-  # Same split as the desktop build-step scripts, which copy fmodstudioL only.
+  # Same split as the desktop build-step scripts, which copy fmodstudio only.
   _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_dbg}.so>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_rel}.so>
+    $<$<CONFIG:Debug>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so>
+    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_FMOD_STUDIO_LIB}.so>
   )
 
 # =============================================================================
@@ -335,23 +316,17 @@ elseif(UNIX)
     ext_third_party INTERFACE "${_FMOD_LNX_ROOT}/api/core/inc"
                                "${_FMOD_LNX_ROOT}/api/studio/inc")
 
-  _fmod_pick_variant(_core_dbg _core_rel fmod)
-  _fmod_pick_variant(_studio_dbg _studio_rel fmodstudio)
-
-  _fmod_resolve_so(_core_dbg_so "${_FMOD_LNX_CORE_LIB_DIR}" "${_core_dbg}")
-  _fmod_resolve_so(_core_rel_so "${_FMOD_LNX_CORE_LIB_DIR}" "${_core_rel}")
-  _fmod_resolve_so(_studio_dbg_so "${_FMOD_LNX_STUDIO_LIB_DIR}"
-                    "${_studio_dbg}")
-  _fmod_resolve_so(_studio_rel_so "${_FMOD_LNX_STUDIO_LIB_DIR}"
-                    "${_studio_rel}")
+  _fmod_resolve_so(_core_so "${_FMOD_LNX_CORE_LIB_DIR}" "${_FMOD_CORE_LIB}")
+  _fmod_resolve_so(_studio_so "${_FMOD_LNX_STUDIO_LIB_DIR}"
+                    "${_FMOD_STUDIO_LIB}")
 
   add_library(fmod_core SHARED IMPORTED GLOBAL)
   set_target_properties(
     fmod_core
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_LOCATION_DEBUG "${_core_dbg_so}"
-      IMPORTED_LOCATION_RELEASE "${_core_rel_so}"
+      IMPORTED_LOCATION_DEBUG "${_core_so}"
+      IMPORTED_LOCATION_RELEASE "${_core_so}"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
 
@@ -360,8 +335,8 @@ elseif(UNIX)
     fmod_studio
     PROPERTIES
       IMPORTED_CONFIGURATIONS "Debug;Release"
-      IMPORTED_LOCATION_DEBUG "${_studio_dbg_so}"
-      IMPORTED_LOCATION_RELEASE "${_studio_rel_so}"
+      IMPORTED_LOCATION_DEBUG "${_studio_so}"
+      IMPORTED_LOCATION_RELEASE "${_studio_so}"
       MAP_IMPORTED_CONFIG_RELWITHDEBINFO "${_MAP_REL_CONFIGS}"
       MAP_IMPORTED_CONFIG_MINSIZEREL "${_MAP_REL_CONFIGS}")
   target_link_libraries(fmod_studio INTERFACE fmod_core)

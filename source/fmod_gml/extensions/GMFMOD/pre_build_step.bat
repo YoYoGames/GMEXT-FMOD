@@ -166,11 +166,11 @@ exit /b 0
         exit /b 1
     )
 
-    :: Library file path (core only - GMFMODStudio ships fmodstudioL.dll)
-    set "SDK_CORE_SOURCE=%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmodL.dll"
+    :: Library file path (core only - GMFMODStudio ships fmodstudio.dll)
+    set "SDK_CORE_SOURCE=%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmod.dll"
 
     echo Copying Xbox (%PLATFORM_PATH%) dependencies
-    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\fmodL.dll"
+    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\fmod.dll"
 
 exit /b 0
 
@@ -210,11 +210,11 @@ exit /b 0
     :: Copy libs to GML project
     call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
 
-    :: Get library file path (core only - GMFMODStudio ships libfmodstudioL.prx)
-    set "SDK_CORE_SOURCE=%FMOD_SDK_PATH%\api\core\lib\libfmodL.prx"
+    :: Get library file path (core only - GMFMODStudio ships libfmodstudio.prx)
+    set "SDK_CORE_SOURCE=%FMOD_SDK_PATH%\api\core\lib\libfmod.prx"
 
     echo "Copying %YYPLATFORM_name% dependencies"
-    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\libfmodL.prx"
+    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\libfmod.prx"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------

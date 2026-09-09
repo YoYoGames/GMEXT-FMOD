@@ -31,9 +31,7 @@
                 "*.sh-e",
                 "/Build/",
                 "extensions/**/fmod.dll",
-                "extensions/**/fmodL.dll",
                 "extensions/**/fmodstudio.dll",
-                "extensions/**/fmodstudioL.dll",
                 "extensions/**/libfmod*.so*",
                 "extensions/**/libfmod*.dylib",
                 "extensions/**/fmod.jar",
@@ -44,8 +42,8 @@
                 "extensions/**/*.prx",
                 "extensions/**/*.nro",
                 "extensions/**/*.nrr",
-                "!extensions/GMFMOD/libfmodL.dylib",
-                "!extensions/GMFMODStudio/libfmodstudioL.dylib"
+                "!extensions/GMFMOD/libfmod.dylib",
+                "!extensions/GMFMODStudio/libfmodstudio.dylib"
             ]
         }
     ],
