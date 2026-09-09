@@ -3557,8 +3557,8 @@
         },
         {
           "$GMProxyFile": "",
-          "%Name": "GMFMODStudio.so",
-          "name": "GMFMODStudio.so",
+          "%Name": "libGMFMODStudio.so",
+          "name": "libGMFMODStudio.so",
           "resourceType": "GMProxyFile",
           "resourceVersion": "2.0",
           "TargetMask": 7

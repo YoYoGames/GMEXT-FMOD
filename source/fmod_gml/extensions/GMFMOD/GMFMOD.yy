@@ -5805,8 +5805,8 @@
       "ProxyFiles": [
         {
           "$GMProxyFile": "",
-          "%Name": "GMFMOD.so",
-          "name": "GMFMOD.so",
+          "%Name": "libGMFMOD.so",
+          "name": "libGMFMOD.so",
           "resourceType": "GMProxyFile",
           "resourceVersion": "2.0",
           "TargetMask": 7
