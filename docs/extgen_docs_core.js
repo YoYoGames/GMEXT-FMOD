@@ -2989,6 +2989,15 @@
  * @member Feedback
  * @member DryLevel
  * @member WetLevel
+ * @member DelayChangeMode
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspEchoDelayChangeMode
+ * @member Fade
+ * @member Lerp
+ * @member None
  * @enum_end
  */
 
@@ -3088,27 +3097,109 @@
  * @member Bandpass
  * @member Notch
  * @member Allpass
+ * @member Lowpass6db
+ * @member Highpass6db
  * @enum_end
  */
 
 /**
  * @enum_partial FmodDspChannelMix
- * @member OutputGain
- * @member OutputGainCh0
- * @member OutputGainCh1
- * @member OutputGainCh2
- * @member OutputGainCh3
- * @member OutputGainCh4
- * @member OutputGainCh5
- * @member OutputGainCh6
- * @member OutputGainCh7
+ * @member OutputGrouping
+ * @member GainCh0
+ * @member GainCh1
+ * @member GainCh2
+ * @member GainCh3
+ * @member GainCh4
+ * @member GainCh5
+ * @member GainCh6
+ * @member GainCh7
+ * @member GainCh8
+ * @member GainCh9
+ * @member GainCh10
+ * @member GainCh11
+ * @member GainCh12
+ * @member GainCh13
+ * @member GainCh14
+ * @member GainCh15
+ * @member GainCh16
+ * @member GainCh17
+ * @member GainCh18
+ * @member GainCh19
+ * @member GainCh20
+ * @member GainCh21
+ * @member GainCh22
+ * @member GainCh23
+ * @member GainCh24
+ * @member GainCh25
+ * @member GainCh26
+ * @member GainCh27
+ * @member GainCh28
+ * @member GainCh29
+ * @member GainCh30
+ * @member GainCh31
+ * @member OutputCh0
+ * @member OutputCh1
+ * @member OutputCh2
+ * @member OutputCh3
+ * @member OutputCh4
+ * @member OutputCh5
+ * @member OutputCh6
+ * @member OutputCh7
+ * @member OutputCh8
+ * @member OutputCh9
+ * @member OutputCh10
+ * @member OutputCh11
+ * @member OutputCh12
+ * @member OutputCh13
+ * @member OutputCh14
+ * @member OutputCh15
+ * @member OutputCh16
+ * @member OutputCh17
+ * @member OutputCh18
+ * @member OutputCh19
+ * @member OutputCh20
+ * @member OutputCh21
+ * @member OutputCh22
+ * @member OutputCh23
+ * @member OutputCh24
+ * @member OutputCh25
+ * @member OutputCh26
+ * @member OutputCh27
+ * @member OutputCh28
+ * @member OutputCh29
+ * @member OutputCh30
+ * @member OutputCh31
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspChannelMixOutput
+ * @member Default
+ * @member AllMono
+ * @member AllStereo
+ * @member AllQuad
+ * @member All5Point1
+ * @member All7Point1
+ * @member AllLfe
+ * @member All7Point1Point4
  * @enum_end
  */
 
 /**
  * @enum_partial FmodDspTransceiver
- * @member TransmitFreq
- * @member ReceiveFreq
+ * @member Transmit
+ * @member Gain
+ * @member Channel
+ * @member TransmitSpeakerMode
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspTransceiverSpeakerMode
+ * @member Auto
+ * @member Mono
+ * @member Stereo
+ * @member Surround
  * @enum_end
  */
 
@@ -3227,11 +3318,12 @@
  * @member Unknown
  * @member Aiff
  * @member Asf
- * @member Dsd
+ * @member Dls
  * @member Flac
  * @member Fsb
  * @member It
  * @member Midi
+ * @member Mod
  * @member Mpeg
  * @member OggVorbis
  * @member Playlist
@@ -3240,8 +3332,8 @@
  * @member User
  * @member Wav
  * @member Xm
- * @member Xwm
- * @member Ac3
+ * @member Xma
+ * @member AudioQueue
  * @member At9
  * @member Vorbis
  * @member MediaFoundation

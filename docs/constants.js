@@ -477,11 +477,12 @@
  * @member Unknown Unknown or custom codec plugin.
  * @member Aiff Audio Interchange File Format (.aif, .aiff). Uncompressed integer formats only.
  * @member Asf Microsoft Advanced Systems Format (.asf, .wma, .wmv). Platform provided decoder, available only on Windows.
- * @member Dsd Direct Stream Digital.
+ * @member Dls Downloadable Sounds sound bank (.dls).
  * @member Flac Free Lossless Audio Codec (.flac).
  * @member Fsb FMOD Sample Bank (.fsb). Proprietary multi-sound bank format. Supported encodings: PCM16, FADPCM, Vorbis, AT9, XMA, Opus.
  * @member It Impulse Tracker (.it).
  * @member Midi Musical Instrument Digital Interface (.mid).
+ * @member Mod Protracker / Fasttracker Module File (.mod).
  * @member Mpeg Moving Picture Experts Group (.mp2, .mp3). Also supports .wav (RIFF) container format.
  * @member OggVorbis Ogg Vorbis (.ogg).
  * @member Playlist Play list information container (.asx, .pls, .m3u, .wax). No audio, tags only.
@@ -490,8 +491,8 @@
  * @member User User created sound.
  * @member Wav Microsoft Waveform Audio File Format (.wav). Supported encodings: Uncompressed PCM, IMA ADPCM. Platform provided ACM decoder extensions, available only on Windows.
  * @member Xm FastTracker 2 Extended Module (.xm).
- * @member Xwm Xbox Media Audio.
- * @member Ac3 Dolby AC-3.
+ * @member Xma Xbox Media Audio bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox.
+ * @member AudioQueue Apple Audio Queue decoder (.mp4, .m4a, .mp3). Platform provided decoder, available only on iOS and tvOS.
  * @member At9 Sony ATRAC9 bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on PlayStation.
  * @member Vorbis Vorbis bit-stream supported by FSB (.fsb) container format.
  * @member MediaFoundation Microsoft Media Foundation decoder (.asf, .wma, .wmv, .mp4, .m4a). Platform provided decoder, available only on UWP.
@@ -747,6 +748,22 @@
  * @member Feedback Echo decay per delay. 100.0 = No decay, 0.0 = total decay.
  * @member DryLevel Original sound volume.
  * @member WetLevel Volume of echo signal to pass to output.
+ * @member DelayChangeMode How the echo responds to a change of the Delay parameter - a member of ${constant.FmodDspEchoDelayChangeMode}.
+ * @const_end
+ * */
+
+
+
+/**
+ * @const FmodDspEchoDelayChangeMode
+ * @desc > **FMOD Constant:** [FMOD_DSP_ECHO_DELAYCHANGEMODE_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_echo_delaychangemode_type)
+ *
+ * <br />
+ *
+ * This enum specifies how the echo responds to a change of its Delay parameter. Pass one of these to ${constant.FmodDspEcho}.DelayChangeMode.
+ * @member Fade Cross fade between the old and the new delay.
+ * @member Lerp Interpolate towards the new delay, changing the pitch of the echo while it moves.
+ * @member None Jump straight to the new delay.
  * @const_end
  * */
 
@@ -885,6 +902,8 @@
  * @member Bandpass Band-pass filter, allows frequencies at a given point (with specificed bandwidth) to pass while attenuating frequencies outside this range.
  * @member Notch Notch or band-reject filter, attenuates frequencies at a given point (with specificed bandwidth) while allowing frequencies outside this range to pass.
  * @member Allpass All-pass filter, allows all frequencies to pass, but changes the phase response at a given point (with specified sharpness).
+ * @member Lowpass6db Low-pass filter, attenuates frequencies (6dB per octave) above a given point while allowing the rest to pass.
+ * @member Highpass6db High-pass filter, attenuates frequencies (6dB per octave) below a given point while allowing the rest to pass.
  * @const_end
  * */
 
@@ -1062,15 +1081,91 @@
  *
  * For input channels mapped to an output channel in excess of the number of output channels, it will instead be mapped to the modulo of that channel index. E.g., if there are 4 output channels, the input channel mapped to output channel index 5 will be mapped to index 1.
  * 
- * @member OutputGain Selects the output grouping - FMOD's `FMOD_DSP_CHANNELMIX_OUTPUTGROUPING`. This chooses how the output channels are grouped, it is not a gain.
- * @member OutputGainCh0 Gain applied to output channel 0, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh1 Gain applied to output channel 1, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh2 Gain applied to output channel 2, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh3 Gain applied to output channel 3, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh4 Gain applied to output channel 4, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh5 Gain applied to output channel 5, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh6 Gain applied to output channel 6, in dB. Range -80 to 10, default 0.
- * @member OutputGainCh7 Gain applied to output channel 7, in dB. Range -80 to 10, default 0.
+ * @member OutputGrouping Output channel grouping - a member of ${constant.FmodDspChannelMixOutput}. Sets the output speaker format for the DSP, which determines the number of output channels.
+ * @member GainCh0 Gain applied to output channel 0, in dB. Range -80 to 10, default 0.
+ * @member GainCh1 Gain applied to output channel 1, in dB. Range -80 to 10, default 0.
+ * @member GainCh2 Gain applied to output channel 2, in dB. Range -80 to 10, default 0.
+ * @member GainCh3 Gain applied to output channel 3, in dB. Range -80 to 10, default 0.
+ * @member GainCh4 Gain applied to output channel 4, in dB. Range -80 to 10, default 0.
+ * @member GainCh5 Gain applied to output channel 5, in dB. Range -80 to 10, default 0.
+ * @member GainCh6 Gain applied to output channel 6, in dB. Range -80 to 10, default 0.
+ * @member GainCh7 Gain applied to output channel 7, in dB. Range -80 to 10, default 0.
+ * @member GainCh8 Gain applied to output channel 8, in dB. Range -80 to 10, default 0.
+ * @member GainCh9 Gain applied to output channel 9, in dB. Range -80 to 10, default 0.
+ * @member GainCh10 Gain applied to output channel 10, in dB. Range -80 to 10, default 0.
+ * @member GainCh11 Gain applied to output channel 11, in dB. Range -80 to 10, default 0.
+ * @member GainCh12 Gain applied to output channel 12, in dB. Range -80 to 10, default 0.
+ * @member GainCh13 Gain applied to output channel 13, in dB. Range -80 to 10, default 0.
+ * @member GainCh14 Gain applied to output channel 14, in dB. Range -80 to 10, default 0.
+ * @member GainCh15 Gain applied to output channel 15, in dB. Range -80 to 10, default 0.
+ * @member GainCh16 Gain applied to output channel 16, in dB. Range -80 to 10, default 0.
+ * @member GainCh17 Gain applied to output channel 17, in dB. Range -80 to 10, default 0.
+ * @member GainCh18 Gain applied to output channel 18, in dB. Range -80 to 10, default 0.
+ * @member GainCh19 Gain applied to output channel 19, in dB. Range -80 to 10, default 0.
+ * @member GainCh20 Gain applied to output channel 20, in dB. Range -80 to 10, default 0.
+ * @member GainCh21 Gain applied to output channel 21, in dB. Range -80 to 10, default 0.
+ * @member GainCh22 Gain applied to output channel 22, in dB. Range -80 to 10, default 0.
+ * @member GainCh23 Gain applied to output channel 23, in dB. Range -80 to 10, default 0.
+ * @member GainCh24 Gain applied to output channel 24, in dB. Range -80 to 10, default 0.
+ * @member GainCh25 Gain applied to output channel 25, in dB. Range -80 to 10, default 0.
+ * @member GainCh26 Gain applied to output channel 26, in dB. Range -80 to 10, default 0.
+ * @member GainCh27 Gain applied to output channel 27, in dB. Range -80 to 10, default 0.
+ * @member GainCh28 Gain applied to output channel 28, in dB. Range -80 to 10, default 0.
+ * @member GainCh29 Gain applied to output channel 29, in dB. Range -80 to 10, default 0.
+ * @member GainCh30 Gain applied to output channel 30, in dB. Range -80 to 10, default 0.
+ * @member GainCh31 Gain applied to output channel 31, in dB. Range -80 to 10, default 0.
+ * @member OutputCh0 Output channel that input channel 0 is routed to. Range 0 to 31.
+ * @member OutputCh1 Output channel that input channel 1 is routed to. Range 0 to 31.
+ * @member OutputCh2 Output channel that input channel 2 is routed to. Range 0 to 31.
+ * @member OutputCh3 Output channel that input channel 3 is routed to. Range 0 to 31.
+ * @member OutputCh4 Output channel that input channel 4 is routed to. Range 0 to 31.
+ * @member OutputCh5 Output channel that input channel 5 is routed to. Range 0 to 31.
+ * @member OutputCh6 Output channel that input channel 6 is routed to. Range 0 to 31.
+ * @member OutputCh7 Output channel that input channel 7 is routed to. Range 0 to 31.
+ * @member OutputCh8 Output channel that input channel 8 is routed to. Range 0 to 31.
+ * @member OutputCh9 Output channel that input channel 9 is routed to. Range 0 to 31.
+ * @member OutputCh10 Output channel that input channel 10 is routed to. Range 0 to 31.
+ * @member OutputCh11 Output channel that input channel 11 is routed to. Range 0 to 31.
+ * @member OutputCh12 Output channel that input channel 12 is routed to. Range 0 to 31.
+ * @member OutputCh13 Output channel that input channel 13 is routed to. Range 0 to 31.
+ * @member OutputCh14 Output channel that input channel 14 is routed to. Range 0 to 31.
+ * @member OutputCh15 Output channel that input channel 15 is routed to. Range 0 to 31.
+ * @member OutputCh16 Output channel that input channel 16 is routed to. Range 0 to 31.
+ * @member OutputCh17 Output channel that input channel 17 is routed to. Range 0 to 31.
+ * @member OutputCh18 Output channel that input channel 18 is routed to. Range 0 to 31.
+ * @member OutputCh19 Output channel that input channel 19 is routed to. Range 0 to 31.
+ * @member OutputCh20 Output channel that input channel 20 is routed to. Range 0 to 31.
+ * @member OutputCh21 Output channel that input channel 21 is routed to. Range 0 to 31.
+ * @member OutputCh22 Output channel that input channel 22 is routed to. Range 0 to 31.
+ * @member OutputCh23 Output channel that input channel 23 is routed to. Range 0 to 31.
+ * @member OutputCh24 Output channel that input channel 24 is routed to. Range 0 to 31.
+ * @member OutputCh25 Output channel that input channel 25 is routed to. Range 0 to 31.
+ * @member OutputCh26 Output channel that input channel 26 is routed to. Range 0 to 31.
+ * @member OutputCh27 Output channel that input channel 27 is routed to. Range 0 to 31.
+ * @member OutputCh28 Output channel that input channel 28 is routed to. Range 0 to 31.
+ * @member OutputCh29 Output channel that input channel 29 is routed to. Range 0 to 31.
+ * @member OutputCh30 Output channel that input channel 30 is routed to. Range 0 to 31.
+ * @member OutputCh31 Output channel that input channel 31 is routed to. Range 0 to 31.
+ * @const_end
+ * */
+
+
+
+/**
+ * @const FmodDspChannelMixOutput
+ * @desc > **FMOD Constant:** [FMOD_DSP_CHANNELMIX_OUTPUT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix_output)
+ *
+ * <br />
+ *
+ * This enum specifies the output speaker formats a channel mix DSP can group its output into. Pass one of these to ${constant.FmodDspChannelMix}.OutputGrouping.
+ * @member Default Output channel count and speaker format matches the input.
+ * @member AllMono Every output channel is mono.
+ * @member AllStereo Every pair of output channels is stereo.
+ * @member AllQuad Every group of four output channels is quadraphonic.
+ * @member All5Point1 Every group of six output channels is 5.1.
+ * @member All7Point1 Every group of eight output channels is 7.1.
+ * @member AllLfe Every output channel is an LFE channel.
+ * @member All7Point1Point4 Every group of twelve output channels is 7.1.4.
  * @const_end
  * */
 
@@ -1083,8 +1178,26 @@
  * <br />
  *
  * This enum specifies transceiver DSP parameter types.
- * @member TransmitFreq Whether the transceiver transmits on its channel instead of receiving from it - FMOD's `FMOD_DSP_TRANSCEIVER_TRANSMIT`.
- * @member ReceiveFreq The gain applied to the signal, in dB - FMOD's `FMOD_DSP_TRANSCEIVER_GAIN`. Range -80 to 10, default 0.
+ * @member Transmit Whether the transceiver transmits on its channel instead of receiving from it. Default false.
+ * @member Gain The gain applied to the signal, in dB. Range -80 to 10, default 0.
+ * @member Channel The global transceiver channel this DSP transmits on or receives from. Range 0 to 31, default 0.
+ * @member TransmitSpeakerMode The speaker mode of the transmitted signal - a member of ${constant.FmodDspTransceiverSpeakerMode}.
+ * @const_end
+ * */
+
+
+
+/**
+ * @const FmodDspTransceiverSpeakerMode
+ * @desc > **FMOD Constant:** [FMOD_DSP_TRANSCEIVER_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver_speakermode)
+ *
+ * <br />
+ *
+ * This enum specifies the speaker mode a transceiver DSP transmits with. Pass one of these to ${constant.FmodDspTransceiver}.TransmitSpeakerMode.
+ * @member Auto Use the speaker mode of the transmitting signal.
+ * @member Mono Transmit as mono.
+ * @member Stereo Transmit as stereo.
+ * @member Surround Transmit using the speaker mode set in the FMOD system.
  * @const_end
  * */
 
@@ -1342,6 +1455,7 @@
  * @ref FmodDspItLowPass
  * @ref FmodDspHighPass
  * @ref FmodDspEcho
+ * @ref FmodDspEchoDelayChangeMode
  * @ref FmodDspFlange
  * @ref FmodDspDistortion
  * @ref FmodDspNormalize
@@ -1356,7 +1470,9 @@
  * @ref FmodDspFft
  * @ref FmodDspConvolution
  * @ref FmodDspChannelMix
+ * @ref FmodDspChannelMixOutput
  * @ref FmodDspTransceiver
+ * @ref FmodDspTransceiverSpeakerMode
  * @ref FmodStudioInitFlags
  * @ref FmodStudioParameterFlags
  * @ref FmodStudioEventCallbackType

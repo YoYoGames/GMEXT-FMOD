@@ -233,7 +233,15 @@ namespace gm_enums
         Delay = 0,
         Feedback = 1,
         DryLevel = 2,
-        WetLevel = 3
+        WetLevel = 3,
+        DelayChangeMode = 4
+    };
+
+    enum class FmodDspEchoDelayChangeMode : std::int64_t
+    {
+        Fade = 0,
+        Lerp = 1,
+        None = 2
     };
 
     enum class FmodDspFlange : std::int64_t
@@ -323,26 +331,106 @@ namespace gm_enums
         Peaking = 9,
         Bandpass = 10,
         Notch = 11,
-        Allpass = 12
+        Allpass = 12,
+        Lowpass6db = 13,
+        Highpass6db = 14
     };
 
     enum class FmodDspChannelMix : std::int64_t
     {
-        OutputGain = 0,
-        OutputGainCh0 = 1,
-        OutputGainCh1 = 2,
-        OutputGainCh2 = 3,
-        OutputGainCh3 = 4,
-        OutputGainCh4 = 5,
-        OutputGainCh5 = 6,
-        OutputGainCh6 = 7,
-        OutputGainCh7 = 8
+        OutputGrouping = 0,
+        GainCh0 = 1,
+        GainCh1 = 2,
+        GainCh2 = 3,
+        GainCh3 = 4,
+        GainCh4 = 5,
+        GainCh5 = 6,
+        GainCh6 = 7,
+        GainCh7 = 8,
+        GainCh8 = 9,
+        GainCh9 = 10,
+        GainCh10 = 11,
+        GainCh11 = 12,
+        GainCh12 = 13,
+        GainCh13 = 14,
+        GainCh14 = 15,
+        GainCh15 = 16,
+        GainCh16 = 17,
+        GainCh17 = 18,
+        GainCh18 = 19,
+        GainCh19 = 20,
+        GainCh20 = 21,
+        GainCh21 = 22,
+        GainCh22 = 23,
+        GainCh23 = 24,
+        GainCh24 = 25,
+        GainCh25 = 26,
+        GainCh26 = 27,
+        GainCh27 = 28,
+        GainCh28 = 29,
+        GainCh29 = 30,
+        GainCh30 = 31,
+        GainCh31 = 32,
+        OutputCh0 = 33,
+        OutputCh1 = 34,
+        OutputCh2 = 35,
+        OutputCh3 = 36,
+        OutputCh4 = 37,
+        OutputCh5 = 38,
+        OutputCh6 = 39,
+        OutputCh7 = 40,
+        OutputCh8 = 41,
+        OutputCh9 = 42,
+        OutputCh10 = 43,
+        OutputCh11 = 44,
+        OutputCh12 = 45,
+        OutputCh13 = 46,
+        OutputCh14 = 47,
+        OutputCh15 = 48,
+        OutputCh16 = 49,
+        OutputCh17 = 50,
+        OutputCh18 = 51,
+        OutputCh19 = 52,
+        OutputCh20 = 53,
+        OutputCh21 = 54,
+        OutputCh22 = 55,
+        OutputCh23 = 56,
+        OutputCh24 = 57,
+        OutputCh25 = 58,
+        OutputCh26 = 59,
+        OutputCh27 = 60,
+        OutputCh28 = 61,
+        OutputCh29 = 62,
+        OutputCh30 = 63,
+        OutputCh31 = 64
+    };
+
+    enum class FmodDspChannelMixOutput : std::int64_t
+    {
+        Default = 0,
+        AllMono = 1,
+        AllStereo = 2,
+        AllQuad = 3,
+        All5Point1 = 4,
+        All7Point1 = 5,
+        AllLfe = 6,
+        All7Point1Point4 = 7
     };
 
     enum class FmodDspTransceiver : std::int64_t
     {
-        TransmitFreq = 0,
-        ReceiveFreq = 1
+        Transmit = 0,
+        Gain = 1,
+        Channel = 2,
+        TransmitSpeakerMode = 3
+    };
+
+    enum class FmodDspTransceiverSpeakerMode : std::int64_t
+    {
+        Auto = -1,
+        Mono = 0,
+        Stereo = 1,
+        Surround = 2
     };
 
     enum class FmodDspCompDynEq : std::int64_t
@@ -450,27 +538,28 @@ namespace gm_enums
         Unknown = 0,
         Aiff = 1,
         Asf = 2,
-        Dsd = 3,
+        Dls = 3,
         Flac = 4,
         Fsb = 5,
         It = 6,
         Midi = 7,
-        Mpeg = 8,
-        OggVorbis = 9,
-        Playlist = 10,
-        Raw = 11,
-        S3m = 12,
-        User = 13,
-        Wav = 14,
-        Xm = 15,
-        Xwm = 16,
-        Ac3 = 17,
-        At9 = 18,
-        Vorbis = 19,
-        MediaFoundation = 20,
-        MediaCodec = 21,
-        Fadpcm = 22,
-        Opus = 23
+        Mod = 8,
+        Mpeg = 9,
+        OggVorbis = 10,
+        Playlist = 11,
+        Raw = 12,
+        S3m = 13,
+        User = 14,
+        Wav = 15,
+        Xm = 16,
+        Xma = 17,
+        AudioQueue = 18,
+        At9 = 19,
+        Vorbis = 20,
+        MediaFoundation = 21,
+        MediaCodec = 22,
+        Fadpcm = 23,
+        Opus = 24
     };
 
     enum class FmodSoundFormat : std::int64_t

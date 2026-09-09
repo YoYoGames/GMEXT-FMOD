@@ -160,6 +160,7 @@
 <li><a href="constants.html#fmoddspitlowpass">FmodDspItLowPass</a></li>
 <li><a href="constants.html#fmoddsphighpass">FmodDspHighPass</a></li>
 <li><a href="constants.html#fmoddspecho">FmodDspEcho</a></li>
+<li><a href="constants.html#fmoddspechodelaychangemode">FmodDspEchoDelayChangeMode</a></li>
 <li><a href="constants.html#fmoddspflange">FmodDspFlange</a></li>
 <li><a href="constants.html#fmoddspdistortion">FmodDspDistortion</a></li>
 <li><a href="constants.html#fmoddspnormalize">FmodDspNormalize</a></li>
@@ -174,7 +175,9 @@
 <li><a href="constants.html#fmoddspfft">FmodDspFft</a></li>
 <li><a href="constants.html#fmoddspconvolution">FmodDspConvolution</a></li>
 <li><a href="constants.html#fmoddspchannelmix">FmodDspChannelMix</a></li>
+<li><a href="constants.html#fmoddspchannelmixoutput">FmodDspChannelMixOutput</a></li>
 <li><a href="constants.html#fmoddsptransceiver">FmodDspTransceiver</a></li>
+<li><a href="constants.html#fmoddsptransceiverspeakermode">FmodDspTransceiverSpeakerMode</a></li>
 <li><a href="constants.html#fmodstudioinitflags">FmodStudioInitFlags</a></li>
 <li><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></li>
 <li><a href="constants.html#fmodstudioeventcallbacktype">FmodStudioEventCallbackType</a></li>
@@ -1773,8 +1776,8 @@
 <td>Microsoft Advanced Systems Format (.asf, .wma, .wmv). Platform provided decoder, available only on Windows.</td>
 </tr>
 <tr>
-<td><code>Dsd</code></td>
-<td>Direct Stream Digital.</td>
+<td><code>Dls</code></td>
+<td>Downloadable Sounds sound bank (.dls).</td>
 </tr>
 <tr>
 <td><code>Flac</code></td>
@@ -1791,6 +1794,10 @@
 <tr>
 <td><code>Midi</code></td>
 <td>Musical Instrument Digital Interface (.mid).</td>
+</tr>
+<tr>
+<td><code>Mod</code></td>
+<td>Protracker / Fasttracker Module File (.mod).</td>
 </tr>
 <tr>
 <td><code>Mpeg</code></td>
@@ -1825,12 +1832,12 @@
 <td>FastTracker 2 Extended Module (.xm).</td>
 </tr>
 <tr>
-<td><code>Xwm</code></td>
-<td>Xbox Media Audio.</td>
+<td><code>Xma</code></td>
+<td>Xbox Media Audio bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox.</td>
 </tr>
 <tr>
-<td><code>Ac3</code></td>
-<td>Dolby AC-3.</td>
+<td><code>AudioQueue</code></td>
+<td>Apple Audio Queue decoder (.mp4, .m4a, .mp3). Platform provided decoder, available only on iOS and tvOS.</td>
 </tr>
 <tr>
 <td><code>At9</code></td>
@@ -2557,6 +2564,45 @@
 <td><code>WetLevel</code></td>
 <td>Volume of echo signal to pass to output.</td>
 </tr>
+<tr>
+<td><code>DelayChangeMode</code></td>
+<td>How the echo responds to a change of the Delay parameter - a member of <a href="constants.html#fmoddspechodelaychangemode">FmodDspEchoDelayChangeMode</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspechodelaychangemode">FmodDspEchoDelayChangeMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_echo_delaychangemode_type">FMOD_DSP_ECHO_DELAYCHANGEMODE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies how the echo responds to a change of its Delay parameter. Pass one of these to <a href="constants.html#fmoddspecho">FmodDspEcho</a>.DelayChangeMode.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Fade</code></td>
+<td>Cross fade between the old and the new delay.</td>
+</tr>
+<tr>
+<td><code>Lerp</code></td>
+<td>Interpolate towards the new delay, changing the pitch of the echo while it moves.</td>
+</tr>
+<tr>
+<td><code>None</code></td>
+<td>Jump straight to the new delay.</td>
+</tr>
 </tbody>
 </table>
 <p>*/</p>
@@ -2914,6 +2960,14 @@
 <td><code>Allpass</code></td>
 <td>All-pass filter, allows all frequencies to pass, but changes the phase response at a given point (with specified sharpness).</td>
 </tr>
+<tr>
+<td><code>Lowpass6db</code></td>
+<td>Low-pass filter, attenuates frequencies (6dB per octave) above a given point while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Highpass6db</code></td>
+<td>High-pass filter, attenuates frequencies (6dB per octave) below a given point while allowing the rest to pass.</td>
+</tr>
 </tbody>
 </table>
 <p>*/</p>
@@ -3227,40 +3281,319 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </thead>
 <tbody>
 <tr>
-<td><code>OutputGain</code></td>
-<td>Selects the output grouping - FMOD's <code>FMOD_DSP_CHANNELMIX_OUTPUTGROUPING</code>. This chooses how the output channels are grouped, it is not a gain.</td>
+<td><code>OutputGrouping</code></td>
+<td>Output channel grouping - a member of <a href="constants.html#fmoddspchannelmixoutput">FmodDspChannelMixOutput</a>. Sets the output speaker format for the DSP, which determines the number of output channels.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh0</code></td>
+<td><code>GainCh0</code></td>
 <td>Gain applied to output channel 0, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh1</code></td>
+<td><code>GainCh1</code></td>
 <td>Gain applied to output channel 1, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh2</code></td>
+<td><code>GainCh2</code></td>
 <td>Gain applied to output channel 2, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh3</code></td>
+<td><code>GainCh3</code></td>
 <td>Gain applied to output channel 3, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh4</code></td>
+<td><code>GainCh4</code></td>
 <td>Gain applied to output channel 4, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh5</code></td>
+<td><code>GainCh5</code></td>
 <td>Gain applied to output channel 5, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh6</code></td>
+<td><code>GainCh6</code></td>
 <td>Gain applied to output channel 6, in dB. Range -80 to 10, default 0.</td>
 </tr>
 <tr>
-<td><code>OutputGainCh7</code></td>
+<td><code>GainCh7</code></td>
 <td>Gain applied to output channel 7, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh8</code></td>
+<td>Gain applied to output channel 8, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh9</code></td>
+<td>Gain applied to output channel 9, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh10</code></td>
+<td>Gain applied to output channel 10, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh11</code></td>
+<td>Gain applied to output channel 11, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh12</code></td>
+<td>Gain applied to output channel 12, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh13</code></td>
+<td>Gain applied to output channel 13, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh14</code></td>
+<td>Gain applied to output channel 14, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh15</code></td>
+<td>Gain applied to output channel 15, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh16</code></td>
+<td>Gain applied to output channel 16, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh17</code></td>
+<td>Gain applied to output channel 17, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh18</code></td>
+<td>Gain applied to output channel 18, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh19</code></td>
+<td>Gain applied to output channel 19, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh20</code></td>
+<td>Gain applied to output channel 20, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh21</code></td>
+<td>Gain applied to output channel 21, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh22</code></td>
+<td>Gain applied to output channel 22, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh23</code></td>
+<td>Gain applied to output channel 23, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh24</code></td>
+<td>Gain applied to output channel 24, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh25</code></td>
+<td>Gain applied to output channel 25, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh26</code></td>
+<td>Gain applied to output channel 26, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh27</code></td>
+<td>Gain applied to output channel 27, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh28</code></td>
+<td>Gain applied to output channel 28, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh29</code></td>
+<td>Gain applied to output channel 29, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh30</code></td>
+<td>Gain applied to output channel 30, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>GainCh31</code></td>
+<td>Gain applied to output channel 31, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputCh0</code></td>
+<td>Output channel that input channel 0 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh1</code></td>
+<td>Output channel that input channel 1 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh2</code></td>
+<td>Output channel that input channel 2 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh3</code></td>
+<td>Output channel that input channel 3 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh4</code></td>
+<td>Output channel that input channel 4 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh5</code></td>
+<td>Output channel that input channel 5 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh6</code></td>
+<td>Output channel that input channel 6 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh7</code></td>
+<td>Output channel that input channel 7 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh8</code></td>
+<td>Output channel that input channel 8 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh9</code></td>
+<td>Output channel that input channel 9 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh10</code></td>
+<td>Output channel that input channel 10 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh11</code></td>
+<td>Output channel that input channel 11 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh12</code></td>
+<td>Output channel that input channel 12 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh13</code></td>
+<td>Output channel that input channel 13 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh14</code></td>
+<td>Output channel that input channel 14 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh15</code></td>
+<td>Output channel that input channel 15 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh16</code></td>
+<td>Output channel that input channel 16 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh17</code></td>
+<td>Output channel that input channel 17 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh18</code></td>
+<td>Output channel that input channel 18 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh19</code></td>
+<td>Output channel that input channel 19 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh20</code></td>
+<td>Output channel that input channel 20 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh21</code></td>
+<td>Output channel that input channel 21 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh22</code></td>
+<td>Output channel that input channel 22 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh23</code></td>
+<td>Output channel that input channel 23 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh24</code></td>
+<td>Output channel that input channel 24 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh25</code></td>
+<td>Output channel that input channel 25 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh26</code></td>
+<td>Output channel that input channel 26 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh27</code></td>
+<td>Output channel that input channel 27 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh28</code></td>
+<td>Output channel that input channel 28 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh29</code></td>
+<td>Output channel that input channel 29 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh30</code></td>
+<td>Output channel that input channel 30 is routed to. Range 0 to 31.</td>
+</tr>
+<tr>
+<td><code>OutputCh31</code></td>
+<td>Output channel that input channel 31 is routed to. Range 0 to 31.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspchannelmixoutput">FmodDspChannelMixOutput</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix_output">FMOD_DSP_CHANNELMIX_OUTPUT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the output speaker formats a channel mix DSP can group its output into. Pass one of these to <a href="constants.html#fmoddspchannelmix">FmodDspChannelMix</a>.OutputGrouping.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td>Output channel count and speaker format matches the input.</td>
+</tr>
+<tr>
+<td><code>AllMono</code></td>
+<td>Every output channel is mono.</td>
+</tr>
+<tr>
+<td><code>AllStereo</code></td>
+<td>Every pair of output channels is stereo.</td>
+</tr>
+<tr>
+<td><code>AllQuad</code></td>
+<td>Every group of four output channels is quadraphonic.</td>
+</tr>
+<tr>
+<td><code>All5Point1</code></td>
+<td>Every group of six output channels is 5.1.</td>
+</tr>
+<tr>
+<td><code>All7Point1</code></td>
+<td>Every group of eight output channels is 7.1.</td>
+</tr>
+<tr>
+<td><code>AllLfe</code></td>
+<td>Every output channel is an LFE channel.</td>
+</tr>
+<tr>
+<td><code>All7Point1Point4</code></td>
+<td>Every group of twelve output channels is 7.1.4.</td>
 </tr>
 </tbody>
 </table>
@@ -3286,12 +3619,59 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </thead>
 <tbody>
 <tr>
-<td><code>TransmitFreq</code></td>
-<td>Whether the transceiver transmits on its channel instead of receiving from it - FMOD's <code>FMOD_DSP_TRANSCEIVER_TRANSMIT</code>.</td>
+<td><code>Transmit</code></td>
+<td>Whether the transceiver transmits on its channel instead of receiving from it. Default false.</td>
 </tr>
 <tr>
-<td><code>ReceiveFreq</code></td>
-<td>The gain applied to the signal, in dB - FMOD's <code>FMOD_DSP_TRANSCEIVER_GAIN</code>. Range -80 to 10, default 0.</td>
+<td><code>Gain</code></td>
+<td>The gain applied to the signal, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>Channel</code></td>
+<td>The global transceiver channel this DSP transmits on or receives from. Range 0 to 31, default 0.</td>
+</tr>
+<tr>
+<td><code>TransmitSpeakerMode</code></td>
+<td>The speaker mode of the transmitted signal - a member of <a href="constants.html#fmoddsptransceiverspeakermode">FmodDspTransceiverSpeakerMode</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsptransceiverspeakermode">FmodDspTransceiverSpeakerMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver_speakermode">FMOD_DSP_TRANSCEIVER_SPEAKERMODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the speaker mode a transceiver DSP transmits with. Pass one of these to <a href="constants.html#fmoddsptransceiver">FmodDspTransceiver</a>.TransmitSpeakerMode.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Auto</code></td>
+<td>Use the speaker mode of the transmitting signal.</td>
+</tr>
+<tr>
+<td><code>Mono</code></td>
+<td>Transmit as mono.</td>
+</tr>
+<tr>
+<td><code>Stereo</code></td>
+<td>Transmit as stereo.</td>
+</tr>
+<tr>
+<td><code>Surround</code></td>
+<td>Transmit using the speaker mode set in the FMOD system.</td>
 </tr>
 </tbody>
 </table>
