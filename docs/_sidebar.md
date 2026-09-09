@@ -1,4 +1,4 @@
-### [FMOD Extension](Home)
+### [FMOD Extension](home)
 ### Guides
 
  * ${page.getting_started}
@@ -10,7 +10,7 @@
  * ${module.channel}
  * ${module.channel_control}
  * ${module.channel_group}
- * ${module.DSP}
+ * ${module.dsp}
  * ${module.dsp_connection}
  * ${module.reverb_3d}
  * ${module.sound}

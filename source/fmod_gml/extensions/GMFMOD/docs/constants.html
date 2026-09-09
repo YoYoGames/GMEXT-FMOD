@@ -1,0 +1,3946 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Constants - GMEXT-FMOD</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="assets/css/gmext_style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Constants";
+        var mkdocs_page_input_path = "constants.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> GMEXT-FMOD
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with FMOD in GameMaker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="general_information.html">General Information</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">FMOD Core Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="dsp.html">DSP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">FMOD Studio Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Constants</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#constants_1">Constants</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="structs.html">Structs</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">GMEXT-FMOD</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Extras</li>
+      <li class="breadcrumb-item active">Constants</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/constants.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><a id="top"></a></p>
+<h1 id="constants"><strong>Constants</strong></h1>
+<p>These are the constants that you can use in the FMOD extension.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All items on this page are <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm">Constants</a>. However, some are defined as macros in the extension, others as enums. See a constant's description to know its type.</p>
+</div>
+<h2 id="constants_1">Constants</h2>
+<p>This module includes a set of predefined constants that can be utilized for various purposes. Browse through the available constants to find values relevant to your needs and enhance the efficiency of your code.</p>
+<ul>
+<li><a href="constants.html#fmoddebugflags">FmodDebugFlags</a></li>
+<li><a href="constants.html#fmodstudiodebugflags">FmodStudioDebugFlags</a></li>
+<li><a href="constants.html#fmodinitflags">FmodInitFlags</a></li>
+<li><a href="constants.html#fmoddriverstate">FmodDriverState</a></li>
+<li><a href="constants.html#fmodtimeunit">FmodTimeUnit</a></li>
+<li><a href="constants.html#fmodmode">FmodMode</a></li>
+<li><a href="constants.html#fmodstudiomode">FmodStudioMode</a></li>
+<li><a href="constants.html#fmodresult">FmodResult</a></li>
+<li><a href="constants.html#fmodstudioresult">FmodStudioResult</a></li>
+<li><a href="constants.html#fmodoutputtype">FmodOutputType</a></li>
+<li><a href="constants.html#fmoddebugmode">FmodDebugMode</a></li>
+<li><a href="constants.html#fmodstudiodebugmode">FmodStudioDebugMode</a></li>
+<li><a href="constants.html#fmodspeakermode">FmodSpeakerMode</a></li>
+<li><a href="constants.html#fmodsoundtype">FmodSoundType</a></li>
+<li><a href="constants.html#fmodsoundformat">FmodSoundFormat</a></li>
+<li><a href="constants.html#fmodstudiosoundformat">FmodStudioSoundFormat</a></li>
+<li><a href="constants.html#fmodopenstate">FmodOpenState</a></li>
+<li><a href="constants.html#fmodchannelcontroldspindex">FmodChannelControlDspIndex</a></li>
+<li><a href="constants.html#fmoddspconnectiontype">FmodDspConnectionType</a></li>
+<li><a href="constants.html#fmodtagtype">FmodTagType</a></li>
+<li><a href="constants.html#fmodtagdatatype">FmodTagDataType</a></li>
+<li><a href="constants.html#fmoddsptype">FmodDspType</a></li>
+<li><a href="constants.html#fmoddsposcillator">FmodDspOscillator</a></li>
+<li><a href="constants.html#fmoddsplowpass">FmodDspLowPass</a></li>
+<li><a href="constants.html#fmoddspitlowpass">FmodDspItLowPass</a></li>
+<li><a href="constants.html#fmoddsphighpass">FmodDspHighPass</a></li>
+<li><a href="constants.html#fmoddspecho">FmodDspEcho</a></li>
+<li><a href="constants.html#fmoddspflange">FmodDspFlange</a></li>
+<li><a href="constants.html#fmoddspdistortion">FmodDspDistortion</a></li>
+<li><a href="constants.html#fmoddspnormalize">FmodDspNormalize</a></li>
+<li><a href="constants.html#fmoddsplimiter">FmodDspLimiter</a></li>
+<li><a href="constants.html#fmoddspparameq">FmodDspParamEq</a></li>
+<li><a href="constants.html#fmoddspmultibandeq">FmodDspMultibandEq</a></li>
+<li><a href="constants.html#fmoddspmultibandeqfiltertype">FmodDspMultibandEqFilterType</a></li>
+<li><a href="constants.html#fmoddsppitchshift">FmodDspPitchShift</a></li>
+<li><a href="constants.html#fmoddspchorus">FmodDspChorus</a></li>
+<li><a href="constants.html#fmoddspcompdyneq">FmodDspCompDynEq</a></li>
+<li><a href="constants.html#fmoddspfftwindowtype">FmodDspFftWindowType</a></li>
+<li><a href="constants.html#fmoddspfft">FmodDspFft</a></li>
+<li><a href="constants.html#fmoddspconvolution">FmodDspConvolution</a></li>
+<li><a href="constants.html#fmoddspchannelmix">FmodDspChannelMix</a></li>
+<li><a href="constants.html#fmoddsptransceiver">FmodDspTransceiver</a></li>
+<li><a href="constants.html#fmodstudioinitflags">FmodStudioInitFlags</a></li>
+<li><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></li>
+<li><a href="constants.html#fmodstudioeventcallbacktype">FmodStudioEventCallbackType</a></li>
+<li><a href="constants.html#fmodstudioloadbankflags">FmodStudioLoadBankFlags</a></li>
+<li><a href="constants.html#fmodstudiocommandcaptureflags">FmodStudioCommandCaptureFlags</a></li>
+<li><a href="constants.html#fmodstudiocommandreplayflags">FmodStudioCommandReplayFlags</a></li>
+<li><a href="constants.html#fmodstudioloadingstate">FmodStudioLoadingState</a></li>
+<li><a href="constants.html#fmodstudiouserpropertytype">FmodStudioUserPropertyType</a></li>
+<li><a href="constants.html#fmodstudioeventproperty">FmodStudioEventProperty</a></li>
+<li><a href="constants.html#fmodstudioplaybackstate">FmodStudioPlaybackState</a></li>
+<li><a href="constants.html#fmodstudiostopmode">FmodStudioStopMode</a></li>
+<li><a href="constants.html#fmoddsposcillatortype">FmodDspOscillatorType</a></li>
+</ul>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddebugflags">FmodDebugFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_flags">FMOD_DEBUG_FLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the requested information to be output when using the logging version of FMOD.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LevelNone</code></td>
+<td>Disable all messages.</td>
+</tr>
+<tr>
+<td><code>LevelError</code></td>
+<td>Enable only error messages.</td>
+</tr>
+<tr>
+<td><code>LevelWarning</code></td>
+<td>Enable warning and error messages.</td>
+</tr>
+<tr>
+<td><code>LevelLog</code></td>
+<td>Enable informational, warning and error messages.</td>
+</tr>
+<tr>
+<td><code>TypeMemory</code></td>
+<td>This enables verbose logging for memory operations, only use this if you are debugging a memory related issue.</td>
+</tr>
+<tr>
+<td><code>TypeFile</code></td>
+<td>This enables verbose logging for file access, only use this if you are debugging a file related issue.</td>
+</tr>
+<tr>
+<td><code>TypeCodec</code></td>
+<td>This enables verbose logging for codec initialisation, only use this if you are debugging a codec related issue.</td>
+</tr>
+<tr>
+<td><code>TypeTrace</code></td>
+<td>This enables verbose logging for internal errors, use this for tracking the origin of error codes.</td>
+</tr>
+<tr>
+<td><code>DisplayTimestamps</code></td>
+<td>This displays the time stamp of the log message in milliseconds.</td>
+</tr>
+<tr>
+<td><code>DisplayLineNumbers</code></td>
+<td>This displays the source code file and line number for where the message originated.</td>
+</tr>
+<tr>
+<td><code>DisplayThread</code></td>
+<td>This displays the thread ID of the calling function that generated the message.</td>
+</tr>
+</tbody>
+</table>
+<p><em>//</em>*</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiodebugflags">FmodStudioDebugFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_flags">FMOD_DEBUG_FLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the requested information to be output when using the logging version of FMOD.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LevelNone</code></td>
+<td>Disable all messages.</td>
+</tr>
+<tr>
+<td><code>LevelError</code></td>
+<td>Enable only error messages.</td>
+</tr>
+<tr>
+<td><code>LevelWarning</code></td>
+<td>Enable warning and error messages.</td>
+</tr>
+<tr>
+<td><code>LevelLog</code></td>
+<td>Enable informational, warning and error messages.</td>
+</tr>
+<tr>
+<td><code>TypeMemory</code></td>
+<td>This enables verbose logging for memory operations, only use this if you are debugging a memory related issue.</td>
+</tr>
+<tr>
+<td><code>TypeFile</code></td>
+<td>This enables verbose logging for file access, only use this if you are debugging a file related issue.</td>
+</tr>
+<tr>
+<td><code>TypeCodec</code></td>
+<td>This enables verbose logging for codec initialisation, only use this if you are debugging a codec related issue.</td>
+</tr>
+<tr>
+<td><code>TypeTrace</code></td>
+<td>This enables verbose logging for internal errors, use this for tracking the origin of error codes.</td>
+</tr>
+<tr>
+<td><code>DisplayTimestamps</code></td>
+<td>This displays the time stamp of the log message in milliseconds.</td>
+</tr>
+<tr>
+<td><code>DisplayLineNumbers</code></td>
+<td>This displays the source code file and line number for where the message originated.</td>
+</tr>
+<tr>
+<td><code>DisplayThread</code></td>
+<td>This displays the thread ID of the calling function that generated the message.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodinitflags">FmodInitFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_initflags">FMOD_INITFLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the configuration flags used when initialising the FMOD system.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Normal</code></td>
+<td>Initialize normally.</td>
+</tr>
+<tr>
+<td><code>StreamFromUpdate</code></td>
+<td>No stream thread is created internally. Streams are driven from <a href="system.html#fmod_system_update">fmod_system_update</a>. Mainly used with non-realtime outputs.</td>
+</tr>
+<tr>
+<td><code>MixFromUpdate</code></td>
+<td>No mixer thread is created internally. Mixing is driven from <a href="system.html#fmod_system_update">fmod_system_update</a>. Only applies to polling based output modes such as <code>FmodOutputType.NoSound</code>, <code>FmodOutputType.WavWriter</code>.</td>
+</tr>
+<tr>
+<td><code>RightHanded3D</code></td>
+<td>3D calculations will be performed in right-handed coordinates.</td>
+</tr>
+<tr>
+<td><code>ClipOutput</code></td>
+<td>Enables hard clipping of output values greater than <code>1.0</code> or less than <code>-1.0</code>.</td>
+</tr>
+<tr>
+<td><code>ChannelLowpass</code></td>
+<td>Enables usage of <a href="channel_control.html#fmod_channel_control_set_low_pass_gain">fmod_channel_control_set_low_pass_gain</a>, <a href="channel_control.html#fmod_channel_control_set_3d_occlusion">fmod_channel_control_set_3d_occlusion</a>, or automatic usage by the <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a> API. All voices will add a software lowpass filter effect into the <a href="https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain">DSP chain</a> which is idle unless one of the previous functions/features are used.</td>
+</tr>
+<tr>
+<td><code>ChannelDistanceFilter</code></td>
+<td>All <code>FmodStudioMode._3D</code> based voices will add a software lowpass and highpass filter effect into the <a href="https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain">DSP chain</a> which will act as a distance-automated bandpass filter. Use <a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a> to adjust the center frequency.</td>
+</tr>
+<tr>
+<td><code>ProfileEnable</code></td>
+<td>Enable TCP/IP based host which allows FMOD Studio or FMOD Profiler to connect to it, and view memory, CPU and the DSP network graph in real-time.</td>
+</tr>
+<tr>
+<td><code>Vol0BecomesVirtual</code></td>
+<td>Any sounds that are 0 volume will go virtual and not be processed except for having their positions updated virtually. Use <a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a> to adjust what volume besides zero to switch to virtual at.</td>
+</tr>
+<tr>
+<td><code>GeometryUseClosest</code></td>
+<td>With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects.</td>
+</tr>
+<tr>
+<td><code>PreferDolbyDownmix</code></td>
+<td>When using <code>FmodSpeakerMode._5Point1</code> with a stereo output device, use the Dolby Pro Logic II downmix algorithm instead of the default stereo downmix algorithm.</td>
+</tr>
+<tr>
+<td><code>ThreadUnsafe</code></td>
+<td>Disables thread safety for API calls. Only use this if FMOD is being called from a single thread, and if Studio API is not being used!</td>
+</tr>
+<tr>
+<td><code>ProfileMeterAll</code></td>
+<td>Slower, but adds level metering for every single DSP unit in the graph. Use <a href="dsp.html#fmod_dsp_set_metering_enabled">fmod_dsp_set_metering_enabled</a> to turn meters off individually. Setting this flag implies <code>FmodInitFlags.ProfileEnable</code>.</td>
+</tr>
+<tr>
+<td><code>MemoryTracking</code></td>
+<td>Enables memory allocation tracking. Currently this is only useful when using the Studio API. Increases memory footprint and reduces performance. This flag is implied by <code>FmodStudioInitFlags.MemoryTracking</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddriverstate">FmodDriverState</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_driver_state">FMOD_DRIVER_STATE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flags that provide additional information about a particular driver.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodrecorddriverinfo">FmodRecordDriverInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connected</code></td>
+<td>Device is currently plugged in.</td>
+</tr>
+<tr>
+<td><code>Default</code></td>
+<td>Device is the user's preferred choice.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodtimeunit">FmodTimeUnit</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_timeunit">FMOD_TIMEUNIT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the time types used for position or length.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ms</code></td>
+<td>Milliseconds.</td>
+</tr>
+<tr>
+<td><code>Pcm</code></td>
+<td>PCM samples, related to milliseconds * samplerate / 1000.</td>
+</tr>
+<tr>
+<td><code>PcmBytes</code></td>
+<td>Bytes, related to PCM samples * channels * datawidth (i.e. 16bit = 2 bytes).</td>
+</tr>
+<tr>
+<td><code>RawBytes</code></td>
+<td>Raw file bytes of (compressed) sound data (does not include headers). Only used by <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> and <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a>.</td>
+</tr>
+<tr>
+<td><code>PcmFraction</code></td>
+<td>Fractions of 1 PCM sample. Unsigned int range 0 to 0xFFFFFFFF. Used for sub-sample granularity for <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> purposes.</td>
+</tr>
+<tr>
+<td><code>ModOrder</code></td>
+<td>MOD/S3M/XM/IT. Order in a sequenced module format. Use <a href="sound.html#fmod_sound_get_format">fmod_sound_get_format</a> to determine the PCM format being decoded to.</td>
+</tr>
+<tr>
+<td><code>ModRow</code></td>
+<td>MOD/S3M/XM/IT. Current row in a sequenced module format. Cannot use with <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> will return the number of rows in the currently playing or seeked to pattern.</td>
+</tr>
+<tr>
+<td><code>ModPattern</code></td>
+<td>MOD/S3M/XM/IT. Current pattern in a sequenced module format. Cannot use with <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> will return the number of patterns in the song and <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> will return the currently playing pattern.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodmode">FmodMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_mode">FMOD_MODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td>Default for all modes listed below. <code>FmodStudioMode.LoopOff</code>, <code>FmodStudioMode._2D</code>, <code>FmodStudioMode._3DWorldRelative</code>, <code>FmodStudioMode._3DInverseRollOff</code></td>
+</tr>
+<tr>
+<td><code>LoopOff</code></td>
+<td>For non looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (DEFAULT). Overrides <code>FmodStudioMode.LoopOn</code> / <code>FmodStudioMode.LoopBidi</code>.</td>
+</tr>
+<tr>
+<td><code>LoopOn</code></td>
+<td>For forward looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>.</td>
+</tr>
+<tr>
+<td><code>LoopBidi</code></td>
+<td>For bidirectional looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (only works on non-streaming, real voices).</td>
+</tr>
+<tr>
+<td><code>_2D</code></td>
+<td>Ignores any 3D processing. (DEFAULT).</td>
+</tr>
+<tr>
+<td><code>_3D</code></td>
+<td>Makes the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> positionable in 3D. Overrides <code>FmodStudioMode._2D</code>.</td>
+</tr>
+<tr>
+<td><code>CreateStream</code></td>
+<td>Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides <code>FmodStudioMode.CreateSample</code> and <code>FmodStudioMode.CreateCompressedSample</code>. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.</td>
+</tr>
+<tr>
+<td><code>CreateSample</code></td>
+<td>Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.</td>
+</tr>
+<tr>
+<td><code>CreateCompressedSample</code></td>
+<td>Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides <code>FmodStudioMode.CreateSample</code>. If the sound data is not one of the supported formats, it will behave as if it was created with <code>FmodStudioMode.CreateSample</code> and decode the sound into PCM.</td>
+</tr>
+<tr>
+<td><code>OpenUser</code></td>
+<td>Opens a user-created static sample or stream. When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a> and <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> to place sound data into the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</td>
+</tr>
+<tr>
+<td><code>OpenMemory</code></td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. If used with <code>FmodStudioMode.CreateSample</code> or <code>FmodStudioMode.CreateCompressedSample</code>, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using <code>FmodStudioMode.NonBlocking</code> then wait until the Sound is in the <code>FmodOpenState.Ready</code> state. If used with <code>FmodStudioMode.CreateStream</code>, FMOD will stream out of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.</td>
+</tr>
+<tr>
+<td><code>OpenMemoryPoint</code></td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. This differs to <code>FmodStudioMode.OpenMemory</code> in that it uses the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after <a href="sound.html#fmod_sound_release">fmod_sound_release</a>. Will not work if the data is compressed and <code>FmodStudioMode.CreateCompressedSample</code> is not used. Cannot be used in conjunction with <code>FmodSystemCreateSoundExInfo.encryptionkey</code>.</td>
+</tr>
+<tr>
+<td><code>OpenRaw</code></td>
+<td>Will ignore file format and treat as raw pcm. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.</td>
+</tr>
+<tr>
+<td><code>OpenOnly</code></td>
+<td>Just open the file, don't prebuffer or read. Good for fast opens for info, or when <a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a> is to be used.</td>
+</tr>
+<tr>
+<td><code>AccurateTime</code></td>
+<td>For <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> - for accurate <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> / <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a> on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. <code>FmodStudioMode.OpenOnly</code> does not affect this.</td>
+</tr>
+<tr>
+<td><code>MpegSearch</code></td>
+<td>For corrupted / bad MP3 files. This will search all the way through the file until it hits a valid MPEG header. Normally only searches for 4k.</td>
+</tr>
+<tr>
+<td><code>NonBlocking</code></td>
+<td>For opening Sounds and getting streamed subsounds (seeking) asynchronously. Use <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> to poll the state of the Sound as it opens or retrieves the subsound in the background.</td>
+</tr>
+<tr>
+<td><code>Unique</code></td>
+<td>Unique Sound, can only be played one at a time.</td>
+</tr>
+<tr>
+<td><code>_3DHeadRelative</code></td>
+<td>Make the Sound's position, velocity and orientation relative to the listener.</td>
+</tr>
+<tr>
+<td><code>_3DWorldRelative</code></td>
+<td>Make the Sound's position, velocity and orientation absolute (relative to the world). (DEFAULT)</td>
+</tr>
+<tr>
+<td><code>_3DInverseRollOff</code></td>
+<td>This sound follows an inverse roll-off model. Below mindistance, the volume is unattenuated; as distance increases above mindistance, the volume attenuates using mindistance/distance as the gradient until it reaches maxdistance, where it stops attenuating. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. This roll-off mode accurately models the way sounds attenuate over distance in the real world. (DEFAULT)</td>
+</tr>
+<tr>
+<td><code>_3DLinearRollOff</code></td>
+<td>This sound follows a linear roll-off model. Below mindistance, the volume is unattenuated; as distance increases from mindistance to maxdistance, the volume attenuates to silence using a linear gradient. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. While this roll-off mode is not as realistic as inverse roll-off mode, it is easier to comprehend.</td>
+</tr>
+<tr>
+<td><code>_3DLinearSquareRollOff</code></td>
+<td>This sound follows a linear-square roll-off model. Below mindistance, the volume is unattenuated; as distance increases from mindistance to maxdistance, the volume attenuates to silence according to a linear squared gradient. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. This roll-off mode provides steeper volume ramping close to the mindistance, and more gradual ramping close to the maxdistance, than linear roll-off mode.</td>
+</tr>
+<tr>
+<td><code>_3DInverseTaperedRollOff</code></td>
+<td>This sound follows a combination of the inverse and linear-square roll-off models. At short distances where inverse roll-off would provide greater attenuation, it functions as inverse roll-off mode; then at greater distances where linear-square roll-off mode would provide greater attenuation, it uses that roll-off mode instead. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. Inverse tapered roll-off mode approximates realistic behavior while still guaranteeing the sound attenuates to silence at maxdistance.</td>
+</tr>
+<tr>
+<td><code>_3DCustomRollOff</code></td>
+<td>This sound follows a roll-off model defined by <a href="sound.html#fmod_sound_set_3d_custom_rolloff">fmod_sound_set_3d_custom_rolloff</a> / <a href="channel_control.html#fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</a>. This roll-off mode provides greater freedom and flexibility than any other, but must be defined manually.</td>
+</tr>
+<tr>
+<td><code>_3DIgnoreGeometry</code></td>
+<td>Is not affected by geometry occlusion. If not specified in <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>, or <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a>, the flag is cleared and it is affected by geometry again.</td>
+</tr>
+<tr>
+<td><code>IgnoreTags</code></td>
+<td>Skips id3v2/asf/etc. tag checks when opening a Sound, to reduce seek/read overhead when opening files.</td>
+</tr>
+<tr>
+<td><code>LowMem</code></td>
+<td>Removes some features from samples to give a lower memory overhead, like <a href="sound.html#fmod_sound_get_name">fmod_sound_get_name</a>.</td>
+</tr>
+<tr>
+<td><code>VirtualPlayFromStart</code></td>
+<td>For Channels that start virtual (due to being quiet or low importance), instead of swapping back to audible, and playing at the correct offset according to time, this flag makes the Channel play from the start.</td>
+</tr>
+</tbody>
+</table>
+<p><em>//</em>*</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiomode">FmodStudioMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_mode">FMOD_MODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td>Default for all modes listed below. <code>FmodStudioMode.LoopOff</code>, <code>FmodStudioMode._2D</code>, <code>FmodStudioMode._3DWorldRelative</code>, <code>FmodStudioMode._3DInverseRollOff</code></td>
+</tr>
+<tr>
+<td><code>LoopOff</code></td>
+<td>For non looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (DEFAULT). Overrides <code>FmodStudioMode.LoopOn</code> / <code>FmodStudioMode.LoopBidi</code>.</td>
+</tr>
+<tr>
+<td><code>LoopOn</code></td>
+<td>For forward looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>.</td>
+</tr>
+<tr>
+<td><code>LoopBidi</code></td>
+<td>For bidirectional looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (only works on non-streaming, real voices).</td>
+</tr>
+<tr>
+<td><code>_2D</code></td>
+<td>Ignores any 3D processing. (DEFAULT).</td>
+</tr>
+<tr>
+<td><code>_3D</code></td>
+<td>Makes the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> positionable in 3D. Overrides <code>FmodStudioMode._2D</code>.</td>
+</tr>
+<tr>
+<td><code>CreateStream</code></td>
+<td>Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides <code>FmodStudioMode.CreateSample</code> and <code>FmodStudioMode.CreateCompressedSample</code>. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.</td>
+</tr>
+<tr>
+<td><code>CreateSample</code></td>
+<td>Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.</td>
+</tr>
+<tr>
+<td><code>CreateCompressedSample</code></td>
+<td>Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides <code>FmodStudioMode.CreateSample</code>. If the sound data is not one of the supported formats, it will behave as if it was created with <code>FmodStudioMode.CreateSample</code> and decode the sound into PCM.</td>
+</tr>
+<tr>
+<td><code>OpenUser</code></td>
+<td>Opens a user-created static sample or stream. When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a> and <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> to place sound data into the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</td>
+</tr>
+<tr>
+<td><code>OpenMemory</code></td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. If used with <code>FmodStudioMode.CreateSample</code> or <code>FmodStudioMode.CreateCompressedSample</code>, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using <code>FmodStudioMode.NonBlocking</code> then wait until the Sound is in the <code>FmodOpenState.Ready</code> state. If used with <code>FmodStudioMode.CreateStream</code>, FMOD will stream out of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.</td>
+</tr>
+<tr>
+<td><code>OpenMemoryPoint</code></td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. This differs to <code>FmodStudioMode.OpenMemory</code> in that it uses the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after <a href="sound.html#fmod_sound_release">fmod_sound_release</a>. Will not work if the data is compressed and <code>FmodStudioMode.CreateCompressedSample</code> is not used. Cannot be used in conjunction with <code>FmodSystemCreateSoundExInfo.encryptionkey</code>.</td>
+</tr>
+<tr>
+<td><code>OpenRaw</code></td>
+<td>Will ignore file format and treat as raw pcm. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.</td>
+</tr>
+<tr>
+<td><code>OpenOnly</code></td>
+<td>Just open the file, don't prebuffer or read. Good for fast opens for info, or when <a href="sound.html#fmod_sound_read_data">fmod_sound_read_data</a> is to be used.</td>
+</tr>
+<tr>
+<td><code>AccurateTime</code></td>
+<td>For <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> - for accurate <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> / <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a> on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. <code>FmodStudioMode.OpenOnly</code> does not affect this.</td>
+</tr>
+<tr>
+<td><code>MpegSearch</code></td>
+<td>For corrupted / bad MP3 files. This will search all the way through the file until it hits a valid MPEG header. Normally only searches for 4k.</td>
+</tr>
+<tr>
+<td><code>NonBlocking</code></td>
+<td>For opening Sounds and getting streamed subsounds (seeking) asynchronously. Use <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> to poll the state of the Sound as it opens or retrieves the subsound in the background.</td>
+</tr>
+<tr>
+<td><code>Unique</code></td>
+<td>Unique Sound, can only be played one at a time.</td>
+</tr>
+<tr>
+<td><code>_3DHeadRelative</code></td>
+<td>Make the Sound's position, velocity and orientation relative to the listener.</td>
+</tr>
+<tr>
+<td><code>_3DWorldRelative</code></td>
+<td>Make the Sound's position, velocity and orientation absolute (relative to the world). (DEFAULT)</td>
+</tr>
+<tr>
+<td><code>_3DInverseRollOff</code></td>
+<td>This sound follows an inverse roll-off model. Below mindistance, the volume is unattenuated; as distance increases above mindistance, the volume attenuates using mindistance/distance as the gradient until it reaches maxdistance, where it stops attenuating. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. This roll-off mode accurately models the way sounds attenuate over distance in the real world. (DEFAULT)</td>
+</tr>
+<tr>
+<td><code>_3DLinearRollOff</code></td>
+<td>This sound follows a linear roll-off model. Below mindistance, the volume is unattenuated; as distance increases from mindistance to maxdistance, the volume attenuates to silence using a linear gradient. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. While this roll-off mode is not as realistic as inverse roll-off mode, it is easier to comprehend.</td>
+</tr>
+<tr>
+<td><code>_3DLinearSquareRollOff</code></td>
+<td>This sound follows a linear-square roll-off model. Below mindistance, the volume is unattenuated; as distance increases from mindistance to maxdistance, the volume attenuates to silence according to a linear squared gradient. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. This roll-off mode provides steeper volume ramping close to the mindistance, and more gradual ramping close to the maxdistance, than linear roll-off mode.</td>
+</tr>
+<tr>
+<td><code>_3DInverseTaperedRollOff</code></td>
+<td>This sound follows a combination of the inverse and linear-square roll-off models. At short distances where inverse roll-off would provide greater attenuation, it functions as inverse roll-off mode; then at greater distances where linear-square roll-off mode would provide greater attenuation, it uses that roll-off mode instead. For this roll-off mode, distance values greater than mindistance are scaled according to the rolloffscale. Inverse tapered roll-off mode approximates realistic behavior while still guaranteeing the sound attenuates to silence at maxdistance.</td>
+</tr>
+<tr>
+<td><code>_3DCustomRollOff</code></td>
+<td>This sound follows a roll-off model defined by <a href="sound.html#fmod_sound_set_3d_custom_rolloff">fmod_sound_set_3d_custom_rolloff</a> / <a href="channel_control.html#fmod_channel_control_set_3d_custom_rolloff">fmod_channel_control_set_3d_custom_rolloff</a>. This roll-off mode provides greater freedom and flexibility than any other, but must be defined manually.</td>
+</tr>
+<tr>
+<td><code>_3DIgnoreGeometry</code></td>
+<td>Is not affected by geometry occlusion. If not specified in <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>, or <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a>, the flag is cleared and it is affected by geometry again.</td>
+</tr>
+<tr>
+<td><code>IgnoreTags</code></td>
+<td>Skips id3v2/asf/etc. tag checks when opening a Sound, to reduce seek/read overhead when opening files.</td>
+</tr>
+<tr>
+<td><code>LowMem</code></td>
+<td>Removes some features from samples to give a lower memory overhead, like <a href="sound.html#fmod_sound_get_name">fmod_sound_get_name</a>.</td>
+</tr>
+<tr>
+<td><code>VirtualPlayFromStart</code></td>
+<td>For Channels that start virtual (due to being quiet or low importance), instead of swapping back to audible, and playing at the correct offset according to time, this flag makes the Channel play from the start.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/<em> Preset for struct.FmodReverbProperties </em>/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodresult">FmodResult</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_result">FMOD_RESULT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the error codes returned from every function.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_last_result">fmod_last_result</a></li>
+<li><a href="misc.html#fmod_error_string">fmod_error_string</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ok</code></td>
+<td>No errors.</td>
+</tr>
+<tr>
+<td><code>BadCommand</code></td>
+<td>Tried to call a function on a data type that does not allow this type of functionality (i.e. calling <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a> on a streaming <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>).</td>
+</tr>
+<tr>
+<td><code>ChannelAlloc</code></td>
+<td>Error trying to allocate a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a>.</td>
+</tr>
+<tr>
+<td><code>ChannelStolen</code></td>
+<td>The specified Channel has been reused to play another Sound.</td>
+</tr>
+<tr>
+<td><code>Dma</code></td>
+<td>DMA Failure. See debug output for more information.</td>
+</tr>
+<tr>
+<td><code>DspConnection</code></td>
+<td>DSP connection error. Connection possibly caused a cyclic dependency or connected dsps with incompatible buffer counts.</td>
+</tr>
+<tr>
+<td><code>DspDontProcess</code></td>
+<td>DSP return code from a DSP process query callback. Tells mixer not to call the process callback and therefore not consume CPU. Use this to optimize the DSP graph.</td>
+</tr>
+<tr>
+<td><code>DspFormat</code></td>
+<td>DSP Format error. A DSP unit may have attempted to connect to this network with the wrong format, or a matrix may have been set with the wrong size if the target unit has a specified channel map.</td>
+</tr>
+<tr>
+<td><code>DspInUse</code></td>
+<td>DSP is already in the mixer's DSP network. It must be removed before being reinserted or released.</td>
+</tr>
+<tr>
+<td><code>DspNotFound</code></td>
+<td>DSP connection error. Couldn't find the DSP unit specified.</td>
+</tr>
+<tr>
+<td><code>DspReserved</code></td>
+<td>DSP operation error. Cannot perform operation on this DSP as it is reserved by the system.</td>
+</tr>
+<tr>
+<td><code>DspSilence</code></td>
+<td>DSP return code from a DSP process query callback. Tells mixer silence would be produced from read, so go idle and not consume CPU. Use this to optimize the DSP graph.</td>
+</tr>
+<tr>
+<td><code>DspType</code></td>
+<td>DSP operation cannot be performed on a DSP of this type.</td>
+</tr>
+<tr>
+<td><code>FileBad</code></td>
+<td>Error loading file.</td>
+</tr>
+<tr>
+<td><code>FileCouldNotSeek</code></td>
+<td>Couldn't perform seek operation. This is a limitation of the medium (i.e. netstreams) or the file format.</td>
+</tr>
+<tr>
+<td><code>FileDiskEjected</code></td>
+<td>Media was ejected while reading.</td>
+</tr>
+<tr>
+<td><code>FileEof</code></td>
+<td>End of file unexpectedly reached while trying to read essential data (truncated?).</td>
+</tr>
+<tr>
+<td><code>FileEndOfData</code></td>
+<td>End of current chunk reached while trying to read data.</td>
+</tr>
+<tr>
+<td><code>FileNotFound</code></td>
+<td>File not found.</td>
+</tr>
+<tr>
+<td><code>Format</code></td>
+<td>Unsupported file or audio format.</td>
+</tr>
+<tr>
+<td><code>HeaderMismatch</code></td>
+<td>There is a version mismatch between the FMOD header and either the FMOD Studio library or the FMOD Core library.</td>
+</tr>
+<tr>
+<td><code>Http</code></td>
+<td>A HTTP error occurred. This is a catch-all for HTTP errors not listed elsewhere.</td>
+</tr>
+<tr>
+<td><code>HttpAccess</code></td>
+<td>The specified resource requires authentication or is forbidden.</td>
+</tr>
+<tr>
+<td><code>HttpProxyAuth</code></td>
+<td>Proxy authentication is required to access the specified resource.</td>
+</tr>
+<tr>
+<td><code>HttpServerError</code></td>
+<td>A HTTP server error occurred.</td>
+</tr>
+<tr>
+<td><code>HttpTimeout</code></td>
+<td>The HTTP request timed out.</td>
+</tr>
+<tr>
+<td><code>Initialization</code></td>
+<td>FMOD was not initialized correctly to support this function.</td>
+</tr>
+<tr>
+<td><code>Initialized</code></td>
+<td>Cannot call this command after <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+<tr>
+<td><code>Internal</code></td>
+<td>An error occured in the FMOD system. Use the logging version of FMOD for more information.</td>
+</tr>
+<tr>
+<td><code>InvalidFloat</code></td>
+<td>Value passed in was a <code>NaN</code>, <code>infinity</code> or denormalized float.</td>
+</tr>
+<tr>
+<td><code>InvalidHandle</code></td>
+<td>An invalid object handle was used.</td>
+</tr>
+<tr>
+<td><code>InvalidParam</code></td>
+<td>An invalid parameter was passed to this function.</td>
+</tr>
+<tr>
+<td><code>InvalidPosition</code></td>
+<td>An invalid seek position was passed to this function.</td>
+</tr>
+<tr>
+<td><code>InvalidSpeaker</code></td>
+<td>An invalid speaker was passed to this function based on the current speaker mode.</td>
+</tr>
+<tr>
+<td><code>InvalidSyncPoint</code></td>
+<td>The syncpoint did not come from this Sound handle.</td>
+</tr>
+<tr>
+<td><code>InvalidThread</code></td>
+<td>Tried to call a function on a thread that is not supported.</td>
+</tr>
+<tr>
+<td><code>InvalidVector</code></td>
+<td>The vectors passed in are not unit length, or perpendicular.</td>
+</tr>
+<tr>
+<td><code>MaxAudible</code></td>
+<td>Reached maximum audible playback count for this Sound's SoundGroup.</td>
+</tr>
+<tr>
+<td><code>Memory</code></td>
+<td>Not enough memory or resources.</td>
+</tr>
+<tr>
+<td><code>MemoryCantPoint</code></td>
+<td>Can't use <code>FmodStudioMode.OpenMemoryPoint</code> on non PCM source data, or non mp3/xma/adpcm data if <code>FmodStudioMode.CreateCompressedSample</code> was used.</td>
+</tr>
+<tr>
+<td><code>Needs3D</code></td>
+<td>Tried to call a command on a 2D Sound when the command was meant for 3D Sound.</td>
+</tr>
+<tr>
+<td><code>NeedsHardware</code></td>
+<td>Tried to use a feature that requires hardware support.</td>
+</tr>
+<tr>
+<td><code>NetConnect</code></td>
+<td>Couldn't connect to the specified host.</td>
+</tr>
+<tr>
+<td><code>NetSocketError</code></td>
+<td>A socket error occurred. This is a catch-all for socket-related errors not listed elsewhere.</td>
+</tr>
+<tr>
+<td><code>NetUrl</code></td>
+<td>The specified URL couldn't be resolved.</td>
+</tr>
+<tr>
+<td><code>NetWouldBlock</code></td>
+<td>Operation on a non-blocking socket could not complete immediately.</td>
+</tr>
+<tr>
+<td><code>NotReady</code></td>
+<td>Operation could not be performed because specified Sound/DSP connection is not ready.</td>
+</tr>
+<tr>
+<td><code>OutputAllocated</code></td>
+<td>Error initializing output device, but more specifically, the output device is already in use and cannot be reused.</td>
+</tr>
+<tr>
+<td><code>OutputCreateBuffer</code></td>
+<td>Error creating hardware sound buffer.</td>
+</tr>
+<tr>
+<td><code>OutputDriverCall</code></td>
+<td>A call to a standard soundcard driver failed, which could possibly mean a bug in the driver or resources were missing or exhausted.</td>
+</tr>
+<tr>
+<td><code>OutputFormat</code></td>
+<td>Soundcard does not support the specified format.</td>
+</tr>
+<tr>
+<td><code>OutputInit</code></td>
+<td>Error initializing output device.</td>
+</tr>
+<tr>
+<td><code>OutputNoDriver</code></td>
+<td>The output device has no drivers installed. If pre-init, <code>FmodOutputType.NoSound</code> is selected as the output mode. If post-init, the function just fails.</td>
+</tr>
+<tr>
+<td><code>Plugin</code></td>
+<td>An unspecified error has been returned from a plugin.</td>
+</tr>
+<tr>
+<td><code>PluginMissing</code></td>
+<td>A requested output, dsp unit type or codec was not available.</td>
+</tr>
+<tr>
+<td><code>PluginResource</code></td>
+<td>A resource that the plugin requires cannot be allocated or found. (i.e. the DLS file for MIDI playback)</td>
+</tr>
+<tr>
+<td><code>PluginVersion</code></td>
+<td>A plugin was built with an unsupported SDK version.</td>
+</tr>
+<tr>
+<td><code>Record</code></td>
+<td>An error occurred trying to initialize the recording device.</td>
+</tr>
+<tr>
+<td><code>ReverbChannelGroup</code></td>
+<td>Reverb properties cannot be set on this Channel because a parent ChannelGroup owns the reverb connection.</td>
+</tr>
+<tr>
+<td><code>ReverbInstance</code></td>
+<td>Specified instance in <a href="structs.html#fmodreverbproperties">FmodReverbProperties</a> couldn't be set. Most likely because it is an invalid instance number or the reverb doesn't exist.</td>
+</tr>
+<tr>
+<td><code>SubSounds</code></td>
+<td>The error occurred because the Sound referenced contains subsounds when it shouldn't have, or it doesn't contain subsounds when it should have. The operation may also not be able to be performed on a parent Sound.</td>
+</tr>
+<tr>
+<td><code>SubSoundAllocated</code></td>
+<td>This subsound is already being used by another Sound, you cannot have more than one parent to a Sound. Null out the other parent's entry first.</td>
+</tr>
+<tr>
+<td><code>SubSoundCantMove</code></td>
+<td>Shared subsounds cannot be replaced or moved from their parent stream, such as when the parent stream is an FSB file.</td>
+</tr>
+<tr>
+<td><code>TagNotFound</code></td>
+<td>The specified tag could not be found or there are no tags.</td>
+</tr>
+<tr>
+<td><code>TooManyChannels</code></td>
+<td>The Sound created exceeds the allowable input channel count. This can be increased using the 'maxinputchannels' parameter in <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>.</td>
+</tr>
+<tr>
+<td><code>TruncatedData</code></td>
+<td>The retrieved string is too long to fit in the supplied buffer and has been truncated.</td>
+</tr>
+<tr>
+<td><code>Unimplemented</code></td>
+<td>Something in FMOD hasn't been implemented when it should be. Contact FMOD support.</td>
+</tr>
+<tr>
+<td><code>Uninitialized</code></td>
+<td>This command failed because <a href="system.html#fmod_system_init">fmod_system_init</a> or <a href="system.html#fmod_system_set_driver">fmod_system_set_driver</a> was not called.</td>
+</tr>
+<tr>
+<td><code>Unsupported</code></td>
+<td>A command issued was not supported by this object. Possibly a plugin without certain callbacks specified.</td>
+</tr>
+<tr>
+<td><code>Version</code></td>
+<td>The version number of this file format is not supported.</td>
+</tr>
+<tr>
+<td><code>EventAlreadyLoaded</code></td>
+<td>The specified bank has already been loaded.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateBusy</code></td>
+<td>The live update connection failed due to the game already being connected.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateMismatch</code></td>
+<td>The live update connection failed due to the game data being out of sync with the tool.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateTimeout</code></td>
+<td>The live update connection timed out.</td>
+</tr>
+<tr>
+<td><code>EventNotFound</code></td>
+<td>The requested event, parameter, bus or vca could not be found.</td>
+</tr>
+<tr>
+<td><code>StudioUninitialized</code></td>
+<td>The FMOD Studio System object is not yet initialized.</td>
+</tr>
+<tr>
+<td><code>StudioNotLoaded</code></td>
+<td>The specified resource is not loaded, so it can't be unloaded.</td>
+</tr>
+<tr>
+<td><code>InvalidString</code></td>
+<td>An invalid string was passed to this function.</td>
+</tr>
+<tr>
+<td><code>AlreadyLocked</code></td>
+<td>The specified resource is already locked.</td>
+</tr>
+<tr>
+<td><code>NotLocked</code></td>
+<td>The specified resource is not locked, so it can't be unlocked.</td>
+</tr>
+<tr>
+<td><code>RecordDisconnected</code></td>
+<td>The specified recording driver has been disconnected.</td>
+</tr>
+<tr>
+<td><code>TooManySamples</code></td>
+<td>The length provided exceeds the allowable limit.</td>
+</tr>
+</tbody>
+</table>
+<p><em>//</em>*</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioresult">FmodStudioResult</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_result">FMOD_RESULT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the error codes returned from every function.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_last_result">fmod_studio_last_result</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ok</code></td>
+<td>No errors.</td>
+</tr>
+<tr>
+<td><code>BadCommand</code></td>
+<td>Tried to call a function on a data type that does not allow this type of functionality (i.e. calling <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a> on a streaming <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>).</td>
+</tr>
+<tr>
+<td><code>ChannelAlloc</code></td>
+<td>Error trying to allocate a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a>.</td>
+</tr>
+<tr>
+<td><code>ChannelStolen</code></td>
+<td>The specified Channel has been reused to play another Sound.</td>
+</tr>
+<tr>
+<td><code>Dma</code></td>
+<td>DMA Failure. See debug output for more information.</td>
+</tr>
+<tr>
+<td><code>DspConnection</code></td>
+<td>DSP connection error. Connection possibly caused a cyclic dependency or connected dsps with incompatible buffer counts.</td>
+</tr>
+<tr>
+<td><code>DspDontProcess</code></td>
+<td>DSP return code from a DSP process query callback. Tells mixer not to call the process callback and therefore not consume CPU. Use this to optimize the DSP graph.</td>
+</tr>
+<tr>
+<td><code>DspFormat</code></td>
+<td>DSP Format error. A DSP unit may have attempted to connect to this network with the wrong format, or a matrix may have been set with the wrong size if the target unit has a specified channel map.</td>
+</tr>
+<tr>
+<td><code>DspInUse</code></td>
+<td>DSP is already in the mixer's DSP network. It must be removed before being reinserted or released.</td>
+</tr>
+<tr>
+<td><code>DspNotFound</code></td>
+<td>DSP connection error. Couldn't find the DSP unit specified.</td>
+</tr>
+<tr>
+<td><code>DspReserved</code></td>
+<td>DSP operation error. Cannot perform operation on this DSP as it is reserved by the system.</td>
+</tr>
+<tr>
+<td><code>DspSilence</code></td>
+<td>DSP return code from a DSP process query callback. Tells mixer silence would be produced from read, so go idle and not consume CPU. Use this to optimize the DSP graph.</td>
+</tr>
+<tr>
+<td><code>DspType</code></td>
+<td>DSP operation cannot be performed on a DSP of this type.</td>
+</tr>
+<tr>
+<td><code>FileBad</code></td>
+<td>Error loading file.</td>
+</tr>
+<tr>
+<td><code>FileCouldNotSeek</code></td>
+<td>Couldn't perform seek operation. This is a limitation of the medium (i.e. netstreams) or the file format.</td>
+</tr>
+<tr>
+<td><code>FileDiskEjected</code></td>
+<td>Media was ejected while reading.</td>
+</tr>
+<tr>
+<td><code>FileEof</code></td>
+<td>End of file unexpectedly reached while trying to read essential data (truncated?).</td>
+</tr>
+<tr>
+<td><code>FileEndOfData</code></td>
+<td>End of current chunk reached while trying to read data.</td>
+</tr>
+<tr>
+<td><code>FileNotFound</code></td>
+<td>File not found.</td>
+</tr>
+<tr>
+<td><code>Format</code></td>
+<td>Unsupported file or audio format.</td>
+</tr>
+<tr>
+<td><code>HeaderMismatch</code></td>
+<td>There is a version mismatch between the FMOD header and either the FMOD Studio library or the FMOD Core library.</td>
+</tr>
+<tr>
+<td><code>Http</code></td>
+<td>A HTTP error occurred. This is a catch-all for HTTP errors not listed elsewhere.</td>
+</tr>
+<tr>
+<td><code>HttpAccess</code></td>
+<td>The specified resource requires authentication or is forbidden.</td>
+</tr>
+<tr>
+<td><code>HttpProxyAuth</code></td>
+<td>Proxy authentication is required to access the specified resource.</td>
+</tr>
+<tr>
+<td><code>HttpServerError</code></td>
+<td>A HTTP server error occurred.</td>
+</tr>
+<tr>
+<td><code>HttpTimeout</code></td>
+<td>The HTTP request timed out.</td>
+</tr>
+<tr>
+<td><code>Initialization</code></td>
+<td>FMOD was not initialized correctly to support this function.</td>
+</tr>
+<tr>
+<td><code>Initialized</code></td>
+<td>Cannot call this command after <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+<tr>
+<td><code>Internal</code></td>
+<td>An error occured in the FMOD system. Use the logging version of FMOD for more information.</td>
+</tr>
+<tr>
+<td><code>InvalidFloat</code></td>
+<td>Value passed in was a <code>NaN</code>, <code>infinity</code> or denormalized float.</td>
+</tr>
+<tr>
+<td><code>InvalidHandle</code></td>
+<td>An invalid object handle was used.</td>
+</tr>
+<tr>
+<td><code>InvalidParam</code></td>
+<td>An invalid parameter was passed to this function.</td>
+</tr>
+<tr>
+<td><code>InvalidPosition</code></td>
+<td>An invalid seek position was passed to this function.</td>
+</tr>
+<tr>
+<td><code>InvalidSpeaker</code></td>
+<td>An invalid speaker was passed to this function based on the current speaker mode.</td>
+</tr>
+<tr>
+<td><code>InvalidSyncPoint</code></td>
+<td>The syncpoint did not come from this Sound handle.</td>
+</tr>
+<tr>
+<td><code>InvalidThread</code></td>
+<td>Tried to call a function on a thread that is not supported.</td>
+</tr>
+<tr>
+<td><code>InvalidVector</code></td>
+<td>The vectors passed in are not unit length, or perpendicular.</td>
+</tr>
+<tr>
+<td><code>MaxAudible</code></td>
+<td>Reached maximum audible playback count for this Sound's SoundGroup.</td>
+</tr>
+<tr>
+<td><code>Memory</code></td>
+<td>Not enough memory or resources.</td>
+</tr>
+<tr>
+<td><code>MemoryCantPoint</code></td>
+<td>Can't use <code>FmodStudioMode.OpenMemoryPoint</code> on non PCM source data, or non mp3/xma/adpcm data if <code>FmodStudioMode.CreateCompressedSample</code> was used.</td>
+</tr>
+<tr>
+<td><code>Needs3D</code></td>
+<td>Tried to call a command on a 2D Sound when the command was meant for 3D Sound.</td>
+</tr>
+<tr>
+<td><code>NeedsHardware</code></td>
+<td>Tried to use a feature that requires hardware support.</td>
+</tr>
+<tr>
+<td><code>NetConnect</code></td>
+<td>Couldn't connect to the specified host.</td>
+</tr>
+<tr>
+<td><code>NetSocketError</code></td>
+<td>A socket error occurred. This is a catch-all for socket-related errors not listed elsewhere.</td>
+</tr>
+<tr>
+<td><code>NetUrl</code></td>
+<td>The specified URL couldn't be resolved.</td>
+</tr>
+<tr>
+<td><code>NetWouldBlock</code></td>
+<td>Operation on a non-blocking socket could not complete immediately.</td>
+</tr>
+<tr>
+<td><code>NotReady</code></td>
+<td>Operation could not be performed because specified Sound/DSP connection is not ready.</td>
+</tr>
+<tr>
+<td><code>OutputAllocated</code></td>
+<td>Error initializing output device, but more specifically, the output device is already in use and cannot be reused.</td>
+</tr>
+<tr>
+<td><code>OutputCreateBuffer</code></td>
+<td>Error creating hardware sound buffer.</td>
+</tr>
+<tr>
+<td><code>OutputDriverCall</code></td>
+<td>A call to a standard soundcard driver failed, which could possibly mean a bug in the driver or resources were missing or exhausted.</td>
+</tr>
+<tr>
+<td><code>OutputFormat</code></td>
+<td>Soundcard does not support the specified format.</td>
+</tr>
+<tr>
+<td><code>OutputInit</code></td>
+<td>Error initializing output device.</td>
+</tr>
+<tr>
+<td><code>OutputNoDriver</code></td>
+<td>The output device has no drivers installed. If pre-init, <code>FmodOutputType.NoSound</code> is selected as the output mode. If post-init, the function just fails.</td>
+</tr>
+<tr>
+<td><code>Plugin</code></td>
+<td>An unspecified error has been returned from a plugin.</td>
+</tr>
+<tr>
+<td><code>PluginMissing</code></td>
+<td>A requested output, dsp unit type or codec was not available.</td>
+</tr>
+<tr>
+<td><code>PluginResource</code></td>
+<td>A resource that the plugin requires cannot be allocated or found. (i.e. the DLS file for MIDI playback)</td>
+</tr>
+<tr>
+<td><code>PluginVersion</code></td>
+<td>A plugin was built with an unsupported SDK version.</td>
+</tr>
+<tr>
+<td><code>Record</code></td>
+<td>An error occurred trying to initialize the recording device.</td>
+</tr>
+<tr>
+<td><code>ReverbChannelGroup</code></td>
+<td>Reverb properties cannot be set on this Channel because a parent ChannelGroup owns the reverb connection.</td>
+</tr>
+<tr>
+<td><code>ReverbInstance</code></td>
+<td>Specified instance in <a href="structs.html#fmodreverbproperties">FmodReverbProperties</a> couldn't be set. Most likely because it is an invalid instance number or the reverb doesn't exist.</td>
+</tr>
+<tr>
+<td><code>SubSounds</code></td>
+<td>The error occurred because the Sound referenced contains subsounds when it shouldn't have, or it doesn't contain subsounds when it should have. The operation may also not be able to be performed on a parent Sound.</td>
+</tr>
+<tr>
+<td><code>SubSoundAllocated</code></td>
+<td>This subsound is already being used by another Sound, you cannot have more than one parent to a Sound. Null out the other parent's entry first.</td>
+</tr>
+<tr>
+<td><code>SubSoundCantMove</code></td>
+<td>Shared subsounds cannot be replaced or moved from their parent stream, such as when the parent stream is an FSB file.</td>
+</tr>
+<tr>
+<td><code>TagNotFound</code></td>
+<td>The specified tag could not be found or there are no tags.</td>
+</tr>
+<tr>
+<td><code>TooManyChannels</code></td>
+<td>The Sound created exceeds the allowable input channel count. This can be increased using the 'maxinputchannels' parameter in <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a>.</td>
+</tr>
+<tr>
+<td><code>TruncatedData</code></td>
+<td>The retrieved string is too long to fit in the supplied buffer and has been truncated.</td>
+</tr>
+<tr>
+<td><code>Unimplemented</code></td>
+<td>Something in FMOD hasn't been implemented when it should be. Contact FMOD support.</td>
+</tr>
+<tr>
+<td><code>Uninitialized</code></td>
+<td>This command failed because <a href="system.html#fmod_system_init">fmod_system_init</a> or <a href="system.html#fmod_system_set_driver">fmod_system_set_driver</a> was not called.</td>
+</tr>
+<tr>
+<td><code>Unsupported</code></td>
+<td>A command issued was not supported by this object. Possibly a plugin without certain callbacks specified.</td>
+</tr>
+<tr>
+<td><code>Version</code></td>
+<td>The version number of this file format is not supported.</td>
+</tr>
+<tr>
+<td><code>EventAlreadyLoaded</code></td>
+<td>The specified bank has already been loaded.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateBusy</code></td>
+<td>The live update connection failed due to the game already being connected.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateMismatch</code></td>
+<td>The live update connection failed due to the game data being out of sync with the tool.</td>
+</tr>
+<tr>
+<td><code>EventLiveUpdateTimeout</code></td>
+<td>The live update connection timed out.</td>
+</tr>
+<tr>
+<td><code>EventNotFound</code></td>
+<td>The requested event, parameter, bus or vca could not be found.</td>
+</tr>
+<tr>
+<td><code>StudioUninitialized</code></td>
+<td>The FMOD Studio System object is not yet initialized.</td>
+</tr>
+<tr>
+<td><code>StudioNotLoaded</code></td>
+<td>The specified resource is not loaded, so it can't be unloaded.</td>
+</tr>
+<tr>
+<td><code>InvalidString</code></td>
+<td>An invalid string was passed to this function.</td>
+</tr>
+<tr>
+<td><code>AlreadyLocked</code></td>
+<td>The specified resource is already locked.</td>
+</tr>
+<tr>
+<td><code>NotLocked</code></td>
+<td>The specified resource is not locked, so it can't be unlocked.</td>
+</tr>
+<tr>
+<td><code>RecordDisconnected</code></td>
+<td>The specified recording driver has been disconnected.</td>
+</tr>
+<tr>
+<td><code>TooManySamples</code></td>
+<td>The length provided exceeds the allowable limit.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodoutputtype">FmodOutputType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_outputtype">FMOD_OUTPUTTYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies built-in output types that can be used to run the mixer.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AutoDetect</code></td>
+<td>Picks the best output mode for the platform. This is the default.</td>
+</tr>
+<tr>
+<td><code>Unknown</code></td>
+<td>All - 3rd party plugin, unknown. This is for use with <a href="system.html#fmod_system_get_output">fmod_system_get_output</a> only.</td>
+</tr>
+<tr>
+<td><code>NoSound</code></td>
+<td>All - Perform all mixing but discard the final output.</td>
+</tr>
+<tr>
+<td><code>WavWriter</code></td>
+<td>All - Writes output to a .wav file.</td>
+</tr>
+<tr>
+<td><code>NoSoundNrt</code></td>
+<td>All - Non-realtime version of <code>FmodOutputType.NoSound</code>, one mix per <a href="system.html#fmod_system_update">fmod_system_update</a>.</td>
+</tr>
+<tr>
+<td><code>WavWriterNrt</code></td>
+<td>All - Non-realtime version of <code>FmodOutputType.WavWriter</code>, one mix per <a href="system.html#fmod_system_update">fmod_system_update</a>.</td>
+</tr>
+<tr>
+<td><code>Wasapi</code></td>
+<td>Win / UWP / Xbox One / Game Core - Windows Audio Session API. (Default on Windows, Xbox One, Game Core and UWP)</td>
+</tr>
+<tr>
+<td><code>Asio</code></td>
+<td>Win - Low latency ASIO 2.0.</td>
+</tr>
+<tr>
+<td><code>PulseAudio</code></td>
+<td>Linux - Pulse Audio. (Default on Linux if available)</td>
+</tr>
+<tr>
+<td><code>Alsa</code></td>
+<td>Linux - Advanced Linux Sound Architecture. (Default on Linux if PulseAudio isn't available)</td>
+</tr>
+<tr>
+<td><code>CoreAudio</code></td>
+<td>Mac / iOS - Core Audio. (Default on Mac and iOS)</td>
+</tr>
+<tr>
+<td><code>AudioTrack</code></td>
+<td>Android - Java Audio Track. (Default on Android 2.2 and below)</td>
+</tr>
+<tr>
+<td><code>OpenSl</code></td>
+<td>Android - OpenSL ES. (Default on Android 2.3 up to 7.1)</td>
+</tr>
+<tr>
+<td><code>AudioOut</code></td>
+<td>PS4 / PS5 - Audio Out. (Default on PS4, PS5)</td>
+</tr>
+<tr>
+<td><code>Audio3D</code></td>
+<td>PS4 - Audio3D.</td>
+</tr>
+<tr>
+<td><code>WebAudio</code></td>
+<td>HTML5 - Web Audio ScriptProcessorNode output. (Default on HTML5 if AudioWorkletNode isn't available)</td>
+</tr>
+<tr>
+<td><code>NnAudio</code></td>
+<td>Switch - nn::audio. (Default on Switch)</td>
+</tr>
+<tr>
+<td><code>WinSonic</code></td>
+<td>Win10 / Xbox One / Game Core - Windows Sonic.</td>
+</tr>
+<tr>
+<td><code>AAudio</code></td>
+<td>Android - AAudio. (Default on Android 8.1 and above)</td>
+</tr>
+<tr>
+<td><code>AudioWorklet</code></td>
+<td>HTML5 - Web Audio AudioWorkletNode output. (Default on HTML5 if available)</td>
+</tr>
+<tr>
+<td><code>Phase</code></td>
+<td>iOS - PHASE framework. (Disabled)</td>
+</tr>
+<tr>
+<td><code>OhAudio</code></td>
+<td>OpenHarmony - OHAudio.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddebugmode">FmodDebugMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_mode">FMOD_DEBUG_MODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the destination of log output when using the logging version of FMOD.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tty</code></td>
+<td>Default log location per platform, i.e. Visual Studio output window, stderr, LogCat, etc.</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td>Write log to specified file path.</td>
+</tr>
+<tr>
+<td><code>Callback</code></td>
+<td>Call specified callback with log information.</td>
+</tr>
+</tbody>
+</table>
+<p><em>//</em>*</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiodebugmode">FmodStudioDebugMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_mode">FMOD_DEBUG_MODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the destination of log output when using the logging version of FMOD.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tty</code></td>
+<td>Default log location per platform, i.e. Visual Studio output window, stderr, LogCat, etc.</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td>Write log to specified file path.</td>
+</tr>
+<tr>
+<td><code>Callback</code></td>
+<td>Call specified callback with log information.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodspeakermode">FmodSpeakerMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode">FMOD_SPEAKERMODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies speaker mode types.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a></li>
+<li><a href="system.html#fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix</a></li>
+<li><a href="system.html#fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels</a></li>
+</ul>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodrecorddriverinfo">FmodRecordDriverInfo</a></li>
+<li><a href="structs.html#fmodsoftwareformat">FmodSoftwareFormat</a></li>
+<li><a href="structs.html#fmoddriverinfo">FmodDriverInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td>Default speaker mode for the chosen output mode which will resolve after <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+</tr>
+<tr>
+<td><code>Raw</code></td>
+<td>Assume there is no special mapping from a given channel to a speaker, channels map 1:1 in order. Use <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a> to specify the speaker count.</td>
+</tr>
+<tr>
+<td><code>Mono</code></td>
+<td>1 speaker setup (monaural).</td>
+</tr>
+<tr>
+<td><code>Stereo</code></td>
+<td>2 speaker setup (stereo) front left, front right.</td>
+</tr>
+<tr>
+<td><code>Quad</code></td>
+<td>4 speaker setup (4.0) front left, front right, surround left, surround right.</td>
+</tr>
+<tr>
+<td><code>Surround</code></td>
+<td>5 speaker setup (5.0) front left, front right, center, surround left, surround right.</td>
+</tr>
+<tr>
+<td><code>_5Point1</code></td>
+<td>6 speaker setup (5.1) front left, front right, center, low frequency, surround left, surround right.</td>
+</tr>
+<tr>
+<td><code>_7Point1</code></td>
+<td>8 speaker setup (7.1) front left, front right, center, low frequency, surround left, surround right, back left, back right.</td>
+</tr>
+<tr>
+<td><code>_7Point1Point4</code></td>
+<td>12 speaker setup (7.1.4) front left, front right, center, low frequency, surround left, surround right, back left, back right, top front left, top front right, top back left, top back right.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundtype">FmodSoundType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_type">FMOD_SOUND_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the recognized audio formats that can be loaded into a Sound.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unknown</code></td>
+<td>Unknown or custom codec plugin.</td>
+</tr>
+<tr>
+<td><code>Aiff</code></td>
+<td>Audio Interchange File Format (.aif, .aiff). Uncompressed integer formats only.</td>
+</tr>
+<tr>
+<td><code>Asf</code></td>
+<td>Microsoft Advanced Systems Format (.asf, .wma, .wmv). Platform provided decoder, available only on Windows.</td>
+</tr>
+<tr>
+<td><code>Dsd</code></td>
+<td>Direct Stream Digital.</td>
+</tr>
+<tr>
+<td><code>Flac</code></td>
+<td>Free Lossless Audio Codec (.flac).</td>
+</tr>
+<tr>
+<td><code>Fsb</code></td>
+<td>FMOD Sample Bank (.fsb). Proprietary multi-sound bank format. Supported encodings: PCM16, FADPCM, Vorbis, AT9, XMA, Opus.</td>
+</tr>
+<tr>
+<td><code>It</code></td>
+<td>Impulse Tracker (.it).</td>
+</tr>
+<tr>
+<td><code>Midi</code></td>
+<td>Musical Instrument Digital Interface (.mid).</td>
+</tr>
+<tr>
+<td><code>Mpeg</code></td>
+<td>Moving Picture Experts Group (.mp2, .mp3). Also supports .wav (RIFF) container format.</td>
+</tr>
+<tr>
+<td><code>OggVorbis</code></td>
+<td>Ogg Vorbis (.ogg).</td>
+</tr>
+<tr>
+<td><code>Playlist</code></td>
+<td>Play list information container (.asx, .pls, .m3u, .wax). No audio, tags only.</td>
+</tr>
+<tr>
+<td><code>Raw</code></td>
+<td>Raw uncompressed PCM data (.raw).</td>
+</tr>
+<tr>
+<td><code>S3m</code></td>
+<td>ScreamTracker 3 Module (.s3m).</td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>User created sound.</td>
+</tr>
+<tr>
+<td><code>Wav</code></td>
+<td>Microsoft Waveform Audio File Format (.wav). Supported encodings: Uncompressed PCM, IMA ADPCM. Platform provided ACM decoder extensions, available only on Windows.</td>
+</tr>
+<tr>
+<td><code>Xm</code></td>
+<td>FastTracker 2 Extended Module (.xm).</td>
+</tr>
+<tr>
+<td><code>Xwm</code></td>
+<td>Xbox Media Audio.</td>
+</tr>
+<tr>
+<td><code>Ac3</code></td>
+<td>Dolby AC-3.</td>
+</tr>
+<tr>
+<td><code>At9</code></td>
+<td>Sony ATRAC9 bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on PlayStation.</td>
+</tr>
+<tr>
+<td><code>Vorbis</code></td>
+<td>Vorbis bit-stream supported by FSB (.fsb) container format.</td>
+</tr>
+<tr>
+<td><code>MediaFoundation</code></td>
+<td>Microsoft Media Foundation decoder (.asf, .wma, .wmv, .mp4, .m4a). Platform provided decoder, available only on UWP.</td>
+</tr>
+<tr>
+<td><code>MediaCodec</code></td>
+<td>Google Media Codec decoder (.m4a, .mp4). Platform provided decoder, available only on Android.</td>
+</tr>
+<tr>
+<td><code>Fadpcm</code></td>
+<td>FMOD Adaptive Differential Pulse Code Modulation bit-stream supported by FSB (.fsb) container format.</td>
+</tr>
+<tr>
+<td><code>Opus</code></td>
+<td>Opus bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox Series X</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundformat">FmodSoundFormat</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_format">FMOD_SOUND_FORMAT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies values describes the native format of the hardware or software buffer that will be used.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>None</code></td>
+<td>Uninitalized / unknown.</td>
+</tr>
+<tr>
+<td><code>Pcm8</code></td>
+<td>8bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm16</code></td>
+<td>16bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm24</code></td>
+<td>24bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm32</code></td>
+<td>32bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>PcmFloat</code></td>
+<td>32bit floating point PCM data.</td>
+</tr>
+<tr>
+<td><code>BitStream</code></td>
+<td>Sound data is in its native compressed format. See <code>FmodStudioMode.CreateCompressedSample</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>//</em>*</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiosoundformat">FmodStudioSoundFormat</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_format">FMOD_SOUND_FORMAT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies values describes the native format of the hardware or software buffer that will be used.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudiocreatesoundexinfo">FmodStudioCreateSoundExInfo</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>None</code></td>
+<td>Uninitalized / unknown.</td>
+</tr>
+<tr>
+<td><code>Pcm8</code></td>
+<td>8bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm16</code></td>
+<td>16bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm24</code></td>
+<td>24bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>Pcm32</code></td>
+<td>32bit integer PCM data.</td>
+</tr>
+<tr>
+<td><code>PcmFloat</code></td>
+<td>32bit floating point PCM data.</td>
+</tr>
+<tr>
+<td><code>BitStream</code></td>
+<td>Sound data is in its native compressed format. See <code>FmodStudioMode.CreateCompressedSample</code></td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodopenstate">FmodOpenState</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_openstate">FMOD_OPENSTATE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies values describing what state a sound is in after <code>FmodStudioMode.NonBlocking</code> has been used to open it.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ready</code></td>
+<td>Opened and ready to play.</td>
+</tr>
+<tr>
+<td><code>Loading</code></td>
+<td>Initial load in progress.</td>
+</tr>
+<tr>
+<td><code>Error</code></td>
+<td>Failed to open - file not found, out of memory, etc. See return value of <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> for what happened.</td>
+</tr>
+<tr>
+<td><code>Connecting</code></td>
+<td>Connecting to remote host (internet sounds only).</td>
+</tr>
+<tr>
+<td><code>Buffering</code></td>
+<td>Buffering data.</td>
+</tr>
+<tr>
+<td><code>Seeking</code></td>
+<td>Seeking to subsound and re-flushing stream buffer.</td>
+</tr>
+<tr>
+<td><code>Playing</code></td>
+<td>Ready and playing, but not possible to release at this time without stalling the main thread.</td>
+</tr>
+<tr>
+<td><code>SetPosition</code></td>
+<td>Seeking within a stream to a different position.</td>
+</tr>
+<tr>
+<td><code>Max</code></td>
+<td>The number of open states. Not a state a sound is ever reported in.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodchannelcontroldspindex">FmodChannelControlDspIndex</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#fmod_channelcontrol_dsp_index">FMOD_CHANNELCONTROL_DSP_INDEX</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies references to built-in DSP positions that reside in a Channel or ChannelGroup DSP chain.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Head</code></td>
+<td>Head of the DSP chain, equivalent of index 0.</td>
+</tr>
+<tr>
+<td><code>Fader</code></td>
+<td>Built-in fader DSP.</td>
+</tr>
+<tr>
+<td><code>Tail</code></td>
+<td>Tail of the DSP chain, equivalent of the number of DSPs minus 1.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspconnectiontype">FmodDspConnectionType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dspconnection.html#fmod_dspconnection_type">FMOD_DSPCONNECTION_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the list of connection types between 2 DSP nodes.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Standard</code></td>
+<td>Default connection type. Audio is mixed from the input to the output DSP's audible buffer.</td>
+</tr>
+<tr>
+<td><code>Sidechain</code></td>
+<td>Sidechain connection type. Audio is mixed from the input to the output DSP's sidechain buffer.</td>
+</tr>
+<tr>
+<td><code>Send</code></td>
+<td>Send connection type. Audio is mixed from the input to the output DSP's audible buffer, but the input is NOT executed, only copied from. A standard connection or sidechain needs to make an input execute to generate data.</td>
+</tr>
+<tr>
+<td><code>SendSidechain</code></td>
+<td>Send sidechain connection type. Audio is mixed from the input to the output DSP's sidechain buffer, but the input is NOT executed, only copied from. A standard connection or sidechain needs to make an input execute to generate data.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodtagtype">FmodTagType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tagtype">FMOD_TAGTYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the list of tag data / metadata types that could be stored within a sound. These include id3 tags, metadata from netstreams and vorbis/asf data.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodsoundtag">FmodSoundTag</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unknown</code></td>
+<td>Tag type that is not recognized by FMOD</td>
+</tr>
+<tr>
+<td><code>Id3v1</code></td>
+<td>MP3 ID3 Tag 1.0. Typically 1 tag stored 128 bytes from end of an MP3 file.</td>
+</tr>
+<tr>
+<td><code>Id3v2</code></td>
+<td>MP3 ID3 Tag 2.0. Variable length tags with more than 1 possible.</td>
+</tr>
+<tr>
+<td><code>VorbisComment</code></td>
+<td>Metadata container used in Vorbis, FLAC, Theora, Speex and Opus file formats.</td>
+</tr>
+<tr>
+<td><code>ShoutCast</code></td>
+<td>SHOUTcast internet stream metadata which can be issued during playback.</td>
+</tr>
+<tr>
+<td><code>IceCast</code></td>
+<td>Icecast internet stream metadata which can be issued during playback.</td>
+</tr>
+<tr>
+<td><code>Asf</code></td>
+<td>Advanced Systems Format metadata typically associated with Windows Media formats such as WMA.</td>
+</tr>
+<tr>
+<td><code>Midi</code></td>
+<td>Metadata stored inside a MIDI file.</td>
+</tr>
+<tr>
+<td><code>Playlist</code></td>
+<td>Playlist files such as PLS,M3U,ASX and WAX will populate playlist information through this tag type.</td>
+</tr>
+<tr>
+<td><code>Fmod</code></td>
+<td>Tag type used by FMOD's MIDI, MOD, S3M, XM, IT format support, and netstreams to notify of internet stream events like a sample rate change.</td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>For codec developers, this tag type can be used with <code>FMOD_CODEC_METADATA_FUNC</code> to generate custom metadata.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodtagdatatype">FmodTagDataType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_tagdatatype">FMOD_TAGDATATYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the list of tag data / metadata types.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodsoundtag">FmodSoundTag</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Binary</code></td>
+<td>Raw binary data. see <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for length of data in bytes.</td>
+</tr>
+<tr>
+<td><code>Int</code></td>
+<td>Integer - Note this integer could be 8bit / 16bit / 32bit / 64bit. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for integer size (1 vs 2 vs 4 vs 8 bytes).</td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td>IEEE floating point number. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure to confirm if the float data is 32bit or 64bit (4 vs 8 bytes).</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td>8bit ASCII char string. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for string length in bytes.</td>
+</tr>
+<tr>
+<td><code>StringUtf16</code></td>
+<td>16bit UTF string. Assume little endian byte order. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for string length in bytes.</td>
+</tr>
+<tr>
+<td><code>StringUtf16Be</code></td>
+<td>16bit UTF string Big endian byte order. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for string length in bytes.</td>
+</tr>
+<tr>
+<td><code>StringUtf8</code></td>
+<td>8 bit UTF string. See <a href="structs.html#fmodsoundtag">FmodSoundTag</a> structure for string length in bytes.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/<em> Codec constants </em>/</p>
+<p>/<em> DSP Constants </em>/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsptype">FmodDspType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_type">FMOD_DSP_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies DSP types.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unknown</code></td>
+<td>Was created via a non-FMOD plugin and has an unknown purpose.</td>
+</tr>
+<tr>
+<td><code>Mixer</code></td>
+<td>Does not process the signal, acts as a unit purely for mixing inputs.</td>
+</tr>
+<tr>
+<td><code>Oscillator</code></td>
+<td>Generates sine/square/saw/triangle or noise tones. See <a href="constants.html#fmoddsposcillator">FmodDspOscillator</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#oscillator">Effect reference - Oscillator</a> for overview.</td>
+</tr>
+<tr>
+<td><code>LowPass</code></td>
+<td>Filters sound using a high quality, resonant lowpass filter algorithm but consumes more CPU time. Deprecated and will be removed in a future release. See <a href="constants.html#fmoddsplowpass">FmodDspLowPass</a> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass">Effect reference - Low Pass</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ItLowPass</code></td>
+<td>Filters sound using a resonant lowpass filter algorithm that is used in Impulse Tracker, but with limited cutoff range (0 to 8060hz). See <a href="constants.html#fmoddspitlowpass">FmodDspItLowPass</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#it-low-pass">Effect reference - IT Low Pass</a> for overview.</td>
+</tr>
+<tr>
+<td><code>HighPass</code></td>
+<td>Filters sound using a resonant highpass filter algorithm. Deprecated and will be removed in a future release. See <a href="constants.html#fmoddsphighpass">FmodDspHighPass</a> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass">Effect reference - High Pass</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Echo</code></td>
+<td>Produces an echo on the sound and fades out at the desired rate. See <a href="constants.html#fmoddspecho">FmodDspEcho</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#echo">Effect reference - Echo</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Fader</code></td>
+<td>Pans and scales the volume of a unit. See <code>FMOD_DSP_FADER</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#fader">Effect reference - Fader</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Flange</code></td>
+<td>Produces a flange effect on the sound. See <a href="constants.html#fmoddspflange">FmodDspFlange</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#flange">Effect reference - Flange</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Distortion</code></td>
+<td>Distorts the sound. See <a href="constants.html#fmoddspdistortion">FmodDspDistortion</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#distortion">Effect reference - Distortion</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Normalize</code></td>
+<td>Normalizes or amplifies the sound to a certain level. See <a href="constants.html#fmoddspnormalize">FmodDspNormalize</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#normalize">Effect reference - Normalize</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Limiter</code></td>
+<td>Limits the sound to a certain level. See <a href="constants.html#fmoddsplimiter">FmodDspLimiter</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#limiter">Effect reference - Limiter</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ParamEq</code></td>
+<td>Attenuates or amplifies a selected frequency range. Deprecated and will be removed in a future release. See <a href="constants.html#fmoddspparameq">FmodDspParamEq</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#parametric-eq">Effect reference - Parametric EQ</a> for overview.</td>
+</tr>
+<tr>
+<td><code>PitchShift</code></td>
+<td>Bends the pitch of a sound without changing the speed of playback. See <a href="constants.html#fmoddsppitchshift">FmodDspPitchShift</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#pitch-shifter">Effect reference - Pitch Shifter</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Chorus</code></td>
+<td>Produces a chorus effect on the sound. See <a href="constants.html#fmoddspchorus">FmodDspChorus</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#chorus">Effect reference - Chorus</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ItEcho</code></td>
+<td>Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See <code>FMOD_DSP_ITECHO</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#it-echo">Effect reference - IT Echo</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Compressor</code></td>
+<td>Dynamic compression (linked/unlinked multi-channel, wideband). See <a href="constants.html#fmoddspcompdyneq">FmodDspCompDynEq</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#compressor">Effect reference - Compressor</a> for overview.</td>
+</tr>
+<tr>
+<td><code>SfxReverb</code></td>
+<td>I3DL2 reverb effect. See <code>FMOD_DSP_SFXREVERB</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#sfx-reverb">Effect reference - SFX Reverb</a> for overview.</td>
+</tr>
+<tr>
+<td><code>LowPassSimple</code></td>
+<td>Filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <code>FMOD_DSP_LOWPASS_SIMPLE</code> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass-simple">Effect reference - Low Pass Simple</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Delay</code></td>
+<td>Produces different delays on individual channels of the sound. See <code>FMOD_DSP_DELAY</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#delay">Effect reference - Delay</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Tremolo</code></td>
+<td>Produces a tremolo / chopper effect on the sound. See <code>FMOD_DSP_TREMOLO</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#tremolo">Effect reference - Tremolo</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Send</code></td>
+<td>Sends a copy of the signal to a return DSP anywhere in the DSP tree. See <code>FMOD_DSP_SEND</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#send">Effect reference - Send</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Return</code></td>
+<td>Receives signals from a number of send DSPs. See <code>FMOD_DSP_RETURN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#return">Effect reference - Return</a> for overview.</td>
+</tr>
+<tr>
+<td><code>HighPassSimple</code></td>
+<td>Filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <code>FMOD_DSP_HIGHPASS_SIMPLE</code> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass-simple">Effect reference - High Pass Simple</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Pan</code></td>
+<td>Pans the signal in 2D or 3D, possibly upmixing or downmixing as well. See <code>FMOD_DSP_PAN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#pan">Effect reference - Pan</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ThreeEq</code></td>
+<td>Three-band equalizer. See <code>FMOD_DSP_THREE_EQ</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#three-eq">Effect reference - Three EQ</a> for overview.</td>
+</tr>
+<tr>
+<td><code>FFT</code></td>
+<td>Analyzes the signal and provides spectrum information back through getParameter. See <a href="constants.html#fmoddspfft">FmodDspFft</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#fft">Effect reference - FFT</a> for overview.</td>
+</tr>
+<tr>
+<td><code>LoudnessMeter</code></td>
+<td>Analyzes the loudness and true peak of the signal.</td>
+</tr>
+<tr>
+<td><code>ConvolutionReverb</code></td>
+<td>Convolution reverb. See <a href="constants.html#fmoddsptype">FmodDspType</a>'s <code>CONVOLUTION_REVERB</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#convolution-reverb">Effect reference - Convolution Reverb</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ChannelMix</code></td>
+<td>Provides per channel gain, channel grouping of the input signal which also sets the speaker format for the output signal, and customizable input to output channel routing. See <a href="constants.html#fmoddspchannelmix">FmodDspChannelMix</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#channel-mix">Effect reference - Channel Mix</a> for overview.</td>
+</tr>
+<tr>
+<td><code>Transceiver</code></td>
+<td>'sends' and 'receives' from a selection of up to 32 different slots. It is like a send/return but it uses global slots rather than returns as the destination. It also has other features. Multiple transceivers can receive from a single channel, or multiple transceivers can send to a single channel, or a combination of both. See <a href="constants.html#fmoddsptransceiver">FmodDspTransceiver</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#transceiver">Effect reference - Transceiver</a> for overview.</td>
+</tr>
+<tr>
+<td><code>ObjectPan</code></td>
+<td>Spatializes input signal by passing it to an external object mixer. See <code>FMOD_DSP_OBJECTPAN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#object-panner">Effect reference - Object Panner</a> for overview.</td>
+</tr>
+<tr>
+<td><code>MultibandEq</code></td>
+<td>Five band parametric equalizer. See <a href="constants.html#fmoddspmultibandeq">FmodDspMultibandEq</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#multiband-equalizer">Effect reference - Multiband Equalizer</a> for overview.</td>
+</tr>
+<tr>
+<td><code>MultibandDynamics</code></td>
+<td>Multiband dynamics processor unit.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsposcillator">FmodDspOscillator</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_oscillator">FMOD_DSP_OSCILLATOR</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies oscillator DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Type</code></td>
+<td>Waveform type. 0 = sine. 1 = square. 2 = sawup. 3 = sawdown. 4 = triangle. 5 = noise.</td>
+</tr>
+<tr>
+<td><code>Rate</code></td>
+<td>Frequency of the tone. Does not affect the noise generator.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsplowpass">FmodDspLowPass</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass">FMOD_DSP_LOWPASS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies lowpass DSP parameter types.</p>
+<p>Deprecated and will be removed in a future release, emulate with <code>FmodDspType.MultibandEq</code>.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cutoff</code></td>
+<td>Lowpass cutoff frequency.</td>
+</tr>
+<tr>
+<td><code>Resonance</code></td>
+<td>Lowpass resonance Q value.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspitlowpass">FmodDspItLowPass</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_itlowpass">FMOD_DSP_ITLOWPASS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies lowpass DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cutoff</code></td>
+<td>Lowpass cutoff frequency.</td>
+</tr>
+<tr>
+<td><code>Resonance</code></td>
+<td>Lowpass resonance Q value.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsphighpass">FmodDspHighPass</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass">FMOD_DSP_HIGHPASS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies highpass DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cutoff</code></td>
+<td>Highpass cutoff frequency.</td>
+</tr>
+<tr>
+<td><code>Resonance</code></td>
+<td>Highpass resonance Q value.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspecho">FmodDspEcho</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_echo">FMOD_DSP_ECHO</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies echo DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Delay</code></td>
+<td>Echo delay.</td>
+</tr>
+<tr>
+<td><code>Feedback</code></td>
+<td>Echo decay per delay. 100.0 = No decay, 0.0 = total decay.</td>
+</tr>
+<tr>
+<td><code>DryLevel</code></td>
+<td>Original sound volume.</td>
+</tr>
+<tr>
+<td><code>WetLevel</code></td>
+<td>Volume of echo signal to pass to output.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspflange">FmodDspFlange</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_flange">FMOD_DSP_FLANGE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flange DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mix</code></td>
+<td>Percentage of wet signal in mix.</td>
+</tr>
+<tr>
+<td><code>Depth</code></td>
+<td>Flange depth.</td>
+</tr>
+<tr>
+<td><code>Rate</code></td>
+<td>Flange speed.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspdistortion">FmodDspDistortion</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_distortion">FMOD_DSP_DISTORTION</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies distortion DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Level</code></td>
+<td>Distortion value.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspnormalize">FmodDspNormalize</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_normalize">FMOD_DSP_NORMALIZE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies normalize DSP parameter types.</p>
+<p>Normalize amplifies the sound based on the maximum peaks within the signal. For example if the maximum peaks in the signal were 50% of the bandwidth, it would scale the whole sound by 2.</p>
+<p>The lower threshold value makes the normalizer ignore peaks below a certain point, to avoid over-amplification if a loud signal suddenly came in, and also to avoid amplifying to maximum things like background hiss.</p>
+<p>Because FMOD is a realtime audio processor, it doesn't have the luxury of knowing the peak for the whole sound (i.e. it can't see into the future), so it has to process data as it comes in.</p>
+<p>To avoid very sudden changes in volume level based on small samples of new data, FMOD fades towards the desired amplification which makes for smooth gain control. The fadetime parameter can control this.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FadeTime</code></td>
+<td>Time to ramp the silence to full.</td>
+</tr>
+<tr>
+<td><code>Threshold</code></td>
+<td>Lower volume range threshold to ignore.</td>
+</tr>
+<tr>
+<td><code>MaxAmplitude</code></td>
+<td>Maximum amplification allowed.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsplimiter">FmodDspLimiter</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_limiter">FMOD_DSP_LIMITER</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies limited DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReleaseTime</code></td>
+<td>Time to return the gain reduction to full in ms.</td>
+</tr>
+<tr>
+<td><code>Ceiling</code></td>
+<td>Maximum level of the output signal.</td>
+</tr>
+<tr>
+<td><code>MaximizerGain</code></td>
+<td>Maximum amplification allowed.</td>
+</tr>
+<tr>
+<td><code>Mode</code></td>
+<td>Channel processing mode where false is independent (limiter per channel) and true is linked (all channels are summed together before processing).</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspparameq">FmodDspParamEq</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_parameq">FMOD_DSP_PARAMEQ</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies parametric EQ DSP parameter types.</p>
+<p>Deprecated and will be removed in a future release, to emulate with <code>FmodDspType.MultibandEq</code>:</p>
+<p>Parametric EQ is a single band peaking EQ filter that attenuates or amplifies a selected frequency and its neighboring frequencies.</p>
+<p>When the gain is set to zero decibels the sound will be unaffected and represents the original signal exactly.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Center</code></td>
+<td>Frequency center.</td>
+</tr>
+<tr>
+<td><code>Bandwidth</code></td>
+<td>Octave range around the center frequency to filter.</td>
+</tr>
+<tr>
+<td><code>Gain</code></td>
+<td>Frequency Gain in dB.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmultibandeq">FmodDspMultibandEq</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq">FMOD_DSP_MULTIBAND_EQ</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies multiband EQ DSP parameter types.</p>
+<p>Flexible five band parametric equalizer.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AFilter</code></td>
+<td>Band A: used to interpret the behavior of the remaining parameters.</td>
+</tr>
+<tr>
+<td><code>AFrequency</code></td>
+<td>Band A: Significant frequency, cutoff [low/high pass, low/high shelf], center [notch, peaking, band-pass], phase transition point [all-pass].</td>
+</tr>
+<tr>
+<td><code>AQ</code></td>
+<td>Band A: Quality factor, resonance [low/high pass], bandwidth [notch, peaking, band-pass], phase transition sharpness [all-pass], unused [low/high shelf].</td>
+</tr>
+<tr>
+<td><code>AGain</code></td>
+<td>Band A: Boost or attenuation in dB [peaking, high/low shelf only]. -30 to 30. Default = 0.</td>
+</tr>
+<tr>
+<td><code>BFilter</code></td>
+<td>Band B: See Band A.</td>
+</tr>
+<tr>
+<td><code>BFrequency</code></td>
+<td>Band B: See Band A</td>
+</tr>
+<tr>
+<td><code>BQ</code></td>
+<td>Band B: See Band A</td>
+</tr>
+<tr>
+<td><code>BGain</code></td>
+<td>Band B: See Band A</td>
+</tr>
+<tr>
+<td><code>CFilter</code></td>
+<td>Band C: See Band A.</td>
+</tr>
+<tr>
+<td><code>CFrequency</code></td>
+<td>Band C: See Band A.</td>
+</tr>
+<tr>
+<td><code>CQ</code></td>
+<td>Band C: See Band A.</td>
+</tr>
+<tr>
+<td><code>CGain</code></td>
+<td>Band C: See Band A.</td>
+</tr>
+<tr>
+<td><code>DFilter</code></td>
+<td>Band D: See Band A.</td>
+</tr>
+<tr>
+<td><code>DFrequency</code></td>
+<td>Band D: See Band A.</td>
+</tr>
+<tr>
+<td><code>DQ</code></td>
+<td>Band D: See Band A.</td>
+</tr>
+<tr>
+<td><code>DGain</code></td>
+<td>Band D: See Band A.</td>
+</tr>
+<tr>
+<td><code>EFilter</code></td>
+<td>Band E: See Band A.</td>
+</tr>
+<tr>
+<td><code>EFrequency</code></td>
+<td>Band E: See Band A.</td>
+</tr>
+<tr>
+<td><code>EQ</code></td>
+<td>Band E: See Band A.</td>
+</tr>
+<tr>
+<td><code>EGain</code></td>
+<td>Band E: See Band A.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmultibandeqfiltertype">FmodDspMultibandEqFilterType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_eq_filter_type">FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies multiband EQ Filter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Disabled</code></td>
+<td>Disabled filter, no processing.</td>
+</tr>
+<tr>
+<td><code>Lowpass12db</code></td>
+<td>Resonant low-pass filter, attenuates frequencies (12dB per octave) above a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Lowpass24db</code></td>
+<td>Resonant low-pass filter, attenuates frequencies (24dB per octave) above a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Lowpass48db</code></td>
+<td>Resonant low-pass filter, attenuates frequencies (48dB per octave) above a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Highpass12db</code></td>
+<td>Resonant high-pass filter, attenuates frequencies (12dB per octave) below a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Highpass24db</code></td>
+<td>Resonant high-pass filter, attenuates frequencies (24dB per octave) below a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Highpass48db</code></td>
+<td>Resonant high-pass filter, attenuates frequencies (48dB per octave) below a given point (with specificed resonance) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Lowshelf</code></td>
+<td>Low-shelf filter, boosts or attenuates frequencies (with specified gain) below a given point while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Highshelf</code></td>
+<td>High-shelf filter, boosts or attenuates frequencies (with specified gain) above a given point while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Peaking</code></td>
+<td>Peaking filter, boosts or attenuates frequencies (with specified gain) at a given point (with specificed bandwidth) while allowing the rest to pass.</td>
+</tr>
+<tr>
+<td><code>Bandpass</code></td>
+<td>Band-pass filter, allows frequencies at a given point (with specificed bandwidth) to pass while attenuating frequencies outside this range.</td>
+</tr>
+<tr>
+<td><code>Notch</code></td>
+<td>Notch or band-reject filter, attenuates frequencies at a given point (with specificed bandwidth) while allowing frequencies outside this range to pass.</td>
+</tr>
+<tr>
+<td><code>Allpass</code></td>
+<td>All-pass filter, allows all frequencies to pass, but changes the phase response at a given point (with specified sharpness).</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppitchshift">FmodDspPitchShift</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pitchshift">FMOD_DSP_PITCHSHIFT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies pitch shift DSP parameter types.</p>
+<p><code>FmodDspPitchShift.MaxChannels</code> dictates the amount of memory allocated. By default, the maxchannels value is 0. If FMOD is set to stereo, the pitch shift unit will allocate enough memory for 2 channels. If it is 5.1, it will allocate enough memory for a 6 channel pitch shift, etc.</p>
+<p>If the pitch shift effect is only ever applied to the global mix (i.e. with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> on a <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a> object), then 0 is the value to set as it will be enough to handle all speaker modes.</p>
+<p>When the pitch shift is added to a Channel (i.e. with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> on a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> object) then the signal channel count that comes in could be anything from 1 to 8 possibly. It is only in this case where you might want to increase the channel count above the output's channel count.</p>
+<p>If a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> pitch shift is set to a lower number than the signal's channel count that is coming in, it will not pitch shift the sound.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Pitch</code></td>
+<td>Pitch value. 0.5 = one octave down, 2.0 = one octave up. 1.0 does not change the pitch.</td>
+</tr>
+<tr>
+<td><code>FftSize</code></td>
+<td>FFT window size - 256, 512, 1024, 2048, 4096. Increase this to reduce 'smearing'. This effect is a warbling sound similar to when an mp3 is encoded at very low bitrates.</td>
+</tr>
+<tr>
+<td><code>Overlap</code></td>
+<td>Removed. Do not use. FMOD now uses 4 overlaps and cannot be changed.</td>
+</tr>
+<tr>
+<td><code>MaxChannels</code></td>
+<td>Maximum channels supported. 0 = same as FMOD's default output polyphony, 1 = mono, 2 = stereo etc. See remarks for more. It is recommended to leave it at 0.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspchorus">FmodDspChorus</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_chorus">FMOD_DSP_CHORUS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies chorus DSP parameter types.</p>
+<p>Chorus is an effect where the sound is more 'spacious' due a copy of the signal being played along side the original, but with the delay of each copy modulating on a sine wave. As there are 2 versions of the same signal (dry vs wet), by default each signal is given 50% mix, so that the total is not louder than the original unaffected signal.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mix</code></td>
+<td>Percentage of wet signal in mix.</td>
+</tr>
+<tr>
+<td><code>Rate</code></td>
+<td>Chorus modulation rate.</td>
+</tr>
+<tr>
+<td><code>Depth</code></td>
+<td>Chorus modulation depth.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspcompdyneq">FmodDspCompDynEq</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_compressor">FMOD_DSP_COMPRESSOR</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies compressor DSP parameter types.</p>
+<p>This is a multi-channel software limiter that is uniform across the whole spectrum.
+The limiter is not guaranteed to catch every peak above the threshold level, because it cannot apply gain reduction instantaneously - the time delay is determined by the attack time. However setting the attack time too short will distort the sound, so it is a compromise. High level peaks can be avoided by using a short attack time - but not too short, and setting the threshold a few decibels below the critical level.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Threshold</code></td>
+<td>Threshold level.</td>
+</tr>
+<tr>
+<td><code>Ratio</code></td>
+<td>Compression Ratio.</td>
+</tr>
+<tr>
+<td><code>Attack</code></td>
+<td>Attack time.</td>
+</tr>
+<tr>
+<td><code>Release</code></td>
+<td>Release time.</td>
+</tr>
+<tr>
+<td><code>GainMakeup</code></td>
+<td>Make-up gain applied after limiting.</td>
+</tr>
+<tr>
+<td><code>UseSidechain</code></td>
+<td>Data of type <code>FMOD_DSP_PARAMETER_SIDECHAIN</code>. Whether to analyse the sidechain signal instead of the input signal. The FMOD_DSP_PARAMETER_SIDECHAIN::sidechainenable default is false.</td>
+</tr>
+<tr>
+<td><code>Linked</code></td>
+<td><code>false</code> = Independent (compressor per channel), <code>true</code> = Linked.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspfftwindowtype">FmodDspFftWindowType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft_window">FMOD_DSP_FFT_WINDOW</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the list of windowing methods for the FFT DSP.</p>
+<p>Used in spectrum analysis to reduce leakage / transient signals interfering with the analysis. This is a problem with analysis of continuous signals that only have a small portion of the signal sample (the FFT window size). Windowing the signal with a curve or triangle tapers the sides of the FFT window to help alleviate this problem.</p>
+<p>Cyclic signals such as a sine wave that repeat their cycle in a multiple of the window size do not need windowing. I.e. If the sine wave repeats every 1024, 512, 256, etc. samples and the FMOD FFT window is 1024, then the signal would not need windowing.</p>
+<p>Not windowing is the same as <code>FmodDspFftWindowType.Rect</code>, which is the default. If the cycle of the signal (i.e. the sine wave) is not a multiple of the window size, it will cause frequency abnormalities, so a different windowing method is needed.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Rect</code></td>
+<td>w[n] = 1.0</td>
+</tr>
+<tr>
+<td><code>Triangle</code></td>
+<td>w[n] = TRI(2n/N)</td>
+</tr>
+<tr>
+<td><code>Hamming</code></td>
+<td>w[n] = 0.54 - (0.46 * COS(n/N) )</td>
+</tr>
+<tr>
+<td><code>Hanning</code></td>
+<td>w[n] = 0.5 * (1.0 - COS(n/N) )</td>
+</tr>
+<tr>
+<td><code>Blackman</code></td>
+<td>w[n] = 0.42 - (0.5 * COS(n/N) ) + (0.08 * COS(2.0 * n/N) )</td>
+</tr>
+<tr>
+<td><code>BlackmanHarris</code></td>
+<td>w[n] = 0.35875 - (0.48829 * COS(1.0 * n/N)) + (0.14128 * COS(2.0 * n/N)) - (0.01168 * COS(3.0 * n/N))</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspfft">FmodDspFft</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft">FMOD_DSP_FFT</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies FFT DSP parameter types.</p>
+<p>Set the attributes for the spectrum analysis with <code>FmodDspFft.WindowSize</code> and <code>FmodDspFft.WindowType</code>, and retrieve the results with <code>FmodDspFft.SpectrumData</code> and <code>FMOD_DSP_FFT.DOMINANT_FREQ</code>.
+<code>FmodDspFft.SpectrumData</code> stores its data in the <code>FMOD_DSP_PARAMETER_DATA_TYPE_FFT</code>. You will need to cast to this structure to get the right data.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WindowSize</code></td>
+<td>Window size. Must be a power of 2 between 128 and 16384.</td>
+</tr>
+<tr>
+<td><code>WindowType</code></td>
+<td>FFT Window Type.</td>
+</tr>
+<tr>
+<td><code>BandStartFreq</code></td>
+<td>Lowest frequency in Hz to include in the RMS and spectral centroid readings. Range 0 to 22050, default 0.</td>
+</tr>
+<tr>
+<td><code>BandStopFreq</code></td>
+<td>Highest frequency in Hz to include in the RMS and spectral centroid readings. Range 0 to 22050, default 22050.</td>
+</tr>
+<tr>
+<td><code>SpectrumData</code></td>
+<td>Returns the current spectrum values between 0 and 1 for each 'FFT bin'. Divide the Nyquist frequency by the window size to get the Hz value per entry.</td>
+</tr>
+<tr>
+<td><code>Rms</code></td>
+<td>Read-only. The root mean square of the signal across the selected band.</td>
+</tr>
+<tr>
+<td><code>SpectralCentroid</code></td>
+<td>Read-only. The spectral centroid of the signal, in Hz.</td>
+</tr>
+<tr>
+<td><code>ImmediateMode</code></td>
+<td>Whether to analyse the signal as it arrives rather than on the mixer's own schedule.</td>
+</tr>
+<tr>
+<td><code>Downmix</code></td>
+<td>How to downmix a multichannel signal before the transform.</td>
+</tr>
+<tr>
+<td><code>Channel</code></td>
+<td>The channel to analyse when the signal is not downmixed.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspconvolution">FmodDspConvolution</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_convolution_reverb">FMOD_DSP_CONVOLUTION_REVERB</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies Convolution reverb DSP parameter types.</p>
+<p>Convolution reverb is a reverberation effect that uses a recording of a physical space known as an Impulse Response file (or IR file) to generate frequency specific reverberation.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ir</code></td>
+<td>Array of signed 16-bit (short) PCM data to be used as reverb impulse response. First member of the array should be a 16 bit value (short) which specifies the number of channels. Array looks like [index 0=numchannels][index 1+ = raw 16 bit PCM data]. Data is copied internally so source can be freed.</td>
+</tr>
+<tr>
+<td><code>Wet</code></td>
+<td>Volume of echo signal to pass to output.</td>
+</tr>
+<tr>
+<td><code>Dry</code></td>
+<td>Original sound volume.</td>
+</tr>
+<tr>
+<td><code>Linked</code></td>
+<td>Linked - channels are mixed together before processing through the reverb.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspchannelmix">FmodDspChannelMix</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_channelmix">FMOD_DSP_CHANNELMIX</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies channel Mix DSP parameter types.</p>
+<p>For <code>FMOD_DSP_CHANNELMIX.OUTPUTGROUPING</code>, this value will set the output speaker format for the DSP which determines the number of output channels.</p>
+<p>For input channels mapped to an output channel in excess of the number of output channels, it will instead be mapped to the modulo of that channel index. E.g., if there are 4 output channels, the input channel mapped to output channel index 5 will be mapped to index 1.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OutputGain</code></td>
+<td>Selects the output grouping - FMOD's <code>FMOD_DSP_CHANNELMIX_OUTPUTGROUPING</code>. This chooses how the output channels are grouped, it is not a gain.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh0</code></td>
+<td>Gain applied to output channel 0, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh1</code></td>
+<td>Gain applied to output channel 1, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh2</code></td>
+<td>Gain applied to output channel 2, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh3</code></td>
+<td>Gain applied to output channel 3, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh4</code></td>
+<td>Gain applied to output channel 4, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh5</code></td>
+<td>Gain applied to output channel 5, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh6</code></td>
+<td>Gain applied to output channel 6, in dB. Range -80 to 10, default 0.</td>
+</tr>
+<tr>
+<td><code>OutputGainCh7</code></td>
+<td>Gain applied to output channel 7, in dB. Range -80 to 10, default 0.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsptransceiver">FmodDspTransceiver</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_transceiver">FMOD_DSP_TRANSCEIVER</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies transceiver DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransmitFreq</code></td>
+<td>Whether the transceiver transmits on its channel instead of receiving from it - FMOD's <code>FMOD_DSP_TRANSCEIVER_TRANSMIT</code>.</td>
+</tr>
+<tr>
+<td><code>ReceiveFreq</code></td>
+<td>The gain applied to the signal, in dB - FMOD's <code>FMOD_DSP_TRANSCEIVER_GAIN</code>. Range -80 to 10, default 0.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/<em> Output constants </em>/</p>
+<p>/<em> Studio Definitions </em>/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioinitflags">FmodStudioInitFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_initflags">FMOD_STUDIO_INITFLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies FMOD Studio System initialization flags.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Normal</code></td>
+<td>Use defaults for all initialization options.</td>
+</tr>
+<tr>
+<td><code>LiveUpdate</code></td>
+<td>Enable live update.</td>
+</tr>
+<tr>
+<td><code>AllowMissingPlugins</code></td>
+<td>Load banks even if they reference plugins that have not been loaded.</td>
+</tr>
+<tr>
+<td><code>SynchronousUpdate</code></td>
+<td>Disable asynchronous processing and perform all processing on the calling thread instead.</td>
+</tr>
+<tr>
+<td><code>DeferredCallbacks</code></td>
+<td>Defer timeline callbacks until the main update. See <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a> for more information.</td>
+</tr>
+<tr>
+<td><code>LoadFromUpdate</code></td>
+<td>No additional threads are created for bank and resource loading. Loading is driven from <a href="studio_system.html#fmod_studio_system_update">fmod_studio_system_update</a>.</td>
+</tr>
+<tr>
+<td><code>MemoryTracking</code></td>
+<td>Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See <a href="bus.html#fmod_studio_bus_get_memory_usage">fmod_studio_bus_get_memory_usage</a> and <a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a> for more information. Implies <code>FmodInitFlags.MemoryTracking</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioparameterflags">FmodStudioParameterFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_flags">FMOD_STUDIO_PARAMETER_FLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flags describing the behavior of a parameter.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReadOnly</code></td>
+<td>Read-only.</td>
+</tr>
+<tr>
+<td><code>Automatic</code></td>
+<td>Automatic parameter.</td>
+</tr>
+<tr>
+<td><code>Global</code></td>
+<td>Global parameter.</td>
+</tr>
+<tr>
+<td><code>Discrete</code></td>
+<td>Discrete parameter that operates on integers (whole numbers) rather than continuous fractional numbers.</td>
+</tr>
+<tr>
+<td><code>Labeled</code></td>
+<td>Labeled discrete parameter that has a label for each integer value. This flag will never be set in banks built with FMOD Studio versions prior to 2.01.10. If this flag is set, <code>FmodStudioParameterFlags.Discrete</code> will also be set.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioeventcallbacktype">FmodStudioEventCallbackType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_event_callback_type">FMOD_STUDIO_EVENT_CALLBACK_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the FMOD Studio event callback types.</p>
+<p>Callbacks are called from the Studio Update Thread in default / async mode and the main (calling) thread in synchronous mode.
+If using <code>FmodStudioInitFlags.DeferredCallbacks</code>, <code>FmodStudioEventCallbackType.TimelineMarker</code> and <code>FmodStudioEventCallbackType.TimelineBeat</code> are instead called from the main thread.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="event_description.html#fmod_studio_event_description_set_callback">fmod_studio_event_description_set_callback</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Created</code></td>
+<td>Called when an instance is fully created. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>Destroyed</code></td>
+<td>Called when an instance is just about to be destroyed. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>Starting</code></td>
+<td><a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a> has been called on an event which was not already playing. The event will remain in this state until its sample data has been loaded. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>Started</code></td>
+<td>The event has commenced playing. Normally this callback will be issued immediately after <code>FmodStudioEventCallbackType.Starting</code>, but may be delayed until sample data has loaded. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>Restarted</code></td>
+<td><a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a> has been called on an event which was already playing. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>Stopped</code></td>
+<td>The event has stopped. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>StartFailed</code></td>
+<td><a href="event_instance.html#fmod_studio_event_instance_start">fmod_studio_event_instance_start</a> has been called but the polyphony settings did not allow the event to start. In this case none of <code>FmodStudioEventCallbackType.Starting</code>, <code>FmodStudioEventCallbackType.Started</code> and <code>FmodStudioEventCallbackType.Stopped</code> will be called. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>CreateProgrammerSound</code></td>
+<td>A programmer sound is about to play. FMOD expects the callback to provide a <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> object for it to use. Parameters = <code>FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>DestroyProgrammerSound</code></td>
+<td>A programmer sound has stopped playing. At this point it is safe to release the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> object that was used. Parameters = <code>FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>PluginCreated</code></td>
+<td>Called when a DSP plugin instance has just been created. Parameters = <code>FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>PluginDestroyed</code></td>
+<td>Called when a DSP plugin instance is about to be destroyed. Parameters = <code>FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>TimelineMarker</code></td>
+<td>Called when the timeline passes a named marker. Parameters = <code>FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>TimelineBeat</code></td>
+<td>Called when the timeline hits a beat in a tempo section. Parameters = <code>FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>SoundPlayed</code></td>
+<td>Called when the event plays a sound. Parameters = <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</td>
+</tr>
+<tr>
+<td><code>SoundStopped</code></td>
+<td>Called when the event finishes playing a sound. Parameters = <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</td>
+</tr>
+<tr>
+<td><code>RealToVirtual</code></td>
+<td>Called when the event becomes virtual. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>VirtualToReal</code></td>
+<td>Called when the event becomes real. Parameters = unused.</td>
+</tr>
+<tr>
+<td><code>StartEventCommand</code></td>
+<td>Called when a new event is started by a start event command. Parameters = <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html">Studio::EventInstance</a>.</td>
+</tr>
+<tr>
+<td><code>NestedTimelineBeat</code></td>
+<td>Called when the timeline hits a beat in a tempo section of a nested event. Parameters = <code>FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES</code>.</td>
+</tr>
+<tr>
+<td><code>All</code></td>
+<td>Pass this mask to <a href="event_description.html#fmod_studio_event_description_set_callback">fmod_studio_event_description_set_callback</a> or <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a> to receive all callback types.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioloadbankflags">FmodStudioLoadBankFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_load_bank_flags">FMOD_STUDIO_LOAD_BANK</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flags to control bank loading.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Normal</code></td>
+<td>Standard behavior.</td>
+</tr>
+<tr>
+<td><code>NonBlocking</code></td>
+<td>Bank loading occurs asynchronously rather than occurring immediately.</td>
+</tr>
+<tr>
+<td><code>DecompressSamples</code></td>
+<td>Force samples to decompress into memory when they are loaded, rather than staying compressed.</td>
+</tr>
+<tr>
+<td><code>Unencrypted</code></td>
+<td>Ignore the encryption key specified by <a href="studio_system.html#fmod_studio_system_set_advanced_settings">fmod_studio_system_set_advanced_settings</a> when loading sounds from this bank (assume the sounds in the bank are not encrypted).</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiocommandcaptureflags">FmodStudioCommandCaptureFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_commandcapture_flags">FMOD_STUDIO_COMMANDCAPTURE_FLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flags controling command capture.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_start_command_capture">fmod_studio_system_start_command_capture</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Normal</code></td>
+<td>Use default options.</td>
+</tr>
+<tr>
+<td><code>FileFlush</code></td>
+<td>Call file flush on every command.</td>
+</tr>
+<tr>
+<td><code>SkipInitialState</code></td>
+<td>Normally the initial state of banks and instances is captured, unless this flag is set.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiocommandreplayflags">FmodStudioCommandReplayFlags</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_commandreplay_flags">FMOD_STUDIO_COMMANDREPLAY_FLAGS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies flags controlling command replay.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_load_command_replay">fmod_studio_system_load_command_replay</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Normal</code></td>
+<td>Use default options.</td>
+</tr>
+<tr>
+<td><code>SkipCleanup</code></td>
+<td>Do not free resources at the end of playback.</td>
+</tr>
+<tr>
+<td><code>FastForward</code></td>
+<td>Play back at maximum speed, ignoring the timing of the original replay.</td>
+</tr>
+<tr>
+<td><code>SkipBankLoad</code></td>
+<td>Skip commands related to bank loading.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioloadingstate">FmodStudioLoadingState</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_loading_state">FMOD_STUDIO_LOADING_STATE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the loading state of various objects.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unloading</code></td>
+<td>Currently unloading.</td>
+</tr>
+<tr>
+<td><code>Unloaded</code></td>
+<td>Not loaded.</td>
+</tr>
+<tr>
+<td><code>Loading</code></td>
+<td>Loading in progress.</td>
+</tr>
+<tr>
+<td><code>Loaded</code></td>
+<td>Loaded and ready to play.</td>
+</tr>
+<tr>
+<td><code>Error</code></td>
+<td>Failed to load.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiouserpropertytype">FmodStudioUserPropertyType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventdescription.html#fmod_studio_user_property_type">FMOD_STUDIO_USER_PROPERTY_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies user property types.</p>
+<p>These constants are referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
+<li><a href="structs.html#fmodstudiouserproperty">FmodStudioUserProperty</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Integer</code></td>
+<td>Integer.</td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td>Boolean.</td>
+</tr>
+<tr>
+<td><code>Float</code></td>
+<td>Floating point number.</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td>String.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioeventproperty">FmodStudioEventProperty</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_event_property">FMOD_STUDIO_EVENT_PROPERTY</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum holds the definitions that describe built-in event properties.</p>
+<p>A property that returns a value of -1 from <a href="event_instance.html#fmod_studio_event_instance_get_property">fmod_studio_event_instance_get_property</a> means it will use the values set in Studio, use <a href="event_instance.html#fmod_studio_event_instance_set_property">fmod_studio_event_instance_set_property</a> to override these values. You can revert the properties value to default by setting it to -1.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_property">fmod_studio_event_instance_set_property</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_property">fmod_studio_event_instance_get_property</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ChannelPriority</code></td>
+<td>Priority to set on Core API Channels created by this event instance, or -1 for default.</td>
+</tr>
+<tr>
+<td><code>ScheduleDelay</code></td>
+<td>Schedule delay in DSP clocks, or -1 for default.</td>
+</tr>
+<tr>
+<td><code>ScheduleLookAhead</code></td>
+<td>Schedule look-ahead on the timeline in DSP clocks, or -1 for default.</td>
+</tr>
+<tr>
+<td><code>MinimumDistance</code></td>
+<td>Override the event's 3D minimum distance, or -1 for default.</td>
+</tr>
+<tr>
+<td><code>MaximumDistance</code></td>
+<td>Override the event's 3D maximum distance, or -1 for default.</td>
+</tr>
+<tr>
+<td><code>CoolDown</code></td>
+<td>Override the event's cooldown, or -1 for default.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioplaybackstate">FmodStudioPlaybackState</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_playback_state">FMOD_STUDIO_PLAYBACK_STATE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the playback state of various objects.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Playing</code></td>
+<td>Playing.</td>
+</tr>
+<tr>
+<td><code>Sustaining</code></td>
+<td>The timeline cursor is paused on a sustain point. (<a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html">Studio::EventInstance</a> only.)</td>
+</tr>
+<tr>
+<td><code>Stopped</code></td>
+<td>Stopped.</td>
+</tr>
+<tr>
+<td><code>Starting</code></td>
+<td>Preparing to start.</td>
+</tr>
+<tr>
+<td><code>Stopping</code></td>
+<td>Preparing to stop.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiostopmode">FmodStudioStopMode</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_stop_mode">FMOD_STUDIO_STOP_MODE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies stop modes.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AllowFadeOut</code></td>
+<td>Allows AHDSR modulators to complete their release, and DSP effect tails to play out.</td>
+</tr>
+<tr>
+<td><code>Immediate</code></td>
+<td>Stops the event instance immediately.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsposcillatortype">FmodDspOscillatorType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp-effects.html#fmod_dsp_oscillator">FMOD_DSP_OSCILLATOR</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum lists the waveforms an oscillator DSP unit can generate. Pass one of these as the value
+of the oscillator's <code>FmodDspOscillator.Type</code> parameter.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sine</code></td>
+<td>A sine wave. This is the default.</td>
+</tr>
+<tr>
+<td><code>Square</code></td>
+<td>A square wave.</td>
+</tr>
+<tr>
+<td><code>Sawup</code></td>
+<td>A sawtooth wave that ramps upwards.</td>
+</tr>
+<tr>
+<td><code>Sawdown</code></td>
+<td>A sawtooth wave that ramps downwards.</td>
+</tr>
+<tr>
+<td><code>Triangle</code></td>
+<td>A triangle wave.</td>
+</tr>
+<tr>
+<td><code>Noise</code></td>
+<td>White noise.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="studio_vca.html" class="btn btn-neutral float-left" title="VCA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="structs.html" class="btn btn-neutral float-right" title="Structs">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><p align="center">GameMaker 2026</p></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="studio_vca.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="structs.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      <script src="assets/js/gmext_script.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

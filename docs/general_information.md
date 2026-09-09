@@ -14,11 +14,11 @@ These objects are represented in the extension by handles, which are largely ide
 
 To create an instance of an FMOD object and get its handle, you call an extension function that returns a handle. Many FMOD objects can be created using the `fmod_system_create_*` functions. For example: 
 
-```gml
+``gml
 system = fmod_system_create();
 sound_group = fmod_system_create_sound_group("SoundGroup");
 // Etc.
-```
+``
 
 [[Warning: While these handles are internally represented in the same way as GameMaker's built-in handles, they are *not* true handles from GameMaker's perspective.]]
 
@@ -28,13 +28,13 @@ In FMOD, functions always return whether they executed successfully. If not, the
 
 Most functions of the FMOD extension don't return this FMOD result directly. Instead, when you call a function of the FMOD extension, the result of the last called function is stored internally with the extension. You can retrieve this value using the function ${function.fmod_last_result}. For example: 
 
-```gml
+``gml
 system = fmod_system_create();
 result = fmod_last_result();
 show_debug_message("Result of fmod_system_create: {0}", result);
-```
+``
 
-[[Note: ${function.fmod_last_result} returns `FMOD_RESULT.OK` in case there were no errors.]]
+[[Note: ${function.fmod_last_result} returns `FmodStudioResult.Ok` in case there were no errors.]]
 
 # Bug Reports
 
@@ -59,24 +59,24 @@ These are the integer, float and boolean DSP parameters. You can get or set them
 
 For example, to set the type and size of an FFT DSP's window: 
 
-```gml
-fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWTYPE, FMOD_DSP_FFT_WINDOW.RECT);
-fmod_dsp_set_parameter_int(dsp_fft, FMOD_DSP_FFT.WINDOWSIZE, 16384);
-```
+``gml
+fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowType, FmodDspFftWindowType.Rect);
+fmod_dsp_set_parameter_int(dsp_fft, FmodDspFft.WindowSize, 16384);
+``
 
 Since the `FMOD_DSP_FFT_WINDOWTYPE` and `FMOD_DSP_FFT_WINDOWSIZE` variables of the [FMOD_DSP_FFT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft) struct are both of type `int`, you should get them with ${function.fmod_dsp_get_parameter_int} and set them with ${function.fmod_dsp_set_parameter_int}.
 
 Similarly, a [FMOD_DSP_HIGHPASS](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass) DSP's parameters are of type `float`. So you should get the parameters with ${function.fmod_dsp_get_parameter_float} and set them with ${function.fmod_dsp_get_parameter_float}: 
 
-```gml
+``gml
 // Set
-fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.CUTOFF, 10000);
-fmod_dsp_set_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONANCE, 4);
+fmod_dsp_set_parameter_float(dsp_hpf, FmodDspHighPass.Cutoff, 10000);
+fmod_dsp_set_parameter_float(dsp_hpf, FmodDspHighPass.Resonance, 4);
 
 // Get
-var _cutoff = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.CUTOFF);
-var _resonance = fmod_dsp_get_parameter_float(dsp_hpf, FMOD_DSP_HIGHPASS.RESONANCE);
-```
+var _cutoff = fmod_dsp_get_parameter_float(dsp_hpf, FmodDspHighPass.Cutoff);
+var _resonance = fmod_dsp_get_parameter_float(dsp_hpf, FmodDspHighPass.Resonance);
+``
 
 ## Data Parameters
 
@@ -101,21 +101,21 @@ The [FMOD_DSP_FFT](https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effect
 
 You get the data of this parameter as follows: 
 
-```gml
-fmod_dsp_get_parameter_data(dsp_fft, FMOD_DSP_FFT.SPECTRUMDATA, fft_buffer);
-```
+``gml
+fmod_dsp_get_parameter_data(dsp_fft, FmodDspFft.SpectrumData, fft_buffer);
+``
 
 The FMOD extension will write the data to the buffer `fft_buffer` that you pass it.
 
 How this data looks can be found under [`FMOD_DSP_PARAMETER_FFT`](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_fft), which is defined like this: 
 
-```C++
+``C++
 typedef struct FMOD_DSP_PARAMETER_FFT {
   int     length;
   int     numchannels;
   float   *spectrum[32];
 } FMOD_DSP_PARAMETER_FFT;
-```
+``
 
 Here, `length` stores the length of the `spectrum` array of a single channel (i.e. the number of values included in the spectrum). `numchannels` stores the number of channels for which there is spectrum data.
 
@@ -125,17 +125,17 @@ An `int` followed by an `int`, followed by *at most* 32 times `length` `float`s.
 
 Looking at the [Data Type Mapping Table](#data-type-mapping-table), you see that this corresponds to 2 times a `buffer_s32`, followed by `numchannels` blocks of spectrum data consisting of `length` `buffer_f32` values. So the layout of the data in the buffer will be the following: 
 
-```
+``
 |Channel |                      |Channel 0                                                |Channel 1                                                | ... |
 |FMOD    |int       |int        |float         |float         | ... |float                |float         |float         | ... |float                | ... |
 |Buffer  |buffer_s32|buffer_s32 |buffer_f32    |buffer_f32    | ... |buffer_f32           |buffer_f32    |buffer_f32    | ... |buffer_f32           | ... |
 |Variable|length    |numchannels|spectrum[0][0]|spectrum[0][1]| ... |spectrum[0][length-1]|spectrum[1][0]|spectrum[1][1]| ... |spectrum[1][length-1]| ... |
 |Offset  |0         |4          |8             |12            | ... |8 + (length-1)*4     |...           |              |     |                     | ... |
-```
+``
 
 To read this data from the buffer, you'd do: 
 
-```gml
+``gml
 buffer_seek(fft_buffer, buffer_seek_start, 0);
 var _length = buffer_read(fft_buffer, buffer_s32);
 var _numchannels = buffer_read(fft_buffer, buffer_s32);
@@ -150,7 +150,7 @@ repeat(_numchannels)
     }
     _channel_index++;
 }
-```
+``
 
 ### FMOD_DSP_OBJECTPAN
 
@@ -160,51 +160,51 @@ In this example we'll look at the `FMOD_DSP_OBJECTPAN_3D_POSITION` parameter, si
 
 You get the data of this parameter as follows: 
 
-```gml
+``gml
 fmod_dsp_get_parameter_data(dsp_pan, FMOD_DSP_OBJECTPAN._3D_POSITION, pan_buffer);
-```
+``
 
 The FMOD extension will write the data to the buffer `pan_buffer` that you pass it.
 
 The struct [`FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI`](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_3dattributes_multi) is defined as follows: 
 
-```C++
+``C++
 typedef struct FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI {
   int                  numlisteners;
   FMOD_3D_ATTRIBUTES   relative[FMOD_MAX_LISTENERS];
   float                weight[FMOD_MAX_LISTENERS];
   FMOD_3D_ATTRIBUTES   absolute;
 } FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI;
-```
+``
 
 Here, `relative` and `weight` are arrays. `relative` is an array of structs of type [`FMOD_3D_ATTRIBUTES`](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes): 
 
-```C++
+``C++
 typedef struct FMOD_3D_ATTRIBUTES {
   FMOD_VECTOR position;
   FMOD_VECTOR velocity;
   FMOD_VECTOR forward;
   FMOD_VECTOR up;
 } FMOD_3D_ATTRIBUTES;
-```
+``
 
 All variables in this struct are also structs. Each variable is of type [`FMOD_VECTOR`](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector): 
 
-```C++
+``C++
 typedef struct FMOD_VECTOR {
   float   x;
   float   y;
   float   z;
 } FMOD_VECTOR;
-```
+``
 
 Bringing all that together, an `FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI` struct looks as follows: 
 
-An `int`, followed by ${constant.FMOD_MAX_LISTENERS} times the following: 4 times 3 `float`s in a row (`x`, `y` and `z`), followed by ${constant.FMOD_MAX_LISTENERS} times a `float` that stores a weight, followed by another 4 times 3 `float`s (each also `x`, `y` and `z`).
+An `int`, followed by `FMOD_MAX_LISTENERS` times the following: 4 times 3 `float`s in a row (`x`, `y` and `z`), followed by `FMOD_MAX_LISTENERS` times a `float` that stores a weight, followed by another 4 times 3 `float`s (each also `x`, `y` and `z`).
 
 To get and read the data from the buffer, you'd do: 
 
-```gml
+``gml
 function read_vector(_buffer)
 {
     var _x = buffer_read(_buffer, buffer_f32);
@@ -249,11 +249,11 @@ for(var i = 0;i < FMOD_MAX_LISTENERS;i++)
     }
 }
 _absolute = read_3d_attributes(pan_buffer);
-```
+``
 The code example above shows how to read the `FMOD_DSP_OBJECTPAN_3D_POSITION` parameter, which is of type `FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI`.
 First, two functions `read_vector` and `read_3d_attributes` are defined to read a `FMOD_VECTOR` and a `FMOD_3D_ATTRIBUTES` from the buffer and return them as a ${type.struct}.
-Then, the number of listeners is read and two `for` loops are executed, each loop executes ${constant.FMOD_MAX_LISTENERS} times. The first loop assigns a struct to the variable `_pan_per_listener` at the current listener index. The second loop assigns that struct the weight as an additional attribute `weight`.
-Note that you always have to execute the loop this number of times. If `_numlisteners` is less than ${constant.FMOD_MAX_LISTENERS}, the required calls to ${function.buffer_read} to "skip" the remaining unused listener data won't happen and subsequent reads will give wrong results.
+Then, the number of listeners is read and two `for` loops are executed, each loop executes `FMOD_MAX_LISTENERS` times. The first loop assigns a struct to the variable `_pan_per_listener` at the current listener index. The second loop assigns that struct the weight as an additional attribute `weight`.
+Note that you always have to execute the loop this number of times. If `_numlisteners` is less than `FMOD_MAX_LISTENERS`, the required calls to ${function.buffer_read} to "skip" the remaining unused listener data won't happen and subsequent reads will give wrong results.
 Also note that you cannot read `relative` and `weight` in the same `for` loop. This is because the buffer stores all relative data, followed by all weights.
 Finally, the absolute pan properties are read with another call to `read_3d_attributes`.
 

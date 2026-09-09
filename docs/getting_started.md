@@ -62,10 +62,10 @@ Your game needs to run some initialisation code (e.g. in a Create event) and loo
 
 The following example code can be placed in an "FMOD manager" object's Create event, which initialises the system:
 
-```gml
+``gml
 var _max_channels = 1024
-var _flags_core = FMOD_INIT.NORMAL;
-var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
+var _flags_core = FmodInitFlags.Normal;
+var _flags_studio = FmodStudioInitFlags.LiveUpdate;
 
 #macro USE_FMOD_STUDIO true // Are we using FMOD studio (true) or just core (false)?
 #macro USE_DEBUG_CALLBACKS false // Should debugging be initialised?
@@ -73,7 +73,7 @@ var _flags_studio = FMOD_STUDIO_INIT.LIVEUPDATE;
 /* If we enable debug callbacks in the macro above set them ON */
 if (USE_DEBUG_CALLBACKS)
 {
-    fmod_debug_initialize(FMOD_DEBUG_FLAGS.LEVEL_LOG, FMOD_DEBUG_MODE.CALLBACK);
+    fmod_debug_initialize(FmodStudioDebugFlags.LevelLog, FmodStudioDebugMode.Callback);
 }
 
 /* If we want to use FMOD_STUDIO */
@@ -111,11 +111,11 @@ else
 	fmod_system_init(_max_channels, _flags_core)
 	show_debug_message("fmod_system_init: " + string(fmod_last_result()))
 }
-```
+``
 
 Your manager object should also have a Step event with the following code in it:
 
-```gml
+``gml
 if (USE_FMOD_STUDIO) {
 	/*
 		If you are only using Studio you need this.
@@ -129,7 +129,7 @@ else {
 	*/
 	fmod_system_update();
 }
-```
+``
 
 # Playing Events
 
@@ -141,32 +141,32 @@ Once you have set up your FMOD project, go to **File -> Build** to export the ba
 
 Copy the banks into the `datafiles` folder of your GameMaker project, to add them to your [Included Files](https://manual.gamemaker.io/monthly/en/Settings/Included_Files.htm).
 
-In your game code, load your bank with ${func.fmod_studio_system_load_bank_file}:
+In your game code, load your bank with ${function.fmod_studio_system_load_bank_file}:
 
-```gml
-bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"), FMOD_STUDIO_LOAD_BANK.NORMAL);
-```
+``gml
+bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.bank"), FmodStudioLoadBankFlags.Normal);
+``
 
-Then load your strings bank with ${func.fmod_studio_system_load_bank_file} so you can look-up events in the bank:
+Then load your strings bank with ${function.fmod_studio_system_load_bank_file} so you can look-up events in the bank:
 
-```gml
-strings_bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"), FMOD_STUDIO_LOAD_BANK.NORMAL);
-```
+``gml
+strings_bank_ref = fmod_studio_system_load_bank_file(fmod_path_bundle("master.strings.bank"), FmodStudioLoadBankFlags.Normal);
+``
 
-Load the event description, using its name defined in FMOD Studio with the ${func.fmod_studio_system_get_event} function:
+Load the event description, using its name defined in FMOD Studio with the ${function.fmod_studio_system_get_event} function:
 
-```gml
+``gml
 event_description_ref = fmod_studio_system_get_event("event:/Ambience/Country");
-```
+``
 
-Create an instance of the event description before playing it, using ${func.fmod_studio_event_description_create_instance}:
+Create an instance of the event description before playing it, using ${function.fmod_studio_event_description_create_instance}:
 
-```gml
+``gml
 event_description_instance_ref = fmod_studio_event_description_create_instance(event_description_ref);
-```
+``
 
-Finally, play the instance so you hear sound using ${func.fmod_studio_event_instance_start}:
+Finally, play the instance so you hear sound using ${function.fmod_studio_event_instance_start}:
 
-```gml
+``gml
 fmod_studio_event_instance_start(event_description_instance_ref);
-```
+``
