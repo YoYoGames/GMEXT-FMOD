@@ -303,10 +303,12 @@ elseif(ANDROID)
 
   target_link_libraries(ext_third_party INTERFACE fmod_core fmod_studio)
 
+  # Studio's runtime only. GMFMOD stages libfmod(L).so and fmod.jar into its own
+  # AndroidSource/libs, and both extensions land in the same APK - staging Core
+  # here as well would put a second copy of the same file at the same path.
+  # Same split as the desktop build-step scripts, which copy fmodstudioL only.
   _ext_tp_append_runtime(
-    $<$<CONFIG:Debug>:${_FMOD_AND_CORE_LIB_DIR}/lib${_core_dbg}.so>
     $<$<CONFIG:Debug>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_dbg}.so>
-    $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_CORE_LIB_DIR}/lib${_core_rel}.so>
     $<$<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>,$<CONFIG:MinSizeRel>>:${_FMOD_AND_STUDIO_LIB_DIR}/lib${_studio_rel}.so>
   )
 

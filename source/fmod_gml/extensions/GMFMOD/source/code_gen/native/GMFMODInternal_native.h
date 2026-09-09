@@ -433,7 +433,7 @@ namespace gm_enums
         Surround = 2
     };
 
-    enum class FmodDspCompDynEq : std::int64_t
+    enum class FmodDspCompressor : std::int64_t
     {
         Threshold = 0,
         Ratio = 1,
@@ -490,6 +490,245 @@ namespace gm_enums
         Wet = 1,
         Dry = 2,
         Linked = 3
+    };
+
+    enum class FmodDspFader : std::int64_t
+    {
+        Gain = 0,
+        OverallGain = 1
+    };
+
+    enum class FmodDspMultibandDynamics : std::int64_t
+    {
+        LowerFrequency = 0,
+        UpperFrequency = 1,
+        Linked = 2,
+        UseSidechain = 3,
+        AMode = 4,
+        AGain = 5,
+        AThreshold = 6,
+        ARatio = 7,
+        AAttack = 8,
+        ARelease = 9,
+        AGainMakeup = 10,
+        AResponseData = 11,
+        BMode = 12,
+        BGain = 13,
+        BThreshold = 14,
+        BRatio = 15,
+        BAttack = 16,
+        BRelease = 17,
+        BGainMakeup = 18,
+        BResponseData = 19,
+        CMode = 20,
+        CGain = 21,
+        CThreshold = 22,
+        CRatio = 23,
+        CAttack = 24,
+        CRelease = 25,
+        CGainMakeup = 26,
+        CResponseData = 27
+    };
+
+    enum class FmodDspMultibandDynamicsModeType : std::int64_t
+    {
+        Disabled = 0,
+        CompressUp = 1,
+        CompressDown = 2,
+        ExpandUp = 3,
+        ExpandDown = 4
+    };
+
+    enum class FmodDspItEcho : std::int64_t
+    {
+        WetDryMix = 0,
+        Feedback = 1,
+        LeftDelay = 2,
+        RightDelay = 3,
+        PanDelay = 4
+    };
+
+    enum class FmodDspSfxReverb : std::int64_t
+    {
+        DecayTime = 0,
+        EarlyDelay = 1,
+        LateDelay = 2,
+        HfReference = 3,
+        HfDecayRatio = 4,
+        Diffusion = 5,
+        Density = 6,
+        LowShelfFrequency = 7,
+        LowShelfGain = 8,
+        HighCut = 9,
+        EarlyLateMix = 10,
+        WetLevel = 11,
+        DryLevel = 12
+    };
+
+    enum class FmodDspLowPassSimple : std::int64_t
+    {
+        Cutoff = 0
+    };
+
+    enum class FmodDspHighPassSimple : std::int64_t
+    {
+        Cutoff = 0
+    };
+
+    enum class FmodDspDelay : std::int64_t
+    {
+        Ch0 = 0,
+        Ch1 = 1,
+        Ch2 = 2,
+        Ch3 = 3,
+        Ch4 = 4,
+        Ch5 = 5,
+        Ch6 = 6,
+        Ch7 = 7,
+        Ch8 = 8,
+        Ch9 = 9,
+        Ch10 = 10,
+        Ch11 = 11,
+        Ch12 = 12,
+        Ch13 = 13,
+        Ch14 = 14,
+        Ch15 = 15,
+        MaxDelay = 16
+    };
+
+    enum class FmodDspTremolo : std::int64_t
+    {
+        Frequency = 0,
+        Depth = 1,
+        Shape = 2,
+        Skew = 3,
+        Duty = 4,
+        Square = 5,
+        Phase = 6,
+        Spread = 7
+    };
+
+    enum class FmodDspSend : std::int64_t
+    {
+        ReturnId = 0,
+        Level = 1
+    };
+
+    enum class FmodDspReturn : std::int64_t
+    {
+        Id = 0,
+        InputSpeakerMode = 1
+    };
+
+    enum class FmodDspPan : std::int64_t
+    {
+        Mode = 0,
+        _2dStereoPosition = 1,
+        _2dDirection = 2,
+        _2dExtent = 3,
+        _2dRotation = 4,
+        _2dLfeLevel = 5,
+        _2dStereoMode = 6,
+        _2dStereoSeparation = 7,
+        _2dStereoAxis = 8,
+        EnabledSpeakers = 9,
+        _3dPosition = 10,
+        _3dRolloff = 11,
+        _3dMinDistance = 12,
+        _3dMaxDistance = 13,
+        _3dExtentMode = 14,
+        _3dSoundSize = 15,
+        _3dMinExtent = 16,
+        _3dPanBlend = 17,
+        LfeUpmixEnabled = 18,
+        OverallGain = 19,
+        SurroundSpeakerMode = 20,
+        _2dHeightBlend = 21,
+        AttenuationRange = 22,
+        OverrideRange = 23
+    };
+
+    enum class FmodDspPanModeType : std::int64_t
+    {
+        Mono = 0,
+        Stereo = 1,
+        Surround = 2
+    };
+
+    enum class FmodDspPan2dStereoModeType : std::int64_t
+    {
+        Distributed = 0,
+        Discrete = 1
+    };
+
+    enum class FmodDspPan3dRolloffType : std::int64_t
+    {
+        LinearSquared = 0,
+        Linear = 1,
+        Inverse = 2,
+        InverseTapered = 3,
+        Custom = 4
+    };
+
+    enum class FmodDspPan3dExtentModeType : std::int64_t
+    {
+        Auto = 0,
+        User = 1,
+        Off = 2
+    };
+
+    enum class FmodDspObjectPan : std::int64_t
+    {
+        _3dPosition = 0,
+        _3dRolloff = 1,
+        _3dMinDistance = 2,
+        _3dMaxDistance = 3,
+        _3dExtentMode = 4,
+        _3dSoundSize = 5,
+        _3dMinExtent = 6,
+        OverallGain = 7,
+        OutputGain = 8,
+        AttenuationRange = 9,
+        OverrideRange = 10
+    };
+
+    enum class FmodDspThreeEq : std::int64_t
+    {
+        LowGain = 0,
+        MidGain = 1,
+        HighGain = 2,
+        LowCrossover = 3,
+        HighCrossover = 4,
+        CrossoverSlope = 5
+    };
+
+    enum class FmodDspThreeEqCrossoverSlopeType : std::int64_t
+    {
+        _12db = 0,
+        _24db = 1,
+        _48db = 2
+    };
+
+    enum class FmodDspFftDownmixType : std::int64_t
+    {
+        None = 0,
+        Mono = 1
+    };
+
+    enum class FmodDspLoudnessMeter : std::int64_t
+    {
+        State = 0,
+        Weighting = 1,
+        Info = 2
+    };
+
+    enum class FmodDspLoudnessMeterStateType : std::int64_t
+    {
+        ResetIntegrated = -3,
+        ResetMaxPeak = -2,
+        ResetAll = -1,
+        Paused = 0,
+        Analyzing = 1
     };
 
     enum class FmodSpeakerMode : std::int64_t
@@ -2221,8 +2460,8 @@ double fmod_system_update();
 double fmod_system_get_channels_playing();
 std::uint64_t fmod_system_get_channel(double index);
 std::uint64_t fmod_system_get_master_channel_group();
-double fmod_system_set_output(double output);
-double fmod_system_get_output();
+double fmod_system_set_output(gm_enums::FmodOutputType output);
+gm_enums::FmodOutputType fmod_system_get_output();
 double fmod_system_get_num_drivers();
 double fmod_system_set_driver(double driver);
 double fmod_system_get_driver();

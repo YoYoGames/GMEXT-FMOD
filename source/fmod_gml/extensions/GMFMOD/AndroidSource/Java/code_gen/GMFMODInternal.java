@@ -144,13 +144,13 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_get_master_channel_group(__ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_set_output(double output)
+    public double __EXT_NATIVE__fmod_system_set_output(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_system_set_output(output);
+        return __EXT_JNI__fmod_system_set_output(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_get_output()
+    public double __EXT_NATIVE__fmod_system_get_output(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_get_output();
+        return __EXT_JNI__fmod_system_get_output(__ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_get_num_drivers()
     {

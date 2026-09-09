@@ -546,36 +546,20 @@ function FmodStudioParameterValue() constructor
 }
 
 /**
- * @returns {Struct.FmodStudioListener3DAttributes}
+ * @returns {Struct.FmodStudio3DAttributes}
  */
-function FmodStudioListener3DAttributes() constructor
+function FmodStudio3DAttributes() constructor
 {
     /**
      * Internally generated hash for quick validation
      * @ignore
      */
-    static __uid = 2515217851;
+    static __uid = 988412943;
 
     self.position = undefined;
     self.velocity = undefined;
     self.forward = undefined;
     self.up = undefined;
-
-}
-
-/**
- * @returns {Struct.FmodStudioChannelControl3DAttributes}
- */
-function FmodStudioChannelControl3DAttributes() constructor
-{
-    /**
-     * Internally generated hash for quick validation
-     * @ignore
-     */
-    static __uid = 3370970883;
-
-    self.position = undefined;
-    self.velocity = undefined;
 
 }
 
@@ -1694,14 +1678,14 @@ function __FmodStudioParameterValue_decode(_buffer, _offset)
 }
 
 /**
- * @func __FmodStudioListener3DAttributes_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioListener3DAttributes} _inst
+ * @func __FmodStudio3DAttributes_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudio3DAttributes} _inst
  * @param {Id.Buffer} _buffer
  * @param {Real} _offset
  * @param {String} _where
  * @ignore
  */
-function __FmodStudioListener3DAttributes_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+function __FmodStudio3DAttributes_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
 {
     buffer_seek(_buffer, buffer_seek_start, _offset);
     with (_inst)
@@ -1726,17 +1710,17 @@ function __FmodStudioListener3DAttributes_encode(_inst, _buffer, _offset, _where
 }
 
 /**
- * @func __FmodStudioListener3DAttributes_decode(_buffer, _offset)
+ * @func __FmodStudio3DAttributes_decode(_buffer, _offset)
  * @param {Id.Buffer} _buffer
  * @param {Real} _offset
- * @returns {Struct.FmodStudioListener3DAttributes}
+ * @returns {Struct.FmodStudio3DAttributes}
  * @ignore
  */
-function __FmodStudioListener3DAttributes_decode(_buffer, _offset)
+function __FmodStudio3DAttributes_decode(_buffer, _offset)
 {
     buffer_seek(_buffer, buffer_seek_start, _offset);
 
-    _inst = new FmodStudioListener3DAttributes();
+    _inst = new FmodStudio3DAttributes();
     with (_inst)
     {
         // field: position, type: struct FmodStudioVec3
@@ -1750,55 +1734,6 @@ function __FmodStudioListener3DAttributes_decode(_buffer, _offset)
 
         // field: up, type: struct FmodStudioVec3
         self.up = __FmodStudioVec3_decode(_buffer, buffer_tell(_buffer));
-
-    }
-
-    return _inst;
-}
-
-/**
- * @func __FmodStudioChannelControl3DAttributes_encode(_inst, _buffer, _offset, _where)
- * @param {Struct.FmodStudioChannelControl3DAttributes} _inst
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @param {String} _where
- * @ignore
- */
-function __FmodStudioChannelControl3DAttributes_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-    with (_inst)
-    {
-        // field: position, type: struct FmodStudioVec3
-        if (self.position.__uid != 1370123338) show_error($"{_where} :: self.position expected FmodStudioVec3", true);
-        __FmodStudioVec3_encode(self.position, _buffer, buffer_tell(_buffer), _where);
-
-        // field: velocity, type: struct FmodStudioVec3
-        if (self.velocity.__uid != 1370123338) show_error($"{_where} :: self.velocity expected FmodStudioVec3", true);
-        __FmodStudioVec3_encode(self.velocity, _buffer, buffer_tell(_buffer), _where);
-
-    }
-}
-
-/**
- * @func __FmodStudioChannelControl3DAttributes_decode(_buffer, _offset)
- * @param {Id.Buffer} _buffer
- * @param {Real} _offset
- * @returns {Struct.FmodStudioChannelControl3DAttributes}
- * @ignore
- */
-function __FmodStudioChannelControl3DAttributes_decode(_buffer, _offset)
-{
-    buffer_seek(_buffer, buffer_seek_start, _offset);
-
-    _inst = new FmodStudioChannelControl3DAttributes();
-    with (_inst)
-    {
-        // field: position, type: struct FmodStudioVec3
-        self.position = __FmodStudioVec3_decode(_buffer, buffer_tell(_buffer));
-
-        // field: velocity, type: struct FmodStudioVec3
-        self.velocity = __FmodStudioVec3_decode(_buffer, buffer_tell(_buffer));
 
     }
 
@@ -1982,9 +1917,9 @@ function __FmodStudioListenerAttributes_encode(_inst, _buffer, _offset, _where =
     buffer_seek(_buffer, buffer_seek_start, _offset);
     with (_inst)
     {
-        // field: attributes, type: struct FmodStudioListener3DAttributes
-        if (self.attributes.__uid != 2515217851) show_error($"{_where} :: self.attributes expected FmodStudioListener3DAttributes", true);
-        __FmodStudioListener3DAttributes_encode(self.attributes, _buffer, buffer_tell(_buffer), _where);
+        // field: attributes, type: struct FmodStudio3DAttributes
+        if (self.attributes.__uid != 988412943) show_error($"{_where} :: self.attributes expected FmodStudio3DAttributes", true);
+        __FmodStudio3DAttributes_encode(self.attributes, _buffer, buffer_tell(_buffer), _where);
 
         // field: attenuation, type: struct FmodStudioVec3
         if (self.attenuation.__uid != 1370123338) show_error($"{_where} :: self.attenuation expected FmodStudioVec3", true);
@@ -2007,8 +1942,8 @@ function __FmodStudioListenerAttributes_decode(_buffer, _offset)
     _inst = new FmodStudioListenerAttributes();
     with (_inst)
     {
-        // field: attributes, type: struct FmodStudioListener3DAttributes
-        self.attributes = __FmodStudioListener3DAttributes_decode(_buffer, buffer_tell(_buffer));
+        // field: attributes, type: struct FmodStudio3DAttributes
+        self.attributes = __FmodStudio3DAttributes_decode(_buffer, buffer_tell(_buffer));
 
         // field: attenuation, type: struct FmodStudioVec3
         self.attenuation = __FmodStudioVec3_decode(_buffer, buffer_tell(_buffer));
@@ -2361,8 +2296,58 @@ function fmod_studio_system_get_vca_by_id(_str_guid)
     return __result__;
 }
 
-// Skipping function fmod_studio_system_set_listener_attributes (no wrapper is required)
+/**
+ * @param {Real} _listener_index
+ * @param {Struct.FmodStudioVec3} _position
+ * @param {Struct.FmodStudioVec3} _velocity
+ * @param {Struct.FmodStudioVec3} _forward
+ * @param {Struct.FmodStudioVec3} _up
+ * @param {Struct.FmodStudioVec3} _attenuation_position
+ * @returns {Real}
+ */
+function fmod_studio_system_set_listener_attributes(_listener_index, _position, _velocity, _forward, _up, _attenuation_position)
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _listener_index, type: Float64
+    if (!is_numeric(_listener_index)) show_error($"{_GMFUNCTION_} :: _listener_index expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _listener_index);
+
+    // param: _position, type: struct FmodStudioVec3
+    if (_position.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _position expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_position, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+
+    // param: _velocity, type: struct FmodStudioVec3
+    if (_velocity.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _velocity expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_velocity, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+
+    // param: _forward, type: struct FmodStudioVec3
+    if (_forward.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _forward expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_forward, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+
+    // param: _up, type: struct FmodStudioVec3
+    if (_up.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _up expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_up, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+
+    // param: _attenuation_position, type: optional<struct FmodStudioVec3>
+    if (is_undefined(_attenuation_position))
+    {
+        buffer_write(__args_buffer__, buffer_bool, false);
+    }
+    else
+    {
+        buffer_write(__args_buffer__, buffer_bool, true);
+        if (_attenuation_position.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _attenuation_position expected FmodStudioVec3", true);
+        __FmodStudioVec3_encode(_attenuation_position, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+    }
+
+    var __return_value__ = __fmod_studio_system_set_listener_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 // Skipping function fmod_studio_system_set_listener_weight (no wrapper is required)
 
@@ -4503,12 +4488,13 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(_instance_r
 
 /**
  * @param {Real} _instance_ref
- * @param {Real} _x
- * @param {Real} _y
- * @param {Real} _z
+ * @param {Struct.FmodStudioVec3} _position
+ * @param {Struct.FmodStudioVec3} _velocity
+ * @param {Struct.FmodStudioVec3} _forward
+ * @param {Struct.FmodStudioVec3} _up
  * @returns {Real}
  */
-function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
+function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _position, _velocity, _forward, _up)
 {
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
@@ -4519,17 +4505,21 @@ function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
     if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _instance_ref);
 
-    // param: _x, type: Float64
-    if (!is_numeric(_x)) show_error($"{_GMFUNCTION_} :: _x expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _x);
+    // param: _position, type: struct FmodStudioVec3
+    if (_position.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _position expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_position, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
 
-    // param: _y, type: Float64
-    if (!is_numeric(_y)) show_error($"{_GMFUNCTION_} :: _y expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _y);
+    // param: _velocity, type: struct FmodStudioVec3
+    if (_velocity.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _velocity expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_velocity, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
 
-    // param: _z, type: Float64
-    if (!is_numeric(_z)) show_error($"{_GMFUNCTION_} :: _z expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _z);
+    // param: _forward, type: struct FmodStudioVec3
+    if (_forward.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _forward expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_forward, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
+
+    // param: _up, type: struct FmodStudioVec3
+    if (_up.__uid != 1370123338) show_error($"{_GMFUNCTION_} :: _up expected FmodStudioVec3", true);
+    __FmodStudioVec3_encode(_up, __args_buffer__, buffer_tell(__args_buffer__), _GMFUNCTION_);
 
     var __return_value__ = __fmod_studio_event_instance_set_3d_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -4538,7 +4528,7 @@ function fmod_studio_event_instance_set_3d_attributes(_instance_ref, _x, _y, _z)
 
 /**
  * @param {Real} _instance_ref
- * @returns {Struct.FmodStudioChannelControl3DAttributes}
+ * @returns {Struct.FmodStudio3DAttributes}
  */
 function fmod_studio_event_instance_get_3d_attributes(_instance_ref)
 {
@@ -4556,7 +4546,7 @@ function fmod_studio_event_instance_get_3d_attributes(_instance_ref)
     var __return_value__ = __fmod_studio_event_instance_get_3d_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodStudioChannelControl3DAttributes_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
+    __result__ = __FmodStudio3DAttributes_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -5974,8 +5964,7 @@ function __GMFMODStudio_get_decoders()
         __FmodStudioBufferInfo_decode,
         __FmodStudioAdvancedSettings_decode,
         __FmodStudioParameterValue_decode,
-        __FmodStudioListener3DAttributes_decode,
-        __FmodStudioChannelControl3DAttributes_decode,
+        __FmodStudio3DAttributes_decode,
         __FmodStudioSystemCPUUsage_decode,
         __FmodStudioSoundInfo_decode,
         __FmodStudioBufferUsage_decode,
@@ -5999,4 +5988,4 @@ function __GMFMODStudio_is_available()
 // # Exports
 // #####################################################################
 
-#export FmodStudioResult, FmodStudioDebugFlags, FmodStudioDebugMode, FmodStudioInitFlags, FmodStudioLoadingState, FmodStudioPlaybackState, FmodStudioStopMode, FmodStudioEventProperty, FmodStudioParameterFlags, FmodStudioUserPropertyType, FmodStudioLoadBankFlags, FmodStudioCommandCaptureFlags, FmodStudioCommandReplayFlags, FmodStudioEventCallbackType, FmodStudioMode, FmodStudioSoundFormat, FmodStudioParameterDescription, FmodStudioStringInfo, FmodStudioCPUUsage, FmodStudioMemoryUsage, FmodStudioCommandInfo, FmodStudioCurrentCommand, FmodStudioUserProperty, FmodStudioVec3, FmodStudioMinMaxDistance, FmodStudioCoreCPUUsage, FmodStudioCreateSoundExInfo, FmodStudioBufferInfo, FmodStudioAdvancedSettings, FmodStudioParameterValue, FmodStudioListener3DAttributes, FmodStudioChannelControl3DAttributes, FmodStudioSystemCPUUsage, FmodStudioSoundInfo, FmodStudioBufferUsage, FmodStudioListenerAttributes, fmod_studio_system_create, fmod_studio_system_load_bank_file, fmod_studio_system_load_bank_memory, fmod_studio_system_get_bank_at, fmod_studio_system_get_bank, fmod_studio_system_get_bank_by_id, fmod_studio_system_get_event, fmod_studio_system_create_event_instance, fmod_studio_system_get_bus, fmod_studio_system_get_master_bus, fmod_studio_system_get_bus_by_id, fmod_studio_system_get_vca, fmod_studio_system_get_vca_by_id, fmod_studio_system_get_listener_attributes, fmod_studio_system_get_core_system, fmod_studio_system_get_core_system_ptr, fmod_studio_last_result, fmod_studio_system_get_event_by_id, fmod_studio_system_start_command_capture, fmod_studio_system_load_command_replay, fmod_studio_system_get_sound_info, fmod_studio_system_get_parameter_by_id, fmod_studio_system_get_parameter_description_by_id, fmod_studio_system_get_parameter_description_by_name, fmod_studio_system_get_parameter_description_at, fmod_studio_system_get_cpu_usage, fmod_studio_system_get_buffer_usage, fmod_studio_system_get_memory_usage, fmod_studio_system_get_advanced_settings, fmod_studio_system_set_advanced_settings, fmod_studio_bank_unload, fmod_studio_bank_get_loading_state, fmod_studio_bank_get_sample_loading_state, fmod_studio_bank_get_path, fmod_studio_bank_get_parent_studio_system, fmod_studio_bank_get_event_count, fmod_studio_bank_get_event_at, fmod_studio_bank_get_bus_count, fmod_studio_bank_get_bus_at, fmod_studio_bank_get_vca_count, fmod_studio_bank_get_vca_at, fmod_studio_bank_get_string_count, fmod_studio_bank_get_id, fmod_studio_bank_is_valid, fmod_studio_bank_get_string_info, fmod_studio_bank_load_sample_data, fmod_studio_bank_unload_sample_data, fmod_studio_bank_get_user_data, fmod_studio_bank_set_user_data, fmod_studio_event_description_get_path, fmod_studio_event_description_create_instance, fmod_studio_event_description_get_instance_count, fmod_studio_event_description_get_instance_at, fmod_studio_event_description_is_snapshot, fmod_studio_event_description_is_one_shot, fmod_studio_event_description_has_sustain_point, fmod_studio_event_description_get_length, fmod_studio_event_description_get_parameter_count, fmod_studio_event_description_release_all_instances, fmod_studio_event_description_get_parameter_description_by_name, fmod_studio_event_description_load_sample_data, fmod_studio_event_description_is_valid, fmod_studio_event_description_is_3d, fmod_studio_event_description_is_stream, fmod_studio_event_description_is_doppler_enabled, fmod_studio_event_description_get_id, fmod_studio_event_description_get_min_max_distance, fmod_studio_event_description_get_sound_size, fmod_studio_event_description_get_sample_loading_state, fmod_studio_event_description_unload_sample_data, fmod_studio_event_description_set_callback, fmod_studio_event_description_get_user_data, fmod_studio_event_description_set_user_data, fmod_studio_event_description_get_user_property, fmod_studio_event_description_get_user_property_at, fmod_studio_event_description_get_user_property_count, fmod_studio_event_description_get_parameter_description_by_id, fmod_studio_event_description_get_parameter_description_at, fmod_studio_event_description_get_parameter_label_by_id, fmod_studio_event_description_get_parameter_label_at, fmod_studio_event_description_get_parameter_label_by_name, fmod_studio_event_instance_start, fmod_studio_event_instance_stop, fmod_studio_event_instance_get_playback_state, fmod_studio_event_instance_get_paused, fmod_studio_event_instance_set_paused, fmod_studio_event_instance_get_timeline_position, fmod_studio_event_instance_set_timeline_position, fmod_studio_event_instance_keyoff, fmod_studio_event_instance_get_volume, fmod_studio_event_instance_set_volume, fmod_studio_event_instance_get_pitch, fmod_studio_event_instance_set_pitch, fmod_studio_event_instance_set_parameter_by_name, fmod_studio_event_instance_get_parameter_by_name, fmod_studio_event_instance_get_parameter_count, fmod_studio_event_instance_get_parameter_by_id, fmod_studio_event_instance_set_parameter_by_id, fmod_studio_event_instance_set_callback, fmod_studio_event_instance_set_parameter_by_id_with_label, fmod_studio_event_instance_set_parameter_by_name_with_label, fmod_studio_event_instance_set_3d_attributes, fmod_studio_event_instance_get_3d_attributes, fmod_studio_event_instance_get_min_max_distance, fmod_studio_event_instance_get_listener_mask, fmod_studio_event_instance_set_listener_mask, fmod_studio_event_instance_get_reverb_level, fmod_studio_event_instance_set_reverb_level, fmod_studio_event_instance_get_property, fmod_studio_event_instance_set_property, fmod_studio_event_instance_get_user_data, fmod_studio_event_instance_set_user_data, fmod_studio_event_instance_is_valid, fmod_studio_event_instance_is_virtual, fmod_studio_event_instance_get_channel_group, fmod_studio_event_instance_get_cpu_usage, fmod_studio_event_instance_get_memory_usage, fmod_studio_event_instance_get_description, fmod_studio_event_instance_release, fmod_studio_bus_get_path, fmod_studio_bus_get_volume, fmod_studio_bus_set_volume, fmod_studio_bus_get_paused, fmod_studio_bus_set_paused, fmod_studio_bus_stop_all_events, fmod_studio_bus_get_master_bus, fmod_studio_bus_get_id, fmod_studio_bus_is_valid, fmod_studio_bus_get_channel_group, fmod_studio_bus_lock_channel_group, fmod_studio_bus_unlock_channel_group, fmod_studio_bus_get_cpu_usage, fmod_studio_bus_get_memory_usage, fmod_studio_bus_get_mute, fmod_studio_bus_set_mute, fmod_studio_bus_get_port_index, fmod_studio_bus_set_port_index, fmod_studio_vca_get_path, fmod_studio_vca_get_volume, fmod_studio_vca_set_volume, fmod_studio_command_replay_get_playback_state, fmod_studio_command_replay_get_current_command, fmod_studio_command_replay_release, fmod_studio_command_replay_get_command_count, fmod_studio_command_replay_get_length, fmod_studio_command_replay_get_system_object, fmod_studio_command_replay_is_valid, fmod_studio_command_replay_get_command_info, fmod_studio_command_replay_get_command_string, fmod_studio_command_replay_get_command_at_time, fmod_studio_command_replay_seek_to_command, fmod_studio_command_replay_seek_to_time, fmod_studio_command_replay_set_bank_path, fmod_studio_command_replay_get_paused, fmod_studio_command_replay_set_paused, fmod_studio_command_replay_start, fmod_studio_command_replay_stop, fmod_studio_command_replay_get_user_data, fmod_studio_command_replay_set_user_data, fmod_studio_command_replay_set_frame_callback, fmod_studio_command_replay_set_create_instance_callback, fmod_studio_command_replay_set_load_bank_callback
+#export FmodStudioResult, FmodStudioDebugFlags, FmodStudioDebugMode, FmodStudioInitFlags, FmodStudioLoadingState, FmodStudioPlaybackState, FmodStudioStopMode, FmodStudioEventProperty, FmodStudioParameterFlags, FmodStudioUserPropertyType, FmodStudioLoadBankFlags, FmodStudioCommandCaptureFlags, FmodStudioCommandReplayFlags, FmodStudioEventCallbackType, FmodStudioMode, FmodStudioSoundFormat, FmodStudioParameterDescription, FmodStudioStringInfo, FmodStudioCPUUsage, FmodStudioMemoryUsage, FmodStudioCommandInfo, FmodStudioCurrentCommand, FmodStudioUserProperty, FmodStudioVec3, FmodStudioMinMaxDistance, FmodStudioCoreCPUUsage, FmodStudioCreateSoundExInfo, FmodStudioBufferInfo, FmodStudioAdvancedSettings, FmodStudioParameterValue, FmodStudio3DAttributes, FmodStudioSystemCPUUsage, FmodStudioSoundInfo, FmodStudioBufferUsage, FmodStudioListenerAttributes, fmod_studio_system_create, fmod_studio_system_load_bank_file, fmod_studio_system_load_bank_memory, fmod_studio_system_get_bank_at, fmod_studio_system_get_bank, fmod_studio_system_get_bank_by_id, fmod_studio_system_get_event, fmod_studio_system_create_event_instance, fmod_studio_system_get_bus, fmod_studio_system_get_master_bus, fmod_studio_system_get_bus_by_id, fmod_studio_system_get_vca, fmod_studio_system_get_vca_by_id, fmod_studio_system_set_listener_attributes, fmod_studio_system_get_listener_attributes, fmod_studio_system_get_core_system, fmod_studio_system_get_core_system_ptr, fmod_studio_last_result, fmod_studio_system_get_event_by_id, fmod_studio_system_start_command_capture, fmod_studio_system_load_command_replay, fmod_studio_system_get_sound_info, fmod_studio_system_get_parameter_by_id, fmod_studio_system_get_parameter_description_by_id, fmod_studio_system_get_parameter_description_by_name, fmod_studio_system_get_parameter_description_at, fmod_studio_system_get_cpu_usage, fmod_studio_system_get_buffer_usage, fmod_studio_system_get_memory_usage, fmod_studio_system_get_advanced_settings, fmod_studio_system_set_advanced_settings, fmod_studio_bank_unload, fmod_studio_bank_get_loading_state, fmod_studio_bank_get_sample_loading_state, fmod_studio_bank_get_path, fmod_studio_bank_get_parent_studio_system, fmod_studio_bank_get_event_count, fmod_studio_bank_get_event_at, fmod_studio_bank_get_bus_count, fmod_studio_bank_get_bus_at, fmod_studio_bank_get_vca_count, fmod_studio_bank_get_vca_at, fmod_studio_bank_get_string_count, fmod_studio_bank_get_id, fmod_studio_bank_is_valid, fmod_studio_bank_get_string_info, fmod_studio_bank_load_sample_data, fmod_studio_bank_unload_sample_data, fmod_studio_bank_get_user_data, fmod_studio_bank_set_user_data, fmod_studio_event_description_get_path, fmod_studio_event_description_create_instance, fmod_studio_event_description_get_instance_count, fmod_studio_event_description_get_instance_at, fmod_studio_event_description_is_snapshot, fmod_studio_event_description_is_one_shot, fmod_studio_event_description_has_sustain_point, fmod_studio_event_description_get_length, fmod_studio_event_description_get_parameter_count, fmod_studio_event_description_release_all_instances, fmod_studio_event_description_get_parameter_description_by_name, fmod_studio_event_description_load_sample_data, fmod_studio_event_description_is_valid, fmod_studio_event_description_is_3d, fmod_studio_event_description_is_stream, fmod_studio_event_description_is_doppler_enabled, fmod_studio_event_description_get_id, fmod_studio_event_description_get_min_max_distance, fmod_studio_event_description_get_sound_size, fmod_studio_event_description_get_sample_loading_state, fmod_studio_event_description_unload_sample_data, fmod_studio_event_description_set_callback, fmod_studio_event_description_get_user_data, fmod_studio_event_description_set_user_data, fmod_studio_event_description_get_user_property, fmod_studio_event_description_get_user_property_at, fmod_studio_event_description_get_user_property_count, fmod_studio_event_description_get_parameter_description_by_id, fmod_studio_event_description_get_parameter_description_at, fmod_studio_event_description_get_parameter_label_by_id, fmod_studio_event_description_get_parameter_label_at, fmod_studio_event_description_get_parameter_label_by_name, fmod_studio_event_instance_start, fmod_studio_event_instance_stop, fmod_studio_event_instance_get_playback_state, fmod_studio_event_instance_get_paused, fmod_studio_event_instance_set_paused, fmod_studio_event_instance_get_timeline_position, fmod_studio_event_instance_set_timeline_position, fmod_studio_event_instance_keyoff, fmod_studio_event_instance_get_volume, fmod_studio_event_instance_set_volume, fmod_studio_event_instance_get_pitch, fmod_studio_event_instance_set_pitch, fmod_studio_event_instance_set_parameter_by_name, fmod_studio_event_instance_get_parameter_by_name, fmod_studio_event_instance_get_parameter_count, fmod_studio_event_instance_get_parameter_by_id, fmod_studio_event_instance_set_parameter_by_id, fmod_studio_event_instance_set_callback, fmod_studio_event_instance_set_parameter_by_id_with_label, fmod_studio_event_instance_set_parameter_by_name_with_label, fmod_studio_event_instance_set_3d_attributes, fmod_studio_event_instance_get_3d_attributes, fmod_studio_event_instance_get_min_max_distance, fmod_studio_event_instance_get_listener_mask, fmod_studio_event_instance_set_listener_mask, fmod_studio_event_instance_get_reverb_level, fmod_studio_event_instance_set_reverb_level, fmod_studio_event_instance_get_property, fmod_studio_event_instance_set_property, fmod_studio_event_instance_get_user_data, fmod_studio_event_instance_set_user_data, fmod_studio_event_instance_is_valid, fmod_studio_event_instance_is_virtual, fmod_studio_event_instance_get_channel_group, fmod_studio_event_instance_get_cpu_usage, fmod_studio_event_instance_get_memory_usage, fmod_studio_event_instance_get_description, fmod_studio_event_instance_release, fmod_studio_bus_get_path, fmod_studio_bus_get_volume, fmod_studio_bus_set_volume, fmod_studio_bus_get_paused, fmod_studio_bus_set_paused, fmod_studio_bus_stop_all_events, fmod_studio_bus_get_master_bus, fmod_studio_bus_get_id, fmod_studio_bus_is_valid, fmod_studio_bus_get_channel_group, fmod_studio_bus_lock_channel_group, fmod_studio_bus_unlock_channel_group, fmod_studio_bus_get_cpu_usage, fmod_studio_bus_get_memory_usage, fmod_studio_bus_get_mute, fmod_studio_bus_set_mute, fmod_studio_bus_get_port_index, fmod_studio_bus_set_port_index, fmod_studio_vca_get_path, fmod_studio_vca_get_volume, fmod_studio_vca_set_volume, fmod_studio_command_replay_get_playback_state, fmod_studio_command_replay_get_current_command, fmod_studio_command_replay_release, fmod_studio_command_replay_get_command_count, fmod_studio_command_replay_get_length, fmod_studio_command_replay_get_system_object, fmod_studio_command_replay_is_valid, fmod_studio_command_replay_get_command_info, fmod_studio_command_replay_get_command_string, fmod_studio_command_replay_get_command_at_time, fmod_studio_command_replay_seek_to_command, fmod_studio_command_replay_seek_to_time, fmod_studio_command_replay_set_bank_path, fmod_studio_command_replay_get_paused, fmod_studio_command_replay_set_paused, fmod_studio_command_replay_start, fmod_studio_command_replay_stop, fmod_studio_command_replay_get_user_data, fmod_studio_command_replay_set_user_data, fmod_studio_command_replay_set_frame_callback, fmod_studio_command_replay_set_create_instance_callback, fmod_studio_command_replay_set_load_bank_callback

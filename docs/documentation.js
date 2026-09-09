@@ -6124,13 +6124,14 @@ function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
  * An event's 3D attributes specify its position, velocity and orientation. The 3D attributes are used to calculate 3D panning, doppler and the values of automatic distance and angle parameters.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @param {Real} x The x coordinate of the event instance's position, in world space.
- * @param {Real} y The y coordinate of the event instance's position, in world space.
- * @param {Real} z The z coordinate of the event instance's position, in world space.
+ * @param {Struct.FmodStudioVec3} position The position in 3D space, used for panning and attenuation.
+ * @param {Struct.FmodStudioVec3} velocity The velocity in 3D space, used for doppler. Pass a zero vector for a stationary event.
+ * @param {Struct.FmodStudioVec3} forward The "forward" vector defining the event's orientation. Must be of unit length and perpendicular to `up`.
+ * @param {Struct.FmodStudioVec3} up The "up" vector defining the event's orientation. Must be of unit length and perpendicular to `forward`.
  * @returns {Real}
  * @function_end
  */
-function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attributes) {}
+function fmod_studio_event_instance_set_3d_attributes(instance_ref, position, velocity, forward, up) {}
 
 
 /**
@@ -6142,7 +6143,7 @@ function fmod_studio_event_instance_set_3d_attributes(event_instance_ref, attrib
  * This function retrieves the 3D attributes struct for the given EventInstance.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Struct.FmodStudioChannelControl3DAttributes}
+ * @returns {Struct.FmodStudio3DAttributes}
  * @function_end
  */
 function fmod_studio_event_instance_get_3d_attributes(event_instance_ref) {}
@@ -6754,16 +6755,16 @@ function fmod_studio_system_get_bank_list() {}
  *
  * This function sets the 3D attributes of the listener.
  * 
- * If you don't pass a value for `attenuation`, the listener only uses the position in `attributes`.
- * 
  * @param {Real} listener_index Index of listener to set 3D attributes on. Listeners are indexed from 0, to `FMOD_MAX_LISTENERS` - 1, in a multi-listener environment.
- * @param {Real} x The x coordinate of the listener's position, in world space.
- * @param {Real} y The y coordinate of the listener's position, in world space.
- * @param {Real} z The z coordinate of the listener's position, in world space.
+ * @param {Struct.FmodStudioVec3} position The position in 3D space, used for panning and attenuation.
+ * @param {Struct.FmodStudioVec3} velocity The velocity in 3D space, used for doppler. Pass a zero vector for a stationary listener.
+ * @param {Struct.FmodStudioVec3} forward The "forward" vector defining the listener's orientation. Must be of unit length and perpendicular to `up`.
+ * @param {Struct.FmodStudioVec3} up The "up" vector defining the listener's orientation. Must be of unit length and perpendicular to `forward`.
+ * @param {Struct.FmodStudioVec3} [attenuation_position] The position to calculate attenuation from, when it differs from the listener position. Pass `undefined` to attenuate from the listener position.
  * @returns {Real}
  * @function_end
  */
-function fmod_studio_system_set_listener_attributes(listener_index, attributes, attenuation) {}
+function fmod_studio_system_set_listener_attributes(listener_index, position, velocity, forward, up, attenuation_position) {}
 
 
 /**
@@ -7685,7 +7686,7 @@ function fmod_system_mixer_resume() {}
  * 
  * [[Note: When using the Studio API, switching to an NRT (non-realtime) output type after FMOD is already initialized will not behave correctly unless the Studio API was initialized with `FmodStudioInitFlags.SynchronousUpdate`.]]
  * 
- * @param {Real} output The output type.
+ * @param {Enum.FmodOutputType} output The output type.
  * @returns {Real}
  * @function_end
  */
@@ -7700,7 +7701,7 @@ function fmod_system_set_output(output) {}
  *
  * This function retrieves the type of output interface used to run the mixer.
  * 
- * @returns {Real}
+ * @returns {Enum.FmodOutputType}
  * @function_end
  */
 function fmod_system_get_output() {}

@@ -187,9 +187,29 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca_by_id(char* str_guid, c
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_attributes(double listener_index, double x, double y, double z)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_attributes(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_studio_system_set_listener_attributes(static_cast<double>(listener_index), static_cast<double>(x), static_cast<double>(y), static_cast<double>(z));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: listener_index, type: Float64
+    double listener_index = gm::wire::codec::readValue<double>(__br);
+
+    // field: position, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 position = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
+
+    // field: velocity, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 velocity = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
+
+    // field: forward, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 forward = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
+
+    // field: up, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 up = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
+
+    // field: attenuation_position, type: optional<struct FmodStudioVec3>
+    std::optional<gm_structs::FmodStudioVec3> attenuation_position = gm::wire::codec::readOptional<gm_structs::FmodStudioVec3>(__br);
+
+    auto&& __result = fmod_studio_system_set_listener_attributes(listener_index, position, velocity, forward, up, attenuation_position);
     return static_cast<double>(__result);
 }
 
@@ -1486,16 +1506,19 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_3d_attributes(char*
     // field: instance_ref, type: UInt64
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: x, type: Float64
-    double x = gm::wire::codec::readValue<double>(__br);
+    // field: position, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 position = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
 
-    // field: y, type: Float64
-    double y = gm::wire::codec::readValue<double>(__br);
+    // field: velocity, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 velocity = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
 
-    // field: z, type: Float64
-    double z = gm::wire::codec::readValue<double>(__br);
+    // field: forward, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 forward = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
 
-    auto&& __result = fmod_studio_event_instance_set_3d_attributes(instance_ref, x, y, z);
+    // field: up, type: struct FmodStudioVec3
+    gm_structs::FmodStudioVec3 up = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_3d_attributes(instance_ref, position, velocity, forward, up);
     return static_cast<double>(__result);
 }
 
@@ -1509,7 +1532,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_3d_attributes(char*
     auto&& __result = fmod_studio_event_instance_get_3d_attributes(instance_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodStudioChannelControl3DAttributes
+    // return: __result, type: struct FmodStudio3DAttributes
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }

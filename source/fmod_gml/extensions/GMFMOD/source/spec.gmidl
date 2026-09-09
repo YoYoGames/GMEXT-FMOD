@@ -452,7 +452,7 @@ enum FmodDspTransceiverSpeakerMode
 }
 
 [global, bind = typed_gml]
-enum FmodDspCompDynEq
+enum FmodDspCompressor
 {
 	Threshold = 0,
 	Ratio = 1,
@@ -514,6 +514,267 @@ enum FmodDspConvolution
 	Wet = 1,
 	Dry = 2,
 	Linked = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspFader
+{
+	Gain = 0,
+	OverallGain = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspMultibandDynamics
+{
+	LowerFrequency = 0,
+	UpperFrequency = 1,
+	Linked = 2,
+	UseSidechain = 3,
+	AMode = 4,
+	AGain = 5,
+	AThreshold = 6,
+	ARatio = 7,
+	AAttack = 8,
+	ARelease = 9,
+	AGainMakeup = 10,
+	AResponseData = 11,
+	BMode = 12,
+	BGain = 13,
+	BThreshold = 14,
+	BRatio = 15,
+	BAttack = 16,
+	BRelease = 17,
+	BGainMakeup = 18,
+	BResponseData = 19,
+	CMode = 20,
+	CGain = 21,
+	CThreshold = 22,
+	CRatio = 23,
+	CAttack = 24,
+	CRelease = 25,
+	CGainMakeup = 26,
+	CResponseData = 27,
+}
+
+[global, bind = typed_gml]
+enum FmodDspMultibandDynamicsModeType
+{
+	Disabled = 0,
+	CompressUp = 1,
+	CompressDown = 2,
+	ExpandUp = 3,
+	ExpandDown = 4,
+}
+
+[global, bind = typed_gml]
+enum FmodDspItEcho
+{
+	WetDryMix = 0,
+	Feedback = 1,
+	LeftDelay = 2,
+	RightDelay = 3,
+	PanDelay = 4,
+}
+
+[global, bind = typed_gml]
+enum FmodDspSfxReverb
+{
+	DecayTime = 0,
+	EarlyDelay = 1,
+	LateDelay = 2,
+	HfReference = 3,
+	HfDecayRatio = 4,
+	Diffusion = 5,
+	Density = 6,
+	LowShelfFrequency = 7,
+	LowShelfGain = 8,
+	HighCut = 9,
+	EarlyLateMix = 10,
+	WetLevel = 11,
+	DryLevel = 12,
+}
+
+[global, bind = typed_gml]
+enum FmodDspLowPassSimple
+{
+	Cutoff = 0,
+}
+
+[global, bind = typed_gml]
+enum FmodDspHighPassSimple
+{
+	Cutoff = 0,
+}
+
+[global, bind = typed_gml]
+enum FmodDspDelay
+{
+	Ch0 = 0,
+	Ch1 = 1,
+	Ch2 = 2,
+	Ch3 = 3,
+	Ch4 = 4,
+	Ch5 = 5,
+	Ch6 = 6,
+	Ch7 = 7,
+	Ch8 = 8,
+	Ch9 = 9,
+	Ch10 = 10,
+	Ch11 = 11,
+	Ch12 = 12,
+	Ch13 = 13,
+	Ch14 = 14,
+	Ch15 = 15,
+	MaxDelay = 16,
+}
+
+[global, bind = typed_gml]
+enum FmodDspTremolo
+{
+	Frequency = 0,
+	Depth = 1,
+	Shape = 2,
+	Skew = 3,
+	Duty = 4,
+	Square = 5,
+	Phase = 6,
+	Spread = 7,
+}
+
+[global, bind = typed_gml]
+enum FmodDspSend
+{
+	ReturnId = 0,
+	Level = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspReturn
+{
+	Id = 0,
+	InputSpeakerMode = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPan
+{
+	Mode = 0,
+	_2dStereoPosition = 1,
+	_2dDirection = 2,
+	_2dExtent = 3,
+	_2dRotation = 4,
+	_2dLfeLevel = 5,
+	_2dStereoMode = 6,
+	_2dStereoSeparation = 7,
+	_2dStereoAxis = 8,
+	EnabledSpeakers = 9,
+	_3dPosition = 10,
+	_3dRolloff = 11,
+	_3dMinDistance = 12,
+	_3dMaxDistance = 13,
+	_3dExtentMode = 14,
+	_3dSoundSize = 15,
+	_3dMinExtent = 16,
+	_3dPanBlend = 17,
+	LfeUpmixEnabled = 18,
+	OverallGain = 19,
+	SurroundSpeakerMode = 20,
+	_2dHeightBlend = 21,
+	AttenuationRange = 22,
+	OverrideRange = 23,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPanModeType
+{
+	Mono = 0,
+	Stereo = 1,
+	Surround = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPan2dStereoModeType
+{
+	Distributed = 0,
+	Discrete = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPan3dRolloffType
+{
+	LinearSquared = 0,
+	Linear = 1,
+	Inverse = 2,
+	InverseTapered = 3,
+	Custom = 4,
+}
+
+[global, bind = typed_gml]
+enum FmodDspPan3dExtentModeType
+{
+	Auto = 0,
+	User = 1,
+	Off = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspObjectPan
+{
+	_3dPosition = 0,
+	_3dRolloff = 1,
+	_3dMinDistance = 2,
+	_3dMaxDistance = 3,
+	_3dExtentMode = 4,
+	_3dSoundSize = 5,
+	_3dMinExtent = 6,
+	OverallGain = 7,
+	OutputGain = 8,
+	AttenuationRange = 9,
+	OverrideRange = 10,
+}
+
+[global, bind = typed_gml]
+enum FmodDspThreeEq
+{
+	LowGain = 0,
+	MidGain = 1,
+	HighGain = 2,
+	LowCrossover = 3,
+	HighCrossover = 4,
+	CrossoverSlope = 5,
+}
+
+[global, bind = typed_gml]
+enum FmodDspThreeEqCrossoverSlopeType
+{
+	_12db = 0,
+	_24db = 1,
+	_48db = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspFftDownmixType
+{
+	None = 0,
+	Mono = 1,
+}
+
+[global, bind = typed_gml]
+enum FmodDspLoudnessMeter
+{
+	State = 0,
+	Weighting = 1,
+	Info = 2,
+}
+
+[global, bind = typed_gml]
+enum FmodDspLoudnessMeterStateType
+{
+	ResetIntegrated = -3,
+	ResetMaxPeak = -2,
+	ResetAll = -1,
+	Paused = 0,
+	Analyzing = 1,
 }
 
 [global, bind = typed_gml]
@@ -1612,10 +1873,10 @@ function fmod_system_get_master_channel_group(): gmval;
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_system_set_output(output: real): real;
+function fmod_system_set_output([type_hint=`FmodOutputType`] output: gmval): real;
 
-[global, bind = typed_gml]
-function fmod_system_get_output(): real;
+[global, bind = typed_gml, type_hint=`FmodOutputType`]
+function fmod_system_get_output(): gmval;
 
 [global, bind = typed_gml]
 function fmod_system_get_num_drivers(): real;

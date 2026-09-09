@@ -16,7 +16,13 @@
     "targets": {
         "windows":{},
         "macos":{},
-        "linux":{}
+        "linux":{},
+        "android":{
+          "mode": "jni"
+        },
+        "ios":{
+          "mode": "native"
+        }
     },
   "extras": {
     "docs": { 

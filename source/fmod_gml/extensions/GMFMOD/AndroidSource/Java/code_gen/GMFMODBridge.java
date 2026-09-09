@@ -52,8 +52,8 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_get_channels_playing();
     public static native double __EXT_JNI__fmod_system_get_channel(double index, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_master_channel_group(ByteBuffer __ret_buffer, double __ret_buffer_length);
-    public static native double __EXT_JNI__fmod_system_set_output(double output);
-    public static native double __EXT_JNI__fmod_system_get_output();
+    public static native double __EXT_JNI__fmod_system_set_output(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_system_get_output(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_num_drivers();
     public static native double __EXT_JNI__fmod_system_set_driver(double driver);
     public static native double __EXT_JNI__fmod_system_get_driver();

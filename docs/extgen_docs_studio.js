@@ -137,9 +137,11 @@
 /**
  * @function_partial fmod_studio_system_set_listener_attributes
  * @param {Real} listener_index
- * @param {Real} x
- * @param {Real} y
- * @param {Real} z
+ * @param {Struct.FmodStudioVec3} position
+ * @param {Struct.FmodStudioVec3} velocity
+ * @param {Struct.FmodStudioVec3} forward
+ * @param {Struct.FmodStudioVec3} up
+ * @param {Struct.FmodStudioVec3} [attenuation_position]
  * @returns {Real}
  * @function_end
  */
@@ -955,9 +957,10 @@
 /**
  * @function_partial fmod_studio_event_instance_set_3d_attributes
  * @param {Real} instance_ref
- * @param {Real} x
- * @param {Real} y
- * @param {Real} z
+ * @param {Struct.FmodStudioVec3} position
+ * @param {Struct.FmodStudioVec3} velocity
+ * @param {Struct.FmodStudioVec3} forward
+ * @param {Struct.FmodStudioVec3} up
  * @returns {Real}
  * @function_end
  */
@@ -965,7 +968,7 @@
 /**
  * @function_partial fmod_studio_event_instance_get_3d_attributes
  * @param {Real} instance_ref
- * @returns {Struct.FmodStudioChannelControl3DAttributes}
+ * @returns {Struct.FmodStudio3DAttributes}
  * @function_end
  */
 
@@ -1553,18 +1556,11 @@
  */
 
 /**
- * @struct_partial FmodStudioListener3DAttributes
+ * @struct_partial FmodStudio3DAttributes
  * @member {Struct.FmodStudioVec3} position
  * @member {Struct.FmodStudioVec3} velocity
  * @member {Struct.FmodStudioVec3} forward
  * @member {Struct.FmodStudioVec3} up
- * @struct_end
- */
-
-/**
- * @struct_partial FmodStudioChannelControl3DAttributes
- * @member {Struct.FmodStudioVec3} position
- * @member {Struct.FmodStudioVec3} velocity
  * @struct_end
  */
 
@@ -1593,7 +1589,7 @@
 
 /**
  * @struct_partial FmodStudioListenerAttributes
- * @member {Struct.FmodStudioListener3DAttributes} attributes
+ * @member {Struct.FmodStudio3DAttributes} attributes
  * @member {Struct.FmodStudioVec3} attenuation
  * @struct_end
  */

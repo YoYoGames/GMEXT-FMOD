@@ -385,18 +385,29 @@ std::optional<uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_gu
 // Studio System - Listener
 // ============================================================
 
-double fmod_studio_system_set_listener_attributes(double listener_index, double x, double y, double z)
+double fmod_studio_system_set_listener_attributes(double listener_index, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up, const std::optional<gm_structs::FmodStudioVec3>& attenuation_position)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
 	FMOD_3D_ATTRIBUTES attributes = {};
-	attributes.position = {(float)x, (float)y, (float)z};
-	attributes.forward = {0, 0, 1};
-	attributes.up = {0, 1, 0};
+	attributes.position = {(float)position.x, (float)position.y, (float)position.z};
+	attributes.velocity = {(float)velocity.x, (float)velocity.y, (float)velocity.z};
+	attributes.forward = {(float)forward.x, (float)forward.y, (float)forward.z};
+	attributes.up = {(float)up.x, (float)up.y, (float)up.z};
 
-	g_fmod_last_result = studio_system->setListenerAttributes((int)listener_index, &attributes);
+	// FMOD treats a null attenuation position as "attenuate from the listener position",
+	// so an absent value has to stay a null pointer rather than become a zero vector.
+	FMOD_VECTOR attenuation{};
+	const FMOD_VECTOR* attenuation_ptr = nullptr;
+	if (attenuation_position.has_value())
+	{
+		attenuation = {(float)attenuation_position->x, (float)attenuation_position->y, (float)attenuation_position->z};
+		attenuation_ptr = &attenuation;
+	}
+
+	g_fmod_last_result = studio_system->setListenerAttributes((int)listener_index, &attributes, attenuation_ptr);
 	return 0;
 }
 

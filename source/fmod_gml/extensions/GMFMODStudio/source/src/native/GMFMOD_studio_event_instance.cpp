@@ -155,15 +155,16 @@ double fmod_studio_event_instance_get_parameter_count(uint64_t instance_ref)
 	return (double)count;
 }
 
-double fmod_studio_event_instance_set_3d_attributes(uint64_t instance_ref, double x, double y, double z)
+double fmod_studio_event_instance_set_3d_attributes(uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
 	FMOD_3D_ATTRIBUTES attributes = {};
-	attributes.position = {(float)x, (float)y, (float)z};
-	attributes.forward = {0, 0, 1};
-	attributes.up = {0, 1, 0};
+	attributes.position = {(float)position.x, (float)position.y, (float)position.z};
+	attributes.velocity = {(float)velocity.x, (float)velocity.y, (float)velocity.z};
+	attributes.forward = {(float)forward.x, (float)forward.y, (float)forward.z};
+	attributes.up = {(float)up.x, (float)up.y, (float)up.z};
 	g_fmod_last_result = instance->set3DAttributes(&attributes);
 	return 0;
 }
@@ -267,9 +268,9 @@ double fmod_studio_event_instance_set_parameter_by_name_with_label(
 // Event Instance - 3D Attributes
 // ============================================================
 
-FmodStudioChannelControl3DAttributes fmod_studio_event_instance_get_3d_attributes(uint64_t instance_ref)
+FmodStudio3DAttributes fmod_studio_event_instance_get_3d_attributes(uint64_t instance_ref)
 {
-	FmodStudioChannelControl3DAttributes result{};
+	FmodStudio3DAttributes result{};
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return result;
@@ -282,6 +283,12 @@ FmodStudioChannelControl3DAttributes fmod_studio_event_instance_get_3d_attribute
 	result.velocity.x = (double)attributes.velocity.x;
 	result.velocity.y = (double)attributes.velocity.y;
 	result.velocity.z = (double)attributes.velocity.z;
+	result.forward.x = (double)attributes.forward.x;
+	result.forward.y = (double)attributes.forward.y;
+	result.forward.z = (double)attributes.forward.z;
+	result.up.x = (double)attributes.up.x;
+	result.up.y = (double)attributes.up.y;
+	result.up.z = (double)attributes.up.z;
 	return result;
 }
 

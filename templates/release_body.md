@@ -2,7 +2,7 @@
 
 * This extension is compatible with GameMaker 2023.11.
 * This extension requires the user to download the FMOD SDKs (v2.03). (requires registration)
-* This extension is compatible with Windows, macOS, Linux, Android and iOS. FMOD Studio (`GMFMODStudio`) is desktop-only.
+* This extension is compatible with Windows, macOS, Linux, Android and iOS.
 * The FMOD plugin system is not implemented in this extension.
 
 ## CHANGES SINCE ${releaseOldVersion}

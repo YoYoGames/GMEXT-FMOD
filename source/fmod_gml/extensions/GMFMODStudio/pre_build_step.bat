@@ -5,9 +5,10 @@ set "EXTENSION_DIR=%~dp0"
 :: ######################################################################################
 :: Script Logic
 ::
-:: GMFMODStudio targets desktop only (Windows / macOS / Linux). Mobile and console are
-:: handled by GMFMOD, which is always present when this extension is used. Nothing has
-:: to be staged before the build - the FMOD Studio runtime is copied in post_build_step.
+:: GMFMODStudio ships the FMOD Studio runtime only. The FMOD Core runtime is
+:: GMFMOD's responsibility - that extension is always present when this one is
+:: used - and console targets are GMFMOD's too. Nothing has to be staged before
+:: the build; the Studio runtime is copied in post_build_step.
 
 :: Always init the script
 call %Utils% scriptInit
@@ -33,7 +34,7 @@ if "%YYTARGET_runtime%" == "GMRT" (
 pushd "%YYoutputFolder%"
 
 :: Call setup method depending on the platform
-:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux)
+:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS)
 call :setup%YYPLATFORM_name%
 
 popd
@@ -53,4 +54,16 @@ exit /b 0
 :: ----------------------------------------------------------------------------------------------------
 :setupLinux
     :: Nothing to do here
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupAndroid
+    :: Nothing to do here
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupiOS
+    :: Nothing to do here. Under "ios": {"mode": "native"} the FMOD Studio iOS static
+    :: libraries are linked straight from the vendored SDK by source/third_party/CMakeLists.txt,
+    :: so there is no iOSSource folder to stage into.
 exit /b 0

@@ -31,33 +31,47 @@ fmod_studio_system_set_num_listeners(2)
 listener_dist = 8;
 listener_weight = [1.0, 0.0];
 
-// The Studio listener/event 3D attributes only take a world position; velocity,
-// forward and up are handled internally by Studio.
-var _listener_1 = new FmodVec3()
+// Neither listener moves or turns in this demo, so velocity stays zero and the
+// orientation stays on the default +Z forward / +Y up axes. They are kept as
+// instance variables because the step event resends them every frame.
+zero_vec = new FmodStudioVec3()
+zero_vec.x = 0
+zero_vec.y = 0
+zero_vec.z = 0
+
+forward_vec = new FmodStudioVec3()
+forward_vec.x = 0
+forward_vec.y = 0
+forward_vec.z = 1
+
+up_vec = new FmodStudioVec3()
+up_vec.x = 0
+up_vec.y = 1
+up_vec.z = 0
+
+var _listener_1 = new FmodStudioVec3()
 _listener_1.x = -listener_dist
 _listener_1.y = 0
 _listener_1.z = 0
 
-var _listener_2 = new FmodVec3()
+var _listener_2 = new FmodStudioVec3()
 _listener_2.x = listener_dist
 _listener_2.y = 0
 _listener_2.z = 0
 
 listener_positions = [_listener_1, _listener_2]
 
-fmod_studio_system_set_listener_attributes(0, listener_positions[0].x, listener_positions[0].y, listener_positions[0].z);
+// undefined attenuation position means "attenuate from the listener position".
+fmod_studio_system_set_listener_attributes(0, listener_positions[0], zero_vec, forward_vec, up_vec, undefined);
 fmod_studio_system_set_listener_weight(0, listener_weight[0]);
-fmod_studio_system_set_listener_attributes(1, listener_positions[1].x, listener_positions[1].y, listener_positions[1].z);
+fmod_studio_system_set_listener_attributes(1, listener_positions[1], zero_vec, forward_vec, up_vec, undefined);
 fmod_studio_system_set_listener_weight(1, listener_weight[1]);
 
 
 // Position the event 2 units in front of the listener
-car_position = new FmodVec3()
+car_position = new FmodStudioVec3()
 car_position.x = 0
 car_position.y = 0
 car_position.z = 0
 
-fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst,
-	car_position.x,
-	car_position.y,
-	car_position.z);
+fmod_studio_event_instance_set_3d_attributes(vehicle_event_inst, car_position, zero_vec, forward_vec, up_vec);

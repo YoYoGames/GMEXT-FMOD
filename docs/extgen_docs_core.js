@@ -238,14 +238,14 @@
 
 /**
  * @function_partial fmod_system_set_output
- * @param {Real} output
+ * @param {Enum.FmodOutputType} output
  * @returns {Real}
  * @function_end
  */
 
 /**
  * @function_partial fmod_system_get_output
- * @returns {Real}
+ * @returns {Enum.FmodOutputType}
  * @function_end
  */
 
@@ -3204,7 +3204,7 @@
  */
 
 /**
- * @enum_partial FmodDspCompDynEq
+ * @enum_partial FmodDspCompressor
  * @member Threshold
  * @member Ratio
  * @member Attack
@@ -3265,6 +3265,267 @@
  * @member Wet
  * @member Dry
  * @member Linked
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspFader
+ * @member Gain
+ * @member OverallGain
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspMultibandDynamics
+ * @member LowerFrequency
+ * @member UpperFrequency
+ * @member Linked
+ * @member UseSidechain
+ * @member AMode
+ * @member AGain
+ * @member AThreshold
+ * @member ARatio
+ * @member AAttack
+ * @member ARelease
+ * @member AGainMakeup
+ * @member AResponseData
+ * @member BMode
+ * @member BGain
+ * @member BThreshold
+ * @member BRatio
+ * @member BAttack
+ * @member BRelease
+ * @member BGainMakeup
+ * @member BResponseData
+ * @member CMode
+ * @member CGain
+ * @member CThreshold
+ * @member CRatio
+ * @member CAttack
+ * @member CRelease
+ * @member CGainMakeup
+ * @member CResponseData
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspMultibandDynamicsModeType
+ * @member Disabled
+ * @member CompressUp
+ * @member CompressDown
+ * @member ExpandUp
+ * @member ExpandDown
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspItEcho
+ * @member WetDryMix
+ * @member Feedback
+ * @member LeftDelay
+ * @member RightDelay
+ * @member PanDelay
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspSfxReverb
+ * @member DecayTime
+ * @member EarlyDelay
+ * @member LateDelay
+ * @member HfReference
+ * @member HfDecayRatio
+ * @member Diffusion
+ * @member Density
+ * @member LowShelfFrequency
+ * @member LowShelfGain
+ * @member HighCut
+ * @member EarlyLateMix
+ * @member WetLevel
+ * @member DryLevel
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspLowPassSimple
+ * @member Cutoff
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspHighPassSimple
+ * @member Cutoff
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspDelay
+ * @member Ch0
+ * @member Ch1
+ * @member Ch2
+ * @member Ch3
+ * @member Ch4
+ * @member Ch5
+ * @member Ch6
+ * @member Ch7
+ * @member Ch8
+ * @member Ch9
+ * @member Ch10
+ * @member Ch11
+ * @member Ch12
+ * @member Ch13
+ * @member Ch14
+ * @member Ch15
+ * @member MaxDelay
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspTremolo
+ * @member Frequency
+ * @member Depth
+ * @member Shape
+ * @member Skew
+ * @member Duty
+ * @member Square
+ * @member Phase
+ * @member Spread
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspSend
+ * @member ReturnId
+ * @member Level
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspReturn
+ * @member Id
+ * @member InputSpeakerMode
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPan
+ * @member Mode
+ * @member _2dStereoPosition
+ * @member _2dDirection
+ * @member _2dExtent
+ * @member _2dRotation
+ * @member _2dLfeLevel
+ * @member _2dStereoMode
+ * @member _2dStereoSeparation
+ * @member _2dStereoAxis
+ * @member EnabledSpeakers
+ * @member _3dPosition
+ * @member _3dRolloff
+ * @member _3dMinDistance
+ * @member _3dMaxDistance
+ * @member _3dExtentMode
+ * @member _3dSoundSize
+ * @member _3dMinExtent
+ * @member _3dPanBlend
+ * @member LfeUpmixEnabled
+ * @member OverallGain
+ * @member SurroundSpeakerMode
+ * @member _2dHeightBlend
+ * @member AttenuationRange
+ * @member OverrideRange
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPanModeType
+ * @member Mono
+ * @member Stereo
+ * @member Surround
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPan2dStereoModeType
+ * @member Distributed
+ * @member Discrete
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPan3dRolloffType
+ * @member LinearSquared
+ * @member Linear
+ * @member Inverse
+ * @member InverseTapered
+ * @member Custom
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspPan3dExtentModeType
+ * @member Auto
+ * @member User
+ * @member Off
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspObjectPan
+ * @member _3dPosition
+ * @member _3dRolloff
+ * @member _3dMinDistance
+ * @member _3dMaxDistance
+ * @member _3dExtentMode
+ * @member _3dSoundSize
+ * @member _3dMinExtent
+ * @member OverallGain
+ * @member OutputGain
+ * @member AttenuationRange
+ * @member OverrideRange
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspThreeEq
+ * @member LowGain
+ * @member MidGain
+ * @member HighGain
+ * @member LowCrossover
+ * @member HighCrossover
+ * @member CrossoverSlope
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspThreeEqCrossoverSlopeType
+ * @member _12db
+ * @member _24db
+ * @member _48db
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspFftDownmixType
+ * @member None
+ * @member Mono
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspLoudnessMeter
+ * @member State
+ * @member Weighting
+ * @member Info
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspLoudnessMeterStateType
+ * @member ResetIntegrated
+ * @member ResetMaxPeak
+ * @member ResetAll
+ * @member Paused
+ * @member Analyzing
  * @enum_end
  */
 

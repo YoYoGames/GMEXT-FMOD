@@ -577,11 +577,10 @@
 </blockquote>
 <p><br /></p>
 <p>This function sets the 3D attributes of the listener.</p>
-<p>If you don't pass a value for <code>attenuation</code>, the listener only uses the position in <code>attributes</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_system_set_listener_attributes(listener_index, x, y, z)
+<div class="highlight"><pre><span></span><code>fmod_studio_system_set_listener_attributes(listener_index, position, velocity, forward, up, attenuation_position=undefined)
 </code></pre></div>
 </blockquote>
 <table>
@@ -599,19 +598,29 @@
 <td>Index of listener to set 3D attributes on. Listeners are indexed from 0, to <code>FMOD_MAX_LISTENERS</code> - 1, in a multi-listener environment.</td>
 </tr>
 <tr>
-<td>x</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The x coordinate of the listener's position, in world space.</td>
+<td>position</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The position in 3D space, used for panning and attenuation.</td>
 </tr>
 <tr>
-<td>y</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The y coordinate of the listener's position, in world space.</td>
+<td>velocity</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The velocity in 3D space, used for doppler. Pass a zero vector for a stationary listener.</td>
 </tr>
 <tr>
-<td>z</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The z coordinate of the listener's position, in world space.</td>
+<td>forward</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The "forward" vector defining the listener's orientation. Must be of unit length and perpendicular to <code>up</code>.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The "up" vector defining the listener's orientation. Must be of unit length and perpendicular to <code>forward</code>.</td>
+</tr>
+<tr>
+<td>attenuation_position</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The position to calculate attenuation from, when it differs from the listener position. Pass <code>undefined</code> to attenuate from the listener position.</td>
 </tr>
 </tbody>
 </table>

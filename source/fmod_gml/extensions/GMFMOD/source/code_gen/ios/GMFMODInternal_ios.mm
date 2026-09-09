@@ -220,13 +220,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_get_master_channel_group(__ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_set_output:(double)output
+- (double)__EXT_NATIVE__fmod_system_set_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_set_output(output);
+    return __EXT_NATIVE__fmod_system_set_output(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_get_output
+- (double)__EXT_NATIVE__fmod_system_get_output:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_get_output();
+    return __EXT_NATIVE__fmod_system_get_output(__ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_get_num_drivers
 {

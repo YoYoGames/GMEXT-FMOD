@@ -7,10 +7,10 @@ source "$(dirname "$0")/scriptUtils.sh"
 # ######################################################################################
 # Script Functions
 #
-# GMFMODStudio targets desktop only (Windows / macOS / Linux). Mobile and console
-# are handled by GMFMOD, which is always present when this extension is used.
-# Nothing has to be staged before the build on any desktop target - the FMOD Studio
-# runtime is copied in post_build_step.
+# GMFMODStudio ships the FMOD Studio runtime only. The FMOD Core runtime is
+# GMFMOD's responsibility - that extension is always present when this one is
+# used - and console targets are GMFMOD's too. Nothing has to be staged before
+# the build; the Studio runtime is copied in post_build_step.
 
 # ----------------------------------------------------------------------------------------------------
 setupWindows() {
@@ -32,6 +32,20 @@ setupMac() {
 # ----------------------------------------------------------------------------------------------------
 setupLinux() {
     # Nothing to do here
+    :
+}
+
+# ----------------------------------------------------------------------------------------------------
+setupAndroid() {
+    # Nothing to do here
+    :
+}
+
+# ----------------------------------------------------------------------------------------------------
+setupiOS() {
+    # Nothing to do here. Under "ios": {"mode": "native"} the FMOD Studio iOS static
+    # libraries are linked straight from the vendored SDK by source/third_party/CMakeLists.txt,
+    # so there is no iOSSource folder to stage into.
     :
 }
 

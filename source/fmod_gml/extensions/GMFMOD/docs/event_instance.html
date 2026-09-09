@@ -791,7 +791,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_3d_attributes(instance_ref, x, y, z)
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_3d_attributes(instance_ref, position, velocity, forward, up)
 </code></pre></div>
 </blockquote>
 <table>
@@ -809,19 +809,24 @@
 <td>A reference to an EventInstance.</td>
 </tr>
 <tr>
-<td>x</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The x coordinate of the event instance's position, in world space.</td>
+<td>position</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The position in 3D space, used for panning and attenuation.</td>
 </tr>
 <tr>
-<td>y</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The y coordinate of the event instance's position, in world space.</td>
+<td>velocity</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The velocity in 3D space, used for doppler. Pass a zero vector for a stationary event.</td>
 </tr>
 <tr>
-<td>z</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The z coordinate of the event instance's position, in world space.</td>
+<td>forward</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The "forward" vector defining the event's orientation. Must be of unit length and perpendicular to <code>up</code>.</td>
+</tr>
+<tr>
+<td>up</td>
+<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
+<td>The "up" vector defining the event's orientation. Must be of unit length and perpendicular to <code>forward</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -865,7 +870,7 @@
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="structs.html#fmodstudiochannelcontrol3dattributes">FmodStudioChannelControl3DAttributes</a></p>
+<p><a href="structs.html#fmodstudio3dattributes">FmodStudio3DAttributes</a></p>
 </blockquote>
 <p><br></p>
 <hr />

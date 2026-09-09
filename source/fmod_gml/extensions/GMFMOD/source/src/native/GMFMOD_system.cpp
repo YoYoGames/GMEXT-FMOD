@@ -243,7 +243,7 @@ uint64_t fmod_system_get_master_channel_group()
 // System - Output & Driver
 // ============================================================
 
-double fmod_system_set_output(double output)
+double fmod_system_set_output(gm_enums::FmodOutputType output)
 {
 	if (getCurrentSystem() == nullptr)
 	{
@@ -252,22 +252,22 @@ double fmod_system_set_output(double output)
 	}
 
 	FMOD::System* system = getCurrentSystem();
-	g_fmod_last_result = system->setOutput((FMOD_OUTPUTTYPE)(int)output);
+	g_fmod_last_result = system->setOutput((FMOD_OUTPUTTYPE)static_cast<int>(output));
 	return 0;
 }
 
-double fmod_system_get_output()
+gm_enums::FmodOutputType fmod_system_get_output()
 {
 	if (getCurrentSystem() == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return 0.0;
+		return gm_enums::FmodOutputType::AutoDetect;
 	}
 
 	FMOD::System* system = getCurrentSystem();
 	FMOD_OUTPUTTYPE output = FMOD_OUTPUTTYPE_AUTODETECT;
 	g_fmod_last_result = system->getOutput(&output);
-	return (double)output;
+	return static_cast<gm_enums::FmodOutputType>(output);
 }
 
 double fmod_system_get_num_drivers()

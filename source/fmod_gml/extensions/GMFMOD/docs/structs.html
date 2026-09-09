@@ -170,7 +170,7 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmoddspcpuusage">FmodDSPCPUUsage</a></li>
 <li><a href="structs.html#fmodconesettings">FmodConeSettings</a></li>
 <li><a href="structs.html#fmodlistener3dattributes">FmodListener3DAttributes</a></li>
-<li><a href="structs.html#fmodstudiolistener3dattributes">FmodStudioListener3DAttributes</a></li>
+<li><a href="structs.html#fmodstudio3dattributes">FmodStudio3DAttributes</a></li>
 <li><a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a></li>
 <li><a href="structs.html#fmodstudiocreatesoundexinfo">FmodStudioCreateSoundExInfo</a></li>
 <li><a href="structs.html#fmodadvancedsettings">FmodAdvancedSettings</a></li>
@@ -182,7 +182,6 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmodfileusage">FmodFileUsage</a></li>
 <li><a href="structs.html#fmodrecorddriverinfo">FmodRecordDriverInfo</a></li>
 <li><a href="structs.html#fmodchannelcontrol3dattributes">FmodChannelControl3DAttributes</a></li>
-<li><a href="structs.html#fmodstudiochannelcontrol3dattributes">FmodStudioChannelControl3DAttributes</a></li>
 <li><a href="structs.html#fmoddistancefilter">FmodDistanceFilter</a></li>
 <li><a href="structs.html#fmodsoundminmaxdistance">FmodSoundMinMaxDistance</a></li>
 <li><a href="structs.html#fmodstudiominmaxdistance">FmodStudioMinMaxDistance</a></li>
@@ -2493,10 +2492,14 @@ This happens in two situations:</p>
 <blockquote>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
 </blockquote>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_3d_attributes">fmod_studio_event_instance_set_3d_attributes</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_listener_attributes">fmod_studio_system_set_listener_attributes</a></li>
+</ul>
 <p>This struct is referenced by the following structs:</p>
 <ul>
-<li><a href="structs.html#fmodstudiolistener3dattributes">FmodStudioListener3DAttributes</a></li>
-<li><a href="structs.html#fmodstudiochannelcontrol3dattributes">FmodStudioChannelControl3DAttributes</a></li>
+<li><a href="structs.html#fmodstudio3dattributes">FmodStudio3DAttributes</a></li>
 <li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
 </ul>
 <p><br></p>
@@ -2912,7 +2915,7 @@ is a percentage of the total CPU time.</p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmodstudiolistener3dattributes">FmodStudioListener3DAttributes</h1>
+<h1 id="fmodstudio3dattributes">FmodStudio3DAttributes</h1>
 <blockquote>
 <p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
 </blockquote>
@@ -2920,6 +2923,10 @@ is a percentage of the total CPU time.</p>
 <blockquote>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
 </blockquote>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</a></li>
+</ul>
 <p>This struct is referenced by the following structs:</p>
 <ul>
 <li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
@@ -2953,40 +2960,6 @@ is a percentage of the total CPU time.</p>
 <td>up</td>
 <td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
 <td>The "up" vector as the second vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to <code>forward</code>.</td>
-</tr>
-</tbody>
-</table>
-<p>*/</p>
-<p>/**</p>
-<p><br></p>
-<hr />
-<p align="right"><a href="#top">Back To Top</a></p>
-
-<h1 id="fmodstudiochannelcontrol3dattributes">FmodStudioChannelControl3DAttributes</h1>
-<p>This struct stores the 3D position and velocity used to apply panning, attenuation and doppler.</p>
-<p>This struct is referenced by the following functions:</p>
-<ul>
-<li><a href="event_instance.html#fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</a></li>
-</ul>
-<p><br></p>
-<table>
-<thead>
-<tr>
-<th>Member</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>position</td>
-<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
-<td>The position in 3D space used for panning and attenuation. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a>.</td>
-</tr>
-<tr>
-<td>velocity</td>
-<td><a href="structs.html#fmodstudiovec3">FmodStudioVec3</a></td>
-<td>The velocity in 3D space used for doppler. Expressed in <a href="https://www.fmod.com/docs/2.03/api/glossary.html#distance-units">Distance units</a> per second.</td>
 </tr>
 </tbody>
 </table>
@@ -3134,7 +3107,7 @@ is a percentage of the total CPU time.</p>
 <tbody>
 <tr>
 <td>attributes</td>
-<td><a href="structs.html#fmodstudiolistener3dattributes">FmodStudioListener3DAttributes</a></td>
+<td><a href="structs.html#fmodstudio3dattributes">FmodStudio3DAttributes</a></td>
 <td>The 3D attributes.</td>
 </tr>
 <tr>

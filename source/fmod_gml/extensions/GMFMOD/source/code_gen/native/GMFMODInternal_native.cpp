@@ -403,16 +403,25 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_master_channel_group(char* __ret_b
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_set_output(double output)
+GMEXPORT double __EXT_NATIVE__fmod_system_set_output(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_system_set_output(static_cast<double>(output));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: output, type: enum FmodOutputType
+    gm_enums::FmodOutputType output = gm::wire::codec::readValue<gm_enums::FmodOutputType>(__br);
+
+    auto&& __result = fmod_system_set_output(output);
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_get_output()
+GMEXPORT double __EXT_NATIVE__fmod_system_get_output(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_get_output();
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodOutputType
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_system_get_num_drivers()

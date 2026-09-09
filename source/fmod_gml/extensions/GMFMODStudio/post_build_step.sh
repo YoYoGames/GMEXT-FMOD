@@ -147,6 +147,58 @@ setupLinux() {
     rm -r ${TEMP_FOLDER}
 }
 
+# ----------------------------------------------------------------------------------------------------
+setupAndroid() {
+    # Resolve the SDK path (must exist)
+    pathResolveExisting "$YYprojectDir" "$ANDROID_SDK_PATH" SDK_PATH
+
+    # assertFileHashEquals "$SDK_PATH/api/studio/lib/arm64-v8a/libfmodstudioL.so" $ANDROID_SDK_HASH "$ERROR_SDK_HASH"
+
+    pushd "$ExtensionPath/AndroidSource/libs" >/dev/null
+
+    # No fmod.jar and no libfmodL.so here - GMFMOD stages both, and a second copy
+    # at the same path in the same APK is a duplicate-class build failure.
+
+    # Handle arm64-v8a architecture
+    if [[ "$YYPLATFORM_option_android_arch_arm64" == "True" ]]; then
+        echo "Copying Android (arm64-v8a) dependencies"
+        [[ ! -d "arm64-v8a/" ]] && mkdir "arm64-v8a"
+        itemCopyTo "$SDK_PATH/api/studio/lib/arm64-v8a/libfmodstudioL.so" "arm64-v8a/libfmodstudioL.so"
+    else
+        if [ -d "arm64-v8a" ]; then
+            itemDelete "arm64-v8a/libfmodstudioL.so"
+        fi
+    fi
+
+    # Handle armeabi-v7a architecture
+    if [[ "$YYPLATFORM_option_android_arch_armv7" == "True" ]]; then
+        echo "Copying Android (armeabi-v7a) dependencies"
+        [[ ! -d "armeabi-v7a/" ]] && mkdir "armeabi-v7a"
+        itemCopyTo "$SDK_PATH/api/studio/lib/armeabi-v7a/libfmodstudioL.so" "armeabi-v7a/libfmodstudioL.so"
+    else
+        if [ -d "armeabi-v7a" ]; then
+            itemDelete "armeabi-v7a/libfmodstudioL.so"
+        fi
+    fi
+
+    # Handle x86_64 architecture
+    if [[ "$YYPLATFORM_option_android_arch_x86_64" == "True" ]]; then
+        echo "Copying Android (x86_64) dependencies"
+        [[ ! -d "x86_64" ]] && mkdir "x86_64"
+        itemCopyTo "$SDK_PATH/api/studio/lib/x86_64/libfmodstudioL.so" "x86_64/libfmodstudioL.so"
+    else
+        if [ -d "x86_64" ]; then
+            itemDelete "x86_64/libfmodstudioL.so"
+        fi
+    fi
+
+    popd >/dev/null
+}
+
+# ----------------------------------------------------------------------------------------------------
+# The iOS static libraries are linked at build time - nothing to stage.
+setupiOS() { :; }
+
 # ######################################################################################
 # Script Logic
 
@@ -166,11 +218,15 @@ optionGetValue "sdkVersion" SDK_VERSION
 optionGetValue "winSdkHash" WIN_SDK_HASH
 optionGetValue "macosSdkHash" MACOS_SDK_HASH
 optionGetValue "linuxSdkHash" LINUX_SDK_HASH
+optionGetValue "androidSdkHash" ANDROID_SDK_HASH
+optionGetValue "iosSdkHash" IOS_SDK_HASH
 
 # SDK Paths
 optionGetValue "winSdkPath" WIN_SDK_PATH
 optionGetValue "macosSdkPath" MACOS_SDK_PATH
 optionGetValue "linuxSdkPath" LINUX_SDK_PATH
+optionGetValue "androidSdkPath" ANDROID_SDK_PATH
+optionGetValue "iosSdkPath" IOS_SDK_PATH
 
 # Error String
 ERROR_SDK_HASH="Invalid FMOD SDK version, sha256 hash mismatch (expected v$SDK_VERSION)."

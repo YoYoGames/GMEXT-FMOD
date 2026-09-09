@@ -34,8 +34,18 @@ elseif(APPLE)
     file(GLOB TARGET_SRCS CONFIGURE_DEPENDS "${SRC_DIR}/native/*.mm" "${SRC_DIR}/native/*.cpp" "${SRC_DIR}/native/*.swift")
   endif()
 
+  # The ios/tvos folders hold only the ObjC wrapper - the implementation is the same
+  # C++ core desktop uses. The Apple STANDARD flavour excludes that core by design,
+  # so add it only for NATIVE, matching cmake/ios/extgen_post_project.cmake.
+  if(EXTGEN_IS_APPLE_MOBILE AND EXT_APPLE_NATIVE_FRAMEWORK)
+    file(GLOB SHARED_SRCS CONFIGURE_DEPENDS "${SRC_DIR}/native/*.cpp")
+    list(APPEND TARGET_SRCS ${SHARED_SRCS})
+  endif()
+
 elseif(ANDROID)
-  file(GLOB TARGET_SRCS CONFIGURE_DEPENDS "${SRC_DIR}/android/*.cpp")
+  # Android has no platform-specific implementation of its own - the whole C++ core
+  # is shared with desktop, so it has to be compiled here as well.
+  file(GLOB TARGET_SRCS CONFIGURE_DEPENDS "${SRC_DIR}/android/*.cpp" "${SRC_DIR}/native/*.cpp")
 
 elseif(UNIX)
   file(GLOB TARGET_SRCS CONFIGURE_DEPENDS "${SRC_DIR}/native/*.cpp")

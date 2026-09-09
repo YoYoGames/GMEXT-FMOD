@@ -113,7 +113,7 @@
  * @member {Struct.FmodVec3} up The "up" vector as the second vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to `forward`.
  * @struct_end
  * *//**
- * @struct FmodStudioListener3DAttributes
+ * @struct FmodStudio3DAttributes
  * @desc > **FMOD Struct:** [FMOD_3D_ATTRIBUTES](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes)
  * 
  * This structure describes a position, velocity and orientation.
@@ -318,15 +318,6 @@
  * @member {Struct.FmodVec3} velocity The velocity in 3D space used for doppler. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
  * @struct_end
  * *//**
- * @struct FmodStudioChannelControl3DAttributes
- * @desc This struct stores the 3D position and velocity used to apply panning, attenuation and doppler.
- * 
- * @member {Struct.FmodStudioVec3} position The position in 3D space used for panning and attenuation. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
- * @member {Struct.FmodStudioVec3} velocity The velocity in 3D space used for doppler. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
- * @struct_end
- * */
-
-/**
  * @struct FmodDistanceFilter
  * @desc This struct holds override values for the 3D distance filter.
  * @member {Real} custom Whether to override automatic distance filtering and use `custom_level` instead.
@@ -608,7 +599,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
 /**
  * @struct FmodStudioListenerAttributes
  * @desc This struct stores listener 3D attributes.
- * @member {Struct.FmodStudioListener3DAttributes} attributes The 3D attributes.
+ * @member {Struct.FmodStudio3DAttributes} attributes The 3D attributes.
  * @member {Struct.FmodStudioVec3} attenuation The position used for calculating attenuation.
  * @struct_end
  * */
@@ -818,7 +809,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPCPUUsage
  * @ref FmodConeSettings
  * @ref FmodListener3DAttributes
- * @ref FmodStudioListener3DAttributes
+ * @ref FmodStudio3DAttributes
  * @ref FmodCreateSoundExInfo
  * @ref FmodStudioCreateSoundExInfo
  * @ref FmodAdvancedSettings
@@ -830,7 +821,6 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodFileUsage
  * @ref FmodRecordDriverInfo
  * @ref FmodChannelControl3DAttributes
- * @ref FmodStudioChannelControl3DAttributes
  * @ref FmodDistanceFilter
  * @ref FmodSoundMinMaxDistance
  * @ref FmodStudioMinMaxDistance

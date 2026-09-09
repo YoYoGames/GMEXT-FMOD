@@ -26,7 +26,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_master_bus(char* __ret_buff
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bus_by_id(char* str_guid, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca(char* path, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_vca_by_id(char* str_guid, char* __ret_buffer, double __ret_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_attributes(double listener_index, double x, double y, double z);
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_attributes(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_listener_weight(double listener_index, double weight);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_num_listeners();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_listener_attributes(double listener_index, char* __ret_buffer, double __ret_buffer_length);

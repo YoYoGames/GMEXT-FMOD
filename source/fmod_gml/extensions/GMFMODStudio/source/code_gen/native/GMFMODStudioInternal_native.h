@@ -295,8 +295,7 @@ namespace gm_structs
     struct FmodStudioBufferInfo;
     struct FmodStudioAdvancedSettings;
     struct FmodStudioParameterValue;
-    struct FmodStudioListener3DAttributes;
-    struct FmodStudioChannelControl3DAttributes;
+    struct FmodStudio3DAttributes;
     struct FmodStudioSystemCPUUsage;
     struct FmodStudioSoundInfo;
     struct FmodStudioBufferUsage;
@@ -434,18 +433,12 @@ namespace gm_structs
         double final_value;
     };
 
-    struct FmodStudioListener3DAttributes
+    struct FmodStudio3DAttributes
     {
         gm_structs::FmodStudioVec3 position;
         gm_structs::FmodStudioVec3 velocity;
         gm_structs::FmodStudioVec3 forward;
         gm_structs::FmodStudioVec3 up;
-    };
-
-    struct FmodStudioChannelControl3DAttributes
-    {
-        gm_structs::FmodStudioVec3 position;
-        gm_structs::FmodStudioVec3 velocity;
     };
 
     struct FmodStudioSystemCPUUsage
@@ -470,7 +463,7 @@ namespace gm_structs
 
     struct FmodStudioListenerAttributes
     {
-        gm_structs::FmodStudioListener3DAttributes attributes;
+        gm_structs::FmodStudio3DAttributes attributes;
         gm_structs::FmodStudioVec3 attenuation;
     };
 
@@ -799,7 +792,7 @@ namespace gm::wire::codec
     }
 
     template<>
-    inline void writeValue<gm_structs::FmodStudioListener3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioListener3DAttributes& obj)
+    inline void writeValue<gm_structs::FmodStudio3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudio3DAttributes& obj)
     {
         gm::wire::codec::writeValue(_buf, obj.position);
         gm::wire::codec::writeValue(_buf, obj.velocity);
@@ -808,29 +801,13 @@ namespace gm::wire::codec
     }
 
     template<>
-    inline gm_structs::FmodStudioListener3DAttributes readValue<gm_structs::FmodStudioListener3DAttributes>(gm::byteio::BufferReader& _buf)
+    inline gm_structs::FmodStudio3DAttributes readValue<gm_structs::FmodStudio3DAttributes>(gm::byteio::BufferReader& _buf)
     {
-        gm_structs::FmodStudioListener3DAttributes obj;
+        gm_structs::FmodStudio3DAttributes obj;
         obj.position = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
         obj.velocity = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
         obj.forward = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
         obj.up = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
-        return obj;
-    }
-
-    template<>
-    inline void writeValue<gm_structs::FmodStudioChannelControl3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioChannelControl3DAttributes& obj)
-    {
-        gm::wire::codec::writeValue(_buf, obj.position);
-        gm::wire::codec::writeValue(_buf, obj.velocity);
-    }
-
-    template<>
-    inline gm_structs::FmodStudioChannelControl3DAttributes readValue<gm_structs::FmodStudioChannelControl3DAttributes>(gm::byteio::BufferReader& _buf)
-    {
-        gm_structs::FmodStudioChannelControl3DAttributes obj;
-        obj.position = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
-        obj.velocity = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
         return obj;
     }
 
@@ -897,7 +874,7 @@ namespace gm::wire::codec
     inline gm_structs::FmodStudioListenerAttributes readValue<gm_structs::FmodStudioListenerAttributes>(gm::byteio::BufferReader& _buf)
     {
         gm_structs::FmodStudioListenerAttributes obj;
-        obj.attributes = gm::wire::codec::readValue<gm_structs::FmodStudioListener3DAttributes>(_buf);
+        obj.attributes = gm::wire::codec::readValue<gm_structs::FmodStudio3DAttributes>(_buf);
         obj.attenuation = gm::wire::codec::readValue<gm_structs::FmodStudioVec3>(_buf);
         return obj;
     }
@@ -1005,45 +982,38 @@ namespace gm::wire::details
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioListener3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodStudio3DAttributes>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 14;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioChannelControl3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodStudioSystemCPUUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 15;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioSystemCPUUsage>
+    struct gm_struct_traits<gm_structs::FmodStudioSoundInfo>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 16;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioSoundInfo>
+    struct gm_struct_traits<gm_structs::FmodStudioBufferUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 17;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioBufferUsage>
-    {
-        static constexpr bool is_gm_struct = true;
-        static constexpr std::uint32_t codec_id = 18;
-    };
-
-    template<>
     struct gm_struct_traits<gm_structs::FmodStudioListenerAttributes>
     {
         static constexpr bool is_gm_struct = true;
-        static constexpr std::uint32_t codec_id = 19;
+        static constexpr std::uint32_t codec_id = 18;
     };
 
 }
@@ -1068,7 +1038,7 @@ std::optional<std::uint64_t> fmod_studio_system_get_master_bus();
 std::optional<std::uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_guid);
 std::optional<std::uint64_t> fmod_studio_system_get_vca(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_guid);
-double fmod_studio_system_set_listener_attributes(double listener_index, double x, double y, double z);
+double fmod_studio_system_set_listener_attributes(double listener_index, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up, const std::optional<gm_structs::FmodStudioVec3>& attenuation_position);
 double fmod_studio_system_set_listener_weight(double listener_index, double weight);
 double fmod_studio_system_get_num_listeners();
 gm_structs::FmodStudioListenerAttributes fmod_studio_system_get_listener_attributes(double listener_index);
@@ -1178,8 +1148,8 @@ double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref
 double fmod_studio_event_instance_set_callback(std::uint64_t instance_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType mask);
 double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, double ignore_seek_speed);
 double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, double ignore_seek_speed);
-double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, double x, double y, double z);
-gm_structs::FmodStudioChannelControl3DAttributes fmod_studio_event_instance_get_3d_attributes(std::uint64_t instance_ref);
+double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up);
+gm_structs::FmodStudio3DAttributes fmod_studio_event_instance_get_3d_attributes(std::uint64_t instance_ref);
 gm_structs::FmodStudioMinMaxDistance fmod_studio_event_instance_get_min_max_distance(std::uint64_t instance_ref);
 double fmod_studio_event_instance_get_listener_mask(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_listener_mask(std::uint64_t instance_ref, double mask);

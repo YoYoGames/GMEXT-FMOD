@@ -412,7 +412,7 @@ class `[[FmodStudioVec3]]` prototype Object
 }
 
 [global]
-class `[[FmodStudioListener3DAttributes]]` prototype Object
+class `[[FmodStudio3DAttributes]]` prototype Object
 {
     [field, type_hint=`FmodStudioVec3`]
     property position: gmval { get; set; }
@@ -425,16 +425,6 @@ class `[[FmodStudioListener3DAttributes]]` prototype Object
 
     [field, type_hint=`FmodStudioVec3`]
     property up: gmval { get; set; }
-}
-
-[global]
-class `[[FmodStudioChannelControl3DAttributes]]` prototype Object
-{
-    [field, type_hint=`FmodStudioVec3`]
-    property position: gmval { get; set; }
-
-    [field, type_hint=`FmodStudioVec3`]
-    property velocity: gmval { get; set; }
 }
 
 [global]
@@ -597,7 +587,7 @@ class `[[FmodStudioBufferUsage]]` prototype Object
 [global]
 class `[[FmodStudioListenerAttributes]]` prototype Object
 {
-    [field, type_hint=`FmodStudioListener3DAttributes`]
+    [field, type_hint=`FmodStudio3DAttributes`]
     property attributes: gmval { get; set; }
 
     [field, type_hint=`FmodStudioVec3`]
@@ -724,7 +714,14 @@ function fmod_studio_system_get_vca_by_id(str_guid: string): gmval;
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_studio_system_set_listener_attributes(listener_index: real, x: real, y: real, z: real): real;
+function fmod_studio_system_set_listener_attributes(
+    listener_index: real,
+    [type_hint=`FmodStudioVec3`] position: gmval,
+    [type_hint=`FmodStudioVec3`] velocity: gmval,
+    [type_hint=`FmodStudioVec3`] forward: gmval,
+    [type_hint=`FmodStudioVec3`] up: gmval,
+    [type_hint=`FmodStudioVec3?`] attenuation_position: gmval
+): real;
 
 [global, bind = typed_gml]
 function fmod_studio_system_set_listener_weight(listener_index: real, weight: real): real;
@@ -1205,9 +1202,15 @@ function fmod_studio_event_instance_set_parameter_by_name_with_label(
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_studio_event_instance_set_3d_attributes([type_hint=`uint64`] instance_ref: gmval, x: real, y: real, z: real): real;
+function fmod_studio_event_instance_set_3d_attributes(
+    [type_hint=`uint64`] instance_ref: gmval,
+    [type_hint=`FmodStudioVec3`] position: gmval,
+    [type_hint=`FmodStudioVec3`] velocity: gmval,
+    [type_hint=`FmodStudioVec3`] forward: gmval,
+    [type_hint=`FmodStudioVec3`] up: gmval
+): real;
 
-[global, bind = typed_gml, type_hint=`FmodStudioChannelControl3DAttributes`]
+[global, bind = typed_gml, type_hint=`FmodStudio3DAttributes`]
 function fmod_studio_event_instance_get_3d_attributes([type_hint=`uint64`] instance_ref: gmval): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodStudioMinMaxDistance`]

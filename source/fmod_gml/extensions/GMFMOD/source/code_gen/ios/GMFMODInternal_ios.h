@@ -36,8 +36,8 @@
 - (double)__EXT_NATIVE__fmod_system_get_channels_playing;
 - (double)__EXT_NATIVE__fmod_system_get_channel:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_master_channel_group:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_set_output:(double)output;
-- (double)__EXT_NATIVE__fmod_system_get_output;
+- (double)__EXT_NATIVE__fmod_system_set_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_system_get_output:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_num_drivers;
 - (double)__EXT_NATIVE__fmod_system_set_driver:(double)driver;
 - (double)__EXT_NATIVE__fmod_system_get_driver;

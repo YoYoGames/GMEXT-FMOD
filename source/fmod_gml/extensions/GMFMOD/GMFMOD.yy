@@ -617,32 +617,36 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_set_output",
-          "argCount": 1,
+          "%Name": "__fmod_system_set_output",
+          "argCount": 2,
           "args": [
+            1,
             2
           ],
-          "documentation": "@param {Real} output\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_set_output",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_set_output",
+          "name": "__fmod_system_set_output",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_get_output",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
+          "%Name": "__fmod_system_get_output",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_get_output",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_get_output",
+          "name": "__fmod_system_get_output",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2

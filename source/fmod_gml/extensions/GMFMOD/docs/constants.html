@@ -170,7 +170,7 @@
 <li><a href="constants.html#fmoddspmultibandeqfiltertype">FmodDspMultibandEqFilterType</a></li>
 <li><a href="constants.html#fmoddsppitchshift">FmodDspPitchShift</a></li>
 <li><a href="constants.html#fmoddspchorus">FmodDspChorus</a></li>
-<li><a href="constants.html#fmoddspcompdyneq">FmodDspCompDynEq</a></li>
+<li><a href="constants.html#fmoddspcompressor">FmodDspCompressor</a></li>
 <li><a href="constants.html#fmoddspfftwindowtype">FmodDspFftWindowType</a></li>
 <li><a href="constants.html#fmoddspfft">FmodDspFft</a></li>
 <li><a href="constants.html#fmoddspconvolution">FmodDspConvolution</a></li>
@@ -178,6 +178,28 @@
 <li><a href="constants.html#fmoddspchannelmixoutput">FmodDspChannelMixOutput</a></li>
 <li><a href="constants.html#fmoddsptransceiver">FmodDspTransceiver</a></li>
 <li><a href="constants.html#fmoddsptransceiverspeakermode">FmodDspTransceiverSpeakerMode</a></li>
+<li><a href="constants.html#fmoddspfader">FmodDspFader</a></li>
+<li><a href="constants.html#fmoddspitecho">FmodDspItEcho</a></li>
+<li><a href="constants.html#fmoddspsfxreverb">FmodDspSfxReverb</a></li>
+<li><a href="constants.html#fmoddsplowpasssimple">FmodDspLowPassSimple</a></li>
+<li><a href="constants.html#fmoddsphighpasssimple">FmodDspHighPassSimple</a></li>
+<li><a href="constants.html#fmoddspdelay">FmodDspDelay</a></li>
+<li><a href="constants.html#fmoddsptremolo">FmodDspTremolo</a></li>
+<li><a href="constants.html#fmoddspsend">FmodDspSend</a></li>
+<li><a href="constants.html#fmoddspreturn">FmodDspReturn</a></li>
+<li><a href="constants.html#fmoddsppan">FmodDspPan</a></li>
+<li><a href="constants.html#fmoddsppanmodetype">FmodDspPanModeType</a></li>
+<li><a href="constants.html#fmoddsppan2dstereomodetype">FmodDspPan2dStereoModeType</a></li>
+<li><a href="constants.html#fmoddsppan3drollofftype">FmodDspPan3dRolloffType</a></li>
+<li><a href="constants.html#fmoddsppan3dextentmodetype">FmodDspPan3dExtentModeType</a></li>
+<li><a href="constants.html#fmoddspobjectpan">FmodDspObjectPan</a></li>
+<li><a href="constants.html#fmoddspthreeeq">FmodDspThreeEq</a></li>
+<li><a href="constants.html#fmoddspthreeeqcrossoverslopetype">FmodDspThreeEqCrossoverSlopeType</a></li>
+<li><a href="constants.html#fmoddspfftdownmixtype">FmodDspFftDownmixType</a></li>
+<li><a href="constants.html#fmoddsploudnessmeter">FmodDspLoudnessMeter</a></li>
+<li><a href="constants.html#fmoddsploudnessmeterstatetype">FmodDspLoudnessMeterStateType</a></li>
+<li><a href="constants.html#fmoddspmultibanddynamics">FmodDspMultibandDynamics</a></li>
+<li><a href="constants.html#fmoddspmultibanddynamicsmodetype">FmodDspMultibandDynamicsModeType</a></li>
 <li><a href="constants.html#fmodstudioinitflags">FmodStudioInitFlags</a></li>
 <li><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></li>
 <li><a href="constants.html#fmodstudioeventcallbacktype">FmodStudioEventCallbackType</a></li>
@@ -1499,6 +1521,11 @@
 </blockquote>
 <p><br /></p>
 <p>This enum specifies built-in output types that can be used to run the mixer.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_set_output">fmod_system_set_output</a></li>
+<li><a href="system.html#fmod_system_get_output">fmod_system_get_output</a></li>
+</ul>
 <p><br></p>
 <table>
 <thead>
@@ -2294,7 +2321,7 @@
 </tr>
 <tr>
 <td><code>Fader</code></td>
-<td>Pans and scales the volume of a unit. See <code>FMOD_DSP_FADER</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#fader">Effect reference - Fader</a> for overview.</td>
+<td>Pans and scales the volume of a unit. See <a href="constants.html#fmoddspfader">FmodDspFader</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#fader">Effect reference - Fader</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Flange</code></td>
@@ -2326,47 +2353,47 @@
 </tr>
 <tr>
 <td><code>ItEcho</code></td>
-<td>Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See <code>FMOD_DSP_ITECHO</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#it-echo">Effect reference - IT Echo</a> for overview.</td>
+<td>Produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. See <a href="constants.html#fmoddspitecho">FmodDspItEcho</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#it-echo">Effect reference - IT Echo</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Compressor</code></td>
-<td>Dynamic compression (linked/unlinked multi-channel, wideband). See <a href="constants.html#fmoddspcompdyneq">FmodDspCompDynEq</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#compressor">Effect reference - Compressor</a> for overview.</td>
+<td>Dynamic compression (linked/unlinked multi-channel, wideband). See <a href="constants.html#fmoddspcompressor">FmodDspCompressor</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#compressor">Effect reference - Compressor</a> for overview.</td>
 </tr>
 <tr>
 <td><code>SfxReverb</code></td>
-<td>I3DL2 reverb effect. See <code>FMOD_DSP_SFXREVERB</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#sfx-reverb">Effect reference - SFX Reverb</a> for overview.</td>
+<td>I3DL2 reverb effect. See <a href="constants.html#fmoddspsfxreverb">FmodDspSfxReverb</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#sfx-reverb">Effect reference - SFX Reverb</a> for overview.</td>
 </tr>
 <tr>
 <td><code>LowPassSimple</code></td>
-<td>Filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <code>FMOD_DSP_LOWPASS_SIMPLE</code> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass-simple">Effect reference - Low Pass Simple</a> for overview.</td>
+<td>Filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <a href="constants.html#fmoddsplowpasssimple">FmodDspLowPassSimple</a> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#low-pass-simple">Effect reference - Low Pass Simple</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Delay</code></td>
-<td>Produces different delays on individual channels of the sound. See <code>FMOD_DSP_DELAY</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#delay">Effect reference - Delay</a> for overview.</td>
+<td>Produces different delays on individual channels of the sound. See <a href="constants.html#fmoddspdelay">FmodDspDelay</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#delay">Effect reference - Delay</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Tremolo</code></td>
-<td>Produces a tremolo / chopper effect on the sound. See <code>FMOD_DSP_TREMOLO</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#tremolo">Effect reference - Tremolo</a> for overview.</td>
+<td>Produces a tremolo / chopper effect on the sound. See <a href="constants.html#fmoddsptremolo">FmodDspTremolo</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#tremolo">Effect reference - Tremolo</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Send</code></td>
-<td>Sends a copy of the signal to a return DSP anywhere in the DSP tree. See <code>FMOD_DSP_SEND</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#send">Effect reference - Send</a> for overview.</td>
+<td>Sends a copy of the signal to a return DSP anywhere in the DSP tree. See <a href="constants.html#fmoddspsend">FmodDspSend</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#send">Effect reference - Send</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Return</code></td>
-<td>Receives signals from a number of send DSPs. See <code>FMOD_DSP_RETURN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#return">Effect reference - Return</a> for overview.</td>
+<td>Receives signals from a number of send DSPs. See <a href="constants.html#fmoddspreturn">FmodDspReturn</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#return">Effect reference - Return</a> for overview.</td>
 </tr>
 <tr>
 <td><code>HighPassSimple</code></td>
-<td>Filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <code>FMOD_DSP_HIGHPASS_SIMPLE</code> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass-simple">Effect reference - High Pass Simple</a> for overview.</td>
+<td>Filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. Deprecated and will be removed in a future release. See <a href="constants.html#fmoddsphighpasssimple">FmodDspHighPassSimple</a> remarks for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#high-pass-simple">Effect reference - High Pass Simple</a> for overview.</td>
 </tr>
 <tr>
 <td><code>Pan</code></td>
-<td>Pans the signal in 2D or 3D, possibly upmixing or downmixing as well. See <code>FMOD_DSP_PAN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#pan">Effect reference - Pan</a> for overview.</td>
+<td>Pans the signal in 2D or 3D, possibly upmixing or downmixing as well. See <a href="constants.html#fmoddsppan">FmodDspPan</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#pan">Effect reference - Pan</a> for overview.</td>
 </tr>
 <tr>
 <td><code>ThreeEq</code></td>
-<td>Three-band equalizer. See <code>FMOD_DSP_THREE_EQ</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#three-eq">Effect reference - Three EQ</a> for overview.</td>
+<td>Three-band equalizer. See <a href="constants.html#fmoddspthreeeq">FmodDspThreeEq</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#three-eq">Effect reference - Three EQ</a> for overview.</td>
 </tr>
 <tr>
 <td><code>FFT</code></td>
@@ -2374,7 +2401,7 @@
 </tr>
 <tr>
 <td><code>LoudnessMeter</code></td>
-<td>Analyzes the loudness and true peak of the signal.</td>
+<td>Analyzes the loudness and true peak of the signal. See <a href="constants.html#fmoddsploudnessmeter">FmodDspLoudnessMeter</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#loudness-meter">Effect reference - Loudness Meter</a> for overview.</td>
 </tr>
 <tr>
 <td><code>ConvolutionReverb</code></td>
@@ -2390,7 +2417,7 @@
 </tr>
 <tr>
 <td><code>ObjectPan</code></td>
-<td>Spatializes input signal by passing it to an external object mixer. See <code>FMOD_DSP_OBJECTPAN</code> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#object-panner">Effect reference - Object Panner</a> for overview.</td>
+<td>Spatializes input signal by passing it to an external object mixer. See <a href="constants.html#fmoddspobjectpan">FmodDspObjectPan</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#object-panner">Effect reference - Object Panner</a> for overview.</td>
 </tr>
 <tr>
 <td><code>MultibandEq</code></td>
@@ -2398,7 +2425,7 @@
 </tr>
 <tr>
 <td><code>MultibandDynamics</code></td>
-<td>Multiband dynamics processor unit.</td>
+<td>Multiband dynamics processor unit. See <a href="constants.html#fmoddspmultibanddynamics">FmodDspMultibandDynamics</a> for parameter information, <a href="https://www.fmod.com/docs/2.03/api/effects-reference.html#multiband-dynamics">Effect reference - Multiband Dynamics</a> for overview.</td>
 </tr>
 </tbody>
 </table>
@@ -3055,7 +3082,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmoddspcompdyneq">FmodDspCompDynEq</h1>
+<h1 id="fmoddspcompressor">FmodDspCompressor</h1>
 <blockquote>
 <p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_compressor">FMOD_DSP_COMPRESSOR</a></p>
 </blockquote>
@@ -4265,6 +4292,1096 @@ of the oscillator's <code>FmodDspOscillator.Type</code> parameter.</p>
 <tr>
 <td><code>Noise</code></td>
 <td>White noise.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspfader">FmodDspFader</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fader">FMOD_DSP_FADER</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies fader DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Gain</code></td>
+<td>Signal gain.</td>
+</tr>
+<tr>
+<td><code>OverallGain</code></td>
+<td>Overall gain to allow FMOD to know the DSP is scaling the signal for visualization purposes.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmultibanddynamics">FmodDspMultibandDynamics</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_dynamics">FMOD_DSP_MULTIBAND_DYNAMICS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies multiband dynamics DSP parameter types.</p>
+<p>A three-band dynamics processor. Each band (A, B and C) is compressed or expanded independently, with the crossover points between them set by <code>[FmodDspMultibandDynamics](constants.md#fmoddspmultibanddynamics).LowerFrequency</code> and <code>[FmodDspMultibandDynamics](constants.md#fmoddspmultibanddynamics).UpperFrequency</code>.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LowerFrequency</code></td>
+<td>Lower frequency of the crossover between band A and band B.</td>
+</tr>
+<tr>
+<td><code>UpperFrequency</code></td>
+<td>Upper frequency of the crossover between band B and band C.</td>
+</tr>
+<tr>
+<td><code>Linked</code></td>
+<td>Whether the channels are processed together using the loudest as the reference, or independently.</td>
+</tr>
+<tr>
+<td><code>UseSidechain</code></td>
+<td>Whether to process the sidechain input rather than the main input.</td>
+</tr>
+<tr>
+<td><code>AMode</code></td>
+<td>Processing mode for band A - a member of <a href="constants.html#fmoddspmultibanddynamicsmodetype">FmodDspMultibandDynamicsModeType</a>.</td>
+</tr>
+<tr>
+<td><code>AGain</code></td>
+<td>Gain applied to band A before processing.</td>
+</tr>
+<tr>
+<td><code>AThreshold</code></td>
+<td>Level at which band A starts being processed.</td>
+</tr>
+<tr>
+<td><code>ARatio</code></td>
+<td>Compression or expansion ratio for band A.</td>
+</tr>
+<tr>
+<td><code>AAttack</code></td>
+<td>Time taken for band A to reach full processing once the threshold is crossed.</td>
+</tr>
+<tr>
+<td><code>ARelease</code></td>
+<td>Time taken for band A to stop processing once the signal drops back past the threshold.</td>
+</tr>
+<tr>
+<td><code>AGainMakeup</code></td>
+<td>Gain applied to band A after processing.</td>
+</tr>
+<tr>
+<td><code>AResponseData</code></td>
+<td>Read-only metering data for band A.</td>
+</tr>
+<tr>
+<td><code>BMode</code></td>
+<td>Processing mode for band B - a member of <a href="constants.html#fmoddspmultibanddynamicsmodetype">FmodDspMultibandDynamicsModeType</a>.</td>
+</tr>
+<tr>
+<td><code>BGain</code></td>
+<td>Gain applied to band B before processing.</td>
+</tr>
+<tr>
+<td><code>BThreshold</code></td>
+<td>Level at which band B starts being processed.</td>
+</tr>
+<tr>
+<td><code>BRatio</code></td>
+<td>Compression or expansion ratio for band B.</td>
+</tr>
+<tr>
+<td><code>BAttack</code></td>
+<td>Time taken for band B to reach full processing once the threshold is crossed.</td>
+</tr>
+<tr>
+<td><code>BRelease</code></td>
+<td>Time taken for band B to stop processing once the signal drops back past the threshold.</td>
+</tr>
+<tr>
+<td><code>BGainMakeup</code></td>
+<td>Gain applied to band B after processing.</td>
+</tr>
+<tr>
+<td><code>BResponseData</code></td>
+<td>Read-only metering data for band B.</td>
+</tr>
+<tr>
+<td><code>CMode</code></td>
+<td>Processing mode for band C - a member of <a href="constants.html#fmoddspmultibanddynamicsmodetype">FmodDspMultibandDynamicsModeType</a>.</td>
+</tr>
+<tr>
+<td><code>CGain</code></td>
+<td>Gain applied to band C before processing.</td>
+</tr>
+<tr>
+<td><code>CThreshold</code></td>
+<td>Level at which band C starts being processed.</td>
+</tr>
+<tr>
+<td><code>CRatio</code></td>
+<td>Compression or expansion ratio for band C.</td>
+</tr>
+<tr>
+<td><code>CAttack</code></td>
+<td>Time taken for band C to reach full processing once the threshold is crossed.</td>
+</tr>
+<tr>
+<td><code>CRelease</code></td>
+<td>Time taken for band C to stop processing once the signal drops back past the threshold.</td>
+</tr>
+<tr>
+<td><code>CGainMakeup</code></td>
+<td>Gain applied to band C after processing.</td>
+</tr>
+<tr>
+<td><code>CResponseData</code></td>
+<td>Read-only metering data for band C.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspmultibanddynamicsmodetype">FmodDspMultibandDynamicsModeType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_multiband_dynamics_mode_type">FMOD_DSP_MULTIBAND_DYNAMICS_MODE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the processing mode of a single band of the Multiband Dynamics DSP.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Disabled</code></td>
+<td>The band passes through unprocessed.</td>
+</tr>
+<tr>
+<td><code>CompressUp</code></td>
+<td>Signal below the threshold is amplified towards it.</td>
+</tr>
+<tr>
+<td><code>CompressDown</code></td>
+<td>Signal above the threshold is attenuated towards it.</td>
+</tr>
+<tr>
+<td><code>ExpandUp</code></td>
+<td>Signal above the threshold is amplified away from it.</td>
+</tr>
+<tr>
+<td><code>ExpandDown</code></td>
+<td>Signal below the threshold is attenuated away from it.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspitecho">FmodDspItEcho</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_itecho">FMOD_DSP_ITECHO</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies IT Echo DSP parameter types.</p>
+<p>This is effectively a software based echo filter that emulates the DirectX DMO echo effect. Impulse tracker files can support this, and FMOD will produce the effect on ANY platform, not just those that support DirectX effects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every time the delay is changed, the plugin re-allocates the echo buffer. This means the echo will disappear at that time while it refills its new buffer. Larger echo delays result in larger amounts of memory allocated.</p>
+</div>
+<p>As this is a stereo filter made mainly for IT playback, it is targeted for stereo signals. With mono signals only <code>[FmodDspItEcho](constants.md#fmoddspitecho).LeftDelay</code> is used. For multi-channel signals (&gt;2) there will be no echo on those channels.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WetDryMix</code></td>
+<td>Ratio of wet (processed) signal to dry (unprocessed) signal. Higher is wetter.</td>
+</tr>
+<tr>
+<td><code>Feedback</code></td>
+<td>Percentage of output fed back into input.</td>
+</tr>
+<tr>
+<td><code>LeftDelay</code></td>
+<td>Delay for left channel.</td>
+</tr>
+<tr>
+<td><code>RightDelay</code></td>
+<td>Delay for right channel.</td>
+</tr>
+<tr>
+<td><code>PanDelay</code></td>
+<td>Value that specifies whether to swap left and right delays with each successive echo. CURRENTLY NOT SUPPORTED.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspsfxreverb">FmodDspSfxReverb</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_sfxreverb">FMOD_DSP_SFXREVERB</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies SFX Reverb DSP parameter types.</p>
+<p>This is a high quality I3DL2 based reverb. On top of the I3DL2 property set, "Dry Level" is also included to allow the dry mix to be changed.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DecayTime</code></td>
+<td>Reverberation decay time at low frequencies.</td>
+</tr>
+<tr>
+<td><code>EarlyDelay</code></td>
+<td>Delay time of first reflection.</td>
+</tr>
+<tr>
+<td><code>LateDelay</code></td>
+<td>Late reverberation delay time relative to first reflection in milliseconds.</td>
+</tr>
+<tr>
+<td><code>HfReference</code></td>
+<td>Reference frequency for high-frequency decay.</td>
+</tr>
+<tr>
+<td><code>HfDecayRatio</code></td>
+<td>High-frequency decay time relative to decay time.</td>
+</tr>
+<tr>
+<td><code>Diffusion</code></td>
+<td>Reverberation diffusion (echo density).</td>
+</tr>
+<tr>
+<td><code>Density</code></td>
+<td>Reverberation density (modal density).</td>
+</tr>
+<tr>
+<td><code>LowShelfFrequency</code></td>
+<td>Transition frequency of low-shelf filter.</td>
+</tr>
+<tr>
+<td><code>LowShelfGain</code></td>
+<td>Gain of low-shelf filter.</td>
+</tr>
+<tr>
+<td><code>HighCut</code></td>
+<td>Cutoff frequency of low-pass filter.</td>
+</tr>
+<tr>
+<td><code>EarlyLateMix</code></td>
+<td>Blend ratio of late reverb to early reflections.</td>
+</tr>
+<tr>
+<td><code>WetLevel</code></td>
+<td>Reverb signal level.</td>
+</tr>
+<tr>
+<td><code>DryLevel</code></td>
+<td>Dry signal level.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsplowpasssimple">FmodDspLowPassSimple</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_lowpass_simple">FMOD_DSP_LOWPASS_SIMPLE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies simple Lowpass DSP parameter types.</p>
+<p>Deprecated and will be removed in a future release, emulate with <code>[FmodDspType](constants.md#fmoddsptype).MultibandEq</code>.</p>
+<p>This is a very simple low pass filter, based on two single-pole RC time-constant modules. The emphasis is on speed rather than accuracy, so this should not be used for tasks requiring critical filtering.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cutoff</code></td>
+<td>Lowpass cutoff frequency.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsphighpasssimple">FmodDspHighPassSimple</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_highpass_simple">FMOD_DSP_HIGHPASS_SIMPLE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies simple Highpass DSP parameter types.</p>
+<p>Deprecated and will be removed in a future release, emulate with <code>[FmodDspType](constants.md#fmoddsptype).MultibandEq</code>.</p>
+<p>This is a very simple high pass filter, based on two single-pole RC time-constant modules. The emphasis is on speed rather than accuracy.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cutoff</code></td>
+<td>Highpass cutoff frequency.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspdelay">FmodDspDelay</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_delay">FMOD_DSP_DELAY</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies delay DSP parameter types.</p>
+<p>Every channel of the signal can be delayed by a different amount, up to <code>[FmodDspDelay](constants.md#fmoddspdelay).MaxDelay</code> milliseconds.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ch0</code></td>
+<td>Channel #0 delay.</td>
+</tr>
+<tr>
+<td><code>Ch1</code></td>
+<td>Channel #1 delay.</td>
+</tr>
+<tr>
+<td><code>Ch2</code></td>
+<td>Channel #2 delay.</td>
+</tr>
+<tr>
+<td><code>Ch3</code></td>
+<td>Channel #3 delay.</td>
+</tr>
+<tr>
+<td><code>Ch4</code></td>
+<td>Channel #4 delay.</td>
+</tr>
+<tr>
+<td><code>Ch5</code></td>
+<td>Channel #5 delay.</td>
+</tr>
+<tr>
+<td><code>Ch6</code></td>
+<td>Channel #6 delay.</td>
+</tr>
+<tr>
+<td><code>Ch7</code></td>
+<td>Channel #7 delay.</td>
+</tr>
+<tr>
+<td><code>Ch8</code></td>
+<td>Channel #8 delay.</td>
+</tr>
+<tr>
+<td><code>Ch9</code></td>
+<td>Channel #9 delay.</td>
+</tr>
+<tr>
+<td><code>Ch10</code></td>
+<td>Channel #10 delay.</td>
+</tr>
+<tr>
+<td><code>Ch11</code></td>
+<td>Channel #11 delay.</td>
+</tr>
+<tr>
+<td><code>Ch12</code></td>
+<td>Channel #12 delay.</td>
+</tr>
+<tr>
+<td><code>Ch13</code></td>
+<td>Channel #13 delay.</td>
+</tr>
+<tr>
+<td><code>Ch14</code></td>
+<td>Channel #14 delay.</td>
+</tr>
+<tr>
+<td><code>Ch15</code></td>
+<td>Channel #15 delay.</td>
+</tr>
+<tr>
+<td><code>MaxDelay</code></td>
+<td>Maximum delay any one channel can be set to, in milliseconds. Changing this re-allocates the delay buffer.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsptremolo">FmodDspTremolo</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_tremolo">FMOD_DSP_TREMOLO</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies tremolo DSP parameter types.</p>
+<p>The tremolo effect varies the amplitude of a sound. Depending on the settings, this unit can produce a tremolo, chopper or auto-pan effect.</p>
+<p>The shape of the LFO (low frequency oscillator) can be morphed between sine, triangle and sawtooth waves using the <code>[FmodDspTremolo](constants.md#fmoddsptremolo).Shape</code> and <code>[FmodDspTremolo](constants.md#fmoddsptremolo).Skew</code> parameters.</p>
+<p><code>[FmodDspTremolo](constants.md#fmoddsptremolo).Duty</code> and <code>[FmodDspTremolo](constants.md#fmoddsptremolo).Square</code> are useful for a chopper-type effect, where the first controls the on-time duration and the second controls the flatness of the envelope.</p>
+<p><code>[FmodDspTremolo](constants.md#fmoddsptremolo).Spread</code> varies the LFO phase between channels to get an auto-pan effect. This works best with a sine shape LFO.</p>
+<p>The LFO can be synchronized using the <code>[FmodDspTremolo](constants.md#fmoddsptremolo).Phase</code> parameter, which sets its instantaneous phase.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Frequency</code></td>
+<td>LFO frequency.</td>
+</tr>
+<tr>
+<td><code>Depth</code></td>
+<td>Tremolo depth.</td>
+</tr>
+<tr>
+<td><code>Shape</code></td>
+<td>LFO shape morph between triangle and sine.</td>
+</tr>
+<tr>
+<td><code>Skew</code></td>
+<td>Time-skewing of LFO cycle.</td>
+</tr>
+<tr>
+<td><code>Duty</code></td>
+<td>LFO on-time.</td>
+</tr>
+<tr>
+<td><code>Square</code></td>
+<td>Flatness of the LFO shape.</td>
+</tr>
+<tr>
+<td><code>Phase</code></td>
+<td>Instantaneous LFO phase.</td>
+</tr>
+<tr>
+<td><code>Spread</code></td>
+<td>Rotation / auto-pan effect.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspsend">FmodDspSend</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_send">FMOD_DSP_SEND</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies send DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReturnId</code></td>
+<td>ID of the Return DSP this send is connected to, where -1 indicates no connected return DSP.</td>
+</tr>
+<tr>
+<td><code>Level</code></td>
+<td>Send level.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspreturn">FmodDspReturn</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_return">FMOD_DSP_RETURN</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies return DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Id</code></td>
+<td>ID of this Return DSP.</td>
+</tr>
+<tr>
+<td><code>InputSpeakerMode</code></td>
+<td>Input speaker mode of this return - a member of <a href="constants.html#fmodspeakermode">FmodSpeakerMode</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppan">FmodDspPan</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan">FMOD_DSP_PAN</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies pan DSP parameter types.</p>
+<p><code>[FmodDspPan](constants.md#fmoddsppan)._3dPanBlend</code> controls the percentage of the effect supplied by <code>[FmodDspPan](constants.md#fmoddsppan)._2dDirection</code> and <code>[FmodDspPan](constants.md#fmoddsppan)._2dExtent</code>.</p>
+<p>For <code>[FmodDspPan](constants.md#fmoddsppan)._2dStereoMode</code>: when it is <code>[FmodDspPan2dStereoModeType](constants.md#fmoddsppan2dstereomodetype).Discrete</code>, only <code>[FmodDspPan](constants.md#fmoddsppan)._2dStereoSeparation</code> and <code>[FmodDspPan](constants.md#fmoddsppan)._2dStereoAxis</code> are used; when it is <code>[FmodDspPan2dStereoModeType](constants.md#fmoddsppan2dstereomodetype).Distributed</code>, the standard <code>[FmodDspPan](constants.md#fmoddsppan)._2dDirection</code> / <code>[FmodDspPan](constants.md#fmoddsppan)._2dExtent</code> parameters are used instead.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mode</code></td>
+<td>Panner mode - a member of <a href="constants.html#fmoddsppanmodetype">FmodDspPanModeType</a>.</td>
+</tr>
+<tr>
+<td><code>_2dStereoPosition</code></td>
+<td>2D stereo pan position.</td>
+</tr>
+<tr>
+<td><code>_2dDirection</code></td>
+<td>2D surround pan direction. Direction from the center point of the panning circle, where 0 is front center and -180 or +180 is the rear speakers center point.</td>
+</tr>
+<tr>
+<td><code>_2dExtent</code></td>
+<td>2D surround pan extent.</td>
+</tr>
+<tr>
+<td><code>_2dRotation</code></td>
+<td>2D surround pan rotation.</td>
+</tr>
+<tr>
+<td><code>_2dLfeLevel</code></td>
+<td>2D surround pan LFE level.</td>
+</tr>
+<tr>
+<td><code>_2dStereoMode</code></td>
+<td>Stereo-to-surround mode - a member of <a href="constants.html#fmoddsppan2dstereomodetype">FmodDspPan2dStereoModeType</a>.</td>
+</tr>
+<tr>
+<td><code>_2dStereoSeparation</code></td>
+<td>Separation / width of the L/R parts of a stereo sound, for <code>[FmodDspPan2dStereoModeType](constants.md#fmoddsppan2dstereomodetype).Discrete</code> mode.</td>
+</tr>
+<tr>
+<td><code>_2dStereoAxis</code></td>
+<td>Axis / rotation of the L/R parts of a stereo sound, for <code>[FmodDspPan2dStereoModeType](constants.md#fmoddsppan2dstereomodetype).Discrete</code> mode.</td>
+</tr>
+<tr>
+<td><code>EnabledSpeakers</code></td>
+<td>Bitmask of the speakers from 0 to 32 the panner may pan to. Use it to disable speakers from being panned to. 0 to 0xFFF, default 0xFFF (all on).</td>
+</tr>
+<tr>
+<td><code>_3dPosition</code></td>
+<td>3D position of the panner and listener(s).</td>
+</tr>
+<tr>
+<td><code>_3dRolloff</code></td>
+<td>3D volume attenuation curve shape - a member of <a href="constants.html#fmoddsppan3drollofftype">FmodDspPan3dRolloffType</a>.</td>
+</tr>
+<tr>
+<td><code>_3dMinDistance</code></td>
+<td>3D volume attenuation minimum distance, when <code>[FmodDspPan](constants.md#fmoddsppan).OverrideRange</code> is true.</td>
+</tr>
+<tr>
+<td><code>_3dMaxDistance</code></td>
+<td>3D volume attenuation maximum distance, when <code>[FmodDspPan](constants.md#fmoddsppan).OverrideRange</code> is true.</td>
+</tr>
+<tr>
+<td><code>_3dExtentMode</code></td>
+<td>3D extent mode - a member of <a href="constants.html#fmoddsppan3dextentmodetype">FmodDspPan3dExtentModeType</a>.</td>
+</tr>
+<tr>
+<td><code>_3dSoundSize</code></td>
+<td>3D sound size.</td>
+</tr>
+<tr>
+<td><code>_3dMinExtent</code></td>
+<td>3D minimum extent.</td>
+</tr>
+<tr>
+<td><code>_3dPanBlend</code></td>
+<td>3D pan blend.</td>
+</tr>
+<tr>
+<td><code>LfeUpmixEnabled</code></td>
+<td>Whether non-LFE source channels should mix to the LFE or leave it alone. 0 (off) to 1 (on), default 0 (off).</td>
+</tr>
+<tr>
+<td><code>OverallGain</code></td>
+<td>Overall gain to allow FMOD to know the DSP is scaling the signal for visualization purposes.</td>
+</tr>
+<tr>
+<td><code>SurroundSpeakerMode</code></td>
+<td>Surround speaker mode - a member of <a href="constants.html#fmodspeakermode">FmodSpeakerMode</a>.</td>
+</tr>
+<tr>
+<td><code>_2dHeightBlend</code></td>
+<td>2D height blend. When the input or <code>[FmodDspPan](constants.md#fmoddsppan).SurroundSpeakerMode</code> has height speakers, controls the blend between ground and height: -1.0 pushes the top speakers to the ground, 0.0 preserves the top / ground separation, 1.0 pushes the ground speakers to the top.</td>
+</tr>
+<tr>
+<td><code>AttenuationRange</code></td>
+<td>Attenuation range, used when <code>[FmodDspPan](constants.md#fmoddsppan).OverrideRange</code> is false.</td>
+</tr>
+<tr>
+<td><code>OverrideRange</code></td>
+<td>Override the attenuation range with <code>[FmodDspPan](constants.md#fmoddsppan)._3dMinDistance</code> and <code>[FmodDspPan](constants.md#fmoddsppan)._3dMaxDistance</code>. Defaults to true for backwards compatibility.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppanmodetype">FmodDspPanModeType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_mode_type">FMOD_DSP_PAN_MODE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies pan Mode values for the Pan DSP.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mono</code></td>
+<td>Single channel output.</td>
+</tr>
+<tr>
+<td><code>Stereo</code></td>
+<td>Two channel output.</td>
+</tr>
+<tr>
+<td><code>Surround</code></td>
+<td>Three or more channel output. Includes common modes like quad, 5.1 or 7.1.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppan2dstereomodetype">FmodDspPan2dStereoModeType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_2d_stereo_mode_type">FMOD_DSP_PAN_2D_STEREO_MODE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies 2D Stereo Mode values for the Pan DSP.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Distributed</code></td>
+<td>The parts of a stereo sound are spread around the destination speakers based on <code>[FmodDspPan](constants.md#fmoddsppan)._2dExtent</code> / <code>[FmodDspPan](constants.md#fmoddsppan)._2dDirection</code>.</td>
+</tr>
+<tr>
+<td><code>Discrete</code></td>
+<td>The L/R parts of a stereo sound are rotated around a circle based on <code>[FmodDspPan](constants.md#fmoddsppan)._2dStereoAxis</code> / <code>[FmodDspPan](constants.md#fmoddsppan)._2dStereoSeparation</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppan3drollofftype">FmodDspPan3dRolloffType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_rolloff_type">FMOD_DSP_PAN_3D_ROLLOFF_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies 3D roll-off values for the Pan DSP.</p>
+<p>Minimum and maximum distance settings are controlled with <code>[FmodDspPan](constants.md#fmoddsppan)._3dMinDistance</code> and <code>[FmodDspPan](constants.md#fmoddsppan)._3dMaxDistance</code>.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LinearSquared</code></td>
+<td>A linear-square roll-off model. Below the minimum distance the volume is unattenuated; as distance increases towards the maximum distance the volume attenuates to silence along a linear squared gradient. Ramps more steeply near the minimum distance and more gradually near the maximum distance than linear roll-off.</td>
+</tr>
+<tr>
+<td><code>Linear</code></td>
+<td>A linear roll-off model. Below the minimum distance the volume is unattenuated; as distance increases towards the maximum distance the volume attenuates to silence along a linear gradient. Less realistic than inverse roll-off, but easier to reason about.</td>
+</tr>
+<tr>
+<td><code>Inverse</code></td>
+<td>An inverse roll-off model. Below the minimum distance the volume is unattenuated; above it the volume attenuates using mindistance/distance as the gradient until it reaches the maximum distance, where it stops attenuating. This accurately models the way sounds attenuate over distance in the real world, and is the default.</td>
+</tr>
+<tr>
+<td><code>InverseTapered</code></td>
+<td>A combination of the inverse and linear-square roll-off models. At short distances it behaves as inverse roll-off; at greater distances, where linear-square would attenuate more, it uses that instead. Approximates realistic behaviour while still guaranteeing the sound reaches silence at the maximum distance.</td>
+</tr>
+<tr>
+<td><code>Custom</code></td>
+<td>Custom roll-off, with the volume set manually by the programmer. Attenuation in the Pan DSP is turned off in this mode.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsppan3dextentmodetype">FmodDspPan3dExtentModeType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_pan_3d_extent_mode_type">FMOD_DSP_PAN_3D_EXTENT_MODE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies 3D Extent Mode values for the Pan DSP.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Auto</code></td>
+<td>Automatically determine the extent.</td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>User-defined extent.</td>
+</tr>
+<tr>
+<td><code>Off</code></td>
+<td>No extent.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspobjectpan">FmodDspObjectPan</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_objectpan">FMOD_DSP_OBJECTPAN</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies object based spatializer parameters.</p>
+<p>Signal processed by this DSP is sent to the global object mixer, effectively a send, so any DSP connected after this one receives silence.</p>
+<p>For best results use this DSP with <code>[FmodOutputType](constants.md#fmodoutputtype).WinSonic</code> or <code>[FmodOutputType](constants.md#fmodoutputtype).Audio3D</code> to get height spatialization. Playback with any other output falls back to the spatialization provided by <code>[FmodDspType](constants.md#fmoddsptype).Pan</code>.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_3dPosition</code></td>
+<td>3D position.</td>
+</tr>
+<tr>
+<td><code>_3dRolloff</code></td>
+<td>3D roll-off type - a member of <a href="constants.html#fmoddsppan3drollofftype">FmodDspPan3dRolloffType</a>.</td>
+</tr>
+<tr>
+<td><code>_3dMinDistance</code></td>
+<td>3D minimum distance, when <code>[FmodDspObjectPan](constants.md#fmoddspobjectpan).OverrideRange</code> is true.</td>
+</tr>
+<tr>
+<td><code>_3dMaxDistance</code></td>
+<td>3D maximum distance, when <code>[FmodDspObjectPan](constants.md#fmoddspobjectpan).OverrideRange</code> is true.</td>
+</tr>
+<tr>
+<td><code>_3dExtentMode</code></td>
+<td>3D extent mode - a member of <a href="constants.html#fmoddsppan3dextentmodetype">FmodDspPan3dExtentModeType</a>.</td>
+</tr>
+<tr>
+<td><code>_3dSoundSize</code></td>
+<td>3D sound size.</td>
+</tr>
+<tr>
+<td><code>_3dMinExtent</code></td>
+<td>3D minimum extent.</td>
+</tr>
+<tr>
+<td><code>OverallGain</code></td>
+<td>Overall gain to allow FMOD to know the DSP is scaling the signal for virtualization purposes.</td>
+</tr>
+<tr>
+<td><code>OutputGain</code></td>
+<td>Output gain level.</td>
+</tr>
+<tr>
+<td><code>AttenuationRange</code></td>
+<td>Attenuation range, used when <code>[FmodDspObjectPan](constants.md#fmoddspobjectpan).OverrideRange</code> is false.</td>
+</tr>
+<tr>
+<td><code>OverrideRange</code></td>
+<td>Override the attenuation range with <code>[FmodDspObjectPan](constants.md#fmoddspobjectpan)._3dMinDistance</code> and <code>[FmodDspObjectPan](constants.md#fmoddspobjectpan)._3dMaxDistance</code>. Defaults to true for backwards compatibility.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspthreeeq">FmodDspThreeEq</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq">FMOD_DSP_THREE_EQ</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies three EQ DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LowGain</code></td>
+<td>Low frequency gain.</td>
+</tr>
+<tr>
+<td><code>MidGain</code></td>
+<td>Mid frequency gain.</td>
+</tr>
+<tr>
+<td><code>HighGain</code></td>
+<td>High frequency gain.</td>
+</tr>
+<tr>
+<td><code>LowCrossover</code></td>
+<td>Low-to-mid crossover frequency.</td>
+</tr>
+<tr>
+<td><code>HighCrossover</code></td>
+<td>Mid-to-high crossover frequency.</td>
+</tr>
+<tr>
+<td><code>CrossoverSlope</code></td>
+<td>Crossover slope type - a member of <a href="constants.html#fmoddspthreeeqcrossoverslopetype">FmodDspThreeEqCrossoverSlopeType</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspthreeeqcrossoverslopetype">FmodDspThreeEqCrossoverSlopeType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_three_eq_crossoverslope_type">FMOD_DSP_THREE_EQ_CROSSOVERSLOPE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies crossover values for the Three EQ DSP.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_12db</code></td>
+<td>12dB/octave crossover slope.</td>
+</tr>
+<tr>
+<td><code>_24db</code></td>
+<td>24dB/octave crossover slope.</td>
+</tr>
+<tr>
+<td><code>_48db</code></td>
+<td>48dB/octave crossover slope.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspfftdownmixtype">FmodDspFftDownmixType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_fft_downmix_type">FMOD_DSP_FFT_DOWNMIX_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the downmix the FFT DSP applies before analysing the signal.</p>
+<p>Selected with <code>[FmodDspFft](constants.md#fmoddspfft).Downmix</code>.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>None</code></td>
+<td>Analyze each channel separately.</td>
+</tr>
+<tr>
+<td><code>Mono</code></td>
+<td>Downmix every channel to mono before analyzing.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsploudnessmeter">FmodDspLoudnessMeter</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter">FMOD_DSP_LOUDNESS_METER</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies loudness meter DSP parameter types.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>State</code></td>
+<td>Update state - a member of <a href="constants.html#fmoddsploudnessmeterstatetype">FmodDspLoudnessMeterStateType</a>.</td>
+</tr>
+<tr>
+<td><code>Weighting</code></td>
+<td>Channel weighting.</td>
+</tr>
+<tr>
+<td><code>Info</code></td>
+<td>Metering information.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddsploudnessmeterstatetype">FmodDspLoudnessMeterStateType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_loudness_meter_state_type">FMOD_DSP_LOUDNESS_METER_STATE_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies loudness meter state, indicating update behaviour.</p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ResetIntegrated</code></td>
+<td>Reset loudness meter information except max peak.</td>
+</tr>
+<tr>
+<td><code>ResetMaxPeak</code></td>
+<td>Reset loudness meter max peak.</td>
+</tr>
+<tr>
+<td><code>ResetAll</code></td>
+<td>Reset all loudness meter information.</td>
+</tr>
+<tr>
+<td><code>Paused</code></td>
+<td>Pause loudness meter.</td>
+</tr>
+<tr>
+<td><code>Analyzing</code></td>
+<td>Enable loudness meter recording and analyzing.</td>
 </tr>
 </tbody>
 </table>

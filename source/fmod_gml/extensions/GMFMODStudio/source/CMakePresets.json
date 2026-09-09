@@ -141,7 +141,7 @@
     {
       "name": "ios-xcframework-native-release",
       "displayName": "iOS XCFramework Native (Release)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "ios-xcframework-release",
       "cacheVariables": {
         "EXT_APPLE_NATIVE_FRAMEWORK": "ON",
@@ -151,7 +151,7 @@
     {
       "name": "ios-xcframework-native-debug",
       "displayName": "iOS XCFramework Native (Debug)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "ios-xcframework-debug",
       "cacheVariables": {
         "EXT_APPLE_NATIVE_FRAMEWORK": "ON",
@@ -284,14 +284,14 @@
     {
       "name": "android-arm64-v8a-release",
       "displayName": "Android arm64-v8a (Release)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-release",
       "cacheVariables": { "ANDROID_ABI": "arm64-v8a" }
     },
     {
       "name": "android-arm64-v8a-debug",
       "displayName": "Android arm64-v8a (Debug)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-debug",
       "cacheVariables": { "ANDROID_ABI": "arm64-v8a" }
     },
@@ -299,14 +299,14 @@
     {
       "name": "android-armeabi-v7a-release",
       "displayName": "Android armeabi-v7a (Release)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-release",
       "cacheVariables": { "ANDROID_ABI": "armeabi-v7a" }
     },
     {
       "name": "android-armeabi-v7a-debug",
       "displayName": "Android armeabi-v7a (Debug)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-debug",
       "cacheVariables": { "ANDROID_ABI": "armeabi-v7a" }
     },
@@ -314,14 +314,14 @@
     {
       "name": "android-x86_64-release",
       "displayName": "Android x86_64 (Release)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-release",
       "cacheVariables": { "ANDROID_ABI": "x86_64" }
     },
     {
       "name": "android-x86_64-debug",
       "displayName": "Android x86_64 (Debug)",
-      "hidden": true,
+      "hidden": false,
       "inherits": "android-base-debug",
       "cacheVariables": { "ANDROID_ABI": "x86_64" }
     },
