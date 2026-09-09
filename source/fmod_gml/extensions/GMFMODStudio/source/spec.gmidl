@@ -658,8 +658,17 @@ function fmod_studio_system_flush_sample_loading(): real;
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_load_bank_file(filename: string, flags: real): gmval;
 
+// FMOD_STUDIO_LOAD_MEMORY is forced on: FMOD copies the data, so the buffer
+// can be freed as soon as this returns. FMOD_STUDIO_LOAD_MEMORY_POINT is
+// deliberately not exposed - it needs a 32-byte-aligned address and the buffer
+// alive until the bank finishes unloading, neither of which GML can promise.
+// `length` of 0 or less means the whole buffer.
 [global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_system_load_bank_memory(data: string, flags: real): gmval;
+function fmod_studio_system_load_bank_memory(
+    [type_hint=buffer] data: gmval,
+    length: real,
+    flags: real
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_system_unload_all(): real;

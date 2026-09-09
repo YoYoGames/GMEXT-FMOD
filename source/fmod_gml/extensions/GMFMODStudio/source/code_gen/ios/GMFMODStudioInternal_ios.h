@@ -10,7 +10,7 @@
 - (double)__EXT_NATIVE__fmod_studio_system_flush_commands;
 - (double)__EXT_NATIVE__fmod_studio_system_flush_sample_loading;
 - (double)__EXT_NATIVE__fmod_studio_system_load_bank_file:(char*)filename arg1:(double)flags arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_system_load_bank_memory:(char*)data arg1:(double)flags arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_system_load_bank_memory:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_system_unload_all;
 - (double)__EXT_NATIVE__fmod_studio_system_get_bank_count;
 - (double)__EXT_NATIVE__fmod_studio_system_get_bank_at:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
@@ -195,5 +195,6 @@
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_create_instance_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_load_bank_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__GMFMODStudio_invocation_handler:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__GMFMODStudio_queue_buffer:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 @end
 

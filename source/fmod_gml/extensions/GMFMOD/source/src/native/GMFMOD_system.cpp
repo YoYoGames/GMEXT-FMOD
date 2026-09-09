@@ -134,6 +134,7 @@ void fmod_shutdown()
 
 	fmod_channel_control_reset_state();
 	fmod_sound_reset_state();
+	fmod_dsp_reset_state();
 	fmod_registry_clear_all();
 
 	g_fmod_last_result = FMOD_OK;
@@ -1059,7 +1060,7 @@ double fmod_system_set_reverb_properties(double instance, const FmodReverbProper
 	return 0;
 }
 
-FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode source_speaker_mode, gm_enums::FmodSpeakerMode target_speaker_mode)
+FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode source_speaker_mode, gm_enums::FmodSpeakerMode target_speaker_mode, gm::wire::GMBuffer matrix)
 {
 	FmodDSPMixMatrix result{};
 
@@ -1079,15 +1080,21 @@ FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode so
 	if (g_fmod_last_result != FMOD_OK)
 		return result;
 
-	// FmodDSPMixMatrix only carries a single scalar "matrix" field over the wire,
-	// so a full in x out matrix can't be represented here - report the dimensions
-	// (useful on their own) and the top-left cell as a representative sample.
-	std::vector<float> matrix((size_t)in_channels * (size_t)out_channels, 0.0f);
-	g_fmod_last_result = system->getDefaultMixMatrix((FMOD_SPEAKERMODE)(int)source_speaker_mode, (FMOD_SPEAKERMODE)(int)target_speaker_mode, matrix.data(), out_channels);
-
 	result.in_channels = (double)in_channels;
 	result.out_channels = (double)out_channels;
-	result.matrix = matrix.empty() ? 0.0 : (double)matrix[0];
+
+	// getDefaultMixMatrix indexes as matrix[t * matrixhop + s], and matrixhop is
+	// the *source* channel count - not the target one. Passing out_channels here
+	// overruns the caller's storage whenever the two speaker modes differ.
+	uint64_t required = (uint64_t)out_channels * (uint64_t)in_channels * sizeof(float);
+	result.required_bytes = (double)required;
+
+	// Nothing is written unless the whole matrix fits. The caller resizes to
+	// required_bytes and calls again.
+	if (required == 0 || matrix.data() == nullptr || matrix.length() < required)
+		return result;
+
+	g_fmod_last_result = system->getDefaultMixMatrix((FMOD_SPEAKERMODE)(int)source_speaker_mode, (FMOD_SPEAKERMODE)(int)target_speaker_mode, (float*)matrix.data(), in_channels);
 	return result;
 }
 

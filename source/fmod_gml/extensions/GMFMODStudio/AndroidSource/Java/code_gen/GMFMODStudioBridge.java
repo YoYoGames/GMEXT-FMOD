@@ -18,6 +18,7 @@ public final class GMFMODStudioBridge {
     }
 
     public static native double __EXT_JNI__GMFMODStudio_invocation_handler(ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__GMFMODStudio_queue_buffer(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_create(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_init(double max_channels, double studio_flags, double core_flags);
     public static native double __EXT_JNI__fmod_studio_system_release();
@@ -25,7 +26,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_system_flush_commands();
     public static native double __EXT_JNI__fmod_studio_system_flush_sample_loading();
     public static native double __EXT_JNI__fmod_studio_system_load_bank_file(String filename, double flags, ByteBuffer __ret_buffer, double __ret_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_system_load_bank_memory(String data, double flags, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_system_load_bank_memory(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_unload_all();
     public static native double __EXT_JNI__fmod_studio_system_get_bank_count();
     public static native double __EXT_JNI__fmod_studio_system_get_bank_at(double index, ByteBuffer __ret_buffer, double __ret_buffer_length);

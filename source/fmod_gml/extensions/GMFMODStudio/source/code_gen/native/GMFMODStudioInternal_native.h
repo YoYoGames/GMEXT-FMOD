@@ -1025,7 +1025,7 @@ double fmod_studio_system_update();
 double fmod_studio_system_flush_commands();
 double fmod_studio_system_flush_sample_loading();
 std::optional<std::uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, double flags);
-std::optional<std::uint64_t> fmod_studio_system_load_bank_memory(std::string_view data, double flags);
+std::optional<std::uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, double flags);
 double fmod_studio_system_unload_all();
 double fmod_studio_system_get_bank_count();
 std::optional<std::uint64_t> fmod_studio_system_get_bank_at(double index);

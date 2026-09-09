@@ -129,6 +129,19 @@ static jdouble __JNI_WRAPPER__GMFMODStudio_invocation_handler(JNIEnv* env, jclas
     double __ret = __EXT_NATIVE__GMFMODStudio_invocation_handler((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
+// __GMFMODStudio_queue_buffer JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__GMFMODStudio_queue_buffer(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+
+    double __ret = __EXT_NATIVE__GMFMODStudio_queue_buffer((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
 // fmod_studio_system_create JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_system_create_0E6BA8C9974B(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -191,17 +204,22 @@ static jdouble __JNI_WRAPPER__fmod_studio_system_load_bank_file_A84779A6F790(JNI
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_studio_system_load_bank_memory JNI wrapper signature: (Ljava/lang/String;DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_studio_system_load_bank_memory_E3B0B6E9F956(JNIEnv* env, jclass /* GMFMODStudioBridge */, jstring data, jdouble flags, jobject __ret_buffer, jdouble __ret_buffer_length)
+// fmod_studio_system_load_bank_memory JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_system_load_bank_memory_4A3EAFA333F9(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
-    UtfChars __pin_data(env, data);
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
     void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
     jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
     if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
         throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    double __ret = __EXT_NATIVE__fmod_studio_system_load_bank_memory((char *)__pin_data.c_str(), static_cast<double>(flags), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    double __ret = __EXT_NATIVE__fmod_studio_system_load_bank_memory((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -2671,6 +2689,7 @@ extern "C" {
         // Registers all the native methods
         static const JNINativeMethod methods[] = {
             { "__EXT_JNI__GMFMODStudio_invocation_handler", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__GMFMODStudio_invocation_handler },
+            { "__EXT_JNI__GMFMODStudio_queue_buffer", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__GMFMODStudio_queue_buffer },
             { "__EXT_JNI__fmod_studio_system_create", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_create_0E6BA8C9974B },
             { "__EXT_JNI__fmod_studio_system_init", "(DDD)D", (void*)__JNI_WRAPPER__fmod_studio_system_init_D11C76C9B9F1 },
             { "__EXT_JNI__fmod_studio_system_release", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_release_635373565335 },
@@ -2678,7 +2697,7 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_system_flush_commands", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_flush_commands_976B277DB3F9 },
             { "__EXT_JNI__fmod_studio_system_flush_sample_loading", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_flush_sample_loading_89AE835209CB },
             { "__EXT_JNI__fmod_studio_system_load_bank_file", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_load_bank_file_A84779A6F790 },
-            { "__EXT_JNI__fmod_studio_system_load_bank_memory", "(Ljava/lang/String;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_load_bank_memory_E3B0B6E9F956 },
+            { "__EXT_JNI__fmod_studio_system_load_bank_memory", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_load_bank_memory_4A3EAFA333F9 },
             { "__EXT_JNI__fmod_studio_system_unload_all", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_unload_all_3210C75289A6 },
             { "__EXT_JNI__fmod_studio_system_get_bank_count", "()D", (void*)__JNI_WRAPPER__fmod_studio_system_get_bank_count_B9658D989284 },
             { "__EXT_JNI__fmod_studio_system_get_bank_at", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_bank_at_27B9D015D847 },

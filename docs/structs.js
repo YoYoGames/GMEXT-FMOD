@@ -350,13 +350,15 @@
 
 /**
  * @struct FmodDSPMixMatrix
- * @desc This struct stores a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
- * 
+ * @desc This struct describes the 2 dimensional pan matrix that a mix matrix getter has written into the caller's buffer. The matrix maps the signal from input channels (columns) to output speakers (rows).
+ *
+ * The matrix itself is not part of the struct: it is written into the ${type.buffer} passed to the getter, as 32-bit floats in row-major order. `required_bytes` says how big that buffer has to be.
+ *
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
- * 
- * @member {Real} out_channels The number of valid output channels (rows) in `matrix`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
- * @member {Real} in_channels Number of valid input channels (columns) in `matrix`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
- * @member {Real} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
+ *
+ * @member {Real} out_channels The number of valid output channels (rows) in the matrix. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
+ * @member {Real} in_channels Number of valid input channels (columns) in the matrix. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
+ * @member {Real} required_bytes The size the buffer needs to be, in bytes, to hold the whole matrix. Nothing is written unless the buffer is at least this large, so resize to this value and call the getter again.
  * @struct_end
  * */
 

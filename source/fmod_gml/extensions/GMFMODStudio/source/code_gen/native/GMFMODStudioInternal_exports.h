@@ -6,6 +6,9 @@
 // Internal function used for fetching dispatched function calls to GML
 GMEXPORT double __EXT_NATIVE__GMFMODStudio_invocation_handler(char* __ret_buffer, double __ret_buffer_length);
 
+// Internal function used for queueing buffers to native code
+GMEXPORT double __EXT_NATIVE__GMFMODStudio_queue_buffer(char* __arg_buffer, double __arg_buffer_length);
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_create(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_init(double max_channels, double studio_flags, double core_flags);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_release();
@@ -13,7 +16,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_update();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_flush_commands();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_flush_sample_loading();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* filename, double flags, char* __ret_buffer, double __ret_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* data, double flags, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_unload_all();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank_count();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank_at(double index, char* __ret_buffer, double __ret_buffer_length);

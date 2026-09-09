@@ -1,6 +1,7 @@
 #include "GMFMOD_sound.h"
 #include <string_view>
 #include <cstring>
+#include <vector>
 
 using namespace gm_structs;
 
@@ -19,14 +20,30 @@ struct FmodSoundLockRecord
 
 static std::map<uintptr_t, FmodSoundLockRecord> g_sound_lock_ptrs;
 
+// set3DCustomRolloff stores the FMOD_VECTOR* it is handed verbatim -
+// get3DCustomRolloff gives the very same address back - so a GML buffer can
+// never be passed through: the mixer thread would read freed memory the moment
+// GML resized or freed it. Each sound that has a curve owns a copy here, and it
+// lives until the curve is replaced or the sound is released.
+static std::mutex g_sound_rolloff_mutex;
+static std::map<uintptr_t, std::vector<FMOD_VECTOR>> g_sound_rolloff;
+
 void fmod_sound_forget_lock(const void* sound)
 {
 	g_sound_lock_ptrs.erase(reinterpret_cast<uintptr_t>(sound));
 }
 
+static void fmod_sound_forget_rolloff(const void* sound)
+{
+	std::lock_guard<std::mutex> lock(g_sound_rolloff_mutex);
+	g_sound_rolloff.erase(reinterpret_cast<uintptr_t>(sound));
+}
+
 void fmod_sound_reset_state()
 {
 	g_sound_lock_ptrs.clear();
+	std::lock_guard<std::mutex> lock(g_sound_rolloff_mutex);
+	g_sound_rolloff.clear();
 }
 
 // ============================================================
@@ -73,20 +90,12 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
 	return result;
 }
 
-uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const FmodCreateSoundExInfo& ex_info)
+// Shared by fmod_system_create_sound_ex and fmod_system_create_sound_memory_ex.
+// The string members point into ex_info, so the caller must keep it alive for as
+// long as it uses the filled-in struct.
+static void fillCreateSoundExInfo(const FmodCreateSoundExInfo& ex_info, FMOD_CREATESOUNDEXINFO& info)
 {
-	uint64_t result = 0;
-
-	if (getCurrentSystem() == nullptr)
-	{
-		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return result;
-	}
-
-	FMOD::System* system = getCurrentSystem();
-	FMOD::Sound* sound = nullptr;
-
-	FMOD_CREATESOUNDEXINFO info = {};
+	info = {};
 	info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
 	info.length = (unsigned int)ex_info.length;
 	info.fileoffset = (unsigned int)ex_info.file_offset;
@@ -123,6 +132,23 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 		validate_fmod_sound_group(ex_info.initial_sound_group, sound_group);
 		info.initialsoundgroup = (FMOD_SOUNDGROUP*)sound_group;
 	}
+}
+
+uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const FmodCreateSoundExInfo& ex_info)
+{
+	uint64_t result = 0;
+
+	if (getCurrentSystem() == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return result;
+	}
+
+	FMOD::System* system = getCurrentSystem();
+	FMOD::Sound* sound = nullptr;
+
+	FMOD_CREATESOUNDEXINFO info = {};
+	fillCreateSoundExInfo(ex_info, info);
 
 	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), &info, &sound);
 
@@ -147,6 +173,105 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode)
 	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
 	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), nullptr, &sound);
+
+	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
+	{
+		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
+		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+	}
+	return result;
+}
+
+// Resolves the byte range a GML buffer is offering to FMOD. length <= 0 means
+// the whole buffer; anything larger than the buffer is clamped to it rather than
+// trusted, the same way fmod_dsp_get_parameter_data clamps.
+static bool fmodResolveMemoryRange(const gm::wire::GMBuffer& data, double length, unsigned int& out_length)
+{
+	if (data.data() == nullptr || data.length() == 0)
+		return false;
+
+	uint64_t usable = data.length();
+	if (length > 0 && (uint64_t)length < usable)
+		usable = (uint64_t)length;
+
+	out_length = (unsigned int)usable;
+	return true;
+}
+
+// FMOD_OPENMEMORY_POINT is deliberately not reachable from GML: it keeps the
+// caller's pointer instead of copying, and GML can guarantee neither the
+// alignment it wants nor that the buffer outlives the sound. FMOD_OPENMEMORY
+// copies, so the buffer can be freed as soon as this returns.
+uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length, double mode)
+{
+	uint64_t result = 0;
+
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return result;
+	}
+
+	unsigned int usable = 0;
+	if (!fmodResolveMemoryRange(data, length, usable))
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return result;
+	}
+
+	// FMOD_OPENMEMORY requires FMOD_CREATESOUNDEXINFO.length, so this variant has
+	// to synthesize an exinfo even though the caller supplied none - the same
+	// reason fmod_system_create_sound synthesizes one for FMOD_OPENUSER.
+	FMOD_CREATESOUNDEXINFO info = {};
+	info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
+	info.length = usable;
+
+	FMOD_MODE mode_word = (FMOD_MODE)fmod_flag_word(mode);
+	mode_word = (mode_word | FMOD_OPENMEMORY) & ~FMOD_OPENMEMORY_POINT;
+
+	FMOD::Sound* sound = nullptr;
+	g_fmod_last_result = system->createSound((const char*)data.data(), mode_word, &info, &sound);
+
+	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
+	{
+		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
+		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+	}
+	return result;
+}
+
+uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double length, double mode, const FmodCreateSoundExInfo& ex_info)
+{
+	uint64_t result = 0;
+
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return result;
+	}
+
+	unsigned int usable = 0;
+	if (!fmodResolveMemoryRange(data, length, usable))
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return result;
+	}
+
+	FMOD_CREATESOUNDEXINFO info = {};
+	fillCreateSoundExInfo(ex_info, info);
+
+	// The buffer is the authority on how many bytes exist. Whatever ex_info said,
+	// reading past the buffer is not an option.
+	if (info.length == 0 || info.length > usable)
+		info.length = usable;
+
+	FMOD_MODE mode_word = (FMOD_MODE)fmod_flag_word(mode);
+	mode_word = (mode_word | FMOD_OPENMEMORY) & ~FMOD_OPENMEMORY_POINT;
+
+	FMOD::Sound* sound = nullptr;
+	g_fmod_last_result = system->createSound((const char*)data.data(), mode_word, &info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -331,6 +456,7 @@ double fmod_sound_release(uint64_t sound_ref)
 	// which is gone once release() has run.
 	unregisterResource(sound, map_sounds);
 	fmod_sound_forget_lock(sound);
+	fmod_sound_forget_rolloff(sound);
 	g_fmod_last_result = sound->release();
 	return 0;
 }
@@ -648,7 +774,7 @@ FmodConeSettings fmod_sound_get_3d_cone_settings(uint64_t sound_ref)
 	return result;
 }
 
-double fmod_sound_set_3d_custom_rolloff(uint64_t sound_ref, const gm::wire::GMValue& points, double num_points)
+double fmod_sound_set_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer points, double num_points)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
@@ -656,21 +782,80 @@ double fmod_sound_set_3d_custom_rolloff(uint64_t sound_ref, const gm::wire::GMVa
 	if (sound == nullptr)
 		return 0;
 
-	// Custom rolloff requires array conversion - for now return unsupported
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	const uintptr_t sound_ptr = reinterpret_cast<uintptr_t>(sound);
+	const int count = (int)num_points;
+
+	// Disabling: point FMOD away from our copy before reclaiming it, never the
+	// other way round.
+	if (count <= 0 || points.data() == nullptr)
+	{
+		g_fmod_last_result = sound->set3DCustomRolloff(nullptr, 0);
+		if (g_fmod_last_result == FMOD_OK)
+			fmod_sound_forget_rolloff(sound);
+		return 0;
+	}
+
+	// A GML buffer holds num_points packed FMOD_VECTOR (3 x f32).
+	if (points.length() < (uint64_t)count * sizeof(FMOD_VECTOR))
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	const FMOD_VECTOR* src = reinterpret_cast<const FMOD_VECTOR*>(points.data());
+	std::vector<FMOD_VECTOR> owned(src, src + count);
+
+	// Swap the previous curve out into a local instead of overwriting in place:
+	// FMOD still points at it until set3DCustomRolloff returns, so it must not be
+	// freed before then.
+	std::vector<FMOD_VECTOR> previous;
+	FMOD_VECTOR* data = nullptr;
+	{
+		std::lock_guard<std::mutex> lock(g_sound_rolloff_mutex);
+		std::vector<FMOD_VECTOR>& slot = g_sound_rolloff[sound_ptr];
+		previous.swap(slot);
+		slot.swap(owned);
+		data = slot.data();
+	}
+
+	g_fmod_last_result = sound->set3DCustomRolloff(data, count);
+
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		// The new pointer was rejected, so FMOD is still pointing at the previous
+		// curve. Put that buffer back - swapping a vector preserves its address,
+		// which is the address FMOD holds - and let the new copy die instead.
+		std::lock_guard<std::mutex> lock(g_sound_rolloff_mutex);
+		if (previous.empty())
+			g_sound_rolloff.erase(sound_ptr);
+		else
+			g_sound_rolloff[sound_ptr].swap(previous);
+	}
 	return 0;
 }
 
-void fmod_sound_get_3d_custom_rolloff(uint64_t sound_ref)
+double fmod_sound_get_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer points)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
-		return;
+		return 0.0;
 
-	// Custom rolloff requires array conversion - for now return unsupported
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	FMOD_VECTOR* curve = nullptr;
+	int num_points = 0;
+	g_fmod_last_result = sound->get3DCustomRolloff(&curve, &num_points);
+	if (g_fmod_last_result != FMOD_OK || curve == nullptr || num_points <= 0)
+		return 0.0;
+
+	const uint64_t required = (uint64_t)num_points * sizeof(FMOD_VECTOR);
+
+	// Nothing is written unless the whole curve fits; the caller resizes to the
+	// returned byte count and calls again.
+	if (points.data() != nullptr && points.length() >= required)
+		std::memcpy(points.data(), curve, (size_t)required);
+
+	return (double)required;
 }
 
 // ============================================================

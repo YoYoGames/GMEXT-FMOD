@@ -15,6 +15,17 @@ GMEXPORT double __EXT_NATIVE__GMFMODStudio_invocation_handler(char* __ret_buffer
     return __dispatch_queue.fetch(__bw);
 }
 
+static std::queue<gm::wire::GMBuffer> __buffer_queue;
+
+// Internal function used for queueing buffers to native code
+GMEXPORT double __EXT_NATIVE__GMFMODStudio_queue_buffer(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::wire::GMBuffer __buff{__arg_buffer, static_cast<uint64_t>(__arg_buffer_length)};
+    __buffer_queue.push(__buff);
+
+    return 1.0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_create(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_create();
@@ -65,9 +76,21 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* filename, 
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* data, double flags, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_studio_system_load_bank_memory(data, static_cast<double>(flags));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: data, type: Buffer
+    gm::wire::GMBuffer data = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    // field: flags, type: Float64
+    double flags = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_studio_system_load_bank_memory(data, length, flags);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: optional<UInt64>

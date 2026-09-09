@@ -739,37 +739,64 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
  * <br />
  *
  * This function sets a custom roll-off shape for 3D distance attenuation.
- * 
+ *
  * [[Note: This function must be used in conjunction with `FmodMode._3DCustomRollOff` flag to be activated.]]
- * 
+ *
  * If `FmodMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodStudioMode._3DInverseTaperedRollOff` roll-off mode.
- * 
+ *
  * When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.
- * 
+ *
  * The distance in-between point values is linearly interpolated until the final point where the last value is held.
- * 
+ *
  * If the points are not sorted by distance, an error will result.
- * 
- * ``gml
- * // Defining a custom array of points
- * curve = 
- * {
- *     { x:  0, y: 1, z: 0 },
- *     { x:  2, y: 2, z: 0 },
- *     { x: 20, y: 0, z: 0 }
- * };
- * ``
- * 
+ *
+ * The curve is passed in a ${type.buffer} holding `num_points` points one after another, each point being three 32-bit floats: `x` (the distance), `y` (the volume) and `z` (unused, write 0). The extension keeps its own copy of the curve, so the buffer may be deleted as soon as this function returns.
+ *
+ * Pass a `num_points` of 0 to remove the custom roll-off again.
+ *
  * @param {Real} channel_control_ref A reference to a channel control.
- * @param {Any} points An array of vectors sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0. Pass an empty array to disable custom rolloff.
- * @param {Real} num_points The number of points in the rolloff curve.
+ * @param {Buffer} points The ${type.buffer} holding the points, sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0.
+ * @param {Real} num_points The number of points in the rolloff curve. Pass 0 to disable custom rolloff.
  * @returns {Real}
+ *
+ * @example
+ * ``gml
+ * // Three points: (0, 1), (2, 0.2) and (20, 0)
+ * var _points = [0, 1, 0,  2, 0.2, 0,  20, 0, 0];
+ * var _rolloff = buffer_create(array_length(_points) * buffer_sizeof(buffer_f32), buffer_fixed, 1);
+ * for (var _i = 0; _i < array_length(_points); _i++)
+ * {
+ *     buffer_write(_rolloff, buffer_f32, _points[_i]);
+ * }
+ * fmod_channel_control_set_3d_custom_rolloff(channel, _rolloff, 3);
+ * buffer_delete(_rolloff);
+ * ``
+ * The code above builds a three-point roll-off curve in a buffer, hands it to the Channel and then deletes the buffer, which is safe because the extension copies the curve.
  * @function_end
  */
-function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points) {}
+function fmod_channel_control_set_3d_custom_rolloff(channel_control_ref, points, num_points) {}
 
 
-function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref) {}
+/**
+ * @function fmod_channel_control_get_3d_custom_rolloff
+ * @desc > **FMOD Function:** [ChannelControl::get3DCustomRolloff](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dcustomrolloff)
+ *
+ * <br />
+ *
+ * This function retrieves the current custom roll-off shape for 3D distance attenuation, copying it into a ${type.buffer}.
+ *
+ * Each point is written as three 32-bit floats - `x` (the distance), `y` (the volume) and `z` (unused) - one point after another, starting at the beginning of the buffer.
+ *
+ * The function returns the number of bytes the whole curve needs. Nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to the returned size and calls it again. A return value of 0 means the Channel or ChannelGroup has no custom roll-off set.
+ *
+ * ${function.fmod_channel_control_get_3d_custom_rolloff_count} and ${function.fmod_channel_control_get_3d_custom_rolloff_at} read the same curve one point at a time.
+ *
+ * @param {Real} channel_control_ref A reference to a channel control.
+ * @param {Buffer} points The ${type.buffer} that receives the points.
+ * @returns {Real} The size of the whole curve, in bytes.
+ * @function_end
+ */
+function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref, points) {}
 
 
 /**
@@ -1051,13 +1078,15 @@ function fmod_channel_control_set_pan(channel_control_ref, pan) {}
  * 
  * [[Note: This is currently only supported for Channel, not ChannelGroup.]]
  * 
+ * The levels are passed in a ${type.buffer} holding `num_levels` 32-bit floats, one per input channel, starting at the beginning of the buffer. FMOD copies them, so the buffer may be deleted as soon as this function returns.
+ *
  * @param {Real} channel_control_ref A reference to a channel control.
- * @param {Real} levels An array of volume levels for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.
+ * @param {Buffer} levels The ${type.buffer} holding one volume level for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.
  * @param {Real} num_levels The number of mix levels supplied, one per input channel.
  * @returns {Real}
  * @function_end
  */
-function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels) {}
+function fmod_channel_control_set_mix_levels_input(channel_control_ref, levels, num_levels) {}
 
 
 /**
@@ -1101,10 +1130,10 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * 
  * This will overwrite values set via ${function.fmod_channel_control_set_pan}, ${function.fmod_channel_control_set_mix_levels_input} and ${function.fmod_channel_control_set_mix_levels_output}.
  * 
- * If no matrix is passed in via matrix a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.
- * 
+ * Writing a unit matrix lets a signal pass through unchanged.
+ *
  * Example 5.1 unit matrix:
- * 
+ *
  * ``
  * 1 0 0 0 0 0
  * 0 1 0 0 0 0
@@ -1113,11 +1142,13 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * 0 0 0 0 1 0
  * 0 0 0 0 0 1
  * ``
- * 
+ *
+ * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.ErrInvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
+ *
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
- * 
+ *
  * @param {Real} channel_control_ref A reference to a channel control.
- * @param {Real} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
+ * @param {Buffer} matrix The ${type.buffer} holding the volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
  * @param {Real} out_channels The number of output channels (rows) in `matrix`.
  * @param {Real} in_channels The number of input channels (columns) in `matrix`.
  * @param {Real} in_channel_hop The width (total number of columns) in the source `matrix`. A matrix element is referenced as 'outchannel * inchannel_hop + inchannel'. The default value is `in_channels`.
@@ -1134,15 +1165,18 @@ function fmod_channel_control_set_mix_matrix(channel_control_ref, matrix, out_ch
  * <br />
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
- * 
+ *
+ * The matrix is written into a ${type.buffer} as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's `required_bytes` member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to `required_bytes` and calls it again. The channel counts in the returned struct are filled in either way.
+ *
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
- * 
+ *
  * @param {Real} channel_control_ref A reference to a channel control.
+ * @param {Buffer} matrix The ${type.buffer} that receives the volume levels.
  * @param {Real} in_channel_hop The number of floats between the start of one row of the matrix and the next. Pass 0 to use the input channel count.
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
  */
-function fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop) {}
+function fmod_channel_control_get_mix_matrix(channel_control_ref, matrix, in_channel_hop) {}
 
 
 /**
@@ -2572,7 +2606,7 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  * 
  * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
  * 
- * If 0 or equivalent is passed in via `matrix` a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.
+ * Writing a unit matrix lets a signal pass through unchanged.
  * 
  * Example 5.1 unit matrix: 
  * 
@@ -2587,8 +2621,10 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  * 
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
  * 
+ * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.ErrInvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
+ *
  * @param {Real} connection_ref A reference to a DSPConnection.
- * @param {Real} matrix A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel. 0 or equivalent sets a 'default' matrix.
+ * @param {Buffer} matrix The ${type.buffer} holding the volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
  * @param {Real} out_channels The number of output channels (rows) in `matrix`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`];
  * @param {Real} in_channels The number of input channels (columns) in `matrix`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`];
  * @param {Real} in_channel_hop OPTIONAL The width (total number of columns) of source `matrix`. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`]. Defaults to `in_channels`.
@@ -2605,15 +2641,18 @@ function fmod_dsp_connection_set_mix_matrix(dsp_connection_ref, matrix, out_chan
  * <br />
  *
  * This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).
- * 
+ *
  * A matrix element is referenced from the incoming matrix data as `out_channel * in_channel_hop + in_channel`.
- * 
+ *
+ * The matrix is written into a ${type.buffer} as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's `required_bytes` member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to `required_bytes` and calls it again. The channel counts in the returned struct are filled in either way.
+ *
  * @param {Real} connection_ref A reference to a DSPConnection.
+ * @param {Buffer} matrix The ${type.buffer} that receives the volume levels.
  * @param {Real} in_channel_hop The width (total number of columns) of the destination matrix. Can be larger than `in_channels` to represent a smaller valid region inside a larger matrix.
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
  */
-function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, in_channel_hop) {}
+function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, matrix, in_channel_hop) {}
 
 
 /**
@@ -3421,36 +3460,42 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
  * <br />
  *
  * This function sets a custom roll-off shape for 3D distance attenuation.
- * 
+ *
  * [[Note: This function must be used in conjunction with the `FmodStudioMode._3DCustomRollOff` flag to be activated.]]
- * 
- * This function does not duplicate the memory for the points internally. The memory you pass to FMOD must remain valid while in use.
- * 
+ *
  * If `FmodStudioMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodStudioMode._3DInverseRollOff` roll-off mode.
- * 
+ *
  * When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.
- * 
+ *
  * The distance in-between point values is linearly interpolated until the final point where the last value is held.
- * 
+ *
  * If the points are not sorted by distance, an error will result.
- * 
- * ``gml
- * // Defining a custom array of points
- * curve =
- * [
- *     { x: 0,  y:  1, z: 0 },
- *     { x: 2,  y: .2, z: 0 },
- *     { x: 2,  y:  0, z: 0 }
- * ];
- * ``
- * 
+ *
+ * The curve is passed in a ${type.buffer} holding `num_points` points one after another, each point being three 32-bit floats: `x` (the distance), `y` (the volume) and `z` (unused, write 0). The extension keeps its own copy of the curve, so the buffer may be deleted as soon as this function returns.
+ *
+ * Pass a `num_points` of 0 to remove the custom roll-off again.
+ *
  * @param {Real} sound_ref A reference to a sound.
- * @param {Any} points An array of points sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0.
- * @param {Real} num_points The number of points in the rolloff curve.
+ * @param {Buffer} points The ${type.buffer} holding the points, sorted by distance, where `x` = distance and `y` = volume from 0 to 1. `z` should be set to 0.
+ * @param {Real} num_points The number of points in the rolloff curve. Pass 0 to disable custom rolloff.
  * @returns {Real}
+ *
+ * @example
+ * ``gml
+ * // Three points: (0, 1), (2, 0.2) and (20, 0)
+ * var _points = [0, 1, 0,  2, 0.2, 0,  20, 0, 0];
+ * var _rolloff = buffer_create(array_length(_points) * buffer_sizeof(buffer_f32), buffer_fixed, 1);
+ * for (var _i = 0; _i < array_length(_points); _i++)
+ * {
+ *     buffer_write(_rolloff, buffer_f32, _points[_i]);
+ * }
+ * fmod_sound_set_3d_custom_rolloff(sound, _rolloff, 3);
+ * buffer_delete(_rolloff);
+ * ``
+ * The code above builds a three-point roll-off curve in a buffer, hands it to the Sound and then deletes the buffer, which is safe because the extension copies the curve.
  * @function_end
  */
-function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
+function fmod_sound_set_3d_custom_rolloff(sound_ref, points, num_points) {}
 
 
 /**
@@ -3459,12 +3504,18 @@ function fmod_sound_set_3d_custom_rolloff(sound_ref, points) {}
  *
  * <br />
  *
- * This function retrieves the current custom roll-off shape for 3D distance attenuation.
- * 
+ * This function retrieves the current custom roll-off shape for 3D distance attenuation, copying it into a ${type.buffer}.
+ *
+ * Each point is written as three 32-bit floats - `x` (the distance), `y` (the volume) and `z` (unused) - one point after another, starting at the beginning of the buffer.
+ *
+ * The function returns the number of bytes the whole curve needs. Nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to the returned size and calls it again. A return value of 0 means the sound has no custom roll-off set.
+ *
  * @param {Real} sound_ref A reference to a sound.
+ * @param {Buffer} points The ${type.buffer} that receives the points.
+ * @returns {Real} The size of the whole curve, in bytes.
  * @function_end
  */
-function fmod_sound_get_3d_custom_rolloff(sound_ref) {}
+function fmod_sound_get_3d_custom_rolloff(sound_ref, points) {}
 
 
 /**
@@ -6662,24 +6713,25 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
  *
  * <br />
  *
- * This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.
- * 
+ * This function loads the metadata of a Studio bank from a ${type.buffer}, returning a handle to the Bank object.
+ *
  * Sample data must be loaded separately; see [Sample Data Loading](https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading) for details.
- * 
- * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY`, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.
- * 
- * When mode is `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT`, FMOD will use the passed memory buffer directly. When using this mode the buffer must be aligned to `FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT` and the memory must persist until the bank has been fully unloaded, which can be some time after calling ${function.fmod_studio_bank_unload} to unload the bank. You can ensure the memory is not being freed prematurely by only freeing it after receiving the `FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD` callback (enabled in ${function.fmod_studio_system_set_callback}).
- * 
+ *
+ * FMOD allocates an internal buffer and copies the bank data out of the one you pass in, so there are no alignment restrictions on the buffer and it may be deleted as soon as this function returns.
+ *
+ * [[Note: The zero-copy `FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT` mode is deliberately not reachable from GML: it requires the buffer to be aligned to `FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT` and to stay alive until the bank has finished unloading, and GML can guarantee neither.]]
+ *
  * If you use `FmodStudioLoadBankFlags.NonBlocking`, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the ${function.fmod_last_result} value after a function call that uses the Bank handle.
- * 
+ *
  * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${function.fmod_studio_bank_load_sample_data} or ${function.fmod_studio_system_get_event}.
- * 
- * @param {String} data Memory buffer.
+ *
+ * @param {Buffer} data The ${type.buffer} holding the bank data.
+ * @param {Real} length The number of bytes of bank data in the buffer. Pass 0 to use the whole buffer.
  * @param {Real} flags Flags to control bank loading.
  * @returns {Real}
  * @function_end
  */
-function fmod_studio_system_load_bank_memory(buff_data, length, mode, flags) {}
+function fmod_studio_system_load_bank_memory(data, length, flags) {}
 
 
 /**
@@ -8310,19 +8362,20 @@ function fmod_system_get_file_usage() {}
  * <br />
  *
  * This function retrieves the default matrix used to convert from one speaker mode to another.
- * 
- * The matrix is returned as an ${type.array}.
- * 
- * The gain for source channel 's' to target channel 't' is matrix[t * matrixhop + s].
- * 
+ *
+ * The matrix is written into a ${type.buffer} as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's `required_bytes` member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to `required_bytes` and calls it again. The channel counts in the returned struct are filled in either way.
+ *
+ * The gain for source channel 's' to target channel 't' is `matrix[t * in_channels + s]`, where `in_channels` is the number of channels of `source_speaker_mode`.
+ *
  * If `source_speaker_mode` or `target_speaker_mode` is `FmodSpeakerMode.Raw`, this function will return `FmodStudioResult.InvalidParam`.
- * 
+ *
  * @param {Enum.FmodSpeakerMode} source_speaker_mode The speaker mode being converted from.
  * @param {Enum.FmodSpeakerMode} target_speaker_mode The speaker mode being converted to.
+ * @param {Buffer} matrix The ${type.buffer} that receives the volume levels.
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
  */
-function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix_hop) {}
+function fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix) {}
 
 
 /**
@@ -9138,6 +9191,53 @@ function fmod_system_adopt(system_ptr) {}
 function fmod_system_create_sound_ex(name_or_data, mode, ex_info) {}
 
 /**
+ * @function fmod_system_create_sound_memory
+ * @desc > **FMOD Function:** [System::createSound](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound)
+ *
+ * <br />
+ *
+ * This function creates a sound from audio data already held in a ${type.buffer}, rather than from a file on disk.
+ *
+ * It is ${function.fmod_system_create_sound} with `FmodStudioMode.OpenMemory` forced into the mode, and it returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) the same way.
+ *
+ * FMOD copies the audio data out of the buffer, so the buffer may be deleted as soon as this function returns.
+ *
+ * [[Note: The zero-copy `FmodStudioMode.OpenMemoryPoint` mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until ${function.fmod_sound_release} is called, and GML can guarantee neither. It is stripped from `mode` if you pass it.]]
+ *
+ * To stream the sound from the buffer instead of decompressing it up front, add `FmodStudioMode.CreateStream` to `mode`; there is no separate memory stream function.
+ *
+ * Use ${function.fmod_system_create_sound_memory_ex} instead when the data needs a ${struct.FmodCreateSoundExInfo} to describe it, such as raw PCM.
+ *
+ * @param {Buffer} data The ${type.buffer} holding the audio data.
+ * @param {Real} length The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.
+ * @param {Real} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
+ * @returns {Real} A reference to the new sound, or 0 on failure.
+ * @function_end
+ */
+function fmod_system_create_sound_memory(data, length, mode) {}
+
+/**
+ * @function fmod_system_create_sound_memory_ex
+ * @desc > **FMOD Function:** [System::createSound](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound)
+ *
+ * <br />
+ *
+ * This function creates a sound from audio data held in a ${type.buffer} the same way ${function.fmod_system_create_sound_memory} does, but takes an extra ${struct.FmodCreateSoundExInfo} struct describing the sound's format, length and decoding options.
+ *
+ * Use it when the data needs that extra description - raw PCM, or a compressed format FMOD cannot identify on its own.
+ *
+ * The buffer is the authority on how many bytes exist: the struct's `length` member is clamped to the number of bytes the buffer actually holds.
+ *
+ * @param {Buffer} data The ${type.buffer} holding the audio data.
+ * @param {Real} length The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.
+ * @param {Real} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
+ * @param {Struct.FmodCreateSoundExInfo} ex_info The extended description of the sound.
+ * @returns {Real} A reference to the new sound, or 0 on failure.
+ * @function_end
+ */
+function fmod_system_create_sound_memory_ex(data, length, mode, ex_info) {}
+
+/**
  * @function fmod_channel_control_get_fade_point_count
  * @desc > **FMOD Function:** [ChannelControl::getFadePoints](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getfadepoints)
  *
@@ -9602,6 +9702,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_channel_control_get_system_object
  * @ref fmod_channel_control_set_user_data
  * @ref fmod_channel_control_get_user_data
+ * @ref fmod_channel_control_get_3d_custom_rolloff
  * @ref fmod_channel_control_get_3d_custom_rolloff_at
  * @ref fmod_channel_control_get_3d_custom_rolloff_count
  * @ref fmod_channel_control_get_fade_point_at
@@ -10261,6 +10362,8 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_system_get_user_data
  * @ref fmod_system_adopt
  * @ref fmod_system_create_sound_ex
+ * @ref fmod_system_create_sound_memory
+ * @ref fmod_system_create_sound_memory_ex
  * @section_end
  * 
  * @module_end

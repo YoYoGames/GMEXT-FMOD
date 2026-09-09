@@ -134,6 +134,7 @@ void fmod_dsp_release(uint64_t dsp_ref)
 	// Unregister first: unregisterResource reads the object's user-data slot,
 	// which is gone once release() has run.
 	unregisterResource(dsp, map_dsps);
+	fmod_dsp_forget_callback(dsp);
 	g_fmod_last_result = dsp->release();
 }
 
@@ -579,14 +580,82 @@ double fmod_dsp_get_user_data(uint64_t dsp_ref)
 	return getResourceUserData(dsp);
 }
 
+// FMOD::DSP::setCallback takes FMOD_DSP_CALLBACK - (FMOD_DSP*, type, void*) -
+// which today only ever fires FMOD_DSP_CALLBACK_DATAPARAMETERRELEASE. It is not
+// the realtime read callback, so no audio processing happens on this path.
+//
+// The GML ref is stored beside the callback rather than rebuilt from the
+// FMOD_DSP* on arrival: DSP refs are registry indices, and touching the registry
+// from FMOD's thread would be a lock this code does not otherwise need.
+struct FmodDspCallbackEntry
+{
+	uint64_t dsp_ref = 0;
+	gm::wire::GMFunction callback;
+};
+
+static std::mutex g_dsp_callback_mutex;
+static std::map<uintptr_t, FmodDspCallbackEntry> g_dsp_callbacks;
+
+static FMOD_RESULT F_CALL CALLBACK_fmod_dsp(
+	FMOD_DSP* dsp,
+	FMOD_DSP_CALLBACK_TYPE type,
+	void* /* data */)
+{
+	if (dsp == nullptr)
+		return FMOD_OK;
+
+	std::optional<FmodDspCallbackEntry> entry;
+	{
+		std::lock_guard<std::mutex> lock(g_dsp_callback_mutex);
+		auto it = g_dsp_callbacks.find(reinterpret_cast<uintptr_t>(dsp));
+		if (it != g_dsp_callbacks.end())
+			entry = it->second;
+	}
+
+	// Fire outside the lock, exactly as the ChannelControl trampoline does.
+	if (entry.has_value())
+		entry.value().callback.call(entry.value().dsp_ref, (double)(int)type);
+
+	return FMOD_OK;
+}
+
+void fmod_dsp_forget_callback(const void* dsp)
+{
+	std::lock_guard<std::mutex> lock(g_dsp_callback_mutex);
+	g_dsp_callbacks.erase(reinterpret_cast<uintptr_t>(dsp));
+}
+
+void fmod_dsp_reset_state()
+{
+	std::lock_guard<std::mutex> lock(g_dsp_callback_mutex);
+	g_dsp_callbacks.clear();
+}
+
 double fmod_dsp_set_callback(uint64_t dsp_ref, const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
 
-	// Callback support would require FMOD_DSP_READ_CALLBACK setup
-	// For now, mark as unsupported
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	const uintptr_t dsp_ptr = reinterpret_cast<uintptr_t>(dsp);
+
+	if (!callback.has_value())
+	{
+		fmod_dsp_forget_callback(dsp);
+		g_fmod_last_result = dsp->setCallback(nullptr);
+		return 0;
+	}
+
+	FmodDspCallbackEntry entry;
+	entry.dsp_ref = dsp_ref;
+	entry.callback = callback.value();
+	{
+		std::lock_guard<std::mutex> lock(g_dsp_callback_mutex);
+		g_dsp_callbacks.insert_or_assign(dsp_ptr, entry);
+	}
+
+	g_fmod_last_result = dsp->setCallback(CALLBACK_fmod_dsp);
+	if (g_fmod_last_result != FMOD_OK)
+		fmod_dsp_forget_callback(dsp);
 	return 0;
 }

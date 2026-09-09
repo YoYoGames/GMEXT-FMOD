@@ -211,6 +211,8 @@
 <li><a href="system.html#fmod_system_get_user_data">fmod_system_get_user_data</a></li>
 <li><a href="system.html#fmod_system_adopt">fmod_system_adopt</a></li>
 <li><a href="system.html#fmod_system_create_sound_ex">fmod_system_create_sound_ex</a></li>
+<li><a href="system.html#fmod_system_create_sound_memory">fmod_system_create_sound_memory</a></li>
+<li><a href="system.html#fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex</a></li>
 </ul>
 <p><br></p>
 <hr />
@@ -1603,13 +1605,13 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the default matrix used to convert from one speaker mode to another.</p>
-<p>The matrix is returned as an <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a>.</p>
-<p>The gain for source channel 's' to target channel 't' is matrix[t * matrixhop + s].</p>
+<p>The matrix is written into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's <code>required_bytes</code> member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to <code>required_bytes</code> and calls it again. The channel counts in the returned struct are filled in either way.</p>
+<p>The gain for source channel 's' to target channel 't' is <code>matrix[t * in_channels + s]</code>, where <code>in_channels</code> is the number of channels of <code>source_speaker_mode</code>.</p>
 <p>If <code>source_speaker_mode</code> or <code>target_speaker_mode</code> is <code>FmodSpeakerMode.Raw</code>, this function will return <code>FmodStudioResult.InvalidParam</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode)
+<div class="highlight"><pre><span></span><code>fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix)
 </code></pre></div>
 </blockquote>
 <table>
@@ -1630,6 +1632,11 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <td>target_speaker_mode</td>
 <td><a href="constants.html#fmodspeakermode">FmodSpeakerMode</a></td>
 <td>The speaker mode being converted to.</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the volume levels.</td>
 </tr>
 </tbody>
 </table>
@@ -3071,6 +3078,117 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <td>name_or_data</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
 <td>The name of the file to open, or the memory buffer holding the sound when the mode includes an open-memory flag.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A bitfield of <a href="constants.html#fmodmode">FmodMode</a> values describing how to open the sound.</td>
+</tr>
+<tr>
+<td>ex_info</td>
+<td><a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a></td>
+<td>The extended description of the sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p>A reference to the new sound, or 0 on failure.</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_sound_memory">fmod_system_create_sound_memory</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a sound from audio data already held in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>, rather than from a file on disk.</p>
+<p>It is <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with <code>FmodStudioMode.OpenMemory</code> forced into the mode, and it returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> the same way.</p>
+<p>FMOD copies the audio data out of the buffer, so the buffer may be deleted as soon as this function returns.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The zero-copy <code>FmodStudioMode.OpenMemoryPoint</code> mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called, and GML can guarantee neither. It is stripped from <code>mode</code> if you pass it.</p>
+</div>
+<p>To stream the sound from the buffer instead of decompressing it up front, add <code>FmodStudioMode.CreateStream</code> to <code>mode</code>; there is no separate memory stream function.</p>
+<p>Use <a href="system.html#fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex</a> instead when the data needs a <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a> to describe it, such as raw PCM.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_sound_memory(data, length, mode)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the audio data.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A bitfield of <a href="constants.html#fmodmode">FmodMode</a> values describing how to open the sound.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p>A reference to the new sound, or 0 on failure.</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function creates a sound from audio data held in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> the same way <a href="system.html#fmod_system_create_sound_memory">fmod_system_create_sound_memory</a> does, but takes an extra <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a> struct describing the sound's format, length and decoding options.</p>
+<p>Use it when the data needs that extra description - raw PCM, or a compressed format FMOD cannot identify on its own.</p>
+<p>The buffer is the authority on how many bytes exist: the struct's <code>length</code> member is clamped to the number of bytes the buffer actually holds.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_system_create_sound_memory_ex(data, length, mode, ex_info)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the audio data.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.</td>
 </tr>
 <tr>
 <td>mode</td>

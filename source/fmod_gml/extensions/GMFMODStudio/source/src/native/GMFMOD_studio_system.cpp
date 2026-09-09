@@ -1,6 +1,7 @@
 #include "GMFMOD_studio_system.h"
 #include <string_view>
 #include <optional>
+#include <climits>
 #include <cstdio>
 #include <string>
 #include <vector>
@@ -142,12 +143,49 @@ std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filen
 	return std::nullopt;
 }
 
-std::optional<uint64_t> fmod_studio_system_load_bank_memory(std::string_view data, double flags)
+// The load mode is fixed at FMOD_STUDIO_LOAD_MEMORY - the copying one - and
+// FMOD_STUDIO_LOAD_MEMORY_POINT is deliberately not reachable from GML. _POINT
+// keeps the caller's pointer instead of copying, which needs the buffer to be
+// 32-byte *address* aligned (FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT) and to stay
+// alive until the bank has finished unloading. GML can express neither: it
+// offers no aligned allocation, and no hook that fires when an async unload
+// completes. FMOD_STUDIO_LOAD_MEMORY copies, so the buffer may be freed the
+// instant this returns.
+std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, double flags)
 {
-	// Studio::System::loadBankMemory exists and takes (buffer, length, mode, flags, bank), but this
-	// function's GMIDL parameter is a string, and a GML string cannot carry the NUL bytes a .bank file
-	// is full of. Reaching this needs a buffer parameter in spec.gmidl; use loadBankFile until then.
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return std::nullopt;
+
+	if (data.data() == nullptr || data.length() == 0)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return std::nullopt;
+	}
+
+	// length <= 0 means the whole buffer. Anything larger than the buffer is
+	// clamped to it rather than trusted; loadBankMemory takes an int, so the
+	// 2GB ceiling is FMOD's, not ours.
+	uint64_t usable = data.length();
+	if (length > 0 && (uint64_t)length < usable)
+		usable = (uint64_t)length;
+	if (usable > (uint64_t)INT_MAX)
+		usable = (uint64_t)INT_MAX;
+
+	FMOD::Studio::Bank* bank = nullptr;
+	g_fmod_last_result = studio_system->loadBankMemory(
+		(const char*)data.data(),
+		(int)usable,
+		FMOD_STUDIO_LOAD_MEMORY,
+		(FMOD_STUDIO_LOAD_BANK_FLAGS)fmod_flag_word(flags),
+		&bank);
+
+	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
+	{
+		uint64_t result = 0;
+		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+		return result;
+	}
 	return std::nullopt;
 }
 

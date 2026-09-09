@@ -545,19 +545,12 @@ _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
 <p class="admonition-title">Note</p>
 <p>This function must be used in conjunction with the <code>FmodStudioMode._3DCustomRollOff</code> flag to be activated.</p>
 </div>
-<p>This function does not duplicate the memory for the points internally. The memory you pass to FMOD must remain valid while in use.</p>
 <p>If <code>FmodStudioMode._3DCustomRollOff</code> is set and the roll-off shape is not set, FMOD will revert to <code>FmodStudioMode._3DInverseRollOff</code> roll-off mode.</p>
 <p>When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.</p>
 <p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
 <p>If the points are not sorted by distance, an error will result.</p>
-<p><code>gml
-// Defining a custom array of points
-curve =
-[
-    { x: 0,  y:  1, z: 0 },
-    { x: 2,  y: .2, z: 0 },
-    { x: 2,  y:  0, z: 0 }
-];</code></p>
+<p>The curve is passed in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding <code>num_points</code> points one after another, each point being three 32-bit floats: <code>x</code> (the distance), <code>y</code> (the volume) and <code>z</code> (unused, write 0). The extension keeps its own copy of the curve, so the buffer may be deleted as soon as this function returns.</p>
+<p>Pass a <code>num_points</code> of 0 to remove the custom roll-off again.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -580,13 +573,13 @@ curve =
 </tr>
 <tr>
 <td>points</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
-<td>An array of points sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the points, sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0.</td>
 </tr>
 <tr>
 <td>num_points</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The number of points in the rolloff curve.</td>
+<td>The number of points in the rolloff curve. Pass 0 to disable custom rolloff.</td>
 </tr>
 </tbody>
 </table>
@@ -596,6 +589,19 @@ curve =
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
 </blockquote>
 <p><br></p>
+<p><strong>Example:</strong></p>
+<p><code>gml
+// Three points: (0, 1), (2, 0.2) and (20, 0)
+var _points = [0, 1, 0,  2, 0.2, 0,  20, 0, 0];
+var _rolloff = buffer_create(array_length(_points) * buffer_sizeof(buffer_f32), buffer_fixed, 1);
+for (var _i = 0; _i &lt; array_length(_points); _i++)
+{
+    buffer_write(_rolloff, buffer_f32, _points[_i]);
+}
+fmod_sound_set_3d_custom_rolloff(sound, _rolloff, 3);
+buffer_delete(_rolloff);</code>
+The code above builds a three-point roll-off curve in a buffer, hands it to the Sound and then deletes the buffer, which is safe because the extension copies the curve.</p>
+<p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
@@ -604,11 +610,13 @@ curve =
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_get3dcustomrolloff">Sound::get3DCustomRolloff</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the current custom roll-off shape for 3D distance attenuation.</p>
+<p>This function retrieves the current custom roll-off shape for 3D distance attenuation, copying it into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>.</p>
+<p>Each point is written as three 32-bit floats - <code>x</code> (the distance), <code>y</code> (the volume) and <code>z</code> (unused) - one point after another, starting at the beginning of the buffer.</p>
+<p>The function returns the number of bytes the whole curve needs. Nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to the returned size and calls it again. A return value of 0 means the sound has no custom roll-off set.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_custom_rolloff(sound_ref)
+<div class="highlight"><pre><span></span><code>fmod_sound_get_3d_custom_rolloff(sound_ref, points)
 </code></pre></div>
 </blockquote>
 <table>
@@ -625,13 +633,19 @@ curve =
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>A reference to a sound.</td>
 </tr>
+<tr>
+<td>points</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the points.</td>
+</tr>
 </tbody>
 </table>
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p>N/A</p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
 </blockquote>
+<p>The size of the whole curve, in bytes.</p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

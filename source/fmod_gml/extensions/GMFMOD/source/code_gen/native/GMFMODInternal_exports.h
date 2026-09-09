@@ -110,6 +110,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_reverb_3d(char* __ret_buffer, d
 GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_ex(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory_ex(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_play_sound(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_length(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_set_defaults(char* __arg_buffer, double __arg_buffer_length);
@@ -229,6 +231,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_distance_filter(char* 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_count(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pan(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_output(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_input(char* __arg_buffer, double __arg_buffer_length);

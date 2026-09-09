@@ -1813,6 +1813,46 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_create_sound_memory",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_create_sound_memory",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_create_sound_memory",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_create_sound_memory_ex",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_create_sound_memory_ex",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_create_sound_memory_ex",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_system_play_sound",
           "argCount": 4,
           "args": [
@@ -4009,6 +4049,24 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_control_get_3d_custom_rolloff_at",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_control_get_3d_custom_rolloff",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_control_get_3d_custom_rolloff",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2

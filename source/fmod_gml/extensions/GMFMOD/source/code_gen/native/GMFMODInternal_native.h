@@ -991,7 +991,7 @@ namespace gm_structs
     {
         double out_channels;
         double in_channels;
-        double matrix;
+        double required_bytes;
     };
 
     struct FmodDSPChannelFormat
@@ -1419,7 +1419,7 @@ namespace gm::wire::codec
     {
         gm::wire::codec::writeValue(_buf, obj.out_channels);
         gm::wire::codec::writeValue(_buf, obj.in_channels);
-        gm::wire::codec::writeValue(_buf, obj.matrix);
+        gm::wire::codec::writeValue(_buf, obj.required_bytes);
     }
 
     template<>
@@ -1428,7 +1428,7 @@ namespace gm::wire::codec
         gm_structs::FmodDSPMixMatrix obj;
         obj.out_channels = gm::wire::codec::readValue<double>(_buf);
         obj.in_channels = gm::wire::codec::readValue<double>(_buf);
-        obj.matrix = gm::wire::codec::readValue<double>(_buf);
+        obj.required_bytes = gm::wire::codec::readValue<double>(_buf);
         return obj;
     }
 
@@ -2503,7 +2503,7 @@ gm_structs::FmodSpeakerPosition fmod_system_get_speaker_position(double speaker)
 double fmod_system_set_speaker_position(double speaker, double x, double y, double active);
 gm_structs::FmodReverbProperties fmod_system_get_reverb_properties(double instance);
 double fmod_system_set_reverb_properties(double instance, const gm_structs::FmodReverbProperties& props);
-gm_structs::FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode source_speaker_mode, gm_enums::FmodSpeakerMode target_speaker_mode);
+gm_structs::FmodDSPMixMatrix fmod_system_get_default_mix_matrix(gm_enums::FmodSpeakerMode source_speaker_mode, gm_enums::FmodSpeakerMode target_speaker_mode, gm::wire::GMBuffer matrix);
 gm_structs::FmodCPUUsage fmod_system_get_cpu_usage();
 gm_structs::FmodFileUsage fmod_system_get_file_usage();
 gm_structs::FmodStreamBufferSize fmod_system_get_stream_buffer_size();
@@ -2528,6 +2528,8 @@ std::uint64_t fmod_system_create_reverb_3d();
 std::uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode);
 std::uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const gm_structs::FmodCreateSoundExInfo& ex_info);
 std::uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode);
+std::uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length, double mode);
+std::uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double length, double mode, const gm_structs::FmodCreateSoundExInfo& ex_info);
 std::uint64_t fmod_system_play_sound(std::uint64_t sound_ref, std::uint64_t channel_group_ref, double pause);
 double fmod_sound_get_length(std::uint64_t sound_ref, double length_type);
 double fmod_sound_set_defaults(std::uint64_t sound_ref, double frequency, double priority);
@@ -2544,8 +2546,8 @@ double fmod_sound_set_3d_min_max_distance(std::uint64_t sound_ref, double min, d
 gm_structs::FmodSoundMinMaxDistance fmod_sound_get_3d_min_max_distance(std::uint64_t sound_ref);
 double fmod_sound_set_3d_cone_settings(std::uint64_t sound_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume);
 gm_structs::FmodConeSettings fmod_sound_get_3d_cone_settings(std::uint64_t sound_ref);
-double fmod_sound_set_3d_custom_rolloff(std::uint64_t sound_ref, const gm::wire::GMValue& points, double num_points);
-void fmod_sound_get_3d_custom_rolloff(std::uint64_t sound_ref);
+double fmod_sound_set_3d_custom_rolloff(std::uint64_t sound_ref, gm::wire::GMBuffer points, double num_points);
+double fmod_sound_get_3d_custom_rolloff(std::uint64_t sound_ref, gm::wire::GMBuffer points);
 double fmod_sound_get_num_sync_points(std::uint64_t sound_ref);
 gm_structs::FmodSyncPointInfo fmod_sound_get_sync_point(std::uint64_t sound_ref, double sync_point_index, double offset_type);
 double fmod_sound_add_sync_point(std::uint64_t sound_ref, double offset, double offset_type, std::string_view name);
@@ -2644,14 +2646,15 @@ double fmod_channel_control_set_3d_spread(std::uint64_t channel_control_ref, dou
 double fmod_channel_control_get_3d_spread(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_3d_distance_filter(std::uint64_t channel_control_ref, double custom, double custom_level, double center_freq);
 gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(std::uint64_t channel_control_ref);
-double fmod_channel_control_set_3d_custom_rolloff(std::uint64_t channel_control_ref, const gm::wire::GMValue& points, double num_points);
+double fmod_channel_control_set_3d_custom_rolloff(std::uint64_t channel_control_ref, gm::wire::GMBuffer points, double num_points);
 double fmod_channel_control_get_3d_custom_rolloff_count(std::uint64_t channel_control_ref);
 gm_structs::FmodVec3 fmod_channel_control_get_3d_custom_rolloff_at(std::uint64_t channel_control_ref, double index);
+double fmod_channel_control_get_3d_custom_rolloff(std::uint64_t channel_control_ref, gm::wire::GMBuffer points);
 double fmod_channel_control_set_pan(std::uint64_t channel_control_ref, double pan);
 double fmod_channel_control_set_mix_levels_output(std::uint64_t channel_control_ref, double front_left, double front_right, double center, double lfe, double surround_left, double surround_right, double back_left, double back_right);
-double fmod_channel_control_set_mix_levels_input(std::uint64_t channel_control_ref, double levels, double num_levels);
-double fmod_channel_control_set_mix_matrix(std::uint64_t channel_control_ref, double matrix, double out_channels, double in_channels, double in_channel_hop);
-gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(std::uint64_t channel_control_ref, double in_channel_hop);
+double fmod_channel_control_set_mix_levels_input(std::uint64_t channel_control_ref, gm::wire::GMBuffer levels, double num_levels);
+double fmod_channel_control_set_mix_matrix(std::uint64_t channel_control_ref, gm::wire::GMBuffer matrix, double out_channels, double in_channels, double in_channel_hop);
+gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(std::uint64_t channel_control_ref, gm::wire::GMBuffer matrix, double in_channel_hop);
 double fmod_channel_control_set_reverb_properties(std::uint64_t channel_control_ref, double reverb_instance, double wet);
 double fmod_channel_control_get_reverb_properties(std::uint64_t channel_control_ref, double reverb_instance);
 double fmod_channel_control_set_low_pass_gain(std::uint64_t channel_control_ref, double gain);
@@ -2711,8 +2714,8 @@ double fmod_dsp_get_user_data(std::uint64_t dsp_ref);
 double fmod_dsp_set_callback(std::uint64_t dsp_ref, const std::optional<gm::wire::GMFunction>& callback);
 double fmod_dsp_connection_set_mix(std::uint64_t connection_ref, double volume);
 double fmod_dsp_connection_get_mix(std::uint64_t connection_ref);
-double fmod_dsp_connection_set_mix_matrix(std::uint64_t connection_ref, double matrix, double out_channels, double in_channels, double in_channel_hop);
-gm_structs::FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(std::uint64_t connection_ref, double in_channel_hop);
+double fmod_dsp_connection_set_mix_matrix(std::uint64_t connection_ref, gm::wire::GMBuffer matrix, double out_channels, double in_channels, double in_channel_hop);
+gm_structs::FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(std::uint64_t connection_ref, gm::wire::GMBuffer matrix, double in_channel_hop);
 std::uint64_t fmod_dsp_connection_get_input(std::uint64_t connection_ref);
 std::uint64_t fmod_dsp_connection_get_output(std::uint64_t connection_ref);
 double fmod_dsp_connection_get_type(std::uint64_t connection_ref);

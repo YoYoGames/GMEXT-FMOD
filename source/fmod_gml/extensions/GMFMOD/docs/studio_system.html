@@ -410,16 +410,19 @@
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_loadbankmemory">Studio::System::loadBankMemory</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function loads the metadata of a Studio bank from memory, returning a handle to the Bank object.</p>
+<p>This function loads the metadata of a Studio bank from a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>, returning a handle to the Bank object.</p>
 <p>Sample data must be loaded separately; see <a href="https://www.fmod.com/docs/2.03/api/studio-guide.html#sample-data-loading">Sample Data Loading</a> for details.</p>
-<p>When mode is <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY</code>, FMOD will allocate an internal buffer and copy the data from the passed in buffer before using it. When used in this mode there are no alignment restrictions on buffer and the memory pointed to by buffer may be cleaned up at any time after this function returns.</p>
-<p>When mode is <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT</code>, FMOD will use the passed memory buffer directly. When using this mode the buffer must be aligned to <code>FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT</code> and the memory must persist until the bank has been fully unloaded, which can be some time after calling <a href="bank.html#fmod_studio_bank_unload">fmod_studio_bank_unload</a> to unload the bank. You can ensure the memory is not being freed prematurely by only freeing it after receiving the <code>FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD</code> callback (enabled in <a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a>).</p>
+<p>FMOD allocates an internal buffer and copies the bank data out of the one you pass in, so there are no alignment restrictions on the buffer and it may be deleted as soon as this function returns.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The zero-copy <code>FMOD_STUDIO_LOAD_MEMORY_MODE.MEMORY_POINT</code> mode is deliberately not reachable from GML: it requires the buffer to be aligned to <code>FMOD_STUDIO_LOAD_MEMORY_ALIGNMENT</code> and to stay alive until the bank has finished unloading, and GML can guarantee neither.</p>
+</div>
 <p>If you use <code>FmodStudioLoadBankFlags.NonBlocking</code>, this function will return a Bank handle which will be usable once it has been loaded asynchronously. This is indicated by the <a href="misc.html#fmod_last_result">fmod_last_result</a> value after a function call that uses the Bank handle.</p>
 <p>If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as <a href="bank.html#fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</a> or <a href="studio_system.html#fmod_studio_system_get_event">fmod_studio_system_get_event</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_system_load_bank_memory(data, flags)
+<div class="highlight"><pre><span></span><code>fmod_studio_system_load_bank_memory(data, length, flags)
 </code></pre></div>
 </blockquote>
 <table>
@@ -433,8 +436,13 @@
 <tbody>
 <tr>
 <td>data</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>Memory buffer.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the bank data.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bytes of bank data in the buffer. Pass 0 to use the whole buffer.</td>
 </tr>
 <tr>
 <td>flags</td>

@@ -1080,8 +1080,12 @@ class `[[FmodDSPMixMatrix]]` prototype Object
     [field, type_hint=`real`]
     property in_channels: gmval { get; set; }
 
+    // Bytes the caller's `matrix` buffer needs to hold the full matrix:
+    // out_channels * (in_channel_hop > 0 ? in_channel_hop : in_channels) * 4.
+    // Getters report it whether or not the buffer was big enough, so a caller
+    // can resize and call again.
     [field, type_hint=`real`]
-    property matrix: gmval { get; set; }
+    property required_bytes: gmval { get; set; }
 }
 
 [global]
@@ -2101,7 +2105,8 @@ function fmod_system_set_reverb_properties(
 [global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
 function fmod_system_get_default_mix_matrix(
     [type_hint=`FmodSpeakerMode`] source_speaker_mode: gmval,
-    [type_hint=`FmodSpeakerMode`] target_speaker_mode: gmval
+    [type_hint=`FmodSpeakerMode`] target_speaker_mode: gmval,
+    [type_hint=buffer] matrix: gmval
 ): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodCPUUsage`]
@@ -2230,6 +2235,28 @@ function fmod_system_create_stream(
     mode: real
 ): gmval;
 
+// Same as fmod_system_create_sound, but reads the sound out of a GML buffer
+// instead of a file. FmodMode.OpenMemory is forced on and FMOD copies the
+// data, so the buffer can be freed as soon as this returns. Pass
+// FmodMode.CreateStream in `mode` for a memory stream. `length` of 0 or less
+// means the whole buffer.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_sound_memory(
+    [type_hint=buffer] data: gmval,
+    length: real,
+    mode: real
+): gmval;
+
+// Same as fmod_system_create_sound_memory, but describes the sound being
+// created. Required for raw PCM, whose format cannot be inferred.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_system_create_sound_memory_ex(
+    [type_hint=buffer] data: gmval,
+    length: real,
+    mode: real,
+    [type_hint=`FmodCreateSoundExInfo`] ex_info: gmval
+): gmval;
+
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_system_play_sound(
     [type_hint=`uint64`] sound_ref: gmval,
@@ -2343,14 +2370,15 @@ function fmod_sound_get_3d_cone_settings(
 [global, bind = typed_gml]
 function fmod_sound_set_3d_custom_rolloff(
     [type_hint=`uint64`] sound_ref: gmval,
-    points: gmval,
+    [type_hint=buffer] points: gmval,
     num_points: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_sound_get_3d_custom_rolloff(
-    [type_hint=`uint64`] sound_ref: gmval
-): unit;
+    [type_hint=`uint64`] sound_ref: gmval,
+    [type_hint=buffer] points: gmval
+): real;
 
 // ============================================================
 // Sound - Sync Points
@@ -3027,7 +3055,7 @@ function fmod_channel_control_get_3d_distance_filter(
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_custom_rolloff(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    points: gmval,
+    [type_hint=buffer] points: gmval,
     num_points: real
 ): real;
 
@@ -3041,6 +3069,14 @@ function fmod_channel_control_get_3d_custom_rolloff_at(
     [type_hint=`uint64`] channel_control_ref: gmval,
     index: real
 ): gmval;
+
+// Reads the whole curve in one call. Returns the bytes needed
+// (num_points * 12), whether or not `points` was big enough.
+[global, bind = typed_gml]
+function fmod_channel_control_get_3d_custom_rolloff(
+    [type_hint=`uint64`] channel_control_ref: gmval,
+    [type_hint=buffer] points: gmval
+): real;
 
 // ============================================================
 // ChannelControl - Panning & Mixing
@@ -3068,14 +3104,14 @@ function fmod_channel_control_set_mix_levels_output(
 [global, bind = typed_gml]
 function fmod_channel_control_set_mix_levels_input(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    levels: real,
+    [type_hint=buffer] levels: gmval,
     num_levels: real
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mix_matrix(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    matrix: real,
+    [type_hint=buffer] matrix: gmval,
     out_channels: real,
     in_channels: real,
     in_channel_hop: real
@@ -3084,6 +3120,7 @@ function fmod_channel_control_set_mix_matrix(
 [global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
 function fmod_channel_control_get_mix_matrix(
     [type_hint=`uint64`] channel_control_ref: gmval,
+    [type_hint=buffer] matrix: gmval,
     in_channel_hop: real
 ): gmval;
 
@@ -3507,7 +3544,7 @@ function fmod_dsp_connection_get_mix(
 [global, bind = typed_gml]
 function fmod_dsp_connection_set_mix_matrix(
     [type_hint=`uint64`] connection_ref: gmval,
-    matrix: real,
+    [type_hint=buffer] matrix: gmval,
     out_channels: real,
     in_channels: real,
     in_channel_hop: real
@@ -3516,6 +3553,7 @@ function fmod_dsp_connection_set_mix_matrix(
 [global, bind = typed_gml, type_hint=`FmodDSPMixMatrix`]
 function fmod_dsp_connection_get_mix_matrix(
     [type_hint=`uint64`] connection_ref: gmval,
+    [type_hint=buffer] matrix: gmval,
     in_channel_hop: real
 ): gmval;
 

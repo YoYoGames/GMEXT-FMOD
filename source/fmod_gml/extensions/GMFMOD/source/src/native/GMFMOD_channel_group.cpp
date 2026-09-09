@@ -154,6 +154,9 @@ double fmod_channel_group_release(uint64_t channel_group_ref)
 	// Unregister first: unregisterResource reads the object's user-data slot,
 	// which is gone once release() has run.
 	unregisterResource(channel_group, map_channel_groups);
+	// A ChannelGroup never gets FMOD_CHANNELCONTROL_CALLBACK_END, so this is the
+	// only point at which a custom rolloff copy it owns can be reclaimed.
+	fmod_channel_control_forget_rolloff(channel_group);
 	g_fmod_last_result = channel_group->release();
 	return 0;
 }

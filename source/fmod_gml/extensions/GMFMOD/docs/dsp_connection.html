@@ -235,7 +235,7 @@
 <p><br /></p>
 <p>This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
 <p>A matrix element is referenced from the incoming matrix data as <code>out_channel * in_channel_hop + in_channel</code>.</p>
-<p>If 0 or equivalent is passed in via <code>matrix</code> a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.</p>
+<p>Writing a unit matrix lets a signal pass through unchanged.</p>
 <p>Example 5.1 unit matrix:</p>
 <p><code>1 0 0 0 0 0
 0 1 0 0 0 0
@@ -247,6 +247,7 @@
 <p class="admonition-title">Note</p>
 <p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
 </div>
+<p>The matrix is passed in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least <code>out_channels * in_channel_hop * buffer_sizeof(buffer_f32)</code> bytes, or <code>FmodResult.ErrInvalidParam</code> is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -269,8 +270,8 @@
 </tr>
 <tr>
 <td>matrix</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel. 0 or equivalent sets a 'default' matrix.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
 </tr>
 <tr>
 <td>out_channels</td>
@@ -305,10 +306,11 @@
 <p><br /></p>
 <p>This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
 <p>A matrix element is referenced from the incoming matrix data as <code>out_channel * in_channel_hop + in_channel</code>.</p>
+<p>The matrix is written into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's <code>required_bytes</code> member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to <code>required_bytes</code> and calls it again. The channel counts in the returned struct are filled in either way.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_mix_matrix(connection_ref, in_channel_hop)
+<div class="highlight"><pre><span></span><code>fmod_dsp_connection_get_mix_matrix(connection_ref, matrix, in_channel_hop)
 </code></pre></div>
 </blockquote>
 <table>
@@ -324,6 +326,11 @@
 <td>connection_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>A reference to a DSPConnection.</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the volume levels.</td>
 </tr>
 <tr>
 <td>in_channel_hop</td>

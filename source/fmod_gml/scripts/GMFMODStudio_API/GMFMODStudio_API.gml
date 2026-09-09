@@ -2016,18 +2016,33 @@ function fmod_studio_system_load_bank_file(_filename, _flags)
 }
 
 /**
- * @param {String} _data
+ * @param {Id.Buffer} _data
+ * @param {Real} _length
  * @param {Real} _flags
  * @returns {Real}
  */
-function fmod_studio_system_load_bank_memory(_data, _flags)
+function fmod_studio_system_load_bank_memory(_data, _length, _flags)
 {
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _data, type: Buffer
+    if (!buffer_exists(_data)) show_error($"{_GMFUNCTION_} :: _data expected Id.Buffer", true);
+    __GMFMODStudio_queue_buffer(buffer_get_address(_data), buffer_get_size(_data));
+
+    // param: _length, type: Float64
+    if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _length);
+
+    // param: _flags, type: Float64
+    if (!is_numeric(_flags)) show_error($"{_GMFUNCTION_} :: _flags expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _flags);
+
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_studio_system_load_bank_memory(_data, _flags, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+    var __return_value__ = __fmod_studio_system_load_bank_memory(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
     if (buffer_read(__ret_buffer__, buffer_bool))

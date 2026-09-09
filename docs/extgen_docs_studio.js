@@ -47,7 +47,8 @@
 
 /**
  * @function_partial fmod_studio_system_load_bank_memory
- * @param {String} data
+ * @param {Buffer} data
+ * @param {Real} length
  * @param {Real} flags
  * @returns {Real}
  * @function_end

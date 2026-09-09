@@ -105,9 +105,12 @@ extern std::atomic<uint64_t> g_fmod_callback_count;
 // Each file owning a file-local map exposes a reset entry point rather than
 // promoting the map to a global. fmod_shutdown() drives them all.
 FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control);
+void fmod_channel_control_forget_rolloff(const void* control);
 void fmod_channel_control_reset_state();
 void fmod_sound_forget_lock(const void* sound);
 void fmod_sound_reset_state();
+void fmod_dsp_forget_callback(const void* dsp);
+void fmod_dsp_reset_state();
 void fmod_registry_clear_all();
 
 // ============================================================

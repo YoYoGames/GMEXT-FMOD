@@ -192,6 +192,7 @@
 <li><a href="channel_control.html#fmod_channel_control_get_system_object">fmod_channel_control_get_system_object</a></li>
 <li><a href="channel_control.html#fmod_channel_control_set_user_data">fmod_channel_control_set_user_data</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_user_data">fmod_channel_control_get_user_data</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_at">fmod_channel_control_get_3d_custom_rolloff_at</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_count">fmod_channel_control_get_3d_custom_rolloff_count</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_fade_point_at">fmod_channel_control_get_fade_point_at</a></li>
@@ -1171,14 +1172,8 @@
 <p>When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.</p>
 <p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
 <p>If the points are not sorted by distance, an error will result.</p>
-<p><code>gml
-// Defining a custom array of points
-curve =
-{
-    { x:  0, y: 1, z: 0 },
-    { x:  2, y: 2, z: 0 },
-    { x: 20, y: 0, z: 0 }
-};</code></p>
+<p>The curve is passed in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding <code>num_points</code> points one after another, each point being three 32-bit floats: <code>x</code> (the distance), <code>y</code> (the volume) and <code>z</code> (unused, write 0). The extension keeps its own copy of the curve, so the buffer may be deleted as soon as this function returns.</p>
+<p>Pass a <code>num_points</code> of 0 to remove the custom roll-off again.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1201,13 +1196,13 @@ curve =
 </tr>
 <tr>
 <td>points</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
-<td>An array of vectors sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0. Pass an empty array to disable custom rolloff.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the points, sorted by distance, where <code>x</code> = distance and <code>y</code> = volume from 0 to 1. <code>z</code> should be set to 0.</td>
 </tr>
 <tr>
 <td>num_points</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The number of points in the rolloff curve.</td>
+<td>The number of points in the rolloff curve. Pass 0 to disable custom rolloff.</td>
 </tr>
 </tbody>
 </table>
@@ -1216,6 +1211,65 @@ curve =
 <blockquote>
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
 </blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p><code>gml
+// Three points: (0, 1), (2, 0.2) and (20, 0)
+var _points = [0, 1, 0,  2, 0.2, 0,  20, 0, 0];
+var _rolloff = buffer_create(array_length(_points) * buffer_sizeof(buffer_f32), buffer_fixed, 1);
+for (var _i = 0; _i &lt; array_length(_points); _i++)
+{
+    buffer_write(_rolloff, buffer_f32, _points[_i]);
+}
+fmod_channel_control_set_3d_custom_rolloff(channel, _rolloff, 3);
+buffer_delete(_rolloff);</code>
+The code above builds a three-point roll-off curve in a buffer, hands it to the Channel and then deletes the buffer, which is safe because the extension copies the curve.</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_get3dcustomrolloff">ChannelControl::get3DCustomRolloff</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the current custom roll-off shape for 3D distance attenuation, copying it into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>.</p>
+<p>Each point is written as three 32-bit floats - <code>x</code> (the distance), <code>y</code> (the volume) and <code>z</code> (unused) - one point after another, starting at the beginning of the buffer.</p>
+<p>The function returns the number of bytes the whole curve needs. Nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to the returned size and calls it again. A return value of 0 means the Channel or ChannelGroup has no custom roll-off set.</p>
+<p><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_count">fmod_channel_control_get_3d_custom_rolloff_count</a> and <a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_at">fmod_channel_control_get_3d_custom_rolloff_at</a> read the same curve one point at a time.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_3d_custom_rolloff(channel_control_ref, points)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_control_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>points</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the points.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p>The size of the whole curve, in bytes.</p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
@@ -1818,6 +1872,7 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 <p class="admonition-title">Note</p>
 <p>This is currently only supported for Channel, not ChannelGroup.</p>
 </div>
+<p>The levels are passed in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding <code>num_levels</code> 32-bit floats, one per input channel, starting at the beginning of the buffer. FMOD copies them, so the buffer may be deleted as soon as this function returns.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1840,8 +1895,8 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 </tr>
 <tr>
 <td>levels</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>An array of volume levels for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding one volume level for each incoming channel. Volume level. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>num_levels</td>
@@ -1950,7 +2005,7 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 <p><br /></p>
 <p>This function sets a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
 <p>This will overwrite values set via <a href="channel_control.html#fmod_channel_control_set_pan">fmod_channel_control_set_pan</a>, <a href="channel_control.html#fmod_channel_control_set_mix_levels_input">fmod_channel_control_set_mix_levels_input</a> and <a href="channel_control.html#fmod_channel_control_set_mix_levels_output">fmod_channel_control_set_mix_levels_output</a>.</p>
-<p>If no matrix is passed in via matrix a default upmix, downmix, or unit matrix will take its place. A unit matrix allows a signal to pass through unchanged.</p>
+<p>Writing a unit matrix lets a signal pass through unchanged.</p>
 <p>Example 5.1 unit matrix:</p>
 <p><code>1 0 0 0 0 0
 0 1 0 0 0 0
@@ -1958,6 +2013,7 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 0 0 0 1 0 0
 0 0 0 0 1 0
 0 0 0 0 0 1</code></p>
+<p>The matrix is passed in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least <code>out_channels * in_channel_hop * buffer_sizeof(buffer_f32)</code> bytes, or <code>FmodResult.ErrInvalidParam</code> is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
@@ -1984,8 +2040,8 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 </tr>
 <tr>
 <td>matrix</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A two-dimensional array of volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> holding the volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.</td>
 </tr>
 <tr>
 <td>out_channels</td>
@@ -2019,6 +2075,7 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 </blockquote>
 <p><br /></p>
 <p>This function retrieves a 2 dimensional pan matrix that maps the signal from input channels (columns) to output speakers (rows).</p>
+<p>The matrix is written into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's <code>required_bytes</code> member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to <code>required_bytes</code> and calls it again. The channel counts in the returned struct are filled in either way.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.</p>
@@ -2026,7 +2083,7 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop)
+<div class="highlight"><pre><span></span><code>fmod_channel_control_get_mix_matrix(channel_control_ref, matrix, in_channel_hop)
 </code></pre></div>
 </blockquote>
 <table>
@@ -2042,6 +2099,11 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 <td>channel_control_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>A reference to a channel control.</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that receives the volume levels.</td>
 </tr>
 <tr>
 <td>in_channel_hop</td>

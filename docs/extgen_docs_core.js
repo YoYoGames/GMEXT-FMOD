@@ -544,6 +544,7 @@
  * @function_partial fmod_system_get_default_mix_matrix
  * @param {Enum.FmodSpeakerMode} source_speaker_mode
  * @param {Enum.FmodSpeakerMode} target_speaker_mode
+ * @param {Buffer} matrix
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
  */
@@ -715,6 +716,25 @@
  */
 
 /**
+ * @function_partial fmod_system_create_sound_memory
+ * @param {Buffer} data
+ * @param {Real} length
+ * @param {Real} mode
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_system_create_sound_memory_ex
+ * @param {Buffer} data
+ * @param {Real} length
+ * @param {Real} mode
+ * @param {Struct.FmodCreateSoundExInfo} ex_info
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_play_sound
  * @param {Real} sound_ref
  * @param {Real} channel_group_ref
@@ -847,7 +867,7 @@
 /**
  * @function_partial fmod_sound_set_3d_custom_rolloff
  * @param {Real} sound_ref
- * @param {Any} points
+ * @param {Buffer} points
  * @param {Real} num_points
  * @returns {Real}
  * @function_end
@@ -856,6 +876,8 @@
 /**
  * @function_partial fmod_sound_get_3d_custom_rolloff
  * @param {Real} sound_ref
+ * @param {Buffer} points
+ * @returns {Real}
  * @function_end
  */
 
@@ -1630,7 +1652,7 @@
 /**
  * @function_partial fmod_channel_control_set_3d_custom_rolloff
  * @param {Real} channel_control_ref
- * @param {Any} points
+ * @param {Buffer} points
  * @param {Real} num_points
  * @returns {Real}
  * @function_end
@@ -1648,6 +1670,14 @@
  * @param {Real} channel_control_ref
  * @param {Real} index
  * @returns {Struct.FmodVec3}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_control_get_3d_custom_rolloff
+ * @param {Real} channel_control_ref
+ * @param {Buffer} points
+ * @returns {Real}
  * @function_end
  */
 
@@ -1677,7 +1707,7 @@
 /**
  * @function_partial fmod_channel_control_set_mix_levels_input
  * @param {Real} channel_control_ref
- * @param {Real} levels
+ * @param {Buffer} levels
  * @param {Real} num_levels
  * @returns {Real}
  * @function_end
@@ -1686,7 +1716,7 @@
 /**
  * @function_partial fmod_channel_control_set_mix_matrix
  * @param {Real} channel_control_ref
- * @param {Real} matrix
+ * @param {Buffer} matrix
  * @param {Real} out_channels
  * @param {Real} in_channels
  * @param {Real} in_channel_hop
@@ -1697,6 +1727,7 @@
 /**
  * @function_partial fmod_channel_control_get_mix_matrix
  * @param {Real} channel_control_ref
+ * @param {Buffer} matrix
  * @param {Real} in_channel_hop
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
@@ -2158,7 +2189,7 @@
 /**
  * @function_partial fmod_dsp_connection_set_mix_matrix
  * @param {Real} connection_ref
- * @param {Real} matrix
+ * @param {Buffer} matrix
  * @param {Real} out_channels
  * @param {Real} in_channels
  * @param {Real} in_channel_hop
@@ -2169,6 +2200,7 @@
 /**
  * @function_partial fmod_dsp_connection_get_mix_matrix
  * @param {Real} connection_ref
+ * @param {Buffer} matrix
  * @param {Real} in_channel_hop
  * @returns {Struct.FmodDSPMixMatrix}
  * @function_end
@@ -2447,7 +2479,7 @@
  * @struct_partial FmodDSPMixMatrix
  * @member {Real} out_channels
  * @member {Real} in_channels
- * @member {Real} matrix
+ * @member {Real} required_bytes
  * @struct_end
  */
 

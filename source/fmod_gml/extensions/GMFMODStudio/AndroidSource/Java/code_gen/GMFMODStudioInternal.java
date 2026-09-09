@@ -8,6 +8,10 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__GMFMODStudio_invocation_handler(__ret_buffer, __ret_buffer_length);
     }
+    public double __EXT_NATIVE__GMFMODStudio_queue_buffer(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__GMFMODStudio_queue_buffer(__arg_buffer, __arg_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_studio_system_create(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
         return __EXT_JNI__fmod_studio_system_create(__ret_buffer, __ret_buffer_length);
@@ -36,9 +40,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_system_load_bank_file(filename, flags, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_system_load_bank_memory(String data, double flags, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_system_load_bank_memory(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_system_load_bank_memory(data, flags, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_studio_system_load_bank_memory(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_system_unload_all()
     {

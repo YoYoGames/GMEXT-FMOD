@@ -1,4 +1,5 @@
 #include "GMFMOD_channel_control.h"
+#include <cstring>
 #include <vector>
 
 using namespace gm_structs;
@@ -330,18 +331,87 @@ gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(uint6
 	return result;
 }
 
-double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, const gm::wire::GMValue& points, double num_points)
+// set3DCustomRolloff stores the FMOD_VECTOR* it is handed verbatim -
+// get3DCustomRolloff gives the very same address back - so a GML buffer can
+// never be passed through: the mixer thread would read freed memory the moment
+// GML resized or freed it. Each control that has a curve owns a copy here.
+// Keys are the truncated pointer the GML refs carry, matching the callback
+// table below so CALLBACK_END can reclaim both in one pass.
+static std::mutex g_channel_rolloff_mutex;
+static std::map<uintptr_t, std::vector<FMOD_VECTOR>> g_channel_rolloff;
+
+void fmod_channel_control_forget_rolloff(const void* control)
+{
+	std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+	g_channel_rolloff.erase(reinterpret_cast<uintptr_t>(control) & 0xFFFFFFFFu);
+}
+
+double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, gm::wire::GMBuffer points, double num_points)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 
-	// The wire format for an array of struct elements (FmodVec3 points) has no
-	// decoder in this codebase yet - every other GMValue-typed buffer parameter
-	// (Sound::set3DCustomRolloff, DSP::set/getParameterData, DSPConnection's mix
-	// matrix below) is likewise left unsupported pending real array/struct wire
-	// support.
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	const uintptr_t control_ptr = reinterpret_cast<uintptr_t>(control) & 0xFFFFFFFFu;
+	const int count = (int)num_points;
+
+	// Disabling: point FMOD away from our copy before reclaiming it, never the
+	// other way round.
+	if (count <= 0 || points.data() == nullptr)
+	{
+		g_fmod_last_result = control->set3DCustomRolloff(nullptr, 0);
+		if (g_fmod_last_result == FMOD_OK)
+			fmod_channel_control_forget_rolloff(control);
+		return 0;
+	}
+
+	// A GML buffer holds num_points packed FMOD_VECTOR (3 x f32).
+	if (points.length() < (uint64_t)count * sizeof(FMOD_VECTOR))
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	const FMOD_VECTOR* src = reinterpret_cast<const FMOD_VECTOR*>(points.data());
+	std::vector<FMOD_VECTOR> owned(src, src + count);
+
+	// Swap the previous curve out into a local instead of overwriting in place:
+	// FMOD still points at it until set3DCustomRolloff returns, so it must not be
+	// freed before then. The local dies at the end of this function, by which
+	// point FMOD points at the new copy - or has been restored to the old one.
+	std::vector<FMOD_VECTOR> previous;
+	FMOD_VECTOR* data = nullptr;
+	{
+		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+		std::vector<FMOD_VECTOR>& slot = g_channel_rolloff[control_ptr];
+		previous.swap(slot);
+		slot.swap(owned);
+		data = slot.data();
+	}
+
+	g_fmod_last_result = control->set3DCustomRolloff(data, count);
+
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		// The new pointer was rejected, so FMOD is still pointing at the previous
+		// curve. Put that buffer back - swapping a vector preserves its address,
+		// which is the address FMOD holds - and let the new copy die instead.
+		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+		if (previous.empty())
+			g_channel_rolloff.erase(control_ptr);
+		else
+			g_channel_rolloff[control_ptr].swap(previous);
+		return 0;
+	}
+
+	// A Channel has no other end-of-life signal, so arm the trampoline that
+	// CALLBACK_END arrives on - the same reason set_user_data arms it. A
+	// ChannelGroup never gets CALLBACK_END; fmod_channel_group_release calls
+	// fmod_channel_control_forget_rolloff instead. If arming fails the entry is
+	// deliberately kept rather than freed, because FMOD is pointing at it -
+	// fmod_channel_control_reset_state() is the backstop.
+	if (gm_fmod_ref_type(channel_control_ref) != GM_FMOD_TYPE_CHANNEL_GROUP)
+		fmod_channel_control_arm_end_hook(control);
 	return 0;
 }
 
@@ -373,6 +443,28 @@ gm_structs::FmodVec3 fmod_channel_control_get_3d_custom_rolloff_at(uint64_t chan
 	return result;
 }
 
+double fmod_channel_control_get_3d_custom_rolloff(uint64_t channel_control_ref, gm::wire::GMBuffer points)
+{
+	FMOD::ChannelControl* control = nullptr;
+	validate_fmod_channel_control(channel_control_ref, control);
+	if (control == nullptr) return 0.0;
+
+	FMOD_VECTOR* curve = nullptr;
+	int num_points = 0;
+	g_fmod_last_result = control->get3DCustomRolloff(&curve, &num_points);
+	if (g_fmod_last_result != FMOD_OK || curve == nullptr || num_points <= 0)
+		return 0.0;
+
+	const uint64_t required = (uint64_t)num_points * sizeof(FMOD_VECTOR);
+
+	// Nothing is written unless the whole curve fits; the caller resizes to the
+	// returned byte count and calls again.
+	if (points.data() != nullptr && points.length() >= required)
+		std::memcpy(points.data(), curve, (size_t)required);
+
+	return (double)required;
+}
+
 // ============================================================
 // Panning & Mixing
 // ============================================================
@@ -395,32 +487,68 @@ double fmod_channel_control_set_mix_levels_output(uint64_t channel_control_ref, 
 	return 0;
 }
 
-double fmod_channel_control_set_mix_levels_input(uint64_t channel_control_ref, double levels, double num_levels)
+double fmod_channel_control_set_mix_levels_input(uint64_t channel_control_ref, gm::wire::GMBuffer levels, double num_levels)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 
-	// levels is a scalar in the generated signature (the spec did not attach an
-	// array/buffer hint to this parameter), so there is no way to pass the real
-	// per-channel level array - same structural limit as set_mix_matrix below.
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	const int count = (int)num_levels;
+	if (count <= 0 || levels.data() == nullptr || levels.length() < (uint64_t)count * sizeof(float))
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	// setMixLevelsInput feeds the same FMOD-owned matrix setMixMatrix writes into
+	// (fmod.hpp:291), so nothing here has to outlive the call.
+	g_fmod_last_result = control->setMixLevelsInput((float*)levels.data(), count);
 	return 0;
 }
 
-double fmod_channel_control_set_mix_matrix(uint64_t channel_control_ref, double matrix, double out_channels, double in_channels, double in_channel_hop)
+double fmod_channel_control_set_mix_matrix(uint64_t channel_control_ref, gm::wire::GMBuffer matrix, double out_channels, double in_channels, double in_channel_hop)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 
-	// matrix is a scalar in the generated signature - same limitation already
-	// present in DSPConnection::setMixMatrix (GMFMOD_dsp_connection.cpp).
-	g_fmod_last_result = FMOD_ERR_UNSUPPORTED;
+	int out = (int)out_channels;
+	int in = (int)in_channels;
+	int hop = (int)in_channel_hop;
+
+	// FMOD reads a null matrix as "drop back to the default mix". The generated
+	// GML wrapper rejects anything that is not an existing buffer, so this branch
+	// is unreachable from GML today - a GML caller that wants the default back
+	// writes an identity matrix. It is kept because the check costs nothing and
+	// the alternative is dereferencing a null pointer if that ever changes.
+	if (matrix.data() == nullptr)
+	{
+		g_fmod_last_result = control->setMixMatrix(nullptr, out, in, hop);
+		return 0;
+	}
+
+	if (out <= 0 || in <= 0)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	// FMOD indexes the caller's storage as matrix[t * hop + s], so the hop -
+	// not in_channels - is what decides how far the last row reaches.
+	uint64_t required = (uint64_t)out * (uint64_t)(hop > 0 ? hop : in) * sizeof(float);
+	if (matrix.length() < required)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	// setMixMatrix copies into FMOD's own matrix, so the GML buffer may be freed
+	// the moment this returns.
+	g_fmod_last_result = control->setMixMatrix((float*)matrix.data(), out, in, hop);
 	return 0;
 }
 
-gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(uint64_t channel_control_ref, double in_channel_hop)
+gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(uint64_t channel_control_ref, gm::wire::GMBuffer matrix, double in_channel_hop)
 {
 	FmodDSPMixMatrix result{};
 	FMOD::ChannelControl* control = nullptr;
@@ -428,11 +556,25 @@ gm_structs::FmodDSPMixMatrix fmod_channel_control_get_mix_matrix(uint64_t channe
 	if (control == nullptr) return result;
 
 	int out_channels = 0, in_channels = 0;
-	g_fmod_last_result = control->getMixMatrix(nullptr, &out_channels, &in_channels, (int)in_channel_hop);
+	int hop = (int)in_channel_hop;
+	g_fmod_last_result = control->getMixMatrix(nullptr, &out_channels, &in_channels, hop);
 
 	result.out_channels = (double)out_channels;
 	result.in_channels = (double)in_channels;
-	result.matrix = 0.0;
+	if (g_fmod_last_result != FMOD_OK)
+		return result;
+
+	// FMOD indexes the caller's storage as matrix[t * hop + s], so the hop -
+	// not in_channels - is what decides the size needed.
+	uint64_t required = (uint64_t)out_channels * (uint64_t)(hop > 0 ? hop : in_channels) * sizeof(float);
+	result.required_bytes = (double)required;
+
+	// Nothing is written unless the whole matrix fits. The caller resizes to
+	// required_bytes and calls again.
+	if (required == 0 || matrix.data() == nullptr || matrix.length() < required)
+		return result;
+
+	g_fmod_last_result = control->getMixMatrix((float*)matrix.data(), &out_channels, &in_channels, hop);
 	return result;
 }
 
@@ -829,8 +971,13 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	// hook precisely so the user-data entry gets an end-of-life signal too.
 	if (ended)
 	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data.erase(control_ptr);
+		{
+			std::lock_guard<std::mutex> lock(g_user_data_mutex);
+			g_user_data.erase(control_ptr);
+		}
+		// The channel is gone, so FMOD is no longer reading the rolloff copy.
+		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+		g_channel_rolloff.erase(control_ptr);
 	}
 
 	if (callback.has_value())
@@ -853,6 +1000,10 @@ void fmod_channel_control_reset_state()
 		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
 		g_channel_callbacks.clear();
 	}
+	{
+		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+		g_channel_rolloff.clear();
+	}
 	std::lock_guard<std::mutex> lock(g_user_data_mutex);
 	g_user_data.clear();
 }
@@ -872,12 +1023,18 @@ double fmod_channel_control_set_callback(uint64_t channel_ref, const std::option
 			g_channel_callbacks.erase(control_ptr);
 		}
 
-		// Keep the trampoline installed while this channel still has user data
-		// to reclaim; clearing it would strip the only CALLBACK_END we get.
+		// Keep the trampoline installed while this channel still has user data or
+		// a rolloff copy to reclaim; clearing it would strip the only CALLBACK_END
+		// we get, and the rolloff copy is memory FMOD is actively reading.
 		bool keep_hook = false;
 		{
 			std::lock_guard<std::mutex> lock(g_user_data_mutex);
 			keep_hook = g_user_data.count(control_ptr) != 0;
+		}
+		if (!keep_hook)
+		{
+			std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+			keep_hook = g_channel_rolloff.count(control_ptr) != 0;
 		}
 		g_fmod_last_result = channel->setCallback(keep_hook ? CALLBACK_fmod_channel_control : nullptr);
 		return 0;

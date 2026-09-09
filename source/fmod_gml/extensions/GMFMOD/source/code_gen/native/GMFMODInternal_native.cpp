@@ -824,7 +824,11 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_default_mix_matrix(char* __arg_buf
     // field: target_speaker_mode, type: enum FmodSpeakerMode
     gm_enums::FmodSpeakerMode target_speaker_mode = gm::wire::codec::readValue<gm_enums::FmodSpeakerMode>(__br);
 
-    auto&& __result = fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode);
+    // field: matrix, type: Buffer
+    gm::wire::GMBuffer matrix = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    auto&& __result = fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: struct FmodDSPMixMatrix
@@ -1060,6 +1064,53 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_ex(char* __arg_buffer, do
 GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_create_stream(name_or_data, static_cast<double>(mode));
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: data, type: Buffer
+    gm::wire::GMBuffer data = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    // field: mode, type: Float64
+    double mode = gm::wire::codec::readValue<double>(__br);
+
+    auto&& __result = fmod_system_create_sound_memory(data, length, mode);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory_ex(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: data, type: Buffer
+    gm::wire::GMBuffer data = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    // field: length, type: Float64
+    double length = gm::wire::codec::readValue<double>(__br);
+
+    // field: mode, type: Float64
+    double mode = gm::wire::codec::readValue<double>(__br);
+
+    // field: ex_info, type: struct FmodCreateSoundExInfo
+    gm_structs::FmodCreateSoundExInfo ex_info = gm::wire::codec::readValue<gm_structs::FmodCreateSoundExInfo>(__br);
+
+    auto&& __result = fmod_system_create_sound_memory_ex(data, length, mode, ex_info);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: UInt64
@@ -1325,8 +1376,9 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_3d_custom_rolloff(char* __arg_buffe
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: points, type: Any
-    gm::wire::GMValue points = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+    // field: points, type: Buffer
+    gm::wire::GMBuffer points = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: num_points, type: Float64
     double num_points = gm::wire::codec::readValue<double>(__br);
@@ -1342,8 +1394,12 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_3d_custom_rolloff(char* __arg_buffe
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    fmod_sound_get_3d_custom_rolloff(sound_ref);
-    return 0;
+    // field: points, type: Buffer
+    gm::wire::GMBuffer points = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    auto&& __result = fmod_sound_get_3d_custom_rolloff(sound_ref, points);
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_sync_points(char* __arg_buffer, double __arg_buffer_length)
@@ -2780,8 +2836,9 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_custom_rolloff(char* _
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: points, type: Any
-    gm::wire::GMValue points = gm::wire::codec::readValue<gm::wire::GMValue>(__br);
+    // field: points, type: Buffer
+    gm::wire::GMBuffer points = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: num_points, type: Float64
     double num_points = gm::wire::codec::readValue<double>(__br);
@@ -2817,6 +2874,21 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff_at(char
     // return: __result, type: struct FmodVec3
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_3d_custom_rolloff(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: points, type: Buffer
+    gm::wire::GMBuffer points = __buffer_queue.front();
+    __buffer_queue.pop();
+
+    auto&& __result = fmod_channel_control_get_3d_custom_rolloff(channel_control_ref, points);
+    return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pan(char* __arg_buffer, double __arg_buffer_length)
@@ -2875,8 +2947,9 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_levels_input(char* __
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: levels, type: Float64
-    double levels = gm::wire::codec::readValue<double>(__br);
+    // field: levels, type: Buffer
+    gm::wire::GMBuffer levels = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: num_levels, type: Float64
     double num_levels = gm::wire::codec::readValue<double>(__br);
@@ -2892,8 +2965,9 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mix_matrix(char* __arg_bu
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: matrix, type: Float64
-    double matrix = gm::wire::codec::readValue<double>(__br);
+    // field: matrix, type: Buffer
+    gm::wire::GMBuffer matrix = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: out_channels, type: Float64
     double out_channels = gm::wire::codec::readValue<double>(__br);
@@ -2915,10 +2989,14 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mix_matrix(char* __arg_bu
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
+    // field: matrix, type: Buffer
+    gm::wire::GMBuffer matrix = __buffer_queue.front();
+    __buffer_queue.pop();
+
     // field: in_channel_hop, type: Float64
     double in_channel_hop = gm::wire::codec::readValue<double>(__br);
 
-    auto&& __result = fmod_channel_control_get_mix_matrix(channel_control_ref, in_channel_hop);
+    auto&& __result = fmod_channel_control_get_mix_matrix(channel_control_ref, matrix, in_channel_hop);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: struct FmodDSPMixMatrix
@@ -3812,8 +3890,9 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_mix_matrix(char* __arg_buf
     // field: connection_ref, type: UInt64
     std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: matrix, type: Float64
-    double matrix = gm::wire::codec::readValue<double>(__br);
+    // field: matrix, type: Buffer
+    gm::wire::GMBuffer matrix = __buffer_queue.front();
+    __buffer_queue.pop();
 
     // field: out_channels, type: Float64
     double out_channels = gm::wire::codec::readValue<double>(__br);
@@ -3835,10 +3914,14 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_mix_matrix(char* __arg_buf
     // field: connection_ref, type: UInt64
     std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
+    // field: matrix, type: Buffer
+    gm::wire::GMBuffer matrix = __buffer_queue.front();
+    __buffer_queue.pop();
+
     // field: in_channel_hop, type: Float64
     double in_channel_hop = gm::wire::codec::readValue<double>(__br);
 
-    auto&& __result = fmod_dsp_connection_get_mix_matrix(connection_ref, in_channel_hop);
+    auto&& __result = fmod_dsp_connection_get_mix_matrix(connection_ref, matrix, in_channel_hop);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: struct FmodDSPMixMatrix

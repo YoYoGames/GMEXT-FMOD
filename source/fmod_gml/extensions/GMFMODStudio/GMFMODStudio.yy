@@ -151,7 +151,7 @@
             1,
             2
           ],
-          "documentation": "@param {String} data\r\n@param {Real} flags\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_system_load_bank_memory",
           "help": "",
           "hidden": true,
@@ -3511,6 +3511,24 @@
           "hidden": true,
           "kind": 4,
           "name": "__GMFMODStudio_invocation_handler",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__GMFMODStudio_queue_buffer",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _buffer_ptr\r\n@param {Real} _buffer_size",
+          "externalName": "__EXT_NATIVE__GMFMODStudio_queue_buffer",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__GMFMODStudio_queue_buffer",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
