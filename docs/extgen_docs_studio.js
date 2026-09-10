@@ -397,7 +397,8 @@
 
 /**
  * @function_partial fmod_studio_system_set_callback
- * @param {Real} callback_mask
+ * @param {Function} [callback]
+ * @param {Enum.FmodStudioSystemCallbackType} callback_mask
  * @returns {Real}
  * @function_end
  */
@@ -705,7 +706,8 @@
 /**
  * @function_partial fmod_studio_event_description_set_callback
  * @param {Real} event_desc_ref
- * @param {Real} callback_mask
+ * @param {Function} [callback]
+ * @param {Enum.FmodStudioEventCallbackType} callback_mask
  * @returns {Real}
  * @function_end
  */
@@ -1066,6 +1068,13 @@
  */
 
 /**
+ * @function_partial fmod_studio_event_instance_get_channel_group_ptr
+ * @param {Real} instance_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_event_instance_get_cpu_usage
  * @param {Real} instance_ref
  * @returns {Struct.FmodStudioCPUUsage}
@@ -1160,6 +1169,13 @@
 
 /**
  * @function_partial fmod_studio_bus_get_channel_group
+ * @param {Real} bus_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_bus_get_channel_group_ptr
  * @param {Real} bus_ref
  * @returns {Real}
  * @function_end
@@ -1557,6 +1573,49 @@
  */
 
 /**
+ * @struct_partial FmodStudioTimelineMarkerProperties
+ * @member {String} name
+ * @member {Real} position
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioTimelineBeatProperties
+ * @member {Real} bar
+ * @member {Real} beat
+ * @member {Real} position
+ * @member {Real} tempo
+ * @member {Real} time_signature_upper
+ * @member {Real} time_signature_lower
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioTimelineNestedBeatProperties
+ * @member {String} event_id
+ * @member {Real} bar
+ * @member {Real} beat
+ * @member {Real} position
+ * @member {Real} tempo
+ * @member {Real} time_signature_upper
+ * @member {Real} time_signature_lower
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioProgrammerSoundProperties
+ * @member {String} name
+ * @member {Real} sub_sound_index
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioPluginInstanceProperties
+ * @member {String} name
+ * @struct_end
+ */
+
+/**
  * @struct_partial FmodStudio3DAttributes
  * @member {Struct.FmodStudioVec3} position
  * @member {Struct.FmodStudioVec3} velocity
@@ -1822,6 +1881,17 @@
  * @member VirtualToReal
  * @member StartEventCommand
  * @member NestedTimelineBeat
+ * @member All
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioSystemCallbackType
+ * @member PreUpdate
+ * @member PostUpdate
+ * @member BankUnload
+ * @member LiveUpdateConnected
+ * @member LiveUpdateDisconnected
  * @member All
  * @enum_end
  */

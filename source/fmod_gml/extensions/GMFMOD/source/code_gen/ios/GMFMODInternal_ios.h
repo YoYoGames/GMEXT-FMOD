@@ -6,7 +6,6 @@
 - (double)__EXT_NATIVE__fmod_last_result:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_debug_initialize:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (char*)__EXT_NATIVE__fmod_error_string:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_fetch_callbacks;
 - (double)__EXT_NATIVE__fmod_shutdown;
 - (double)__EXT_NATIVE__fmod_file_get_disk_busy;
 - (double)__EXT_NATIVE__fmod_file_set_disk_busy:(double)busy;
@@ -158,6 +157,7 @@
 - (char*)__EXT_NATIVE__fmod_channel_group_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_group_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_group_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_group_adopt:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_set_max_audible:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_get_max_audible:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_set_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

@@ -91,13 +91,6 @@ void setResourceUserData(T resource, double data);
 extern std::mutex g_user_data_mutex;
 extern std::map<uintptr_t, double> g_user_data;
 
-// Shared counter for the mask-only callback stubs (event description /
-// studio system callbacks currently have no GMFunction parameter, so there
-// is no path to deliver payloads to GML). Each callback-owning file's own
-// trampoline increments this on every fired event; fmod_fetch_callbacks()
-// (GMFMOD_utility.cpp) drains and returns the count.
-extern std::atomic<uint64_t> g_fmod_callback_count;
-
 // ============================================================
 // Per-module state hooks
 // ============================================================

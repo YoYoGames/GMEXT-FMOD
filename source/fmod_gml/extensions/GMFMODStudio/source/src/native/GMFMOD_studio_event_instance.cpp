@@ -430,6 +430,21 @@ uint64_t fmod_studio_event_instance_get_channel_group(uint64_t instance_ref)
 	return result;
 }
 
+// See fmod_studio_bus_get_channel_group_ptr(): the raw pointer is what crosses
+// the DLL boundary, never the ref.
+uint64_t fmod_studio_event_instance_get_channel_group_ptr(uint64_t instance_ref)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+
+	FMOD::ChannelGroup* channel_group = nullptr;
+	g_fmod_last_result = instance->getChannelGroup(&channel_group);
+	if (g_fmod_last_result != FMOD_OK || channel_group == nullptr) return 0;
+
+	return static_cast<uint64_t>(reinterpret_cast<uintptr_t>(channel_group));
+}
+
 FmodStudioCPUUsage fmod_studio_event_instance_get_cpu_usage(uint64_t instance_ref)
 {
 	FmodStudioCPUUsage result{};
@@ -500,10 +515,7 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_instance(
 			g_event_instance_callbacks.erase(it);
 	}
 
-	uint64_t ref = 0;
-	ref = packIndexIntoRef((uint32_t)instance_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
-
-	callback.value().call(ref, (double)type);
+	fmod_studio_event_call(callback.value(), type, event, parameters);
 	return FMOD_OK;
 }
 

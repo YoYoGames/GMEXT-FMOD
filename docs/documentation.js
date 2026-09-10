@@ -1733,6 +1733,21 @@ function fmod_channel_group_get_system_object(channel_group_ref) {}
 
 
 /**
+ * @function fmod_channel_group_adopt
+ * @desc This function registers a ChannelGroup that was created by the GMFMODStudio extension, and returns a reference the `fmod_channel_group_*` functions can use.
+ *
+ * GMFMOD and GMFMODStudio are separate extensions with separate object registries, so a reference made by one does not resolve in the other. Get the raw pointer with ${function.fmod_studio_bus_get_channel_group_ptr} or ${function.fmod_studio_event_instance_get_channel_group_ptr} and pass it here.
+ *
+ * The adopted ChannelGroup is still owned by whoever created it: ${function.fmod_channel_group_release} on an adopted reference drops it from this extension's registry without releasing the underlying object.
+ *
+ * @param {Real} channel_group_ptr The raw pointer from one of the GMFMODStudio `_ptr` functions.
+ * @returns {Real}
+ * @function_end
+ */
+function fmod_channel_group_adopt(channel_group_ptr) {}
+
+
+/**
  * @function fmod_file_get_disk_busy
  * @desc > **FMOD Function:** [File_GetDiskBusy](https://www.fmod.com/docs/2.03/api/core-api-common.html#file_getdiskbusy)
  *
@@ -4906,11 +4921,40 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
  * 
  * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, the next call to ${function.fmod_last_result} will return `FmodStudioResult.StudioNotLoaded`.
  * 
+ *
+ * [[Warning: The reference this returns belongs to the GMFMODStudio extension's own object registry, and the `fmod_channel_group_*` functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use ${function.fmod_studio_bus_get_channel_group_ptr} and ${function.fmod_channel_group_adopt} instead.]]
+ *
  * @param {Real} bus_ref A reference to a bus.
  * @returns {Real}
  * @function_end
  */
 function fmod_studio_bus_get_channel_group(bus_ref) {}
+
+
+/**
+ * @function fmod_studio_bus_get_channel_group_ptr
+ * @desc > **FMOD Function:** [Studio::Bus::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup)
+ *
+ * <br />
+ *
+ * This function retrieves the core ChannelGroup of a bus as a raw pointer, for handing to the GMFMOD extension.
+ *
+ * GMFMOD and GMFMODStudio are separate extensions with separate object registries, so a reference made by one is meaningless to the other. Pass the value this returns to ${function.fmod_channel_group_adopt} to get a reference the `fmod_channel_group_*` functions can use.
+ *
+ * Unlike ${function.fmod_studio_bus_get_channel_group}, this does not touch the ChannelGroup's FMOD user-data slot.
+ *
+ * @param {Real} bus_ref A reference to a bus.
+ * @returns {Real}
+ *
+ * @example
+ * ```gml
+ * var _ptr = fmod_studio_bus_get_channel_group_ptr(bus);
+ * var _group = fmod_channel_group_adopt(_ptr);
+ * fmod_channel_group_set_volume(_group, 0.5);
+ * ```
+ * @function_end
+ */
+function fmod_studio_bus_get_channel_group_ptr(bus_ref) {}
 
 
 /**
@@ -5835,33 +5879,26 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  *
  * <br />
  *
- * This function enables a user callback which will be assigned to all event instances subsequently created from the event. The callback for individual instances can be set with ${function.fmod_studio_event_instance_set_callback}.
- * 
- * This callback is triggered as an Async Social event.
- * 
+ * This function sets a callback for every instance of this event description.
+ *
+ * An instance uses this callback unless it has one of its own, set with ${function.fmod_studio_event_instance_set_callback} - an instance-level callback replaces this one entirely for that instance, rather than both firing. Instances that already exist when you call this function are covered too, not just ones created afterwards.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @param {Real} callback_mask The bitfield specifying which callback types are required.
+ * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
+ * @param {Constant.FmodStudioEventCallbackType} callback_mask A bitfield of the callback types to receive.
  * @returns {Real}
- * 
- * @event social
- * @member {String} type The value `"fmod_studio_event_description_set_callback"`
- * @member {Enum.FmodStudioEventCallbackType} kind The callback type passed into the original function.
- * @member {Real} event_instance_ref Handle of the EventInstance that has changed state.
- * @member {String} name Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound` or `FmodStudioEventCallbackType.TimelineMarker`
- * @member {Real} sub_sound_index Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound`
- * @member {Real} sound_ref Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound`
- * @member {Real} position Valid when kind=`FmodStudioEventCallbackType.TimelineMarker` or `FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} bar Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} beat Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} tempo Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} time_signature_lower Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} time_signature_upper Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} event_id Valid when kind=`FmodStudioEventCallbackType.NestedTimelineBeat`
+ *
+ * @event callback
+ * @member {Real} event_instance_ref The EventInstance that raised the callback.
+ * @member {Constant.FmodStudioEventCallbackType} type The callback type that fired.
+ * @member {Struct} properties The payload for this callback type, or `undefined` for the types that carry none. `FmodStudioEventCallbackType.TimelineMarker` gives a ${struct.FmodStudioTimelineMarkerProperties}, `TimelineBeat` a ${struct.FmodStudioTimelineBeatProperties}, `NestedTimelineBeat` a ${struct.FmodStudioTimelineNestedBeatProperties}, `CreateProgrammerSound` and `DestroyProgrammerSound` a ${struct.FmodStudioProgrammerSoundProperties}, `PluginCreated` and `PluginDestroyed` a ${struct.FmodStudioPluginInstanceProperties}, and `StartEventCommand` the EventInstance reference of the event that was started.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_studio_event_description_set_callback(event_description_ref, type) {}
+function fmod_studio_event_description_set_callback(event_desc_ref, callback, callback_mask) {}
 
 
 /**
@@ -6392,11 +6429,31 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
  * 
  * Until the event instance has been fully created this function will result in `FmodStudioResult.StudioNotLoaded` (in the next ${function.fmod_last_result} call).
  * 
+ *
+ * [[Warning: The reference this returns belongs to the GMFMODStudio extension's own object registry, and the `fmod_channel_group_*` functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use ${function.fmod_studio_event_instance_get_channel_group_ptr} and ${function.fmod_channel_group_adopt} instead.]]
+ *
  * @param {Real} instance_ref A reference to an EventInstance.
  * @returns {Real}
  * @function_end
  */
 function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
+
+
+/**
+ * @function fmod_studio_event_instance_get_channel_group_ptr
+ * @desc > **FMOD Function:** [Studio::EventInstance::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup)
+ *
+ * <br />
+ *
+ * This function retrieves the core ChannelGroup of an event instance as a raw pointer, for handing to the GMFMOD extension.
+ *
+ * See ${function.fmod_studio_bus_get_channel_group_ptr} for why this exists. Pass the value to ${function.fmod_channel_group_adopt}.
+ *
+ * @param {Real} instance_ref A reference to an EventInstance.
+ * @returns {Real}
+ * @function_end
+ */
+function fmod_studio_event_instance_get_channel_group_ptr(event_instance_ref) {}
 
 
 /**
@@ -6474,32 +6531,36 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
  *
  * <br />
  *
- * This function enables the user callback in the Async Social event.
- * 
+ * This function sets a callback for one event instance.
+ *
+ * It replaces any callback set on the instance's description with ${function.fmod_studio_event_description_set_callback} - the description's callback will not fire for this instance while this one is set.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} instance_ref A reference to an EventInstance.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
- * @param {Enum.FmodStudioEventCallbackType} mask A bitfield of the callback types to receive.
+ * @param {Constant.FmodStudioEventCallbackType} mask A bitfield of the callback types to receive.
  * @returns {Real}
- * 
- * @event social
- * @member {String} type The value `"fmod_studio_event_description_set_callback"`
- * @member {Enum.FmodStudioEventCallbackType} kind The callback type passed into the original function.
- * @member {Real} event_instance_ref Handle of the EventInstance that has changed state.
- * @member {String} name Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound` or `FmodStudioEventCallbackType.TimelineMarker`
- * @member {Real} sub_sound_index Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound`
- * @member {Real} sound_ref Valid when kind=`FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound`
- * @member {Real} position Valid when kind=`FmodStudioEventCallbackType.TimelineMarker` or `FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} bar Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} beat Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} tempo Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} time_signature_lower Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} time_signature_upper Valid when kind=`FmodStudioEventCallbackType.TimelineBeat` or `FmodStudioEventCallbackType.NestedTimelineBeat`
- * @member {Real} event_id Valid when kind=`FmodStudioEventCallbackType.NestedTimelineBeat`
+ *
+ * @event callback
+ * @member {Real} event_instance_ref The EventInstance that raised the callback.
+ * @member {Constant.FmodStudioEventCallbackType} type The callback type that fired.
+ * @member {Struct} properties The payload for this callback type, or `undefined` for the types that carry none. `FmodStudioEventCallbackType.TimelineMarker` gives a ${struct.FmodStudioTimelineMarkerProperties}, `TimelineBeat` a ${struct.FmodStudioTimelineBeatProperties}, `NestedTimelineBeat` a ${struct.FmodStudioTimelineNestedBeatProperties}, `CreateProgrammerSound` and `DestroyProgrammerSound` a ${struct.FmodStudioProgrammerSoundProperties}, `PluginCreated` and `PluginDestroyed` a ${struct.FmodStudioPluginInstanceProperties}, and `StartEventCommand` the EventInstance reference of the event that was started.
  * @event_end
- * 
+ *
+ * @example
+ * ```gml
+ * fmod_studio_event_instance_set_callback(instance, function(_instance, _type, _props)
+ * {
+ *     if (_type == FmodStudioEventCallbackType.TimelineBeat)
+ *     {
+ *         show_debug_message($"bar {_props.bar} beat {_props.beat} at {_props.tempo}bpm");
+ *     }
+ * }, FmodStudioEventCallbackType.TimelineBeat);
+ * ```
  * @function_end
  */
-function fmod_studio_event_instance_set_callback(event_instance_ref, type) {}
+function fmod_studio_event_instance_set_callback(instance_ref, callback, mask) {}
 
 
 /**
@@ -7355,20 +7416,22 @@ function fmod_studio_system_get_memory_usage() {}
  *
  * <br />
  *
- * This function enables a callback for the FMOD Studio System. The callbacks will be received in the Async Social event.
- * 
- * @param {Real} callback_mask A bitfield of the system callback types to receive.
+ * This function sets a callback for the FMOD Studio system.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
+ * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
+ * @param {Constant.FmodStudioSystemCallbackType} callback_mask A bitfield of the system callback types to receive.
  * @returns {Real}
- * 
- * @event social
- * @member {String} type The value `"fmod_studio_system_set_callback"`
- * @member {Real} kind The callback type Matches FMOD's `FMOD_STUDIO_SYSTEM_CALLBACK`.
- * @member {Real} bank_ref Handle of the bank. Only valid when kind=`FMOD_STUDIO_SYSTEM_CALLBACK.BANK_UNLOAD`
+ *
+ * @event callback
+ * @member {Constant.FmodStudioSystemCallbackType} type The callback type that fired.
+ * @member {Real} payload The Bank that was unloaded, when type is `FmodStudioSystemCallbackType.BankUnload`. `undefined` for every other type.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_studio_system_set_callback(type) {}
+function fmod_studio_system_set_callback(callback, callback_mask) {}
 
 
 /**
@@ -9138,17 +9201,6 @@ function fmod_last_result() {}
 function fmod_error_string(result) {}
 
 /**
- * @function fmod_fetch_callbacks
- * @desc This function returns the number of FMOD callbacks that have fired since the last time it was called, and resets the counter to zero.
- * 
- * [[Note: Only the count is available. The callbacks that go through this counter carry no payload, so there is no way to tell which callback fired or what it was about. The callbacks that do carry their arguments - ${function.fmod_studio_event_instance_set_callback} and ${function.fmod_channel_control_set_callback} - deliver them to the function you supply instead.]]
- * 
- * @returns {Real}
- * @function_end
- */
-function fmod_fetch_callbacks() {}
-
-/**
  * @function fmod_shutdown
  * @desc This function releases everything the extension still holds: every system, sound, channel group, sound group, DSP, reverb and geometry object it created, along with the bookkeeping that tracks them.
  * 
@@ -9733,6 +9785,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_channel_group_get_name
  * @ref fmod_channel_group_release
  * @ref fmod_channel_group_get_system_object
+ * @ref fmod_channel_group_adopt
  * @section_end
  * 
  * @module_end
@@ -10025,6 +10078,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_bus_set_port_index
  * @ref fmod_studio_bus_get_port_index
  * @ref fmod_studio_bus_get_channel_group
+ * @ref fmod_studio_bus_get_channel_group_ptr
  * @ref fmod_studio_bus_lock_channel_group
  * @ref fmod_studio_bus_unlock_channel_group
  * @ref fmod_studio_bus_get_cpu_usage
@@ -10161,6 +10215,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_event_instance_set_parameter_by_id_with_label
  * @ref fmod_studio_event_instance_get_parameter_by_id
  * @ref fmod_studio_event_instance_get_channel_group
+ * @ref fmod_studio_event_instance_get_channel_group_ptr
  * @ref fmod_studio_event_instance_set_reverb_level
  * @ref fmod_studio_event_instance_get_reverb_level
  * @ref fmod_studio_event_instance_get_cpu_usage
@@ -10384,7 +10439,6 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_debug_initialize
  * @ref fmod_thread_set_attributes
  * @ref fmod_error_string
- * @ref fmod_fetch_callbacks
  * @ref fmod_file_get_disk_busy
  * @ref fmod_file_set_disk_busy
  * @ref fmod_shutdown

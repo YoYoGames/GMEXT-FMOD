@@ -19,12 +19,6 @@
  */
 
 /**
- * @function_partial fmod_fetch_callbacks
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_shutdown
  * @function_end
  */
@@ -1145,6 +1139,13 @@
 /**
  * @function_partial fmod_channel_group_get_system_object
  * @param {Real} channel_group_ref
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_channel_group_adopt
+ * @param {Real} channel_group_ptr
  * @returns {Real}
  * @function_end
  */

@@ -797,6 +797,11 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodSoundOpenState
  * @ref FmodSyncPoint
  * @ref FmodStudioMemoryUsage
+ * @ref FmodStudioTimelineMarkerProperties
+ * @ref FmodStudioTimelineBeatProperties
+ * @ref FmodStudioTimelineNestedBeatProperties
+ * @ref FmodStudioProgrammerSoundProperties
+ * @ref FmodStudioPluginInstanceProperties
  * @ref FmodStudioListenerAttributes
  * @ref FmodStudioBufferInfo
  * @ref FmodStudioBufferUsage
@@ -846,3 +851,73 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @section_end
  * @module_end
  */
+
+
+/**
+ * @struct FmodStudioTimelineMarkerProperties
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_timeline_marker_properties)
+ *
+ * This struct describes a marker on an event's timeline. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.TimelineMarker` fires.
+ *
+ * @member {String} name The marker name, as authored in FMOD Studio.
+ * @member {Real} position The position of the marker on the timeline, in milliseconds.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodStudioTimelineBeatProperties
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_timeline_beat_properties)
+ *
+ * This struct describes a beat on an event's timeline. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.TimelineBeat` fires.
+ *
+ * @member {Real} bar The bar number, counting from 1.
+ * @member {Real} beat The beat number within the bar, counting from 1.
+ * @member {Real} position The position of this beat on the timeline, in milliseconds.
+ * @member {Real} tempo The tempo at this point, in beats per minute.
+ * @member {Real} time_signature_upper The numerator of the time signature.
+ * @member {Real} time_signature_lower The denominator of the time signature.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodStudioTimelineNestedBeatProperties
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_timeline_nested_beat_properties)
+ *
+ * This struct describes a beat on the timeline of a nested event. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.NestedTimelineBeat` fires.
+ *
+ * FMOD nests the beat fields inside a separate struct; they are inlined here alongside the event GUID.
+ *
+ * @member {String} event_id The GUID of the nested event, in the same `{8-4-4-4-12}` spelling ${function.fmod_studio_system_get_event_by_id} accepts.
+ * @member {Real} bar The bar number, counting from 1.
+ * @member {Real} beat The beat number within the bar, counting from 1.
+ * @member {Real} position The position of this beat on the timeline, in milliseconds.
+ * @member {Real} tempo The tempo at this point, in beats per minute.
+ * @member {Real} time_signature_upper The numerator of the time signature.
+ * @member {Real} time_signature_lower The denominator of the time signature.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodStudioProgrammerSoundProperties
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_programmer_sound_properties)
+ *
+ * This struct describes a programmer sound. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound` fires.
+ *
+ * [[Note: FMOD's own struct also carries the Sound to play, which the callback is expected to fill in while FMOD waits. Callbacks in this extension run on the following frame, so there is no way to answer in time, and the field is not carried. Substituting a programmer sound from GML is not supported.]]
+ *
+ * @member {String} name The audio table key for the sound, as authored in FMOD Studio.
+ * @member {Real} sub_sound_index The subsound index, or `-1` when the sound is not a subsound.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodStudioPluginInstanceProperties
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_plugin_instance_properties)
+ *
+ * This struct describes a plugin instance. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.PluginCreated` or `FmodStudioEventCallbackType.PluginDestroyed` fires.
+ *
+ * [[Note: FMOD's own struct also carries the plugin's DSP. That object belongs to the GMFMOD extension's registry rather than this one, so a reference made here would not be usable, and it is not carried.]]
+ *
+ * @member {String} name The plugin name.
+ * @struct_end
+ * */

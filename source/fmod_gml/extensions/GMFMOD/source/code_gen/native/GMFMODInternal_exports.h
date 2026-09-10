@@ -12,7 +12,6 @@ GMEXPORT double __EXT_NATIVE__GMFMOD_queue_buffer(char* __arg_buffer, double __a
 GMEXPORT double __EXT_NATIVE__fmod_last_result(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_debug_initialize(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT char* __EXT_NATIVE__fmod_error_string(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_fetch_callbacks();
 GMEXPORT double __EXT_NATIVE__fmod_shutdown();
 GMEXPORT double __EXT_NATIVE__fmod_file_get_disk_busy();
 GMEXPORT double __EXT_NATIVE__fmod_file_set_disk_busy(double busy);
@@ -164,6 +163,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_parent_group(char* __arg_bu
 GMEXPORT char* __EXT_NATIVE__fmod_channel_group_get_name(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_group_release(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_group_get_system_object(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_channel_group_adopt(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_max_audible(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_max_audible_behavior(char* __arg_buffer, double __arg_buffer_length);

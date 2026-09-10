@@ -156,6 +156,11 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></li>
 <li><a href="structs.html#fmodsyncpoint">FmodSyncPoint</a></li>
 <li><a href="structs.html#fmodstudiomemoryusage">FmodStudioMemoryUsage</a></li>
+<li><a href="structs.html#fmodstudiotimelinemarkerproperties">FmodStudioTimelineMarkerProperties</a></li>
+<li><a href="structs.html#fmodstudiotimelinebeatproperties">FmodStudioTimelineBeatProperties</a></li>
+<li><a href="structs.html#fmodstudiotimelinenestedbeatproperties">FmodStudioTimelineNestedBeatProperties</a></li>
+<li><a href="structs.html#fmodstudioprogrammersoundproperties">FmodStudioProgrammerSoundProperties</a></li>
+<li><a href="structs.html#fmodstudioplugininstanceproperties">FmodStudioPluginInstanceProperties</a></li>
 <li><a href="structs.html#fmodstudiolistenerattributes">FmodStudioListenerAttributes</a></li>
 <li><a href="structs.html#fmodstudiobufferinfo">FmodStudioBufferInfo</a></li>
 <li><a href="structs.html#fmodstudiobufferusage">FmodStudioBufferUsage</a></li>
@@ -2913,6 +2918,181 @@ is a percentage of the total CPU time.</p>
 </table>
 <p>*/</p>
 <p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiotimelinemarkerproperties">FmodStudioTimelineMarkerProperties</h1>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiotimelinebeatproperties">FmodStudioTimelineBeatProperties</h1>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bar</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>beat</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>tempo</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>time_signature_upper</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>time_signature_lower</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiotimelinenestedbeatproperties">FmodStudioTimelineNestedBeatProperties</h1>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td>bar</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>beat</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>tempo</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>time_signature_upper</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+<tr>
+<td>time_signature_lower</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioprogrammersoundproperties">FmodStudioProgrammerSoundProperties</h1>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td>sub_sound_index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioplugininstanceproperties">FmodStudioPluginInstanceProperties</h1>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

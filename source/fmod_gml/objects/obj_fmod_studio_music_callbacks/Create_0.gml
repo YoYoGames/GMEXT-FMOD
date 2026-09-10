@@ -11,21 +11,41 @@ event_guid = fmod_studio_system_get_event("event:/Music/Level 01")
 event_ins_index = fmod_studio_event_description_create_instance(event_guid)
 
 // The callback is a plain GML function. It receives the event instance that
-// raised it and the FmodStudioEventCallbackType that fired, and is dispatched
-// from fmod_studio_system_update().
+// raised it, the FmodStudioEventCallbackType that fired, and the properties
+// struct for that type - undefined for the types that carry no payload.
+// It is dispatched from fmod_studio_system_update().
 fmod_studio_event_instance_set_callback(event_ins_index,
-	function(_instance, _type)
+	function(_instance, _type, _props)
 	{
 		switch (_type)
 		{
-			case FmodStudioEventCallbackType.TimelineMarker: show_debug_message("[fmod] timeline marker") break;
-			case FmodStudioEventCallbackType.TimelineBeat:   show_debug_message("[fmod] timeline beat")   break;
-			case FmodStudioEventCallbackType.SoundPlayed:    show_debug_message("[fmod] sound played")    break;
-			case FmodStudioEventCallbackType.SoundStopped:   show_debug_message("[fmod] sound stopped")   break;
+			case FmodStudioEventCallbackType.TimelineMarker:
+				show_debug_message($"[fmod] marker '{_props.name}' at {_props.position}ms")
+				break;
+
+			case FmodStudioEventCallbackType.TimelineBeat:
+				show_debug_message($"[fmod] bar {_props.bar} beat {_props.beat} - {_props.tempo}bpm, {_props.time_signature_upper}/{_props.time_signature_lower}")
+				break;
+
+			case FmodStudioEventCallbackType.SoundPlayed:  show_debug_message("[fmod] sound played")  break;
+			case FmodStudioEventCallbackType.SoundStopped: show_debug_message("[fmod] sound stopped") break;
 		}
 	},
 	FmodStudioEventCallbackType.TimelineMarker | FmodStudioEventCallbackType.TimelineBeat |
 	FmodStudioEventCallbackType.SoundPlayed | FmodStudioEventCallbackType.SoundStopped)
+show_debug_message(string(fmod_last_result()))
+
+// The system callback is the same shape, minus the instance: (type, payload).
+// BankUnload is the only type carrying one, and it is the bank that went away.
+fmod_studio_system_set_callback(
+	function(_type, _payload)
+	{
+		if (_type == FmodStudioSystemCallbackType.BankUnload)
+		{
+			show_debug_message($"[fmod] bank unloaded: {_payload}")
+		}
+	},
+	FmodStudioSystemCallbackType.BankUnload)
 show_debug_message(string(fmod_last_result()))
 
 fmod_studio_event_instance_start(event_ins_index)
@@ -38,4 +58,4 @@ fmod_studio_event_instance_set_parameter_by_id(event_ins_index,parameter_descrip
 show_debug_message(string(fmod_last_result()))
 
 
- 
+

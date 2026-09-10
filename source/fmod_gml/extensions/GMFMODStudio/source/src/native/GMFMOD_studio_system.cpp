@@ -5,10 +5,16 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+#include <mutex>
 
 using namespace gm_structs;
 
 static uint64_t g_studio_system_ref = 0;
+
+// There is one Studio system, so this is a single slot rather than a map. It is
+// still guarded: the callback fires on Studio's update thread.
+static std::mutex g_studio_system_callback_mutex;
+static std::optional<gm::wire::GMFunction> g_studio_system_callback;
 
 // ============================================================
 // Studio System - Lifetime
@@ -65,7 +71,13 @@ void fmod_studio_shutdown()
 	g_studio_system_ref = 0;
 
 	fmod_studio_event_instance_reset_state();
+	fmod_studio_event_description_reset_state();
 	fmod_studio_command_replay_reset_state();
+
+	{
+		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
+		g_studio_system_callback.reset();
+	}
 	fmod_registry_clear_all();
 
 	g_fmod_last_result = FMOD_OK;
@@ -251,17 +263,6 @@ static bool parse_guid_string(std::string_view str_guid, FMOD_GUID& guid)
 {
 	std::string guid_str(str_guid);
 	return FMOD::Studio::parseID(guid_str.c_str(), &guid) == FMOD_OK;
-}
-
-static std::string format_guid_string(const FMOD_GUID& guid)
-{
-	char buffer[64]{};
-	std::snprintf(buffer, sizeof(buffer),
-		"{%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x}",
-		guid.Data1, guid.Data2, guid.Data3,
-		guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],
-		guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
-	return std::string(buffer);
 }
 
 std::optional<uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_guid)
@@ -1032,30 +1033,70 @@ double fmod_studio_system_set_advanced_settings(const FmodStudioAdvancedSettings
 }
 
 // ============================================================
-// Studio System - Callback (mask-only stub, see fmod_fetch_callbacks)
+// Studio System - Callback
 // ============================================================
 
-// No GMFunction is passed for this callback in the current spec, so there is no
-// path to deliver event details back to GML. The trampoline counts fired events
-// in the shared g_fmod_callback_count (drained by fmod_fetch_callbacks() in
-// GMFMOD_utility.cpp).
 static FMOD_RESULT F_CALL CALLBACK_fmod_studio_system(
 	FMOD_STUDIO_SYSTEM* system,
 	FMOD_STUDIO_SYSTEM_CALLBACK_TYPE type,
 	void* commanddata,
 	void* userdata)
 {
-	g_fmod_callback_count.fetch_add(1, std::memory_order_relaxed);
+	std::optional<gm::wire::GMFunction> callback;
+	{
+		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
+		callback = g_studio_system_callback;
+	}
+	if (!callback.has_value())
+		return FMOD_OK;
+
+	double kind = (double)type;
+
+	// BANK_UNLOAD is the only type carrying a payload, and a Bank is
+	// pointer-backed, so no registry is involved.
+	if (type == FMOD_STUDIO_SYSTEM_CALLBACK_BANK_UNLOAD && commanddata != nullptr)
+	{
+		uintptr_t bank_ptr = reinterpret_cast<uintptr_t>(commanddata) & 0xFFFFFFFFu;
+		callback.value().call(kind,
+			packIndexIntoRef((uint32_t)bank_ptr, GM_FMOD_STUDIO_TYPE_BANK));
+		return FMOD_OK;
+	}
+
+	callback.value().call(kind, std::optional<double>{});
 	return FMOD_OK;
 }
 
-double fmod_studio_system_set_callback(double callback_mask)
+double fmod_studio_system_set_callback(
+	const std::optional<gm::wire::GMFunction>& callback,
+	enum gm_enums::FmodStudioSystemCallbackType callback_mask)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->setCallback(CALLBACK_fmod_studio_system, (FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)fmod_flag_word(callback_mask));
+	if (!callback.has_value())
+	{
+		{
+			std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
+			g_studio_system_callback.reset();
+		}
+		g_fmod_last_result = studio_system->setCallback(nullptr, FMOD_STUDIO_SYSTEM_CALLBACK_ALL);
+		return 0;
+	}
+
+	{
+		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
+		g_studio_system_callback = callback;
+	}
+
+	g_fmod_last_result = studio_system->setCallback(
+		CALLBACK_fmod_studio_system,
+		(FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)(std::uint64_t)callback_mask);
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
+		g_studio_system_callback.reset();
+	}
 	return 0;
 }
 

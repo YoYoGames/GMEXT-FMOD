@@ -196,8 +196,6 @@ template void setResourceUserData<FMOD::Geometry*>(FMOD::Geometry*, double);
 std::mutex g_user_data_mutex;
 std::map<uintptr_t, double> g_user_data;
 
-std::atomic<uint64_t> g_fmod_callback_count{ 0 };
-
 // ============================================================
 // Teardown
 // ============================================================
@@ -228,6 +226,4 @@ void fmod_registry_clear_all()
 	index_dsp_connections = 0;
 	index_reverbs = 0;
 	index_geometries = 0;
-
-	g_fmod_callback_count.store(0);
 }

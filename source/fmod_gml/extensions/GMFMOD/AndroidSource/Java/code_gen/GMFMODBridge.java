@@ -22,7 +22,6 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_last_result(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_debug_initialize(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native String __EXT_JNI__fmod_error_string(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_fetch_callbacks();
     public static native double __EXT_JNI__fmod_shutdown();
     public static native double __EXT_JNI__fmod_file_get_disk_busy();
     public static native double __EXT_JNI__fmod_file_set_disk_busy(double busy);
@@ -174,6 +173,7 @@ public final class GMFMODBridge {
     public static native String __EXT_JNI__fmod_channel_group_get_name(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_group_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_group_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_group_adopt(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_set_max_audible(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_get_max_audible(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_set_max_audible_behavior(ByteBuffer __arg_buffer, double __arg_buffer_length);

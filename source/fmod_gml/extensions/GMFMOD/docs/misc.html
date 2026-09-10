@@ -138,7 +138,6 @@
 <li><a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a></li>
 <li><a href="misc.html#fmod_thread_set_attributes">fmod_thread_set_attributes</a></li>
 <li><a href="misc.html#fmod_error_string">fmod_error_string</a></li>
-<li><a href="misc.html#fmod_fetch_callbacks">fmod_fetch_callbacks</a></li>
 <li><a href="misc.html#fmod_file_get_disk_busy">fmod_file_get_disk_busy</a></li>
 <li><a href="misc.html#fmod_file_set_disk_busy">fmod_file_set_disk_busy</a></li>
 <li><a href="misc.html#fmod_shutdown">fmod_shutdown</a></li>
@@ -406,27 +405,6 @@ You should therefore use this function if you want to get the result of the last
 <p><strong>Returns:</strong></p>
 <blockquote>
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></p>
-</blockquote>
-<p><br></p>
-<hr />
-<p align="right"><a href="#top">Back To Top</a></p>
-
-<h1 id="fmod_fetch_callbacks">fmod_fetch_callbacks</h1>
-<p>This function returns the number of FMOD callbacks that have fired since the last time it was called, and resets the counter to zero.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Only the count is available. The callbacks that go through this counter carry no payload, so there is no way to tell which callback fired or what it was about. The callbacks that do carry their arguments - <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a> and <a href="channel_control.html#fmod_channel_control_set_callback">fmod_channel_control_set_callback</a> - deliver them to the function you supply instead.</p>
-</div>
-<p><br></p>
-<p><strong>Syntax:</strong></p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>fmod_fetch_callbacks()
-</code></pre></div>
-</blockquote>
-<p><br></p>
-<p><strong>Returns:</strong></p>
-<blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
 </blockquote>
 <p><br></p>
 <hr />

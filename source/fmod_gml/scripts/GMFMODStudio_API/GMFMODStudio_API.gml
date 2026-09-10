@@ -225,6 +225,16 @@ enum FmodStudioEventCallbackType
     All = -1
 }
 
+enum FmodStudioSystemCallbackType
+{
+    PreUpdate = 1,
+    PostUpdate = 2,
+    BankUnload = 4,
+    LiveUpdateConnected = 8,
+    LiveUpdateDisconnected = 16,
+    All = -1
+}
+
 enum FmodStudioMode
 {
     Default = 0,
@@ -542,6 +552,94 @@ function FmodStudioParameterValue() constructor
 
     self.value = undefined;
     self.final_value = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodStudioTimelineMarkerProperties}
+ */
+function FmodStudioTimelineMarkerProperties() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 537159737;
+
+    self.name = undefined;
+    self.position = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodStudioTimelineBeatProperties}
+ */
+function FmodStudioTimelineBeatProperties() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 3079889299;
+
+    self.bar = undefined;
+    self.beat = undefined;
+    self.position = undefined;
+    self.tempo = undefined;
+    self.time_signature_upper = undefined;
+    self.time_signature_lower = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodStudioTimelineNestedBeatProperties}
+ */
+function FmodStudioTimelineNestedBeatProperties() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 758637816;
+
+    self.event_id = undefined;
+    self.bar = undefined;
+    self.beat = undefined;
+    self.position = undefined;
+    self.tempo = undefined;
+    self.time_signature_upper = undefined;
+    self.time_signature_lower = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodStudioProgrammerSoundProperties}
+ */
+function FmodStudioProgrammerSoundProperties() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2044856225;
+
+    self.name = undefined;
+    self.sub_sound_index = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodStudioPluginInstanceProperties}
+ */
+function FmodStudioPluginInstanceProperties() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 2866033700;
+
+    self.name = undefined;
 
 }
 
@@ -1678,6 +1776,315 @@ function __FmodStudioParameterValue_decode(_buffer, _offset)
 }
 
 /**
+ * @func __FmodStudioTimelineMarkerProperties_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudioTimelineMarkerProperties} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodStudioTimelineMarkerProperties_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: position, type: Float64
+        if (!is_numeric(self.position)) show_error($"{_where} :: self.position expected number", true);
+        buffer_write(_buffer, buffer_f64, self.position);
+
+    }
+}
+
+/**
+ * @func __FmodStudioTimelineMarkerProperties_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodStudioTimelineMarkerProperties}
+ * @ignore
+ */
+function __FmodStudioTimelineMarkerProperties_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodStudioTimelineMarkerProperties();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: position, type: Float64
+        self.position = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodStudioTimelineBeatProperties_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudioTimelineBeatProperties} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodStudioTimelineBeatProperties_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: bar, type: Float64
+        if (!is_numeric(self.bar)) show_error($"{_where} :: self.bar expected number", true);
+        buffer_write(_buffer, buffer_f64, self.bar);
+
+        // field: beat, type: Float64
+        if (!is_numeric(self.beat)) show_error($"{_where} :: self.beat expected number", true);
+        buffer_write(_buffer, buffer_f64, self.beat);
+
+        // field: position, type: Float64
+        if (!is_numeric(self.position)) show_error($"{_where} :: self.position expected number", true);
+        buffer_write(_buffer, buffer_f64, self.position);
+
+        // field: tempo, type: Float64
+        if (!is_numeric(self.tempo)) show_error($"{_where} :: self.tempo expected number", true);
+        buffer_write(_buffer, buffer_f64, self.tempo);
+
+        // field: time_signature_upper, type: Float64
+        if (!is_numeric(self.time_signature_upper)) show_error($"{_where} :: self.time_signature_upper expected number", true);
+        buffer_write(_buffer, buffer_f64, self.time_signature_upper);
+
+        // field: time_signature_lower, type: Float64
+        if (!is_numeric(self.time_signature_lower)) show_error($"{_where} :: self.time_signature_lower expected number", true);
+        buffer_write(_buffer, buffer_f64, self.time_signature_lower);
+
+    }
+}
+
+/**
+ * @func __FmodStudioTimelineBeatProperties_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodStudioTimelineBeatProperties}
+ * @ignore
+ */
+function __FmodStudioTimelineBeatProperties_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodStudioTimelineBeatProperties();
+    with (_inst)
+    {
+        // field: bar, type: Float64
+        self.bar = buffer_read(_buffer, buffer_f64);
+
+        // field: beat, type: Float64
+        self.beat = buffer_read(_buffer, buffer_f64);
+
+        // field: position, type: Float64
+        self.position = buffer_read(_buffer, buffer_f64);
+
+        // field: tempo, type: Float64
+        self.tempo = buffer_read(_buffer, buffer_f64);
+
+        // field: time_signature_upper, type: Float64
+        self.time_signature_upper = buffer_read(_buffer, buffer_f64);
+
+        // field: time_signature_lower, type: Float64
+        self.time_signature_lower = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodStudioTimelineNestedBeatProperties_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudioTimelineNestedBeatProperties} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodStudioTimelineNestedBeatProperties_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: event_id, type: String
+        if (!is_string(self.event_id)) show_error($"{_where} :: self.event_id expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.event_id));
+        buffer_write(_buffer, buffer_string, self.event_id);
+
+        // field: bar, type: Float64
+        if (!is_numeric(self.bar)) show_error($"{_where} :: self.bar expected number", true);
+        buffer_write(_buffer, buffer_f64, self.bar);
+
+        // field: beat, type: Float64
+        if (!is_numeric(self.beat)) show_error($"{_where} :: self.beat expected number", true);
+        buffer_write(_buffer, buffer_f64, self.beat);
+
+        // field: position, type: Float64
+        if (!is_numeric(self.position)) show_error($"{_where} :: self.position expected number", true);
+        buffer_write(_buffer, buffer_f64, self.position);
+
+        // field: tempo, type: Float64
+        if (!is_numeric(self.tempo)) show_error($"{_where} :: self.tempo expected number", true);
+        buffer_write(_buffer, buffer_f64, self.tempo);
+
+        // field: time_signature_upper, type: Float64
+        if (!is_numeric(self.time_signature_upper)) show_error($"{_where} :: self.time_signature_upper expected number", true);
+        buffer_write(_buffer, buffer_f64, self.time_signature_upper);
+
+        // field: time_signature_lower, type: Float64
+        if (!is_numeric(self.time_signature_lower)) show_error($"{_where} :: self.time_signature_lower expected number", true);
+        buffer_write(_buffer, buffer_f64, self.time_signature_lower);
+
+    }
+}
+
+/**
+ * @func __FmodStudioTimelineNestedBeatProperties_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodStudioTimelineNestedBeatProperties}
+ * @ignore
+ */
+function __FmodStudioTimelineNestedBeatProperties_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodStudioTimelineNestedBeatProperties();
+    with (_inst)
+    {
+        // field: event_id, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.event_id = buffer_read(_buffer, buffer_string);
+
+        // field: bar, type: Float64
+        self.bar = buffer_read(_buffer, buffer_f64);
+
+        // field: beat, type: Float64
+        self.beat = buffer_read(_buffer, buffer_f64);
+
+        // field: position, type: Float64
+        self.position = buffer_read(_buffer, buffer_f64);
+
+        // field: tempo, type: Float64
+        self.tempo = buffer_read(_buffer, buffer_f64);
+
+        // field: time_signature_upper, type: Float64
+        self.time_signature_upper = buffer_read(_buffer, buffer_f64);
+
+        // field: time_signature_lower, type: Float64
+        self.time_signature_lower = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodStudioProgrammerSoundProperties_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudioProgrammerSoundProperties} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodStudioProgrammerSoundProperties_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: sub_sound_index, type: Float64
+        if (!is_numeric(self.sub_sound_index)) show_error($"{_where} :: self.sub_sound_index expected number", true);
+        buffer_write(_buffer, buffer_f64, self.sub_sound_index);
+
+    }
+}
+
+/**
+ * @func __FmodStudioProgrammerSoundProperties_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodStudioProgrammerSoundProperties}
+ * @ignore
+ */
+function __FmodStudioProgrammerSoundProperties_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodStudioProgrammerSoundProperties();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: sub_sound_index, type: Float64
+        self.sub_sound_index = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodStudioPluginInstanceProperties_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodStudioPluginInstanceProperties} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodStudioPluginInstanceProperties_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+    }
+}
+
+/**
+ * @func __FmodStudioPluginInstanceProperties_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodStudioPluginInstanceProperties}
+ * @ignore
+ */
+function __FmodStudioPluginInstanceProperties_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodStudioPluginInstanceProperties();
+    with (_inst)
+    {
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+    }
+
+    return _inst;
+}
+
+/**
  * @func __FmodStudio3DAttributes_encode(_inst, _buffer, _offset, _where)
  * @param {Struct.FmodStudio3DAttributes} _inst
  * @param {Id.Buffer} _buffer
@@ -2743,8 +3150,42 @@ function fmod_studio_system_set_advanced_settings(_settings)
     return __return_value__;
 }
 
-// Skipping function fmod_studio_system_set_callback (no wrapper is required)
+/**
+ * @param {Function} _callback
+ * @param {Enum.FmodStudioSystemCallbackType} _callback_mask
+ * @returns {Real}
+ */
+function fmod_studio_system_set_callback(_callback, _callback_mask)
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
 
+    var __dispatcher__ = __GMFMODStudio_get_dispatcher();
+
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _callback, type: optional<Function>
+    if (is_undefined(_callback))
+    {
+        buffer_write(__args_buffer__, buffer_bool, false);
+    }
+    else
+    {
+        buffer_write(__args_buffer__, buffer_bool, true);
+        if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
+        var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
+    }
+
+    // param: _callback_mask, type: enum FmodStudioSystemCallbackType
+
+    if (!is_numeric(_callback_mask)) show_error($"{_GMFUNCTION_} :: _callback_mask expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _callback_mask);
+
+    var __return_value__ = __fmod_studio_system_set_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 // Skipping function fmod_studio_system_get_user_data (no wrapper is required)
 
@@ -3668,13 +4109,16 @@ function fmod_studio_event_description_unload_sample_data(_event_desc_ref)
 
 /**
  * @param {Real} _event_desc_ref
- * @param {Real} _callback_mask
+ * @param {Function} _callback
+ * @param {Enum.FmodStudioEventCallbackType} _callback_mask
  * @returns {Real}
  */
-function fmod_studio_event_description_set_callback(_event_desc_ref, _callback_mask)
+function fmod_studio_event_description_set_callback(_event_desc_ref, _callback, _callback_mask)
 {
     var __available__ = __GMFMODStudio_is_available();
     if (!__available__) return;
+
+    var __dispatcher__ = __GMFMODStudio_get_dispatcher();
 
     var __args_buffer__ = __ext_core_get_args_buffer();
 
@@ -3682,9 +4126,23 @@ function fmod_studio_event_description_set_callback(_event_desc_ref, _callback_m
     if (!is_numeric(_event_desc_ref)) show_error($"{_GMFUNCTION_} :: _event_desc_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _event_desc_ref);
 
-    // param: _callback_mask, type: Float64
+    // param: _callback, type: optional<Function>
+    if (is_undefined(_callback))
+    {
+        buffer_write(__args_buffer__, buffer_bool, false);
+    }
+    else
+    {
+        buffer_write(__args_buffer__, buffer_bool, true);
+        if (!is_callable(_callback)) show_error($"{_GMFUNCTION_} :: _callback expected callable type", true);
+        var _callback_handle = __ext_core_function_register(_callback, __dispatcher__);
+        buffer_write(__args_buffer__, buffer_u64, _callback_handle);
+    }
+
+    // param: _callback_mask, type: enum FmodStudioEventCallbackType
+
     if (!is_numeric(_callback_mask)) show_error($"{_GMFUNCTION_} :: _callback_mask expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _callback_mask);
+    buffer_write(__args_buffer__, buffer_u64, _callback_mask);
 
     var __return_value__ = __fmod_studio_event_description_set_callback(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -4857,6 +5315,30 @@ function fmod_studio_event_instance_get_channel_group(_instance_ref)
 
 /**
  * @param {Real} _instance_ref
+ * @returns {Real}
+ */
+function fmod_studio_event_instance_get_channel_group_ptr(_instance_ref)
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
+
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _instance_ref, type: UInt64
+    if (!is_numeric(_instance_ref)) show_error($"{_GMFUNCTION_} :: _instance_ref expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _instance_ref);
+
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_studio_event_instance_get_channel_group_ptr(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
+}
+
+/**
+ * @param {Real} _instance_ref
  * @returns {Struct.FmodStudioCPUUsage}
  */
 function fmod_studio_event_instance_get_cpu_usage(_instance_ref)
@@ -5171,6 +5653,30 @@ function fmod_studio_bus_get_channel_group(_bus_ref)
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
     var __return_value__ = __fmod_studio_bus_get_channel_group(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
+}
+
+/**
+ * @param {Real} _bus_ref
+ * @returns {Real}
+ */
+function fmod_studio_bus_get_channel_group_ptr(_bus_ref)
+{
+    var __available__ = __GMFMODStudio_is_available();
+    if (!__available__) return;
+
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _bus_ref, type: UInt64
+    if (!is_numeric(_bus_ref)) show_error($"{_GMFUNCTION_} :: _bus_ref expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _bus_ref);
+
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_studio_bus_get_channel_group_ptr(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
     __result__ = buffer_read(__ret_buffer__, buffer_u64);
@@ -5979,6 +6485,11 @@ function __GMFMODStudio_get_decoders()
         __FmodStudioBufferInfo_decode,
         __FmodStudioAdvancedSettings_decode,
         __FmodStudioParameterValue_decode,
+        __FmodStudioTimelineMarkerProperties_decode,
+        __FmodStudioTimelineBeatProperties_decode,
+        __FmodStudioTimelineNestedBeatProperties_decode,
+        __FmodStudioProgrammerSoundProperties_decode,
+        __FmodStudioPluginInstanceProperties_decode,
         __FmodStudio3DAttributes_decode,
         __FmodStudioSystemCPUUsage_decode,
         __FmodStudioSoundInfo_decode,
@@ -6003,4 +6514,4 @@ function __GMFMODStudio_is_available()
 // # Exports
 // #####################################################################
 
-#export FmodStudioResult, FmodStudioDebugFlags, FmodStudioDebugMode, FmodStudioInitFlags, FmodStudioLoadingState, FmodStudioPlaybackState, FmodStudioStopMode, FmodStudioEventProperty, FmodStudioParameterFlags, FmodStudioUserPropertyType, FmodStudioLoadBankFlags, FmodStudioCommandCaptureFlags, FmodStudioCommandReplayFlags, FmodStudioEventCallbackType, FmodStudioMode, FmodStudioSoundFormat, FmodStudioParameterDescription, FmodStudioStringInfo, FmodStudioCPUUsage, FmodStudioMemoryUsage, FmodStudioCommandInfo, FmodStudioCurrentCommand, FmodStudioUserProperty, FmodStudioVec3, FmodStudioMinMaxDistance, FmodStudioCoreCPUUsage, FmodStudioCreateSoundExInfo, FmodStudioBufferInfo, FmodStudioAdvancedSettings, FmodStudioParameterValue, FmodStudio3DAttributes, FmodStudioSystemCPUUsage, FmodStudioSoundInfo, FmodStudioBufferUsage, FmodStudioListenerAttributes, fmod_studio_system_create, fmod_studio_system_load_bank_file, fmod_studio_system_load_bank_memory, fmod_studio_system_get_bank_at, fmod_studio_system_get_bank, fmod_studio_system_get_bank_by_id, fmod_studio_system_get_event, fmod_studio_system_create_event_instance, fmod_studio_system_get_bus, fmod_studio_system_get_master_bus, fmod_studio_system_get_bus_by_id, fmod_studio_system_get_vca, fmod_studio_system_get_vca_by_id, fmod_studio_system_set_listener_attributes, fmod_studio_system_get_listener_attributes, fmod_studio_system_get_core_system, fmod_studio_system_get_core_system_ptr, fmod_studio_last_result, fmod_studio_system_get_event_by_id, fmod_studio_system_start_command_capture, fmod_studio_system_load_command_replay, fmod_studio_system_get_sound_info, fmod_studio_system_get_parameter_by_id, fmod_studio_system_get_parameter_description_by_id, fmod_studio_system_get_parameter_description_by_name, fmod_studio_system_get_parameter_description_at, fmod_studio_system_get_cpu_usage, fmod_studio_system_get_buffer_usage, fmod_studio_system_get_memory_usage, fmod_studio_system_get_advanced_settings, fmod_studio_system_set_advanced_settings, fmod_studio_bank_unload, fmod_studio_bank_get_loading_state, fmod_studio_bank_get_sample_loading_state, fmod_studio_bank_get_path, fmod_studio_bank_get_parent_studio_system, fmod_studio_bank_get_event_count, fmod_studio_bank_get_event_at, fmod_studio_bank_get_bus_count, fmod_studio_bank_get_bus_at, fmod_studio_bank_get_vca_count, fmod_studio_bank_get_vca_at, fmod_studio_bank_get_string_count, fmod_studio_bank_get_id, fmod_studio_bank_is_valid, fmod_studio_bank_get_string_info, fmod_studio_bank_load_sample_data, fmod_studio_bank_unload_sample_data, fmod_studio_bank_get_user_data, fmod_studio_bank_set_user_data, fmod_studio_event_description_get_path, fmod_studio_event_description_create_instance, fmod_studio_event_description_get_instance_count, fmod_studio_event_description_get_instance_at, fmod_studio_event_description_is_snapshot, fmod_studio_event_description_is_one_shot, fmod_studio_event_description_has_sustain_point, fmod_studio_event_description_get_length, fmod_studio_event_description_get_parameter_count, fmod_studio_event_description_release_all_instances, fmod_studio_event_description_get_parameter_description_by_name, fmod_studio_event_description_load_sample_data, fmod_studio_event_description_is_valid, fmod_studio_event_description_is_3d, fmod_studio_event_description_is_stream, fmod_studio_event_description_is_doppler_enabled, fmod_studio_event_description_get_id, fmod_studio_event_description_get_min_max_distance, fmod_studio_event_description_get_sound_size, fmod_studio_event_description_get_sample_loading_state, fmod_studio_event_description_unload_sample_data, fmod_studio_event_description_set_callback, fmod_studio_event_description_get_user_data, fmod_studio_event_description_set_user_data, fmod_studio_event_description_get_user_property, fmod_studio_event_description_get_user_property_at, fmod_studio_event_description_get_user_property_count, fmod_studio_event_description_get_parameter_description_by_id, fmod_studio_event_description_get_parameter_description_at, fmod_studio_event_description_get_parameter_label_by_id, fmod_studio_event_description_get_parameter_label_at, fmod_studio_event_description_get_parameter_label_by_name, fmod_studio_event_instance_start, fmod_studio_event_instance_stop, fmod_studio_event_instance_get_playback_state, fmod_studio_event_instance_get_paused, fmod_studio_event_instance_set_paused, fmod_studio_event_instance_get_timeline_position, fmod_studio_event_instance_set_timeline_position, fmod_studio_event_instance_keyoff, fmod_studio_event_instance_get_volume, fmod_studio_event_instance_set_volume, fmod_studio_event_instance_get_pitch, fmod_studio_event_instance_set_pitch, fmod_studio_event_instance_set_parameter_by_name, fmod_studio_event_instance_get_parameter_by_name, fmod_studio_event_instance_get_parameter_count, fmod_studio_event_instance_get_parameter_by_id, fmod_studio_event_instance_set_parameter_by_id, fmod_studio_event_instance_set_callback, fmod_studio_event_instance_set_parameter_by_id_with_label, fmod_studio_event_instance_set_parameter_by_name_with_label, fmod_studio_event_instance_set_3d_attributes, fmod_studio_event_instance_get_3d_attributes, fmod_studio_event_instance_get_min_max_distance, fmod_studio_event_instance_get_listener_mask, fmod_studio_event_instance_set_listener_mask, fmod_studio_event_instance_get_reverb_level, fmod_studio_event_instance_set_reverb_level, fmod_studio_event_instance_get_property, fmod_studio_event_instance_set_property, fmod_studio_event_instance_get_user_data, fmod_studio_event_instance_set_user_data, fmod_studio_event_instance_is_valid, fmod_studio_event_instance_is_virtual, fmod_studio_event_instance_get_channel_group, fmod_studio_event_instance_get_cpu_usage, fmod_studio_event_instance_get_memory_usage, fmod_studio_event_instance_get_description, fmod_studio_event_instance_release, fmod_studio_bus_get_path, fmod_studio_bus_get_volume, fmod_studio_bus_set_volume, fmod_studio_bus_get_paused, fmod_studio_bus_set_paused, fmod_studio_bus_stop_all_events, fmod_studio_bus_get_master_bus, fmod_studio_bus_get_id, fmod_studio_bus_is_valid, fmod_studio_bus_get_channel_group, fmod_studio_bus_lock_channel_group, fmod_studio_bus_unlock_channel_group, fmod_studio_bus_get_cpu_usage, fmod_studio_bus_get_memory_usage, fmod_studio_bus_get_mute, fmod_studio_bus_set_mute, fmod_studio_bus_get_port_index, fmod_studio_bus_set_port_index, fmod_studio_vca_get_path, fmod_studio_vca_get_volume, fmod_studio_vca_set_volume, fmod_studio_command_replay_get_playback_state, fmod_studio_command_replay_get_current_command, fmod_studio_command_replay_release, fmod_studio_command_replay_get_command_count, fmod_studio_command_replay_get_length, fmod_studio_command_replay_get_system_object, fmod_studio_command_replay_is_valid, fmod_studio_command_replay_get_command_info, fmod_studio_command_replay_get_command_string, fmod_studio_command_replay_get_command_at_time, fmod_studio_command_replay_seek_to_command, fmod_studio_command_replay_seek_to_time, fmod_studio_command_replay_set_bank_path, fmod_studio_command_replay_get_paused, fmod_studio_command_replay_set_paused, fmod_studio_command_replay_start, fmod_studio_command_replay_stop, fmod_studio_command_replay_get_user_data, fmod_studio_command_replay_set_user_data, fmod_studio_command_replay_set_frame_callback, fmod_studio_command_replay_set_create_instance_callback, fmod_studio_command_replay_set_load_bank_callback
+#export FmodStudioResult, FmodStudioDebugFlags, FmodStudioDebugMode, FmodStudioInitFlags, FmodStudioLoadingState, FmodStudioPlaybackState, FmodStudioStopMode, FmodStudioEventProperty, FmodStudioParameterFlags, FmodStudioUserPropertyType, FmodStudioLoadBankFlags, FmodStudioCommandCaptureFlags, FmodStudioCommandReplayFlags, FmodStudioEventCallbackType, FmodStudioSystemCallbackType, FmodStudioMode, FmodStudioSoundFormat, FmodStudioParameterDescription, FmodStudioStringInfo, FmodStudioCPUUsage, FmodStudioMemoryUsage, FmodStudioCommandInfo, FmodStudioCurrentCommand, FmodStudioUserProperty, FmodStudioVec3, FmodStudioMinMaxDistance, FmodStudioCoreCPUUsage, FmodStudioCreateSoundExInfo, FmodStudioBufferInfo, FmodStudioAdvancedSettings, FmodStudioParameterValue, FmodStudioTimelineMarkerProperties, FmodStudioTimelineBeatProperties, FmodStudioTimelineNestedBeatProperties, FmodStudioProgrammerSoundProperties, FmodStudioPluginInstanceProperties, FmodStudio3DAttributes, FmodStudioSystemCPUUsage, FmodStudioSoundInfo, FmodStudioBufferUsage, FmodStudioListenerAttributes, fmod_studio_system_create, fmod_studio_system_load_bank_file, fmod_studio_system_load_bank_memory, fmod_studio_system_get_bank_at, fmod_studio_system_get_bank, fmod_studio_system_get_bank_by_id, fmod_studio_system_get_event, fmod_studio_system_create_event_instance, fmod_studio_system_get_bus, fmod_studio_system_get_master_bus, fmod_studio_system_get_bus_by_id, fmod_studio_system_get_vca, fmod_studio_system_get_vca_by_id, fmod_studio_system_set_listener_attributes, fmod_studio_system_get_listener_attributes, fmod_studio_system_get_core_system, fmod_studio_system_get_core_system_ptr, fmod_studio_last_result, fmod_studio_system_get_event_by_id, fmod_studio_system_start_command_capture, fmod_studio_system_load_command_replay, fmod_studio_system_get_sound_info, fmod_studio_system_get_parameter_by_id, fmod_studio_system_get_parameter_description_by_id, fmod_studio_system_get_parameter_description_by_name, fmod_studio_system_get_parameter_description_at, fmod_studio_system_get_cpu_usage, fmod_studio_system_get_buffer_usage, fmod_studio_system_get_memory_usage, fmod_studio_system_get_advanced_settings, fmod_studio_system_set_advanced_settings, fmod_studio_system_set_callback, fmod_studio_bank_unload, fmod_studio_bank_get_loading_state, fmod_studio_bank_get_sample_loading_state, fmod_studio_bank_get_path, fmod_studio_bank_get_parent_studio_system, fmod_studio_bank_get_event_count, fmod_studio_bank_get_event_at, fmod_studio_bank_get_bus_count, fmod_studio_bank_get_bus_at, fmod_studio_bank_get_vca_count, fmod_studio_bank_get_vca_at, fmod_studio_bank_get_string_count, fmod_studio_bank_get_id, fmod_studio_bank_is_valid, fmod_studio_bank_get_string_info, fmod_studio_bank_load_sample_data, fmod_studio_bank_unload_sample_data, fmod_studio_bank_get_user_data, fmod_studio_bank_set_user_data, fmod_studio_event_description_get_path, fmod_studio_event_description_create_instance, fmod_studio_event_description_get_instance_count, fmod_studio_event_description_get_instance_at, fmod_studio_event_description_is_snapshot, fmod_studio_event_description_is_one_shot, fmod_studio_event_description_has_sustain_point, fmod_studio_event_description_get_length, fmod_studio_event_description_get_parameter_count, fmod_studio_event_description_release_all_instances, fmod_studio_event_description_get_parameter_description_by_name, fmod_studio_event_description_load_sample_data, fmod_studio_event_description_is_valid, fmod_studio_event_description_is_3d, fmod_studio_event_description_is_stream, fmod_studio_event_description_is_doppler_enabled, fmod_studio_event_description_get_id, fmod_studio_event_description_get_min_max_distance, fmod_studio_event_description_get_sound_size, fmod_studio_event_description_get_sample_loading_state, fmod_studio_event_description_unload_sample_data, fmod_studio_event_description_set_callback, fmod_studio_event_description_get_user_data, fmod_studio_event_description_set_user_data, fmod_studio_event_description_get_user_property, fmod_studio_event_description_get_user_property_at, fmod_studio_event_description_get_user_property_count, fmod_studio_event_description_get_parameter_description_by_id, fmod_studio_event_description_get_parameter_description_at, fmod_studio_event_description_get_parameter_label_by_id, fmod_studio_event_description_get_parameter_label_at, fmod_studio_event_description_get_parameter_label_by_name, fmod_studio_event_instance_start, fmod_studio_event_instance_stop, fmod_studio_event_instance_get_playback_state, fmod_studio_event_instance_get_paused, fmod_studio_event_instance_set_paused, fmod_studio_event_instance_get_timeline_position, fmod_studio_event_instance_set_timeline_position, fmod_studio_event_instance_keyoff, fmod_studio_event_instance_get_volume, fmod_studio_event_instance_set_volume, fmod_studio_event_instance_get_pitch, fmod_studio_event_instance_set_pitch, fmod_studio_event_instance_set_parameter_by_name, fmod_studio_event_instance_get_parameter_by_name, fmod_studio_event_instance_get_parameter_count, fmod_studio_event_instance_get_parameter_by_id, fmod_studio_event_instance_set_parameter_by_id, fmod_studio_event_instance_set_callback, fmod_studio_event_instance_set_parameter_by_id_with_label, fmod_studio_event_instance_set_parameter_by_name_with_label, fmod_studio_event_instance_set_3d_attributes, fmod_studio_event_instance_get_3d_attributes, fmod_studio_event_instance_get_min_max_distance, fmod_studio_event_instance_get_listener_mask, fmod_studio_event_instance_set_listener_mask, fmod_studio_event_instance_get_reverb_level, fmod_studio_event_instance_set_reverb_level, fmod_studio_event_instance_get_property, fmod_studio_event_instance_set_property, fmod_studio_event_instance_get_user_data, fmod_studio_event_instance_set_user_data, fmod_studio_event_instance_is_valid, fmod_studio_event_instance_is_virtual, fmod_studio_event_instance_get_channel_group, fmod_studio_event_instance_get_channel_group_ptr, fmod_studio_event_instance_get_cpu_usage, fmod_studio_event_instance_get_memory_usage, fmod_studio_event_instance_get_description, fmod_studio_event_instance_release, fmod_studio_bus_get_path, fmod_studio_bus_get_volume, fmod_studio_bus_set_volume, fmod_studio_bus_get_paused, fmod_studio_bus_set_paused, fmod_studio_bus_stop_all_events, fmod_studio_bus_get_master_bus, fmod_studio_bus_get_id, fmod_studio_bus_is_valid, fmod_studio_bus_get_channel_group, fmod_studio_bus_get_channel_group_ptr, fmod_studio_bus_lock_channel_group, fmod_studio_bus_unlock_channel_group, fmod_studio_bus_get_cpu_usage, fmod_studio_bus_get_memory_usage, fmod_studio_bus_get_mute, fmod_studio_bus_set_mute, fmod_studio_bus_get_port_index, fmod_studio_bus_set_port_index, fmod_studio_vca_get_path, fmod_studio_vca_get_volume, fmod_studio_vca_set_volume, fmod_studio_command_replay_get_playback_state, fmod_studio_command_replay_get_current_command, fmod_studio_command_replay_release, fmod_studio_command_replay_get_command_count, fmod_studio_command_replay_get_length, fmod_studio_command_replay_get_system_object, fmod_studio_command_replay_is_valid, fmod_studio_command_replay_get_command_info, fmod_studio_command_replay_get_command_string, fmod_studio_command_replay_get_command_at_time, fmod_studio_command_replay_seek_to_command, fmod_studio_command_replay_seek_to_time, fmod_studio_command_replay_set_bank_path, fmod_studio_command_replay_get_paused, fmod_studio_command_replay_set_paused, fmod_studio_command_replay_start, fmod_studio_command_replay_stop, fmod_studio_command_replay_get_user_data, fmod_studio_command_replay_set_user_data, fmod_studio_command_replay_set_frame_callback, fmod_studio_command_replay_set_create_instance_callback, fmod_studio_command_replay_set_load_bank_callback

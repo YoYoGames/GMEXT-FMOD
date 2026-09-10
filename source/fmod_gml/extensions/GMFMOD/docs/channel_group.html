@@ -144,6 +144,7 @@
 <li><a href="channel_group.html#fmod_channel_group_get_name">fmod_channel_group_get_name</a></li>
 <li><a href="channel_group.html#fmod_channel_group_release">fmod_channel_group_release</a></li>
 <li><a href="channel_group.html#fmod_channel_group_get_system_object">fmod_channel_group_get_system_object</a></li>
+<li><a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a></li>
 </ul>
 <p><br></p>
 <hr />
@@ -583,6 +584,41 @@
 <td>channel_group_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>A reference to a ChannelGroup.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_channel_group_adopt">fmod_channel_group_adopt</h1>
+<p>This function registers a ChannelGroup that was created by the GMFMODStudio extension, and returns a reference the <code>fmod_channel_group_*</code> functions can use.</p>
+<p>GMFMOD and GMFMODStudio are separate extensions with separate object registries, so a reference made by one does not resolve in the other. Get the raw pointer with <a href="bus.html#fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</a> or <a href="event_instance.html#fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</a> and pass it here.</p>
+<p>The adopted ChannelGroup is still owned by whoever created it: <a href="channel_group.html#fmod_channel_group_release">fmod_channel_group_release</a> on an adopted reference drops it from this extension's registry without releasing the underlying object.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_channel_group_adopt(channel_group_ptr)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_group_ptr</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The raw pointer from one of the GMFMODStudio <code>_ptr</code> functions.</td>
 </tr>
 </tbody>
 </table>

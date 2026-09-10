@@ -233,6 +233,17 @@ enum FmodStudioEventCallbackType
 }
 
 [global, bind = typed_gml]
+enum FmodStudioSystemCallbackType
+{
+	PreUpdate = 0x00000001,
+	PostUpdate = 0x00000002,
+	BankUnload = 0x00000004,
+	LiveUpdateConnected = 0x00000008,
+	LiveUpdateDisconnected = 0x00000010,
+	All = 0xFFFFFFFF,
+}
+
+[global, bind = typed_gml]
 enum FmodStudioMode
 {
 	Default = 0x00000000,
@@ -626,6 +637,91 @@ class `[[FmodStudioParameterValue]]` prototype Object
     property final_value: gmval { get; set; }
 }
 
+// Payloads carried by the third argument of an event callback. Which one
+// arrives is selected by the FmodStudioEventCallbackType that fired; the types
+// that carry nothing pass undefined instead.
+
+[global]
+class `[[FmodStudioTimelineMarkerProperties]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property position: gmval { get; set; }
+}
+
+[global]
+class `[[FmodStudioTimelineBeatProperties]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property bar: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property beat: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property position: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property tempo: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property time_signature_upper: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property time_signature_lower: gmval { get; set; }
+}
+
+// FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES nests a beat struct; GMIDL
+// classes are flat, so the beat fields are inlined alongside the event id.
+[global]
+class `[[FmodStudioTimelineNestedBeatProperties]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property event_id: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property bar: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property beat: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property position: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property tempo: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property time_signature_upper: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property time_signature_lower: gmval { get; set; }
+}
+
+// FMOD's own struct also carries the sound to play and is written by the
+// callback. This extension dispatches callbacks asynchronously, so it cannot
+// answer FMOD in time; only the fields FMOD fills in are carried.
+[global]
+class `[[FmodStudioProgrammerSoundProperties]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property sub_sound_index: gmval { get; set; }
+}
+
+// FMOD's own struct also carries the plugin DSP. It belongs to the GMFMOD
+// registry, not this one, so a ref minted here would be meaningless there.
+[global]
+class `[[FmodStudioPluginInstanceProperties]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+}
+
 group
 {
 
@@ -890,8 +986,13 @@ function fmod_studio_system_set_advanced_settings(
 // Studio System - Callbacks & User Data
 // ============================================================
 
+// callback receives (type, payload). payload is the unloaded bank's ref on
+// BankUnload and undefined for every other type. Pass undefined to clear.
 [global, bind = typed_gml]
-function fmod_studio_system_set_callback(callback_mask: real): real;
+function fmod_studio_system_set_callback(
+	[type_hint=`func?`] callback: gmval,
+	[type_hint=`FmodStudioSystemCallbackType`] callback_mask: gmval
+): real;
 
 [global, bind = typed_gml]
 function fmod_studio_system_get_user_data(): real;
@@ -1040,10 +1141,14 @@ function fmod_studio_event_description_get_sample_loading_state([type_hint=`uint
 [global, bind = typed_gml]
 function fmod_studio_event_description_unload_sample_data([type_hint=`uint64`] event_desc_ref: gmval): real;
 
+// callback receives (event_instance_ref, type, properties), the same shape
+// fmod_studio_event_instance_set_callback delivers. It fires for every instance
+// of this description. Pass undefined to clear.
 [global, bind = typed_gml]
 function fmod_studio_event_description_set_callback(
 	[type_hint=`uint64`] event_desc_ref: gmval,
-	callback_mask: real
+	[type_hint=`func?`] callback: gmval,
+	[type_hint=`FmodStudioEventCallbackType`] callback_mask: gmval
 ): real;
 
 [global, bind = typed_gml]
@@ -1274,6 +1379,13 @@ function fmod_studio_event_instance_is_virtual([type_hint=`uint64`] instance_ref
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_event_instance_get_channel_group([type_hint=`uint64`] instance_ref: gmval): gmval;
 
+// Raw FMOD::ChannelGroup* of the same group, as an integer. The ref above
+// indexes this extension's own registry and is meaningless to GMFMOD, which
+// links its own copy; pass this pointer to fmod_channel_group_adopt() (GMFMOD)
+// to register the same group there.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_event_instance_get_channel_group_ptr([type_hint=`uint64`] instance_ref: gmval): gmval;
+
 [global, bind = typed_gml, type_hint=`FmodStudioCPUUsage`]
 function fmod_studio_event_instance_get_cpu_usage([type_hint=`uint64`] instance_ref: gmval): gmval;
 
@@ -1324,6 +1436,12 @@ function fmod_studio_bus_is_valid([type_hint=`uint64`] bus_ref: gmval): real;
 
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_bus_get_channel_group([type_hint=`uint64`] bus_ref: gmval): gmval;
+
+// Raw FMOD::ChannelGroup* of the same group, as an integer. Same reason as
+// fmod_studio_event_instance_get_channel_group_ptr(): hand this to GMFMOD's
+// fmod_channel_group_adopt(), not the ref above.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_bus_get_channel_group_ptr([type_hint=`uint64`] bus_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_bus_lock_channel_group([type_hint=`uint64`] bus_ref: gmval): real;

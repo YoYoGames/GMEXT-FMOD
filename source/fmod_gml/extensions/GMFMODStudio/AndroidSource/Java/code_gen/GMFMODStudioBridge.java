@@ -75,7 +75,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_system_get_memory_usage(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_get_advanced_settings(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_set_advanced_settings(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_system_set_callback(double callback_mask);
+    public static native double __EXT_JNI__fmod_studio_system_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_get_user_data();
     public static native double __EXT_JNI__fmod_studio_system_set_user_data(double user_data);
     public static native double __EXT_JNI__fmod_studio_bank_unload(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -163,6 +163,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_event_instance_is_valid(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_is_virtual(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_get_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_event_instance_get_channel_group_ptr(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_get_cpu_usage(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_get_memory_usage(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_get_description(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -177,6 +178,7 @@ public final class GMFMODStudioBridge {
     public static native String __EXT_JNI__fmod_studio_bus_get_id(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bus_is_valid(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bus_get_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_bus_get_channel_group_ptr(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bus_lock_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bus_unlock_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bus_get_cpu_usage(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);

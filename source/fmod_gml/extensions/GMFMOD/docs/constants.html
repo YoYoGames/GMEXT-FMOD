@@ -149,6 +149,7 @@
 <li><a href="constants.html#fmodsoundtype">FmodSoundType</a></li>
 <li><a href="constants.html#fmodsoundformat">FmodSoundFormat</a></li>
 <li><a href="constants.html#fmodstudiosoundformat">FmodStudioSoundFormat</a></li>
+<li><a href="constants.html#fmodstudiosystemcallbacktype">FmodStudioSystemCallbackType</a></li>
 <li><a href="constants.html#fmodopenstate">FmodOpenState</a></li>
 <li><a href="constants.html#fmodchannelcontroldspindex">FmodChannelControlDspIndex</a></li>
 <li><a href="constants.html#fmoddspconnectiontype">FmodDspConnectionType</a></li>
@@ -3804,6 +3805,55 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </table>
 <p>*/</p>
 <p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudiosystemcallbacktype">FmodStudioSystemCallbackType</h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_system_callback_type">FMOD_STUDIO_SYSTEM_CALLBACK_TYPE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum specifies the FMOD Studio system callback types, used as a bitfield with <a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a>.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="studio_system.html#fmod_studio_system_set_callback">fmod_studio_system_set_callback</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PreUpdate</code></td>
+<td>Called before Studio's update, but after the async thread has finished. Payload = <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>PostUpdate</code></td>
+<td>Called after Studio's update. Payload = <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>BankUnload</code></td>
+<td>Called when a bank has just been unloaded, after all its resources are freed. Payload = the Bank reference.</td>
+</tr>
+<tr>
+<td><code>LiveUpdateConnected</code></td>
+<td>Called after a live update connection has been established. Payload = <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>LiveUpdateDisconnected</code></td>
+<td>Called after a live update connection has been lost. Payload = <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>All</code></td>
+<td>A mask covering every callback type.</td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

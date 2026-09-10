@@ -100,10 +100,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_error_string(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_fetch_callbacks
-{
-    return __EXT_NATIVE__fmod_fetch_callbacks();
-}
 - (double)__EXT_NATIVE__fmod_shutdown
 {
     return __EXT_NATIVE__fmod_shutdown();
@@ -707,6 +703,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_channel_group_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_channel_group_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_channel_group_adopt:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_channel_group_adopt(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_sound_group_set_max_audible:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

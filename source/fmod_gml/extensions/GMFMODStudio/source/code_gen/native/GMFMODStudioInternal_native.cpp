@@ -531,9 +531,21 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_advanced_settings(char* __a
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_callback(double callback_mask)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_callback(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_studio_system_set_callback(static_cast<double>(callback_mask));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: callback, type: optional<Function>
+    std::optional<gm::wire::GMFunction> callback = std::nullopt;
+    if (gm::wire::codec::readValue<bool>(__br))
+    {
+        callback = gm::wire::codec::readFunction(__br, &__dispatch_queue);
+    }
+
+    // field: callback_mask, type: enum FmodStudioSystemCallbackType
+    gm_enums::FmodStudioSystemCallbackType callback_mask = gm::wire::codec::readValue<gm_enums::FmodStudioSystemCallbackType>(__br);
+
+    auto&& __result = fmod_studio_system_set_callback(callback, callback_mask);
     return static_cast<double>(__result);
 }
 
@@ -1057,10 +1069,17 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_callback(char* _
     // field: event_desc_ref, type: UInt64
     std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: callback_mask, type: Float64
-    double callback_mask = gm::wire::codec::readValue<double>(__br);
+    // field: callback, type: optional<Function>
+    std::optional<gm::wire::GMFunction> callback = std::nullopt;
+    if (gm::wire::codec::readValue<bool>(__br))
+    {
+        callback = gm::wire::codec::readFunction(__br, &__dispatch_queue);
+    }
 
-    auto&& __result = fmod_studio_event_description_set_callback(event_desc_ref, callback_mask);
+    // field: callback_mask, type: enum FmodStudioEventCallbackType
+    gm_enums::FmodStudioEventCallbackType callback_mask = gm::wire::codec::readValue<gm_enums::FmodStudioEventCallbackType>(__br);
+
+    auto&& __result = fmod_studio_event_description_set_callback(event_desc_ref, callback, callback_mask);
     return static_cast<double>(__result);
 }
 
@@ -1724,6 +1743,21 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(char*
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_event_instance_get_channel_group_ptr(instance_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1897,6 +1931,21 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_channel_group(char* __arg_buff
     std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bus_get_channel_group(bus_ref);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: UInt64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_channel_group_ptr(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: bus_ref, type: UInt64
+    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    auto&& __result = fmod_studio_bus_get_channel_group_ptr(bus_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: UInt64

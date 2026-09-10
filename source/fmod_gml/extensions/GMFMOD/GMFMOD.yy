@@ -82,21 +82,6 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_fetch_callbacks",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_fetch_callbacks",
-          "help": "",
-          "hidden": false,
-          "kind": 4,
-          "name": "fmod_fetch_callbacks",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 2
-        },
-        {
-          "$GMExtensionFunction": "",
           "%Name": "fmod_shutdown",
           "argCount": 0,
           "args": [],
@@ -2819,6 +2804,26 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_channel_group_get_system_object",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
+          "%Name": "__fmod_channel_group_adopt",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_channel_group_adopt",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_channel_group_adopt",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2

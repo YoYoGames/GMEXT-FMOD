@@ -92,13 +92,6 @@ void setResourceUserData(T resource, double data);
 extern std::mutex g_user_data_mutex;
 extern std::map<uintptr_t, double> g_user_data;
 
-// Shared counter for the mask-only callback stubs (event description /
-// studio system callbacks currently have no GMFunction parameter, so there
-// is no path to deliver payloads to GML). Each callback-owning file's own
-// trampoline increments this on every fired event; fmod_fetch_callbacks()
-// (GMFMOD_utility.cpp) drains and returns the count.
-extern std::atomic<uint64_t> g_fmod_callback_count;
-
 // ============================================================
 // Reference Layout
 // ============================================================
@@ -261,6 +254,10 @@ struct FmodCommandReplayCallbackContext
 extern std::mutex g_command_replay_callback_mutex;
 extern std::map<uintptr_t, FmodCommandReplayCallbackContext> g_command_replay_callbacks;
 
+// FMOD_GUID in Studio's own {8-4-4-4-12} spelling, which is what
+// fmod_studio_system_get_bank_by_id() parses back.
+std::string format_guid(const FMOD_GUID& guid);
+
 // ============================================================
 // Per-module state hooks
 // ============================================================
@@ -269,7 +266,22 @@ extern std::map<uintptr_t, FmodCommandReplayCallbackContext> g_command_replay_ca
 // promoting the map to a global. fmod_studio_shutdown() drives them all.
 void fmod_studio_event_instance_reset_state();
 void fmod_studio_command_replay_reset_state();
+void fmod_studio_event_description_reset_state();
 void fmod_registry_clear_all();
+
+// A description lives as long as its bank and gets no DESTROYED callback, so
+// the description-keyed callback map is swept here instead - same reason
+// fmod_studio_bank_unload() already drops the bank's user data.
+void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank);
+
+// Shared by both event trampolines: turns FMOD's (type, event, parameters)
+// into the (event_instance_ref, type, properties) call GML sees. One decoder
+// so the description and instance paths cannot drift apart.
+void fmod_studio_event_call(
+	const gm::wire::GMFunction& callback,
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
+	FMOD_STUDIO_EVENTINSTANCE* event,
+	void* parameters);
 
 // ============================================================
 // Truncation-safe string reads

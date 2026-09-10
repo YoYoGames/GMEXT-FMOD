@@ -1248,6 +1248,23 @@
 
 
 /**
+ * @const FmodStudioSystemCallbackType
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-system.html#fmod_studio_system_callback_type)
+ *
+ * <br />
+ *
+ * This enum specifies the FMOD Studio system callback types, used as a bitfield with ${function.fmod_studio_system_set_callback}.
+ *
+ * @member PreUpdate Called before Studio's update, but after the async thread has finished. Payload = `undefined`.
+ * @member PostUpdate Called after Studio's update. Payload = `undefined`.
+ * @member BankUnload Called when a bank has just been unloaded, after all its resources are freed. Payload = the Bank reference.
+ * @member LiveUpdateConnected Called after a live update connection has been established. Payload = `undefined`.
+ * @member LiveUpdateDisconnected Called after a live update connection has been lost. Payload = `undefined`.
+ * @member All A mask covering every callback type.
+ * @const_end
+ */
+
+/**
  * @const FmodStudioEventCallbackType
  * @desc > **FMOD Constant:** [FMOD_STUDIO_EVENT_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#fmod_studio_event_callback_type)
  *
@@ -1868,6 +1885,7 @@
  * @ref FmodSoundType
  * @ref FmodSoundFormat
  * @ref FmodStudioSoundFormat
+ * @ref FmodStudioSystemCallbackType
  * @ref FmodOpenState
  * @ref FmodChannelControlDspIndex
  * @ref FmodDspConnectionType

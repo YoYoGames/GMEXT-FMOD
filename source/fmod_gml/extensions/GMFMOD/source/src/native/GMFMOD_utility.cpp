@@ -27,13 +27,6 @@ std::string fmod_error_string(enum gm_enums::FmodResult result)
 	return std::string(FMOD_ErrorString((FMOD_RESULT)(int)result));
 }
 
-double fmod_fetch_callbacks()
-{
-	// No callback detail can reach GML today (see GMFMOD_common.h) - this just
-	// drains the fired-callback counter so callers can at least detect activity.
-	return (double)g_fmod_callback_count.exchange(0);
-}
-
 double fmod_file_get_disk_busy()
 {
 	int busy = 0;

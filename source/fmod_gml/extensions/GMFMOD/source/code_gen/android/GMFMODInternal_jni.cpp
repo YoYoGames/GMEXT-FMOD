@@ -182,13 +182,6 @@ static jstring __JNI_WRAPPER__fmod_error_string_FF361944BD9C(JNIEnv* env, jclass
     return __j;
 }
 
-// fmod_fetch_callbacks JNI wrapper signature: ()D
-static jdouble __JNI_WRAPPER__fmod_fetch_callbacks_4FCF476C4D87(JNIEnv* /* env */, jclass /* GMFMODBridge */)
-{
-    double __ret = __EXT_NATIVE__fmod_fetch_callbacks();
-    return static_cast<jdouble>(__ret);
-}
-
 // fmod_shutdown JNI wrapper signature: ()D
 static jdouble __JNI_WRAPPER__fmod_shutdown_BE5695C7F239(JNIEnv* /* env */, jclass /* GMFMODBridge */)
 {
@@ -2121,6 +2114,25 @@ static jdouble __JNI_WRAPPER__fmod_channel_group_get_system_object_425D2F6A941B(
         return 0.0;
     }
     double __ret = __EXT_NATIVE__fmod_channel_group_get_system_object((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_channel_group_adopt JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_group_adopt_68CF45CED068(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_channel_group_adopt((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -4459,7 +4471,6 @@ extern "C" {
             { "__EXT_JNI__fmod_last_result", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_last_result_6249C1D416C4 },
             { "__EXT_JNI__fmod_debug_initialize", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_debug_initialize_0DBC9690DD4B },
             { "__EXT_JNI__fmod_error_string", "(Ljava/nio/ByteBuffer;D)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_error_string_FF361944BD9C },
-            { "__EXT_JNI__fmod_fetch_callbacks", "()D", (void*)__JNI_WRAPPER__fmod_fetch_callbacks_4FCF476C4D87 },
             { "__EXT_JNI__fmod_shutdown", "()D", (void*)__JNI_WRAPPER__fmod_shutdown_BE5695C7F239 },
             { "__EXT_JNI__fmod_file_get_disk_busy", "()D", (void*)__JNI_WRAPPER__fmod_file_get_disk_busy_88FAFB9E0151 },
             { "__EXT_JNI__fmod_file_set_disk_busy", "(D)D", (void*)__JNI_WRAPPER__fmod_file_set_disk_busy_77F1854DF7EA },
@@ -4611,6 +4622,7 @@ extern "C" {
             { "__EXT_JNI__fmod_channel_group_get_name", "(Ljava/nio/ByteBuffer;D)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_channel_group_get_name_6E258D2302D6 },
             { "__EXT_JNI__fmod_channel_group_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_release_9D956A327C13 },
             { "__EXT_JNI__fmod_channel_group_get_system_object", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_get_system_object_425D2F6A941B },
+            { "__EXT_JNI__fmod_channel_group_adopt", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_group_adopt_68CF45CED068 },
             { "__EXT_JNI__fmod_sound_group_set_max_audible", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_group_set_max_audible_550B96B59079 },
             { "__EXT_JNI__fmod_sound_group_get_max_audible", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_group_get_max_audible_ED74010F7687 },
             { "__EXT_JNI__fmod_sound_group_set_max_audible_behavior", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_group_set_max_audible_behavior_57558C627BD0 },

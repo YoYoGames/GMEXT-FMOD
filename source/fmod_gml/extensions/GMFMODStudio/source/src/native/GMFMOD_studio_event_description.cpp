@@ -4,6 +4,8 @@
 #include <string_view>
 #include <optional>
 #include <vector>
+#include <map>
+#include <mutex>
 #include <cstdio>
 
 using namespace gm_structs;
@@ -278,29 +280,216 @@ double fmod_studio_event_description_get_sound_size(uint64_t event_desc_ref)
 }
 
 // ============================================================
-// Event Description - Callback (mask-only stub, see fmod_fetch_callbacks)
+// Event Description - Callback
 // ============================================================
 
-// No GMFunction is passed for this callback in the current spec, so there is no
-// path to deliver event details back to GML. We still forward the mask to FMOD
-// with a trampoline that counts fired events in the shared g_fmod_callback_count
-// (drained by fmod_fetch_callbacks() in GMFMOD_utility.cpp).
+// Shared by both event trampolines, so the description and instance paths
+// cannot drift apart - which is what happened to the pre-extgen pair, whose own
+// comment asked the reader to copy/paste changes between them.
+//
+// FMOD's `parameters` is a union discriminated by `type`. Two members are
+// deliberately not forwarded: the FMOD_SOUND* on the programmer-sound and
+// sound-played types, and the FMOD_DSP* on the plugin types. Both belong to
+// GMFMOD's registry rather than this one, so a ref minted here would resolve
+// against the wrong map in the other DLL.
+void fmod_studio_event_call(
+	const gm::wire::GMFunction& callback,
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
+	FMOD_STUDIO_EVENTINSTANCE* event,
+	void* parameters)
+{
+	// Keys are the truncated pointer the GML refs carry, so mask to match.
+	uintptr_t instance_ptr = reinterpret_cast<uintptr_t>(event) & 0xFFFFFFFFu;
+	uint64_t ref = packIndexIntoRef((uint32_t)instance_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+	double kind = (double)type;
+
+	switch (type)
+	{
+		case FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_MARKER:
+		{
+			const FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES* props =
+				(const FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES*)parameters;
+			if (props == nullptr) break;
+
+			FmodStudioTimelineMarkerProperties out{};
+			out.name = props->name != nullptr ? props->name : "";
+			out.position = (double)props->position;
+			callback.call(ref, kind, out);
+			return;
+		}
+		case FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
+		{
+			const FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES* props =
+				(const FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES*)parameters;
+			if (props == nullptr) break;
+
+			FmodStudioTimelineBeatProperties out{};
+			out.bar = (double)props->bar;
+			out.beat = (double)props->beat;
+			out.position = (double)props->position;
+			out.tempo = (double)props->tempo;
+			out.time_signature_upper = (double)props->timesignatureupper;
+			out.time_signature_lower = (double)props->timesignaturelower;
+			callback.call(ref, kind, out);
+			return;
+		}
+		case FMOD_STUDIO_EVENT_CALLBACK_NESTED_TIMELINE_BEAT:
+		{
+			const FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES* props =
+				(const FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES*)parameters;
+			if (props == nullptr) break;
+
+			FmodStudioTimelineNestedBeatProperties out{};
+			out.event_id = format_guid(props->eventid);
+			out.bar = (double)props->properties.bar;
+			out.beat = (double)props->properties.beat;
+			out.position = (double)props->properties.position;
+			out.tempo = (double)props->properties.tempo;
+			out.time_signature_upper = (double)props->properties.timesignatureupper;
+			out.time_signature_lower = (double)props->properties.timesignaturelower;
+			callback.call(ref, kind, out);
+			return;
+		}
+		case FMOD_STUDIO_EVENT_CALLBACK_CREATE_PROGRAMMER_SOUND:
+		case FMOD_STUDIO_EVENT_CALLBACK_DESTROY_PROGRAMMER_SOUND:
+		{
+			const FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES* props =
+				(const FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES*)parameters;
+			if (props == nullptr) break;
+
+			// FMOD reads `sound` back out of this struct on CREATE, and callbacks
+			// here are dispatched to the game thread, so it cannot be answered.
+			FmodStudioProgrammerSoundProperties out{};
+			out.name = props->name != nullptr ? props->name : "";
+			out.sub_sound_index = (double)props->subsoundIndex;
+			callback.call(ref, kind, out);
+			return;
+		}
+		case FMOD_STUDIO_EVENT_CALLBACK_PLUGIN_CREATED:
+		case FMOD_STUDIO_EVENT_CALLBACK_PLUGIN_DESTROYED:
+		{
+			const FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES* props =
+				(const FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES*)parameters;
+			if (props == nullptr) break;
+
+			FmodStudioPluginInstanceProperties out{};
+			out.name = props->name != nullptr ? props->name : "";
+			callback.call(ref, kind, out);
+			return;
+		}
+		case FMOD_STUDIO_EVENT_CALLBACK_START_EVENT_COMMAND:
+		{
+			FMOD_STUDIO_EVENTINSTANCE* started = (FMOD_STUDIO_EVENTINSTANCE*)parameters;
+			if (started == nullptr) break;
+
+			uintptr_t started_ptr = reinterpret_cast<uintptr_t>(started) & 0xFFFFFFFFu;
+			callback.call(ref, kind,
+				packIndexIntoRef((uint32_t)started_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE));
+			return;
+		}
+		default:
+			break;
+	}
+
+	callback.call(ref, kind, std::optional<double>{});
+}
+
+// Studio runs its update on a worker thread by default, so this map is touched
+// from both that thread and the game thread.
+static std::mutex g_event_description_callback_mutex;
+static std::map<uintptr_t, gm::wire::GMFunction> g_event_description_callbacks;
+
+void fmod_studio_event_description_reset_state()
+{
+	std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+	g_event_description_callbacks.clear();
+}
+
+void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank)
+{
+	if (bank == nullptr) return;
+
+	int count = 0;
+	if (bank->getEventCount(&count) != FMOD_OK || count <= 0) return;
+
+	std::vector<FMOD::Studio::EventDescription*> descriptions(count, nullptr);
+	int retrieved = 0;
+	if (bank->getEventList(descriptions.data(), count, &retrieved) != FMOD_OK) return;
+
+	std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+	for (int i = 0; i < retrieved; ++i)
+	{
+		if (descriptions[i] == nullptr) continue;
+		g_event_description_callbacks.erase(
+			reinterpret_cast<uintptr_t>(descriptions[i]) & 0xFFFFFFFFu);
+	}
+}
+
+// FMOD hands the trampoline the instance, not the description the callback was
+// set on, so the description is recovered from the instance to find it.
 static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_description(
 	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
 	FMOD_STUDIO_EVENTINSTANCE* event,
 	void* parameters)
 {
-	g_fmod_callback_count.fetch_add(1, std::memory_order_relaxed);
+	if (event == nullptr)
+		return FMOD_OK;
+
+	FMOD::Studio::EventDescription* event_desc = nullptr;
+	if (((FMOD::Studio::EventInstance*)event)->getDescription(&event_desc) != FMOD_OK
+		|| event_desc == nullptr)
+		return FMOD_OK;
+
+	uintptr_t desc_ptr = reinterpret_cast<uintptr_t>(event_desc) & 0xFFFFFFFFu;
+
+	std::optional<gm::wire::GMFunction> callback;
+	{
+		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+		auto it = g_event_description_callbacks.find(desc_ptr);
+		if (it == g_event_description_callbacks.end())
+			return FMOD_OK;
+
+		callback = it->second;
+	}
+
+	fmod_studio_event_call(callback.value(), type, event, parameters);
 	return FMOD_OK;
 }
 
-double fmod_studio_event_description_set_callback(uint64_t event_desc_ref, double callback_mask)
+double fmod_studio_event_description_set_callback(
+	uint64_t event_desc_ref,
+	const std::optional<gm::wire::GMFunction>& callback,
+	enum gm_enums::FmodStudioEventCallbackType callback_mask)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return 0;
 
-	g_fmod_last_result = event_desc->setCallback(CALLBACK_fmod_studio_event_description, (FMOD_STUDIO_EVENT_CALLBACK_TYPE)fmod_flag_word(callback_mask));
+	uintptr_t desc_ptr = reinterpret_cast<uintptr_t>(event_desc) & 0xFFFFFFFFu;
+
+	if (!callback.has_value())
+	{
+		{
+			std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+			g_event_description_callbacks.erase(desc_ptr);
+		}
+		g_fmod_last_result = event_desc->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
+		return 0;
+	}
+
+	{
+		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+		g_event_description_callbacks.insert_or_assign(desc_ptr, callback.value());
+	}
+
+	g_fmod_last_result = event_desc->setCallback(
+		CALLBACK_fmod_studio_event_description,
+		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)callback_mask);
+	if (g_fmod_last_result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+		g_event_description_callbacks.erase(desc_ptr);
+	}
 	return 0;
 }
 

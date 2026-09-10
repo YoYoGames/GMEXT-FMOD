@@ -7,17 +7,6 @@
 
 using namespace gm_structs;
 
-static std::string format_guid(const FMOD_GUID& guid)
-{
-	char buffer[64]{};
-	std::snprintf(buffer, sizeof(buffer),
-		"{%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x}",
-		guid.Data1, guid.Data2, guid.Data3,
-		guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],
-		guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
-	return std::string(buffer);
-}
-
 double fmod_studio_bank_unload(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = nullptr;
@@ -30,6 +19,10 @@ double fmod_studio_bank_unload(uint64_t bank_ref)
 		std::lock_guard<std::mutex> lock(g_user_data_mutex);
 		g_user_data.erase(reinterpret_cast<uintptr_t>(bank));
 	}
+
+	// Same reason, one level down: the bank's event descriptions die with it and
+	// get no DESTROYED callback of their own, so their entries are dropped here.
+	fmod_studio_event_description_forget_bank(bank);
 
 	g_fmod_last_result = bank->unload();
 	return 0;

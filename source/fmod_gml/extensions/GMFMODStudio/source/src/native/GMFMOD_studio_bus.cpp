@@ -6,17 +6,6 @@
 
 using namespace gm_structs;
 
-static std::string format_guid(const FMOD_GUID& guid)
-{
-	char buffer[64]{};
-	std::snprintf(buffer, sizeof(buffer),
-		"{%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x}",
-		guid.Data1, guid.Data2, guid.Data3,
-		guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],
-		guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
-	return std::string(buffer);
-}
-
 std::string fmod_studio_bus_get_path(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
@@ -115,6 +104,22 @@ uint64_t fmod_studio_bus_get_channel_group(uint64_t bus_ref)
 
 	uint32_t group_id = registerOrFindResource(group, index_channel_groups, map_channel_groups);
 	return packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+}
+
+// Deliberately does not touch the group's user-data slot: that slot is the
+// registry's, and claiming it here is what makes the ref above unusable in
+// GMFMOD. The caller hands this pointer to GMFMOD's fmod_channel_group_adopt().
+uint64_t fmod_studio_bus_get_channel_group_ptr(uint64_t bus_ref)
+{
+	FMOD::Studio::Bus* bus = nullptr;
+	validate_fmod_studio_bus(bus_ref, bus);
+	if (bus == nullptr) return 0;
+
+	FMOD::ChannelGroup* group = nullptr;
+	g_fmod_last_result = bus->getChannelGroup(&group);
+	if (g_fmod_last_result != FMOD_OK || group == nullptr) return 0;
+
+	return static_cast<uint64_t>(reinterpret_cast<uintptr_t>(group));
 }
 
 double fmod_studio_bus_lock_channel_group(uint64_t bus_ref)

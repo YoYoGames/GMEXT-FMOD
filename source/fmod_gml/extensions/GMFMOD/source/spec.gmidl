@@ -1646,9 +1646,6 @@ function fmod_error_string(
     [type_hint=`FmodResult`] result: gmval
 ): string;
 
-[global, bind = typed_gml]
-function fmod_fetch_callbacks(): real;
-
 // finish_fn: the runtime calls this on game end and on game_restart(), which is
 // what stops the registries, the selected system and the callback maps from
 // surviving a restart the GML side knows nothing about.
@@ -2615,6 +2612,16 @@ function fmod_channel_group_release(
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_channel_group_get_system_object(
     [type_hint=`uint64`] channel_group_ref: gmval
+): gmval;
+
+// Registers an FMOD::ChannelGroup created outside this extension (pass the
+// pointer from fmod_studio_bus_get_channel_group_ptr() or
+// fmod_studio_event_instance_get_channel_group_ptr()). Returns a channel group
+// ref valid here. The adopted group stays owned by its creator:
+// fmod_channel_group_release() will neither release nor unregister it.
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_channel_group_adopt(
+    [type_hint=`uint64`] channel_group_ptr: gmval
 ): gmval;
 
 }

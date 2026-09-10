@@ -160,6 +160,7 @@
 <li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_channel_group">fmod_studio_event_instance_get_channel_group</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_reverb_level">fmod_studio_event_instance_set_reverb_level</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_reverb_level">fmod_studio_event_instance_get_reverb_level</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_cpu_usage">fmod_studio_event_instance_get_cpu_usage</a></li>
@@ -1311,10 +1312,52 @@ For example to create a mask for listener index 0 and 2 the calculation would be
 <p><br /></p>
 <p>This function retrieves the core <code>ChannelGroup</code> corresponding to the master track.</p>
 <p>Until the event instance has been fully created this function will result in <code>FmodStudioResult.StudioNotLoaded</code> (in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The reference this returns belongs to the GMFMODStudio extension's own object registry, and the <code>fmod_channel_group_*</code> functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use <a href="event_instance.html#fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</a> and <a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a> instead.</p>
+</div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
 <div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_channel_group(instance_ref)
+</code></pre></div>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup">Studio::EventInstance::getChannelGroup</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the core ChannelGroup of an event instance as a raw pointer, for handing to the GMFMOD extension.</p>
+<p>See <a href="bus.html#fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</a> for why this exists. Pass the value to <a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_channel_group_ptr(instance_ref)
 </code></pre></div>
 </blockquote>
 <table>
@@ -1513,8 +1556,10 @@ For example to create a mask for listener index 0 and 2 the calculation would be
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_setcallback">Studio::EventInstance::setCallback</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function enables the user callback in the Async Social event.</p>
-<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p>This function sets a callback for one event instance.</p>
+<p>It replaces any callback set on the instance's description with <a href="event_description.html#fmod_studio_event_description_set_callback">fmod_studio_event_description_set_callback</a> - the description's callback will not fire for this instance while this one is set.</p>
+<p>The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1555,7 +1600,7 @@ For example to create a mask for listener index 0 and 2 the calculation would be
 <p><br></p>
 <p><strong>Triggers:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a></p>
 </blockquote>
 <table>
 <thead>
@@ -1567,72 +1612,32 @@ For example to create a mask for listener index 0 and 2 the calculation would be
 </thead>
 <tbody>
 <tr>
-<td>type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The value <code>"fmod_studio_event_description_set_callback"</code></td>
-</tr>
-<tr>
-<td>kind</td>
-<td><a href="constants.html#fmodstudioeventcallbacktype">FmodStudioEventCallbackType</a></td>
-<td>The callback type passed into the original function.</td>
-</tr>
-<tr>
 <td>event_instance_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Handle of the EventInstance that has changed state.</td>
+<td>The EventInstance that raised the callback.</td>
 </tr>
 <tr>
-<td>name</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.CreateProgrammerSound</code> or <code>FmodStudioEventCallbackType.DestroyProgrammerSound</code> or <code>FmodStudioEventCallbackType.TimelineMarker</code></td>
+<td>type</td>
+<td><a href="constants.html#fmodstudioeventcallbacktype">FmodStudioEventCallbackType</a></td>
+<td>The callback type that fired.</td>
 </tr>
 <tr>
-<td>sub_sound_index</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.CreateProgrammerSound</code> or <code>FmodStudioEventCallbackType.DestroyProgrammerSound</code></td>
-</tr>
-<tr>
-<td>sound_ref</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.CreateProgrammerSound</code> or <code>FmodStudioEventCallbackType.DestroyProgrammerSound</code></td>
-</tr>
-<tr>
-<td>position</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineMarker</code> or <code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>bar</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>beat</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>tempo</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>time_signature_lower</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>time_signature_upper</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.TimelineBeat</code> or <code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
-</tr>
-<tr>
-<td>event_id</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Valid when kind=<code>FmodStudioEventCallbackType.NestedTimelineBeat</code></td>
+<td>properties</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm">Struct</a></td>
+<td>The payload for this callback type, or <code>undefined</code> for the types that carry none. <code>FmodStudioEventCallbackType.TimelineMarker</code> gives a <a href="structs.html#fmodstudiotimelinemarkerproperties">FmodStudioTimelineMarkerProperties</a>, <code>TimelineBeat</code> a <a href="structs.html#fmodstudiotimelinebeatproperties">FmodStudioTimelineBeatProperties</a>, <code>NestedTimelineBeat</code> a <a href="structs.html#fmodstudiotimelinenestedbeatproperties">FmodStudioTimelineNestedBeatProperties</a>, <code>CreateProgrammerSound</code> and <code>DestroyProgrammerSound</code> a <a href="structs.html#fmodstudioprogrammersoundproperties">FmodStudioProgrammerSoundProperties</a>, <code>PluginCreated</code> and <code>PluginDestroyed</code> a <a href="structs.html#fmodstudioplugininstanceproperties">FmodStudioPluginInstanceProperties</a>, and <code>StartEventCommand</code> the EventInstance reference of the event that was started.</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_set_callback(instance, function(_instance, _type, _props)
+{
+    if (_type == FmodStudioEventCallbackType.TimelineBeat)
+    {
+        show_debug_message($&quot;bar {_props.bar} beat {_props.beat} at {_props.tempo}bpm&quot;);
+    }
+}, FmodStudioEventCallbackType.TimelineBeat);
+</code></pre></div>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

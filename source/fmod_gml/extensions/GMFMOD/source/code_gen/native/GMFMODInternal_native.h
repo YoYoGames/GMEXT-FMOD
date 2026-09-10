@@ -2430,7 +2430,6 @@ namespace gm::wire::details
 gm_enums::FmodResult fmod_last_result();
 void fmod_debug_initialize(gm_enums::FmodDebugFlags flags, gm_enums::FmodDebugMode mode);
 std::string fmod_error_string(gm_enums::FmodResult result);
-double fmod_fetch_callbacks();
 void fmod_shutdown();
 double fmod_file_get_disk_busy();
 double fmod_file_set_disk_busy(double busy);
@@ -2582,6 +2581,7 @@ std::uint64_t fmod_channel_group_get_parent_group(std::uint64_t channel_group_re
 std::string fmod_channel_group_get_name(std::uint64_t channel_group_ref);
 double fmod_channel_group_release(std::uint64_t channel_group_ref);
 std::uint64_t fmod_channel_group_get_system_object(std::uint64_t channel_group_ref);
+std::uint64_t fmod_channel_group_adopt(std::uint64_t channel_group_ptr);
 double fmod_sound_group_set_max_audible(std::uint64_t sound_group_ref, double max_audible);
 double fmod_sound_group_get_max_audible(std::uint64_t sound_group_ref);
 double fmod_sound_group_set_max_audible_behavior(std::uint64_t sound_group_ref, double behavior);
