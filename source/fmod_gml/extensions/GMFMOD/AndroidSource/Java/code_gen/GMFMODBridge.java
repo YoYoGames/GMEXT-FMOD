@@ -105,8 +105,8 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_mixer_resume();
     public static native double __EXT_JNI__fmod_system_lock_dsp();
     public static native double __EXT_JNI__fmod_system_unlock_dsp();
-    public static native double __EXT_JNI__fmod_system_get_user_data();
-    public static native double __EXT_JNI__fmod_system_set_user_data(double user_data);
+    public static native double __EXT_JNI__fmod_system_get_user_data(ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_system_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_attach_channel_group_to_port(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_detach_channel_group_from_port(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_create_sound_group(String name, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -151,7 +151,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_sound_set_sound_group(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_sound_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_sound_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_sound_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_open_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -187,7 +187,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_sound_group_get_num_playing(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_stop(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_sound_group_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_sound_group_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native String __EXT_JNI__fmod_sound_group_get_name(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_group_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -198,7 +198,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_reverb_3d_set_3d_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_reverb_3d_get_3d_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_reverb_3d_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_reverb_3d_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_reverb_3d_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_reverb_3d_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_add_fade_point(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_remove_fade_points(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -258,7 +258,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_channel_control_set_dsp_index(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_get_dsp_index(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_channel_control_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_control_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_get_delay(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_set_delay(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -302,7 +302,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_dsp_get_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_get_cpu_usage(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_dsp_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_dsp_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_connection_set_mix(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_connection_get_mix(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -312,7 +312,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_dsp_connection_get_output(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_connection_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_dsp_connection_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_dsp_connection_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_dsp_connection_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_add_polygon(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_set_polygon_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_get_polygon_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -328,7 +328,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_geometry_set_scale(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_get_scale(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_geometry_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_geometry_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_get_active(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_set_active(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_geometry_save(ByteBuffer __arg_buffer, double __arg_buffer_length);

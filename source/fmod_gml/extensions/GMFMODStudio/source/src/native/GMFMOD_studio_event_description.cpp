@@ -497,25 +497,22 @@ double fmod_studio_event_description_set_callback(
 // Event Description - User Data
 // ============================================================
 
-double fmod_studio_event_description_get_user_data(uint64_t event_desc_ref)
-{
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
-
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(event_desc));
-	return it != g_user_data.end() ? it->second : 0.0;
-}
-
-double fmod_studio_event_description_set_user_data(uint64_t event_desc_ref, double user_data)
+int64_t fmod_studio_event_description_get_user_data(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
 	if (event_desc == nullptr) return 0;
 
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data[reinterpret_cast<uintptr_t>(event_desc)] = user_data;
+	return getResourceUserData(event_desc);
+}
+
+double fmod_studio_event_description_set_user_data(uint64_t event_desc_ref, int64_t user_data)
+{
+	FMOD::Studio::EventDescription* event_desc = nullptr;
+	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	if (event_desc == nullptr) return 0;
+
+	setResourceUserData(event_desc, user_data);
 	return 0;
 }
 

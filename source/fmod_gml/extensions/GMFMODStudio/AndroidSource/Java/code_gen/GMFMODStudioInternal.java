@@ -236,13 +236,13 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_system_set_callback(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_system_get_user_data()
+    public double __EXT_NATIVE__fmod_studio_system_get_user_data(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_system_get_user_data();
+        return __EXT_JNI__fmod_studio_system_get_user_data(__ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_system_set_user_data(double user_data)
+    public double __EXT_NATIVE__fmod_studio_system_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_system_set_user_data(user_data);
+        return __EXT_JNI__fmod_studio_system_set_user_data(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_bank_unload(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -312,9 +312,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_bank_unload_sample_data(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_bank_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_bank_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_bank_get_user_data(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_bank_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_bank_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -408,9 +408,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_description_set_callback(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_event_description_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_event_description_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_event_description_get_user_data(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_event_description_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_event_description_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -564,9 +564,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_instance_set_property(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_event_instance_get_user_data(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_event_instance_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_event_instance_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -752,9 +752,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_command_replay_stop(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_command_replay_get_user_data(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_command_replay_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_command_replay_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {

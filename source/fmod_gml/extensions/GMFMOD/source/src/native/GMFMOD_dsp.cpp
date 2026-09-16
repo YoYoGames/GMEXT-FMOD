@@ -131,8 +131,6 @@ void fmod_dsp_release(uint64_t dsp_ref)
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
-	// Unregister first: unregisterResource reads the object's user-data slot,
-	// which is gone once release() has run.
 	unregisterResource(dsp, map_dsps);
 	fmod_dsp_forget_callback(dsp);
 	g_fmod_last_result = dsp->release();
@@ -561,7 +559,7 @@ FmodDSPCPUUsage fmod_dsp_get_cpu_usage(uint64_t dsp_ref)
 // DSP - User Data & Callbacks
 // ============================================================
 
-double fmod_dsp_set_user_data(uint64_t dsp_ref, double user_data)
+double fmod_dsp_set_user_data(uint64_t dsp_ref, int64_t user_data)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
@@ -571,11 +569,11 @@ double fmod_dsp_set_user_data(uint64_t dsp_ref, double user_data)
 	return 0;
 }
 
-double fmod_dsp_get_user_data(uint64_t dsp_ref)
+int64_t fmod_dsp_get_user_data(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return 0;
 
 	return getResourceUserData(dsp);
 }

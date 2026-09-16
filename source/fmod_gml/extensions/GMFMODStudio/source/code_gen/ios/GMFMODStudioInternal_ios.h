@@ -59,8 +59,8 @@
 - (double)__EXT_NATIVE__fmod_studio_system_get_advanced_settings:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_system_set_advanced_settings:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_system_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_system_get_user_data;
-- (double)__EXT_NATIVE__fmod_studio_system_set_user_data:(double)user_data;
+- (double)__EXT_NATIVE__fmod_studio_system_get_user_data:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_system_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_unload:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_get_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -78,7 +78,7 @@
 - (double)__EXT_NATIVE__fmod_studio_bank_get_string_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_load_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_unload_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_bank_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_bank_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bank_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (char*)__EXT_NATIVE__fmod_studio_event_description_get_path:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_create_instance:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
@@ -102,7 +102,7 @@
 - (double)__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_unload_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
@@ -141,7 +141,7 @@
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_reverb_level:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_property:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_is_virtual:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -188,7 +188,7 @@
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_start:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_stop:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_command_replay_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_frame_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_command_replay_set_create_instance_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

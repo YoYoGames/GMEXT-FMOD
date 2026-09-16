@@ -432,13 +432,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_unlock_dsp();
 }
-- (double)__EXT_NATIVE__fmod_system_get_user_data
+- (double)__EXT_NATIVE__fmod_system_get_user_data:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_get_user_data();
+    return __EXT_NATIVE__fmod_system_get_user_data(__ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_set_user_data:(double)user_data
+- (double)__EXT_NATIVE__fmod_system_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_set_user_data(user_data);
+    return __EXT_NATIVE__fmod_system_set_user_data(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_attach_channel_group_to_port:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -616,9 +616,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_sound_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -760,9 +760,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_group_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_group_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_group_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_group_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_group_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_sound_group_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -804,9 +804,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_reverb_3d_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_reverb_3d_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_reverb_3d_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_reverb_3d_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_reverb_3d_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_reverb_3d_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1044,9 +1044,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_channel_control_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_channel_control_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_channel_control_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_channel_control_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_channel_control_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -1220,9 +1220,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_dsp_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_dsp_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_dsp_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_dsp_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_dsp_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1260,9 +1260,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_connection_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_dsp_connection_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_dsp_connection_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_dsp_connection_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_dsp_connection_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_geometry_add_polygon:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1324,9 +1324,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_geometry_set_user_data(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_geometry_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_geometry_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_geometry_get_user_data(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_geometry_get_user_data(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_geometry_get_active:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

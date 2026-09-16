@@ -153,10 +153,6 @@ double fmod_studio_command_replay_release(uint64_t replay_ref)
 		std::lock_guard<std::mutex> lock(g_command_replay_callback_mutex);
 		g_command_replay_callbacks.erase(replay_ptr);
 	}
-	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data.erase(replay_ptr);
-	}
 
 	g_fmod_last_result = replay->release();
 	return 0;
@@ -378,24 +374,21 @@ double fmod_studio_command_replay_set_paused(uint64_t replay_ref, double paused)
 	return 0;
 }
 
-double fmod_studio_command_replay_get_user_data(uint64_t replay_ref)
-{
-	FMOD::Studio::CommandReplay* replay = nullptr;
-	validate_fmod_studio_command_replay(replay_ref, replay);
-	if (replay == nullptr) return 0.0;
-
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(replay));
-	return it != g_user_data.end() ? it->second : 0.0;
-}
-
-double fmod_studio_command_replay_set_user_data(uint64_t replay_ref, double user_data)
+int64_t fmod_studio_command_replay_get_user_data(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = nullptr;
 	validate_fmod_studio_command_replay(replay_ref, replay);
 	if (replay == nullptr) return 0;
 
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data[reinterpret_cast<uintptr_t>(replay)] = user_data;
+	return getResourceUserData(replay);
+}
+
+double fmod_studio_command_replay_set_user_data(uint64_t replay_ref, int64_t user_data)
+{
+	FMOD::Studio::CommandReplay* replay = nullptr;
+	validate_fmod_studio_command_replay(replay_ref, replay);
+	if (replay == nullptr) return 0;
+
+	setResourceUserData(replay, user_data);
 	return 0;
 }

@@ -1024,32 +1024,36 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_studio_system_get_user_data",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
+          "%Name": "__fmod_studio_system_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_system_get_user_data",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_studio_system_get_user_data",
+          "name": "__fmod_studio_system_get_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_studio_system_set_user_data",
-          "argCount": 1,
+          "%Name": "__fmod_studio_system_set_user_data",
+          "argCount": 2,
           "args": [
+            1,
             2
           ],
-          "documentation": "@param {Real} user_data\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_system_set_user_data",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_studio_system_set_user_data",
+          "name": "__fmod_studio_system_set_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1373,12 +1377,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_bank_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_bank_get_user_data",
           "help": "",
           "hidden": true,
@@ -1813,12 +1819,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_description_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_user_data",
           "help": "",
           "hidden": true,
@@ -2527,12 +2535,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_user_data",
           "help": "",
           "hidden": true,
@@ -3393,12 +3403,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_command_replay_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_user_data",
           "help": "",
           "hidden": true,

@@ -41,26 +41,6 @@ uint32_t fmod_flag_word(double value)
 }
 
 // ============================================================
-// User Data (pointer-identified resources)
-// ============================================================
-
-std::mutex g_user_data_mutex;
-std::map<uintptr_t, double> g_user_data;
-
-// ============================================================
-// Teardown
-// ============================================================
-
-// Studio registers nothing in a registry - every Studio type is pointer-backed -
-// so the only thing teardown has to drop is the pointer-keyed user data. The name
-// matches GMFMOD's, where the same entry point really does clear the maps.
-void fmod_registry_clear_all()
-{
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data.clear();
-}
-
-// ============================================================
 // Utility Functions
 // ============================================================
 

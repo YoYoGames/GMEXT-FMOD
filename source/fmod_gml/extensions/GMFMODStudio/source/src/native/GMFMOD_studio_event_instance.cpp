@@ -191,13 +191,6 @@ double fmod_studio_event_instance_release(uint64_t instance_ref)
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
 
-	// The DESTROYED callback reclaims the callback entry, but only for instances
-	// that registered one; the user-data entry has no such signal at all.
-	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data.erase(reinterpret_cast<uintptr_t>(instance));
-	}
-
 	g_fmod_last_result = instance->release();
 	return 0;
 }
@@ -371,23 +364,22 @@ double fmod_studio_event_instance_set_property(uint64_t instance_ref, enum gm_en
 // Event Instance - User Data
 // ============================================================
 
-double fmod_studio_event_instance_get_user_data(uint64_t instance_ref)
-{
-	FMOD::Studio::EventInstance* instance = nullptr;
-	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return 0.0;
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(instance));
-	return it != g_user_data.end() ? it->second : 0.0;
-}
-
-double fmod_studio_event_instance_set_user_data(uint64_t instance_ref, double user_data)
+int64_t fmod_studio_event_instance_get_user_data(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data[reinterpret_cast<uintptr_t>(instance)] = user_data;
+
+	return getResourceUserData(instance);
+}
+
+double fmod_studio_event_instance_set_user_data(uint64_t instance_ref, int64_t user_data)
+{
+	FMOD::Studio::EventInstance* instance = nullptr;
+	validate_fmod_studio_event_instance(instance_ref, instance);
+	if (instance == nullptr) return 0;
+
+	setResourceUserData(instance, user_data);
 	return 0;
 }
 

@@ -118,7 +118,7 @@ FmodReverb3DAttributes fmod_reverb_3d_get_3d_attributes(uint64_t reverb_3d_ref)
 	return result;
 }
 
-double fmod_reverb_3d_set_user_data(uint64_t reverb_3d_ref, double user_data)
+double fmod_reverb_3d_set_user_data(uint64_t reverb_3d_ref, int64_t user_data)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
@@ -128,11 +128,11 @@ double fmod_reverb_3d_set_user_data(uint64_t reverb_3d_ref, double user_data)
 	return 0;
 }
 
-double fmod_reverb_3d_get_user_data(uint64_t reverb_3d_ref)
+int64_t fmod_reverb_3d_get_user_data(uint64_t reverb_3d_ref)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
-	if (reverb_3d == nullptr) return 0.0;
+	if (reverb_3d == nullptr) return 0;
 
 	return getResourceUserData(reverb_3d);
 }
@@ -149,8 +149,6 @@ double fmod_reverb_3d_release(uint64_t reverb_3d_ref)
 	if (reverb_3d == nullptr)
 		return 0;
 
-	// Unregister first: unregisterResource reads the object's user-data slot,
-	// which is gone once release() has run.
 	unregisterResource(reverb_3d, map_reverbs);
 	g_fmod_last_result = reverb_3d->release();
 	return 0;

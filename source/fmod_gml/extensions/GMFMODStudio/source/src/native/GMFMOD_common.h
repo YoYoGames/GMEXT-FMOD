@@ -40,12 +40,31 @@ uint64_t packPointerIntoRef(const void* pointer, uint8_t type);
 // Out-of-range values clamp rather than wrap.
 uint32_t fmod_flag_word(double value);
 
-// user_data storage for Studio's objects. They are identified by pointer and
-// have no slot of their own to hang a value on, so it is kept here. (FMOD's
-// own setUserData slot on the shared core system is deliberately left alone:
-// it belongs to whoever created the system, which is not this DLL.)
-extern std::mutex g_user_data_mutex;
-extern std::map<uintptr_t, double> g_user_data;
+// GML user data lives in FMOD's own user-data slot, as it did before the
+// extgen port: the integer is the pointer, so there is nothing to allocate or
+// free and the value dies with the object. On a 32-bit target the pointer
+// cannot hold every int64; a value that does not round-trip is rejected rather
+// than truncated. Callers have already validated the ref, so a null resource
+// never reaches these.
+template <typename T>
+void setResourceUserData(T resource, int64_t data)
+{
+	const intptr_t packed = static_cast<intptr_t>(data);
+	if (static_cast<int64_t>(packed) != data)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return;
+	}
+	g_fmod_last_result = resource->setUserData(reinterpret_cast<void*>(packed));
+}
+
+template <typename T>
+int64_t getResourceUserData(T resource)
+{
+	void* userData = nullptr;
+	g_fmod_last_result = resource->getUserData(&userData);
+	return static_cast<int64_t>(reinterpret_cast<intptr_t>(userData));
+}
 
 // ============================================================
 // Reference Layout
@@ -154,11 +173,9 @@ std::string format_guid(const FMOD_GUID& guid);
 void fmod_studio_event_instance_reset_state();
 void fmod_studio_command_replay_reset_state();
 void fmod_studio_event_description_reset_state();
-void fmod_registry_clear_all();
 
 // A description lives as long as its bank and gets no DESTROYED callback, so
-// the description-keyed callback map is swept here instead - same reason
-// fmod_studio_bank_unload() already drops the bank's user data.
+// the description-keyed callback map is swept here instead.
 void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank);
 
 // Shared by both event trampolines: turns FMOD's (type, event, parameters)

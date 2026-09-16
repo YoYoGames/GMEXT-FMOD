@@ -195,8 +195,6 @@ double fmod_sound_group_release(uint64_t sound_group_ref)
 	if (sound_group == nullptr)
 		return 0;
 
-	// Unregister first: unregisterResource reads the object's user-data slot,
-	// which is gone once release() has run.
 	unregisterResource(sound_group, map_sound_groups);
 	g_fmod_last_result = sound_group->release();
 	return 0;
@@ -223,7 +221,7 @@ uint64_t fmod_sound_group_get_system_object(uint64_t sound_group_ref)
 	return result;
 }
 
-double fmod_sound_group_set_user_data(uint64_t sound_group_ref, double user_data)
+double fmod_sound_group_set_user_data(uint64_t sound_group_ref, int64_t user_data)
 {
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
@@ -233,11 +231,11 @@ double fmod_sound_group_set_user_data(uint64_t sound_group_ref, double user_data
 	return 0;
 }
 
-double fmod_sound_group_get_user_data(uint64_t sound_group_ref)
+int64_t fmod_sound_group_get_user_data(uint64_t sound_group_ref)
 {
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
-	if (sound_group == nullptr) return 0.0;
+	if (sound_group == nullptr) return 0;
 
 	return getResourceUserData(sound_group);
 }

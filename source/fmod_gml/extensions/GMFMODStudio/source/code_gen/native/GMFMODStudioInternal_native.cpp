@@ -539,15 +539,24 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_callback(char* __arg_buffer
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_user_data()
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_user_data(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_get_user_data();
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Int64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_user_data(double user_data)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_user_data(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_studio_system_set_user_data(static_cast<double>(user_data));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: user_data, type: Int64
+    std::int64_t user_data = gm::wire::codec::readValue<std::int64_t>(__br);
+
+    auto&& __result = fmod_studio_system_set_user_data(user_data);
     return static_cast<double>(__result);
 }
 
@@ -772,7 +781,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload_sample_data(char* __arg_bu
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_user_data(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -780,7 +789,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_user_data(char* __arg_buffer,
     std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_user_data(bank_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Int64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_bank_set_user_data(char* __arg_buffer, double __arg_buffer_length)
@@ -790,8 +803,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_set_user_data(char* __arg_buffer,
     // field: bank_ref, type: UInt64
     std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: user_data, type: Float64
-    double user_data = gm::wire::codec::readValue<double>(__br);
+    // field: user_data, type: Int64
+    std::int64_t user_data = gm::wire::codec::readValue<std::int64_t>(__br);
 
     auto&& __result = fmod_studio_bank_set_user_data(bank_ref, user_data);
     return static_cast<double>(__result);
@@ -1073,7 +1086,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_callback(char* _
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_data(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1081,7 +1094,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_data(char* 
     std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_get_user_data(event_desc_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Int64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_user_data(char* __arg_buffer, double __arg_buffer_length)
@@ -1091,8 +1108,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_user_data(char* 
     // field: event_desc_ref, type: UInt64
     std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: user_data, type: Float64
-    double user_data = gm::wire::codec::readValue<double>(__br);
+    // field: user_data, type: Int64
+    std::int64_t user_data = gm::wire::codec::readValue<std::int64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_set_user_data(event_desc_ref, user_data);
     return static_cast<double>(__result);
@@ -1671,7 +1688,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_property(char* __ar
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1679,7 +1696,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_user_data(char* __a
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_user_data(instance_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Int64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_user_data(char* __arg_buffer, double __arg_buffer_length)
@@ -1689,8 +1710,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_user_data(char* __a
     // field: instance_ref, type: UInt64
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: user_data, type: Float64
-    double user_data = gm::wire::codec::readValue<double>(__br);
+    // field: user_data, type: Int64
+    std::int64_t user_data = gm::wire::codec::readValue<std::int64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_set_user_data(instance_ref, user_data);
     return static_cast<double>(__result);
@@ -2273,7 +2294,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_stop(char* __arg_buffer
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -2281,7 +2302,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_user_data(char* __a
     std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_user_data(replay_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: Int64
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_user_data(char* __arg_buffer, double __arg_buffer_length)
@@ -2291,8 +2316,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_user_data(char* __a
     // field: replay_ref, type: UInt64
     std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: user_data, type: Float64
-    double user_data = gm::wire::codec::readValue<double>(__br);
+    // field: user_data, type: Int64
+    std::int64_t user_data = gm::wire::codec::readValue<std::int64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_set_user_data(replay_ref, user_data);
     return static_cast<double>(__result);

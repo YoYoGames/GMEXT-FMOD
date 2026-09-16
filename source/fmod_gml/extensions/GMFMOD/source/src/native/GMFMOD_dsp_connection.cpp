@@ -183,7 +183,7 @@ double fmod_dsp_connection_get_type(uint64_t connection_ref)
 // DSP Connection - User Data
 // ============================================================
 
-double fmod_dsp_connection_set_user_data(uint64_t connection_ref, double user_data)
+double fmod_dsp_connection_set_user_data(uint64_t connection_ref, int64_t user_data)
 {
 	FMOD::DSPConnection* connection = nullptr;
 	validate_fmod_dsp_connection(connection_ref, connection);
@@ -195,7 +195,7 @@ double fmod_dsp_connection_set_user_data(uint64_t connection_ref, double user_da
 	return 0;
 }
 
-double fmod_dsp_connection_get_user_data(uint64_t connection_ref)
+int64_t fmod_dsp_connection_get_user_data(uint64_t connection_ref)
 {
 	FMOD::DSPConnection* connection = nullptr;
 	validate_fmod_dsp_connection(connection_ref, connection);

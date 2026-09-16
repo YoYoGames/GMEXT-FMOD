@@ -5702,10 +5702,10 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function sets a user value associated with the currently selected System object.</p>
+<p>This function sets an integer user value on the currently selected System object.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to set a real value (a double-precision floating-point value).</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or <code>ds_map</code> of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with <code>FmodResult.InvalidParam</code> and nothing is stored.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5728,7 +5728,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <tr>
 <td>user_data</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The user-specified data to be stored within the System object.</td>
+<td>The integer value to store on the currently selected System object.</td>
 </tr>
 </tbody>
 </table>
@@ -5746,10 +5746,10 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getuserdata">System::getUserData</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the user value associated with the currently selected System object.</p>
+<p>This function retrieves the integer user value set on the currently selected System object with <a href="system.html#fmod_system_set_user_data">fmod_system_set_user_data</a>. It returns 0 if no value has been set.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While FMOD allows arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only allows you to get a real value (a double-precision floating-point value).</p>
+<p>While FMOD supports arbitrary <a href="https://www.fmod.com/docs/2.03/api/glossary.html#user-data">User Data</a>, this function only returns the 64-bit integer stored with the matching setter.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

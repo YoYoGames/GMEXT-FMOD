@@ -2139,11 +2139,11 @@ function fmod_system_lock_dsp(): real;
 function fmod_system_unlock_dsp(): real;
 
 [global, bind = typed_gml]
-function fmod_system_get_user_data(): real;
+function fmod_system_get_user_data(): int64;
 
 [global, bind = typed_gml]
 function fmod_system_set_user_data(
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
@@ -2462,13 +2462,13 @@ function fmod_sound_get_sound_group(
 [global, bind = typed_gml]
 function fmod_sound_set_user_data(
     [type_hint=`uint64`] sound_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_sound_get_user_data(
     [type_hint=`uint64`] sound_ref: gmval
-): real;
+): int64;
 
 // ============================================================
 // Sound - Release
@@ -2709,13 +2709,13 @@ function fmod_sound_group_stop(
 [global, bind = typed_gml]
 function fmod_sound_group_set_user_data(
     [type_hint=`uint64`] sound_group_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_sound_group_get_user_data(
     [type_hint=`uint64`] sound_group_ref: gmval
-): real;
+): int64;
 
 // ============================================================
 // SoundGroup - General
@@ -2802,13 +2802,13 @@ function fmod_reverb_3d_get_3d_attributes(
 [global, bind = typed_gml]
 function fmod_reverb_3d_set_user_data(
     [type_hint=`uint64`] reverb_3d_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_reverb_3d_get_user_data(
     [type_hint=`uint64`] reverb_3d_ref: gmval
-): real;
+): int64;
 
 // ============================================================
 // Reverb3D - General
@@ -3207,13 +3207,13 @@ function fmod_channel_control_get_dsp_index(
 [global, bind = typed_gml]
 function fmod_channel_control_set_user_data(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_user_data(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): int64;
 
 // ============================================================
 // ChannelControl - General
@@ -3514,13 +3514,13 @@ function fmod_dsp_get_cpu_usage(
 [global, bind = typed_gml]
 function fmod_dsp_set_user_data(
     [type_hint=`uint64`] dsp_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_user_data(
     [type_hint=`uint64`] dsp_ref: gmval
-): real;
+): int64;
 
 [global, bind = typed_gml]
 function fmod_dsp_set_callback(
@@ -3582,13 +3582,13 @@ function fmod_dsp_connection_get_type(
 [global, bind = typed_gml]
 function fmod_dsp_connection_set_user_data(
     [type_hint=`uint64`] connection_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_dsp_connection_get_user_data(
     [type_hint=`uint64`] connection_ref: gmval
-): real;
+): int64;
 
 }
 
@@ -3708,13 +3708,13 @@ function fmod_geometry_get_scale(
 [global, bind = typed_gml]
 function fmod_geometry_set_user_data(
     [type_hint=`uint64`] geometry_ref: gmval,
-    user_data: real
+    user_data: int64
 ): real;
 
 [global, bind = typed_gml]
 function fmod_geometry_get_user_data(
     [type_hint=`uint64`] geometry_ref: gmval
-): real;
+): int64;
 
 // ============================================================
 // Geometry - General

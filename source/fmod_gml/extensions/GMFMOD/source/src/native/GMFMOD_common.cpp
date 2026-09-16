@@ -79,51 +79,42 @@ void setCurrentSystem(FMOD::System* system)
 	g_selected_system = system;
 }
 
-struct CustomUserData
+// The registry used to keep its index in FMOD's user-data slot; that slot is
+// the developer's now, so the lookup by object lives here instead. One map per
+// type: a freed object's address can be reused by an object of another type,
+// and a shared map would hand the new object the old id.
+template <typename T>
+static std::map<T, uint32_t>& registryIdsOf()
 {
-	uint32_t id = 0;
-	uint64_t internal = 0;
-	double data = 0.0;
-};
-
-// These are owned by the FMOD object's user-data slot, which is not somewhere
-// shutdown can safely read from: by then a Sound may already have been released
-// by the game. Keeping the allocations here as well means teardown can free
-// them without dereferencing anything FMOD owns.
-static std::set<CustomUserData*> g_custom_user_data;
+	static std::map<T, uint32_t> ids;
+	return ids;
+}
 
 template <typename T>
 uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, T>& map)
 {
-	void* userData = nullptr;
-	resource->getUserData(&userData);
-	if (userData == nullptr)
-	{
-		map.insert({ ++index, resource });
-		CustomUserData* customUserData = new CustomUserData();
-		customUserData->id = index;
-		g_custom_user_data.insert(customUserData);
-		resource->setUserData(static_cast<void*>(customUserData));
-		return index;
-	}
-	return static_cast<CustomUserData*>(userData)->id;
+	std::map<T, uint32_t>& ids = registryIdsOf<T>();
+	auto found = ids.find(resource);
+	if (found != ids.end())
+		return found->second;
+
+	map.insert({ ++index, resource });
+	ids.insert({ resource, index });
+	return index;
 }
 
 template <typename T>
 uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map)
 {
-	void* userData = nullptr;
-	resource->getUserData(&userData);
-	if (userData != nullptr)
-	{
-		uint32_t resource_id = static_cast<CustomUserData*>(userData)->id;
-		resource->setUserData(nullptr);
-		g_custom_user_data.erase((CustomUserData*)userData);
-		delete (CustomUserData*)userData;
-		map.erase(resource_id);
-		return resource_id;
-	}
-	return 0;
+	std::map<T, uint32_t>& ids = registryIdsOf<T>();
+	auto found = ids.find(resource);
+	if (found == ids.end())
+		return 0;
+
+	uint32_t resource_id = found->second;
+	ids.erase(found);
+	map.erase(resource_id);
+	return resource_id;
 }
 
 // ============================================================
@@ -149,54 +140,6 @@ template uint32_t unregisterResource<FMOD::Reverb3D*>(FMOD::Reverb3D*, std::map<
 template uint32_t unregisterResource<FMOD::Geometry*>(FMOD::Geometry*, std::map<uint32_t, FMOD::Geometry*>&);
 
 // ============================================================
-// User Data (map-registered resources)
-// ============================================================
-
-template <typename T>
-double getResourceUserData(T resource)
-{
-	if (resource == nullptr) return 0.0;
-	void* userData = nullptr;
-	resource->getUserData(&userData);
-	if (userData == nullptr) return 0.0;
-	return static_cast<CustomUserData*>(userData)->data;
-}
-
-template <typename T>
-void setResourceUserData(T resource, double data)
-{
-	if (resource == nullptr) return;
-	void* userData = nullptr;
-	resource->getUserData(&userData);
-	if (userData != nullptr)
-		static_cast<CustomUserData*>(userData)->data = data;
-}
-
-template double getResourceUserData<FMOD::DSP*>(FMOD::DSP*);
-template void setResourceUserData<FMOD::DSP*>(FMOD::DSP*, double);
-template double getResourceUserData<FMOD::DSPConnection*>(FMOD::DSPConnection*);
-template void setResourceUserData<FMOD::DSPConnection*>(FMOD::DSPConnection*, double);
-template double getResourceUserData<FMOD::System*>(FMOD::System*);
-template void setResourceUserData<FMOD::System*>(FMOD::System*, double);
-template double getResourceUserData<FMOD::Sound*>(FMOD::Sound*);
-template void setResourceUserData<FMOD::Sound*>(FMOD::Sound*, double);
-template double getResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*);
-template void setResourceUserData<FMOD::SoundGroup*>(FMOD::SoundGroup*, double);
-template double getResourceUserData<FMOD::ChannelGroup*>(FMOD::ChannelGroup*);
-template void setResourceUserData<FMOD::ChannelGroup*>(FMOD::ChannelGroup*, double);
-template double getResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*);
-template void setResourceUserData<FMOD::Reverb3D*>(FMOD::Reverb3D*, double);
-template double getResourceUserData<FMOD::Geometry*>(FMOD::Geometry*);
-template void setResourceUserData<FMOD::Geometry*>(FMOD::Geometry*, double);
-
-// ============================================================
-// User Data (pointer-identified resources)
-// ============================================================
-
-std::mutex g_user_data_mutex;
-std::map<uintptr_t, double> g_user_data;
-
-// ============================================================
 // Teardown
 // ============================================================
 
@@ -205,9 +148,14 @@ void fmod_registry_clear_all()
 	// System::release() has already freed everything its systems owned, so the
 	// registries are cleared rather than walked - every pointer in them is dead
 	// by this point.
-	for (CustomUserData* entry : g_custom_user_data)
-		delete entry;
-	g_custom_user_data.clear();
+	registryIdsOf<FMOD::System*>().clear();
+	registryIdsOf<FMOD::Sound*>().clear();
+	registryIdsOf<FMOD::ChannelGroup*>().clear();
+	registryIdsOf<FMOD::SoundGroup*>().clear();
+	registryIdsOf<FMOD::DSP*>().clear();
+	registryIdsOf<FMOD::DSPConnection*>().clear();
+	registryIdsOf<FMOD::Reverb3D*>().clear();
+	registryIdsOf<FMOD::Geometry*>().clear();
 
 	map_systems.clear();
 	map_sounds.clear();

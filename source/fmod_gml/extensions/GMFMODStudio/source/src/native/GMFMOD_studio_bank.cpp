@@ -13,15 +13,8 @@ double fmod_studio_bank_unload(uint64_t bank_ref)
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return 0;
 
-	// The bank handle dies with the unload; drop its user data so a recycled
-	// handle does not inherit it.
-	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data.erase(reinterpret_cast<uintptr_t>(bank));
-	}
-
-	// Same reason, one level down: the bank's event descriptions die with it and
-	// get no DESTROYED callback of their own, so their entries are dropped here.
+	// The bank's event descriptions die with it and get no DESTROYED callback of
+	// their own, so their callback entries are dropped here.
 	fmod_studio_event_description_forget_bank(bank);
 
 	g_fmod_last_result = bank->unload();
@@ -226,24 +219,21 @@ double fmod_studio_bank_unload_sample_data(uint64_t bank_ref)
 	return 0;
 }
 
-double fmod_studio_bank_get_user_data(uint64_t bank_ref)
-{
-	FMOD::Studio::Bank* bank = nullptr;
-	validate_fmod_studio_bank(bank_ref, bank);
-	if (bank == nullptr) return 0.0;
-
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(bank));
-	return it != g_user_data.end() ? it->second : 0.0;
-}
-
-double fmod_studio_bank_set_user_data(uint64_t bank_ref, double user_data)
+int64_t fmod_studio_bank_get_user_data(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
 	if (bank == nullptr) return 0;
 
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data[reinterpret_cast<uintptr_t>(bank)] = user_data;
+	return getResourceUserData(bank);
+}
+
+double fmod_studio_bank_set_user_data(uint64_t bank_ref, int64_t user_data)
+{
+	FMOD::Studio::Bank* bank = nullptr;
+	validate_fmod_studio_bank(bank_ref, bank);
+	if (bank == nullptr) return 0;
+
+	setResourceUserData(bank, user_data);
 	return 0;
 }

@@ -146,15 +146,11 @@ std::string fmod_channel_group_get_name(uint64_t channel_group_ref)
 
 // Channel groups handed to us by another extension (see
 // fmod_channel_group_adopt). They are registered in our map so the core API can
-// reach them, but their lifetime - and their FMOD user-data slot, which the
-// owning extension's registry allocated on its own heap - belongs to whoever
-// created them.
+// reach them, but their lifetime belongs to whoever created them.
 static std::set<FMOD::ChannelGroup*> g_adopted_channel_groups;
 
 // Registers a group created by GMFMODStudio, whose own ref indexes a registry
-// this DLL cannot see. Not registerOrFindResource(): the owning extension may
-// already have claimed the user-data slot, and that helper would then hand back
-// the owner's index without ever inserting into our map.
+// this DLL cannot see.
 uint64_t fmod_channel_group_adopt(uint64_t channel_group_ptr)
 {
 	if (channel_group_ptr == 0)
@@ -166,17 +162,7 @@ uint64_t fmod_channel_group_adopt(uint64_t channel_group_ptr)
 	FMOD::ChannelGroup* channel_group =
 		reinterpret_cast<FMOD::ChannelGroup*>(static_cast<uintptr_t>(channel_group_ptr));
 
-	for (const auto& entry : map_channel_groups)
-	{
-		if (entry.second == channel_group)
-		{
-			g_fmod_last_result = FMOD_OK;
-			return packIndexIntoRef(entry.first, GM_FMOD_TYPE_CHANNEL_GROUP);
-		}
-	}
-
-	uint32_t group_id = ++index_channel_groups;
-	map_channel_groups.insert({ group_id, channel_group });
+	uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
 	g_adopted_channel_groups.insert(channel_group);
 
 	g_fmod_last_result = FMOD_OK;
@@ -191,31 +177,20 @@ double fmod_channel_group_release(uint64_t channel_group_ref)
 	if (channel_group == nullptr)
 		return 0;
 
-	// Adopted groups are owned elsewhere (Studio releases the bus or event
-	// instance that owns them). Releasing here would double-free, and
-	// unregisterResource would delete a CustomUserData from the other DLL's heap.
-	if (g_adopted_channel_groups.count(channel_group) != 0)
-	{
-		for (auto it = map_channel_groups.begin(); it != map_channel_groups.end(); ++it)
-		{
-			if (it->second == channel_group)
-			{
-				map_channel_groups.erase(it);
-				break;
-			}
-		}
-		g_adopted_channel_groups.erase(channel_group);
-		fmod_channel_control_forget_rolloff(channel_group);
-		g_fmod_last_result = FMOD_OK;
-		return 0;
-	}
-
-	// Unregister first: unregisterResource reads the object's user-data slot,
-	// which is gone once release() has run.
 	unregisterResource(channel_group, map_channel_groups);
 	// A ChannelGroup never gets FMOD_CHANNELCONTROL_CALLBACK_END, so this is the
 	// only point at which a custom rolloff copy it owns can be reclaimed.
 	fmod_channel_control_forget_rolloff(channel_group);
+
+	// Adopted groups are owned elsewhere (Studio releases the bus or event
+	// instance that owns them), so releasing here would double-free.
+	if (g_adopted_channel_groups.count(channel_group) != 0)
+	{
+		g_adopted_channel_groups.erase(channel_group);
+		g_fmod_last_result = FMOD_OK;
+		return 0;
+	}
+
 	g_fmod_last_result = channel_group->release();
 	return 0;
 }

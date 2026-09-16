@@ -1541,32 +1541,36 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_get_user_data",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
+          "%Name": "__fmod_system_get_user_data",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_get_user_data",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_get_user_data",
+          "name": "__fmod_system_get_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_set_user_data",
-          "argCount": 1,
+          "%Name": "__fmod_system_set_user_data",
+          "argCount": 2,
           "args": [
+            1,
             2
           ],
-          "documentation": "@param {Real} user_data\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_set_user_data",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_set_user_data",
+          "name": "__fmod_system_set_user_data",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2393,12 +2397,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_get_user_data",
           "help": "",
           "hidden": true,
@@ -3067,12 +3073,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_group_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_group_get_user_data",
           "help": "",
           "hidden": true,
@@ -3271,12 +3279,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_reverb_3d_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_reverb_3d_get_user_data",
           "help": "",
           "hidden": true,
@@ -4371,12 +4381,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_control_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_channel_control_get_user_data",
           "help": "",
           "hidden": true,
@@ -5193,12 +5205,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_dsp_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_dsp_get_user_data",
           "help": "",
           "hidden": true,
@@ -5379,12 +5393,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_dsp_connection_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_dsp_connection_get_user_data",
           "help": "",
           "hidden": true,
@@ -5679,12 +5695,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_geometry_get_user_data",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_geometry_get_user_data",
           "help": "",
           "hidden": true,

@@ -992,10 +992,10 @@ function fmod_studio_system_set_callback(
 ): real;
 
 [global, bind = typed_gml]
-function fmod_studio_system_get_user_data(): real;
+function fmod_studio_system_get_user_data(): int64;
 
 [global, bind = typed_gml]
-function fmod_studio_system_set_user_data(user_data: real): real;
+function fmod_studio_system_set_user_data(user_data: int64): real;
 
 }
 
@@ -1058,10 +1058,10 @@ function fmod_studio_bank_load_sample_data([type_hint=`uint64`] bank_ref: gmval)
 function fmod_studio_bank_unload_sample_data([type_hint=`uint64`] bank_ref: gmval): real;
 
 [global, bind = typed_gml]
-function fmod_studio_bank_get_user_data([type_hint=`uint64`] bank_ref: gmval): real;
+function fmod_studio_bank_get_user_data([type_hint=`uint64`] bank_ref: gmval): int64;
 
 [global, bind = typed_gml]
-function fmod_studio_bank_set_user_data([type_hint=`uint64`] bank_ref: gmval, user_data: real): real;
+function fmod_studio_bank_set_user_data([type_hint=`uint64`] bank_ref: gmval, user_data: int64): real;
 
 }
 
@@ -1149,12 +1149,12 @@ function fmod_studio_event_description_set_callback(
 ): real;
 
 [global, bind = typed_gml]
-function fmod_studio_event_description_get_user_data([type_hint=`uint64`] event_desc_ref: gmval): real;
+function fmod_studio_event_description_get_user_data([type_hint=`uint64`] event_desc_ref: gmval): int64;
 
 [global, bind = typed_gml]
 function fmod_studio_event_description_set_user_data(
 	[type_hint=`uint64`] event_desc_ref: gmval,
-	user_data: real
+	user_data: int64
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodStudioUserProperty`]
@@ -1358,10 +1358,10 @@ function fmod_studio_event_instance_set_property([type_hint=`uint64`] instance_r
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_studio_event_instance_get_user_data([type_hint=`uint64`] instance_ref: gmval): real;
+function fmod_studio_event_instance_get_user_data([type_hint=`uint64`] instance_ref: gmval): int64;
 
 [global, bind = typed_gml]
-function fmod_studio_event_instance_set_user_data([type_hint=`uint64`] instance_ref: gmval, user_data: real): real;
+function fmod_studio_event_instance_set_user_data([type_hint=`uint64`] instance_ref: gmval, user_data: int64): real;
 
 // ============================================================
 // Studio EventInstance - General
@@ -1574,12 +1574,12 @@ function fmod_studio_command_replay_stop(
 [global, bind = typed_gml]
 function fmod_studio_command_replay_get_user_data(
 	[type_hint=`uint64`] replay_ref: gmval
-): real;
+): int64;
 
 [global, bind = typed_gml]
 function fmod_studio_command_replay_set_user_data(
 	[type_hint=`uint64`] replay_ref: gmval,
-	user_data: real
+	user_data: int64
 ): real;
 
 // ============================================================

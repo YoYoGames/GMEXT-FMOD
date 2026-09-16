@@ -70,7 +70,6 @@ void fmod_studio_shutdown()
 		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
 		g_studio_system_callback.reset();
 	}
-	fmod_registry_clear_all();
 
 	g_fmod_last_result = FMOD_OK;
 }
@@ -1072,24 +1071,21 @@ double fmod_studio_system_set_callback(
 // Studio System - User Data
 // ============================================================
 
-double fmod_studio_system_get_user_data()
-{
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
-	if (studio_system == nullptr) return 0.0;
-
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(studio_system));
-	return it != g_user_data.end() ? it->second : 0.0;
-}
-
-double fmod_studio_system_set_user_data(double user_data)
+int64_t fmod_studio_system_get_user_data()
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data[reinterpret_cast<uintptr_t>(studio_system)] = user_data;
+	return getResourceUserData(studio_system);
+}
+
+double fmod_studio_system_set_user_data(int64_t user_data)
+{
+	FMOD::Studio::System* studio_system = nullptr;
+	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	if (studio_system == nullptr) return 0;
+
+	setResourceUserData(studio_system, user_data);
 	return 0;
 }

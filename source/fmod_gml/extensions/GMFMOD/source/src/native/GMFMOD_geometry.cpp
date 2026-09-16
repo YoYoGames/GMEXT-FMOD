@@ -228,7 +228,7 @@ double fmod_geometry_set_active(uint64_t geometry_ref, double active)
 	return 0;
 }
 
-double fmod_geometry_set_user_data(uint64_t geometry_ref, double user_data)
+double fmod_geometry_set_user_data(uint64_t geometry_ref, int64_t user_data)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
@@ -238,11 +238,11 @@ double fmod_geometry_set_user_data(uint64_t geometry_ref, double user_data)
 	return 0;
 }
 
-double fmod_geometry_get_user_data(uint64_t geometry_ref)
+int64_t fmod_geometry_get_user_data(uint64_t geometry_ref)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
-	if (geometry == nullptr) return 0.0;
+	if (geometry == nullptr) return 0;
 
 	return getResourceUserData(geometry);
 }
@@ -266,8 +266,6 @@ double fmod_geometry_release(uint64_t geometry_ref)
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
 	if (geometry == nullptr) return 0;
-	// Unregister first: unregisterResource reads the object's user-data slot,
-	// which is gone once release() has run.
 	unregisterResource(geometry, map_geometries);
 	g_fmod_last_result = geometry->release();
 	return 0;

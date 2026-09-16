@@ -75,8 +75,8 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_system_get_advanced_settings(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_set_advanced_settings(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_system_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_system_get_user_data();
-    public static native double __EXT_JNI__fmod_studio_system_set_user_data(double user_data);
+    public static native double __EXT_JNI__fmod_studio_system_get_user_data(ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_system_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_unload(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_get_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -94,7 +94,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_bank_get_string_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_load_sample_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_unload_sample_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_bank_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_bank_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_bank_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native String __EXT_JNI__fmod_studio_event_description_get_path(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_create_instance(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -118,7 +118,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_event_description_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_unload_sample_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_event_description_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_event_description_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_get_user_property(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_description_get_user_property_at(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -157,7 +157,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_event_instance_set_reverb_level(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_get_property(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_property(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_event_instance_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_event_instance_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_is_valid(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_is_virtual(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -204,7 +204,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_command_replay_set_paused(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_command_replay_start(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_command_replay_stop(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_studio_command_replay_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_command_replay_get_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_studio_command_replay_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_command_replay_set_frame_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_command_replay_set_create_instance_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);

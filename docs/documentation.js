@@ -1143,7 +1143,7 @@ function fmod_channel_control_set_mix_levels_output(channel_control_ref, front_l
  * 0 0 0 0 0 1
  * ``
  *
- * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.ErrInvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
+ * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.InvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
  *
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
  *
@@ -1557,12 +1557,12 @@ function fmod_channel_control_get_system_object(channel_control_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Real} user_data The value to store on this object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -1575,9 +1575,9 @@ function fmod_channel_control_set_user_data(channel_control_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the user value associated with this object, as set with ${function.fmod_channel_control_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_channel_control_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @returns {Real}
@@ -2508,12 +2508,12 @@ function fmod_dsp_get_cpu_usage(dsp_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} user_data The floating point value stored on this object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -2526,9 +2526,9 @@ function fmod_dsp_set_user_data(dsp_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a floating point user value associated with this object.
+ * This function retrieves the integer user value set on this object with ${function.fmod_dsp_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @returns {Real}
@@ -2636,7 +2636,7 @@ function fmod_dsp_connection_get_mix(dsp_connection_ref) {}
  * 
  * [[Note: Matrix element values can be below 0 to invert a signal and above 1 to amplify the signal. Note that increasing the signal level too far may cause audible distortion.]]
  * 
- * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.ErrInvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
+ * The matrix is passed in a ${type.buffer} of 32-bit floats in row-major order, starting at the beginning of the buffer. The buffer must be at least `out_channels * in_channel_hop * buffer_sizeof(buffer_f32)` bytes, or `FmodResult.InvalidParam` is reported and nothing is set. FMOD copies the matrix, so the buffer may be deleted as soon as this function returns.
  *
  * @param {Real} connection_ref A reference to a DSPConnection.
  * @param {Buffer} matrix The ${type.buffer} holding the volume levels in row-major order. Each row represents an output speaker, each column represents an input channel.
@@ -2725,12 +2725,12 @@ function fmod_dsp_connection_get_type(dsp_connection_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} connection_ref A reference to a DSPConnection.
- * @param {Real} user_data The floating-point value to set.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -2743,9 +2743,9 @@ function fmod_dsp_connection_set_user_data(dsp_connection_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the floating-point user value associated with this object, as set by an earlier call to ${function.fmod_dsp_connection_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_dsp_connection_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} connection_ref A reference to a DSPConnection.
  * @returns {Real}
@@ -3052,12 +3052,12 @@ function fmod_geometry_get_num_polygons(geometry_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} geometry_ref A reference to a geometry.
- * @param {Real} user_data The value to be stored on this object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -3070,9 +3070,9 @@ function fmod_geometry_set_user_data(geometry_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_geometry_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_geometry_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} geometry_ref A reference to a geometry.
  * @returns {Real}
@@ -3260,12 +3260,12 @@ function fmod_reverb_3d_release(reverb_3d_ref) {}
  *
  * <br />
  *
- * This function sets a single floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} reverb_3d_ref A reference to a Reverb3D.
- * @param {Real} user_data The value stored on this object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -3278,9 +3278,9 @@ function fmod_reverb_3d_set_user_data(reverb_3d_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a floating-point user value associated with this object, as set with an earlier call to ${function.fmod_reverb_3d_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_reverb_3d_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} reverb_3d_ref A reference to a Reverb3D.
  * @returns {Real}
@@ -4176,12 +4176,12 @@ function fmod_sound_get_system_object(sound_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @param {Real} user_data The value to be stored on this object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -4194,9 +4194,9 @@ function fmod_sound_set_user_data(sound_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object, set with ${function.fmod_sound_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_sound_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @returns {Real}
@@ -4458,12 +4458,12 @@ function fmod_sound_group_get_system_object(sound_group_ref) {}
  *
  * <br />
  *
- * This function sets a floating-point user value associated with this object.
+ * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} sound_group_ref A reference to a SoundGroup.
- * @param {Real} user_data The value to set on the object.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -4476,9 +4476,9 @@ function fmod_sound_group_set_user_data(sound_group_ref, data) {}
  *
  * <br />
  *
- * This function retrieves a user value associated with this object, as set with an earlier call to ${function.fmod_sound_group_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_sound_group_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} sound_group_ref A reference to a SoundGroup.
  * @returns {Real}
@@ -4728,11 +4728,13 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  * @desc > **FMOD Function:** [Studio::Bank::setUserData](https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_setuserdata)
  *
  * <br />
- * 
- * This function allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
- * 
+ *
+ * This function sets an integer user value on this object.
+ *
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ *
  * @param {Real} bank_ref A reference to a bank.
- * @param {Real} user_data The real value to attach.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -4745,9 +4747,9 @@ function fmod_studio_bank_set_user_data(bank_ref, data) {}
  *
  * <br />
  *
- * This function allows arbitrary user data to be retrieved from this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function retrieves the integer user value set on this object with ${function.fmod_studio_bank_set_user_data}. It returns 0 if no value has been set.
  * 
- * The function returns `NaN` if there is no user data attached to the bank.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} bank_ref A reference to a bank.
  * @returns {Real}
@@ -5417,12 +5419,12 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
  *
  * <br />
  *
- * This function sets user data.
+ * This function sets an integer user value on this object.
  * 
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
- * @param {Real} user_data The real value to attach.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -5435,9 +5437,9 @@ function fmod_studio_command_replay_set_user_data(command_replay_ref, data) {}
  *
  * <br />
  *
- * This function retrieves user data attached to this object (a real value, passed into ${function.fmod_studio_command_replay_set_user_data}).
+ * This function retrieves the integer user value set on this object with ${function.fmod_studio_command_replay_set_user_data}. It returns 0 if no value has been set.
  * 
- * The function returns `NaN` if there is no user data attached to the bank.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
  * @returns {Real}
@@ -5887,10 +5889,12 @@ function fmod_studio_event_description_set_callback(event_desc_ref, callback, ca
  *
  * <br />
  *
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function sets an integer user value on this object.
+ * 
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @param {Real} user_data The real value to attach.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -5903,9 +5907,9 @@ function fmod_studio_event_description_set_user_data(event_description_ref, data
  *
  * <br />
  *
- * This function retrieves the real value attached to the object in ${function.fmod_studio_event_description_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_studio_event_description_set_user_data}. It returns 0 if no value has been set.
  * 
- * Returns `NaN` when no attached value is found.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
  * @returns {Real}
@@ -6529,10 +6533,12 @@ function fmod_studio_event_instance_set_callback(instance_ref, callback, mask) {
  *
  * <br />
  *
- * This allows a real value to be attached to this object. See [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data) for an example of how to get and set user data.
+ * This function sets an integer user value on this object.
+ * 
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @param {Real} user_data The real value to attach.
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -6545,9 +6551,9 @@ function fmod_studio_event_instance_set_user_data(event_instance_ref, data) {}
  *
  * <br />
  *
- * This function retrieves the real value attached to this object in ${function.fmod_studio_event_instance_set_user_data}.
+ * This function retrieves the integer user value set on this object with ${function.fmod_studio_event_instance_set_user_data}. It returns 0 if no value has been set.
  * 
- * Returns `NaN` if no attached user data is found.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
  * @returns {Real}
@@ -7400,9 +7406,11 @@ function fmod_studio_system_set_callback(callback, callback_mask) {}
  *
  * <br />
  *
- * This function allows you to attach a real value to this object.
+ * This function sets an integer user value on this object.
  * 
- * @param {Real} user_data The real value to attach.
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * 
+ * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
  * @function_end
  */
@@ -7415,7 +7423,9 @@ function fmod_studio_system_set_user_data(data) {}
  *
  * <br />
  *
- * This function retrieves the real value attached to this object. Returns `NaN` if no value is attached.
+ * This function retrieves the integer user value set on this object with ${function.fmod_studio_system_set_user_data}. It returns 0 if no value has been set.
+ * 
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * @returns {Real}
  * @function_end
@@ -9088,13 +9098,13 @@ function fmod_system_set_callback(type) {}
  *
  * <br />
  *
- * This function sets a user value associated with the currently selected System object.
+ * This function sets an integer user value on the currently selected System object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to set a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
  * 
  * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system for which you want to set the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
  * 
- * @param {Real} user_data The user-specified data to be stored within the System object.
+ * @param {Real} user_data The integer value to store on the currently selected System object.
  * @returns {Real}
  * @function_end
  */
@@ -9107,9 +9117,9 @@ function fmod_system_set_user_data(data) {}
  *
  * <br />
  *
- * This function retrieves the user value associated with the currently selected System object.
+ * This function retrieves the integer user value set on the currently selected System object with ${function.fmod_system_set_user_data}. It returns 0 if no value has been set.
  * 
- * [[Note: While FMOD allows arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only allows you to get a real value (a double-precision floating-point value).]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only returns the 64-bit integer stored with the matching setter.]]
  * 
  * [[Note: If you've created multiple systems, use ${function.fmod_system_select} to select the FMOD system of which you want to get the user data and then call this function. After that, you can switch back using another call to ${function.fmod_system_select}.]]
  * 

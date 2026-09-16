@@ -405,11 +405,11 @@ double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, 
 	}
 
 	// A Channel has no other end-of-life signal, so arm the trampoline that
-	// CALLBACK_END arrives on - the same reason set_user_data arms it. A
-	// ChannelGroup never gets CALLBACK_END; fmod_channel_group_release calls
-	// fmod_channel_control_forget_rolloff instead. If arming fails the entry is
-	// deliberately kept rather than freed, because FMOD is pointing at it -
-	// fmod_channel_control_reset_state() is the backstop.
+	// CALLBACK_END arrives on. A ChannelGroup never gets CALLBACK_END;
+	// fmod_channel_group_release calls fmod_channel_control_forget_rolloff
+	// instead. If arming fails the entry is deliberately kept rather than freed,
+	// because FMOD is pointing at it - fmod_channel_control_reset_state() is the
+	// backstop.
 	if (gm_fmod_ref_type(channel_control_ref) != GM_FMOD_TYPE_CHANNEL_GROUP)
 		fmod_channel_control_arm_end_hook(control);
 	return 0;
@@ -870,60 +870,25 @@ FmodFadePoint fmod_channel_control_get_fade_point_at(uint64_t channel_control_re
 // User Data
 // ============================================================
 
-// ChannelGroups are registry-backed and already carry a data slot inside the
-// CustomUserData the registry allocated for them, so they use it. That leaves
-// g_user_data holding Channels and nothing else, which is what lets the
-// CALLBACK_END path below clear it completely rather than partially.
-double fmod_channel_control_set_user_data(uint64_t channel_control_ref, double user_data)
+// The value lives in FMOD's slot on the channel itself, so a stolen or ended
+// channel takes it with it and setUserData reports the dead handle.
+double fmod_channel_control_set_user_data(uint64_t channel_control_ref, int64_t user_data)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
 
-	if (gm_fmod_ref_type(channel_control_ref) == GM_FMOD_TYPE_CHANNEL_GROUP)
-	{
-		setResourceUserData((FMOD::ChannelGroup*)control, user_data);
-		g_fmod_last_result = FMOD_OK;
-		return 0;
-	}
-
-	const uintptr_t control_ptr = reinterpret_cast<uintptr_t>(control);
-	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data[control_ptr] = user_data;
-	}
-
-	// Without a callback installed there is no end-of-life signal for a Channel,
-	// so the entry above would outlive the channel and be inherited by whatever
-	// FMOD recycles the handle for. The trampoline is a no-op when GML registered
-	// no callback of its own; it is here purely so CALLBACK_END arrives. If it
-	// cannot be installed the channel is already gone, so drop the entry again
-	// rather than leave one nothing will ever reclaim.
-	g_fmod_last_result = fmod_channel_control_arm_end_hook(control);
-	if (g_fmod_last_result != FMOD_OK)
-	{
-		std::lock_guard<std::mutex> lock(g_user_data_mutex);
-		g_user_data.erase(control_ptr);
-	}
+	setResourceUserData(control, user_data);
 	return 0;
 }
 
-double fmod_channel_control_get_user_data(uint64_t channel_control_ref)
+int64_t fmod_channel_control_get_user_data(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return 0;
 
-	if (gm_fmod_ref_type(channel_control_ref) == GM_FMOD_TYPE_CHANNEL_GROUP)
-	{
-		g_fmod_last_result = FMOD_OK;
-		return getResourceUserData((FMOD::ChannelGroup*)control);
-	}
-
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	auto it = g_user_data.find(reinterpret_cast<uintptr_t>(control));
-	if (it == g_user_data.end()) return 0.0;
-	return it->second;
+	return getResourceUserData(control);
 }
 
 // ============================================================
@@ -967,14 +932,10 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 		}
 	}
 
-	// Runs whether or not GML registered a callback - set_user_data arms this
-	// hook precisely so the user-data entry gets an end-of-life signal too.
+	// Runs whether or not GML registered a callback - set_3d_custom_rolloff arms
+	// this hook precisely so the rolloff copy gets an end-of-life signal.
 	if (ended)
 	{
-		{
-			std::lock_guard<std::mutex> lock(g_user_data_mutex);
-			g_user_data.erase(control_ptr);
-		}
 		// The channel is gone, so FMOD is no longer reading the rolloff copy.
 		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
 		g_channel_rolloff.erase(control_ptr);
@@ -1000,12 +961,8 @@ void fmod_channel_control_reset_state()
 		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
 		g_channel_callbacks.clear();
 	}
-	{
-		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-		g_channel_rolloff.clear();
-	}
-	std::lock_guard<std::mutex> lock(g_user_data_mutex);
-	g_user_data.clear();
+	std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+	g_channel_rolloff.clear();
 }
 
 double fmod_channel_control_set_callback(uint64_t channel_ref, const std::optional<gm::wire::GMFunction>& callback)
@@ -1023,15 +980,10 @@ double fmod_channel_control_set_callback(uint64_t channel_ref, const std::option
 			g_channel_callbacks.erase(control_ptr);
 		}
 
-		// Keep the trampoline installed while this channel still has user data or
-		// a rolloff copy to reclaim; clearing it would strip the only CALLBACK_END
-		// we get, and the rolloff copy is memory FMOD is actively reading.
+		// Keep the trampoline installed while this channel still has a rolloff
+		// copy to reclaim; clearing it would strip the only CALLBACK_END we get,
+		// and the rolloff copy is memory FMOD is actively reading.
 		bool keep_hook = false;
-		{
-			std::lock_guard<std::mutex> lock(g_user_data_mutex);
-			keep_hook = g_user_data.count(control_ptr) != 0;
-		}
-		if (!keep_hook)
 		{
 			std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
 			keep_hook = g_channel_rolloff.count(control_ptr) != 0;

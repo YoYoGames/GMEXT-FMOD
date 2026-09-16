@@ -3,7 +3,6 @@
 #include "fmod.hpp"
 #include <cstdint>
 #include <map>
-#include <set>
 #include <string>
 #include <optional>
 #include <atomic>
@@ -76,20 +75,31 @@ uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, 
 template <typename T>
 uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
 
-// Reads/writes the `data` field of a map-registered resource's existing
-// CustomUserData (allocated by registerOrFindResource). Never calls the
-// resource's native setUserData directly - that slot is already owned by the
-// registry bookkeeping.
+// GML user data lives in FMOD's own user-data slot, as it did before the
+// extgen port: the integer is the pointer, so there is nothing to allocate or
+// free and the value dies with the object. On a 32-bit target the pointer
+// cannot hold every int64; a value that does not round-trip is rejected rather
+// than truncated. Callers have already validated the ref, so a null resource
+// never reaches these.
 template <typename T>
-double getResourceUserData(T resource);
+void setResourceUserData(T resource, int64_t data)
+{
+	const intptr_t packed = static_cast<intptr_t>(data);
+	if (static_cast<int64_t>(packed) != data)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		return;
+	}
+	g_fmod_last_result = resource->setUserData(reinterpret_cast<void*>(packed));
+}
 
 template <typename T>
-void setResourceUserData(T resource, double data);
-
-// user_data storage for pointer-identified types (Channel, ChannelControl,
-// and Studio objects) which have no registry-owned CustomUserData slot.
-extern std::mutex g_user_data_mutex;
-extern std::map<uintptr_t, double> g_user_data;
+int64_t getResourceUserData(T resource)
+{
+	void* userData = nullptr;
+	g_fmod_last_result = resource->getUserData(&userData);
+	return static_cast<int64_t>(reinterpret_cast<intptr_t>(userData));
+}
 
 // ============================================================
 // Per-module state hooks
