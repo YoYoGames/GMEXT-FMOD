@@ -6336,7 +6336,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "winSdkHash",
-      "defaultValue": "B8950C7EAF808ACA1F8408379BA302AAAE0C8EA5F5F36CEE7820BF4EE57EADC9",
+      "defaultValue": "7C5948D83D11406FC1A95ACE03943A9B0429BF2EAA3B1AD949F51DE02FBDD9C6",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6352,7 +6352,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "macosSdkHash",
-      "defaultValue": "1DDE5FB8E34281DC50A34F8596826773FC15367FBD3A8DCC79D5EF37D3547D18",
+      "defaultValue": "F68033E8FCD495BD0CBBE92EEFF26694515A12A0676FCD83DCE95223C2E07755",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6368,7 +6368,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "linuxSdkHash",
-      "defaultValue": "F52A49374178C146398493F6BEDB037089358189C7C03AE4E372D3989F5CCDA5",
+      "defaultValue": "D2ABE192C8DDD8942D7A62F2C7FF674D73423EA9B1BE6B087E5DE0CFB30BC4BB",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6384,7 +6384,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "androidSdkHash",
-      "defaultValue": "75B43260D80591FC273551296DBC5089236B1BB347BA4EBBBB97368728D48714",
+      "defaultValue": "39B30FA72DE6B9ABBED0336BC8C40DC00976AF9BA3804D84E3EBD49F5A7FC2D6",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6400,7 +6400,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "iosSdkHash",
-      "defaultValue": "76F29ED7B4307018D0B72448F83146F4695522617D800C026FAA95C50567AA94",
+      "defaultValue": "BE71BB8678C9B843029821CF36916CA735A9577E8DC6176FAB49BD67F6DD4E14",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6416,7 +6416,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "ps4SdkHash",
-      "defaultValue": "B80CB1A03F86D0F98C8C6046A548A9F6539EAF36314A2C223DFC25D01A9599E2",
+      "defaultValue": "00C124109872BF0F98386D4BEDDAD67027AD6DB62E60B46905DAA6AB620835C2",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6432,7 +6432,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "ps5SdkHash",
-      "defaultValue": "CFF0039C43C625537E04C8ABDF6D21AA05EE108AAE32FB09A3B0FF3D37422548",
+      "defaultValue": "CAAADFB5F193D91361ED647192D8EF5539690F36EDFAF444BFEBFE5B8501CC6C",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6448,7 +6448,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "xboxOneSdkHash",
-      "defaultValue": "E35B15DF3C274EA413128DAEB8BCC1A3416460B4F8C025599961BE512BB74700",
+      "defaultValue": "1D853BC7E5678D5866B6E0F3075660035EAFE876F2C599F8E3E1C28AEE4CA1B1",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6464,7 +6464,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "xboxSeriesSdkHash",
-      "defaultValue": "9FD1D273DA3B5BAE33C53A0AC3F37C76476F0DA20026C1E77F4698E65DF1E540",
+      "defaultValue": "86BE4EAABEC83502C9FE1B137E6792A66AB6F51805268FBB337B4A060CD4398B",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -6480,7 +6480,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "switchSdkHash",
-      "defaultValue": "---",
+      "defaultValue": "69BCB34723009869C8E7CBA884B76A838C0E459138BFC9D52FFF8FBD66B3B76E",
       "description": "",
       "displayName": "",
       "exportToINI": false,

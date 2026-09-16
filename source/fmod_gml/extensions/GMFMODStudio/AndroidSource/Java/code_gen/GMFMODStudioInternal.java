@@ -120,10 +120,6 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_system_get_parameter_by_name(name);
     }
-    public double __EXT_NATIVE__fmod_studio_system_get_core_system(ByteBuffer __ret_buffer, double __ret_buffer_length)
-    {
-        return __EXT_JNI__fmod_studio_system_get_core_system(__ret_buffer, __ret_buffer_length);
-    }
     public double __EXT_NATIVE__fmod_studio_system_get_core_system_ptr(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
         return __EXT_JNI__fmod_studio_system_get_core_system_ptr(__ret_buffer, __ret_buffer_length);
@@ -584,10 +580,6 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_instance_is_virtual(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
-    {
-        return __EXT_JNI__fmod_studio_event_instance_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
-    }
     public double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
         return __EXT_JNI__fmod_studio_event_instance_get_channel_group_ptr(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
@@ -643,10 +635,6 @@ public class GMFMODStudioInternal extends RunnerSocial {
     public double __EXT_NATIVE__fmod_studio_bus_is_valid(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
         return __EXT_JNI__fmod_studio_bus_is_valid(__arg_buffer, __arg_buffer_length);
-    }
-    public double __EXT_NATIVE__fmod_studio_bus_get_channel_group(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
-    {
-        return __EXT_JNI__fmod_studio_bus_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_bus_get_channel_group_ptr(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {

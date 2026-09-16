@@ -34,14 +34,6 @@ uint64_t fmod_studio_system_create()
 	g_fmod_last_result = FMOD::Studio::System::create(&studio_system);
 	if (g_fmod_last_result != FMOD_OK || studio_system == nullptr) return result;
 
-	FMOD::System* core_system = nullptr;
-	studio_system->getCoreSystem(&core_system);
-	if (core_system != nullptr)
-	{
-		uint32_t system_id = registerOrFindResource(core_system, index_systems, map_systems);
-		// Store core system ref
-	}
-
 	g_studio_system_ref = packPointerIntoRef(studio_system, GM_FMOD_STUDIO_TYPE_SYSTEM);
 	result = g_studio_system_ref;
 	return result;
@@ -88,13 +80,6 @@ double fmod_studio_system_release()
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
-
-	FMOD::System* core_system = nullptr;
-	studio_system->getCoreSystem(&core_system);
-	if (core_system != nullptr)
-	{
-		unregisterResource(core_system, map_systems);
-	}
 
 	g_fmod_last_result = studio_system->release();
 	if (g_fmod_last_result == FMOD_OK)
@@ -536,23 +521,6 @@ double fmod_studio_system_get_parameter_by_name(std::string_view name)
 	return (double)value;
 }
 
-uint64_t fmod_studio_system_get_core_system()
-{
-	uint64_t result = 0;
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
-	if (studio_system == nullptr) return result;
-
-	FMOD::System* core_system = nullptr;
-	g_fmod_last_result = studio_system->getCoreSystem(&core_system);
-	if (g_fmod_last_result == FMOD_OK && core_system != nullptr)
-	{
-		uint32_t system_id = registerOrFindResource(core_system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
-	}
-	return result;
-}
-
 uint64_t fmod_studio_system_get_core_system_ptr()
 {
 	FMOD::Studio::System* studio_system = nullptr;
@@ -563,9 +531,9 @@ uint64_t fmod_studio_system_get_core_system_ptr()
 	g_fmod_last_result = studio_system->getCoreSystem(&core_system);
 	if (g_fmod_last_result != FMOD_OK || core_system == nullptr) return 0;
 
-	// Handed to GMFMOD's fmod_system_adopt(). Deliberately does not touch the
-	// system's user-data slot: that slot is owned by this extension's registry
-	// and must not be shared across the DLL boundary.
+	// Handed to GMFMOD's fmod_system_adopt(). A pointer, not a ref: both
+	// extensions pack refs identically, so a ref minted here would resolve
+	// against GMFMOD's own registry rather than fail.
 	return static_cast<uint64_t>(reinterpret_cast<uintptr_t>(core_system));
 }
 

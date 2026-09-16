@@ -504,24 +504,6 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "__fmod_studio_system_get_core_system",
-          "argCount": 2,
-          "args": [
-            1,
-            2
-          ],
-          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_studio_system_get_core_system",
-          "help": "",
-          "hidden": true,
-          "kind": 4,
-          "name": "__fmod_studio_system_get_core_system",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 2
-        },
-        {
-          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_system_get_core_system_ptr",
           "argCount": 2,
           "args": [
@@ -2616,26 +2598,6 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "__fmod_studio_event_instance_get_channel_group",
-          "argCount": 4,
-          "args": [
-            1,
-            2,
-            1,
-            2
-          ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_channel_group",
-          "help": "",
-          "hidden": true,
-          "kind": 4,
-          "name": "__fmod_studio_event_instance_get_channel_group",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 2
-        },
-        {
-          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_get_channel_group_ptr",
           "argCount": 4,
           "args": [
@@ -2890,26 +2852,6 @@
           "hidden": true,
           "kind": 4,
           "name": "__fmod_studio_bus_is_valid",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 2
-        },
-        {
-          "$GMExtensionFunction": "",
-          "%Name": "__fmod_studio_bus_get_channel_group",
-          "argCount": 4,
-          "args": [
-            1,
-            2,
-            1,
-            2
-          ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_studio_bus_get_channel_group",
-          "help": "",
-          "hidden": true,
-          "kind": 4,
-          "name": "__fmod_studio_bus_get_channel_group",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -3817,7 +3759,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "winSdkHash",
-      "defaultValue": "B8950C7EAF808ACA1F8408379BA302AAAE0C8EA5F5F36CEE7820BF4EE57EADC9",
+      "defaultValue": "85364E241FC04BD4C4EEA93B9365BA56F37AF2F1721E9413F9A36A6CFFA6D44B",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -3833,7 +3775,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "macosSdkHash",
-      "defaultValue": "1DDE5FB8E34281DC50A34F8596826773FC15367FBD3A8DCC79D5EF37D3547D18",
+      "defaultValue": "DEBFD45D958833F9747A722C8F997E2C07DBD9FD79F2DE35B1D21D5C15EAEA4B",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -3849,7 +3791,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "linuxSdkHash",
-      "defaultValue": "F52A49374178C146398493F6BEDB037089358189C7C03AE4E372D3989F5CCDA5",
+      "defaultValue": "CC7A86FD2B53028BE8974B9F968040DCF32528BAC9EB52C448EA0F66C842712E",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -3865,7 +3807,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "androidSdkHash",
-      "defaultValue": "E9E4A6C55B952E95A5138655408A6F5D59F112F15409B9EC5C200A22CFA8C85F",
+      "defaultValue": "3B832388B360F29F543652CFA786CD9DDE00D1E1960678C999253F7FDDFED9F8",
       "description": "",
       "displayName": "",
       "exportToINI": false,
@@ -3881,7 +3823,7 @@
     {
       "$GMExtensionOption": "",
       "%Name": "iosSdkHash",
-      "defaultValue": "81D8C469B576C26554E13FFFC7F20E072E3504E2411D5DFA2AE2CA0A436F6AC6",
+      "defaultValue": "93C60A9EC7AF616A438E657B178FBED11905A5940E1B397E5E2B5CD728744861",
       "description": "",
       "displayName": "",
       "exportToINI": false,

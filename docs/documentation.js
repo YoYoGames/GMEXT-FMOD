@@ -4912,26 +4912,6 @@ function fmod_studio_bus_get_port_index(bus_ref) {}
 
 
 /**
- * @function fmod_studio_bus_get_channel_group
- * @desc > **FMOD Function:** [Studio::Bus::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup)
- *
- * <br />
- *
- * This function retrieves the core ChannelGroup.
- * 
- * By default the ChannelGroup will only exist when it is needed; see [Signal Paths](https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths) for details. If the ChannelGroup does not exist, the next call to ${function.fmod_last_result} will return `FmodStudioResult.StudioNotLoaded`.
- * 
- *
- * [[Warning: The reference this returns belongs to the GMFMODStudio extension's own object registry, and the `fmod_channel_group_*` functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use ${function.fmod_studio_bus_get_channel_group_ptr} and ${function.fmod_channel_group_adopt} instead.]]
- *
- * @param {Real} bus_ref A reference to a bus.
- * @returns {Real}
- * @function_end
- */
-function fmod_studio_bus_get_channel_group(bus_ref) {}
-
-
-/**
  * @function fmod_studio_bus_get_channel_group_ptr
  * @desc > **FMOD Function:** [Studio::Bus::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup)
  *
@@ -4941,7 +4921,7 @@ function fmod_studio_bus_get_channel_group(bus_ref) {}
  *
  * GMFMOD and GMFMODStudio are separate extensions with separate object registries, so a reference made by one is meaningless to the other. Pass the value this returns to ${function.fmod_channel_group_adopt} to get a reference the `fmod_channel_group_*` functions can use.
  *
- * Unlike ${function.fmod_studio_bus_get_channel_group}, this does not touch the ChannelGroup's FMOD user-data slot.
+ * This does not touch the ChannelGroup's FMOD user-data slot, so GMFMOD's own bookkeeping for the same object is left intact.
  *
  * @param {Real} bus_ref A reference to a bus.
  * @returns {Real}
@@ -4969,7 +4949,7 @@ function fmod_studio_bus_get_channel_group_ptr(bus_ref) {}
  * 
  * The ChannelGroup may not be available immediately after calling this function. When Studio has been initialized in asynchronous mode, the ChannelGroup will not be created until the command has been executed in the async thread. When Studio has been initialized with `FmodStudioInitFlags.SynchronousUpdate`, the ChannelGroup will be created in the next ${function.fmod_studio_system_update} call.
  * 
- * You can call ${function.fmod_studio_system_flush_commands} to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via ${function.fmod_studio_bus_get_channel_group} until it is ready.
+ * You can call ${function.fmod_studio_system_flush_commands} to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via ${function.fmod_studio_bus_get_channel_group_ptr} until it is ready.
  * 
  * @param {Real} bus_ref A reference to a bus.
  * @returns {Real}
@@ -6420,26 +6400,6 @@ function fmod_studio_event_instance_get_parameter_by_id(event_instance_ref, para
 
 
 /**
- * @function fmod_studio_event_instance_get_channel_group
- * @desc > **FMOD Function:** [Studio::EventInstance::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup)
- *
- * <br />
- *
- * This function retrieves the core `ChannelGroup` corresponding to the master track.
- * 
- * Until the event instance has been fully created this function will result in `FmodStudioResult.StudioNotLoaded` (in the next ${function.fmod_last_result} call).
- * 
- *
- * [[Warning: The reference this returns belongs to the GMFMODStudio extension's own object registry, and the `fmod_channel_group_*` functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use ${function.fmod_studio_event_instance_get_channel_group_ptr} and ${function.fmod_channel_group_adopt} instead.]]
- *
- * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Real}
- * @function_end
- */
-function fmod_studio_event_instance_get_channel_group(event_instance_ref) {}
-
-
-/**
  * @function fmod_studio_event_instance_get_channel_group_ptr
  * @desc > **FMOD Function:** [Studio::EventInstance::getChannelGroup](https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup)
  *
@@ -7482,22 +7442,6 @@ function fmod_studio_system_get_user_data() {}
  * @function_end
  */
 function fmod_studio_system_get_sound_info(key) {}
-
-
-/**
- * @function fmod_studio_system_get_core_system
- * @desc > **FMOD Function:** [Studio::System::getCoreSystem](https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getcoresystem)
- *
- * <br />
- *
- * This function retrieves the Core System.
- * 
- * The Core System object can be retrieved before initializing the Studio System object to call additional core configuration functions.
- * 
- * @returns {Real}
- * @function_end
- */
-function fmod_studio_system_get_core_system() {}
 
 
 /**
@@ -10077,7 +10021,6 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_bus_get_mute
  * @ref fmod_studio_bus_set_port_index
  * @ref fmod_studio_bus_get_port_index
- * @ref fmod_studio_bus_get_channel_group
  * @ref fmod_studio_bus_get_channel_group_ptr
  * @ref fmod_studio_bus_lock_channel_group
  * @ref fmod_studio_bus_unlock_channel_group
@@ -10214,7 +10157,6 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_event_instance_set_parameter_by_id
  * @ref fmod_studio_event_instance_set_parameter_by_id_with_label
  * @ref fmod_studio_event_instance_get_parameter_by_id
- * @ref fmod_studio_event_instance_get_channel_group
  * @ref fmod_studio_event_instance_get_channel_group_ptr
  * @ref fmod_studio_event_instance_set_reverb_level
  * @ref fmod_studio_event_instance_get_reverb_level
@@ -10294,7 +10236,6 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_system_set_user_data
  * @ref fmod_studio_system_get_user_data
  * @ref fmod_studio_system_get_sound_info
- * @ref fmod_studio_system_get_core_system
  * @ref fmod_studio_system_lookup_id
  * @ref fmod_studio_system_lookup_path
  * @ref fmod_studio_system_is_valid

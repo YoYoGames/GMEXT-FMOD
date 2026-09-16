@@ -276,16 +276,6 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_by_name(char* nam
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system(char* __ret_buffer, double __ret_buffer_length)
-{
-    auto&& __result = fmod_studio_system_get_core_system();
-    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
-
-    // return: __result, type: UInt64
-    gm::wire::codec::writeValue(__bw, __result);
-    return 0;
-}
-
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_core_system_ptr(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_studio_system_get_core_system_ptr();
@@ -1728,21 +1718,6 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_is_virtual(char* __arg_
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
-{
-    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
-
-    // field: instance_ref, type: UInt64
-    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
-
-    auto&& __result = fmod_studio_event_instance_get_channel_group(instance_ref);
-    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
-
-    // return: __result, type: UInt64
-    gm::wire::codec::writeValue(__bw, __result);
-    return 0;
-}
-
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
@@ -1921,21 +1896,6 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_is_valid(char* __arg_buffer, doubl
 
     auto&& __result = fmod_studio_bus_is_valid(bus_ref);
     return static_cast<double>(__result);
-}
-
-GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_channel_group(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
-{
-    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
-
-    // field: bus_ref, type: UInt64
-    std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
-
-    auto&& __result = fmod_studio_bus_get_channel_group(bus_ref);
-    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
-
-    // return: __result, type: UInt64
-    gm::wire::codec::writeValue(__bw, __result);
-    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_bus_get_channel_group_ptr(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)

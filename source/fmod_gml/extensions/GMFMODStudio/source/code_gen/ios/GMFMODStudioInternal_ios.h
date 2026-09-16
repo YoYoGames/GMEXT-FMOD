@@ -30,7 +30,6 @@
 - (double)__EXT_NATIVE__fmod_studio_system_get_listener_weight:(double)listener_index;
 - (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name:(char*)name arg1:(double)value;
 - (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_name:(char*)name;
-- (double)__EXT_NATIVE__fmod_studio_system_get_core_system:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_system_get_core_system_ptr:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_last_result:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_shutdown;
@@ -146,7 +145,6 @@
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_is_virtual:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_cpu_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_memory_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
@@ -161,7 +159,6 @@
 - (double)__EXT_NATIVE__fmod_studio_bus_get_master_bus:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (char*)__EXT_NATIVE__fmod_studio_bus_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bus_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_studio_bus_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bus_get_channel_group_ptr:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bus_lock_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_studio_bus_unlock_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

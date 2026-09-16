@@ -196,10 +196,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_parameter_by_name(name);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_core_system:(char*)__ret_buffer arg1:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_system_get_core_system(__ret_buffer, __ret_buffer_length);
-}
 - (double)__EXT_NATIVE__fmod_studio_system_get_core_system_ptr:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_get_core_system_ptr(__ret_buffer, __ret_buffer_length);
@@ -660,10 +656,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_instance_is_virtual(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_event_instance_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
-}
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_get_channel_group_ptr(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
@@ -719,10 +711,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 - (double)__EXT_NATIVE__fmod_studio_bus_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_bus_is_valid(__arg_buffer, __arg_buffer_length);
-}
-- (double)__EXT_NATIVE__fmod_studio_bus_get_channel_group:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_bus_get_channel_group(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_bus_get_channel_group_ptr:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {

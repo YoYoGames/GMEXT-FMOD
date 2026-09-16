@@ -159,7 +159,6 @@
 <li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id">fmod_studio_event_instance_set_parameter_by_id</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
-<li><a href="event_instance.html#fmod_studio_event_instance_get_channel_group">fmod_studio_event_instance_get_channel_group</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_reverb_level">fmod_studio_event_instance_set_reverb_level</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_reverb_level">fmod_studio_event_instance_get_reverb_level</a></li>
@@ -1293,48 +1292,6 @@ For example to create a mask for listener index 0 and 2 the calculation would be
 <td>id_data2</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>The second half of the parameter's unique identifier.</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<p><strong>Returns:</strong></p>
-<blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
-</blockquote>
-<p><br></p>
-<hr />
-<p align="right"><a href="#top">Back To Top</a></p>
-
-<h1 id="fmod_studio_event_instance_get_channel_group">fmod_studio_event_instance_get_channel_group</h1>
-<blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-eventinstance.html#studio_eventinstance_getchannelgroup">Studio::EventInstance::getChannelGroup</a></p>
-</blockquote>
-<p><br /></p>
-<p>This function retrieves the core <code>ChannelGroup</code> corresponding to the master track.</p>
-<p>Until the event instance has been fully created this function will result in <code>FmodStudioResult.StudioNotLoaded</code> (in the next <a href="misc.html#fmod_last_result">fmod_last_result</a> call).</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The reference this returns belongs to the GMFMODStudio extension's own object registry, and the <code>fmod_channel_group_*</code> functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use <a href="event_instance.html#fmod_studio_event_instance_get_channel_group_ptr">fmod_studio_event_instance_get_channel_group_ptr</a> and <a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a> instead.</p>
-</div>
-<p><br></p>
-<p><strong>Syntax:</strong></p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_event_instance_get_channel_group(instance_ref)
-</code></pre></div>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>instance_ref</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A reference to an EventInstance.</td>
 </tr>
 </tbody>
 </table>

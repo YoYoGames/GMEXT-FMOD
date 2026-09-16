@@ -191,12 +191,6 @@
  */
 
 /**
- * @function_partial fmod_studio_system_get_core_system
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_studio_system_get_core_system_ptr
  * @returns {Real}
  * @function_end
@@ -1061,13 +1055,6 @@
  */
 
 /**
- * @function_partial fmod_studio_event_instance_get_channel_group
- * @param {Real} instance_ref
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_studio_event_instance_get_channel_group_ptr
  * @param {Real} instance_ref
  * @returns {Real}
@@ -1162,13 +1149,6 @@
 
 /**
  * @function_partial fmod_studio_bus_is_valid
- * @param {Real} bus_ref
- * @returns {Real}
- * @function_end
- */
-
-/**
- * @function_partial fmod_studio_bus_get_channel_group
  * @param {Real} bus_ref
  * @returns {Real}
  * @function_end
@@ -1941,5 +1921,4 @@
  * @member BitStream
  * @enum_end
  */
-
 

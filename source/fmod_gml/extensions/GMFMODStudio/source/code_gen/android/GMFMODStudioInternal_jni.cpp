@@ -438,19 +438,6 @@ static jdouble __JNI_WRAPPER__fmod_studio_system_get_parameter_by_name_70CA10FE9
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_studio_system_get_core_system JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_studio_system_get_core_system_97772879ADFC(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
-{
-    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
-    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
-    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
-        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    double __ret = __EXT_NATIVE__fmod_studio_system_get_core_system((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
-    return static_cast<jdouble>(__ret);
-}
-
 // fmod_studio_system_get_core_system_ptr JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_system_get_core_system_ptr_B56BD05DFAEF(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -1972,25 +1959,6 @@ static jdouble __JNI_WRAPPER__fmod_studio_event_instance_is_virtual_576CCCA880F8
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_studio_event_instance_get_channel_group JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_studio_event_instance_get_channel_group_3AB487459638(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
-{
-    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
-    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
-    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
-        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
-    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
-    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
-        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    double __ret = __EXT_NATIVE__fmod_studio_event_instance_get_channel_group((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
-    return static_cast<jdouble>(__ret);
-}
-
 // fmod_studio_event_instance_get_channel_group_ptr JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_event_instance_get_channel_group_ptr_6B49F82686BF(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -2196,25 +2164,6 @@ static jdouble __JNI_WRAPPER__fmod_studio_bus_is_valid_02CA7136C4D8(JNIEnv* env,
         return 0.0;
     }
     double __ret = __EXT_NATIVE__fmod_studio_bus_is_valid((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
-    return static_cast<jdouble>(__ret);
-}
-
-// fmod_studio_bus_get_channel_group JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_studio_bus_get_channel_group_EB8E3ADFC02B(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
-{
-    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
-    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
-    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
-        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
-    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
-    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
-        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
-        return 0.0;
-    }
-    double __ret = __EXT_NATIVE__fmod_studio_bus_get_channel_group((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -2761,7 +2710,6 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_system_get_listener_weight", "(D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_listener_weight_6650D4219F5D },
             { "__EXT_JNI__fmod_studio_system_set_parameter_by_name", "(Ljava/lang/String;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_set_parameter_by_name_3599201758EC },
             { "__EXT_JNI__fmod_studio_system_get_parameter_by_name", "(Ljava/lang/String;)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_parameter_by_name_70CA10FE98EB },
-            { "__EXT_JNI__fmod_studio_system_get_core_system", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_core_system_97772879ADFC },
             { "__EXT_JNI__fmod_studio_system_get_core_system_ptr", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_system_get_core_system_ptr_B56BD05DFAEF },
             { "__EXT_JNI__fmod_studio_last_result", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_last_result_1962DE6C7AA4 },
             { "__EXT_JNI__fmod_studio_shutdown", "()D", (void*)__JNI_WRAPPER__fmod_studio_shutdown_957624E5B65F },
@@ -2877,7 +2825,6 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_event_instance_set_user_data", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_user_data_600F3CB5895E },
             { "__EXT_JNI__fmod_studio_event_instance_is_valid", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_is_valid_1D07132D64B1 },
             { "__EXT_JNI__fmod_studio_event_instance_is_virtual", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_is_virtual_576CCCA880F8 },
-            { "__EXT_JNI__fmod_studio_event_instance_get_channel_group", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_channel_group_3AB487459638 },
             { "__EXT_JNI__fmod_studio_event_instance_get_channel_group_ptr", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_channel_group_ptr_6B49F82686BF },
             { "__EXT_JNI__fmod_studio_event_instance_get_cpu_usage", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_cpu_usage_10515326275C },
             { "__EXT_JNI__fmod_studio_event_instance_get_memory_usage", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_memory_usage_3F5CCCA1B8AD },
@@ -2892,7 +2839,6 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_bus_get_master_bus", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_get_master_bus_2DD6DE456835 },
             { "__EXT_JNI__fmod_studio_bus_get_id", "(Ljava/nio/ByteBuffer;D)Ljava/lang/String;", (void*)__JNI_WRAPPER__fmod_studio_bus_get_id_1B00399C6DD8 },
             { "__EXT_JNI__fmod_studio_bus_is_valid", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_is_valid_02CA7136C4D8 },
-            { "__EXT_JNI__fmod_studio_bus_get_channel_group", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_get_channel_group_EB8E3ADFC02B },
             { "__EXT_JNI__fmod_studio_bus_get_channel_group_ptr", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_get_channel_group_ptr_2EC70001BE3C },
             { "__EXT_JNI__fmod_studio_bus_lock_channel_group", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_lock_channel_group_ADC7F79AF13A },
             { "__EXT_JNI__fmod_studio_bus_unlock_channel_group", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_bus_unlock_channel_group_B8A186BEA59F },

@@ -92,23 +92,10 @@ double fmod_studio_bus_is_valid(uint64_t bus_ref)
 	return bus->isValid() ? 1.0 : 0.0;
 }
 
-uint64_t fmod_studio_bus_get_channel_group(uint64_t bus_ref)
-{
-	FMOD::Studio::Bus* bus = nullptr;
-	validate_fmod_studio_bus(bus_ref, bus);
-	if (bus == nullptr) return 0;
-
-	FMOD::ChannelGroup* group = nullptr;
-	g_fmod_last_result = bus->getChannelGroup(&group);
-	if (g_fmod_last_result != FMOD_OK || group == nullptr) return 0;
-
-	uint32_t group_id = registerOrFindResource(group, index_channel_groups, map_channel_groups);
-	return packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
-}
-
-// Deliberately does not touch the group's user-data slot: that slot is the
-// registry's, and claiming it here is what makes the ref above unusable in
-// GMFMOD. The caller hands this pointer to GMFMOD's fmod_channel_group_adopt().
+// The raw pointer is what crosses the DLL boundary. A ref minted here would
+// index this extension's own registry and, because both extensions pack refs
+// identically, resolve against GMFMOD's map instead of failing. The caller
+// hands this pointer to GMFMOD's fmod_channel_group_adopt().
 uint64_t fmod_studio_bus_get_channel_group_ptr(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;

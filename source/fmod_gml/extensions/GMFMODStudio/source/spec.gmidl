@@ -850,14 +850,11 @@ function fmod_studio_system_set_parameter_by_name(name: string, value: real): re
 [global, bind = typed_gml]
 function fmod_studio_system_get_parameter_by_name(name: string): real;
 
-[global, bind = typed_gml, type_hint=`uint64`]
-function fmod_studio_system_get_core_system(): gmval;
-
-// Raw FMOD::System* of the Studio-owned core system, as an integer.
-// The ref returned by fmod_studio_system_get_core_system() indexes this
-// extension's own registry and is meaningless to the GMFMOD extension, which
-// links its own copy of the registry. Pass this pointer to fmod_system_adopt()
-// (GMFMOD) to register the same system there.
+// Raw FMOD::System* of the Studio-owned core system, as an integer. A pointer,
+// not a ref, is how a handle crosses the DLL boundary: GMFMOD links its own
+// registry, and because both extensions pack refs identically a ref minted
+// here would resolve against the wrong map rather than fail. Pass this pointer
+// to fmod_system_adopt() (GMFMOD) to register the same system there.
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_system_get_core_system_ptr(): gmval;
 
@@ -1376,12 +1373,9 @@ function fmod_studio_event_instance_is_valid([type_hint=`uint64`] instance_ref: 
 [global, bind = typed_gml]
 function fmod_studio_event_instance_is_virtual([type_hint=`uint64`] instance_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64`]
-function fmod_studio_event_instance_get_channel_group([type_hint=`uint64`] instance_ref: gmval): gmval;
-
-// Raw FMOD::ChannelGroup* of the same group, as an integer. The ref above
-// indexes this extension's own registry and is meaningless to GMFMOD, which
-// links its own copy; pass this pointer to fmod_channel_group_adopt() (GMFMOD)
+// Raw FMOD::ChannelGroup* of the instance's group, as an integer. GMFMOD links
+// its own registry, so a ref minted here would resolve against the wrong map
+// rather than fail; pass this pointer to fmod_channel_group_adopt() (GMFMOD)
 // to register the same group there.
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_event_instance_get_channel_group_ptr([type_hint=`uint64`] instance_ref: gmval): gmval;
@@ -1434,12 +1428,9 @@ function fmod_studio_bus_get_id([type_hint=`uint64`] bus_ref: gmval): string;
 [global, bind = typed_gml]
 function fmod_studio_bus_is_valid([type_hint=`uint64`] bus_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64`]
-function fmod_studio_bus_get_channel_group([type_hint=`uint64`] bus_ref: gmval): gmval;
-
-// Raw FMOD::ChannelGroup* of the same group, as an integer. Same reason as
+// Raw FMOD::ChannelGroup* of the bus's group, as an integer. Same reason as
 // fmod_studio_event_instance_get_channel_group_ptr(): hand this to GMFMOD's
-// fmod_channel_group_adopt(), not the ref above.
+// fmod_channel_group_adopt().
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_studio_bus_get_channel_group_ptr([type_hint=`uint64`] bus_ref: gmval): gmval;
 

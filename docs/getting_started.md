@@ -100,9 +100,15 @@ if (USE_FMOD_STUDIO)
 	show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
 	
 	/*
-		FMOD Studio will create an initialize an underlying core system to work with.
+		FMOD Studio creates and initialises an underlying core system to work with.
+
+		GMFMOD and GMFMODStudio are separate extensions with separate handle
+		registries, so a reference made by one means nothing to the other. The core
+		system crosses as a raw pointer instead: fmod_system_adopt() registers that
+		same system in GMFMOD and selects it, so the Core functions operate on FMOD
+		Studio's core system.
 	*/
-	fmod_main_system = fmod_studio_system_get_core_system();
+	fmod_main_system = fmod_system_adopt(fmod_studio_system_get_core_system_ptr());
 }
 // If we want to use FMOD Core only
 else

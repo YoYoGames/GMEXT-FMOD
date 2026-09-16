@@ -54,13 +54,13 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
 
 	FMOD_CREATESOUNDEXINFO* ex_info = nullptr;
@@ -138,13 +138,13 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
 
 	FMOD_CREATESOUNDEXINFO info = {};
@@ -164,13 +164,13 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode)
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
 	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), nullptr, &sound);
 
@@ -297,13 +297,13 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 	if (channel_group == nullptr)
 		return result;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Channel* channel = nullptr;
 	g_fmod_last_result = system->playSound(sound, channel_group, (pause != 0.0), &channel);
 

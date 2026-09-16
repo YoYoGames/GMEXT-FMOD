@@ -413,23 +413,6 @@ double fmod_studio_event_instance_is_virtual(uint64_t instance_ref)
 	return is_virtual ? 1.0 : 0.0;
 }
 
-uint64_t fmod_studio_event_instance_get_channel_group(uint64_t instance_ref)
-{
-	uint64_t result = 0;
-	FMOD::Studio::EventInstance* instance = nullptr;
-	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return result;
-
-	FMOD::ChannelGroup* channel_group = nullptr;
-	g_fmod_last_result = instance->getChannelGroup(&channel_group);
-	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
-	{
-		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
-	}
-	return result;
-}
-
 // See fmod_studio_bus_get_channel_group_ptr(): the raw pointer is what crosses
 // the DLL boundary, never the ref.
 uint64_t fmod_studio_event_instance_get_channel_group_ptr(uint64_t instance_ref)

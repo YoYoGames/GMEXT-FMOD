@@ -142,7 +142,6 @@
 <li><a href="bus.html#fmod_studio_bus_get_mute">fmod_studio_bus_get_mute</a></li>
 <li><a href="bus.html#fmod_studio_bus_set_port_index">fmod_studio_bus_set_port_index</a></li>
 <li><a href="bus.html#fmod_studio_bus_get_port_index">fmod_studio_bus_get_port_index</a></li>
-<li><a href="bus.html#fmod_studio_bus_get_channel_group">fmod_studio_bus_get_channel_group</a></li>
 <li><a href="bus.html#fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</a></li>
 <li><a href="bus.html#fmod_studio_bus_lock_channel_group">fmod_studio_bus_lock_channel_group</a></li>
 <li><a href="bus.html#fmod_studio_bus_unlock_channel_group">fmod_studio_bus_unlock_channel_group</a></li>
@@ -523,48 +522,6 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bus_get_channel_group">fmod_studio_bus_get_channel_group</h1>
-<blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup">Studio::Bus::getChannelGroup</a></p>
-</blockquote>
-<p><br /></p>
-<p>This function retrieves the core ChannelGroup.</p>
-<p>By default the ChannelGroup will only exist when it is needed; see <a href="https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths">Signal Paths</a> for details. If the ChannelGroup does not exist, the next call to <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.StudioNotLoaded</code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The reference this returns belongs to the GMFMODStudio extension's own object registry, and the <code>fmod_channel_group_*</code> functions live in GMFMOD, which keeps a separate one. Passing it to them resolves against the wrong registry and either fails or reaches a different ChannelGroup. Calling this function also claims the ChannelGroup's FMOD user-data slot for GMFMODStudio, which can in turn break GMFMOD's own bookkeeping for the same object. Use <a href="bus.html#fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</a> and <a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a> instead.</p>
-</div>
-<p><br></p>
-<p><strong>Syntax:</strong></p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bus_get_channel_group(bus_ref)
-</code></pre></div>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bus_ref</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A reference to a bus.</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<p><strong>Returns:</strong></p>
-<blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
-</blockquote>
-<p><br></p>
-<hr />
-<p align="right"><a href="#top">Back To Top</a></p>
-
 <h1 id="fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bus.html#studio_bus_getchannelgroup">Studio::Bus::getChannelGroup</a></p>
@@ -572,7 +529,7 @@
 <p><br /></p>
 <p>This function retrieves the core ChannelGroup of a bus as a raw pointer, for handing to the GMFMOD extension.</p>
 <p>GMFMOD and GMFMODStudio are separate extensions with separate object registries, so a reference made by one is meaningless to the other. Pass the value this returns to <a href="channel_group.html#fmod_channel_group_adopt">fmod_channel_group_adopt</a> to get a reference the <code>fmod_channel_group_*</code> functions can use.</p>
-<p>Unlike <a href="bus.html#fmod_studio_bus_get_channel_group">fmod_studio_bus_get_channel_group</a>, this does not touch the ChannelGroup's FMOD user-data slot.</p>
+<p>This does not touch the ChannelGroup's FMOD user-data slot, so GMFMOD's own bookkeeping for the same object is left intact.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -618,7 +575,7 @@ fmod_channel_group_set_volume(_group, 0.5);
 <p>This function locks the core ChannelGroup.</p>
 <p>This forces the system to create the ChannelGroup and keep it available until <a href="bus.html#fmod_studio_bus_unlock_channel_group">fmod_studio_bus_unlock_channel_group</a> is called. See <a href="https://www.fmod.com/docs/2.03/api/studio-guide.html#signal-paths">Signal Paths</a> for details.</p>
 <p>The ChannelGroup may not be available immediately after calling this function. When Studio has been initialized in asynchronous mode, the ChannelGroup will not be created until the command has been executed in the async thread. When Studio has been initialized with <code>FmodStudioInitFlags.SynchronousUpdate</code>, the ChannelGroup will be created in the next <a href="studio_system.html#fmod_studio_system_update">fmod_studio_system_update</a> call.</p>
-<p>You can call <a href="studio_system.html#fmod_studio_system_flush_commands">fmod_studio_system_flush_commands</a> to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via <a href="bus.html#fmod_studio_bus_get_channel_group">fmod_studio_bus_get_channel_group</a> until it is ready.</p>
+<p>You can call <a href="studio_system.html#fmod_studio_system_flush_commands">fmod_studio_system_flush_commands</a> to ensure the ChannelGroup has been created. Alternatively you can keep trying to obtain the ChannelGroup via <a href="bus.html#fmod_studio_bus_get_channel_group_ptr">fmod_studio_bus_get_channel_group_ptr</a> until it is ready.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

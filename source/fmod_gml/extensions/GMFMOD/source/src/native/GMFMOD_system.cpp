@@ -30,14 +30,13 @@ uint64_t fmod_system_create()
 
 double fmod_system_init(double max_channels, double flags)
 {
-	FMOD::System* system = nullptr;
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	system = getCurrentSystem();
 	g_fmod_last_result = system->init((int)max_channels, (FMOD_INITFLAGS)fmod_flag_word(flags), nullptr);
 	return 0;
 }
@@ -167,26 +166,26 @@ double fmod_system_close(uint64_t system_ref)
 
 double fmod_system_update()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->update();
 	return 0;
 }
 
 double fmod_system_get_channels_playing()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	int channels = 0;
 	int realchannels = 0;
 	g_fmod_last_result = system->getChannelsPlaying(&channels, &realchannels);
@@ -201,13 +200,13 @@ uint64_t fmod_system_get_channel(double index)
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Channel* channel = nullptr;
 	g_fmod_last_result = system->getChannel((int)index, &channel);
 
@@ -222,13 +221,13 @@ uint64_t fmod_system_get_master_channel_group()
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::ChannelGroup* channel_group = nullptr;
 	g_fmod_last_result = system->getMasterChannelGroup(&channel_group);
 
@@ -246,26 +245,26 @@ uint64_t fmod_system_get_master_channel_group()
 
 double fmod_system_set_output(gm_enums::FmodOutputType output)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->setOutput((FMOD_OUTPUTTYPE)static_cast<int>(output));
 	return 0;
 }
 
 gm_enums::FmodOutputType fmod_system_get_output()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return gm_enums::FmodOutputType::AutoDetect;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD_OUTPUTTYPE output = FMOD_OUTPUTTYPE_AUTODETECT;
 	g_fmod_last_result = system->getOutput(&output);
 	return static_cast<gm_enums::FmodOutputType>(output);
@@ -273,13 +272,13 @@ gm_enums::FmodOutputType fmod_system_get_output()
 
 double fmod_system_get_num_drivers()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0.0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	int num_drivers = 0;
 	g_fmod_last_result = system->getNumDrivers(&num_drivers);
 	return (double)num_drivers;
@@ -287,26 +286,26 @@ double fmod_system_get_num_drivers()
 
 double fmod_system_set_driver(double driver)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->setDriver((int)driver);
 	return 0;
 }
 
 double fmod_system_get_driver()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0.0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	int driver = 0;
 	g_fmod_last_result = system->getDriver(&driver);
 	return (double)driver;
@@ -318,26 +317,26 @@ double fmod_system_get_driver()
 
 double fmod_system_set_software_channels(double software_channels)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->setSoftwareChannels((int)software_channels);
 	return 0;
 }
 
 double fmod_system_get_software_channels()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0.0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	int software_channels = 0;
 	g_fmod_last_result = system->getSoftwareChannels(&software_channels);
 	return (double)software_channels;
@@ -349,13 +348,13 @@ double fmod_system_get_software_channels()
 
 double fmod_system_set_3d_settings(double doppler_scale, double distance_factor, double rolloff_scale)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->set3DSettings((float)doppler_scale, (float)distance_factor, (float)rolloff_scale);
 	return 0;
 }
@@ -364,13 +363,13 @@ FmodSystem3DSettings fmod_system_get_3d_settings()
 {
 	FmodSystem3DSettings result{};
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	float doppler_scale = 0.0f, distance_factor = 0.0f, rolloff_scale = 0.0f;
 	g_fmod_last_result = system->get3DSettings(&doppler_scale, &distance_factor, &rolloff_scale);
 
@@ -386,13 +385,13 @@ FmodSystem3DSettings fmod_system_get_3d_settings()
 
 double fmod_system_set_3d_listener_attributes(double listener_index, const gm_structs::FmodVec3& position, const gm_structs::FmodVec3& velocity, const gm_structs::FmodVec3& forward, const gm_structs::FmodVec3& up)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 
 	FMOD_VECTOR fmod_position = {(float)position.x, (float)position.y, (float)position.z};
 	FMOD_VECTOR fmod_velocity = {(float)velocity.x, (float)velocity.y, (float)velocity.z};
@@ -407,13 +406,13 @@ FmodListener3DAttributes fmod_system_get_3d_listener_attributes(double listener_
 {
 	FmodListener3DAttributes result{};
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD_VECTOR position{}, velocity{}, forward{}, up{};
 	g_fmod_last_result = system->get3DListenerAttributes((int)listener_index, &position, &velocity, &forward, &up);
 
@@ -454,13 +453,13 @@ FmodListener3DAttributes fmod_system_get_3d_listener_attributes(double listener_
 
 double fmod_system_get_record_num_drivers()
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	int num_drivers = 0, num_connected = 0;
 	g_fmod_last_result = system->getRecordNumDrivers(&num_drivers, &num_connected);
 	return (double)num_drivers;
@@ -470,13 +469,13 @@ FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_ind
 {
 	FmodRecordDriverInfo result{};
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	char name[512]{};
 	FMOD_GUID guid{};
 	int system_rate = 0;
@@ -495,13 +494,13 @@ FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_ind
 
 double fmod_system_get_record_position(double device_index)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	unsigned int position = 0;
 	g_fmod_last_result = system->getRecordPosition((int)device_index, &position);
 	return (double)position;
@@ -509,13 +508,13 @@ double fmod_system_get_record_position(double device_index)
 
 double fmod_system_record_start(double device_index, uint64_t sound_ref, double loop)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
@@ -528,26 +527,26 @@ double fmod_system_record_start(double device_index, uint64_t sound_ref, double 
 
 double fmod_system_record_stop(double device_index)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	g_fmod_last_result = system->recordStop((int)device_index);
 	return 0;
 }
 
 double fmod_system_is_recording(double device_index)
 {
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return 0;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	bool is_recording = false;
 	g_fmod_last_result = system->isRecording((int)device_index, &is_recording);
 	return is_recording ? 1.0 : 0.0;
@@ -578,13 +577,13 @@ uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 {
 	uint64_t result = 0;
 
-	if (getCurrentSystem() == nullptr)
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
 		return result;
 	}
 
-	FMOD::System* system = getCurrentSystem();
 	FMOD::DSP* dsp = nullptr;
 	g_fmod_last_result = system->createDSPByType((FMOD_DSP_TYPE)(int)dsp_type, &dsp);
 
