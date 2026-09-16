@@ -1,136 +1,1646 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>Bank - GMEXT-FMOD</title>
-    <link rel="stylesheet" href="css/theme.css" />
-    <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-        <link href="assets/css/gmext_style.css" rel="stylesheet" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Bank";
-        var mkdocs_page_input_path = "bank.md";
-        var mkdocs_page_url = null;
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
 
-<body class="wy-body-for-nav" role="document">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="misc.html">
+      
+      
+        <link rel="next" href="bus.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Bank - GMEXT-FMOD</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> GMEXT-FMOD
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>(function(){try{var w=["--gm-nav-width","--gm-toc-width"],i,v;for(i=0;i<w.length;i++){v=localStorage.getItem(w[i]);if(v)document.documentElement.style.setProperty(w[i],v)}}catch(e){}})()</script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bank" class="md-skip">
+          Skip to content
         </a>
-      </div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Guides</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with FMOD in GameMaker</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="general_information.html">General Information</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">FMOD Core Reference</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="system.html">System</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="dsp.html">DSP</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">FMOD Studio Reference</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Bank</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
-    </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Extras</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="structs.html">Structs</a>
-                  </li>
-              </ul>
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="home.html" title="GMEXT-FMOD" class="md-header__button md-logo" aria-label="GMEXT-FMOD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GMEXT-FMOD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bank
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">GMEXT-FMOD</a>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/YoYoGames/GMEXT-FMOD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">FMOD Studio Reference</li>
-      <li class="breadcrumb-item active">Bank</li>
-    <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/bank.md" class="icon icon-github"> Edit on GitHub</a>
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
-                <p><a id="top"></a></p>
-<h1 id="bank"><strong>Bank</strong></h1>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="home.html" title="GMEXT-FMOD" class="md-nav__button md-logo" aria-label="GMEXT-FMOD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GMEXT-FMOD
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/YoYoGames/GMEXT-FMOD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="home.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Extension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting_started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started with FMOD in GameMaker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="general_information.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Core Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FMOD Core Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel_control.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel_group.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dsp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dsp_connection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSP Connection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb_3d.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reverb3D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sound.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sound
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sound_group.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sound Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="geometry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="misc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Studio Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FMOD Studio Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bank
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="bank.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bank
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bank
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bank">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_loading_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_loading_state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_load_sample_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_load_sample_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_unload_sample_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_unload_sample_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_sample_loading_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_sample_loading_state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_unload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_unload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_bus_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_bus_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_event_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_event_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_string_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_string_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_string_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_string_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_vca_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_vca_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_id
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_is_valid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_is_valid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_set_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_set_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_parent_studio_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_parent_studio_system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_event_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_event_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_bus_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_bus_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_vca_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_vca_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bus.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="command_replay.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Replay
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_description.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_instance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Instance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="studio_system.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Studio System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="studio_vca.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="constants.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bank
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bank">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_loading_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_loading_state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_load_sample_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_load_sample_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_unload_sample_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_unload_sample_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_sample_loading_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_sample_loading_state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_unload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_unload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_bus_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_bus_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_event_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_event_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_string_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_string_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_string_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_string_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_vca_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_vca_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_id
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_is_valid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_is_valid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_set_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_set_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_parent_studio_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_parent_studio_system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_event_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_event_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_bus_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_bus_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_studio_bank_get_vca_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_bank_get_vca_at
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><a id="top"></a></p>
+<h1 id="bank"><strong>Bank</strong><a class="headerlink" href="#bank" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html">Studio::Bank</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds the functionality for FMOD Studio banks, which contain the metadata and audio sample data required for runtime mixing and playback. Audio sample data may be packed into the same bank as the events which reference it, or it may be packed into separate banks.</p>
-<h2 id="functions">Functions</h2>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
 <ul>
 <li><a href="bank.html#fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</a></li>
@@ -157,7 +1667,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state</h1>
+<h1 id="fmod_studio_bank_get_loading_state">fmod_studio_bank_get_loading_state<a class="headerlink" href="#fmod_studio_bank_get_loading_state" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getloadingstate">Studio::Bank::getLoadingState</a></p>
 </blockquote>
@@ -167,8 +1677,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_loading_state(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_loading_state(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -195,7 +1704,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data</h1>
+<h1 id="fmod_studio_bank_load_sample_data">fmod_studio_bank_load_sample_data<a class="headerlink" href="#fmod_studio_bank_load_sample_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_loadsampledata">Studio::Bank::loadSampleData</a></p>
 </blockquote>
@@ -206,8 +1715,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_load_sample_data(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_load_sample_data(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -234,7 +1742,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_unload_sample_data">fmod_studio_bank_unload_sample_data</h1>
+<h1 id="fmod_studio_bank_unload_sample_data">fmod_studio_bank_unload_sample_data<a class="headerlink" href="#fmod_studio_bank_unload_sample_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unloadsampledata">Studio::Bank::unloadSampleData</a></p>
 </blockquote>
@@ -244,8 +1752,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_unload_sample_data(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_unload_sample_data(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -272,7 +1779,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_sample_loading_state">fmod_studio_bank_get_sample_loading_state</h1>
+<h1 id="fmod_studio_bank_get_sample_loading_state">fmod_studio_bank_get_sample_loading_state<a class="headerlink" href="#fmod_studio_bank_get_sample_loading_state" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getsampleloadingstate">Studio::Bank::getSampleLoadingState</a></p>
 </blockquote>
@@ -283,8 +1790,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_sample_loading_state(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_sample_loading_state(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -311,7 +1817,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_unload">fmod_studio_bank_unload</h1>
+<h1 id="fmod_studio_bank_unload">fmod_studio_bank_unload<a class="headerlink" href="#fmod_studio_bank_unload" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_unload">Studio::Bank::unload</a></p>
 </blockquote>
@@ -322,8 +1828,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_unload(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_unload(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -350,7 +1855,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count</h1>
+<h1 id="fmod_studio_bank_get_bus_count">fmod_studio_bank_get_bus_count<a class="headerlink" href="#fmod_studio_bank_get_bus_count" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuscount">Studio::Bank::getBusCount</a></p>
 </blockquote>
@@ -360,8 +1865,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_bus_count(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_bus_count(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -388,7 +1892,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count</h1>
+<h1 id="fmod_studio_bank_get_event_count">fmod_studio_bank_get_event_count<a class="headerlink" href="#fmod_studio_bank_get_event_count" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventcount">Studio::Bank::getEventCount</a></p>
 </blockquote>
@@ -399,8 +1903,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_event_count(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_event_count(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -427,7 +1930,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count</h1>
+<h1 id="fmod_studio_bank_get_string_count">fmod_studio_bank_get_string_count<a class="headerlink" href="#fmod_studio_bank_get_string_count" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringcount">Studio::Bank::getStringCount</a></p>
 </blockquote>
@@ -437,8 +1940,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_string_count(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_string_count(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -465,7 +1967,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info</h1>
+<h1 id="fmod_studio_bank_get_string_info">fmod_studio_bank_get_string_info<a class="headerlink" href="#fmod_studio_bank_get_string_info" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getstringinfo">Studio::Bank::getStringInfo</a></p>
 </blockquote>
@@ -475,8 +1977,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_string_info(bank_ref, string_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_string_info(bank_ref, string_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -508,7 +2009,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count</h1>
+<h1 id="fmod_studio_bank_get_vca_count">fmod_studio_bank_get_vca_count<a class="headerlink" href="#fmod_studio_bank_get_vca_count" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcacount">Studio::Bank::getVCACount</a></p>
 </blockquote>
@@ -518,8 +2019,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_vca_count(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_vca_count(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -546,7 +2046,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_id">fmod_studio_bank_get_id</h1>
+<h1 id="fmod_studio_bank_get_id">fmod_studio_bank_get_id<a class="headerlink" href="#fmod_studio_bank_get_id" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getid">Studio::Bank::getID</a></p>
 </blockquote>
@@ -555,8 +2055,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_id(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_id(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -583,7 +2082,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_path">fmod_studio_bank_get_path</h1>
+<h1 id="fmod_studio_bank_get_path">fmod_studio_bank_get_path<a class="headerlink" href="#fmod_studio_bank_get_path" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getpath">Studio::Bank::getPath</a></p>
 </blockquote>
@@ -593,8 +2092,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_path(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_path(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -621,7 +2119,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_is_valid">fmod_studio_bank_is_valid</h1>
+<h1 id="fmod_studio_bank_is_valid">fmod_studio_bank_is_valid<a class="headerlink" href="#fmod_studio_bank_is_valid" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_isvalid">Studio::Bank::isValid</a></p>
 </blockquote>
@@ -630,8 +2128,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_is_valid(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_is_valid(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -658,7 +2155,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_set_user_data">fmod_studio_bank_set_user_data</h1>
+<h1 id="fmod_studio_bank_set_user_data">fmod_studio_bank_set_user_data<a class="headerlink" href="#fmod_studio_bank_set_user_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_setuserdata">Studio::Bank::setUserData</a></p>
 </blockquote>
@@ -667,8 +2164,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_set_user_data(bank_ref, user_data)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_set_user_data(bank_ref, user_data)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -700,7 +2196,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_user_data">fmod_studio_bank_get_user_data</h1>
+<h1 id="fmod_studio_bank_get_user_data">fmod_studio_bank_get_user_data<a class="headerlink" href="#fmod_studio_bank_get_user_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getuserdata">Studio::Bank::getUserData</a></p>
 </blockquote>
@@ -710,8 +2206,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_user_data(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_user_data(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -738,14 +2233,13 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_parent_studio_system">fmod_studio_bank_get_parent_studio_system</h1>
+<h1 id="fmod_studio_bank_get_parent_studio_system">fmod_studio_bank_get_parent_studio_system<a class="headerlink" href="#fmod_studio_bank_get_parent_studio_system" title="Permanent link">&para;</a></h1>
 <p>This function is not supported and always fails, setting <a href="studio_system.html#fmod_studio_last_result">fmod_studio_last_result</a> to <code>FmodStudioResult.Unsupported</code>.</p>
 <p>The FMOD Studio API gives Bank no <code>getSystem</code> - only EventInstance and CommandReplay have one - so a bank cannot report which system loaded it. There is only ever one Studio System in the extension anyway, so nothing is lost by it.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_parent_studio_system(bank_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_parent_studio_system(bank_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -773,7 +2267,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_event_at">fmod_studio_bank_get_event_at</h1>
+<h1 id="fmod_studio_bank_get_event_at">fmod_studio_bank_get_event_at<a class="headerlink" href="#fmod_studio_bank_get_event_at" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_geteventlist">Studio::Bank::getEventList</a></p>
 </blockquote>
@@ -782,8 +2276,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_event_at(bank_ref, index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_event_at(bank_ref, index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -816,7 +2309,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_bus_at">fmod_studio_bank_get_bus_at</h1>
+<h1 id="fmod_studio_bank_get_bus_at">fmod_studio_bank_get_bus_at<a class="headerlink" href="#fmod_studio_bank_get_bus_at" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getbuslist">Studio::Bank::getBusList</a></p>
 </blockquote>
@@ -825,8 +2318,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_bus_at(bank_ref, index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_bus_at(bank_ref, index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -859,7 +2351,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_studio_bank_get_vca_at">fmod_studio_bank_get_vca_at</h1>
+<h1 id="fmod_studio_bank_get_vca_at">fmod_studio_bank_get_vca_at<a class="headerlink" href="#fmod_studio_bank_get_vca_at" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-bank.html#studio_bank_getvcalist">Studio::Bank::getVCAList</a></p>
 </blockquote>
@@ -868,8 +2360,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_studio_bank_get_vca_at(bank_ref, index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_studio_bank_get_vca_at(bank_ref, index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -900,57 +2391,73 @@
 <p>A reference to the VCA, or 0 on failure.</p>
 <p><br></p>
 <hr />
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="misc.html" class="btn btn-neutral float-left" title="Miscellaneous"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="bus.html" class="btn btn-neutral float-right" title="Bus">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-      <p><p align="center">GameMaker 2026</p></p>
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
           
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-        <span>
-          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
-        </span>
-    
-    
-      <span><a href="misc.html" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="bus.html" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <p align="center">GameMaker 2026</p>
+    </div>
+  
+  
 </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = ".";</script>
-    <script src="js/theme_extra.js"></script>
-    <script src="js/theme.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
-      <script src="assets/js/gmext_script.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "toc.follow", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      
+        <script src="assets/js/hljs-init.js"></script>
+      
+        <script src="assets/js/resize-columns.js"></script>
+      
+    
+  </body>
 </html>

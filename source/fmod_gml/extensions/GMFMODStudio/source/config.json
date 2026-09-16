@@ -26,7 +26,8 @@
     },
   "extras": {
     "docs": { 
-      "outputFile": "../../../../../docs/extgen_docs_studio.js"
+      "outputFile": "../../../../../docs/extgen_docs_studio.js",
+      "macrosGroup": "macros_studio"
     }
   },
     "build": {

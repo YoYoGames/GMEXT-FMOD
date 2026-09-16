@@ -1,137 +1,2967 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>System - GMEXT-FMOD</title>
-    <link rel="stylesheet" href="css/theme.css" />
-    <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-        <link href="assets/css/gmext_style.css" rel="stylesheet" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "System";
-        var mkdocs_page_input_path = "system.md";
-        var mkdocs_page_url = null;
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/gml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
 
-<body class="wy-body-for-nav" role="document">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="general_information.html">
+      
+      
+        <link rel="next" href="channel.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>System - GMEXT-FMOD</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> GMEXT-FMOD
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>(function(){try{var w=["--gm-nav-width","--gm-toc-width"],i,v;for(i=0;i<w.length;i++){v=localStorage.getItem(w[i]);if(v)document.documentElement.style.setProperty(w[i],v)}}catch(e){}})()</script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system" class="md-skip">
+          Skip to content
         </a>
-      </div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Guides</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with FMOD in GameMaker</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="general_information.html">General Information</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">FMOD Core Reference</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">System</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
-    </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel.html">Channel</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel_control.html">Channel Control</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="channel_group.html">Channel Group</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="dsp.html">DSP</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="dsp_connection.html">DSP Connection</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="reverb_3d.html">Reverb3D</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sound_group.html">Sound Group</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">FMOD Studio Reference</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="bank.html">Bank</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="bus.html">Bus</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="command_replay.html">Command Replay</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="event_description.html">Event Description</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="event_instance.html">Event Instance</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="studio_system.html">FMOD Studio System</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="studio_vca.html">VCA</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Extras</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="structs.html">Structs</a>
-                  </li>
-              </ul>
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="home.html" title="GMEXT-FMOD" class="md-header__button md-logo" aria-label="GMEXT-FMOD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GMEXT-FMOD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              System
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">GMEXT-FMOD</a>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/YoYoGames/GMEXT-FMOD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">FMOD Core Reference</li>
-      <li class="breadcrumb-item active">System</li>
-    <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/YoYoGames/GMEXT-FMOD/edit/master/docs/system.md" class="icon icon-github"> Edit on GitHub</a>
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
-                <p><a id="top"></a></p>
-<h1 id="system"><strong>System</strong></h1>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="home.html" title="GMEXT-FMOD" class="md-nav__button md-logo" aria-label="GMEXT-FMOD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GMEXT-FMOD
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/YoYoGames/GMEXT-FMOD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="home.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Extension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting_started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started with FMOD in GameMaker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="general_information.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Core Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FMOD Core Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="system.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_select
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_init
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_close
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_mixer_suspend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_mixer_suspend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_mixer_resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_mixer_resume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_num_drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_num_drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_driver_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_driver_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_software_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_software_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_software_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_software_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_software_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_software_format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_software_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_software_format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_dsp_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_dsp_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_dsp_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_dsp_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_stream_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_stream_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_stream_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_stream_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_advanced_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_advanced_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_advanced_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_advanced_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_speaker_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_speaker_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_speaker_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_speaker_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_num_listeners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_num_listeners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_num_listeners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_num_listeners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_rolloff_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_rolloff_callback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_network_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_network_proxy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_network_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_network_proxy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_network_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_network_timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_network_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_network_timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_channels_playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_channels_playing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_cpu_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_cpu_usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_file_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_file_usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_default_mix_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_default_mix_matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_speaker_mode_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_speaker_mode_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_stream
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_dsp_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_dsp_by_type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_channel_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_channel_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_reverb_3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_reverb_3d
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_play_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_play_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_play_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_play_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_channel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_master_channel_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_master_channel_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_master_sound_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_master_sound_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_listener_attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_listener_attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_listener_attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_listener_attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_reverb_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_reverb_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_reverb_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_reverb_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_attach_channel_group_to_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_attach_channel_group_to_port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_detach_channel_group_from_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_detach_channel_group_from_port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_num_drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_num_drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_driver_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_driver_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_record_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_record_start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_record_stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_record_stop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_is_recording" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_is_recording
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_geometry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_geometry_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_geometry_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_geometry_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_geometry_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_load_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_load_geometry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_geometry_occlusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_geometry_occlusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_lock_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_lock_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_unlock_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_unlock_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_adopt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_adopt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_ex
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_memory_ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_memory_ex
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel_control.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="channel_group.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dsp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dsp_connection.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSP Connection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb_3d.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reverb3D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sound.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sound
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sound_group.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sound Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="geometry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="misc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Studio Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FMOD Studio Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bank.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bank
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bus.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="command_replay.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Replay
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_description.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_instance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Instance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="studio_system.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FMOD Studio System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="studio_vca.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="constants.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_select
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_init
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_close
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_mixer_suspend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_mixer_suspend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_mixer_resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_mixer_resume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_num_drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_num_drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_driver_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_driver_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_software_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_software_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_software_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_software_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_software_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_software_format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_software_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_software_format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_dsp_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_dsp_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_dsp_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_dsp_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_stream_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_stream_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_stream_buffer_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_stream_buffer_size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_advanced_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_advanced_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_advanced_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_advanced_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_speaker_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_speaker_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_speaker_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_speaker_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_num_listeners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_num_listeners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_num_listeners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_num_listeners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_rolloff_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_rolloff_callback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_network_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_network_proxy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_network_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_network_proxy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_network_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_network_timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_network_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_network_timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_channels_playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_channels_playing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_cpu_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_cpu_usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_file_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_file_usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_default_mix_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_default_mix_matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_speaker_mode_channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_speaker_mode_channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_stream
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_dsp_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_dsp_by_type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_channel_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_channel_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_reverb_3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_reverb_3d
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_play_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_play_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_play_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_play_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_channel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_master_channel_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_master_channel_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_master_sound_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_master_sound_group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_3d_listener_attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_3d_listener_attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_3d_listener_attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_3d_listener_attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_reverb_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_reverb_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_reverb_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_reverb_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_attach_channel_group_to_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_attach_channel_group_to_port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_detach_channel_group_from_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_detach_channel_group_from_port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_num_drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_num_drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_driver_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_driver_info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_record_position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_record_position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_record_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_record_start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_record_stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_record_stop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_is_recording" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_is_recording
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_geometry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_geometry_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_geometry_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_geometry_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_geometry_settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_load_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_load_geometry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_geometry_occlusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_geometry_occlusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_lock_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_lock_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_unlock_dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_unlock_dsp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_set_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_get_user_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_user_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_adopt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_adopt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_ex
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmod_system_create_sound_memory_ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_create_sound_memory_ex
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><a id="top"></a></p>
+<h1 id="system"><strong>System</strong><a class="headerlink" href="#system" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Object:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">System</a></p>
 </blockquote>
 <p><br /></p>
 <p>This module holds functionality related to FMOD's System object, which is a management object from which all resources are created and played.</p>
 <p>Create this object with <a href="system.html#fmod_system_create">fmod_system_create</a>.</p>
-<h2 id="functions">Functions</h2>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>This module offers a collection of functions designed to address specific tasks and provide utilities for various purposes. Explore the available functions to make the most of the functionalities provided by this module.</p>
 <ul>
 <li><a href="system.html#fmod_system_create">fmod_system_create</a></li>
@@ -218,7 +3048,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create">fmod_system_create</h1>
+<h1 id="fmod_system_create">fmod_system_create<a class="headerlink" href="#fmod_system_create" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_create">System_Create</a></p>
 </blockquote>
@@ -234,8 +3064,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -246,13 +3075,12 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_select">fmod_system_select</h1>
+<h1 id="fmod_system_select">fmod_system_select<a class="headerlink" href="#fmod_system_select" title="Permanent link">&para;</a></h1>
 <p>This function selects the FMOD system the <code>fmod_system_*</code> functions work on.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_select(system_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_select(system_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -279,7 +3107,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_count">fmod_system_count</h1>
+<h1 id="fmod_system_count">fmod_system_count<a class="headerlink" href="#fmod_system_count" title="Permanent link">&para;</a></h1>
 <p>This function returns the number of FMOD <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html">Systems</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -288,8 +3116,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_count()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_count()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -300,7 +3127,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_init">fmod_system_init</h1>
+<h1 id="fmod_system_init">fmod_system_init<a class="headerlink" href="#fmod_system_init" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_init">System::init</a></p>
 </blockquote>
@@ -323,8 +3150,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_init(max_channels, flags)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_init(max_channels, flags)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -356,7 +3182,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_release">fmod_system_release</h1>
+<h1 id="fmod_system_release">fmod_system_release<a class="headerlink" href="#fmod_system_release" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_release">System::release</a></p>
 </blockquote>
@@ -369,8 +3195,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_release(system_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_release(system_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -397,7 +3222,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_close">fmod_system_close</h1>
+<h1 id="fmod_system_close">fmod_system_close<a class="headerlink" href="#fmod_system_close" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_close">System::close</a></p>
 </blockquote>
@@ -408,8 +3233,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_close(system_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_close(system_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -436,7 +3260,7 @@
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_update">fmod_system_update</h1>
+<h1 id="fmod_system_update">fmod_system_update<a class="headerlink" href="#fmod_system_update" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_update">System::update</a></p>
 </blockquote>
@@ -462,8 +3286,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_update()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_update()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -474,7 +3297,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_mixer_suspend">fmod_system_mixer_suspend</h1>
+<h1 id="fmod_system_mixer_suspend">fmod_system_mixer_suspend<a class="headerlink" href="#fmod_system_mixer_suspend" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixersuspend">System::mixerSuspend</a></p>
 </blockquote>
@@ -485,8 +3308,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_mixer_suspend()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_mixer_suspend()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -497,7 +3319,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_mixer_resume">fmod_system_mixer_resume</h1>
+<h1 id="fmod_system_mixer_resume">fmod_system_mixer_resume<a class="headerlink" href="#fmod_system_mixer_resume" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_mixerresume">System::mixerResume</a></p>
 </blockquote>
@@ -512,8 +3334,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_mixer_resume()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_mixer_resume()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -524,7 +3345,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_output">fmod_system_set_output</h1>
+<h1 id="fmod_system_set_output">fmod_system_set_output<a class="headerlink" href="#fmod_system_set_output" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setoutput">System::setOutput</a></p>
 </blockquote>
@@ -543,8 +3364,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_output(output)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_output(output)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -571,7 +3391,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_output">fmod_system_get_output</h1>
+<h1 id="fmod_system_get_output">fmod_system_get_output<a class="headerlink" href="#fmod_system_get_output" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getoutput">System::getOutput</a></p>
 </blockquote>
@@ -580,8 +3400,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_output()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_output()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -592,7 +3411,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_num_drivers">fmod_system_get_num_drivers</h1>
+<h1 id="fmod_system_get_num_drivers">fmod_system_get_num_drivers<a class="headerlink" href="#fmod_system_get_num_drivers" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnumdrivers">System::getNumDrivers</a></p>
 </blockquote>
@@ -603,8 +3422,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_num_drivers()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_num_drivers()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -615,7 +3433,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_driver_info">fmod_system_get_driver_info</h1>
+<h1 id="fmod_system_get_driver_info">fmod_system_get_driver_info<a class="headerlink" href="#fmod_system_get_driver_info" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriverinfo">System::getDriverInfo</a></p>
 </blockquote>
@@ -624,8 +3442,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_driver_info(driver_id)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_driver_info(driver_id)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -652,7 +3469,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_driver">fmod_system_set_driver</h1>
+<h1 id="fmod_system_set_driver">fmod_system_set_driver<a class="headerlink" href="#fmod_system_set_driver" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdriver">System::setDriver</a></p>
 </blockquote>
@@ -663,8 +3480,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_driver(driver)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_driver(driver)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -691,7 +3507,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_driver">fmod_system_get_driver</h1>
+<h1 id="fmod_system_get_driver">fmod_system_get_driver<a class="headerlink" href="#fmod_system_get_driver" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdriver">System::getDriver</a></p>
 </blockquote>
@@ -701,8 +3517,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_driver()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_driver()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -713,7 +3528,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_software_channels">fmod_system_set_software_channels</h1>
+<h1 id="fmod_system_set_software_channels">fmod_system_set_software_channels<a class="headerlink" href="#fmod_system_set_software_channels" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwarechannels">System::setSoftwareChannels</a></p>
 </blockquote>
@@ -724,8 +3539,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_software_channels(software_channels)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_software_channels(software_channels)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -752,7 +3566,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_software_channels">fmod_system_get_software_channels</h1>
+<h1 id="fmod_system_get_software_channels">fmod_system_get_software_channels<a class="headerlink" href="#fmod_system_get_software_channels" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwarechannels">System::getSoftwareChannels</a></p>
 </blockquote>
@@ -762,8 +3576,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_software_channels()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_software_channels()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -774,7 +3587,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_software_format">fmod_system_set_software_format</h1>
+<h1 id="fmod_system_set_software_format">fmod_system_set_software_format<a class="headerlink" href="#fmod_system_set_software_format" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setsoftwareformat">System::setSoftwareFormat</a></p>
 </blockquote>
@@ -791,8 +3604,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_speakers)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_software_format(sample_rate, speaker_mode, num_raw_speakers)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -829,7 +3641,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_software_format">fmod_system_get_software_format</h1>
+<h1 id="fmod_system_get_software_format">fmod_system_get_software_format<a class="headerlink" href="#fmod_system_get_software_format" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getsoftwareformat">System::getSoftwareFormat</a></p>
 </blockquote>
@@ -838,8 +3650,7 @@ A possible use for this function is to iterate through available sound devices f
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_software_format()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_software_format()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -850,7 +3661,7 @@ A possible use for this function is to iterate through available sound devices f
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size</h1>
+<h1 id="fmod_system_set_dsp_buffer_size">fmod_system_set_dsp_buffer_size<a class="headerlink" href="#fmod_system_set_dsp_buffer_size" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setdspbuffersize">System::setDSPBufferSize</a></p>
 </blockquote>
@@ -886,8 +3697,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_dsp_buffer_size(buff_size, num_buffers)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_dsp_buffer_size(buff_size, num_buffers)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -919,7 +3729,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size</h1>
+<h1 id="fmod_system_get_dsp_buffer_size">fmod_system_get_dsp_buffer_size<a class="headerlink" href="#fmod_system_get_dsp_buffer_size" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdspbuffersize">System::getDSPBufferSize</a></p>
 </blockquote>
@@ -931,8 +3741,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_dsp_buffer_size()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_dsp_buffer_size()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -943,7 +3752,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</h1>
+<h1 id="fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size<a class="headerlink" href="#fmod_system_set_stream_buffer_size" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setstreambuffersize">System::setStreamBufferSize</a></p>
 </blockquote>
@@ -965,8 +3774,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -998,7 +3806,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size</h1>
+<h1 id="fmod_system_get_stream_buffer_size">fmod_system_get_stream_buffer_size<a class="headerlink" href="#fmod_system_get_stream_buffer_size" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getstreambuffersize">System::getStreamBufferSize</a></p>
 </blockquote>
@@ -1012,8 +3820,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_stream_buffer_size()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_stream_buffer_size()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1024,7 +3831,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</h1>
+<h1 id="fmod_system_set_advanced_settings">fmod_system_set_advanced_settings<a class="headerlink" href="#fmod_system_set_advanced_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setadvancedsettings">System::setAdvancedSettings</a></p>
 </blockquote>
@@ -1033,8 +3840,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_advanced_settings(settings)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_advanced_settings(settings)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1061,7 +3867,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_advanced_settings">fmod_system_get_advanced_settings</h1>
+<h1 id="fmod_system_get_advanced_settings">fmod_system_get_advanced_settings<a class="headerlink" href="#fmod_system_get_advanced_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getadvancedsettings">System::getAdvancedSettings</a></p>
 </blockquote>
@@ -1070,8 +3876,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_advanced_settings()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_advanced_settings()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1082,7 +3887,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_speaker_position">fmod_system_set_speaker_position</h1>
+<h1 id="fmod_system_set_speaker_position">fmod_system_set_speaker_position<a class="headerlink" href="#fmod_system_set_speaker_position" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setspeakerposition">System::setSpeakerPosition</a></p>
 </blockquote>
@@ -1111,8 +3916,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_speaker_position(speaker, x, y, active)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_speaker_position(speaker, x, y, active)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1154,7 +3958,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_speaker_position">fmod_system_get_speaker_position</h1>
+<h1 id="fmod_system_get_speaker_position">fmod_system_get_speaker_position<a class="headerlink" href="#fmod_system_get_speaker_position" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakerposition">System::getSpeakerPosition</a></p>
 </blockquote>
@@ -1163,8 +3967,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_speaker_position(speaker)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_speaker_position(speaker)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1191,7 +3994,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_3d_settings">fmod_system_set_3d_settings</h1>
+<h1 id="fmod_system_set_3d_settings">fmod_system_set_3d_settings<a class="headerlink" href="#fmod_system_set_3d_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dsettings">System::set3DSettings</a></p>
 </blockquote>
@@ -1204,8 +4007,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_scale)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_3d_settings(doppler_scale, distance_factor, rolloff_scale)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1242,7 +4044,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_3d_settings">fmod_system_get_3d_settings</h1>
+<h1 id="fmod_system_get_3d_settings">fmod_system_get_3d_settings<a class="headerlink" href="#fmod_system_get_3d_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dsettings">System::get3DSettings</a></p>
 </blockquote>
@@ -1251,8 +4053,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_3d_settings()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_3d_settings()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1263,7 +4064,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</h1>
+<h1 id="fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners<a class="headerlink" href="#fmod_system_set_3d_num_listeners" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dnumlisteners">System::set3DNumListeners</a></p>
 </blockquote>
@@ -1278,8 +4079,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_3d_num_listeners(num)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_3d_num_listeners(num)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1306,7 +4106,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_3d_num_listeners">fmod_system_get_3d_num_listeners</h1>
+<h1 id="fmod_system_get_3d_num_listeners">fmod_system_get_3d_num_listeners<a class="headerlink" href="#fmod_system_get_3d_num_listeners" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dnumlisteners">System::get3DNumListeners</a></p>
 </blockquote>
@@ -1319,8 +4119,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_3d_num_listeners()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_3d_num_listeners()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1331,7 +4130,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_3d_rolloff_callback">fmod_system_set_3d_rolloff_callback</h1>
+<h1 id="fmod_system_set_3d_rolloff_callback">fmod_system_set_3d_rolloff_callback<a class="headerlink" href="#fmod_system_set_3d_rolloff_callback" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3drolloffcallback">System::set3DRolloffCallback</a></p>
 </blockquote>
@@ -1343,8 +4142,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_3d_rolloff_callback()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_3d_rolloff_callback()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1386,7 +4184,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_network_proxy">fmod_system_set_network_proxy</h1>
+<h1 id="fmod_system_set_network_proxy">fmod_system_set_network_proxy<a class="headerlink" href="#fmod_system_set_network_proxy" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworkproxy">System::setNetworkProxy</a></p>
 </blockquote>
@@ -1397,8 +4195,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_network_proxy(proxy)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_network_proxy(proxy)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1425,7 +4222,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_network_proxy">fmod_system_get_network_proxy</h1>
+<h1 id="fmod_system_get_network_proxy">fmod_system_get_network_proxy<a class="headerlink" href="#fmod_system_get_network_proxy" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworkproxy">System::getNetworkProxy</a></p>
 </blockquote>
@@ -1434,8 +4231,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_network_proxy()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_network_proxy()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1446,7 +4242,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_network_timeout">fmod_system_set_network_timeout</h1>
+<h1 id="fmod_system_set_network_timeout">fmod_system_set_network_timeout<a class="headerlink" href="#fmod_system_set_network_timeout" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworktimeout">System::setNetworkTimeout</a></p>
 </blockquote>
@@ -1455,8 +4251,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_network_timeout(timeout_ms)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_network_timeout(timeout_ms)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1483,7 +4278,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_network_timeout">fmod_system_get_network_timeout</h1>
+<h1 id="fmod_system_get_network_timeout">fmod_system_get_network_timeout<a class="headerlink" href="#fmod_system_get_network_timeout" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getnetworktimeout">System::getNetworkTimeout</a></p>
 </blockquote>
@@ -1492,8 +4287,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_network_timeout()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_network_timeout()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1504,7 +4298,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_version">fmod_system_get_version</h1>
+<h1 id="fmod_system_get_version">fmod_system_get_version<a class="headerlink" href="#fmod_system_get_version" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getversion">System::getVersion</a></p>
 </blockquote>
@@ -1518,8 +4312,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_version()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_version()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1530,7 +4323,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_channels_playing">fmod_system_get_channels_playing</h1>
+<h1 id="fmod_system_get_channels_playing">fmod_system_get_channels_playing<a class="headerlink" href="#fmod_system_get_channels_playing" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannelsplaying">System::getChannelsPlaying</a></p>
 </blockquote>
@@ -1540,8 +4333,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_channels_playing()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_channels_playing()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1552,7 +4344,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_cpu_usage">fmod_system_get_cpu_usage</h1>
+<h1 id="fmod_system_get_cpu_usage">fmod_system_get_cpu_usage<a class="headerlink" href="#fmod_system_get_cpu_usage" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getcpuusage">System::getCPUUsage</a></p>
 </blockquote>
@@ -1562,8 +4354,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_cpu_usage()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_cpu_usage()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1574,7 +4365,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_file_usage">fmod_system_get_file_usage</h1>
+<h1 id="fmod_system_get_file_usage">fmod_system_get_file_usage<a class="headerlink" href="#fmod_system_get_file_usage" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getfileusage">System::getFileUsage</a></p>
 </blockquote>
@@ -1587,8 +4378,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_file_usage()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_file_usage()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1599,7 +4389,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix</h1>
+<h1 id="fmod_system_get_default_mix_matrix">fmod_system_get_default_mix_matrix<a class="headerlink" href="#fmod_system_get_default_mix_matrix" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdefaultmixmatrix">System::getDefaultMixMatrix</a></p>
 </blockquote>
@@ -1611,8 +4401,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_default_mix_matrix(source_speaker_mode, target_speaker_mode, matrix)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1649,7 +4438,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels</h1>
+<h1 id="fmod_system_get_speaker_mode_channels">fmod_system_get_speaker_mode_channels<a class="headerlink" href="#fmod_system_get_speaker_mode_channels" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getspeakermodechannels">System::getSpeakerModeChannels</a></p>
 </blockquote>
@@ -1658,8 +4447,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_speaker_mode_channels(mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_speaker_mode_channels(mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1686,7 +4474,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_sound">fmod_system_create_sound</h1>
+<h1 id="fmod_system_create_sound">fmod_system_create_sound<a class="headerlink" href="#fmod_system_create_sound" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
 </blockquote>
@@ -1716,8 +4504,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_sound(name_or_data, mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_sound(name_or_data, mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1749,7 +4536,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_stream">fmod_system_create_stream</h1>
+<h1 id="fmod_system_create_stream">fmod_system_create_stream<a class="headerlink" href="#fmod_system_create_stream" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createstream">System::createStream</a></p>
 </blockquote>
@@ -1761,8 +4548,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_stream(name_or_data, mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_stream(name_or_data, mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1794,7 +4580,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_dsp">fmod_system_create_dsp</h1>
+<h1 id="fmod_system_create_dsp">fmod_system_create_dsp<a class="headerlink" href="#fmod_system_create_dsp" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdsp">System::createDSP</a></p>
 </blockquote>
@@ -1806,8 +4592,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_dsp()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_dsp()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1818,7 +4603,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</h1>
+<h1 id="fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type<a class="headerlink" href="#fmod_system_create_dsp_by_type" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createdspbytype">System::createDSPByType</a></p>
 </blockquote>
@@ -1835,8 +4620,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_dsp_by_type(dsp_type)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_dsp_by_type(dsp_type)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1863,7 +4647,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_channel_group">fmod_system_create_channel_group</h1>
+<h1 id="fmod_system_create_channel_group">fmod_system_create_channel_group<a class="headerlink" href="#fmod_system_create_channel_group" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createchannelgroup">System::createChannelGroup</a></p>
 </blockquote>
@@ -1876,8 +4660,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_channel_group(name)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_channel_group(name)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1904,7 +4687,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_sound_group">fmod_system_create_sound_group</h1>
+<h1 id="fmod_system_create_sound_group">fmod_system_create_sound_group<a class="headerlink" href="#fmod_system_create_sound_group" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsoundgroup">System::createSoundGroup</a></p>
 </blockquote>
@@ -1921,8 +4704,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_sound_group(name)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_sound_group(name)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1949,7 +4731,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_reverb_3d">fmod_system_create_reverb_3d</h1>
+<h1 id="fmod_system_create_reverb_3d">fmod_system_create_reverb_3d<a class="headerlink" href="#fmod_system_create_reverb_3d" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createreverb3d">System::createReverb3D</a></p>
 </blockquote>
@@ -1974,8 +4756,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_reverb_3d()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_reverb_3d()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -1986,7 +4767,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_play_sound">fmod_system_play_sound</h1>
+<h1 id="fmod_system_play_sound">fmod_system_play_sound<a class="headerlink" href="#fmod_system_play_sound" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playsound">System::playSound</a></p>
 </blockquote>
@@ -2001,8 +4782,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_play_sound(sound_ref, channel_group_ref, pause)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_play_sound(sound_ref, channel_group_ref, pause)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2039,7 +4819,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_play_dsp">fmod_system_play_dsp</h1>
+<h1 id="fmod_system_play_dsp">fmod_system_play_dsp<a class="headerlink" href="#fmod_system_play_dsp" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_playdsp">System::playDSP</a></p>
 </blockquote>
@@ -2052,8 +4832,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_play_dsp(dsp_ref, channel_group_ref, paused)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_play_dsp(dsp_ref, channel_group_ref, paused)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2090,7 +4869,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_channel">fmod_system_get_channel</h1>
+<h1 id="fmod_system_get_channel">fmod_system_get_channel<a class="headerlink" href="#fmod_system_get_channel" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getchannel">System::getChannel</a></p>
 </blockquote>
@@ -2100,8 +4879,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_channel(index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_channel(index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2128,7 +4906,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_master_channel_group">fmod_system_get_master_channel_group</h1>
+<h1 id="fmod_system_get_master_channel_group">fmod_system_get_master_channel_group<a class="headerlink" href="#fmod_system_get_master_channel_group" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmasterchannelgroup">System::getMasterChannelGroup</a></p>
 </blockquote>
@@ -2139,8 +4917,7 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_master_channel_group()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_master_channel_group()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2151,7 +4928,7 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_master_sound_group">fmod_system_get_master_sound_group</h1>
+<h1 id="fmod_system_get_master_sound_group">fmod_system_get_master_sound_group<a class="headerlink" href="#fmod_system_get_master_sound_group" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getmastersoundgroup">System::getMasterSoundGroup</a></p>
 </blockquote>
@@ -2161,8 +4938,7 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_master_sound_group()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_master_sound_group()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2173,7 +4949,7 @@ A master ChannelGroup can be used to do things like set the 'master volume' for 
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes</h1>
+<h1 id="fmod_system_set_3d_listener_attributes">fmod_system_set_3d_listener_attributes<a class="headerlink" href="#fmod_system_set_3d_listener_attributes" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3dlistenerattributes">System::set3DListenerAttributes</a></p>
 </blockquote>
@@ -2194,8 +4970,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_3d_listener_attributes(listener_index, position, velocity, forward, up)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_3d_listener_attributes(listener_index, position, velocity, forward, up)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2242,7 +5017,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</h1>
+<h1 id="fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes<a class="headerlink" href="#fmod_system_get_3d_listener_attributes" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_get3dlistenerattributes">System::get3DListenerAttributes</a></p>
 </blockquote>
@@ -2255,8 +5030,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_3d_listener_attributes(listener_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_3d_listener_attributes(listener_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2283,7 +5057,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</h1>
+<h1 id="fmod_system_set_reverb_properties">fmod_system_set_reverb_properties<a class="headerlink" href="#fmod_system_set_reverb_properties" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setreverbproperties">System::setReverbProperties</a></p>
 </blockquote>
@@ -2294,8 +5068,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_reverb_properties(instance, props)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_reverb_properties(instance, props)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2327,7 +5100,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</h1>
+<h1 id="fmod_system_get_reverb_properties">fmod_system_get_reverb_properties<a class="headerlink" href="#fmod_system_get_reverb_properties" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getreverbproperties">System::getReverbProperties</a></p>
 </blockquote>
@@ -2336,8 +5109,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_reverb_properties(instance)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_reverb_properties(instance)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2364,7 +5136,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_attach_channel_group_to_port">fmod_system_attach_channel_group_to_port</h1>
+<h1 id="fmod_system_attach_channel_group_to_port">fmod_system_attach_channel_group_to_port<a class="headerlink" href="#fmod_system_attach_channel_group_to_port" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_attachchannelgrouptoport">System::attachChannelGroupToPort</a></p>
 </blockquote>
@@ -2374,8 +5146,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2417,7 +5188,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_detach_channel_group_from_port">fmod_system_detach_channel_group_from_port</h1>
+<h1 id="fmod_system_detach_channel_group_from_port">fmod_system_detach_channel_group_from_port<a class="headerlink" href="#fmod_system_detach_channel_group_from_port" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_detachchannelgroupfromport">System::detachChannelGroupFromPort</a></p>
 </blockquote>
@@ -2427,8 +5198,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_detach_channel_group_from_port(channel_group_ref)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_detach_channel_group_from_port(channel_group_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2455,7 +5225,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</h1>
+<h1 id="fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers<a class="headerlink" href="#fmod_system_get_record_num_drivers" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordnumdrivers">System::getRecordNumDrivers</a></p>
 </blockquote>
@@ -2464,8 +5234,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_record_num_drivers()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_record_num_drivers()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2476,7 +5245,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</h1>
+<h1 id="fmod_system_get_record_driver_info">fmod_system_get_record_driver_info<a class="headerlink" href="#fmod_system_get_record_driver_info" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecorddriverinfo">System::getRecordDriverInfo</a></p>
 </blockquote>
@@ -2485,8 +5254,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_record_driver_info(record_driver_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_record_driver_info(record_driver_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2513,7 +5281,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_record_position">fmod_system_get_record_position</h1>
+<h1 id="fmod_system_get_record_position">fmod_system_get_record_position<a class="headerlink" href="#fmod_system_get_record_position" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getrecordposition">System::getRecordPosition</a></p>
 </blockquote>
@@ -2528,8 +5296,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_record_position(device_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_record_position(device_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2556,7 +5323,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_record_start">fmod_system_record_start</h1>
+<h1 id="fmod_system_record_start">fmod_system_record_start<a class="headerlink" href="#fmod_system_record_start" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstart">System::recordStart</a></p>
 </blockquote>
@@ -2569,8 +5336,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_record_start(device_index, sound_ref, loop)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_record_start(device_index, sound_ref, loop)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2607,7 +5373,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_record_stop">fmod_system_record_stop</h1>
+<h1 id="fmod_system_record_stop">fmod_system_record_stop<a class="headerlink" href="#fmod_system_record_stop" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_recordstop">System::recordStop</a></p>
 </blockquote>
@@ -2617,8 +5383,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_record_stop(device_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_record_stop(device_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2645,7 +5410,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_is_recording">fmod_system_is_recording</h1>
+<h1 id="fmod_system_is_recording">fmod_system_is_recording<a class="headerlink" href="#fmod_system_is_recording" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_isrecording">System::isRecording</a></p>
 </blockquote>
@@ -2660,8 +5425,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_is_recording(device_index)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_is_recording(device_index)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2688,7 +5452,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_geometry">fmod_system_create_geometry</h1>
+<h1 id="fmod_system_create_geometry">fmod_system_create_geometry<a class="headerlink" href="#fmod_system_create_geometry" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_creategeometry">System::createGeometry</a></p>
 </blockquote>
@@ -2702,8 +5466,7 @@ Geometry objects also allow for efficient rotation, scaling and translation of g
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_geometry(max_polygons, max_vertices)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_geometry(max_polygons, max_vertices)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2735,7 +5498,7 @@ Geometry objects also allow for efficient rotation, scaling and translation of g
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_geometry_settings">fmod_system_set_geometry_settings</h1>
+<h1 id="fmod_system_set_geometry_settings">fmod_system_set_geometry_settings<a class="headerlink" href="#fmod_system_set_geometry_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setgeometrysettings">System::setGeometrySettings</a></p>
 </blockquote>
@@ -2749,8 +5512,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_geometry_settings(max_world_size)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_geometry_settings(max_world_size)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2777,7 +5539,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_geometry_settings">fmod_system_get_geometry_settings</h1>
+<h1 id="fmod_system_get_geometry_settings">fmod_system_get_geometry_settings<a class="headerlink" href="#fmod_system_get_geometry_settings" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometrysettings">System::getGeometrySettings</a></p>
 </blockquote>
@@ -2790,8 +5552,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_geometry_settings()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_geometry_settings()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2802,7 +5563,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_load_geometry">fmod_system_load_geometry</h1>
+<h1 id="fmod_system_load_geometry">fmod_system_load_geometry<a class="headerlink" href="#fmod_system_load_geometry" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_loadgeometry">System::loadGeometry</a></p>
 </blockquote>
@@ -2813,8 +5574,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_load_geometry(data, data_size)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_load_geometry(data, data_size)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2846,7 +5606,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</h1>
+<h1 id="fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion<a class="headerlink" href="#fmod_system_get_geometry_occlusion" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getgeometryocclusion">System::getGeometryOcclusion</a></p>
 </blockquote>
@@ -2856,8 +5616,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_geometry_occlusion(listener, source)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_geometry_occlusion(listener, source)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2889,7 +5648,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_lock_dsp">fmod_system_lock_dsp</h1>
+<h1 id="fmod_system_lock_dsp">fmod_system_lock_dsp<a class="headerlink" href="#fmod_system_lock_dsp" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_lockdsp">System::lockDSP</a></p>
 </blockquote>
@@ -2906,8 +5665,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_lock_dsp()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_lock_dsp()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2918,7 +5676,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_unlock_dsp">fmod_system_unlock_dsp</h1>
+<h1 id="fmod_system_unlock_dsp">fmod_system_unlock_dsp<a class="headerlink" href="#fmod_system_unlock_dsp" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_unlockdsp">System::unlockDSP</a></p>
 </blockquote>
@@ -2928,8 +5686,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_unlock_dsp()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_unlock_dsp()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -2940,7 +5697,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_set_user_data">fmod_system_set_user_data</h1>
+<h1 id="fmod_system_set_user_data">fmod_system_set_user_data<a class="headerlink" href="#fmod_system_set_user_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
 </blockquote>
@@ -2957,8 +5714,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_set_user_data(user_data)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_set_user_data(user_data)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2985,7 +5741,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_get_user_data">fmod_system_get_user_data</h1>
+<h1 id="fmod_system_get_user_data">fmod_system_get_user_data<a class="headerlink" href="#fmod_system_get_user_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getuserdata">System::getUserData</a></p>
 </blockquote>
@@ -3002,8 +5758,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_get_user_data()
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_get_user_data()</code></pre>
 </blockquote>
 <p><br></p>
 <p><strong>Returns:</strong></p>
@@ -3014,7 +5769,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_adopt">fmod_system_adopt</h1>
+<h1 id="fmod_system_adopt">fmod_system_adopt<a class="headerlink" href="#fmod_system_adopt" title="Permanent link">&para;</a></h1>
 <p>This function takes a raw core system pointer from another extension and registers it with GMFMOD, so that the systemless Core API drives that system instead of one of its own.</p>
 <p>This is how the two halves of the extension are joined: pass the pointer returned by <a href="studio_system.html#fmod_studio_system_get_core_system_ptr">fmod_studio_system_get_core_system_ptr</a> and the Core functions then operate on FMOD Studio's core system.</p>
 <blockquote>
@@ -3023,8 +5778,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_adopt(system_ptr)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_adopt(system_ptr)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -3052,7 +5806,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_sound_ex">fmod_system_create_sound_ex</h1>
+<h1 id="fmod_system_create_sound_ex">fmod_system_create_sound_ex<a class="headerlink" href="#fmod_system_create_sound_ex" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
 </blockquote>
@@ -3062,8 +5816,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_sound_ex(name_or_data, mode, ex_info)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_sound_ex(name_or_data, mode, ex_info)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -3101,7 +5854,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_sound_memory">fmod_system_create_sound_memory</h1>
+<h1 id="fmod_system_create_sound_memory">fmod_system_create_sound_memory<a class="headerlink" href="#fmod_system_create_sound_memory" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
 </blockquote>
@@ -3118,8 +5871,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_sound_memory(data, length, mode)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_sound_memory(data, length, mode)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -3157,7 +5909,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex</h1>
+<h1 id="fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex<a class="headerlink" href="#fmod_system_create_sound_memory_ex" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_createsound">System::createSound</a></p>
 </blockquote>
@@ -3168,8 +5920,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code>fmod_system_create_sound_memory_ex(data, length, mode, ex_info)
-</code></pre></div>
+<pre class="highlight"><code class="language-gml">fmod_system_create_sound_memory_ex(data, length, mode, ex_info)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -3210,57 +5961,73 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p>A reference to the new sound, or 0 on failure.</p>
 <p><br></p>
 <hr />
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="general_information.html" class="btn btn-neutral float-left" title="General Information"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="channel.html" class="btn btn-neutral float-right" title="Channel">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-      <p><p align="center">GameMaker 2026</p></p>
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
           
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-        <span>
-          <a href="https://github.com/YoYoGames/GMEXT-FMOD" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
-        </span>
-    
-    
-      <span><a href="general_information.html" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="channel.html" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <p align="center">GameMaker 2026</p>
+    </div>
+  
+  
 </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = ".";</script>
-    <script src="js/theme_extra.js"></script>
-    <script src="js/theme.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
-      <script src="assets/js/gmext_script.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "toc.follow", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/gml.min.js"></script>
+      
+        <script src="assets/js/hljs-init.js"></script>
+      
+        <script src="assets/js/resize-columns.js"></script>
+      
+    
+  </body>
 </html>
