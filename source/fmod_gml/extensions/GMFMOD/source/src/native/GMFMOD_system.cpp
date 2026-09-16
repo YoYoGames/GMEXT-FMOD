@@ -27,7 +27,7 @@ uint64_t fmod_system_create()
 	return result;
 }
 
-double fmod_system_init(double max_channels, double flags)
+double fmod_system_init(double max_channels, gm_enums::FmodInitFlags flags)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -36,7 +36,7 @@ double fmod_system_init(double max_channels, double flags)
 		return 0;
 	}
 
-	g_fmod_last_result = system->init((int)max_channels, (FMOD_INITFLAGS)fmod_flag_word(flags), nullptr);
+	g_fmod_last_result = system->init((int)max_channels, (FMOD_INITFLAGS)(std::uint64_t)flags, nullptr);
 	return 0;
 }
 
@@ -478,7 +478,7 @@ double fmod_system_get_record_position(double device_index)
 	return (double)position;
 }
 
-double fmod_system_record_start(double device_index, uint64_t sound_ref, double loop)
+double fmod_system_record_start(double device_index, uint64_t sound_ref, bool loop)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -493,7 +493,7 @@ double fmod_system_record_start(double device_index, uint64_t sound_ref, double 
 	if (sound == nullptr)
 		return 0;
 
-	g_fmod_last_result = system->recordStart((int)device_index, sound, loop != 0.0);
+	g_fmod_last_result = system->recordStart((int)device_index, sound, loop);
 	return 0;
 }
 
@@ -510,18 +510,18 @@ double fmod_system_record_stop(double device_index)
 	return 0;
 }
 
-double fmod_system_is_recording(double device_index)
+bool fmod_system_is_recording(double device_index)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return 0;
+		return false;
 	}
 
 	bool is_recording = false;
 	g_fmod_last_result = system->isRecording((int)device_index, &is_recording);
-	return is_recording ? 1.0 : 0.0;
+	return is_recording;
 }
 
 // ============================================================
@@ -639,7 +639,7 @@ double fmod_system_set_software_format(double sample_rate, gm_enums::FmodSpeaker
 	return 0;
 }
 
-double fmod_system_set_stream_buffer_size(double file_buffer_size, double file_buffer_size_type)
+double fmod_system_set_stream_buffer_size(double file_buffer_size, gm_enums::FmodTimeUnit file_buffer_size_type)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -648,7 +648,7 @@ double fmod_system_set_stream_buffer_size(double file_buffer_size, double file_b
 		return 0;
 	}
 
-	g_fmod_last_result = system->setStreamBufferSize((unsigned int)file_buffer_size, (FMOD_TIMEUNIT)fmod_flag_word(file_buffer_size_type));
+	g_fmod_last_result = system->setStreamBufferSize((unsigned int)file_buffer_size, (FMOD_TIMEUNIT)(std::uint64_t)file_buffer_size_type);
 	return 0;
 }
 
@@ -704,7 +704,7 @@ uint64_t fmod_system_create_channel_group(std::string_view name)
 	return result;
 }
 
-uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, double paused)
+uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, bool paused)
 {
 	uint64_t result = 0;
 
@@ -728,7 +728,7 @@ uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, doub
 	}
 
 	FMOD::Channel* channel = nullptr;
-	g_fmod_last_result = system->playDSP(dsp, channel_group, (paused != 0.0), &channel);
+	g_fmod_last_result = system->playDSP(dsp, channel_group, paused, &channel);
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
@@ -817,7 +817,7 @@ FmodAdvancedSettings fmod_system_get_advanced_settings()
 	result.distance_filter_center_freq = (double)settings.distanceFilterCenterFreq;
 	result.reverb3d_instance = (double)settings.reverb3Dinstance;
 	result.dsp_buffer_pool_size = (double)settings.DSPBufferPoolSize;
-	result.resampler_method = (double)settings.resamplerMethod;
+	result.resampler_method = (gm_enums::FmodDspResampler)settings.resamplerMethod;
 	result.random_seed = (double)settings.randomSeed;
 	result.max_convolution_threads = (double)settings.maxConvolutionThreads;
 	result.max_opus_codecs = (double)settings.maxOpusCodecs;
@@ -935,7 +935,7 @@ double fmod_system_get_speaker_mode_channels(gm_enums::FmodSpeakerMode mode)
 	return (double)channels;
 }
 
-FmodSpeakerPosition fmod_system_get_speaker_position(double speaker)
+FmodSpeakerPosition fmod_system_get_speaker_position(gm_enums::FmodSpeaker speaker)
 {
 	FmodSpeakerPosition result{};
 
@@ -952,11 +952,11 @@ FmodSpeakerPosition fmod_system_get_speaker_position(double speaker)
 
 	result.x = (double)x;
 	result.y = (double)y;
-	result.active = active ? 1.0 : 0.0;
+	result.active = active;
 	return result;
 }
 
-double fmod_system_set_speaker_position(double speaker, double x, double y, double active)
+double fmod_system_set_speaker_position(gm_enums::FmodSpeaker speaker, double x, double y, bool active)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -965,7 +965,7 @@ double fmod_system_set_speaker_position(double speaker, double x, double y, doub
 		return 0;
 	}
 
-	g_fmod_last_result = system->setSpeakerPosition((FMOD_SPEAKER)(int)speaker, (float)x, (float)y, active != 0.0);
+	g_fmod_last_result = system->setSpeakerPosition((FMOD_SPEAKER)(int)speaker, (float)x, (float)y, active);
 	return 0;
 }
 
@@ -1134,7 +1134,7 @@ FmodStreamBufferSize fmod_system_get_stream_buffer_size()
 	g_fmod_last_result = system->getStreamBufferSize(&file_buffer_size, &file_buffer_size_type);
 
 	result.file_buffer_size = (double)file_buffer_size;
-	result.file_buffer_size_type = (double)file_buffer_size_type;
+	result.file_buffer_size_type = (gm_enums::FmodTimeUnit)file_buffer_size_type;
 	return result;
 }
 
@@ -1273,7 +1273,7 @@ double fmod_system_set_user_data(int64_t user_data)
 // System - Ports
 // ============================================================
 
-double fmod_system_attach_channel_group_to_port(double port_type, double port_index, uint64_t channel_group_ref, double pass_thru)
+double fmod_system_attach_channel_group_to_port(gm_enums::FmodPortType port_type, double port_index, uint64_t channel_group_ref, bool pass_thru)
 {
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
@@ -1288,7 +1288,7 @@ double fmod_system_attach_channel_group_to_port(double port_type, double port_in
 	if (channel_group == nullptr)
 		return 0;
 
-	g_fmod_last_result = system->attachChannelGroupToPort((FMOD_PORT_TYPE)(int)port_type, (FMOD_PORT_INDEX)(unsigned long long)port_index, channel_group, pass_thru != 0.0);
+	g_fmod_last_result = system->attachChannelGroupToPort((FMOD_PORT_TYPE)(int)port_type, (FMOD_PORT_INDEX)(unsigned long long)port_index, channel_group, pass_thru);
 	return 0;
 }
 

@@ -10,12 +10,12 @@ GMEXPORT double __EXT_NATIVE__GMFMODStudio_invocation_handler(char* __ret_buffer
 GMEXPORT double __EXT_NATIVE__GMFMODStudio_queue_buffer(char* __arg_buffer, double __arg_buffer_length);
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_create(char* __ret_buffer, double __ret_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_init(double max_channels, double studio_flags, double core_flags);
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_init(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_release();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_update();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_flush_commands();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_flush_sample_loading();
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* filename, double flags, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_unload_all();
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_bank_count();
@@ -68,8 +68,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_callback(char* __arg_buffer
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_user_data(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_user_data(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT char* __EXT_NATIVE__fmod_studio_bank_get_path(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_parent_studio_system(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_event_count(char* __arg_buffer, double __arg_buffer_length);
@@ -105,7 +105,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_is_doppler_enabled(c
 GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_id(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_min_max_distance(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sound_size(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_unload_sample_data(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_set_callback(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_user_data(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
@@ -120,7 +120,7 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_a
 GMEXPORT char* __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_start(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_stop(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_paused(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_paused(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_timeline_position(char* __arg_buffer, double __arg_buffer_length);
@@ -177,7 +177,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_port_index(char* __arg_buffer,
 GMEXPORT char* __EXT_NATIVE__fmod_studio_vca_get_path(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_vca_get_volume(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_vca_set_volume(char* __arg_buffer, double __arg_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_current_command(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_release(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_command_count(char* __arg_buffer, double __arg_buffer_length);

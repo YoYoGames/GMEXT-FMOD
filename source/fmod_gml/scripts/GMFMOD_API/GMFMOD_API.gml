@@ -203,6 +203,15 @@ enum FmodDspConnectionType
     SendSidechain = 3
 }
 
+enum FmodDspResampler
+{
+    Default = 0,
+    NoInterp = 1,
+    Linear = 2,
+    Cubic = 3,
+    Spline = 4
+}
+
 enum FmodDspLowPass
 {
     Cutoff = 0,
@@ -737,6 +746,62 @@ enum FmodSpeakerMode
     _7Point1Point4 = 8
 }
 
+enum FmodSpeaker
+{
+    None = -1,
+    FrontLeft = 0,
+    FrontRight = 1,
+    FrontCenter = 2,
+    LowFrequency = 3,
+    SurroundLeft = 4,
+    SurroundRight = 5,
+    BackLeft = 6,
+    BackRight = 7,
+    TopFrontLeft = 8,
+    TopFrontRight = 9,
+    TopBackLeft = 10,
+    TopBackRight = 11
+}
+
+enum FmodChannelMask
+{
+    FrontLeft = 1,
+    FrontRight = 2,
+    FrontCenter = 4,
+    LowFrequency = 8,
+    SurroundLeft = 16,
+    SurroundRight = 32,
+    BackLeft = 64,
+    BackRight = 128,
+    BackCenter = 256,
+    Mono = 1,
+    Stereo = 3,
+    Lrc = 7,
+    Quad = 51,
+    Surround = 55,
+    _5Point1 = 63,
+    _5Point1Rears = 207,
+    _7Point0 = 247,
+    _7Point1 = 255
+}
+
+enum FmodChannelOrder
+{
+    Default = 0,
+    WaveFormat = 1,
+    ProTools = 2,
+    AllMono = 3,
+    AllStereo = 4,
+    Alsa = 5
+}
+
+enum FmodAudioQueueCodecPolicy
+{
+    Default = 0,
+    SoftwareOnly = 1,
+    HardwareOnly = 2
+}
+
 enum FmodDriverState
 {
     Connected = 1,
@@ -805,6 +870,13 @@ enum FmodSoundFormat
     BitStream = 6
 }
 
+enum FmodSoundGroupBehavior
+{
+    Fail = 0,
+    Mute = 1,
+    StealLowest = 2
+}
+
 enum FmodOutputType
 {
     AutoDetect = 0,
@@ -829,6 +901,19 @@ enum FmodOutputType
     AudioWorklet = 19,
     Phase = 20,
     OhAudio = 21
+}
+
+enum FmodPortType
+{
+    Music = 0,
+    CopyrightMusic = 1,
+    Voice = 2,
+    Controller = 3,
+    Personal = 4,
+    Vibration = 5,
+    Aux = 6,
+    Passthrough = 7,
+    VrVibration = 8
 }
 
 enum FmodChannelControlDspIndex
@@ -875,6 +960,38 @@ enum FmodTagDataType
     StringUtf16 = 4,
     StringUtf16Be = 5,
     StringUtf8 = 6
+}
+
+enum FmodThreadType
+{
+    Mixer = 0,
+    Feeder = 1,
+    Stream = 2,
+    File = 3,
+    NonBlocking = 4,
+    Record = 5,
+    Geometry = 6,
+    Profiler = 7,
+    StudioUpdate = 8,
+    StudioLoadBank = 9,
+    StudioLoadSample = 10,
+    Convolution1 = 11,
+    Convolution2 = 12
+}
+
+enum FmodThreadPriority
+{
+    PlatformMin = -32768,
+    PlatformMax = 32768,
+    Default = -32769,
+    Low = -32770,
+    Medium = -32771,
+    High = -32772,
+    VeryHigh = -32773,
+    Extreme = -32774,
+    Critical = -32775,
+    Mixer = -32774,
+    Feeder = -32775
 }
 
 // #####################################################################
@@ -1574,7 +1691,7 @@ function FmodCreateSoundExInfo() constructor
     self.initial_sound_group = 0;
     self.initial_seek_position = 0;
     self.initial_seek_pos_type = 0;
-    self.ignore_set_filesystem = 0;
+    self.ignore_set_filesystem = false;
     self.audio_queue_policy = 0;
     self.min_midi_granularity = 0;
     self.non_block_thread_id = 0;
@@ -2161,9 +2278,10 @@ function __FmodDSPChannelFormat_encode(_inst, _buffer, _offset, _where = _GMFUNC
     buffer_seek(_buffer, buffer_seek_start, _offset);
     with (_inst)
     {
-        // field: channel_mask, type: Float64
+        // field: channel_mask, type: enum FmodChannelMask
+
         if (!is_numeric(self.channel_mask)) show_error($"{_where} :: self.channel_mask expected number", true);
-        buffer_write(_buffer, buffer_f64, self.channel_mask);
+        buffer_write(_buffer, buffer_u64, self.channel_mask);
 
         // field: num_channels, type: Float64
         if (!is_numeric(self.num_channels)) show_error($"{_where} :: self.num_channels expected number", true);
@@ -2186,8 +2304,8 @@ function __FmodDSPChannelFormat_decode(_buffer, _offset)
     _inst = new FmodDSPChannelFormat();
     with (_inst)
     {
-        // field: channel_mask, type: Float64
-        self.channel_mask = buffer_read(_buffer, buffer_f64);
+        // field: channel_mask, type: enum FmodChannelMask
+        self.channel_mask = buffer_read(_buffer, buffer_u64);
 
         // field: num_channels, type: Float64
         self.num_channels = buffer_read(_buffer, buffer_f64);
@@ -2252,13 +2370,13 @@ function __FmodDSPMeteringEnabled_encode(_inst, _buffer, _offset, _where = _GMFU
     buffer_seek(_buffer, buffer_seek_start, _offset);
     with (_inst)
     {
-        // field: input_enabled, type: Float64
-        if (!is_numeric(self.input_enabled)) show_error($"{_where} :: self.input_enabled expected number", true);
-        buffer_write(_buffer, buffer_f64, self.input_enabled);
+        // field: input_enabled, type: Bool
+        if (!is_bool(self.input_enabled)) show_error($"{_where} :: self.input_enabled expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.input_enabled);
 
-        // field: output_enabled, type: Float64
-        if (!is_numeric(self.output_enabled)) show_error($"{_where} :: self.output_enabled expected number", true);
-        buffer_write(_buffer, buffer_f64, self.output_enabled);
+        // field: output_enabled, type: Bool
+        if (!is_bool(self.output_enabled)) show_error($"{_where} :: self.output_enabled expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.output_enabled);
 
     }
 }
@@ -2277,11 +2395,11 @@ function __FmodDSPMeteringEnabled_decode(_buffer, _offset)
     _inst = new FmodDSPMeteringEnabled();
     with (_inst)
     {
-        // field: input_enabled, type: Float64
-        self.input_enabled = buffer_read(_buffer, buffer_f64);
+        // field: input_enabled, type: Bool
+        self.input_enabled = buffer_read(_buffer, buffer_bool);
 
-        // field: output_enabled, type: Float64
-        self.output_enabled = buffer_read(_buffer, buffer_f64);
+        // field: output_enabled, type: Bool
+        self.output_enabled = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -2820,9 +2938,9 @@ function __FmodDelay_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
         if (!is_numeric(self.dspclock_end)) show_error($"{_where} :: self.dspclock_end expected number", true);
         buffer_write(_buffer, buffer_f64, self.dspclock_end);
 
-        // field: stop_channels, type: Float64
-        if (!is_numeric(self.stop_channels)) show_error($"{_where} :: self.stop_channels expected number", true);
-        buffer_write(_buffer, buffer_f64, self.stop_channels);
+        // field: stop_channels, type: Bool
+        if (!is_bool(self.stop_channels)) show_error($"{_where} :: self.stop_channels expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.stop_channels);
 
     }
 }
@@ -2847,8 +2965,8 @@ function __FmodDelay_decode(_buffer, _offset)
         // field: dspclock_end, type: Float64
         self.dspclock_end = buffer_read(_buffer, buffer_f64);
 
-        // field: stop_channels, type: Float64
-        self.stop_channels = buffer_read(_buffer, buffer_f64);
+        // field: stop_channels, type: Bool
+        self.stop_channels = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -2926,13 +3044,13 @@ function __FmodSoundOpenState_encode(_inst, _buffer, _offset, _where = _GMFUNCTI
         if (!is_numeric(self.percent_buffered)) show_error($"{_where} :: self.percent_buffered expected number", true);
         buffer_write(_buffer, buffer_f64, self.percent_buffered);
 
-        // field: starving, type: Float64
-        if (!is_numeric(self.starving)) show_error($"{_where} :: self.starving expected number", true);
-        buffer_write(_buffer, buffer_f64, self.starving);
+        // field: starving, type: Bool
+        if (!is_bool(self.starving)) show_error($"{_where} :: self.starving expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.starving);
 
-        // field: disk_busy, type: Float64
-        if (!is_numeric(self.disk_busy)) show_error($"{_where} :: self.disk_busy expected number", true);
-        buffer_write(_buffer, buffer_f64, self.disk_busy);
+        // field: disk_busy, type: Bool
+        if (!is_bool(self.disk_busy)) show_error($"{_where} :: self.disk_busy expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.disk_busy);
 
     }
 }
@@ -2957,11 +3075,11 @@ function __FmodSoundOpenState_decode(_buffer, _offset)
         // field: percent_buffered, type: Float64
         self.percent_buffered = buffer_read(_buffer, buffer_f64);
 
-        // field: starving, type: Float64
-        self.starving = buffer_read(_buffer, buffer_f64);
+        // field: starving, type: Bool
+        self.starving = buffer_read(_buffer, buffer_bool);
 
-        // field: disk_busy, type: Float64
-        self.disk_busy = buffer_read(_buffer, buffer_f64);
+        // field: disk_busy, type: Bool
+        self.disk_busy = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -3005,9 +3123,9 @@ function __FmodSoundTag_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
         if (!is_numeric(self.datalen)) show_error($"{_where} :: self.datalen expected number", true);
         buffer_write(_buffer, buffer_f64, self.datalen);
 
-        // field: updated, type: Float64
-        if (!is_numeric(self.updated)) show_error($"{_where} :: self.updated expected number", true);
-        buffer_write(_buffer, buffer_f64, self.updated);
+        // field: updated, type: Bool
+        if (!is_bool(self.updated)) show_error($"{_where} :: self.updated expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.updated);
 
     }
 }
@@ -3043,8 +3161,8 @@ function __FmodSoundTag_decode(_buffer, _offset)
         // field: datalen, type: Float64
         self.datalen = buffer_read(_buffer, buffer_f64);
 
-        // field: updated, type: Float64
-        self.updated = buffer_read(_buffer, buffer_f64);
+        // field: updated, type: Bool
+        self.updated = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -3113,9 +3231,9 @@ function __FmodDistanceFilter_encode(_inst, _buffer, _offset, _where = _GMFUNCTI
     buffer_seek(_buffer, buffer_seek_start, _offset);
     with (_inst)
     {
-        // field: custom, type: Float64
-        if (!is_numeric(self.custom)) show_error($"{_where} :: self.custom expected number", true);
-        buffer_write(_buffer, buffer_f64, self.custom);
+        // field: custom, type: Bool
+        if (!is_bool(self.custom)) show_error($"{_where} :: self.custom expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.custom);
 
         // field: custom_level, type: Float64
         if (!is_numeric(self.custom_level)) show_error($"{_where} :: self.custom_level expected number", true);
@@ -3142,8 +3260,8 @@ function __FmodDistanceFilter_decode(_buffer, _offset)
     _inst = new FmodDistanceFilter();
     with (_inst)
     {
-        // field: custom, type: Float64
-        self.custom = buffer_read(_buffer, buffer_f64);
+        // field: custom, type: Bool
+        self.custom = buffer_read(_buffer, buffer_bool);
 
         // field: custom_level, type: Float64
         self.custom_level = buffer_read(_buffer, buffer_f64);
@@ -3275,9 +3393,9 @@ function __FmodPolygonAttributes_encode(_inst, _buffer, _offset, _where = _GMFUN
         if (!is_numeric(self.reverb_occlusion)) show_error($"{_where} :: self.reverb_occlusion expected number", true);
         buffer_write(_buffer, buffer_f64, self.reverb_occlusion);
 
-        // field: double_sided, type: Float64
-        if (!is_numeric(self.double_sided)) show_error($"{_where} :: self.double_sided expected number", true);
-        buffer_write(_buffer, buffer_f64, self.double_sided);
+        // field: double_sided, type: Bool
+        if (!is_bool(self.double_sided)) show_error($"{_where} :: self.double_sided expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.double_sided);
 
     }
 }
@@ -3302,8 +3420,8 @@ function __FmodPolygonAttributes_decode(_buffer, _offset)
         // field: reverb_occlusion, type: Float64
         self.reverb_occlusion = buffer_read(_buffer, buffer_f64);
 
-        // field: double_sided, type: Float64
-        self.double_sided = buffer_read(_buffer, buffer_f64);
+        // field: double_sided, type: Bool
+        self.double_sided = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -3600,9 +3718,10 @@ function __FmodAdvancedSettings_encode(_inst, _buffer, _offset, _where = _GMFUNC
         if (!is_numeric(self.dsp_buffer_pool_size)) show_error($"{_where} :: self.dsp_buffer_pool_size expected number", true);
         buffer_write(_buffer, buffer_f64, self.dsp_buffer_pool_size);
 
-        // field: resampler_method, type: Float64
+        // field: resampler_method, type: enum FmodDspResampler
+
         if (!is_numeric(self.resampler_method)) show_error($"{_where} :: self.resampler_method expected number", true);
-        buffer_write(_buffer, buffer_f64, self.resampler_method);
+        buffer_write(_buffer, buffer_u64, self.resampler_method);
 
         // field: random_seed, type: Float64
         if (!is_numeric(self.random_seed)) show_error($"{_where} :: self.random_seed expected number", true);
@@ -3678,8 +3797,8 @@ function __FmodAdvancedSettings_decode(_buffer, _offset)
         // field: dsp_buffer_pool_size, type: Float64
         self.dsp_buffer_pool_size = buffer_read(_buffer, buffer_f64);
 
-        // field: resampler_method, type: Float64
-        self.resampler_method = buffer_read(_buffer, buffer_f64);
+        // field: resampler_method, type: enum FmodDspResampler
+        self.resampler_method = buffer_read(_buffer, buffer_u64);
 
         // field: random_seed, type: Float64
         self.random_seed = buffer_read(_buffer, buffer_f64);
@@ -3716,9 +3835,9 @@ function __FmodSpeakerPosition_encode(_inst, _buffer, _offset, _where = _GMFUNCT
         if (!is_numeric(self.y)) show_error($"{_where} :: self.y expected number", true);
         buffer_write(_buffer, buffer_f64, self.y);
 
-        // field: active, type: Float64
-        if (!is_numeric(self.active)) show_error($"{_where} :: self.active expected number", true);
-        buffer_write(_buffer, buffer_f64, self.active);
+        // field: active, type: Bool
+        if (!is_bool(self.active)) show_error($"{_where} :: self.active expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.active);
 
     }
 }
@@ -3743,8 +3862,8 @@ function __FmodSpeakerPosition_decode(_buffer, _offset)
         // field: y, type: Float64
         self.y = buffer_read(_buffer, buffer_f64);
 
-        // field: active, type: Float64
-        self.active = buffer_read(_buffer, buffer_f64);
+        // field: active, type: Bool
+        self.active = buffer_read(_buffer, buffer_bool);
 
     }
 
@@ -3901,9 +4020,10 @@ function __FmodStreamBufferSize_encode(_inst, _buffer, _offset, _where = _GMFUNC
         if (!is_numeric(self.file_buffer_size)) show_error($"{_where} :: self.file_buffer_size expected number", true);
         buffer_write(_buffer, buffer_f64, self.file_buffer_size);
 
-        // field: file_buffer_size_type, type: Float64
+        // field: file_buffer_size_type, type: enum FmodTimeUnit
+
         if (!is_numeric(self.file_buffer_size_type)) show_error($"{_where} :: self.file_buffer_size_type expected number", true);
-        buffer_write(_buffer, buffer_f64, self.file_buffer_size_type);
+        buffer_write(_buffer, buffer_u64, self.file_buffer_size_type);
 
     }
 }
@@ -3925,8 +4045,8 @@ function __FmodStreamBufferSize_decode(_buffer, _offset)
         // field: file_buffer_size, type: Float64
         self.file_buffer_size = buffer_read(_buffer, buffer_f64);
 
-        // field: file_buffer_size_type, type: Float64
-        self.file_buffer_size_type = buffer_read(_buffer, buffer_f64);
+        // field: file_buffer_size_type, type: enum FmodTimeUnit
+        self.file_buffer_size_type = buffer_read(_buffer, buffer_u64);
 
     }
 
@@ -3997,17 +4117,19 @@ function __FmodCreateSoundExInfo_encode(_inst, _buffer, _offset, _where = _GMFUN
         if (!is_numeric(self.max_polyphony)) show_error($"{_where} :: self.max_polyphony expected number", true);
         buffer_write(_buffer, buffer_f64, self.max_polyphony);
 
-        // field: suggested_sound_type, type: Float64
+        // field: suggested_sound_type, type: enum FmodSoundType
+
         if (!is_numeric(self.suggested_sound_type)) show_error($"{_where} :: self.suggested_sound_type expected number", true);
-        buffer_write(_buffer, buffer_f64, self.suggested_sound_type);
+        buffer_write(_buffer, buffer_u64, self.suggested_sound_type);
 
         // field: file_buffer_size, type: Float64
         if (!is_numeric(self.file_buffer_size)) show_error($"{_where} :: self.file_buffer_size expected number", true);
         buffer_write(_buffer, buffer_f64, self.file_buffer_size);
 
-        // field: channel_order, type: Float64
+        // field: channel_order, type: enum FmodChannelOrder
+
         if (!is_numeric(self.channel_order)) show_error($"{_where} :: self.channel_order expected number", true);
-        buffer_write(_buffer, buffer_f64, self.channel_order);
+        buffer_write(_buffer, buffer_u64, self.channel_order);
 
         // field: initial_sound_group, type: UInt64
         if (!is_numeric(self.initial_sound_group)) show_error($"{_where} :: self.initial_sound_group expected number", true);
@@ -4017,17 +4139,19 @@ function __FmodCreateSoundExInfo_encode(_inst, _buffer, _offset, _where = _GMFUN
         if (!is_numeric(self.initial_seek_position)) show_error($"{_where} :: self.initial_seek_position expected number", true);
         buffer_write(_buffer, buffer_f64, self.initial_seek_position);
 
-        // field: initial_seek_pos_type, type: Float64
+        // field: initial_seek_pos_type, type: enum FmodTimeUnit
+
         if (!is_numeric(self.initial_seek_pos_type)) show_error($"{_where} :: self.initial_seek_pos_type expected number", true);
-        buffer_write(_buffer, buffer_f64, self.initial_seek_pos_type);
+        buffer_write(_buffer, buffer_u64, self.initial_seek_pos_type);
 
-        // field: ignore_set_filesystem, type: Float64
-        if (!is_numeric(self.ignore_set_filesystem)) show_error($"{_where} :: self.ignore_set_filesystem expected number", true);
-        buffer_write(_buffer, buffer_f64, self.ignore_set_filesystem);
+        // field: ignore_set_filesystem, type: Bool
+        if (!is_bool(self.ignore_set_filesystem)) show_error($"{_where} :: self.ignore_set_filesystem expected bool", true);
+        buffer_write(_buffer, buffer_bool, self.ignore_set_filesystem);
 
-        // field: audio_queue_policy, type: Float64
+        // field: audio_queue_policy, type: enum FmodAudioQueueCodecPolicy
+
         if (!is_numeric(self.audio_queue_policy)) show_error($"{_where} :: self.audio_queue_policy expected number", true);
-        buffer_write(_buffer, buffer_f64, self.audio_queue_policy);
+        buffer_write(_buffer, buffer_u64, self.audio_queue_policy);
 
         // field: min_midi_granularity, type: Float64
         if (!is_numeric(self.min_midi_granularity)) show_error($"{_where} :: self.min_midi_granularity expected number", true);
@@ -4092,14 +4216,14 @@ function __FmodCreateSoundExInfo_decode(_buffer, _offset)
         // field: max_polyphony, type: Float64
         self.max_polyphony = buffer_read(_buffer, buffer_f64);
 
-        // field: suggested_sound_type, type: Float64
-        self.suggested_sound_type = buffer_read(_buffer, buffer_f64);
+        // field: suggested_sound_type, type: enum FmodSoundType
+        self.suggested_sound_type = buffer_read(_buffer, buffer_u64);
 
         // field: file_buffer_size, type: Float64
         self.file_buffer_size = buffer_read(_buffer, buffer_f64);
 
-        // field: channel_order, type: Float64
-        self.channel_order = buffer_read(_buffer, buffer_f64);
+        // field: channel_order, type: enum FmodChannelOrder
+        self.channel_order = buffer_read(_buffer, buffer_u64);
 
         // field: initial_sound_group, type: UInt64
         self.initial_sound_group = buffer_read(_buffer, buffer_u64);
@@ -4107,14 +4231,14 @@ function __FmodCreateSoundExInfo_decode(_buffer, _offset)
         // field: initial_seek_position, type: Float64
         self.initial_seek_position = buffer_read(_buffer, buffer_f64);
 
-        // field: initial_seek_pos_type, type: Float64
-        self.initial_seek_pos_type = buffer_read(_buffer, buffer_f64);
+        // field: initial_seek_pos_type, type: enum FmodTimeUnit
+        self.initial_seek_pos_type = buffer_read(_buffer, buffer_u64);
 
-        // field: ignore_set_filesystem, type: Float64
-        self.ignore_set_filesystem = buffer_read(_buffer, buffer_f64);
+        // field: ignore_set_filesystem, type: Bool
+        self.ignore_set_filesystem = buffer_read(_buffer, buffer_bool);
 
-        // field: audio_queue_policy, type: Float64
-        self.audio_queue_policy = buffer_read(_buffer, buffer_f64);
+        // field: audio_queue_policy, type: enum FmodAudioQueueCodecPolicy
+        self.audio_queue_policy = buffer_read(_buffer, buffer_u64);
 
         // field: min_midi_granularity, type: Float64
         self.min_midi_granularity = buffer_read(_buffer, buffer_f64);
@@ -4422,7 +4546,7 @@ function fmod_error_string(_result)
 
 
 /**
- * @param {Real} _blocking
+ * @param {Bool} _blocking
  * @returns {Struct.FmodMemoryStats}
  */
 function fmod_memory_get_stats(_blocking)
@@ -4439,8 +4563,37 @@ function fmod_memory_get_stats(_blocking)
     return __result__;
 }
 
-// Skipping function fmod_thread_set_attributes (no wrapper is required)
+/**
+ * @param {Enum.FmodThreadType} _thread_type
+ * @param {Real} _affinity
+ * @param {Enum.FmodThreadPriority} _priority
+ * @returns {Real}
+ */
+function fmod_thread_set_attributes(_thread_type, _affinity, _priority)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _thread_type, type: enum FmodThreadType
+
+    if (!is_numeric(_thread_type)) show_error($"{_GMFUNCTION_} :: _thread_type expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _thread_type);
+
+    // param: _affinity, type: Float64
+    if (!is_numeric(_affinity)) show_error($"{_GMFUNCTION_} :: _affinity expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _affinity);
+
+    // param: _priority, type: enum FmodThreadPriority
+
+    if (!is_numeric(_priority)) show_error($"{_GMFUNCTION_} :: _priority expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _priority);
+
+    var __return_value__ = __fmod_thread_set_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 /**
  * @param {Real} _channel_ref
@@ -4535,7 +4688,7 @@ function fmod_channel_get_priority(_channel_ref)
 /**
  * @param {Real} _channel_ref
  * @param {Real} _position
- * @param {Real} _time_unit
+ * @param {Enum.FmodTimeUnit} _time_unit
  * @returns {Real}
  */
 function fmod_channel_set_position(_channel_ref, _position, _time_unit)
@@ -4553,9 +4706,10 @@ function fmod_channel_set_position(_channel_ref, _position, _time_unit)
     if (!is_numeric(_position)) show_error($"{_GMFUNCTION_} :: _position expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _position);
 
-    // param: _time_unit, type: Float64
+    // param: _time_unit, type: enum FmodTimeUnit
+
     if (!is_numeric(_time_unit)) show_error($"{_GMFUNCTION_} :: _time_unit expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _time_unit);
+    buffer_write(__args_buffer__, buffer_u64, _time_unit);
 
     var __return_value__ = __fmod_channel_set_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -4564,7 +4718,7 @@ function fmod_channel_set_position(_channel_ref, _position, _time_unit)
 
 /**
  * @param {Real} _channel_ref
- * @param {Real} _time_unit
+ * @param {Enum.FmodTimeUnit} _time_unit
  * @returns {Real}
  */
 function fmod_channel_get_position(_channel_ref, _time_unit)
@@ -4578,9 +4732,10 @@ function fmod_channel_get_position(_channel_ref, _time_unit)
     if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_ref);
 
-    // param: _time_unit, type: Float64
+    // param: _time_unit, type: enum FmodTimeUnit
+
     if (!is_numeric(_time_unit)) show_error($"{_GMFUNCTION_} :: _time_unit expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _time_unit);
+    buffer_write(__args_buffer__, buffer_u64, _time_unit);
 
     var __return_value__ = __fmod_channel_get_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -4684,9 +4839,9 @@ function fmod_channel_get_loop_count(_channel_ref)
 /**
  * @param {Real} _channel_ref
  * @param {Real} _loop_start
- * @param {Real} _loop_start_type
+ * @param {Enum.FmodTimeUnit} _loop_start_type
  * @param {Real} _loop_end
- * @param {Real} _loop_end_type
+ * @param {Enum.FmodTimeUnit} _loop_end_type
  * @returns {Real}
  */
 function fmod_channel_set_loop_points(_channel_ref, _loop_start, _loop_start_type, _loop_end, _loop_end_type)
@@ -4704,17 +4859,19 @@ function fmod_channel_set_loop_points(_channel_ref, _loop_start, _loop_start_typ
     if (!is_numeric(_loop_start)) show_error($"{_GMFUNCTION_} :: _loop_start expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _loop_start);
 
-    // param: _loop_start_type, type: Float64
+    // param: _loop_start_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_loop_start_type)) show_error($"{_GMFUNCTION_} :: _loop_start_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _loop_start_type);
+    buffer_write(__args_buffer__, buffer_u64, _loop_start_type);
 
     // param: _loop_end, type: Float64
     if (!is_numeric(_loop_end)) show_error($"{_GMFUNCTION_} :: _loop_end expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _loop_end);
 
-    // param: _loop_end_type, type: Float64
+    // param: _loop_end_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_loop_end_type)) show_error($"{_GMFUNCTION_} :: _loop_end_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _loop_end_type);
+    buffer_write(__args_buffer__, buffer_u64, _loop_end_type);
 
     var __return_value__ = __fmod_channel_set_loop_points(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -4723,8 +4880,8 @@ function fmod_channel_set_loop_points(_channel_ref, _loop_start, _loop_start_typ
 
 /**
  * @param {Real} _channel_ref
- * @param {Real} _start_type
- * @param {Real} _end_type
+ * @param {Enum.FmodTimeUnit} _start_type
+ * @param {Enum.FmodTimeUnit} _end_type
  * @returns {Struct.FmodLoopPoints}
  */
 function fmod_channel_get_loop_points(_channel_ref, _start_type, _end_type)
@@ -4738,13 +4895,15 @@ function fmod_channel_get_loop_points(_channel_ref, _start_type, _end_type)
     if (!is_numeric(_channel_ref)) show_error($"{_GMFUNCTION_} :: _channel_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_ref);
 
-    // param: _start_type, type: Float64
-    if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _start_type);
+    // param: _start_type, type: enum FmodTimeUnit
 
-    // param: _end_type, type: Float64
+    if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _start_type);
+
+    // param: _end_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_end_type)) show_error($"{_GMFUNCTION_} :: _end_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _end_type);
+    buffer_write(__args_buffer__, buffer_u64, _end_type);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -4757,7 +4916,7 @@ function fmod_channel_get_loop_points(_channel_ref, _start_type, _end_type)
 
 /**
  * @param {Real} _channel_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_channel_is_virtual(_channel_ref)
 {
@@ -4860,8 +5019,31 @@ function fmod_system_create()
     return __result__;
 }
 
-// Skipping function fmod_system_init (no wrapper is required)
+/**
+ * @param {Real} _max_channels
+ * @param {Enum.FmodInitFlags} _flags
+ * @returns {Real}
+ */
+function fmod_system_init(_max_channels, _flags)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _max_channels, type: Float64
+    if (!is_numeric(_max_channels)) show_error($"{_GMFUNCTION_} :: _max_channels expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _max_channels);
+
+    // param: _flags, type: enum FmodInitFlags
+
+    if (!is_numeric(_flags)) show_error($"{_GMFUNCTION_} :: _flags expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _flags);
+
+    var __return_value__ = __fmod_system_init(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 /**
  * @param {Real} _system_ref
@@ -5102,7 +5284,7 @@ function fmod_system_get_record_driver_info(_record_driver_index)
 /**
  * @param {Real} _device_index
  * @param {Real} _sound_ref
- * @param {Real} _loop
+ * @param {Bool} _loop
  * @returns {Real}
  */
 function fmod_system_record_start(_device_index, _sound_ref, _loop)
@@ -5120,9 +5302,9 @@ function fmod_system_record_start(_device_index, _sound_ref, _loop)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    // param: _loop, type: Float64
-    if (!is_numeric(_loop)) show_error($"{_GMFUNCTION_} :: _loop expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _loop);
+    // param: _loop, type: Bool
+    if (!is_bool(_loop)) show_error($"{_GMFUNCTION_} :: _loop expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _loop);
 
     var __return_value__ = __fmod_system_record_start(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -5245,8 +5427,31 @@ function fmod_system_set_software_format(_sample_rate, _speaker_mode, _num_raw_s
     return __return_value__;
 }
 
-// Skipping function fmod_system_set_stream_buffer_size (no wrapper is required)
+/**
+ * @param {Real} _file_buffer_size
+ * @param {Enum.FmodTimeUnit} _file_buffer_size_type
+ * @returns {Real}
+ */
+function fmod_system_set_stream_buffer_size(_file_buffer_size, _file_buffer_size_type)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _file_buffer_size, type: Float64
+    if (!is_numeric(_file_buffer_size)) show_error($"{_GMFUNCTION_} :: _file_buffer_size expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _file_buffer_size);
+
+    // param: _file_buffer_size_type, type: enum FmodTimeUnit
+
+    if (!is_numeric(_file_buffer_size_type)) show_error($"{_GMFUNCTION_} :: _file_buffer_size_type expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _file_buffer_size_type);
+
+    var __return_value__ = __fmod_system_set_stream_buffer_size(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 /**
  * @param {Real} _driver_id
@@ -5287,7 +5492,7 @@ function fmod_system_create_channel_group(_name)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _channel_group_ref
- * @param {Real} _paused
+ * @param {Bool} _paused
  * @returns {Real}
  */
 function fmod_system_play_dsp(_dsp_ref, _channel_group_ref, _paused)
@@ -5305,9 +5510,9 @@ function fmod_system_play_dsp(_dsp_ref, _channel_group_ref, _paused)
     if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_group_ref);
 
-    // param: _paused, type: Float64
-    if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _paused);
+    // param: _paused, type: Bool
+    if (!is_bool(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _paused);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -5456,7 +5661,7 @@ function fmod_system_get_speaker_mode_channels(_mode)
 }
 
 /**
- * @param {Real} _speaker
+ * @param {Enum.FmodSpeaker} _speaker
  * @returns {Struct.FmodSpeakerPosition}
  */
 function fmod_system_get_speaker_position(_speaker)
@@ -5464,17 +5669,57 @@ function fmod_system_get_speaker_position(_speaker)
     var __available__ = __GMFMOD_is_available();
     if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _speaker, type: enum FmodSpeaker
+
+    if (!is_numeric(_speaker)) show_error($"{_GMFUNCTION_} :: _speaker expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _speaker);
+
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_system_get_speaker_position(_speaker, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+    var __return_value__ = __fmod_system_get_speaker_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
     __result__ = __FmodSpeakerPosition_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
-// Skipping function fmod_system_set_speaker_position (no wrapper is required)
+/**
+ * @param {Enum.FmodSpeaker} _speaker
+ * @param {Real} _x
+ * @param {Real} _y
+ * @param {Bool} _active
+ * @returns {Real}
+ */
+function fmod_system_set_speaker_position(_speaker, _x, _y, _active)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _speaker, type: enum FmodSpeaker
+
+    if (!is_numeric(_speaker)) show_error($"{_GMFUNCTION_} :: _speaker expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _speaker);
+
+    // param: _x, type: Float64
+    if (!is_numeric(_x)) show_error($"{_GMFUNCTION_} :: _x expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _x);
+
+    // param: _y, type: Float64
+    if (!is_numeric(_y)) show_error($"{_GMFUNCTION_} :: _y expected number", true);
+    buffer_write(__args_buffer__, buffer_f64, _y);
+
+    // param: _active, type: Bool
+    if (!is_bool(_active)) show_error($"{_GMFUNCTION_} :: _active expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _active);
+
+    var __return_value__ = __fmod_system_set_speaker_position(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+
+    return __return_value__;
+}
 
 /**
  * @param {Real} _instance
@@ -5665,10 +5910,10 @@ function fmod_system_set_user_data(_user_data)
 }
 
 /**
- * @param {Real} _port_type
+ * @param {Enum.FmodPortType} _port_type
  * @param {Real} _port_index
  * @param {Real} _channel_group_ref
- * @param {Real} _pass_thru
+ * @param {Bool} _pass_thru
  * @returns {Real}
  */
 function fmod_system_attach_channel_group_to_port(_port_type, _port_index, _channel_group_ref, _pass_thru)
@@ -5678,9 +5923,10 @@ function fmod_system_attach_channel_group_to_port(_port_type, _port_index, _chan
 
     var __args_buffer__ = __ext_core_get_args_buffer();
 
-    // param: _port_type, type: Float64
+    // param: _port_type, type: enum FmodPortType
+
     if (!is_numeric(_port_type)) show_error($"{_GMFUNCTION_} :: _port_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _port_type);
+    buffer_write(__args_buffer__, buffer_u64, _port_type);
 
     // param: _port_index, type: Float64
     if (!is_numeric(_port_index)) show_error($"{_GMFUNCTION_} :: _port_index expected number", true);
@@ -5690,9 +5936,9 @@ function fmod_system_attach_channel_group_to_port(_port_type, _port_index, _chan
     if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_group_ref);
 
-    // param: _pass_thru, type: Float64
-    if (!is_numeric(_pass_thru)) show_error($"{_GMFUNCTION_} :: _pass_thru expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _pass_thru);
+    // param: _pass_thru, type: Bool
+    if (!is_bool(_pass_thru)) show_error($"{_GMFUNCTION_} :: _pass_thru expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _pass_thru);
 
     var __return_value__ = __fmod_system_attach_channel_group_to_port(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -5846,7 +6092,7 @@ function fmod_system_create_reverb_3d()
 
 /**
  * @param {String} _name_or_data
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @returns {Real}
  */
 function fmod_system_create_sound(_name_or_data, _mode)
@@ -5854,9 +6100,21 @@ function fmod_system_create_sound(_name_or_data, _mode)
     var __available__ = __GMFMOD_is_available();
     if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _name_or_data, type: String
+    if (!is_string(_name_or_data)) show_error($"{_GMFUNCTION_} :: _name_or_data expected string", true);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name_or_data));
+    buffer_write(__args_buffer__, buffer_string, _name_or_data);
+
+    // param: _mode, type: enum FmodMode
+
+    if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
+
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_system_create_sound(_name_or_data, _mode, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+    var __return_value__ = __fmod_system_create_sound(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
     __result__ = buffer_read(__ret_buffer__, buffer_u64);
@@ -5865,7 +6123,7 @@ function fmod_system_create_sound(_name_or_data, _mode)
 
 /**
  * @param {String} _name_or_data
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @param {Struct.FmodCreateSoundExInfo} _ex_info
  * @returns {Real}
  */
@@ -5881,9 +6139,10 @@ function fmod_system_create_sound_ex(_name_or_data, _mode, _ex_info)
     buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name_or_data));
     buffer_write(__args_buffer__, buffer_string, _name_or_data);
 
-    // param: _mode, type: Float64
+    // param: _mode, type: enum FmodMode
+
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mode);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
 
     // param: _ex_info, type: struct FmodCreateSoundExInfo
     if (_ex_info.__uid != 506452871) show_error($"{_GMFUNCTION_} :: _ex_info expected FmodCreateSoundExInfo", true);
@@ -5900,7 +6159,7 @@ function fmod_system_create_sound_ex(_name_or_data, _mode, _ex_info)
 
 /**
  * @param {String} _name_or_data
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @returns {Real}
  */
 function fmod_system_create_stream(_name_or_data, _mode)
@@ -5908,9 +6167,21 @@ function fmod_system_create_stream(_name_or_data, _mode)
     var __available__ = __GMFMOD_is_available();
     if (!__available__) return;
 
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _name_or_data, type: String
+    if (!is_string(_name_or_data)) show_error($"{_GMFUNCTION_} :: _name_or_data expected string", true);
+    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_name_or_data));
+    buffer_write(__args_buffer__, buffer_string, _name_or_data);
+
+    // param: _mode, type: enum FmodMode
+
+    if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
+
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_system_create_stream(_name_or_data, _mode, buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+    var __return_value__ = __fmod_system_create_stream(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
     __result__ = buffer_read(__ret_buffer__, buffer_u64);
@@ -5920,7 +6191,7 @@ function fmod_system_create_stream(_name_or_data, _mode)
 /**
  * @param {Id.Buffer} _data
  * @param {Real} _length
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @returns {Real}
  */
 function fmod_system_create_sound_memory(_data, _length, _mode)
@@ -5938,9 +6209,10 @@ function fmod_system_create_sound_memory(_data, _length, _mode)
     if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _length);
 
-    // param: _mode, type: Float64
+    // param: _mode, type: enum FmodMode
+
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mode);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -5954,7 +6226,7 @@ function fmod_system_create_sound_memory(_data, _length, _mode)
 /**
  * @param {Id.Buffer} _data
  * @param {Real} _length
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @param {Struct.FmodCreateSoundExInfo} _ex_info
  * @returns {Real}
  */
@@ -5973,9 +6245,10 @@ function fmod_system_create_sound_memory_ex(_data, _length, _mode, _ex_info)
     if (!is_numeric(_length)) show_error($"{_GMFUNCTION_} :: _length expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _length);
 
-    // param: _mode, type: Float64
+    // param: _mode, type: enum FmodMode
+
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mode);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
 
     // param: _ex_info, type: struct FmodCreateSoundExInfo
     if (_ex_info.__uid != 506452871) show_error($"{_GMFUNCTION_} :: _ex_info expected FmodCreateSoundExInfo", true);
@@ -5993,7 +6266,7 @@ function fmod_system_create_sound_memory_ex(_data, _length, _mode, _ex_info)
 /**
  * @param {Real} _sound_ref
  * @param {Real} _channel_group_ref
- * @param {Real} _pause
+ * @param {Bool} _pause
  * @returns {Real}
  */
 function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
@@ -6011,9 +6284,9 @@ function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
     if (!is_numeric(_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _channel_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_group_ref);
 
-    // param: _pause, type: Float64
-    if (!is_numeric(_pause)) show_error($"{_GMFUNCTION_} :: _pause expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _pause);
+    // param: _pause, type: Bool
+    if (!is_bool(_pause)) show_error($"{_GMFUNCTION_} :: _pause expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _pause);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -6026,7 +6299,7 @@ function fmod_system_play_sound(_sound_ref, _channel_group_ref, _pause)
 
 /**
  * @param {Real} _sound_ref
- * @param {Real} _length_type
+ * @param {Enum.FmodTimeUnit} _length_type
  * @returns {Real}
  */
 function fmod_sound_get_length(_sound_ref, _length_type)
@@ -6040,9 +6313,10 @@ function fmod_sound_get_length(_sound_ref, _length_type)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    // param: _length_type, type: Float64
+    // param: _length_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_length_type)) show_error($"{_GMFUNCTION_} :: _length_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _length_type);
+    buffer_write(__args_buffer__, buffer_u64, _length_type);
 
     var __return_value__ = __fmod_sound_get_length(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -6081,7 +6355,7 @@ function fmod_sound_set_defaults(_sound_ref, _frequency, _priority)
 
 /**
  * @param {Real} _sound_ref
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @returns {Real}
  */
 function fmod_sound_set_mode(_sound_ref, _mode)
@@ -6095,9 +6369,10 @@ function fmod_sound_set_mode(_sound_ref, _mode)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    // param: _mode, type: Float64
+    // param: _mode, type: enum FmodMode
+
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mode);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
 
     var __return_value__ = __fmod_sound_set_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -6106,7 +6381,7 @@ function fmod_sound_set_mode(_sound_ref, _mode)
 
 /**
  * @param {Real} _sound_ref
- * @returns {Real}
+ * @returns {Enum.FmodMode}
  */
 function fmod_sound_get_mode(_sound_ref)
 {
@@ -6119,14 +6394,18 @@ function fmod_sound_get_mode(_sound_ref)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    var __return_value__ = __fmod_sound_get_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_sound_get_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
  * @param {Real} _sound_ref
- * @returns {Real}
+ * @returns {Enum.FmodSoundFormat}
  */
 function fmod_sound_get_format(_sound_ref)
 {
@@ -6139,9 +6418,13 @@ function fmod_sound_get_format(_sound_ref)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    var __return_value__ = __fmod_sound_get_format(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_sound_get_format(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
@@ -6236,9 +6519,9 @@ function fmod_sound_get_loop_count(_sound_ref)
 /**
  * @param {Real} _sound_ref
  * @param {Real} _loop_start
- * @param {Real} _loop_start_type
+ * @param {Enum.FmodTimeUnit} _loop_start_type
  * @param {Real} _loop_end
- * @param {Real} _loop_end_type
+ * @param {Enum.FmodTimeUnit} _loop_end_type
  * @returns {Real}
  */
 function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _loop_end, _loop_end_type)
@@ -6256,17 +6539,19 @@ function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _
     if (!is_numeric(_loop_start)) show_error($"{_GMFUNCTION_} :: _loop_start expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _loop_start);
 
-    // param: _loop_start_type, type: Float64
+    // param: _loop_start_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_loop_start_type)) show_error($"{_GMFUNCTION_} :: _loop_start_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _loop_start_type);
+    buffer_write(__args_buffer__, buffer_u64, _loop_start_type);
 
     // param: _loop_end, type: Float64
     if (!is_numeric(_loop_end)) show_error($"{_GMFUNCTION_} :: _loop_end expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _loop_end);
 
-    // param: _loop_end_type, type: Float64
+    // param: _loop_end_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_loop_end_type)) show_error($"{_GMFUNCTION_} :: _loop_end_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _loop_end_type);
+    buffer_write(__args_buffer__, buffer_u64, _loop_end_type);
 
     var __return_value__ = __fmod_sound_set_loop_points(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -6275,8 +6560,8 @@ function fmod_sound_set_loop_points(_sound_ref, _loop_start, _loop_start_type, _
 
 /**
  * @param {Real} _sound_ref
- * @param {Real} _start_type
- * @param {Real} _end_type
+ * @param {Enum.FmodTimeUnit} _start_type
+ * @param {Enum.FmodTimeUnit} _end_type
  * @returns {Struct.FmodLoopPoints}
  */
 function fmod_sound_get_loop_points(_sound_ref, _start_type, _end_type)
@@ -6290,13 +6575,15 @@ function fmod_sound_get_loop_points(_sound_ref, _start_type, _end_type)
     if (!is_numeric(_sound_ref)) show_error($"{_GMFUNCTION_} :: _sound_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_ref);
 
-    // param: _start_type, type: Float64
-    if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _start_type);
+    // param: _start_type, type: enum FmodTimeUnit
 
-    // param: _end_type, type: Float64
+    if (!is_numeric(_start_type)) show_error($"{_GMFUNCTION_} :: _start_type expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _start_type);
+
+    // param: _end_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_end_type)) show_error($"{_GMFUNCTION_} :: _end_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _end_type);
+    buffer_write(__args_buffer__, buffer_u64, _end_type);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -6498,7 +6785,7 @@ function fmod_sound_get_num_sync_points(_sound_ref)
 /**
  * @param {Real} _sound_ref
  * @param {Real} _sync_point_index
- * @param {Real} _offset_type
+ * @param {Enum.FmodTimeUnit} _offset_type
  * @returns {Struct.FmodSyncPointInfo}
  */
 function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
@@ -6516,9 +6803,10 @@ function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
     if (!is_numeric(_sync_point_index)) show_error($"{_GMFUNCTION_} :: _sync_point_index expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _sync_point_index);
 
-    // param: _offset_type, type: Float64
+    // param: _offset_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_offset_type)) show_error($"{_GMFUNCTION_} :: _offset_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _offset_type);
+    buffer_write(__args_buffer__, buffer_u64, _offset_type);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -6532,7 +6820,7 @@ function fmod_sound_get_sync_point(_sound_ref, _sync_point_index, _offset_type)
 /**
  * @param {Real} _sound_ref
  * @param {Real} _offset
- * @param {Real} _offset_type
+ * @param {Enum.FmodTimeUnit} _offset_type
  * @param {String} _name
  * @returns {Real}
  */
@@ -6551,9 +6839,10 @@ function fmod_sound_add_sync_point(_sound_ref, _offset, _offset_type, _name)
     if (!is_numeric(_offset)) show_error($"{_GMFUNCTION_} :: _offset expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _offset);
 
-    // param: _offset_type, type: Float64
+    // param: _offset_type, type: enum FmodTimeUnit
+
     if (!is_numeric(_offset_type)) show_error($"{_GMFUNCTION_} :: _offset_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _offset_type);
+    buffer_write(__args_buffer__, buffer_u64, _offset_type);
 
     // param: _name, type: String
     if (!is_string(_name)) show_error($"{_GMFUNCTION_} :: _name expected string", true);
@@ -7202,7 +7491,7 @@ function fmod_channel_group_get_channel(_channel_group_ref, _index)
 /**
  * @param {Real} _channel_group_ref
  * @param {Real} _child_channel_group_ref
- * @param {Real} _propagate_dsp_clock
+ * @param {Bool} _propagate_dsp_clock
  * @returns {Real}
  */
 function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_ref, _propagate_dsp_clock)
@@ -7220,9 +7509,9 @@ function fmod_channel_group_add_group(_channel_group_ref, _child_channel_group_r
     if (!is_numeric(_child_channel_group_ref)) show_error($"{_GMFUNCTION_} :: _child_channel_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _child_channel_group_ref);
 
-    // param: _propagate_dsp_clock, type: Float64
-    if (!is_numeric(_propagate_dsp_clock)) show_error($"{_GMFUNCTION_} :: _propagate_dsp_clock expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _propagate_dsp_clock);
+    // param: _propagate_dsp_clock, type: Bool
+    if (!is_bool(_propagate_dsp_clock)) show_error($"{_GMFUNCTION_} :: _propagate_dsp_clock expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _propagate_dsp_clock);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -7441,7 +7730,7 @@ function fmod_sound_group_get_max_audible(_sound_group_ref)
 
 /**
  * @param {Real} _sound_group_ref
- * @param {Real} _behavior
+ * @param {Enum.FmodSoundGroupBehavior} _behavior
  * @returns {Real}
  */
 function fmod_sound_group_set_max_audible_behavior(_sound_group_ref, _behavior)
@@ -7455,9 +7744,10 @@ function fmod_sound_group_set_max_audible_behavior(_sound_group_ref, _behavior)
     if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_group_ref);
 
-    // param: _behavior, type: Float64
+    // param: _behavior, type: enum FmodSoundGroupBehavior
+
     if (!is_numeric(_behavior)) show_error($"{_GMFUNCTION_} :: _behavior expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _behavior);
+    buffer_write(__args_buffer__, buffer_u64, _behavior);
 
     var __return_value__ = __fmod_sound_group_set_max_audible_behavior(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -7466,7 +7756,7 @@ function fmod_sound_group_set_max_audible_behavior(_sound_group_ref, _behavior)
 
 /**
  * @param {Real} _sound_group_ref
- * @returns {Real}
+ * @returns {Enum.FmodSoundGroupBehavior}
  */
 function fmod_sound_group_get_max_audible_behavior(_sound_group_ref)
 {
@@ -7479,9 +7769,13 @@ function fmod_sound_group_get_max_audible_behavior(_sound_group_ref)
     if (!is_numeric(_sound_group_ref)) show_error($"{_GMFUNCTION_} :: _sound_group_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _sound_group_ref);
 
-    var __return_value__ = __fmod_sound_group_get_max_audible_behavior(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_sound_group_get_max_audible_behavior(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
@@ -7778,7 +8072,7 @@ function fmod_sound_group_get_system_object(_sound_group_ref)
 
 /**
  * @param {Real} _reverb_3d_ref
- * @param {Real} _active
+ * @param {Bool} _active
  * @returns {Real}
  */
 function fmod_reverb_3d_set_active(_reverb_3d_ref, _active)
@@ -7792,9 +8086,9 @@ function fmod_reverb_3d_set_active(_reverb_3d_ref, _active)
     if (!is_numeric(_reverb_3d_ref)) show_error($"{_GMFUNCTION_} :: _reverb_3d_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _reverb_3d_ref);
 
-    // param: _active, type: Float64
-    if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _active);
+    // param: _active, type: Bool
+    if (!is_bool(_active)) show_error($"{_GMFUNCTION_} :: _active expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _active);
 
     var __return_value__ = __fmod_reverb_3d_set_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -7803,7 +8097,7 @@ function fmod_reverb_3d_set_active(_reverb_3d_ref, _active)
 
 /**
  * @param {Real} _reverb_3d_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_reverb_3d_get_active(_reverb_3d_ref)
 {
@@ -8194,7 +8488,7 @@ function fmod_channel_control_get_fade_point_at(_channel_control_ref, _index)
 
 /**
  * @param {Real} _channel_control_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_channel_control_is_playing(_channel_control_ref)
 {
@@ -8234,7 +8528,7 @@ function fmod_channel_control_stop(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _paused
+ * @param {Bool} _paused
  * @returns {Real}
  */
 function fmod_channel_control_set_paused(_channel_control_ref, _paused)
@@ -8248,9 +8542,9 @@ function fmod_channel_control_set_paused(_channel_control_ref, _paused)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _paused, type: Float64
-    if (!is_numeric(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _paused);
+    // param: _paused, type: Bool
+    if (!is_bool(_paused)) show_error($"{_GMFUNCTION_} :: _paused expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _paused);
 
     var __return_value__ = __fmod_channel_control_set_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -8259,7 +8553,7 @@ function fmod_channel_control_set_paused(_channel_control_ref, _paused)
 
 /**
  * @param {Real} _channel_control_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_channel_control_get_paused(_channel_control_ref)
 {
@@ -8279,7 +8573,7 @@ function fmod_channel_control_get_paused(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _mode
+ * @param {Enum.FmodMode} _mode
  * @returns {Real}
  */
 function fmod_channel_control_set_mode(_channel_control_ref, _mode)
@@ -8293,9 +8587,10 @@ function fmod_channel_control_set_mode(_channel_control_ref, _mode)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _mode, type: Float64
+    // param: _mode, type: enum FmodMode
+
     if (!is_numeric(_mode)) show_error($"{_GMFUNCTION_} :: _mode expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mode);
+    buffer_write(__args_buffer__, buffer_u64, _mode);
 
     var __return_value__ = __fmod_channel_control_set_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -8304,7 +8599,7 @@ function fmod_channel_control_set_mode(_channel_control_ref, _mode)
 
 /**
  * @param {Real} _channel_control_ref
- * @returns {Real}
+ * @returns {Enum.FmodMode}
  */
 function fmod_channel_control_get_mode(_channel_control_ref)
 {
@@ -8317,9 +8612,13 @@ function fmod_channel_control_get_mode(_channel_control_ref)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    var __return_value__ = __fmod_channel_control_get_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_channel_control_get_mode(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
@@ -8434,7 +8733,7 @@ function fmod_channel_control_get_volume(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _ramp
+ * @param {Bool} _ramp
  * @returns {Real}
  */
 function fmod_channel_control_set_volume_ramp(_channel_control_ref, _ramp)
@@ -8448,9 +8747,9 @@ function fmod_channel_control_set_volume_ramp(_channel_control_ref, _ramp)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _ramp, type: Float64
-    if (!is_numeric(_ramp)) show_error($"{_GMFUNCTION_} :: _ramp expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _ramp);
+    // param: _ramp, type: Bool
+    if (!is_bool(_ramp)) show_error($"{_GMFUNCTION_} :: _ramp expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _ramp);
 
     var __return_value__ = __fmod_channel_control_set_volume_ramp(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -8459,7 +8758,7 @@ function fmod_channel_control_set_volume_ramp(_channel_control_ref, _ramp)
 
 /**
  * @param {Real} _channel_control_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_channel_control_get_volume_ramp(_channel_control_ref)
 {
@@ -8479,7 +8778,7 @@ function fmod_channel_control_get_volume_ramp(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _mute
+ * @param {Bool} _mute
  * @returns {Real}
  */
 function fmod_channel_control_set_mute(_channel_control_ref, _mute)
@@ -8493,9 +8792,9 @@ function fmod_channel_control_set_mute(_channel_control_ref, _mute)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _mute, type: Float64
-    if (!is_numeric(_mute)) show_error($"{_GMFUNCTION_} :: _mute expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _mute);
+    // param: _mute, type: Bool
+    if (!is_bool(_mute)) show_error($"{_GMFUNCTION_} :: _mute expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _mute);
 
     var __return_value__ = __fmod_channel_control_set_mute(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -8504,7 +8803,7 @@ function fmod_channel_control_set_mute(_channel_control_ref, _mute)
 
 /**
  * @param {Real} _channel_control_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_channel_control_get_mute(_channel_control_ref)
 {
@@ -8929,7 +9228,7 @@ function fmod_channel_control_get_3d_spread(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _custom
+ * @param {Bool} _custom
  * @param {Real} _custom_level
  * @param {Real} _center_freq
  * @returns {Real}
@@ -8945,9 +9244,9 @@ function fmod_channel_control_set_3d_distance_filter(_channel_control_ref, _cust
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _custom, type: Float64
-    if (!is_numeric(_custom)) show_error($"{_GMFUNCTION_} :: _custom expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _custom);
+    // param: _custom, type: Bool
+    if (!is_bool(_custom)) show_error($"{_GMFUNCTION_} :: _custom expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _custom);
 
     // param: _custom_level, type: Float64
     if (!is_numeric(_custom_level)) show_error($"{_GMFUNCTION_} :: _custom_level expected number", true);
@@ -9639,7 +9938,7 @@ function fmod_channel_control_get_delay(_channel_ref)
  * @param {Real} _channel_ref
  * @param {Real} _dspclock_start
  * @param {Real} _dspclock_end
- * @param {Real} _stop_channels
+ * @param {Bool} _stop_channels
  * @returns {Real}
  */
 function fmod_channel_control_set_delay(_channel_ref, _dspclock_start, _dspclock_end, _stop_channels)
@@ -9661,9 +9960,9 @@ function fmod_channel_control_set_delay(_channel_ref, _dspclock_start, _dspclock
     if (!is_numeric(_dspclock_end)) show_error($"{_GMFUNCTION_} :: _dspclock_end expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _dspclock_end);
 
-    // param: _stop_channels, type: Float64
-    if (!is_numeric(_stop_channels)) show_error($"{_GMFUNCTION_} :: _stop_channels expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _stop_channels);
+    // param: _stop_channels, type: Bool
+    if (!is_bool(_stop_channels)) show_error($"{_GMFUNCTION_} :: _stop_channels expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _stop_channels);
 
     var __return_value__ = __fmod_channel_control_set_delay(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -9733,7 +10032,7 @@ function fmod_channel_control_set_callback(_channel_ref, _callback)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _dsp_input_ref
- * @param {Real} _dsp_connection_type
+ * @param {Enum.FmodDspConnectionType} _dsp_connection_type
  * @returns {Real}
  */
 function fmod_dsp_add_input(_dsp_ref, _dsp_input_ref, _dsp_connection_type)
@@ -9751,9 +10050,10 @@ function fmod_dsp_add_input(_dsp_ref, _dsp_input_ref, _dsp_connection_type)
     if (!is_numeric(_dsp_input_ref)) show_error($"{_GMFUNCTION_} :: _dsp_input_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_input_ref);
 
-    // param: _dsp_connection_type, type: Float64
+    // param: _dsp_connection_type, type: enum FmodDspConnectionType
+
     if (!is_numeric(_dsp_connection_type)) show_error($"{_GMFUNCTION_} :: _dsp_connection_type expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _dsp_connection_type);
+    buffer_write(__args_buffer__, buffer_u64, _dsp_connection_type);
 
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
@@ -9806,8 +10106,8 @@ function fmod_dsp_get_num_outputs(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @param {Real} _inputs
- * @param {Real} _outputs
+ * @param {Bool} _inputs
+ * @param {Bool} _outputs
  * @returns {Real}
  */
 function fmod_dsp_disconnect_all(_dsp_ref, _inputs, _outputs)
@@ -9821,13 +10121,13 @@ function fmod_dsp_disconnect_all(_dsp_ref, _inputs, _outputs)
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    // param: _inputs, type: Float64
-    if (!is_numeric(_inputs)) show_error($"{_GMFUNCTION_} :: _inputs expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _inputs);
+    // param: _inputs, type: Bool
+    if (!is_bool(_inputs)) show_error($"{_GMFUNCTION_} :: _inputs expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _inputs);
 
-    // param: _outputs, type: Float64
-    if (!is_numeric(_outputs)) show_error($"{_GMFUNCTION_} :: _outputs expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _outputs);
+    // param: _outputs, type: Bool
+    if (!is_bool(_outputs)) show_error($"{_GMFUNCTION_} :: _outputs expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _outputs);
 
     var __return_value__ = __fmod_dsp_disconnect_all(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -9965,7 +10265,7 @@ function fmod_dsp_get_parameter_int(_dsp_ref, _index)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @param {Real} _value
+ * @param {Bool} _value
  */
 function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
 {
@@ -9982,9 +10282,9 @@ function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
     if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _index);
 
-    // param: _value, type: Float64
-    if (!is_numeric(_value)) show_error($"{_GMFUNCTION_} :: _value expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _value);
+    // param: _value, type: Bool
+    if (!is_bool(_value)) show_error($"{_GMFUNCTION_} :: _value expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _value);
 
     var __return_value__ = __fmod_dsp_set_parameter_bool(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -9994,7 +10294,7 @@ function fmod_dsp_set_parameter_bool(_dsp_ref, _index, _value)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_dsp_get_parameter_bool(_dsp_ref, _index)
 {
@@ -10266,7 +10566,7 @@ function fmod_dsp_get_parameter_info(_dsp_ref, _index)
 
 /**
  * @param {Real} _dsp_ref
- * @param {Real} _channel_mask
+ * @param {Enum.FmodChannelMask} _channel_mask
  * @param {Real} _num_channels
  */
 function fmod_dsp_set_channel_format(_dsp_ref, _channel_mask, _num_channels)
@@ -10280,9 +10580,10 @@ function fmod_dsp_set_channel_format(_dsp_ref, _channel_mask, _num_channels)
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    // param: _channel_mask, type: Float64
+    // param: _channel_mask, type: enum FmodChannelMask
+
     if (!is_numeric(_channel_mask)) show_error($"{_GMFUNCTION_} :: _channel_mask expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _channel_mask);
+    buffer_write(__args_buffer__, buffer_u64, _channel_mask);
 
     // param: _num_channels, type: Float64
     if (!is_numeric(_num_channels)) show_error($"{_GMFUNCTION_} :: _num_channels expected number", true);
@@ -10367,8 +10668,8 @@ function fmod_dsp_get_metering_info(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @param {Real} _input_enabled
- * @param {Real} _output_enabled
+ * @param {Bool} _input_enabled
+ * @param {Bool} _output_enabled
  */
 function fmod_dsp_set_metering_enabled(_dsp_ref, _input_enabled, _output_enabled)
 {
@@ -10381,13 +10682,13 @@ function fmod_dsp_set_metering_enabled(_dsp_ref, _input_enabled, _output_enabled
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    // param: _input_enabled, type: Float64
-    if (!is_numeric(_input_enabled)) show_error($"{_GMFUNCTION_} :: _input_enabled expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _input_enabled);
+    // param: _input_enabled, type: Bool
+    if (!is_bool(_input_enabled)) show_error($"{_GMFUNCTION_} :: _input_enabled expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _input_enabled);
 
-    // param: _output_enabled, type: Float64
-    if (!is_numeric(_output_enabled)) show_error($"{_GMFUNCTION_} :: _output_enabled expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _output_enabled);
+    // param: _output_enabled, type: Bool
+    if (!is_bool(_output_enabled)) show_error($"{_GMFUNCTION_} :: _output_enabled expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _output_enabled);
 
     var __return_value__ = __fmod_dsp_set_metering_enabled(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -10420,7 +10721,7 @@ function fmod_dsp_get_metering_enabled(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @param {Real} _active
+ * @param {Bool} _active
  */
 function fmod_dsp_set_active(_dsp_ref, _active)
 {
@@ -10433,9 +10734,9 @@ function fmod_dsp_set_active(_dsp_ref, _active)
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    // param: _active, type: Float64
-    if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _active);
+    // param: _active, type: Bool
+    if (!is_bool(_active)) show_error($"{_GMFUNCTION_} :: _active expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _active);
 
     var __return_value__ = __fmod_dsp_set_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -10444,7 +10745,7 @@ function fmod_dsp_set_active(_dsp_ref, _active)
 
 /**
  * @param {Real} _dsp_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_dsp_get_active(_dsp_ref)
 {
@@ -10464,7 +10765,7 @@ function fmod_dsp_get_active(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @param {Real} _bypass
+ * @param {Bool} _bypass
  */
 function fmod_dsp_set_bypass(_dsp_ref, _bypass)
 {
@@ -10477,9 +10778,9 @@ function fmod_dsp_set_bypass(_dsp_ref, _bypass)
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    // param: _bypass, type: Float64
-    if (!is_numeric(_bypass)) show_error($"{_GMFUNCTION_} :: _bypass expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _bypass);
+    // param: _bypass, type: Bool
+    if (!is_bool(_bypass)) show_error($"{_GMFUNCTION_} :: _bypass expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _bypass);
 
     var __return_value__ = __fmod_dsp_set_bypass(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -10488,7 +10789,7 @@ function fmod_dsp_set_bypass(_dsp_ref, _bypass)
 
 /**
  * @param {Real} _dsp_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_dsp_get_bypass(_dsp_ref)
 {
@@ -10566,7 +10867,7 @@ function fmod_dsp_get_wet_dry_mix(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_dsp_get_idle(_dsp_ref)
 {
@@ -10605,7 +10906,7 @@ function fmod_dsp_reset(_dsp_ref)
 
 /**
  * @param {Real} _dsp_ref
- * @returns {Real}
+ * @returns {Enum.FmodDspType}
  */
 function fmod_dsp_get_type(_dsp_ref)
 {
@@ -10618,9 +10919,13 @@ function fmod_dsp_get_type(_dsp_ref)
     if (!is_numeric(_dsp_ref)) show_error($"{_GMFUNCTION_} :: _dsp_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _dsp_ref);
 
-    var __return_value__ = __fmod_dsp_get_type(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_dsp_get_type(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
@@ -10925,7 +11230,7 @@ function fmod_dsp_connection_get_output(_connection_ref)
 
 /**
  * @param {Real} _connection_ref
- * @returns {Real}
+ * @returns {Enum.FmodDspConnectionType}
  */
 function fmod_dsp_connection_get_type(_connection_ref)
 {
@@ -10938,9 +11243,13 @@ function fmod_dsp_connection_get_type(_connection_ref)
     if (!is_numeric(_connection_ref)) show_error($"{_GMFUNCTION_} :: _connection_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _connection_ref);
 
-    var __return_value__ = __fmod_dsp_connection_get_type(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    return __return_value__;
+    var __return_value__ = __fmod_dsp_connection_get_type(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
 }
 
 /**
@@ -10996,7 +11305,7 @@ function fmod_dsp_connection_get_user_data(_connection_ref)
  * @param {Real} _geometry_ref
  * @param {Real} _direct_occlusion
  * @param {Real} _reverb_occlusion
- * @param {Real} _double_sided
+ * @param {Bool} _double_sided
  * @param {Real} _num_vertices
  * @param {Id.Buffer} _vertices
  * @returns {Real}
@@ -11020,9 +11329,9 @@ function fmod_geometry_add_polygon(_geometry_ref, _direct_occlusion, _reverb_occ
     if (!is_numeric(_reverb_occlusion)) show_error($"{_GMFUNCTION_} :: _reverb_occlusion expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _reverb_occlusion);
 
-    // param: _double_sided, type: Float64
-    if (!is_numeric(_double_sided)) show_error($"{_GMFUNCTION_} :: _double_sided expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _double_sided);
+    // param: _double_sided, type: Bool
+    if (!is_bool(_double_sided)) show_error($"{_GMFUNCTION_} :: _double_sided expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _double_sided);
 
     // param: _num_vertices, type: Float64
     if (!is_numeric(_num_vertices)) show_error($"{_GMFUNCTION_} :: _num_vertices expected number", true);
@@ -11042,7 +11351,7 @@ function fmod_geometry_add_polygon(_geometry_ref, _direct_occlusion, _reverb_occ
  * @param {Real} _polygon_index
  * @param {Real} _direct_occlusion
  * @param {Real} _reverb_occlusion
- * @param {Real} _double_sided
+ * @param {Bool} _double_sided
  * @returns {Real}
  */
 function fmod_geometry_set_polygon_attributes(_geometry_ref, _polygon_index, _direct_occlusion, _reverb_occlusion, _double_sided)
@@ -11068,9 +11377,9 @@ function fmod_geometry_set_polygon_attributes(_geometry_ref, _polygon_index, _di
     if (!is_numeric(_reverb_occlusion)) show_error($"{_GMFUNCTION_} :: _reverb_occlusion expected number", true);
     buffer_write(__args_buffer__, buffer_f64, _reverb_occlusion);
 
-    // param: _double_sided, type: Float64
-    if (!is_numeric(_double_sided)) show_error($"{_GMFUNCTION_} :: _double_sided expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _double_sided);
+    // param: _double_sided, type: Bool
+    if (!is_bool(_double_sided)) show_error($"{_GMFUNCTION_} :: _double_sided expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _double_sided);
 
     var __return_value__ = __fmod_geometry_set_polygon_attributes(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -11487,7 +11796,7 @@ function fmod_geometry_get_user_data(_geometry_ref)
 
 /**
  * @param {Real} _geometry_ref
- * @returns {Real}
+ * @returns {Bool}
  */
 function fmod_geometry_get_active(_geometry_ref)
 {
@@ -11507,7 +11816,7 @@ function fmod_geometry_get_active(_geometry_ref)
 
 /**
  * @param {Real} _geometry_ref
- * @param {Real} _active
+ * @param {Bool} _active
  * @returns {Real}
  */
 function fmod_geometry_set_active(_geometry_ref, _active)
@@ -11521,9 +11830,9 @@ function fmod_geometry_set_active(_geometry_ref, _active)
     if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _geometry_ref);
 
-    // param: _active, type: Float64
-    if (!is_numeric(_active)) show_error($"{_GMFUNCTION_} :: _active expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _active);
+    // param: _active, type: Bool
+    if (!is_bool(_active)) show_error($"{_GMFUNCTION_} :: _active expected bool", true);
+    buffer_write(__args_buffer__, buffer_bool, _active);
 
     var __return_value__ = __fmod_geometry_set_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
@@ -11642,4 +11951,4 @@ function __GMFMOD_is_available()
 // # Exports
 // #####################################################################
 
-#export FmodResult, FmodInitFlags, FmodMode, FmodTimeUnit, FmodDspType, FmodDspConnectionType, FmodDspLowPass, FmodDspHighPass, FmodDspItLowPass, FmodDspEcho, FmodDspEchoDelayChangeMode, FmodDspFlange, FmodDspDistortion, FmodDspNormalize, FmodDspLimiter, FmodDspParamEq, FmodDspPitchShift, FmodDspChorus, FmodDspMultibandEq, FmodDspMultibandEqFilterType, FmodDspChannelMix, FmodDspChannelMixOutput, FmodDspTransceiver, FmodDspTransceiverSpeakerMode, FmodDspCompressor, FmodDspFft, FmodDspFftWindowType, FmodDspOscillator, FmodDspOscillatorType, FmodDspConvolution, FmodDspFader, FmodDspMultibandDynamics, FmodDspMultibandDynamicsModeType, FmodDspItEcho, FmodDspSfxReverb, FmodDspLowPassSimple, FmodDspHighPassSimple, FmodDspDelay, FmodDspTremolo, FmodDspSend, FmodDspReturn, FmodDspPan, FmodDspPanModeType, FmodDspPan2dStereoModeType, FmodDspPan3dRolloffType, FmodDspPan3dExtentModeType, FmodDspObjectPan, FmodDspThreeEq, FmodDspThreeEqCrossoverSlopeType, FmodDspFftDownmixType, FmodDspLoudnessMeter, FmodDspLoudnessMeterStateType, FmodSpeakerMode, FmodDriverState, FmodDebugFlags, FmodDebugMode, FmodSoundType, FmodSoundFormat, FmodOutputType, FmodChannelControlDspIndex, FmodOpenState, FmodTagType, FmodTagDataType, FmodSoundDefaults, FmodLoopPoints, FmodSoundMinMaxDistance, FmodConeSettings, FmodSystem3DSettings, FmodVec3, FmodSyncPointInfo, FmodRecordDriverInfo, FmodDSPMixMatrix, FmodDSPChannelFormat, FmodDSPMeteringInfo, FmodDSPMeteringEnabled, FmodDSPParameterInfo, FmodDSPWetDryMix, FmodDSPInfo, FmodDSPCPUUsage, FmodMinMaxDistance, FmodSyncPoint, FmodDSPBufferSize, FmodSoftwareFormat, FmodDriverInfo, FmodDelay, FmodDSPClock, FmodSoundOpenState, FmodSoundTag, FmodFadePoint, FmodDistanceFilter, FmodOcclusion, FmodGeometryMaxPolygons, FmodPolygonAttributes, FmodReverbProperties, FmodSoundLockLengths, FmodMemoryStats, FmodAdvancedSettings, FmodSpeakerPosition, FmodCPUUsage, FmodFileUsage, FmodStreamBufferSize, FmodCreateSoundExInfo, FmodListener3DAttributes, FmodChannelControl3DAttributes, FmodGeometryRotation, FmodReverb3DAttributes, fmod_last_result, fmod_debug_initialize, fmod_error_string, fmod_memory_get_stats, fmod_channel_set_frequency, fmod_channel_get_frequency, fmod_channel_set_priority, fmod_channel_get_priority, fmod_channel_set_position, fmod_channel_get_position, fmod_channel_set_channel_group, fmod_channel_get_channel_group, fmod_channel_set_loop_count, fmod_channel_get_loop_count, fmod_channel_set_loop_points, fmod_channel_get_loop_points, fmod_channel_is_virtual, fmod_channel_get_index, fmod_channel_get_current_sound, fmod_channel_get_system_object, fmod_system_create, fmod_system_release, fmod_system_close, fmod_system_get_channel, fmod_system_get_master_channel_group, fmod_system_set_output, fmod_system_get_output, fmod_system_get_3d_settings, fmod_system_set_3d_listener_attributes, fmod_system_get_3d_listener_attributes, fmod_system_get_record_driver_info, fmod_system_record_start, fmod_system_create_dsp, fmod_system_create_dsp_by_type, fmod_system_get_dsp_buffer_size, fmod_system_get_software_format, fmod_system_set_software_format, fmod_system_get_driver_info, fmod_system_create_channel_group, fmod_system_play_dsp, fmod_system_select, fmod_system_adopt, fmod_system_get_master_sound_group, fmod_system_get_advanced_settings, fmod_system_set_advanced_settings, fmod_system_get_speaker_mode_channels, fmod_system_get_speaker_position, fmod_system_get_reverb_properties, fmod_system_set_reverb_properties, fmod_system_get_default_mix_matrix, fmod_system_get_cpu_usage, fmod_system_get_file_usage, fmod_system_get_stream_buffer_size, fmod_system_get_user_data, fmod_system_set_user_data, fmod_system_attach_channel_group_to_port, fmod_system_detach_channel_group_from_port, fmod_system_create_sound_group, fmod_system_create_geometry, fmod_system_load_geometry, fmod_system_get_geometry_occlusion, fmod_system_create_reverb_3d, fmod_system_create_sound, fmod_system_create_sound_ex, fmod_system_create_stream, fmod_system_create_sound_memory, fmod_system_create_sound_memory_ex, fmod_system_play_sound, fmod_sound_get_length, fmod_sound_set_defaults, fmod_sound_set_mode, fmod_sound_get_mode, fmod_sound_get_format, fmod_sound_get_name, fmod_sound_get_defaults, fmod_sound_set_loop_count, fmod_sound_get_loop_count, fmod_sound_set_loop_points, fmod_sound_get_loop_points, fmod_sound_set_3d_min_max_distance, fmod_sound_get_3d_min_max_distance, fmod_sound_set_3d_cone_settings, fmod_sound_get_3d_cone_settings, fmod_sound_set_3d_custom_rolloff, fmod_sound_get_3d_custom_rolloff, fmod_sound_get_num_sync_points, fmod_sound_get_sync_point, fmod_sound_add_sync_point, fmod_sound_delete_sync_point, fmod_sound_get_music_num_channels, fmod_sound_set_music_channel_volume, fmod_sound_get_music_channel_volume, fmod_sound_set_music_speed, fmod_sound_get_music_speed, fmod_sound_set_sound_group, fmod_sound_get_sound_group, fmod_sound_set_user_data, fmod_sound_get_user_data, fmod_sound_release, fmod_sound_get_system_object, fmod_sound_get_open_state, fmod_sound_get_num_tags, fmod_sound_get_tag, fmod_sound_get_num_sub_sounds, fmod_sound_get_sub_sound, fmod_sound_get_sub_sound_parent, fmod_sound_read_data, fmod_sound_seek_data, fmod_sound_lock, fmod_sound_unlock, fmod_channel_group_get_num_channels, fmod_channel_group_get_channel, fmod_channel_group_add_group, fmod_channel_group_get_num_groups, fmod_channel_group_get_group, fmod_channel_group_get_parent_group, fmod_channel_group_get_name, fmod_channel_group_release, fmod_channel_group_get_system_object, fmod_channel_group_adopt, fmod_sound_group_set_max_audible, fmod_sound_group_get_max_audible, fmod_sound_group_set_max_audible_behavior, fmod_sound_group_get_max_audible_behavior, fmod_sound_group_set_mute_fade_speed, fmod_sound_group_get_mute_fade_speed, fmod_sound_group_set_volume, fmod_sound_group_get_volume, fmod_sound_group_get_num_sounds, fmod_sound_group_get_sound, fmod_sound_group_get_num_playing, fmod_sound_group_stop, fmod_sound_group_set_user_data, fmod_sound_group_get_user_data, fmod_sound_group_get_name, fmod_sound_group_release, fmod_sound_group_get_system_object, fmod_reverb_3d_set_active, fmod_reverb_3d_get_active, fmod_reverb_3d_set_properties, fmod_reverb_3d_get_properties, fmod_reverb_3d_set_3d_attributes, fmod_reverb_3d_get_3d_attributes, fmod_reverb_3d_set_user_data, fmod_reverb_3d_get_user_data, fmod_reverb_3d_release, fmod_channel_control_add_fade_point, fmod_channel_control_remove_fade_points, fmod_channel_control_set_fade_point_ramp, fmod_channel_control_get_fade_point_count, fmod_channel_control_get_fade_point_at, fmod_channel_control_is_playing, fmod_channel_control_stop, fmod_channel_control_set_paused, fmod_channel_control_get_paused, fmod_channel_control_set_mode, fmod_channel_control_get_mode, fmod_channel_control_set_pitch, fmod_channel_control_get_pitch, fmod_channel_control_get_audibility, fmod_channel_control_set_volume, fmod_channel_control_get_volume, fmod_channel_control_set_volume_ramp, fmod_channel_control_get_volume_ramp, fmod_channel_control_set_mute, fmod_channel_control_get_mute, fmod_channel_control_set_3d_doppler_level, fmod_channel_control_get_3d_doppler_level, fmod_channel_control_set_3d_level, fmod_channel_control_get_3d_level, fmod_channel_control_set_3d_min_max_distance, fmod_channel_control_get_3d_min_max_distance, fmod_channel_control_set_3d_cone_settings, fmod_channel_control_get_3d_cone_settings, fmod_channel_control_set_3d_cone_orientation, fmod_channel_control_get_3d_cone_orientation, fmod_channel_control_set_3d_occlusion, fmod_channel_control_get_3d_occlusion, fmod_channel_control_set_3d_attributes, fmod_channel_control_get_3d_attributes, fmod_channel_control_set_3d_spread, fmod_channel_control_get_3d_spread, fmod_channel_control_set_3d_distance_filter, fmod_channel_control_get_3d_distance_filter, fmod_channel_control_set_3d_custom_rolloff, fmod_channel_control_get_3d_custom_rolloff_count, fmod_channel_control_get_3d_custom_rolloff_at, fmod_channel_control_get_3d_custom_rolloff, fmod_channel_control_set_pan, fmod_channel_control_set_mix_levels_output, fmod_channel_control_set_mix_levels_input, fmod_channel_control_set_mix_matrix, fmod_channel_control_get_mix_matrix, fmod_channel_control_set_reverb_properties, fmod_channel_control_get_reverb_properties, fmod_channel_control_set_low_pass_gain, fmod_channel_control_get_low_pass_gain, fmod_channel_control_add_dsp, fmod_channel_control_remove_dsp, fmod_channel_control_get_num_dsps, fmod_channel_control_get_dsp, fmod_channel_control_set_dsp_index, fmod_channel_control_get_dsp_index, fmod_channel_control_set_user_data, fmod_channel_control_get_user_data, fmod_channel_control_get_system_object, fmod_channel_control_get_delay, fmod_channel_control_set_delay, fmod_channel_control_get_dsp_clock, fmod_channel_control_set_callback, fmod_dsp_add_input, fmod_dsp_get_num_inputs, fmod_dsp_get_num_outputs, fmod_dsp_disconnect_all, fmod_dsp_get_num_parameters, fmod_dsp_set_parameter_float, fmod_dsp_get_parameter_float, fmod_dsp_set_parameter_int, fmod_dsp_get_parameter_int, fmod_dsp_set_parameter_bool, fmod_dsp_get_parameter_bool, fmod_dsp_release, fmod_dsp_get_system_object, fmod_dsp_get_input, fmod_dsp_get_output, fmod_dsp_disconnect_from, fmod_dsp_get_data_parameter_index, fmod_dsp_set_parameter_data, fmod_dsp_get_parameter_data, fmod_dsp_get_parameter_info, fmod_dsp_set_channel_format, fmod_dsp_get_channel_format, fmod_dsp_get_output_channel_format, fmod_dsp_get_metering_info, fmod_dsp_set_metering_enabled, fmod_dsp_get_metering_enabled, fmod_dsp_set_active, fmod_dsp_get_active, fmod_dsp_set_bypass, fmod_dsp_get_bypass, fmod_dsp_set_wet_dry_mix, fmod_dsp_get_wet_dry_mix, fmod_dsp_get_idle, fmod_dsp_reset, fmod_dsp_get_type, fmod_dsp_get_info, fmod_dsp_get_cpu_usage, fmod_dsp_set_user_data, fmod_dsp_get_user_data, fmod_dsp_set_callback, fmod_dsp_connection_set_mix, fmod_dsp_connection_get_mix, fmod_dsp_connection_set_mix_matrix, fmod_dsp_connection_get_mix_matrix, fmod_dsp_connection_get_input, fmod_dsp_connection_get_output, fmod_dsp_connection_get_type, fmod_dsp_connection_set_user_data, fmod_dsp_connection_get_user_data, fmod_geometry_add_polygon, fmod_geometry_set_polygon_attributes, fmod_geometry_get_polygon_attributes, fmod_geometry_get_polygon_num_vertices, fmod_geometry_set_polygon_vertex, fmod_geometry_get_polygon_vertex, fmod_geometry_get_num_polygons, fmod_geometry_get_max_polygons, fmod_geometry_set_position, fmod_geometry_get_position, fmod_geometry_set_rotation, fmod_geometry_get_rotation, fmod_geometry_set_scale, fmod_geometry_get_scale, fmod_geometry_set_user_data, fmod_geometry_get_user_data, fmod_geometry_get_active, fmod_geometry_set_active, fmod_geometry_save, fmod_geometry_release
+#export FmodResult, FmodInitFlags, FmodMode, FmodTimeUnit, FmodDspType, FmodDspConnectionType, FmodDspResampler, FmodDspLowPass, FmodDspHighPass, FmodDspItLowPass, FmodDspEcho, FmodDspEchoDelayChangeMode, FmodDspFlange, FmodDspDistortion, FmodDspNormalize, FmodDspLimiter, FmodDspParamEq, FmodDspPitchShift, FmodDspChorus, FmodDspMultibandEq, FmodDspMultibandEqFilterType, FmodDspChannelMix, FmodDspChannelMixOutput, FmodDspTransceiver, FmodDspTransceiverSpeakerMode, FmodDspCompressor, FmodDspFft, FmodDspFftWindowType, FmodDspOscillator, FmodDspOscillatorType, FmodDspConvolution, FmodDspFader, FmodDspMultibandDynamics, FmodDspMultibandDynamicsModeType, FmodDspItEcho, FmodDspSfxReverb, FmodDspLowPassSimple, FmodDspHighPassSimple, FmodDspDelay, FmodDspTremolo, FmodDspSend, FmodDspReturn, FmodDspPan, FmodDspPanModeType, FmodDspPan2dStereoModeType, FmodDspPan3dRolloffType, FmodDspPan3dExtentModeType, FmodDspObjectPan, FmodDspThreeEq, FmodDspThreeEqCrossoverSlopeType, FmodDspFftDownmixType, FmodDspLoudnessMeter, FmodDspLoudnessMeterStateType, FmodSpeakerMode, FmodSpeaker, FmodChannelMask, FmodChannelOrder, FmodAudioQueueCodecPolicy, FmodDriverState, FmodDebugFlags, FmodDebugMode, FmodSoundType, FmodSoundFormat, FmodSoundGroupBehavior, FmodOutputType, FmodPortType, FmodChannelControlDspIndex, FmodOpenState, FmodTagType, FmodTagDataType, FmodThreadType, FmodThreadPriority, FmodSoundDefaults, FmodLoopPoints, FmodSoundMinMaxDistance, FmodConeSettings, FmodSystem3DSettings, FmodVec3, FmodSyncPointInfo, FmodRecordDriverInfo, FmodDSPMixMatrix, FmodDSPChannelFormat, FmodDSPMeteringInfo, FmodDSPMeteringEnabled, FmodDSPParameterInfo, FmodDSPWetDryMix, FmodDSPInfo, FmodDSPCPUUsage, FmodMinMaxDistance, FmodSyncPoint, FmodDSPBufferSize, FmodSoftwareFormat, FmodDriverInfo, FmodDelay, FmodDSPClock, FmodSoundOpenState, FmodSoundTag, FmodFadePoint, FmodDistanceFilter, FmodOcclusion, FmodGeometryMaxPolygons, FmodPolygonAttributes, FmodReverbProperties, FmodSoundLockLengths, FmodMemoryStats, FmodAdvancedSettings, FmodSpeakerPosition, FmodCPUUsage, FmodFileUsage, FmodStreamBufferSize, FmodCreateSoundExInfo, FmodListener3DAttributes, FmodChannelControl3DAttributes, FmodGeometryRotation, FmodReverb3DAttributes, fmod_last_result, fmod_debug_initialize, fmod_error_string, fmod_memory_get_stats, fmod_thread_set_attributes, fmod_channel_set_frequency, fmod_channel_get_frequency, fmod_channel_set_priority, fmod_channel_get_priority, fmod_channel_set_position, fmod_channel_get_position, fmod_channel_set_channel_group, fmod_channel_get_channel_group, fmod_channel_set_loop_count, fmod_channel_get_loop_count, fmod_channel_set_loop_points, fmod_channel_get_loop_points, fmod_channel_is_virtual, fmod_channel_get_index, fmod_channel_get_current_sound, fmod_channel_get_system_object, fmod_system_create, fmod_system_init, fmod_system_release, fmod_system_close, fmod_system_get_channel, fmod_system_get_master_channel_group, fmod_system_set_output, fmod_system_get_output, fmod_system_get_3d_settings, fmod_system_set_3d_listener_attributes, fmod_system_get_3d_listener_attributes, fmod_system_get_record_driver_info, fmod_system_record_start, fmod_system_create_dsp, fmod_system_create_dsp_by_type, fmod_system_get_dsp_buffer_size, fmod_system_get_software_format, fmod_system_set_software_format, fmod_system_set_stream_buffer_size, fmod_system_get_driver_info, fmod_system_create_channel_group, fmod_system_play_dsp, fmod_system_select, fmod_system_adopt, fmod_system_get_master_sound_group, fmod_system_get_advanced_settings, fmod_system_set_advanced_settings, fmod_system_get_speaker_mode_channels, fmod_system_get_speaker_position, fmod_system_set_speaker_position, fmod_system_get_reverb_properties, fmod_system_set_reverb_properties, fmod_system_get_default_mix_matrix, fmod_system_get_cpu_usage, fmod_system_get_file_usage, fmod_system_get_stream_buffer_size, fmod_system_get_user_data, fmod_system_set_user_data, fmod_system_attach_channel_group_to_port, fmod_system_detach_channel_group_from_port, fmod_system_create_sound_group, fmod_system_create_geometry, fmod_system_load_geometry, fmod_system_get_geometry_occlusion, fmod_system_create_reverb_3d, fmod_system_create_sound, fmod_system_create_sound_ex, fmod_system_create_stream, fmod_system_create_sound_memory, fmod_system_create_sound_memory_ex, fmod_system_play_sound, fmod_sound_get_length, fmod_sound_set_defaults, fmod_sound_set_mode, fmod_sound_get_mode, fmod_sound_get_format, fmod_sound_get_name, fmod_sound_get_defaults, fmod_sound_set_loop_count, fmod_sound_get_loop_count, fmod_sound_set_loop_points, fmod_sound_get_loop_points, fmod_sound_set_3d_min_max_distance, fmod_sound_get_3d_min_max_distance, fmod_sound_set_3d_cone_settings, fmod_sound_get_3d_cone_settings, fmod_sound_set_3d_custom_rolloff, fmod_sound_get_3d_custom_rolloff, fmod_sound_get_num_sync_points, fmod_sound_get_sync_point, fmod_sound_add_sync_point, fmod_sound_delete_sync_point, fmod_sound_get_music_num_channels, fmod_sound_set_music_channel_volume, fmod_sound_get_music_channel_volume, fmod_sound_set_music_speed, fmod_sound_get_music_speed, fmod_sound_set_sound_group, fmod_sound_get_sound_group, fmod_sound_set_user_data, fmod_sound_get_user_data, fmod_sound_release, fmod_sound_get_system_object, fmod_sound_get_open_state, fmod_sound_get_num_tags, fmod_sound_get_tag, fmod_sound_get_num_sub_sounds, fmod_sound_get_sub_sound, fmod_sound_get_sub_sound_parent, fmod_sound_read_data, fmod_sound_seek_data, fmod_sound_lock, fmod_sound_unlock, fmod_channel_group_get_num_channels, fmod_channel_group_get_channel, fmod_channel_group_add_group, fmod_channel_group_get_num_groups, fmod_channel_group_get_group, fmod_channel_group_get_parent_group, fmod_channel_group_get_name, fmod_channel_group_release, fmod_channel_group_get_system_object, fmod_channel_group_adopt, fmod_sound_group_set_max_audible, fmod_sound_group_get_max_audible, fmod_sound_group_set_max_audible_behavior, fmod_sound_group_get_max_audible_behavior, fmod_sound_group_set_mute_fade_speed, fmod_sound_group_get_mute_fade_speed, fmod_sound_group_set_volume, fmod_sound_group_get_volume, fmod_sound_group_get_num_sounds, fmod_sound_group_get_sound, fmod_sound_group_get_num_playing, fmod_sound_group_stop, fmod_sound_group_set_user_data, fmod_sound_group_get_user_data, fmod_sound_group_get_name, fmod_sound_group_release, fmod_sound_group_get_system_object, fmod_reverb_3d_set_active, fmod_reverb_3d_get_active, fmod_reverb_3d_set_properties, fmod_reverb_3d_get_properties, fmod_reverb_3d_set_3d_attributes, fmod_reverb_3d_get_3d_attributes, fmod_reverb_3d_set_user_data, fmod_reverb_3d_get_user_data, fmod_reverb_3d_release, fmod_channel_control_add_fade_point, fmod_channel_control_remove_fade_points, fmod_channel_control_set_fade_point_ramp, fmod_channel_control_get_fade_point_count, fmod_channel_control_get_fade_point_at, fmod_channel_control_is_playing, fmod_channel_control_stop, fmod_channel_control_set_paused, fmod_channel_control_get_paused, fmod_channel_control_set_mode, fmod_channel_control_get_mode, fmod_channel_control_set_pitch, fmod_channel_control_get_pitch, fmod_channel_control_get_audibility, fmod_channel_control_set_volume, fmod_channel_control_get_volume, fmod_channel_control_set_volume_ramp, fmod_channel_control_get_volume_ramp, fmod_channel_control_set_mute, fmod_channel_control_get_mute, fmod_channel_control_set_3d_doppler_level, fmod_channel_control_get_3d_doppler_level, fmod_channel_control_set_3d_level, fmod_channel_control_get_3d_level, fmod_channel_control_set_3d_min_max_distance, fmod_channel_control_get_3d_min_max_distance, fmod_channel_control_set_3d_cone_settings, fmod_channel_control_get_3d_cone_settings, fmod_channel_control_set_3d_cone_orientation, fmod_channel_control_get_3d_cone_orientation, fmod_channel_control_set_3d_occlusion, fmod_channel_control_get_3d_occlusion, fmod_channel_control_set_3d_attributes, fmod_channel_control_get_3d_attributes, fmod_channel_control_set_3d_spread, fmod_channel_control_get_3d_spread, fmod_channel_control_set_3d_distance_filter, fmod_channel_control_get_3d_distance_filter, fmod_channel_control_set_3d_custom_rolloff, fmod_channel_control_get_3d_custom_rolloff_count, fmod_channel_control_get_3d_custom_rolloff_at, fmod_channel_control_get_3d_custom_rolloff, fmod_channel_control_set_pan, fmod_channel_control_set_mix_levels_output, fmod_channel_control_set_mix_levels_input, fmod_channel_control_set_mix_matrix, fmod_channel_control_get_mix_matrix, fmod_channel_control_set_reverb_properties, fmod_channel_control_get_reverb_properties, fmod_channel_control_set_low_pass_gain, fmod_channel_control_get_low_pass_gain, fmod_channel_control_add_dsp, fmod_channel_control_remove_dsp, fmod_channel_control_get_num_dsps, fmod_channel_control_get_dsp, fmod_channel_control_set_dsp_index, fmod_channel_control_get_dsp_index, fmod_channel_control_set_user_data, fmod_channel_control_get_user_data, fmod_channel_control_get_system_object, fmod_channel_control_get_delay, fmod_channel_control_set_delay, fmod_channel_control_get_dsp_clock, fmod_channel_control_set_callback, fmod_dsp_add_input, fmod_dsp_get_num_inputs, fmod_dsp_get_num_outputs, fmod_dsp_disconnect_all, fmod_dsp_get_num_parameters, fmod_dsp_set_parameter_float, fmod_dsp_get_parameter_float, fmod_dsp_set_parameter_int, fmod_dsp_get_parameter_int, fmod_dsp_set_parameter_bool, fmod_dsp_get_parameter_bool, fmod_dsp_release, fmod_dsp_get_system_object, fmod_dsp_get_input, fmod_dsp_get_output, fmod_dsp_disconnect_from, fmod_dsp_get_data_parameter_index, fmod_dsp_set_parameter_data, fmod_dsp_get_parameter_data, fmod_dsp_get_parameter_info, fmod_dsp_set_channel_format, fmod_dsp_get_channel_format, fmod_dsp_get_output_channel_format, fmod_dsp_get_metering_info, fmod_dsp_set_metering_enabled, fmod_dsp_get_metering_enabled, fmod_dsp_set_active, fmod_dsp_get_active, fmod_dsp_set_bypass, fmod_dsp_get_bypass, fmod_dsp_set_wet_dry_mix, fmod_dsp_get_wet_dry_mix, fmod_dsp_get_idle, fmod_dsp_reset, fmod_dsp_get_type, fmod_dsp_get_info, fmod_dsp_get_cpu_usage, fmod_dsp_set_user_data, fmod_dsp_get_user_data, fmod_dsp_set_callback, fmod_dsp_connection_set_mix, fmod_dsp_connection_get_mix, fmod_dsp_connection_set_mix_matrix, fmod_dsp_connection_get_mix_matrix, fmod_dsp_connection_get_input, fmod_dsp_connection_get_output, fmod_dsp_connection_get_type, fmod_dsp_connection_set_user_data, fmod_dsp_connection_get_user_data, fmod_geometry_add_polygon, fmod_geometry_set_polygon_attributes, fmod_geometry_get_polygon_attributes, fmod_geometry_get_polygon_num_vertices, fmod_geometry_set_polygon_vertex, fmod_geometry_get_polygon_vertex, fmod_geometry_get_num_polygons, fmod_geometry_get_max_polygons, fmod_geometry_set_position, fmod_geometry_get_position, fmod_geometry_set_rotation, fmod_geometry_get_rotation, fmod_geometry_set_scale, fmod_geometry_get_scale, fmod_geometry_set_user_data, fmod_geometry_get_user_data, fmod_geometry_get_active, fmod_geometry_set_active, fmod_geometry_save, fmod_geometry_release

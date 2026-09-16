@@ -44,19 +44,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_studio_system_init",
-          "argCount": 3,
+          "%Name": "__fmod_studio_system_init",
+          "argCount": 2,
           "args": [
-            2,
-            2,
+            1,
             2
           ],
-          "documentation": "@param {Real} max_channels\r\n@param {Real} studio_flags\r\n@param {Real} core_flags\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_system_init",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_studio_system_init",
+          "name": "__fmod_studio_system_init",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -131,7 +130,7 @@
             1,
             2
           ],
-          "documentation": "@param {String} filename\r\n@param {Real} flags\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_system_load_bank_file",
           "help": "",
           "hidden": true,
@@ -1079,12 +1078,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_bank_get_loading_state",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_bank_get_loading_state",
           "help": "",
           "hidden": true,
@@ -1097,12 +1098,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_bank_get_sample_loading_state",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_bank_get_sample_loading_state",
           "help": "",
           "hidden": true,
@@ -1765,12 +1768,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_description_get_sample_loading_state",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state",
           "help": "",
           "hidden": true,
@@ -2045,12 +2050,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_get_playback_state",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_event_instance_get_playback_state",
           "help": "",
           "hidden": true,
@@ -3093,12 +3100,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_command_replay_get_playback_state",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_studio_command_replay_get_playback_state",
           "help": "",
           "hidden": true,

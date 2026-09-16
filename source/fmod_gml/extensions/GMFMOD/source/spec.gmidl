@@ -206,6 +206,16 @@ enum FmodDspConnectionType
 	SendSidechain = 3,
 }
 
+[global, bind = typed_gml]
+enum FmodDspResampler
+{
+	Default = 0,
+	NoInterp = 1,
+	Linear = 2,
+	Cubic = 3,
+	Spline = 4,
+}
+
 // ============================================================
 // DSP Parameter Enums
 // ============================================================
@@ -792,6 +802,68 @@ enum FmodSpeakerMode
 }
 
 [global, bind = typed_gml]
+enum FmodSpeaker
+{
+	None = -1,
+	FrontLeft = 0,
+	FrontRight = 1,
+	FrontCenter = 2,
+	LowFrequency = 3,
+	SurroundLeft = 4,
+	SurroundRight = 5,
+	BackLeft = 6,
+	BackRight = 7,
+	TopFrontLeft = 8,
+	TopFrontRight = 9,
+	TopBackLeft = 10,
+	TopBackRight = 11,
+}
+
+[global, bind = typed_gml]
+enum FmodChannelMask
+{
+	FrontLeft = 0x00000001,
+	FrontRight = 0x00000002,
+	FrontCenter = 0x00000004,
+	LowFrequency = 0x00000008,
+	SurroundLeft = 0x00000010,
+	SurroundRight = 0x00000020,
+	BackLeft = 0x00000040,
+	BackRight = 0x00000080,
+	BackCenter = 0x00000100,
+	Mono = 0x00000001,
+	Stereo = 0x00000003,
+	Lrc = 0x00000007,
+	Quad = 0x00000033,
+	Surround = 0x00000037,
+	_5Point1 = 0x0000003F,
+	_5Point1Rears = 0x000000CF,
+	_7Point0 = 0x000000F7,
+	_7Point1 = 0x000000FF,
+}
+
+[global, bind = typed_gml]
+enum FmodChannelOrder
+{
+	Default = 0,
+	WaveFormat = 1,
+	ProTools = 2,
+	AllMono = 3,
+	AllStereo = 4,
+	Alsa = 5,
+}
+
+// iOS only (fmod_ios.h): which AudioQueue codec a hardware-decodable
+// format may use.
+[global, bind = typed_gml]
+enum FmodAudioQueueCodecPolicy
+{
+	Default = 0,
+	SoftwareOnly = 1,
+	HardwareOnly = 2,
+}
+
+[global, bind = typed_gml]
 enum FmodDriverState
 {
 	Connected = 0x00000001,
@@ -865,6 +937,14 @@ enum FmodSoundFormat
 }
 
 [global, bind = typed_gml]
+enum FmodSoundGroupBehavior
+{
+	Fail = 0,
+	Mute = 1,
+	StealLowest = 2,
+}
+
+[global, bind = typed_gml]
 enum FmodOutputType
 {
 	AutoDetect = 0,
@@ -889,6 +969,20 @@ enum FmodOutputType
 	AudioWorklet = 19,
 	Phase = 20,
 	OhAudio = 21,
+}
+
+[global, bind = typed_gml]
+enum FmodPortType
+{
+	Music = 0,
+	CopyrightMusic = 1,
+	Voice = 2,
+	Controller = 3,
+	Personal = 4,
+	Vibration = 5,
+	Aux = 6,
+	Passthrough = 7,
+	VrVibration = 8,
 }
 
 [global, bind = typed_gml]
@@ -939,6 +1033,43 @@ enum FmodTagDataType
 	StringUtf16 = 4,
 	StringUtf16Be = 5,
 	StringUtf8 = 6,
+}
+
+[global, bind = typed_gml]
+enum FmodThreadType
+{
+	Mixer = 0,
+	Feeder = 1,
+	Stream = 2,
+	File = 3,
+	NonBlocking = 4,
+	Record = 5,
+	Geometry = 6,
+	Profiler = 7,
+	StudioUpdate = 8,
+	StudioLoadBank = 9,
+	StudioLoadSample = 10,
+	Convolution1 = 11,
+	Convolution2 = 12,
+}
+
+// FMOD_THREAD_PRIORITY is an int: the named members map to platform
+// values internally, and anything between PlatformMin and PlatformMax
+// is passed through as a raw platform priority.
+[global, bind = typed_gml]
+enum FmodThreadPriority
+{
+	PlatformMin = -32768,
+	PlatformMax = 32768,
+	Default = -32769,
+	Low = -32770,
+	Medium = -32771,
+	High = -32772,
+	VeryHigh = -32773,
+	Extreme = -32774,
+	Critical = -32775,
+	Mixer = -32774,
+	Feeder = -32775,
 }
 
 
@@ -1091,7 +1222,7 @@ class `[[FmodDSPMixMatrix]]` prototype Object
 [global]
 class `[[FmodDSPChannelFormat]]` prototype Object
 {
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodChannelMask`]
     property channel_mask: gmval { get; set; }
 
     [field, type_hint=`real`]
@@ -1108,10 +1239,10 @@ class `[[FmodDSPMeteringInfo]]` prototype Object
 [global]
 class `[[FmodDSPMeteringEnabled]]` prototype Object
 {
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property input_enabled: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property output_enabled: gmval { get; set; }
 }
 
@@ -1238,7 +1369,7 @@ class `[[FmodDelay]]` prototype Object
     [field, type_hint=`real`]
     property dspclock_end: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property stop_channels: gmval { get; set; }
 }
 
@@ -1261,10 +1392,10 @@ class `[[FmodSoundOpenState]]` prototype Object
     [field, type_hint=`real`]
     property percent_buffered: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property starving: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property disk_busy: gmval { get; set; }
 }
 
@@ -1291,7 +1422,7 @@ class `[[FmodSoundTag]]` prototype Object
     [field, type_hint=`real`]
     property datalen: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property updated: gmval { get; set; }
 }
 
@@ -1308,7 +1439,7 @@ class `[[FmodFadePoint]]` prototype Object
 [global]
 class `[[FmodDistanceFilter]]` prototype Object
 {
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property custom: gmval { get; set; }
 
     [field, type_hint=`real`]
@@ -1347,7 +1478,7 @@ class `[[FmodPolygonAttributes]]` prototype Object
     [field, type_hint=`real`]
     property reverb_occlusion: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property double_sided: gmval { get; set; }
 }
 
@@ -1482,7 +1613,7 @@ class `[[FmodAdvancedSettings]]` prototype Object
     [field, type_hint=`real`]
     property dsp_buffer_pool_size: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodDspResampler`]
     property resampler_method: gmval { get; set; }
 
     [field, type_hint=`real`]
@@ -1504,7 +1635,7 @@ class `[[FmodSpeakerPosition]]` prototype Object
     [field, type_hint=`real`]
     property y: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`bool`]
     property active: gmval { get; set; }
 }
 
@@ -1549,7 +1680,7 @@ class `[[FmodStreamBufferSize]]` prototype Object
     [field, type_hint=`real`]
     property file_buffer_size: gmval { get; set; }
 
-    [field, type_hint=`real`]
+    [field, type_hint=`FmodTimeUnit`]
     property file_buffer_size_type: gmval { get; set; }
 }
 
@@ -1594,13 +1725,13 @@ class `[[FmodCreateSoundExInfo]]` prototype Object
     [field, type_hint=`real`, value = 0]
     property max_polyphony: gmval { get; set; }
 
-    [field, type_hint=`real`, value = 0]
+    [field, type_hint=`FmodSoundType`, value = 0]
     property suggested_sound_type: gmval { get; set; }
 
     [field, type_hint=`real`, value = 0]
     property file_buffer_size: gmval { get; set; }
 
-    [field, type_hint=`real`, value = 0]
+    [field, type_hint=`FmodChannelOrder`, value = 0]
     property channel_order: gmval { get; set; }
 
     [field, type_hint=`uint64`, value = 0]
@@ -1609,13 +1740,13 @@ class `[[FmodCreateSoundExInfo]]` prototype Object
     [field, type_hint=`real`, value = 0]
     property initial_seek_position: gmval { get; set; }
 
-    [field, type_hint=`real`, value = 0]
+    [field, type_hint=`FmodTimeUnit`, value = 0]
     property initial_seek_pos_type: gmval { get; set; }
 
-    [field, type_hint=`real`, value = 0]
+    [field, type_hint=`bool`, value = false]
     property ignore_set_filesystem: gmval { get; set; }
 
-    [field, type_hint=`real`, value = 0]
+    [field, type_hint=`FmodAudioQueueCodecPolicy`, value = 0]
     property audio_queue_policy: gmval { get; set; }
 
     [field, type_hint=`real`, value = 0]
@@ -1680,7 +1811,7 @@ group
 
 [global, bind = typed_gml, type_hint=`FmodMemoryStats`]
 function fmod_memory_get_stats(
-    blocking: real
+    blocking: bool
 ): gmval;
 
 }
@@ -1694,9 +1825,9 @@ group
 
 [global, bind = typed_gml]
 function fmod_thread_set_attributes(
-    thread_type: real,
+    [type_hint=`FmodThreadType`] thread_type: gmval,
     affinity: real,
-    priority: real
+    [type_hint=`FmodThreadPriority`] priority: gmval
 ): real;
 
 }
@@ -1742,13 +1873,13 @@ function fmod_channel_get_priority(
 function fmod_channel_set_position(
     [type_hint=`uint64`] channel_ref: gmval,
     position: real,
-    time_unit: real
+    [type_hint=`FmodTimeUnit`] time_unit: gmval
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_get_position(
     [type_hint=`uint64`] channel_ref: gmval,
-    time_unit: real
+    [type_hint=`FmodTimeUnit`] time_unit: gmval
 ): real;
 
 // ============================================================
@@ -1785,16 +1916,16 @@ function fmod_channel_get_loop_count(
 function fmod_channel_set_loop_points(
     [type_hint=`uint64`] channel_ref: gmval,
     loop_start: real,
-    loop_start_type: real,
+    [type_hint=`FmodTimeUnit`] loop_start_type: gmval,
     loop_end: real,
-    loop_end_type: real
+    [type_hint=`FmodTimeUnit`] loop_end_type: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodLoopPoints`]
 function fmod_channel_get_loop_points(
     [type_hint=`uint64`] channel_ref: gmval,
-    start_type: real,
-    end_type: real
+    [type_hint=`FmodTimeUnit`] start_type: gmval,
+    [type_hint=`FmodTimeUnit`] end_type: gmval
 ): gmval;
 
 // ============================================================
@@ -1804,7 +1935,7 @@ function fmod_channel_get_loop_points(
 [global, bind = typed_gml]
 function fmod_channel_is_virtual(
     [type_hint=`uint64`] channel_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_channel_get_index(
@@ -1840,7 +1971,7 @@ function fmod_system_create(): gmval;
 [global, bind = typed_gml]
 function fmod_system_init(
     max_channels: real,
-    flags: real
+    [type_hint=`FmodInitFlags`] flags: gmval
 ): real;
 
 [global, bind = typed_gml]
@@ -1951,7 +2082,7 @@ function fmod_system_get_record_position(
 function fmod_system_record_start(
     device_index: real,
     [type_hint=`uint64`] sound_ref: gmval,
-    loop: real
+    loop: bool
 ): real;
 
 [global, bind = typed_gml]
@@ -1962,7 +2093,7 @@ function fmod_system_record_stop(
 [global, bind = typed_gml]
 function fmod_system_is_recording(
     device_index: real
-): real;
+): bool;
 
 // ============================================================
 // System - DSP Creation
@@ -1998,7 +2129,7 @@ function fmod_system_set_software_format(
 [global, bind = typed_gml]
 function fmod_system_set_stream_buffer_size(
     file_buffer_size: real,
-    file_buffer_size_type: real
+    [type_hint=`FmodTimeUnit`] file_buffer_size_type: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodDriverInfo`]
@@ -2015,7 +2146,7 @@ function fmod_system_create_channel_group(
 function fmod_system_play_dsp(
     [type_hint=`uint64`] dsp_ref: gmval,
     [type_hint=`uint64`] channel_group_ref: gmval,
-    paused: real
+    paused: bool
 ): gmval;
 
 [global, bind = typed_gml]
@@ -2077,15 +2208,15 @@ function fmod_system_get_speaker_mode_channels(
 
 [global, bind = typed_gml, type_hint=`FmodSpeakerPosition`]
 function fmod_system_get_speaker_position(
-    speaker: real
+    [type_hint=`FmodSpeaker`] speaker: gmval
 ): gmval;
 
 [global, bind = typed_gml]
 function fmod_system_set_speaker_position(
-    speaker: real,
+    [type_hint=`FmodSpeaker`] speaker: gmval,
     x: real,
     y: real,
-    active: real
+    active: bool
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodReverbProperties`]
@@ -2148,10 +2279,10 @@ function fmod_system_set_user_data(
 
 [global, bind = typed_gml]
 function fmod_system_attach_channel_group_to_port(
-    port_type: real,
+    [type_hint=`FmodPortType`] port_type: gmval,
     port_index: real,
     [type_hint=`uint64`] channel_group_ref: gmval,
-    pass_thru: real
+    pass_thru: bool
 ): real;
 
 [global, bind = typed_gml]
@@ -2213,7 +2344,7 @@ group
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_system_create_sound(
     name_or_data: string,
-    mode: real
+    [type_hint=`FmodMode`] mode: gmval
 ): gmval;
 
 // Same as fmod_system_create_sound, but describes the sound being created.
@@ -2222,14 +2353,14 @@ function fmod_system_create_sound(
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_system_create_sound_ex(
     name_or_data: string,
-    mode: real,
+    [type_hint=`FmodMode`] mode: gmval,
     [type_hint=`FmodCreateSoundExInfo`] ex_info: gmval
 ): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_system_create_stream(
     name_or_data: string,
-    mode: real
+    [type_hint=`FmodMode`] mode: gmval
 ): gmval;
 
 // Same as fmod_system_create_sound, but reads the sound out of a GML buffer
@@ -2241,7 +2372,7 @@ function fmod_system_create_stream(
 function fmod_system_create_sound_memory(
     [type_hint=buffer] data: gmval,
     length: real,
-    mode: real
+    [type_hint=`FmodMode`] mode: gmval
 ): gmval;
 
 // Same as fmod_system_create_sound_memory, but describes the sound being
@@ -2250,7 +2381,7 @@ function fmod_system_create_sound_memory(
 function fmod_system_create_sound_memory_ex(
     [type_hint=buffer] data: gmval,
     length: real,
-    mode: real,
+    [type_hint=`FmodMode`] mode: gmval,
     [type_hint=`FmodCreateSoundExInfo`] ex_info: gmval
 ): gmval;
 
@@ -2258,7 +2389,7 @@ function fmod_system_create_sound_memory_ex(
 function fmod_system_play_sound(
     [type_hint=`uint64`] sound_ref: gmval,
     [type_hint=`uint64`] channel_group_ref: gmval,
-    pause: real
+    pause: bool
 ): gmval;
 
 // ============================================================
@@ -2268,7 +2399,7 @@ function fmod_system_play_sound(
 [global, bind = typed_gml]
 function fmod_sound_get_length(
     [type_hint=`uint64`] sound_ref: gmval,
-    length_type: real
+    [type_hint=`FmodTimeUnit`] length_type: gmval
 ): real;
 
 [global, bind = typed_gml]
@@ -2281,18 +2412,18 @@ function fmod_sound_set_defaults(
 [global, bind = typed_gml]
 function fmod_sound_set_mode(
     [type_hint=`uint64`] sound_ref: gmval,
-    mode: real
+    [type_hint=`FmodMode`] mode: gmval
 ): real;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodMode`]
 function fmod_sound_get_mode(
     [type_hint=`uint64`] sound_ref: gmval
-): real;
+): gmval;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodSoundFormat`]
 function fmod_sound_get_format(
     [type_hint=`uint64`] sound_ref: gmval
-): real;
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_sound_get_name(
@@ -2323,16 +2454,16 @@ function fmod_sound_get_loop_count(
 function fmod_sound_set_loop_points(
     [type_hint=`uint64`] sound_ref: gmval,
     loop_start: real,
-    loop_start_type: real,
+    [type_hint=`FmodTimeUnit`] loop_start_type: gmval,
     loop_end: real,
-    loop_end_type: real
+    [type_hint=`FmodTimeUnit`] loop_end_type: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodLoopPoints`]
 function fmod_sound_get_loop_points(
     [type_hint=`uint64`] sound_ref: gmval,
-    start_type: real,
-    end_type: real
+    [type_hint=`FmodTimeUnit`] start_type: gmval,
+    [type_hint=`FmodTimeUnit`] end_type: gmval
 ): gmval;
 
 // ============================================================
@@ -2390,14 +2521,14 @@ function fmod_sound_get_num_sync_points(
 function fmod_sound_get_sync_point(
     [type_hint=`uint64`] sound_ref: gmval,
     sync_point_index: real,
-    offset_type: real
+    [type_hint=`FmodTimeUnit`] offset_type: gmval
 ): gmval;
 
 [global, bind = typed_gml]
 function fmod_sound_add_sync_point(
     [type_hint=`uint64`] sound_ref: gmval,
     offset: real,
-    offset_type: real,
+    [type_hint=`FmodTimeUnit`] offset_type: gmval,
     name: string
 ): real;
 
@@ -2576,7 +2707,7 @@ function fmod_channel_group_get_channel(
 function fmod_channel_group_add_group(
     [type_hint=`uint64`] channel_group_ref: gmval,
     [type_hint=`uint64`] child_channel_group_ref: gmval,
-    propagate_dsp_clock: real
+    propagate_dsp_clock: bool
 ): gmval;
 
 [global, bind = typed_gml]
@@ -2647,13 +2778,13 @@ function fmod_sound_group_get_max_audible(
 [global, bind = typed_gml]
 function fmod_sound_group_set_max_audible_behavior(
     [type_hint=`uint64`] sound_group_ref: gmval,
-    behavior: real
+    [type_hint=`FmodSoundGroupBehavior`] behavior: gmval
 ): real;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodSoundGroupBehavior`]
 function fmod_sound_group_get_max_audible_behavior(
     [type_hint=`uint64`] sound_group_ref: gmval
-): real;
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_sound_group_set_mute_fade_speed(
@@ -2748,13 +2879,13 @@ group
 [global, bind = typed_gml]
 function fmod_reverb_3d_set_active(
     [type_hint=`uint64`] reverb_3d_ref: gmval,
-    active: real
+    active: bool
 ): real;
 
 [global, bind = typed_gml]
 function fmod_reverb_3d_get_active(
     [type_hint=`uint64`] reverb_3d_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_reverb_3d_set_properties(
@@ -2867,7 +2998,7 @@ function fmod_channel_control_get_fade_point_at(
 [global, bind = typed_gml]
 function fmod_channel_control_is_playing(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_channel_control_stop(
@@ -2877,24 +3008,24 @@ function fmod_channel_control_stop(
 [global, bind = typed_gml]
 function fmod_channel_control_set_paused(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    paused: real
+    paused: bool
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_paused(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mode(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    mode: real
+    [type_hint=`FmodMode`] mode: gmval
 ): real;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodMode`]
 function fmod_channel_control_get_mode(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_pitch(
@@ -2930,24 +3061,24 @@ function fmod_channel_control_get_volume(
 [global, bind = typed_gml]
 function fmod_channel_control_set_volume_ramp(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    ramp: real
+    ramp: bool
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_volume_ramp(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_mute(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    mute: real
+    mute: bool
 ): real;
 
 [global, bind = typed_gml]
 function fmod_channel_control_get_mute(
     [type_hint=`uint64`] channel_control_ref: gmval
-): real;
+): bool;
 
 // ============================================================
 // ChannelControl - 3D Attributes
@@ -3049,7 +3180,7 @@ function fmod_channel_control_get_3d_spread(
 [global, bind = typed_gml]
 function fmod_channel_control_set_3d_distance_filter(
     [type_hint=`uint64`] channel_control_ref: gmval,
-    custom: real,
+    custom: bool,
     custom_level: real,
     center_freq: real
 ): real;
@@ -3234,7 +3365,7 @@ function fmod_channel_control_set_delay(
     [type_hint=`uint64`] channel_ref: gmval,
     dspclock_start: real,
     dspclock_end: real,
-    stop_channels: real
+    stop_channels: bool
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodDSPClock`]
@@ -3261,7 +3392,7 @@ group
 function fmod_dsp_add_input(
     [type_hint=`uint64`] dsp_ref: gmval,
     [type_hint=`uint64`] dsp_input_ref: gmval,
-    dsp_connection_type: real
+    [type_hint=`FmodDspConnectionType`] dsp_connection_type: gmval
 ): gmval;
 
 [global, bind = typed_gml]
@@ -3277,8 +3408,8 @@ function fmod_dsp_get_num_outputs(
 [global, bind = typed_gml]
 function fmod_dsp_disconnect_all(
     [type_hint=`uint64`] dsp_ref: gmval,
-    inputs: real,
-    outputs: real
+    inputs: bool,
+    outputs: bool
 ): real;
 
 // ============================================================
@@ -3320,14 +3451,14 @@ function fmod_dsp_get_parameter_int(
 function fmod_dsp_set_parameter_bool(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real,
-    value: real
+    value: bool
 ): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_parameter_bool(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real
-): real;
+): bool;
 
 // ============================================================
 // DSP - General
@@ -3404,7 +3535,7 @@ function fmod_dsp_get_parameter_info(
 [global, bind = typed_gml]
 function fmod_dsp_set_channel_format(
     [type_hint=`uint64`] dsp_ref: gmval,
-    channel_mask: real,
+    [type_hint=`FmodChannelMask`] channel_mask: gmval,
     num_channels: real
 ): unit;
 
@@ -3430,8 +3561,8 @@ function fmod_dsp_get_metering_info(
 [global, bind = typed_gml]
 function fmod_dsp_set_metering_enabled(
     [type_hint=`uint64`] dsp_ref: gmval,
-    input_enabled: real,
-    output_enabled: real
+    input_enabled: bool,
+    output_enabled: bool
 ): unit;
 
 [global, bind = typed_gml, type_hint=`FmodDSPMeteringEnabled`]
@@ -3446,24 +3577,24 @@ function fmod_dsp_get_metering_enabled(
 [global, bind = typed_gml]
 function fmod_dsp_set_active(
     [type_hint=`uint64`] dsp_ref: gmval,
-    active: real
+    active: bool
 ): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_active(
     [type_hint=`uint64`] dsp_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_dsp_set_bypass(
     [type_hint=`uint64`] dsp_ref: gmval,
-    bypass: real
+    bypass: bool
 ): unit;
 
 [global, bind = typed_gml]
 function fmod_dsp_get_bypass(
     [type_hint=`uint64`] dsp_ref: gmval
-): real;
+): bool;
 
 // ============================================================
 // DSP - Wet/Dry Mix
@@ -3489,17 +3620,17 @@ function fmod_dsp_get_wet_dry_mix(
 [global, bind = typed_gml]
 function fmod_dsp_get_idle(
     [type_hint=`uint64`] dsp_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_dsp_reset(
     [type_hint=`uint64`] dsp_ref: gmval
 ): unit;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodDspType`]
 function fmod_dsp_get_type(
     [type_hint=`uint64`] dsp_ref: gmval
-): real;
+): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodDSPInfo`]
 function fmod_dsp_get_info(
@@ -3574,10 +3705,10 @@ function fmod_dsp_connection_get_output(
     [type_hint=`uint64`] connection_ref: gmval
 ): gmval;
 
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodDspConnectionType`]
 function fmod_dsp_connection_get_type(
     [type_hint=`uint64`] connection_ref: gmval
-): real;
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_dsp_connection_set_user_data(
@@ -3604,7 +3735,7 @@ function fmod_geometry_add_polygon(
     [type_hint=`uint64`] geometry_ref: gmval,
     direct_occlusion: real,
     reverb_occlusion: real,
-    double_sided: real,
+    double_sided: bool,
     num_vertices: real,
     [type_hint=buffer] vertices: gmval
 ): real;
@@ -3615,7 +3746,7 @@ function fmod_geometry_set_polygon_attributes(
     polygon_index: real,
     direct_occlusion: real,
     reverb_occlusion: real,
-    double_sided: real
+    double_sided: bool
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodPolygonAttributes`]
@@ -3723,12 +3854,12 @@ function fmod_geometry_get_user_data(
 [global, bind = typed_gml]
 function fmod_geometry_get_active(
     [type_hint=`uint64`] geometry_ref: gmval
-): real;
+): bool;
 
 [global, bind = typed_gml]
 function fmod_geometry_set_active(
     [type_hint=`uint64`] geometry_ref: gmval,
-    active: real
+    active: bool
 ): real;
 
 [global, bind = typed_gml]

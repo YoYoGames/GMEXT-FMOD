@@ -90,7 +90,7 @@ function fmod_channel_get_priority(channel_ref) {}
  * 
  * @param {Real} channel_ref A reference to a channel.
  * @param {Real} position The playback position.
- * @param {Real} time_unit The time units in which the `position` parameter is expressed.
+ * @param {Enum.FmodTimeUnit} time_unit The time units in which the `position` parameter is expressed.
  * @returns {Real}
  * @function_end
  */
@@ -110,7 +110,7 @@ function fmod_channel_set_position(channel_ref, position, time_unit) {}
  * [[Note: If `FmodTimeUnit.Ms` or `FmodTimeUnit.PcmBytes` are used, the value is internally converted from `FmodTimeUnit.Pcm`, so the retrieved value may not exactly match the set value.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
- * @param {Real} time_unit The time units in which the `position` parameter is expressed.
+ * @param {Enum.FmodTimeUnit} time_unit The time units in which the `position` parameter is expressed.
  * @returns {Real}
  * @function_end
  */
@@ -208,9 +208,9 @@ function fmod_channel_get_loop_count(channel_ref) {}
  * 
  * @param {Real} channel_ref A reference to a channel.
  * @param {Real} loop_start The loop start point.
- * @param {Real} loop_start_type The time units in which the `loop_start` parameter is expressed.
+ * @param {Enum.FmodTimeUnit} loop_start_type The time units in which the `loop_start` parameter is expressed.
  * @param {Real} loop_end The loop end point.
- * @param {Real} loop_end_type The time units in which the `loop_end` parameter is expressed.
+ * @param {Enum.FmodTimeUnit} loop_end_type The time units in which the `loop_end` parameter is expressed.
  * @returns {Real}
  * @function_end
  */
@@ -229,8 +229,8 @@ function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, 
  * If `FmodTimeUnit.Ms` or `FmodTimeUnit.PcmBytes` are used, the value is internally converted from `FmodTimeUnit.Pcm`, so the retrieved value may not exactly match the set value.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
- * @param {Real} start_type The time units in which to return `loop_start`
- * @param {Real} end_type The time units in which to return `loop_end`
+ * @param {Enum.FmodTimeUnit} start_type The time units in which to return `loop_start`
+ * @param {Enum.FmodTimeUnit} end_type The time units in which to return `loop_end`
  * @returns {Struct.FmodLoopPoints}
  * @function_end
  */
@@ -250,7 +250,7 @@ function fmod_channel_get_loop_points(channel_ref, loop_start_type, loop_end_typ
  * See the FMOD [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
  * 
  * @param {Real} channel_ref A reference to a channel.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_channel_is_virtual(channel_ref) {}
@@ -319,7 +319,7 @@ function fmod_channel_get_system_object(channel_ref) {}
  * [[Note: A channelgroup is considered playing if it has any playing channels.]]
  * 
  * @param {Real} channel_control_ref A reference to a channelcontrol.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_channel_control_is_playing(channel_control_ref) {}
@@ -357,7 +357,7 @@ function fmod_channel_control_stop(channel_control_ref) {}
  * [[Note: An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.]]
  * 
  * @param {Real} channel_control_ref A reference to a channelcontrol.
- * @param {Real} paused Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
+ * @param {Bool} paused Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
  * @returns {Real}
  * @function_end
  */
@@ -375,7 +375,7 @@ function fmod_channel_control_set_paused(channel_control_ref, paused) {}
  * [[Note: An individual pause state is kept for each object, pausing a parent channelgroup will effectively pause this object however when queried the individual pause state is returned.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @returns {Real} Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
+ * @returns {Bool} Paused state. A value of `true` indicates playback halted. A value of `false` indicates playback active.
  * @function_end
  */
 function fmod_channel_control_get_paused(channel_control_ref) {}
@@ -413,7 +413,7 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
  * If `FmodMode._3DIgnoreGeometry` or `FmodMode.VirtualPlayFromStart` is not specified, the flag will be cleared if it was specified previously.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Real} mode The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is `FmodStudioMode.Default`.
+ * @param {Enum.FmodMode} mode The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is `FmodStudioMode.Default`.
  * @returns {Real}
  * @function_end
  */
@@ -431,7 +431,7 @@ function fmod_channel_control_set_mode(channel_control_ref, mode) {}
  * You can test the playback mode bitfield against a specific ${constant.FmodStudioMode} with the AND operator.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @returns {Real}
+ * @returns {Enum.FmodMode}
  * @function_end
  */
 function fmod_channel_control_get_mode(channel_control_ref) {}
@@ -545,7 +545,7 @@ function fmod_channel_control_get_volume(channel_control_ref) {}
  * Volume changes when not paused will be ramped to the target value to avoid a pop sound, this function allows that setting to be overridden and volume changes to be applied immediately.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Real} ramp The ramp state. A value of `true` means volume change is ramped. A value of `false` means volume change is instantaneous. Default is `true`.
+ * @param {Bool} ramp The ramp state. A value of `true` means volume change is ramped. A value of `false` means volume change is instantaneous. Default is `true`.
  * @returns {Real}
  * @function_end
  */
@@ -563,7 +563,7 @@ function fmod_channel_control_set_volume_ramp(channel_control_ref, ramp) {}
  * It returns the ramp state. A value of `true` means volume change is ramped. A value of `false` means volume change is instantaneous.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
@@ -582,7 +582,7 @@ function fmod_channel_control_get_volume_ramp(channel_control_ref) {}
  * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ${function.fmod_channel_control_get_audibility} can be used to calculate overall audibility for a Channel or ChannelGroup.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Real} mute The mute state to set. A value of `true` means silent. A value of `false` means audible.
+ * @param {Bool} mute The mute state to set. A value of `true` means silent. A value of `false` means audible.
  * @returns {Real}
  * @function_end
  */
@@ -602,7 +602,7 @@ function fmod_channel_control_set_mute(channel_control_ref, mute) {}
  * [[Note: An individual mute state is kept for each object, muting a parent ChannelGroup will effectively mute this object however when queried the individual mute state is returned. ${function.fmod_channel_control_get_audibility} can be used to calculate overall audibility for a Channel or ChannelGroup.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_channel_control_get_mute(channel_control_ref) {}
@@ -811,7 +811,7 @@ function fmod_channel_control_get_3d_custom_rolloff(channel_control_ref, points)
  * This function allows the distance filter effect to be set manually, or to be set back to 'automatic' mode.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Real} custom Whether to override automatic distance filtering and use `custom_level` instead. Default is `false`.
+ * @param {Bool} custom Whether to override automatic distance filtering and use `custom_level` instead. Default is `false`.
  * @param {Real} custom_level The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation. The default value is 1.
  * @param {Real} center_freq The center frequency, in Hertz, of the band-pass filter used to simulate distance attenuation, 0 for default. This must be a value in the range [10, 22050].
  * @returns {Real}
@@ -1401,7 +1401,7 @@ function fmod_channel_control_get_dsp_clock(channel_control_ref) {}
  * @param {Real} channel_ref A reference to a channel control.
  * @param {Real} dspclock_start The DSP clock of the parent ChannelGroup to audibly start playing sound at. Default is 0.
  * @param {Real} dspclock_end DSP clock of the parent ChannelGroup to audibly stop playing sound at. Default is 0.
- * @param {Real} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
+ * @param {Bool} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
  * @returns {Real}
 False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
  * @function_end
@@ -1632,7 +1632,7 @@ function fmod_channel_group_get_channel(channel_group_ref, index) {}
  * 
  * @param {Real} channel_group_ref A reference to a ChannelGroup.
  * @param {Real} child_channel_group_ref The ChannelGroup to add.
- * @param {Real} propagate_dsp_clock Whether to recursively propagate this object's clock values to `child_channel_group_ref`.
+ * @param {Bool} propagate_dsp_clock Whether to recursively propagate this object's clock values to `child_channel_group_ref`.
  * @returns {Real}
  * @function_end
  */
@@ -1792,7 +1792,7 @@ function fmod_file_set_disk_busy(busy) {}
  * 
  * This information is byte accurate and counts all allocs and frees internally. This is useful for determining a fixed memory size to make FMOD work within for fixed-memory machines such as consoles.
  * 
- * @param {Real} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
+ * @param {Bool} blocking This is a flag to indicate whether to favour speed or accuracy. Specifying `true` for this parameter will flush the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) network to make sure all queued allocations happen immediately, which can be costly.
  * @returns {Struct.FmodMemoryStats}
  * @function_end
  */
@@ -1842,9 +1842,9 @@ function fmod_debug_initialize(flags, mode=FmodStudioDebugMode.Tty, filename=poi
  * 
  * The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.
  * 
- * @param {Real} thread_type The identifier for an FMOD thread.
+ * @param {Enum.FmodThreadType} thread_type The identifier for an FMOD thread.
  * @param {Real} affinity A bitfield of desired CPU cores to assign the given thread to.
- * @param {Real} priority The scheduling priority to assign the given thread to.
+ * @param {Enum.FmodThreadPriority} priority The scheduling priority to assign the given thread to.
  * @returns {Real}
  * @function_end
  */
@@ -1866,7 +1866,7 @@ function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
  * 
  * @param {Real} dsp_ref A reference to a [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
  * @param {Real} dsp_input_ref A reference to the DSP unit to be added to `dsp_ref`.
- * @param {Real} dsp_connection_type The type of connection between the two units. Optional. Default is `FmodDspConnectionType.Standard`.
+ * @param {Enum.FmodDspConnectionType} dsp_connection_type The type of connection between the two units. Optional. Default is `FmodDspConnectionType.Standard`.
  * @returns {Real}
  * @function_end
  */
@@ -1958,8 +1958,8 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
  * This is a convenience function that is faster than disconnecting all inputs and outputs individually.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} inputs Whether all inputs should be disconnected.
- * @param {Real} outputs Whether all outputs should be disconnected.
+ * @param {Bool} inputs Whether all inputs should be disconnected.
+ * @param {Bool} outputs Whether all outputs should be disconnected.
  * @returns {Real}
  * @function_end
  */
@@ -2032,7 +2032,7 @@ function fmod_dsp_get_num_parameters(dsp_ref) {}
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Real} index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters} - 1].
- * @param {Real} value The parameter value.
+ * @param {Bool} value The parameter value.
  * @function_end
  */
 function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
@@ -2048,7 +2048,7 @@ function fmod_dsp_set_parameter_bool(dsp_ref, parameter_index, value) {}
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Real} index The parameter index. A value in the range [0, ${function.fmod_dsp_get_num_parameters} - 1].
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_dsp_get_parameter_bool(dsp_ref, parameter_index) {}
@@ -2205,7 +2205,7 @@ function fmod_dsp_get_parameter_info(dsp_ref, parameter_index) {}
  * [[Note: Setting the number of channels on a unit will force either a down or up mix to that channel count before processing the DSP read/process callback.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} channel_mask Deprecated.
+ * @param {Enum.FmodChannelMask} channel_mask Deprecated.
  * @param {Real} num_channels The number of channels to be processed. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`fmod_dsp_get_output_channel_format].
  * @function_end
  */
@@ -2276,8 +2276,8 @@ function fmod_dsp_get_metering_info(dsp_ref) {}
  * [[Note: `FmodInitFlags.ProfileMeterAll` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} input_enabled The metering enabled state for the input signal.
- * @param {Real} output_enabled The metering enabled state for the output signal.
+ * @param {Bool} input_enabled The metering enabled state for the input signal.
+ * @param {Bool} output_enabled The metering enabled state for the output signal.
  * @function_end
  */
 function fmod_dsp_set_metering_enabled(dsp_ref, enabled_in, enabled_out) {}
@@ -2311,7 +2311,7 @@ function fmod_dsp_get_metering_enabled(dsp_ref) {}
  * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} active The active state. Default is `false`.
+ * @param {Bool} active The active state. Default is `false`.
  * @function_end
  */
 function fmod_dsp_set_active(dsp_ref, active) {}
@@ -2330,7 +2330,7 @@ function fmod_dsp_set_active(dsp_ref, active) {}
  * [[Note: When created, a DSP is inactive. If ${function.fmod_channel_control_add_dsp} is used it will automatically be activated, otherwise it must be set to active manually.]]
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_dsp_get_active(dsp_ref) {}
@@ -2347,7 +2347,7 @@ function fmod_dsp_get_active(dsp_ref) {}
  * If `bypass` is `true`, processing of this unit is skipped but it continues to process its inputs.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} bypass The bypass state. Default is `false`.
+ * @param {Bool} bypass The bypass state. Default is `false`.
  * @function_end
  */
 function fmod_dsp_set_bypass(dsp_ref, bypass) {}
@@ -2364,7 +2364,7 @@ function fmod_dsp_set_bypass(dsp_ref, bypass) {}
  * If the returned value is `true`, processing of this unit is skipped but it continues to process its inputs.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_dsp_get_bypass(dsp_ref) {}
@@ -2415,7 +2415,7 @@ function fmod_dsp_get_wet_dry_mix(dsp_ref) {}
  * Each DSP type has the potential to have differing idle behaviour based on the type of effect. A reverb or echo may take a longer time to go idle after it stops receiving a valid signal, compared to an effect with a shorter tail length like an EQ filter.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_dsp_get_idle(dsp_ref) {}
@@ -2464,7 +2464,7 @@ function fmod_dsp_release(dsp_ref) {}
  * This is only valid for built-in FMOD effects. Any user plugins will simply return `FmodDspType.Unknown`.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @returns {Real} The DSP type.
+ * @returns {Enum.FmodDspType} The DSP type.
  * @function_end
  */
 function fmod_dsp_get_type(dsp_ref) {}
@@ -2713,7 +2713,7 @@ function fmod_dsp_connection_get_output(dsp_connection_ref) {}
  * This function retrieves the type of DSP connection between 2 DSP units.
  * 
  * @param {Real} connection_ref A reference to a DSPConnection.
- * @returns {Real}
+ * @returns {Enum.FmodDspConnectionType}
  * @function_end
  */
 function fmod_dsp_connection_get_type(dsp_connection_ref) {}
@@ -2767,7 +2767,7 @@ function fmod_dsp_connection_get_user_data(dsp_connection_ref) {}
  * @param {Real} polygon_index The polygon index. A value in the range [0, ${function.fmod_geometry_get_num_polygons}].
  * @param {Real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion.
  * @param {Real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion.
- * @param {Real} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
+ * @param {Bool} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @returns {Real}
  * @function_end
  */
@@ -2974,7 +2974,7 @@ function fmod_geometry_get_scale(geometry_ref) {}
  * @param {Real} geometry_ref A reference to a geometry.
  * @param {Real} direct_occlusion The occlusion factor of the polygon for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
  * @param {Real} reverb_occlusion The occlusion factor of the polygon for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
- * @param {Real} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
+ * @param {Bool} double_sided `true`: The polygon is double-sided. `false`: The polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @param {Real} num_vertices The number of vertices in the polygon. Must be at least 3.
  * @param {Buffer} vertices An array of vertices located in object space.
  * @returns {Real}
@@ -2992,7 +2992,7 @@ function fmod_geometry_add_polygon(geometry_ref, direct_occlusion, reverb_occlus
  * This function sets whether an object is processed by the geometry engine.
  * 
  * @param {Real} geometry_ref A reference to a geometry.
- * @param {Real} active Whether to allow this object to be processed by the geometry engine. Default is true.
+ * @param {Bool} active Whether to allow this object to be processed by the geometry engine. Default is true.
  * @returns {Real}
  * @function_end
  */
@@ -3008,7 +3008,7 @@ function fmod_geometry_set_active(geometry_ref, active) {}
  * This function retrieves whether an object is processed by the geometry engine.
  * 
  * @param {Real} geometry_ref A reference to a geometry.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_geometry_get_active(geometry_ref) {}
@@ -3213,7 +3213,7 @@ function fmod_reverb_3d_get_properties(reverb_3d_ref) {}
  * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {Real} reverb_3d_ref A reference to a Reverb3D.
- * @param {Real} active The active state of the reverb sphere. The default is `true`.
+ * @param {Bool} active The active state of the reverb sphere. The default is `true`.
  * @returns {Real}
  * @function_end
  */
@@ -3231,7 +3231,7 @@ function fmod_reverb_3d_set_active(reverb_3d_ref, active) {}
  * See the [3D Reverb](https://www.fmod.com/docs/2.03/api/white-papers-3d-reverb.html) guide for more information.
  * 
  * @param {Real} reverb_3d_ref A reference to a Reverb3D.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_reverb_3d_get_active(reverb_3d_ref) {}
@@ -3314,7 +3314,7 @@ function fmod_sound_get_name(sound_ref) {}
  * This function returns format information about the sound.
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @returns {Real}
+ * @returns {Enum.FmodSoundFormat}
  * @function_end
  */
 function fmod_sound_get_format(sound_ref) {}
@@ -3335,7 +3335,7 @@ function fmod_sound_get_format(sound_ref) {}
  * [[Note: Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as untagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use `FmodStudioMode.AccurateTime` when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @param {Real} length_type The time unit type to retrieve.
+ * @param {Enum.FmodTimeUnit} length_type The time unit type to retrieve.
  * @returns {Real}
  * @function_end
  */
@@ -3649,7 +3649,7 @@ function fmod_sound_get_defaults(sound_ref) {}
  * If `FmodStudioMode._3DIgnoreGeometry` is not specified, the flag will be cleared if it was specified previously.
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @param {Real} mode The mode bits to set. The default is `FmodStudioMode.Default`.
+ * @param {Enum.FmodMode} mode The mode bits to set. The default is `FmodStudioMode.Default`.
  * @returns {Real}
  * @function_end
  */
@@ -3667,7 +3667,7 @@ function fmod_sound_set_mode(sound_ref, mode) {}
  * [[Note: The mode will be dependent on the mode set by a call to ${function.fmod_system_create_sound}, ${function.fmod_system_create_stream} or ${function.fmod_sound_set_mode}.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @returns {Real}
+ * @returns {Enum.FmodMode}
  * @function_end
  */
 function fmod_sound_get_mode(sound_ref) {}
@@ -3728,9 +3728,9 @@ function fmod_sound_get_loop_count(sound_ref) {}
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} loop_start The loop start point. A value in the range [0, `loop_end`].
- * @param {Real} loop_start_type The time format of `loop_start`.
+ * @param {Enum.FmodTimeUnit} loop_start_type The time format of `loop_start`.
  * @param {Real} loop_end The loop end point. A value in the range [`loop_start`, ${function.fmod_sound_get_length}].
- * @param {Real} loop_end_type The time format of `loop_end`.
+ * @param {Enum.FmodTimeUnit} loop_end_type The time format of `loop_end`.
  * @returns {Real}
  * @function_end
  */
@@ -3748,8 +3748,8 @@ function fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop
  * The values from `loop_start` and `loop_end` are inclusive, which means these positions will be played.
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @param {Real} start_type The time format in which to return `loop_start`.
- * @param {Real} end_type The time format in which to return `loop_end`.
+ * @param {Enum.FmodTimeUnit} start_type The time format in which to return `loop_start`.
+ * @param {Enum.FmodTimeUnit} end_type The time format in which to return `loop_end`.
  * @returns {Struct.FmodLoopPoints}
  * @function_end
  */
@@ -4074,7 +4074,7 @@ function fmod_sound_get_music_speed(sound_ref) {}
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} sync_point_index The index of the sync point. A value in the range [0, ${function.fmod_sound_get_num_sync_points} - 1].
- * @param {Real} offset_type The format in which to return the sync point offset.
+ * @param {Enum.FmodTimeUnit} offset_type The format in which to return the sync point offset.
  * @returns {Struct.FmodSyncPointInfo}
  * @function_end
  */
@@ -4110,7 +4110,7 @@ function fmod_sound_get_num_sync_points(sound_ref) {}
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} offset The offset value.
- * @param {Real} offset_type The `offset` unit type.
+ * @param {Enum.FmodTimeUnit} offset_type The `offset` unit type.
  * @param {String} name The sync point name.
  * @returns {Real}
  * @function_end
@@ -4250,7 +4250,7 @@ function fmod_sound_group_get_max_audible(sound_group_ref) {}
  * This function changes the way the sound playback behaves when too many sounds are playing in a soundgroup.
  * 
  * @param {Real} sound_group_ref A reference to a SoundGroup.
- * @param {Real} behavior The [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html)'s max playbacks behavior. The default is `FMOD_SOUNDGROUP_BEHAVIOR.FAIL`.
+ * @param {Enum.FmodSoundGroupBehavior} behavior The [SoundGroup](https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html)'s max playbacks behavior. The default is `FMOD_SOUNDGROUP_BEHAVIOR.FAIL`.
  * @returns {Real}
  * @function_end
  */
@@ -4266,7 +4266,7 @@ function fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior) {}
  * This function retrieves the current max audible behavior.
  * 
  * @param {Real} sound_group_ref A reference to a SoundGroup.
- * @returns {Real}
+ * @returns {Enum.FmodSoundGroupBehavior}
  * @function_end
  */
 function fmod_sound_group_get_max_audible_behavior(sound_group_ref) {}
@@ -4499,7 +4499,7 @@ function fmod_sound_group_get_user_data(sound_group_ref) {}
  * If an asynchronous load failed due to a file error, state will contain `FmodStudioLoadingState.Error` and the return code from the next ${function.fmod_last_result} call will be the error code of the bank load function.
  * 
  * @param {Real} bank_ref A reference to a bank.
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 function fmod_studio_bank_get_loading_state(bank_ref) {}
@@ -4554,7 +4554,7 @@ function fmod_studio_bank_unload_sample_data(bank_ref) {}
  * If ${function.fmod_studio_bank_load_sample_data} has not been called for the bank then this function will return `FmodStudioLoadingState.Unloaded` even though sample data may have been loaded by other API calls.
  * 
  * @param {Real} bank_ref A reference to a bank.
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 function fmod_studio_bank_get_sample_loading_state(bank_ref) {}
@@ -4717,7 +4717,7 @@ function fmod_studio_bank_get_path(bank_ref) {}
  * This function checks whether the given Bank reference is valid, returning `true` or `false`.
  * 
  * @param {Real} bank_ref A reference to a bank.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_bank_is_valid(bank_ref) {}
@@ -4770,7 +4770,7 @@ function fmod_studio_bank_get_user_data(bank_ref) {}
  * An individual pause state is kept for each bus. Pausing a bus will override the pause state of its inputs (meaning they return true from ${function.fmod_studio_bus_get_paused}), while unpausing a bus will cause its inputs to obey their individual pause state. The pause state is processed in the Studio system update, so ${function.fmod_studio_bus_get_paused} will return the state as determined by the last update.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @param {Real} paused `true` to pause the bus, `false` to unpause.
+ * @param {Bool} paused `true` to pause the bus, `false` to unpause.
  * @returns {Real}
  * @function_end
  */
@@ -4786,7 +4786,7 @@ function fmod_studio_bus_set_paused(bus_ref, pause) {}
  * This function retrieves the pause state of the given bus, returning `true` if paused and `false` if unpaused.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_bus_get_paused(bus_ref) {}
@@ -4801,7 +4801,7 @@ function fmod_studio_bus_get_paused(bus_ref) {}
  * This function stops all event instances that are routed into the bus. You pass it an ${constant.FmodStudioStopMode} enum member.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @param {Real} stop_mode The stop mode to use.
+ * @param {Enum.FmodStudioStopMode} stop_mode The stop mode to use.
  * @returns {Real}
  * @function_end
  */
@@ -4854,7 +4854,7 @@ function fmod_studio_bus_get_volume(bus_ref) {}
  * An individual mute state is kept for each bus. Muting a bus will override the mute state of its inputs (meaning they return `true` from ${function.fmod_studio_bus_get_mute}), while unmuting a bus will cause its inputs to obey their individual mute state. The mute state is processed in the Studio system update, so ${function.fmod_studio_bus_get_mute} will return the state as determined by the last update.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @param {Real} mute `true` to mute, `false` to unmute.
+ * @param {Bool} mute `true` to mute, `false` to unmute.
  * @returns {Real}
  * @function_end
  */
@@ -4870,7 +4870,7 @@ function fmod_studio_bus_set_mute(bus_ref, mute) {}
  * This function retrieves the mute state. This will be `true` if muted and `false` if not.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_bus_get_mute(bus_ref) {}
@@ -5052,7 +5052,7 @@ function fmod_studio_bus_get_path(bus_ref) {}
  * This function checks that the Bus reference is valid, returning `true` or `false`.
  * 
  * @param {Real} bus_ref A reference to a bus.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_bus_is_valid(bus_ref) {}
@@ -5228,7 +5228,7 @@ function fmod_studio_command_replay_get_current_command(command_replay_ref) {}
  * This function retrieves the playback state of the given CommandReplay.
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
- * @returns {Real}
+ * @returns {Enum.FmodStudioPlaybackState}
  * @function_end
  */
 function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
@@ -5243,7 +5243,7 @@ function fmod_studio_command_replay_get_playback_state(command_replay_ref) {}
  * This function sets the paused state of the given CommandReplay.
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
- * @param {Real} paused `true` to pause, `false` to unpause.
+ * @param {Bool} paused `true` to pause, `false` to unpause.
  * @returns {Real}
  * @function_end
  */
@@ -5259,7 +5259,7 @@ function fmod_studio_command_replay_set_paused(command_replay_ref, pause) {}
  * This function retrieves the paused state of the given CommandReplay (`true` if paused, `false` if not).
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_command_replay_get_paused(command_replay_ref) {}
@@ -5407,7 +5407,7 @@ function fmod_studio_command_replay_get_system_object(command_replay_ref) {}
  * This function checks that the CommandReplay reference is valid.
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_command_replay_is_valid(command_replay_ref) {}
@@ -5565,7 +5565,7 @@ function fmod_studio_event_description_unload_sample_data(event_description_ref)
  * If the event is invalid, then the state is set to `FmodStudioLoadingState.Unloaded` and this results in `FmodStudioResult.InvalidHandle` (in the next ${function.fmod_last_result} call).
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 function fmod_studio_event_description_get_sample_loading_state(event_description_ref) {}
@@ -5582,7 +5582,7 @@ function fmod_studio_event_description_get_sample_loading_state(event_descriptio
  * This will return `true` if the event is 3D and `false` if not.
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_is_3d(event_description_ref) {}
@@ -5601,7 +5601,7 @@ function fmod_studio_event_description_is_3d(event_description_ref) {}
  * Note: If the event was built to a bank using versions of FMOD Studio prior to 2.01.09, then this function will return false regardless of the event's doppler state.
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_is_doppler_enabled(event_description_ref) {}
@@ -5621,7 +5621,7 @@ function fmod_studio_event_description_is_oneshot(event_description_ref) {}
  * This will return `true` if the event is a snapshot and `false` if not.
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_is_snapshot(event_description_ref) {}
@@ -5638,7 +5638,7 @@ function fmod_studio_event_description_is_snapshot(event_description_ref) {}
  * Note: If the event contains nested events built to separate banks and those banks have not been loaded then this function may fail to correctly determine the event's stream status.
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_is_stream(event_description_ref) {}
@@ -5653,7 +5653,7 @@ function fmod_studio_event_description_is_stream(event_description_ref) {}
  * This function retrieves whether the event has any sustain points (`true` or `false`).
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_has_sustain_point(event_description_ref) {}
@@ -5927,7 +5927,7 @@ function fmod_studio_event_description_get_user_data(event_description_ref) {}
  * This function checks that the EventDescription reference is valid.
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_description_is_valid(event_description_ref) {}
@@ -5962,7 +5962,7 @@ function fmod_studio_event_instance_start(event_instance_ref) {}
  * This function stops playback.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @param {Real} stop_mode The stop mode to use.
+ * @param {Enum.FmodStudioStopMode} stop_mode The stop mode to use.
  * @returns {Real}
  * @function_end
  */
@@ -5980,7 +5980,7 @@ function fmod_studio_event_instance_stop(event_instance_ref, mode) {}
  * If the instance is invalid, this will return `FmodStudioPlaybackState.Stopped`.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Real}
+ * @returns {Enum.FmodStudioPlaybackState}
  * @function_end
  */
 function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
@@ -5995,7 +5995,7 @@ function fmod_studio_event_instance_get_playback_state(event_instance_ref) {}
  * This function sets the pause state of the EventInstance.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @param {Real} paused `true` to pause, `false` to unpause
+ * @param {Bool} paused `true` to pause, `false` to unpause
  * @returns {Real}
  * @function_end
  */
@@ -6011,7 +6011,7 @@ function fmod_studio_event_instance_set_paused(event_instance_ref, pause) {}
  * This function returns the pause state of the EventInstance (`true` if paused, otherwise `false`).
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_instance_get_paused(event_instance_ref) {}
@@ -6181,7 +6181,7 @@ function fmod_studio_event_instance_get_volume(event_instance_ref) {}
  * This function checks whether an event instance has been virtualized due to the polyphony limit being exceeded (`true` or `false`).
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_instance_is_virtual(event_instance_ref) {}
@@ -6316,7 +6316,7 @@ function fmod_studio_event_instance_set_parameter_by_name(event_instance_ref, na
  * @param {Real} instance_ref A reference to an EventInstance.
  * @param {String} name Parameter name (case-insensitive, UTF-8 string).
  * @param {String} label Labeled value for the given name.
- * @param {Real} ignore_seek_speed Whether to ignore the parameter's seek speed and set the value immediately.
+ * @param {Bool} ignore_seek_speed Whether to ignore the parameter's seek speed and set the value immediately.
  * @returns {Real}
  * @function_end
  */
@@ -6379,7 +6379,7 @@ function fmod_studio_event_instance_set_parameter_by_id(event_instance_ref, para
  * @param {Real} id_data1 The first half of the parameter's unique identifier.
  * @param {Real} id_data2 The second half of the parameter's unique identifier.
  * @param {String} label Labeled value for given name.
- * @param {Real} ignore_seek_speed Whether to ignore the parameter's seek speed and set the value immediately.
+ * @param {Bool} ignore_seek_speed Whether to ignore the parameter's seek speed and set the value immediately.
  * @returns {Real}
  * @function_end
  */
@@ -6603,7 +6603,7 @@ function fmod_studio_event_instance_release(event_instance_ref) {}
  * This function checks whether the EventInstance reference is valid (`true`) or not (`false`).
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_event_instance_is_valid(event_instance_ref) {}
@@ -6641,8 +6641,8 @@ function fmod_studio_system_create() {}
  * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @param {Real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html), including both virtual and real, to be used in FMOD.
- * @param {Real} studio_flags Studio system initialization flags.
- * @param {Real} core_flags Core system initialization flags.
+ * @param {Enum.FmodStudioInitFlags} studio_flags Studio system initialization flags.
+ * @param {Enum.FmodStudioCoreInitFlags} core_flags Core system initialization flags.
  * @returns {Real}
  * @function_end
  */
@@ -6727,7 +6727,7 @@ function fmod_studio_system_load_bank_custom(flags) {}
  * If a bank has been split, separating out assets and optionally streams from the metadata bank, all parts must be loaded before any APIs that use the data are called. It is recommended you load each part one after another (order is not important), then proceed with dependent API calls such as ${function.fmod_studio_bank_load_sample_data} or ${function.fmod_studio_system_get_event}.
  * 
  * @param {String} filename Name of the file on the disk.
- * @param {Real} flags Flags to control bank loading.
+ * @param {Enum.FmodStudioLoadBankFlags} flags Flags to control bank loading.
  * @returns {Real}
  * @function_end
  */
@@ -6754,7 +6754,7 @@ function fmod_studio_system_load_bank_file(filename, flags) {}
  *
  * @param {Buffer} data The ${type.buffer} holding the bank data.
  * @param {Real} length The number of bytes of bank data in the buffer. Pass 0 to use the whole buffer.
- * @param {Real} flags Flags to control bank loading.
+ * @param {Enum.FmodStudioLoadBankFlags} flags Flags to control bank loading.
  * @returns {Real}
  * @function_end
  */
@@ -7028,7 +7028,7 @@ function fmod_studio_system_get_parameter_by_id(parameter_id) {}
  * @param {Real} id_data1 The first half of the parameter's unique identifier.
  * @param {Real} id_data2 The second half of the parameter's unique identifier.
  * @param {Real} value Value for given identifier.
- * @param {Real} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
+ * @param {Bool} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @returns {Real}
  * @function_end
  */
@@ -7048,7 +7048,7 @@ function fmod_studio_system_set_parameter_by_id(parameter_id, value, ignore_seek
  * @param {Real} id_data1 The first half of the parameter's unique identifier.
  * @param {Real} id_data2 The second half of the parameter's unique identifier.
  * @param {String} label Labeled value for given identifier.
- * @param {Real} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
+ * @param {Bool} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @returns {Real}
  * @function_end
  */
@@ -7096,7 +7096,7 @@ function fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed
  * 
  * @param {String} name Parameter name (case-insensitive). (UTF-8 string)
  * @param {String} label Labeled value for given name.
- * @param {Real} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
+ * @param {Bool} ignore_seek_speed Specifies whether to ignore the parameter's seek speed and set the value immediately.
  * @returns {Real}
  * @function_end
  */
@@ -7498,7 +7498,7 @@ function fmod_studio_system_lookup_path(str_guid) {}
  *
  * This function checks that the System reference is valid and has been initialized.
  * 
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_studio_system_is_valid() {}
@@ -7628,7 +7628,7 @@ function fmod_system_count() {}
  * See [Getting Started](https://github.com/YoYoGames/GMEXT-FMOD/wiki/getting_started) for examples on initialising and updating FMOD systems.
  * 
  * @param {Real} max_channels The maximum number of [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) available for playback, also known as virtual voices. A value in the range [0, 4095]. Virtual voices will play with minimal overhead, with a subset of 'real' voices that are mixed, and selected based on priority and audibility. See the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
- * @param {Real} flags The initialization flags. More than one mode can be set at once by combining them with the OR operator.
+ * @param {Enum.FmodInitFlags} flags The initialization flags. More than one mode can be set at once by combining them with the OR operator.
  * @returns {Real}
  * @function_end
  */
@@ -8023,7 +8023,7 @@ function fmod_system_get_dsp_buffer_size() {}
  * The stream may still stutter if the codec uses a large amount of cpu time, which impacts the smaller, internal 'decode' buffer. The decode buffer size is changeable via ${struct.FmodCreateSoundExInfo}.
  * 
  * @param {Real} file_buffer_size The file buffer size. The default is 16384.
- * @param {Real} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FmodTimeUnit.RawBytes`.
+ * @param {Enum.FmodTimeUnit} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FmodTimeUnit.RawBytes`.
  * @returns {Real}
  * @function_end
  */
@@ -8120,10 +8120,10 @@ function fmod_system_get_advanced_settings() {}
  * 
  * Users of the Studio API should be aware this function does not affect the speaker positions used by the Spatializer DSPs, it is purely for Core API spatialization via ${function.fmod_channel_control_set_3d_attributes}.
  * 
- * @param {Real} speaker The speaker.
+ * @param {Enum.FmodSpeaker} speaker The speaker.
  * @param {Real} x The 2D X position relative to the listener. A value in the range [-1, 1], where: -1 = left, 0 = middle, +1 = right.
  * @param {Real} y 2D Y position relative to the listener. A value in the range [-1, 1], where: -1 = back, 0 = middle, +1 = front.
- * @param {Real} active The active state of a speaker. `true` = included in 3D calculations, `false` = ignored.
+ * @param {Bool} active The active state of a speaker. `true` = included in 3D calculations, `false` = ignored.
  * @returns {Real}
  * @function_end
  */
@@ -8138,7 +8138,7 @@ function fmod_system_set_speaker_position(speaker, x, y, active) {}
  *
  * This function retrieves the position of the specified speaker for the current speaker mode.
  * 
- * @param {Real} speaker The speaker.
+ * @param {Enum.FmodSpeaker} speaker The speaker.
  * @returns {Struct.FmodSpeakerPosition}
  * @function_end
  */
@@ -8442,7 +8442,7 @@ function fmod_system_get_speaker_mode_channels(mode) {}
  * [[Warning: Use of FmodStudioMode.NonBlocking is currently not supported for JavaScript.]]
  * 
  * @param {String} name_or_data The name of the file to open, or the memory buffer holding the sound when the mode includes an open-memory flag.
- * @param {Real} mode The behavior modifier for opening the sound.
+ * @param {Enum.FmodMode} mode The behavior modifier for opening the sound.
  * @returns {Real}
  * @function_end
  */
@@ -8464,7 +8464,7 @@ function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
  * A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.
  * 
  * @param {String} name_or_data The name of the file to open, or the memory buffer holding the sound when the mode includes an open-memory flag.
- * @param {Real} mode The behavior modifier for opening the sound.
+ * @param {Enum.FmodMode} mode The behavior modifier for opening the sound.
  * @returns {Real}
  * @function_end
  */
@@ -8626,7 +8626,7 @@ function fmod_system_create_reverb_3d() {}
  * 
  * @param {Real} sound_ref A reference to the sound to play.
  * @param {Real} channel_group_ref A reference to the ChannelGroup to output to instead of the master.
- * @param {Real} pause Whether to start in the paused state. Start a Channel paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
+ * @param {Bool} pause Whether to start in the paused state. Start a Channel paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
  * @returns {Real}
  * @function_end
  */
@@ -8651,7 +8651,7 @@ function fmod_system_play_sound(sound_ref, channel_group_ref, pause) {}
  * 
  * @param {Real} dsp_ref A reference to the [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) unit to play.
  * @param {Real} channel_group_ref A reference to the [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) to output to instead of the master.
- * @param {Real} paused Whether to start in the paused state. Start a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
+ * @param {Bool} paused Whether to start in the paused state. Start a [Channel](https://www.fmod.com/docs/2.03/api/core-api-channel.html) paused to allow altering attributes without it being audible, then follow it up with a call to ${function.fmod_channel_control_set_paused} with `pause` = `false`.
  * @returns {Real}
  * @function_end
  */
@@ -8805,10 +8805,10 @@ function fmod_system_get_reverb_properties(instance_index) {}
  * 
  * Ports are additional outputs supported by some ${constant.FmodOutputType} plugins and can include things like controller headsets or dedicated background music streams. See the Port Support section (where applicable) of each platform's getting started guide found in the [platform details](https://www.fmod.com/docs/2.03/api/platforms.html) chapter.
  * 
- * @param {Real} port_type The port type (output mode specific).
+ * @param {Enum.FmodPortType} port_type The port type (output mode specific).
  * @param {Real} port_index The index to specify which instance of the specified `port_type` to use (output mode specific).
  * @param {Real} channel_group_ref The ChannelGroup to attach the port to.
- * @param {Real} pass_thru Whether the signal should additionally route to the existing ChannelGroup output.
+ * @param {Bool} pass_thru Whether the signal should additionally route to the existing ChannelGroup output.
  * @returns {Real}
  * @function_end
  */
@@ -8900,7 +8900,7 @@ function fmod_system_get_record_position(device_index) {}
  * 
  * @param {Real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @param {Real} sound_ref A reference to a user-created sound for the user to record to.
- * @param {Real} loop A flag to tell the recording engine whether to continue recording to the provided sound from the start again, after it has reached the end. If this is set to `true` the data will be continually be overwritten once every loop.
+ * @param {Bool} loop A flag to tell the recording engine whether to continue recording to the provided sound from the start again, after it has reached the end. If this is set to `true` the data will be continually be overwritten once every loop.
  * @returns {Real}
  * @function_end
  */
@@ -8939,7 +8939,7 @@ function fmod_system_record_stop(device_index) {}
  * [[Note: On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FmodStudioResult.RecordDisconnected` for your information though.]]
  * 
  * @param {Real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 function fmod_system_is_recording(device_index) {}
@@ -9189,7 +9189,7 @@ function fmod_system_adopt(system_ptr) {}
  * Use it when the mode requires that extra description - raw PCM, user-created samples, or a sound opened from memory.
  * 
  * @param {String} name_or_data The name of the file to open, or the memory buffer holding the sound when the mode includes an open-memory flag.
- * @param {Real} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
+ * @param {Enum.FmodMode} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
  * @param {Struct.FmodCreateSoundExInfo} ex_info The extended description of the sound.
  * @returns {Real} A reference to the new sound, or 0 on failure.
  * @function_end
@@ -9216,7 +9216,7 @@ function fmod_system_create_sound_ex(name_or_data, mode, ex_info) {}
  *
  * @param {Buffer} data The ${type.buffer} holding the audio data.
  * @param {Real} length The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.
- * @param {Real} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
+ * @param {Enum.FmodMode} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
  * @returns {Real} A reference to the new sound, or 0 on failure.
  * @function_end
  */
@@ -9236,7 +9236,7 @@ function fmod_system_create_sound_memory(data, length, mode) {}
  *
  * @param {Buffer} data The ${type.buffer} holding the audio data.
  * @param {Real} length The number of bytes of audio data in the buffer. Pass 0 to use the whole buffer.
- * @param {Real} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
+ * @param {Enum.FmodMode} mode A bitfield of ${constant.FmodMode} values describing how to open the sound.
  * @param {Struct.FmodCreateSoundExInfo} ex_info The extended description of the sound.
  * @returns {Real} A reference to the new sound, or 0 on failure.
  * @function_end
@@ -9471,7 +9471,7 @@ function fmod_studio_event_description_get_instance_at(event_desc_ref, index) {}
  * This function tells you whether an event is a one-shot - an event that stops by itself once it has finished, rather than looping until it is told to stop.
  * 
  * @param {Real} event_desc_ref A reference to an event description.
- * @returns {Real} `true` if the event is a one-shot, `false` otherwise.
+ * @returns {Bool} `true` if the event is a one-shot, `false` otherwise.
  * @function_end
  */
 function fmod_studio_event_description_is_one_shot(event_desc_ref) {}

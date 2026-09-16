@@ -82,7 +82,7 @@ GMEXPORT double __EXT_NATIVE__fmod_file_set_disk_busy(double busy)
 
 GMEXPORT double __EXT_NATIVE__fmod_memory_get_stats(double blocking, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_memory_get_stats(static_cast<double>(blocking));
+    auto&& __result = fmod_memory_get_stats(static_cast<bool>(blocking));
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: struct FmodMemoryStats
@@ -90,9 +90,20 @@ GMEXPORT double __EXT_NATIVE__fmod_memory_get_stats(double blocking, char* __ret
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_thread_set_attributes(double thread_type, double affinity, double priority)
+GMEXPORT double __EXT_NATIVE__fmod_thread_set_attributes(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_thread_set_attributes(static_cast<double>(thread_type), static_cast<double>(affinity), static_cast<double>(priority));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: thread_type, type: enum FmodThreadType
+    gm_enums::FmodThreadType thread_type = gm::wire::codec::readValue<gm_enums::FmodThreadType>(__br);
+
+    // field: affinity, type: Float64
+    double affinity = gm::wire::codec::readValue<double>(__br);
+
+    // field: priority, type: enum FmodThreadPriority
+    gm_enums::FmodThreadPriority priority = gm::wire::codec::readValue<gm_enums::FmodThreadPriority>(__br);
+
+    auto&& __result = fmod_thread_set_attributes(thread_type, affinity, priority);
     return static_cast<double>(__result);
 }
 
@@ -156,8 +167,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_position(char* __arg_buffer, doub
     // field: position, type: Float64
     double position = gm::wire::codec::readValue<double>(__br);
 
-    // field: time_unit, type: Float64
-    double time_unit = gm::wire::codec::readValue<double>(__br);
+    // field: time_unit, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit time_unit = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_channel_set_position(channel_ref, position, time_unit);
     return static_cast<double>(__result);
@@ -170,8 +181,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_position(char* __arg_buffer, doub
     // field: channel_ref, type: UInt64
     std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: time_unit, type: Float64
-    double time_unit = gm::wire::codec::readValue<double>(__br);
+    // field: time_unit, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit time_unit = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_channel_get_position(channel_ref, time_unit);
     return static_cast<double>(__result);
@@ -241,14 +252,14 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_set_loop_points(char* __arg_buffer, d
     // field: loop_start, type: Float64
     double loop_start = gm::wire::codec::readValue<double>(__br);
 
-    // field: loop_start_type, type: Float64
-    double loop_start_type = gm::wire::codec::readValue<double>(__br);
+    // field: loop_start_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit loop_start_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     // field: loop_end, type: Float64
     double loop_end = gm::wire::codec::readValue<double>(__br);
 
-    // field: loop_end_type, type: Float64
-    double loop_end_type = gm::wire::codec::readValue<double>(__br);
+    // field: loop_end_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit loop_end_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, loop_end, loop_end_type);
     return static_cast<double>(__result);
@@ -261,11 +272,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_get_loop_points(char* __arg_buffer, d
     // field: channel_ref, type: UInt64
     std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: start_type, type: Float64
-    double start_type = gm::wire::codec::readValue<double>(__br);
+    // field: start_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit start_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
-    // field: end_type, type: Float64
-    double end_type = gm::wire::codec::readValue<double>(__br);
+    // field: end_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit end_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_channel_get_loop_points(channel_ref, start_type, end_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -337,9 +348,17 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create(char* __ret_buffer, double __re
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_init(double max_channels, double flags)
+GMEXPORT double __EXT_NATIVE__fmod_system_init(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_system_init(static_cast<double>(max_channels), static_cast<double>(flags));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: max_channels, type: Float64
+    double max_channels = gm::wire::codec::readValue<double>(__br);
+
+    // field: flags, type: enum FmodInitFlags
+    gm_enums::FmodInitFlags flags = gm::wire::codec::readValue<gm_enums::FmodInitFlags>(__br);
+
+    auto&& __result = fmod_system_init(max_channels, flags);
     return static_cast<double>(__result);
 }
 
@@ -529,8 +548,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_record_start(char* __arg_buffer, doubl
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: loop, type: Float64
-    double loop = gm::wire::codec::readValue<double>(__br);
+    // field: loop, type: Bool
+    bool loop = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_system_record_start(device_index, sound_ref, loop);
     return static_cast<double>(__result);
@@ -616,9 +635,17 @@ GMEXPORT double __EXT_NATIVE__fmod_system_set_software_format(char* __arg_buffer
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_set_stream_buffer_size(double file_buffer_size, double file_buffer_size_type)
+GMEXPORT double __EXT_NATIVE__fmod_system_set_stream_buffer_size(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_system_set_stream_buffer_size(static_cast<double>(file_buffer_size), static_cast<double>(file_buffer_size_type));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: file_buffer_size, type: Float64
+    double file_buffer_size = gm::wire::codec::readValue<double>(__br);
+
+    // field: file_buffer_size_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit file_buffer_size_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
+
+    auto&& __result = fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type);
     return static_cast<double>(__result);
 }
 
@@ -652,8 +679,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_dsp(char* __arg_buffer, double __
     // field: channel_group_ref, type: UInt64
     std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: paused, type: Float64
-    double paused = gm::wire::codec::readValue<double>(__br);
+    // field: paused, type: Bool
+    bool paused = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_system_play_dsp(dsp_ref, channel_group_ref, paused);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -768,9 +795,14 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_mode_channels(char* __arg_
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_position(double speaker, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_position(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_system_get_speaker_position(static_cast<double>(speaker));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: speaker, type: enum FmodSpeaker
+    gm_enums::FmodSpeaker speaker = gm::wire::codec::readValue<gm_enums::FmodSpeaker>(__br);
+
+    auto&& __result = fmod_system_get_speaker_position(speaker);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: struct FmodSpeakerPosition
@@ -778,9 +810,23 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_speaker_position(double speaker, c
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_set_speaker_position(double speaker, double x, double y, double active)
+GMEXPORT double __EXT_NATIVE__fmod_system_set_speaker_position(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_system_set_speaker_position(static_cast<double>(speaker), static_cast<double>(x), static_cast<double>(y), static_cast<double>(active));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: speaker, type: enum FmodSpeaker
+    gm_enums::FmodSpeaker speaker = gm::wire::codec::readValue<gm_enums::FmodSpeaker>(__br);
+
+    // field: x, type: Float64
+    double x = gm::wire::codec::readValue<double>(__br);
+
+    // field: y, type: Float64
+    double y = gm::wire::codec::readValue<double>(__br);
+
+    // field: active, type: Bool
+    bool active = gm::wire::codec::readValue<bool>(__br);
+
+    auto&& __result = fmod_system_set_speaker_position(speaker, x, y, active);
     return static_cast<double>(__result);
 }
 
@@ -927,8 +973,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_attach_channel_group_to_port(char* __a
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: port_type, type: Float64
-    double port_type = gm::wire::codec::readValue<double>(__br);
+    // field: port_type, type: enum FmodPortType
+    gm_enums::FmodPortType port_type = gm::wire::codec::readValue<gm_enums::FmodPortType>(__br);
 
     // field: port_index, type: Float64
     double port_index = gm::wire::codec::readValue<double>(__br);
@@ -936,8 +982,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_attach_channel_group_to_port(char* __a
     // field: channel_group_ref, type: UInt64
     std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: pass_thru, type: Float64
-    double pass_thru = gm::wire::codec::readValue<double>(__br);
+    // field: pass_thru, type: Bool
+    bool pass_thru = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_system_attach_channel_group_to_port(port_type, port_index, channel_group_ref, pass_thru);
     return static_cast<double>(__result);
@@ -1033,9 +1079,17 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_reverb_3d(char* __ret_buffer, d
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_system_create_sound(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_system_create_sound(name_or_data, static_cast<double>(mode));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: name_or_data, type: String
+    std::string_view name_or_data = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
+
+    auto&& __result = fmod_system_create_sound(name_or_data, mode);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: UInt64
@@ -1050,8 +1104,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_ex(char* __arg_buffer, do
     // field: name_or_data, type: String
     std::string_view name_or_data = gm::wire::codec::readValue<std::string_view>(__br);
 
-    // field: mode, type: Float64
-    double mode = gm::wire::codec::readValue<double>(__br);
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
 
     // field: ex_info, type: struct FmodCreateSoundExInfo
     gm_structs::FmodCreateSoundExInfo ex_info = gm::wire::codec::readValue<gm_structs::FmodCreateSoundExInfo>(__br);
@@ -1064,9 +1118,17 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_ex(char* __arg_buffer, do
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* name_or_data, double mode, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_system_create_stream(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_system_create_stream(name_or_data, static_cast<double>(mode));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: name_or_data, type: String
+    std::string_view name_or_data = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
+
+    auto&& __result = fmod_system_create_stream(name_or_data, mode);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: UInt64
@@ -1085,8 +1147,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory(char* __arg_buffer
     // field: length, type: Float64
     double length = gm::wire::codec::readValue<double>(__br);
 
-    // field: mode, type: Float64
-    double mode = gm::wire::codec::readValue<double>(__br);
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
 
     auto&& __result = fmod_system_create_sound_memory(data, length, mode);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1107,8 +1169,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_sound_memory_ex(char* __arg_buf
     // field: length, type: Float64
     double length = gm::wire::codec::readValue<double>(__br);
 
-    // field: mode, type: Float64
-    double mode = gm::wire::codec::readValue<double>(__br);
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
 
     // field: ex_info, type: struct FmodCreateSoundExInfo
     gm_structs::FmodCreateSoundExInfo ex_info = gm::wire::codec::readValue<gm_structs::FmodCreateSoundExInfo>(__br);
@@ -1131,8 +1193,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_play_sound(char* __arg_buffer, double 
     // field: channel_group_ref, type: UInt64
     std::uint64_t channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: pause, type: Float64
-    double pause = gm::wire::codec::readValue<double>(__br);
+    // field: pause, type: Bool
+    bool pause = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_system_play_sound(sound_ref, channel_group_ref, pause);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1149,8 +1211,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_length(char* __arg_buffer, double _
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: length_type, type: Float64
-    double length_type = gm::wire::codec::readValue<double>(__br);
+    // field: length_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit length_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_sound_get_length(sound_ref, length_type);
     return static_cast<double>(__result);
@@ -1180,14 +1242,14 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_mode(char* __arg_buffer, double __a
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: mode, type: Float64
-    double mode = gm::wire::codec::readValue<double>(__br);
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
 
     auto&& __result = fmod_sound_set_mode(sound_ref, mode);
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_sound_get_mode(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_mode(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1195,10 +1257,14 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_mode(char* __arg_buffer, double __a
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_mode(sound_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodMode
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_sound_get_format(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_format(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1206,7 +1272,11 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_format(char* __arg_buffer, double _
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_format(sound_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodSoundFormat
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT char* __EXT_NATIVE__fmod_sound_get_name(char* __arg_buffer, double __arg_buffer_length)
@@ -1271,14 +1341,14 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_set_loop_points(char* __arg_buffer, dou
     // field: loop_start, type: Float64
     double loop_start = gm::wire::codec::readValue<double>(__br);
 
-    // field: loop_start_type, type: Float64
-    double loop_start_type = gm::wire::codec::readValue<double>(__br);
+    // field: loop_start_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit loop_start_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     // field: loop_end, type: Float64
     double loop_end = gm::wire::codec::readValue<double>(__br);
 
-    // field: loop_end_type, type: Float64
-    double loop_end_type = gm::wire::codec::readValue<double>(__br);
+    // field: loop_end_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit loop_end_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_sound_set_loop_points(sound_ref, loop_start, loop_start_type, loop_end, loop_end_type);
     return static_cast<double>(__result);
@@ -1291,11 +1361,11 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_loop_points(char* __arg_buffer, dou
     // field: sound_ref, type: UInt64
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: start_type, type: Float64
-    double start_type = gm::wire::codec::readValue<double>(__br);
+    // field: start_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit start_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
-    // field: end_type, type: Float64
-    double end_type = gm::wire::codec::readValue<double>(__br);
+    // field: end_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit end_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_sound_get_loop_points(sound_ref, start_type, end_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1426,8 +1496,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_sync_point(char* __arg_buffer, doub
     // field: sync_point_index, type: Float64
     double sync_point_index = gm::wire::codec::readValue<double>(__br);
 
-    // field: offset_type, type: Float64
-    double offset_type = gm::wire::codec::readValue<double>(__br);
+    // field: offset_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit offset_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     auto&& __result = fmod_sound_get_sync_point(sound_ref, sync_point_index, offset_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1447,8 +1517,8 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_add_sync_point(char* __arg_buffer, doub
     // field: offset, type: Float64
     double offset = gm::wire::codec::readValue<double>(__br);
 
-    // field: offset_type, type: Float64
-    double offset_type = gm::wire::codec::readValue<double>(__br);
+    // field: offset_type, type: enum FmodTimeUnit
+    gm_enums::FmodTimeUnit offset_type = gm::wire::codec::readValue<gm_enums::FmodTimeUnit>(__br);
 
     // field: name, type: String
     std::string_view name = gm::wire::codec::readValue<std::string_view>(__br);
@@ -1838,8 +1908,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_group_add_group(char* __arg_buffer, d
     // field: child_channel_group_ref, type: UInt64
     std::uint64_t child_channel_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: propagate_dsp_clock, type: Float64
-    double propagate_dsp_clock = gm::wire::codec::readValue<double>(__br);
+    // field: propagate_dsp_clock, type: Bool
+    bool propagate_dsp_clock = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_channel_group_add_group(channel_group_ref, child_channel_group_ref, propagate_dsp_clock);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -1978,14 +2048,14 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_max_audible_behavior(char* __
     // field: sound_group_ref, type: UInt64
     std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: behavior, type: Float64
-    double behavior = gm::wire::codec::readValue<double>(__br);
+    // field: behavior, type: enum FmodSoundGroupBehavior
+    gm_enums::FmodSoundGroupBehavior behavior = gm::wire::codec::readValue<gm_enums::FmodSoundGroupBehavior>(__br);
 
     auto&& __result = fmod_sound_group_set_max_audible_behavior(sound_group_ref, behavior);
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1993,7 +2063,11 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(char* __
     std::uint64_t sound_group_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_group_get_max_audible_behavior(sound_group_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodSoundGroupBehavior
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_sound_group_set_mute_fade_speed(char* __arg_buffer, double __arg_buffer_length)
@@ -2171,8 +2245,8 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_active(char* __arg_buffer, doub
     // field: reverb_3d_ref, type: UInt64
     std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: active, type: Float64
-    double active = gm::wire::codec::readValue<double>(__br);
+    // field: active, type: Bool
+    bool active = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_reverb_3d_set_active(reverb_3d_ref, active);
     return static_cast<double>(__result);
@@ -2435,8 +2509,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_paused(char* __arg_buffer
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: paused, type: Float64
-    double paused = gm::wire::codec::readValue<double>(__br);
+    // field: paused, type: Bool
+    bool paused = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_channel_control_set_paused(channel_control_ref, paused);
     return static_cast<double>(__result);
@@ -2460,14 +2534,14 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mode(char* __arg_buffer, 
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: mode, type: Float64
-    double mode = gm::wire::codec::readValue<double>(__br);
+    // field: mode, type: enum FmodMode
+    gm_enums::FmodMode mode = gm::wire::codec::readValue<gm_enums::FmodMode>(__br);
 
     auto&& __result = fmod_channel_control_set_mode(channel_control_ref, mode);
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mode(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mode(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -2475,7 +2549,11 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_mode(char* __arg_buffer, 
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_channel_control_get_mode(channel_control_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodMode
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_pitch(char* __arg_buffer, double __arg_buffer_length)
@@ -2546,8 +2624,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_volume_ramp(char* __arg_b
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: ramp, type: Float64
-    double ramp = gm::wire::codec::readValue<double>(__br);
+    // field: ramp, type: Bool
+    bool ramp = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_channel_control_set_volume_ramp(channel_control_ref, ramp);
     return static_cast<double>(__result);
@@ -2571,8 +2649,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_mute(char* __arg_buffer, 
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: mute, type: Float64
-    double mute = gm::wire::codec::readValue<double>(__br);
+    // field: mute, type: Bool
+    bool mute = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_channel_control_set_mute(channel_control_ref, mute);
     return static_cast<double>(__result);
@@ -2831,8 +2909,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_3d_distance_filter(char* 
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: custom, type: Float64
-    double custom = gm::wire::codec::readValue<double>(__br);
+    // field: custom, type: Bool
+    bool custom = gm::wire::codec::readValue<bool>(__br);
 
     // field: custom_level, type: Float64
     double custom_level = gm::wire::codec::readValue<double>(__br);
@@ -3253,8 +3331,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_delay(char* __arg_buffer,
     // field: dspclock_end, type: Float64
     double dspclock_end = gm::wire::codec::readValue<double>(__br);
 
-    // field: stop_channels, type: Float64
-    double stop_channels = gm::wire::codec::readValue<double>(__br);
+    // field: stop_channels, type: Bool
+    bool stop_channels = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_channel_control_set_delay(channel_ref, dspclock_start, dspclock_end, stop_channels);
     return static_cast<double>(__result);
@@ -3303,8 +3381,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_add_input(char* __arg_buffer, double __ar
     // field: dsp_input_ref, type: UInt64
     std::uint64_t dsp_input_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: dsp_connection_type, type: Float64
-    double dsp_connection_type = gm::wire::codec::readValue<double>(__br);
+    // field: dsp_connection_type, type: enum FmodDspConnectionType
+    gm_enums::FmodDspConnectionType dsp_connection_type = gm::wire::codec::readValue<gm_enums::FmodDspConnectionType>(__br);
 
     auto&& __result = fmod_dsp_add_input(dsp_ref, dsp_input_ref, dsp_connection_type);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -3343,11 +3421,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_disconnect_all(char* __arg_buffer, double
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: inputs, type: Float64
-    double inputs = gm::wire::codec::readValue<double>(__br);
+    // field: inputs, type: Bool
+    bool inputs = gm::wire::codec::readValue<bool>(__br);
 
-    // field: outputs, type: Float64
-    double outputs = gm::wire::codec::readValue<double>(__br);
+    // field: outputs, type: Bool
+    bool outputs = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_dsp_disconnect_all(dsp_ref, inputs, outputs);
     return static_cast<double>(__result);
@@ -3436,8 +3514,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_parameter_bool(char* __arg_buffer, do
     // field: index, type: Float64
     double index = gm::wire::codec::readValue<double>(__br);
 
-    // field: value, type: Float64
-    double value = gm::wire::codec::readValue<double>(__br);
+    // field: value, type: Bool
+    bool value = gm::wire::codec::readValue<bool>(__br);
 
     fmod_dsp_set_parameter_bool(dsp_ref, index, value);
     return 0;
@@ -3614,8 +3692,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_channel_format(char* __arg_buffer, do
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: channel_mask, type: Float64
-    double channel_mask = gm::wire::codec::readValue<double>(__br);
+    // field: channel_mask, type: enum FmodChannelMask
+    gm_enums::FmodChannelMask channel_mask = gm::wire::codec::readValue<gm_enums::FmodChannelMask>(__br);
 
     // field: num_channels, type: Float64
     double num_channels = gm::wire::codec::readValue<double>(__br);
@@ -3676,11 +3754,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_metering_enabled(char* __arg_buffer, 
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: input_enabled, type: Float64
-    double input_enabled = gm::wire::codec::readValue<double>(__br);
+    // field: input_enabled, type: Bool
+    bool input_enabled = gm::wire::codec::readValue<bool>(__br);
 
-    // field: output_enabled, type: Float64
-    double output_enabled = gm::wire::codec::readValue<double>(__br);
+    // field: output_enabled, type: Bool
+    bool output_enabled = gm::wire::codec::readValue<bool>(__br);
 
     fmod_dsp_set_metering_enabled(dsp_ref, input_enabled, output_enabled);
     return 0;
@@ -3708,8 +3786,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_active(char* __arg_buffer, double __a
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: active, type: Float64
-    double active = gm::wire::codec::readValue<double>(__br);
+    // field: active, type: Bool
+    bool active = gm::wire::codec::readValue<bool>(__br);
 
     fmod_dsp_set_active(dsp_ref, active);
     return 0;
@@ -3733,8 +3811,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_set_bypass(char* __arg_buffer, double __a
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: bypass, type: Float64
-    double bypass = gm::wire::codec::readValue<double>(__br);
+    // field: bypass, type: Bool
+    bool bypass = gm::wire::codec::readValue<bool>(__br);
 
     fmod_dsp_set_bypass(dsp_ref, bypass);
     return 0;
@@ -3808,7 +3886,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_reset(char* __arg_buffer, double __arg_bu
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_dsp_get_type(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_dsp_get_type(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -3816,7 +3894,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_type(char* __arg_buffer, double __arg
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_get_type(dsp_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodDspType
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_get_info(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
@@ -3997,7 +4079,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_output(char* __arg_buffer,
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_type(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_type(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -4005,7 +4087,11 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_get_type(char* __arg_buffer, d
     std::uint64_t connection_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_dsp_connection_get_type(connection_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodDspConnectionType
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_dsp_connection_set_user_data(char* __arg_buffer, double __arg_buffer_length)
@@ -4050,8 +4136,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_add_polygon(char* __arg_buffer, doub
     // field: reverb_occlusion, type: Float64
     double reverb_occlusion = gm::wire::codec::readValue<double>(__br);
 
-    // field: double_sided, type: Float64
-    double double_sided = gm::wire::codec::readValue<double>(__br);
+    // field: double_sided, type: Bool
+    bool double_sided = gm::wire::codec::readValue<bool>(__br);
 
     // field: num_vertices, type: Float64
     double num_vertices = gm::wire::codec::readValue<double>(__br);
@@ -4080,8 +4166,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_polygon_attributes(char* __arg_b
     // field: reverb_occlusion, type: Float64
     double reverb_occlusion = gm::wire::codec::readValue<double>(__br);
 
-    // field: double_sided, type: Float64
-    double double_sided = gm::wire::codec::readValue<double>(__br);
+    // field: double_sided, type: Bool
+    bool double_sided = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_geometry_set_polygon_attributes(geometry_ref, polygon_index, direct_occlusion, reverb_occlusion, double_sided);
     return static_cast<double>(__result);
@@ -4347,8 +4433,8 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_set_active(char* __arg_buffer, doubl
     // field: geometry_ref, type: UInt64
     std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: active, type: Float64
-    double active = gm::wire::codec::readValue<double>(__br);
+    // field: active, type: Bool
+    bool active = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_geometry_set_active(geometry_ref, active);
     return static_cast<double>(__result);

@@ -39,13 +39,13 @@ uint64_t fmod_studio_system_create()
 	return result;
 }
 
-double fmod_studio_system_init(double max_channels, double studio_flags, double core_flags)
+double fmod_studio_system_init(double max_channels, gm_enums::FmodStudioInitFlags studio_flags, gm_enums::FmodStudioCoreInitFlags core_flags)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)fmod_flag_word(studio_flags), (FMOD_INITFLAGS)fmod_flag_word(core_flags), nullptr);
+	g_fmod_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)(std::uint64_t)studio_flags, (FMOD_INITFLAGS)(std::uint64_t)core_flags, nullptr);
 	return 0;
 }
 
@@ -122,14 +122,14 @@ double fmod_studio_system_flush_sample_loading()
 // Studio System - Banks
 // ============================================================
 
-std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, double flags)
+std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, gm_enums::FmodStudioLoadBankFlags flags)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)fmod_flag_word(flags), &bank);
+	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)(std::uint64_t)flags, &bank);
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
@@ -147,7 +147,7 @@ std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filen
 // offers no aligned allocation, and no hook that fires when an async unload
 // completes. FMOD_STUDIO_LOAD_MEMORY copies, so the buffer may be freed the
 // instant this returns.
-std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, double flags)
+std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, gm_enums::FmodStudioLoadBankFlags flags)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -173,7 +173,7 @@ std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer d
 		(const char*)data.data(),
 		(int)usable,
 		FMOD_STUDIO_LOAD_MEMORY,
-		(FMOD_STUDIO_LOAD_BANK_FLAGS)fmod_flag_word(flags),
+		(FMOD_STUDIO_LOAD_BANK_FLAGS)(std::uint64_t)flags,
 		&bank);
 
 	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
@@ -611,13 +611,13 @@ uint64_t fmod_studio_system_get_event_by_id(std::string_view id)
 	return result;
 }
 
-double fmod_studio_system_is_valid()
+bool fmod_studio_system_is_valid()
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
-	if (studio_system == nullptr) return 0.0;
+	if (studio_system == nullptr) return false;
 
-	return studio_system->isValid() ? 1.0 : 0.0;
+	return studio_system->isValid();
 }
 
 // ============================================================
@@ -699,13 +699,13 @@ FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key)
 	result.ext_info.dls_name = ex.dlsname != nullptr ? std::string(ex.dlsname) : std::string();
 	result.ext_info.encryption_key = ex.encryptionkey != nullptr ? std::string(ex.encryptionkey) : std::string();
 	result.ext_info.max_polyphony = (double)ex.maxpolyphony;
-	result.ext_info.suggested_sound_type = (double)ex.suggestedsoundtype;
+	result.ext_info.suggested_sound_type = (gm_enums::FmodStudioSoundType)ex.suggestedsoundtype;
 	result.ext_info.file_buffer_size = (double)ex.filebuffersize;
-	result.ext_info.channel_order = (double)ex.channelorder;
+	result.ext_info.channel_order = (gm_enums::FmodStudioChannelOrder)ex.channelorder;
 	result.ext_info.initial_seek_position = (double)ex.initialseekposition;
-	result.ext_info.initial_seek_pos_type = (double)ex.initialseekpostype;
-	result.ext_info.ignore_set_filesystem = (double)ex.ignoresetfilesystem;
-	result.ext_info.audio_queue_policy = (double)ex.audioqueuepolicy;
+	result.ext_info.initial_seek_pos_type = (gm_enums::FmodStudioTimeUnit)ex.initialseekpostype;
+	result.ext_info.ignore_set_filesystem = ex.ignoresetfilesystem != 0;
+	result.ext_info.audio_queue_policy = (gm_enums::FmodStudioAudioQueueCodecPolicy)ex.audioqueuepolicy;
 	result.ext_info.min_midi_granularity = (double)ex.minmidigranularity;
 	result.ext_info.non_block_thread_id = (double)ex.nonblockthreadid;
 	return result;
@@ -733,7 +733,7 @@ FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1,
 	return result;
 }
 
-double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, double ignore_seek_speed)
+double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, bool ignore_seek_speed)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -743,11 +743,11 @@ double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, 
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	g_fmod_last_result = studio_system->setParameterByID(id, (float)value, ignore_seek_speed != 0.0);
+	g_fmod_last_result = studio_system->setParameterByID(id, (float)value, ignore_seek_speed);
 	return 0;
 }
 
-double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, double ignore_seek_speed)
+double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -758,11 +758,11 @@ double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double
 	id.data2 = (unsigned int)id_data2;
 
 	std::string label_str(label);
-	g_fmod_last_result = studio_system->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed != 0.0);
+	g_fmod_last_result = studio_system->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 
-double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, double ignore_seek_speed)
+double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, bool ignore_seek_speed)
 {
 	FMOD::Studio::System* studio_system = nullptr;
 	validate_fmod_studio_system(g_studio_system_ref, studio_system);
@@ -770,7 +770,7 @@ double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name
 
 	std::string name_str(name);
 	std::string label_str(label);
-	g_fmod_last_result = studio_system->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed != 0.0);
+	g_fmod_last_result = studio_system->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 

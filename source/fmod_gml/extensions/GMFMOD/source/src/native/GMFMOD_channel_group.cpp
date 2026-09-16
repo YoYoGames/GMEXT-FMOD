@@ -45,7 +45,7 @@ uint64_t fmod_channel_group_get_channel(uint64_t channel_group_ref, double index
 // ChannelGroup - Group Management
 // ============================================================
 
-uint64_t fmod_channel_group_add_group(uint64_t channel_group_ref, uint64_t child_channel_group_ref, double propagate_dsp_clock)
+uint64_t fmod_channel_group_add_group(uint64_t channel_group_ref, uint64_t child_channel_group_ref, bool propagate_dsp_clock)
 {
 	uint64_t result = 0;
 
@@ -62,7 +62,7 @@ uint64_t fmod_channel_group_add_group(uint64_t channel_group_ref, uint64_t child
 		return result;
 
 	FMOD::DSPConnection* dsp_connection = nullptr;
-	g_fmod_last_result = channel_group->addGroup(child_channel_group, propagate_dsp_clock != 0.0, &dsp_connection);
+	g_fmod_last_result = channel_group->addGroup(child_channel_group, propagate_dsp_clock, &dsp_connection);
 
 	if (g_fmod_last_result == FMOD_OK && dsp_connection != nullptr)
 	{

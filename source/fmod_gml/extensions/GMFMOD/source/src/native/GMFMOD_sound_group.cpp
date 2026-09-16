@@ -32,7 +32,7 @@ double fmod_sound_group_get_max_audible(uint64_t sound_group_ref)
 	return (double)max_audible;
 }
 
-double fmod_sound_group_set_max_audible_behavior(uint64_t sound_group_ref, double behavior)
+double fmod_sound_group_set_max_audible_behavior(uint64_t sound_group_ref, gm_enums::FmodSoundGroupBehavior behavior)
 {
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
@@ -44,17 +44,17 @@ double fmod_sound_group_set_max_audible_behavior(uint64_t sound_group_ref, doubl
 	return 0;
 }
 
-double fmod_sound_group_get_max_audible_behavior(uint64_t sound_group_ref)
+gm_enums::FmodSoundGroupBehavior fmod_sound_group_get_max_audible_behavior(uint64_t sound_group_ref)
 {
 	FMOD::SoundGroup* sound_group = nullptr;
 	validate_fmod_sound_group(sound_group_ref, sound_group);
 
 	if (sound_group == nullptr)
-		return 0.0;
+		return (gm_enums::FmodSoundGroupBehavior)0;
 
 	FMOD_SOUNDGROUP_BEHAVIOR behavior = FMOD_SOUNDGROUP_BEHAVIOR(0);
 	g_fmod_last_result = sound_group->getMaxAudibleBehavior(&behavior);
-	return (double)behavior;
+	return (gm_enums::FmodSoundGroupBehavior)behavior;
 }
 
 double fmod_sound_group_set_mute_fade_speed(uint64_t sound_group_ref, double speed)

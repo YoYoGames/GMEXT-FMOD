@@ -92,9 +92,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_create(__ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_init:(double)max_channels arg1:(double)studio_flags arg2:(double)core_flags
+- (double)__EXT_NATIVE__fmod_studio_system_init:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_init(max_channels, studio_flags, core_flags);
+    return __EXT_NATIVE__fmod_studio_system_init(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_release
 {
@@ -112,9 +112,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_flush_sample_loading();
 }
-- (double)__EXT_NATIVE__fmod_studio_system_load_bank_file:(char*)filename arg1:(double)flags arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_system_load_bank_file:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_load_bank_file(filename, flags, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_system_load_bank_file(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_load_bank_memory:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -324,13 +324,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_bank_unload(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_bank_get_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_bank_get_loading_state(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_bank_get_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_bank_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_studio_bank_get_path:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -472,9 +472,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_sound_size(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_description_unload_sample_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -532,9 +532,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_instance_stop(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_playback_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_playback_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_instance_get_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -760,9 +760,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_vca_set_volume(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_command_replay_get_playback_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_playback_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_command_replay_get_current_command:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

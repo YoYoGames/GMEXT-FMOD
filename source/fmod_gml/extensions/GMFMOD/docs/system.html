@@ -3168,7 +3168,7 @@
 </tr>
 <tr>
 <td>flags</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodinitflags">FmodInitFlags</a></td>
 <td>The initialization flags. More than one mode can be set at once by combining them with the OR operator.</td>
 </tr>
 </tbody>
@@ -3792,7 +3792,7 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 </tr>
 <tr>
 <td>file_buffer_size_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodtimeunit">FmodTimeUnit</a></td>
 <td>The type of units for <code>file_buffer_size</code>. The default is <code>FmodTimeUnit.RawBytes</code>.</td>
 </tr>
 </tbody>
@@ -3929,7 +3929,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <tbody>
 <tr>
 <td>speaker</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodspeaker">FmodSpeaker</a></td>
 <td>The speaker.</td>
 </tr>
 <tr>
@@ -3944,7 +3944,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 </tr>
 <tr>
 <td>active</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>The active state of a speaker. <code>true</code> = included in 3D calculations, <code>false</code> = ignored.</td>
 </tr>
 </tbody>
@@ -3980,7 +3980,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <tbody>
 <tr>
 <td>speaker</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodspeaker">FmodSpeaker</a></td>
 <td>The speaker.</td>
 </tr>
 </tbody>
@@ -4522,7 +4522,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </tr>
 <tr>
 <td>mode</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodmode">FmodMode</a></td>
 <td>The behavior modifier for opening the sound.</td>
 </tr>
 </tbody>
@@ -4566,7 +4566,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </tr>
 <tr>
 <td>mode</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodmode">FmodMode</a></td>
 <td>The behavior modifier for opening the sound.</td>
 </tr>
 </tbody>
@@ -4805,7 +4805,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </tr>
 <tr>
 <td>pause</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether to start in the paused state. Start a Channel paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
 </tr>
 </tbody>
@@ -4855,7 +4855,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </tr>
 <tr>
 <td>paused</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether to start in the paused state. Start a <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a> paused to allow altering attributes without it being audible, then follow it up with a call to <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> with <code>pause</code> = <code>false</code>.</td>
 </tr>
 </tbody>
@@ -5159,7 +5159,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <tbody>
 <tr>
 <td>port_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodporttype">FmodPortType</a></td>
 <td>The port type (output mode specific).</td>
 </tr>
 <tr>
@@ -5174,7 +5174,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 </tr>
 <tr>
 <td>pass_thru</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether the signal should additionally route to the existing ChannelGroup output.</td>
 </tr>
 </tbody>
@@ -5359,7 +5359,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 </tr>
 <tr>
 <td>loop</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>A flag to tell the recording engine whether to continue recording to the provided sound from the start again, after it has reached the end. If this is set to <code>true</code> the data will be continually be overwritten once every loop.</td>
 </tr>
 </tbody>
@@ -5446,7 +5446,7 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
 </blockquote>
 <p><br></p>
 <hr />
@@ -5834,7 +5834,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 </tr>
 <tr>
 <td>mode</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodmode">FmodMode</a></td>
 <td>A bitfield of <a href="constants.html#fmodmode">FmodMode</a> values describing how to open the sound.</td>
 </tr>
 <tr>
@@ -5894,7 +5894,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 </tr>
 <tr>
 <td>mode</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodmode">FmodMode</a></td>
 <td>A bitfield of <a href="constants.html#fmodmode">FmodMode</a> values describing how to open the sound.</td>
 </tr>
 </tbody>
@@ -5943,7 +5943,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 </tr>
 <tr>
 <td>mode</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodmode">FmodMode</a></td>
 <td>A bitfield of <a href="constants.html#fmodmode">FmodMode</a> values describing how to open the sound.</td>
 </tr>
 <tr>

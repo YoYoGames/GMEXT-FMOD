@@ -134,6 +134,24 @@ namespace gm_enums
         MemoryTracking = 32
     };
 
+    enum class FmodStudioCoreInitFlags : std::int64_t
+    {
+        Normal = 0,
+        StreamFromUpdate = 1,
+        MixFromUpdate = 2,
+        RightHanded3D = 4,
+        ClipOutput = 8,
+        ChannelLowpass = 256,
+        ChannelDistanceFilter = 512,
+        ProfileEnable = 65536,
+        Vol0BecomesVirtual = 131072,
+        GeometryUseClosest = 262144,
+        PreferDolbyDownmix = 524288,
+        ThreadUnsafe = 1048576,
+        ProfileMeterAll = 2097152,
+        MemoryTracking = 4194304
+    };
+
     enum class FmodStudioLoadingState : std::int64_t
     {
         Unloading = 0,
@@ -286,6 +304,77 @@ namespace gm_enums
         BitStream = 6
     };
 
+    enum class FmodStudioSoundType : std::int64_t
+    {
+        Unknown = 0,
+        Aiff = 1,
+        Asf = 2,
+        Dls = 3,
+        Flac = 4,
+        Fsb = 5,
+        It = 6,
+        Midi = 7,
+        Mod = 8,
+        Mpeg = 9,
+        OggVorbis = 10,
+        Playlist = 11,
+        Raw = 12,
+        S3m = 13,
+        User = 14,
+        Wav = 15,
+        Xm = 16,
+        Xma = 17,
+        AudioQueue = 18,
+        At9 = 19,
+        Vorbis = 20,
+        MediaFoundation = 21,
+        MediaCodec = 22,
+        Fadpcm = 23,
+        Opus = 24
+    };
+
+    enum class FmodStudioTimeUnit : std::int64_t
+    {
+        Ms = 1,
+        Pcm = 2,
+        PcmBytes = 4,
+        RawBytes = 8,
+        PcmFraction = 16,
+        ModOrder = 256,
+        ModRow = 512,
+        ModPattern = 1024
+    };
+
+    enum class FmodStudioChannelOrder : std::int64_t
+    {
+        Default = 0,
+        WaveFormat = 1,
+        ProTools = 2,
+        AllMono = 3,
+        AllStereo = 4,
+        Alsa = 5
+    };
+
+    enum class FmodStudioAudioQueueCodecPolicy : std::int64_t
+    {
+        Default = 0,
+        SoftwareOnly = 1,
+        HardwareOnly = 2
+    };
+
+    enum class FmodStudioInstanceType : std::int64_t
+    {
+        None = 0,
+        System = 1,
+        EventDescription = 2,
+        EventInstance = 3,
+        ParameterInstance = 4,
+        Bus = 5,
+        Vca = 6,
+        Bank = 7,
+        CommandReplay = 8
+    };
+
 }
 
 
@@ -352,8 +441,8 @@ namespace gm_structs
         std::string command_name;
         double parent_command_index;
         double frame_time;
-        double instance_type;
-        double output_type;
+        gm_enums::FmodStudioInstanceType instance_type;
+        gm_enums::FmodStudioInstanceType output_type;
         double instance_handle;
         double output_handle;
     };
@@ -370,7 +459,7 @@ namespace gm_structs
         gm_enums::FmodStudioUserPropertyType type;
         std::string string_value;
         double int_value;
-        double bool_value;
+        bool bool_value;
         double float_value;
     };
 
@@ -411,14 +500,14 @@ namespace gm_structs
         std::string dls_name;
         std::string encryption_key;
         double max_polyphony;
-        double suggested_sound_type;
+        gm_enums::FmodStudioSoundType suggested_sound_type;
         double file_buffer_size;
-        double channel_order;
+        gm_enums::FmodStudioChannelOrder channel_order;
         std::uint64_t initial_sound_group;
         double initial_seek_position;
-        double initial_seek_pos_type;
-        double ignore_set_filesystem;
-        double audio_queue_policy;
+        gm_enums::FmodStudioTimeUnit initial_seek_pos_type;
+        bool ignore_set_filesystem;
+        gm_enums::FmodStudioAudioQueueCodecPolicy audio_queue_policy;
         double min_midi_granularity;
         double non_block_thread_id;
     };
@@ -621,8 +710,8 @@ namespace gm::wire::codec
         obj.command_name = gm::wire::codec::readValue<std::string>(_buf);
         obj.parent_command_index = gm::wire::codec::readValue<double>(_buf);
         obj.frame_time = gm::wire::codec::readValue<double>(_buf);
-        obj.instance_type = gm::wire::codec::readValue<double>(_buf);
-        obj.output_type = gm::wire::codec::readValue<double>(_buf);
+        obj.instance_type = gm::wire::codec::readValue<gm_enums::FmodStudioInstanceType>(_buf);
+        obj.output_type = gm::wire::codec::readValue<gm_enums::FmodStudioInstanceType>(_buf);
         obj.instance_handle = gm::wire::codec::readValue<double>(_buf);
         obj.output_handle = gm::wire::codec::readValue<double>(_buf);
         return obj;
@@ -663,7 +752,7 @@ namespace gm::wire::codec
         obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioUserPropertyType>(_buf);
         obj.string_value = gm::wire::codec::readValue<std::string>(_buf);
         obj.int_value = gm::wire::codec::readValue<double>(_buf);
-        obj.bool_value = gm::wire::codec::readValue<double>(_buf);
+        obj.bool_value = gm::wire::codec::readValue<bool>(_buf);
         obj.float_value = gm::wire::codec::readValue<double>(_buf);
         return obj;
     }
@@ -769,14 +858,14 @@ namespace gm::wire::codec
         obj.dls_name = gm::wire::codec::readValue<std::string>(_buf);
         obj.encryption_key = gm::wire::codec::readValue<std::string>(_buf);
         obj.max_polyphony = gm::wire::codec::readValue<double>(_buf);
-        obj.suggested_sound_type = gm::wire::codec::readValue<double>(_buf);
+        obj.suggested_sound_type = gm::wire::codec::readValue<gm_enums::FmodStudioSoundType>(_buf);
         obj.file_buffer_size = gm::wire::codec::readValue<double>(_buf);
-        obj.channel_order = gm::wire::codec::readValue<double>(_buf);
+        obj.channel_order = gm::wire::codec::readValue<gm_enums::FmodStudioChannelOrder>(_buf);
         obj.initial_sound_group = gm::wire::codec::readValue<std::uint64_t>(_buf);
         obj.initial_seek_position = gm::wire::codec::readValue<double>(_buf);
-        obj.initial_seek_pos_type = gm::wire::codec::readValue<double>(_buf);
-        obj.ignore_set_filesystem = gm::wire::codec::readValue<double>(_buf);
-        obj.audio_queue_policy = gm::wire::codec::readValue<double>(_buf);
+        obj.initial_seek_pos_type = gm::wire::codec::readValue<gm_enums::FmodStudioTimeUnit>(_buf);
+        obj.ignore_set_filesystem = gm::wire::codec::readValue<bool>(_buf);
+        obj.audio_queue_policy = gm::wire::codec::readValue<gm_enums::FmodStudioAudioQueueCodecPolicy>(_buf);
         obj.min_midi_granularity = gm::wire::codec::readValue<double>(_buf);
         obj.non_block_thread_id = gm::wire::codec::readValue<double>(_buf);
         return obj;
@@ -1203,13 +1292,13 @@ namespace gm::wire::details
 }
 
 std::uint64_t fmod_studio_system_create();
-double fmod_studio_system_init(double max_channels, double studio_flags, double core_flags);
+double fmod_studio_system_init(double max_channels, gm_enums::FmodStudioInitFlags studio_flags, gm_enums::FmodStudioCoreInitFlags core_flags);
 double fmod_studio_system_release();
 double fmod_studio_system_update();
 double fmod_studio_system_flush_commands();
 double fmod_studio_system_flush_sample_loading();
-std::optional<std::uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, double flags);
-std::optional<std::uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, double flags);
+std::optional<std::uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, gm_enums::FmodStudioLoadBankFlags flags);
+std::optional<std::uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, gm_enums::FmodStudioLoadBankFlags flags);
 double fmod_studio_system_unload_all();
 double fmod_studio_system_get_bank_count();
 std::optional<std::uint64_t> fmod_studio_system_get_bank_at(double index);
@@ -1236,21 +1325,21 @@ double fmod_studio_system_set_num_listeners(double count);
 std::string fmod_studio_system_lookup_id(std::string_view path);
 std::string fmod_studio_system_lookup_path(std::string_view str_guid);
 std::uint64_t fmod_studio_system_get_event_by_id(std::string_view id);
-double fmod_studio_system_is_valid();
+bool fmod_studio_system_is_valid();
 double fmod_studio_system_start_command_capture(std::string_view filename, gm_enums::FmodStudioCommandCaptureFlags flags);
 double fmod_studio_system_stop_command_capture();
 std::uint64_t fmod_studio_system_load_command_replay(std::string_view filename, gm_enums::FmodStudioCommandReplayFlags flags);
 gm_structs::FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key);
 gm_structs::FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1, double id_data2);
-double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, double ignore_seek_speed);
+double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, bool ignore_seek_speed);
 gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2);
 gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_name(std::string_view name);
 double fmod_studio_system_get_parameter_description_count();
 gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_at(double index);
 std::string fmod_studio_system_get_parameter_label_by_id(double id_data1, double id_data2, double label_index);
 std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name, double label_index);
-double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, double ignore_seek_speed);
-double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, double ignore_seek_speed);
+double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed);
+double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, bool ignore_seek_speed);
 gm_structs::FmodStudioSystemCPUUsage fmod_studio_system_get_cpu_usage();
 gm_structs::FmodStudioBufferUsage fmod_studio_system_get_buffer_usage();
 double fmod_studio_system_reset_buffer_usage();
@@ -1261,8 +1350,8 @@ double fmod_studio_system_set_callback(const std::optional<gm::wire::GMFunction>
 std::int64_t fmod_studio_system_get_user_data();
 double fmod_studio_system_set_user_data(std::int64_t user_data);
 double fmod_studio_bank_unload(std::uint64_t bank_ref);
-double fmod_studio_bank_get_loading_state(std::uint64_t bank_ref);
-double fmod_studio_bank_get_sample_loading_state(std::uint64_t bank_ref);
+gm_enums::FmodStudioLoadingState fmod_studio_bank_get_loading_state(std::uint64_t bank_ref);
+gm_enums::FmodStudioLoadingState fmod_studio_bank_get_sample_loading_state(std::uint64_t bank_ref);
 std::string fmod_studio_bank_get_path(std::uint64_t bank_ref);
 std::optional<std::uint64_t> fmod_studio_bank_get_parent_studio_system(std::uint64_t bank_ref);
 double fmod_studio_bank_get_event_count(std::uint64_t bank_ref);
@@ -1273,7 +1362,7 @@ double fmod_studio_bank_get_vca_count(std::uint64_t bank_ref);
 std::optional<std::uint64_t> fmod_studio_bank_get_vca_at(std::uint64_t bank_ref, double index);
 double fmod_studio_bank_get_string_count(std::uint64_t bank_ref);
 std::string fmod_studio_bank_get_id(std::uint64_t bank_ref);
-double fmod_studio_bank_is_valid(std::uint64_t bank_ref);
+bool fmod_studio_bank_is_valid(std::uint64_t bank_ref);
 gm_structs::FmodStudioStringInfo fmod_studio_bank_get_string_info(std::uint64_t bank_ref, double string_index);
 double fmod_studio_bank_load_sample_data(std::uint64_t bank_ref);
 double fmod_studio_bank_unload_sample_data(std::uint64_t bank_ref);
@@ -1283,22 +1372,22 @@ std::string fmod_studio_event_description_get_path(std::uint64_t event_desc_ref)
 std::optional<std::uint64_t> fmod_studio_event_description_create_instance(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_instance_count(std::uint64_t event_desc_ref);
 std::optional<std::uint64_t> fmod_studio_event_description_get_instance_at(std::uint64_t event_desc_ref, double index);
-double fmod_studio_event_description_is_snapshot(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_is_one_shot(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_has_sustain_point(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_snapshot(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_one_shot(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_has_sustain_point(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_length(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_parameter_count(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_release_all_instances(std::uint64_t event_desc_ref);
 gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_name(std::uint64_t event_desc_ref, std::string_view name);
 double fmod_studio_event_description_load_sample_data(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_is_valid(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_is_3d(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_is_stream(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_is_doppler_enabled(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_valid(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_3d(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_stream(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_doppler_enabled(std::uint64_t event_desc_ref);
 std::string fmod_studio_event_description_get_id(std::uint64_t event_desc_ref);
 gm_structs::FmodStudioMinMaxDistance fmod_studio_event_description_get_min_max_distance(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_sound_size(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_get_sample_loading_state(std::uint64_t event_desc_ref);
+gm_enums::FmodStudioLoadingState fmod_studio_event_description_get_sample_loading_state(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_unload_sample_data(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_set_callback(std::uint64_t event_desc_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType callback_mask);
 std::int64_t fmod_studio_event_description_get_user_data(std::uint64_t event_desc_ref);
@@ -1312,10 +1401,10 @@ std::string fmod_studio_event_description_get_parameter_label_by_id(std::uint64_
 std::string fmod_studio_event_description_get_parameter_label_at(std::uint64_t event_desc_ref, double index, double label_index);
 std::string fmod_studio_event_description_get_parameter_label_by_name(std::uint64_t event_desc_ref, std::string_view name, double label_index);
 double fmod_studio_event_instance_start(std::uint64_t instance_ref);
-double fmod_studio_event_instance_stop(std::uint64_t instance_ref, double stop_mode);
-double fmod_studio_event_instance_get_playback_state(std::uint64_t instance_ref);
-double fmod_studio_event_instance_get_paused(std::uint64_t instance_ref);
-double fmod_studio_event_instance_set_paused(std::uint64_t instance_ref, double paused);
+double fmod_studio_event_instance_stop(std::uint64_t instance_ref, gm_enums::FmodStudioStopMode stop_mode);
+gm_enums::FmodStudioPlaybackState fmod_studio_event_instance_get_playback_state(std::uint64_t instance_ref);
+bool fmod_studio_event_instance_get_paused(std::uint64_t instance_ref);
+double fmod_studio_event_instance_set_paused(std::uint64_t instance_ref, bool paused);
 double fmod_studio_event_instance_get_timeline_position(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_timeline_position(std::uint64_t instance_ref, double position);
 double fmod_studio_event_instance_keyoff(std::uint64_t instance_ref);
@@ -1329,8 +1418,8 @@ double fmod_studio_event_instance_get_parameter_count(std::uint64_t instance_ref
 double fmod_studio_event_instance_get_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2);
 double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2, double value);
 double fmod_studio_event_instance_set_callback(std::uint64_t instance_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType mask);
-double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, double ignore_seek_speed);
-double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, double ignore_seek_speed);
+double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed);
+double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up);
 gm_structs::FmodStudio3DAttributes fmod_studio_event_instance_get_3d_attributes(std::uint64_t instance_ref);
 gm_structs::FmodStudioMinMaxDistance fmod_studio_event_instance_get_min_max_distance(std::uint64_t instance_ref);
@@ -1342,8 +1431,8 @@ double fmod_studio_event_instance_get_property(std::uint64_t instance_ref, gm_en
 double fmod_studio_event_instance_set_property(std::uint64_t instance_ref, gm_enums::FmodStudioEventProperty property_type, double value);
 std::int64_t fmod_studio_event_instance_get_user_data(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_user_data(std::uint64_t instance_ref, std::int64_t user_data);
-double fmod_studio_event_instance_is_valid(std::uint64_t instance_ref);
-double fmod_studio_event_instance_is_virtual(std::uint64_t instance_ref);
+bool fmod_studio_event_instance_is_valid(std::uint64_t instance_ref);
+bool fmod_studio_event_instance_is_virtual(std::uint64_t instance_ref);
 std::uint64_t fmod_studio_event_instance_get_channel_group_ptr(std::uint64_t instance_ref);
 gm_structs::FmodStudioCPUUsage fmod_studio_event_instance_get_cpu_usage(std::uint64_t instance_ref);
 gm_structs::FmodStudioMemoryUsage fmod_studio_event_instance_get_memory_usage(std::uint64_t instance_ref);
@@ -1352,39 +1441,39 @@ double fmod_studio_event_instance_release(std::uint64_t instance_ref);
 std::string fmod_studio_bus_get_path(std::uint64_t bus_ref);
 double fmod_studio_bus_get_volume(std::uint64_t bus_ref);
 double fmod_studio_bus_set_volume(std::uint64_t bus_ref, double volume);
-double fmod_studio_bus_get_paused(std::uint64_t bus_ref);
-double fmod_studio_bus_set_paused(std::uint64_t bus_ref, double paused);
-double fmod_studio_bus_stop_all_events(std::uint64_t bus_ref, double stop_mode);
+bool fmod_studio_bus_get_paused(std::uint64_t bus_ref);
+double fmod_studio_bus_set_paused(std::uint64_t bus_ref, bool paused);
+double fmod_studio_bus_stop_all_events(std::uint64_t bus_ref, gm_enums::FmodStudioStopMode stop_mode);
 std::optional<std::uint64_t> fmod_studio_bus_get_master_bus();
 std::string fmod_studio_bus_get_id(std::uint64_t bus_ref);
-double fmod_studio_bus_is_valid(std::uint64_t bus_ref);
+bool fmod_studio_bus_is_valid(std::uint64_t bus_ref);
 std::uint64_t fmod_studio_bus_get_channel_group_ptr(std::uint64_t bus_ref);
 double fmod_studio_bus_lock_channel_group(std::uint64_t bus_ref);
 double fmod_studio_bus_unlock_channel_group(std::uint64_t bus_ref);
 gm_structs::FmodStudioCPUUsage fmod_studio_bus_get_cpu_usage(std::uint64_t bus_ref);
 gm_structs::FmodStudioMemoryUsage fmod_studio_bus_get_memory_usage(std::uint64_t bus_ref);
-double fmod_studio_bus_get_mute(std::uint64_t bus_ref);
-double fmod_studio_bus_set_mute(std::uint64_t bus_ref, double mute);
+bool fmod_studio_bus_get_mute(std::uint64_t bus_ref);
+double fmod_studio_bus_set_mute(std::uint64_t bus_ref, bool mute);
 std::uint64_t fmod_studio_bus_get_port_index(std::uint64_t bus_ref);
 double fmod_studio_bus_set_port_index(std::uint64_t bus_ref, std::uint64_t port_index);
 std::string fmod_studio_vca_get_path(std::uint64_t vca_ref);
 double fmod_studio_vca_get_volume(std::uint64_t vca_ref);
 double fmod_studio_vca_set_volume(std::uint64_t vca_ref, double volume);
-double fmod_studio_command_replay_get_playback_state(std::uint64_t replay_ref);
+gm_enums::FmodStudioPlaybackState fmod_studio_command_replay_get_playback_state(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_current_command(std::uint64_t replay_ref);
 double fmod_studio_command_replay_release(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_command_count(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_length(std::uint64_t replay_ref);
 std::uint64_t fmod_studio_command_replay_get_system_object(std::uint64_t replay_ref);
-double fmod_studio_command_replay_is_valid(std::uint64_t replay_ref);
+bool fmod_studio_command_replay_is_valid(std::uint64_t replay_ref);
 gm_structs::FmodStudioCommandInfo fmod_studio_command_replay_get_command_info(std::uint64_t replay_ref, double command_index);
 std::string fmod_studio_command_replay_get_command_string(std::uint64_t replay_ref, double command_index);
 double fmod_studio_command_replay_get_command_at_time(std::uint64_t replay_ref, double time);
 double fmod_studio_command_replay_seek_to_command(std::uint64_t replay_ref, double command_index);
 double fmod_studio_command_replay_seek_to_time(std::uint64_t replay_ref, double time);
 double fmod_studio_command_replay_set_bank_path(std::uint64_t replay_ref, std::string_view path);
-double fmod_studio_command_replay_get_paused(std::uint64_t replay_ref);
-double fmod_studio_command_replay_set_paused(std::uint64_t replay_ref, double paused);
+bool fmod_studio_command_replay_get_paused(std::uint64_t replay_ref);
+double fmod_studio_command_replay_set_paused(std::uint64_t replay_ref, bool paused);
 double fmod_studio_command_replay_start(std::uint64_t replay_ref);
 double fmod_studio_command_replay_stop(std::uint64_t replay_ref);
 std::int64_t fmod_studio_command_replay_get_user_data(std::uint64_t replay_ref);

@@ -153,14 +153,14 @@
  * @member {String} dls_name The file path to a `FMOD_SOUND_TYPE.DLS` sample set to use when loading a `FmodSoundType.Midi` file, see the description for defaults.
  * @member {String} encryption_key Key for encrypted `FmodSoundType.Fsb` file, cannot be used in conjunction with `FmodStudioMode.OpenMemoryPoint`.
  * @member {Real} max_polyphony The maximum voice count for `FmodSoundType.Midi` / `FmodSoundType.It`. Default is 64.
- * @member {Real} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
+ * @member {Enum.FmodSoundType} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
  * @member {Real} file_buffer_size The buffer size for reading the file, use -1 to disable buffering.
- * @member {Real} channel_order Custom ordering of speakers for this sound data.
+ * @member {Enum.FmodChannelOrder} channel_order Custom ordering of speakers for this sound data.
  * @member {Real} initial_sound_group A reference to the sound group the new sound joins, or 0 for the master sound group.
  * @member {Real} initial_seek_position The initial position to seek to for `FmodStudioMode.CreateStream`.
- * @member {Real} initial_seek_pos_type The time units for `initial_seek_position`.
- * @member {Real} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
- * @member {Real} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
+ * @member {Enum.FmodTimeUnit} initial_seek_pos_type The time units for `initial_seek_position`.
+ * @member {Bool} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
+ * @member {Enum.FmodAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
  * @member {Real} min_midi_granularity The mixer granularity for `FmodSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {Real} non_block_thread_id The thread index to execute `FmodStudioMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
@@ -182,14 +182,14 @@
  * @member {String} dls_name The file path to a `FMOD_SOUND_TYPE.DLS` sample set to use when loading a `FmodSoundType.Midi` file, see the description for defaults.
  * @member {String} encryption_key Key for encrypted `FmodSoundType.Fsb` file, cannot be used in conjunction with `FmodStudioMode.OpenMemoryPoint`.
  * @member {Real} max_polyphony The maximum voice count for `FmodSoundType.Midi` / `FmodSoundType.It`. Default is 64.
- * @member {Real} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
+ * @member {Enum.FmodStudioSoundType} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
  * @member {Real} file_buffer_size The buffer size for reading the file, use -1 to disable buffering.
- * @member {Real} channel_order Custom ordering of speakers for this sound data.
+ * @member {Enum.FmodStudioChannelOrder} channel_order Custom ordering of speakers for this sound data.
  * @member {Real} initial_sound_group A reference to the sound group the new sound joins, or 0 for the master sound group.
  * @member {Real} initial_seek_position The initial position to seek to for `FmodStudioMode.CreateStream`.
- * @member {Real} initial_seek_pos_type The time units for `initial_seek_position`.
- * @member {Real} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
- * @member {Real} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
+ * @member {Enum.FmodStudioTimeUnit} initial_seek_pos_type The time units for `initial_seek_position`.
+ * @member {Bool} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
+ * @member {Enum.FmodStudioAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
  * @member {Real} min_midi_granularity The mixer granularity for `FmodSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {Real} non_block_thread_id The thread index to execute `FmodStudioMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
@@ -222,7 +222,7 @@
  * @member {Real} distance_filter_center_freq For use with `FmodInitFlags.ChannelDistanceFilter`, the default center frequency for the distance filtering effect. A value in the range [10, 22050].
  * @member {Real} reverb3d_instance For use with [Reverb3D](https://www.fmod.com/docs/2.03/api/core-api-reverb3d.html), selects which global reverb instance to use. A value in the range [0, `FMOD_REVERB_MAXINSTANCES`].
  * @member {Real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `buffer_length` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode)). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.
- * @member {Real} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
+ * @member {Enum.FmodDspResampler} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * @member {Real} random_seed The seed value to initialize the internal random number generator.
  * @member {Real} max_convolution_threads The maximum number of CPU threads to use for `FmodDspType.ConvolutionReverb` effect. 1 = effect is entirely processed inside the `FMOD_THREAD_TYPE.MIXER` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FMOD_THREAD_TYPE.CONVOLUTION1` and `FMOD_THREAD_TYPE.CONVOLUTION2` to increase throughput. A value in the range [0, 3].
  * @member {Real} max_opus_codecs The maximum number of Opus Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
@@ -261,7 +261,7 @@
  * @struct FmodStreamBufferSize
  * @desc This struct stores the default file buffer size for newly opened streams.
  * @member {Real} file_buffer_size The buffer size.
- * @member {Real} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FmodTimeUnit.RawBytes`.
+ * @member {Enum.FmodTimeUnit} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FmodTimeUnit.RawBytes`.
  * @struct_end
  * */
 
@@ -270,7 +270,7 @@
  * @desc This struct stores the position of a speaker and its active state.
  * @member {Real} x The speaker's 2D X position relative to the listener. -1 = left, 0 = middle, +1 = right.
  * @member {Real} y The speaker's 2D Y position relative to the listener. -1 = back, 0 = middle, +1 = front.
- * @member {Real} active The active state of the speaker. `true` = included in 3D calculations, `false` = ignored.
+ * @member {Bool} active The active state of the speaker. `true` = included in 3D calculations, `false` = ignored.
  * @struct_end
  * */
 
@@ -320,7 +320,7 @@
  * *//**
  * @struct FmodDistanceFilter
  * @desc This struct holds override values for the 3D distance filter.
- * @member {Real} custom Whether to override automatic distance filtering and use `custom_level` instead.
+ * @member {Bool} custom Whether to override automatic distance filtering and use `custom_level` instead.
  * @member {Real} custom_level The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation.
  * @member {Real} center_freq The center frequency of the band-pass filter used to simulate distance attenuation. A value in the range [10, 22050]. 0 for default of `FmodSystemAdvancedSettings.distance_filter_center_freq`.
  * @struct_end
@@ -375,7 +375,7 @@
  * @desc This struct holds a sample accurate start (and/or stop) time relative to the parent ChannelGroup DSP clock.
  * @member {Real} dspclock_start [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) clock of the parent [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html) to audibly start playing sound at, expressed in samples.
  * @member {Real} dspclock_end DSP clock of the parent ChannelGroup to audibly stop playing sound at, expressed in samples.
- * @member {Real} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
+ * @member {Bool} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
 False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
  * @struct_end
  * */
@@ -393,7 +393,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 /**
  * @struct FmodDSPChannelFormat
  * @desc This struct holds the PCM input format a DSP will receive when processing.
- * @member {Real} channel_mask Deprecated.
+ * @member {Enum.FmodChannelMask} channel_mask Deprecated.
  * @member {Real} num_channels The number of channels to be processed.
  * @struct_end
  * */
@@ -413,8 +413,8 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
 /**
  * @struct FmodDSPMeteringEnabled
  * @desc This struct holds information on whether input/output signal metering is enabled for a given [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).
- * @member {Real} input_enabled Whether metering is enabled for the input signal.
- * @member {Real} output_enabled Whether metering is enabled for the output signal.
+ * @member {Bool} input_enabled Whether metering is enabled for the input signal.
+ * @member {Bool} output_enabled Whether metering is enabled for the output signal.
  * @struct_end
  * */
 
@@ -459,7 +459,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @desc This struct stores the attributes for a polygon.
  * @member {Real} direct_occlusion The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion.
  * @member {Real} reverb_occlusion The occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion.
- * @member {Real} double_sided Whether the polygon is double-sided. True: Polygon is double-sided.
+ * @member {Bool} double_sided Whether the polygon is double-sided. True: Polygon is double-sided.
 False: Polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @struct_end
  * */
@@ -498,7 +498,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {String} name The tag name.
  * @member {String} data The tag's data, rendered as a string.
  * @member {Real} datalen The length of the tag's data, in bytes.
- * @member {Real} updated True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
+ * @member {Bool} updated True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
  * @struct_end
  * */
 
@@ -515,8 +515,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @desc This struct holds the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.
  * @member {Enum.FmodOpenState} open_state The open state of a sound.
  * @member {Real} percent_buffered The filled percentage of a stream's file buffer.
- * @member {Real} starving The starving state. `true` if a stream has decoded more than the stream file buffer has ready.
- * @member {Real} disk_busy Whether the disk is currently being accessed for this sound.
+ * @member {Bool} starving The starving state. `true` if a stream has decoded more than the stream file buffer has ready.
+ * @member {Bool} disk_busy Whether the disk is currently being accessed for this sound.
  * @struct_end
  * */
 
@@ -589,8 +589,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {String} command_name The fully qualified C++ name of the API function for this command.
  * @member {Real} parent_command_index The index of the command that created the instance this command operates on, or -1 if the command does not operate on any instance.
  * @member {Real} frame_time The playback time at which this command will be executed.
- * @member {Real} instance_type The type of object that this command uses as an instance.
- * @member {Real} output_type The type of object that this command outputs.
+ * @member {Enum.FmodStudioInstanceType} instance_type The type of object that this command uses as an instance.
+ * @member {Enum.FmodStudioInstanceType} output_type The type of object that this command outputs.
  * @member {Real} instance_handle The original handle value of the instance.
  * @member {Real} output_handle The original handle value of the command output.
  * @struct_end
@@ -690,7 +690,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Enum.FmodStudioUserPropertyType} type The user property type.
  * @member {String} string_value String value. Only valid when type is `FmodStudioUserPropertyType.String`.
  * @member {Real} int_value Integer (real) value. Only valid when type is `FmodStudioUserPropertyType.Integer`.
- * @member {Real} bool_value Boolean value. Only valid when type is `FmodStudioUserPropertyType.Boolean`.
+ * @member {Bool} bool_value Boolean value. Only valid when type is `FmodStudioUserPropertyType.Boolean`.
  * @member {Real} float_value Float (real) value. Only valid when type is `FmodStudioUserPropertyType.Float`.
  * @struct_end
  * */

@@ -66,34 +66,34 @@ std::optional<uint64_t> fmod_studio_event_description_get_instance_at(uint64_t e
 	return packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
 }
 
-double fmod_studio_event_description_is_snapshot(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_snapshot(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 	bool is_snapshot = false;
 	g_fmod_last_result = event_desc->isSnapshot(&is_snapshot);
-	return is_snapshot ? 1.0 : 0.0;
+	return is_snapshot;
 }
 
-double fmod_studio_event_description_is_one_shot(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_one_shot(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 	bool is_one_shot = false;
 	g_fmod_last_result = event_desc->isOneshot(&is_one_shot);
-	return is_one_shot ? 1.0 : 0.0;
+	return is_one_shot;
 }
 
-double fmod_studio_event_description_has_sustain_point(uint64_t event_desc_ref)
+bool fmod_studio_event_description_has_sustain_point(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 	bool has_sustain = false;
 	g_fmod_last_result = event_desc->hasSustainPoint(&has_sustain);
-	return has_sustain ? 1.0 : 0.0;
+	return has_sustain;
 }
 
 double fmod_studio_event_description_get_length(uint64_t event_desc_ref)
@@ -178,61 +178,61 @@ double fmod_studio_event_description_unload_sample_data(uint64_t event_desc_ref)
 	return 0;
 }
 
-double fmod_studio_event_description_get_sample_loading_state(uint64_t event_desc_ref)
+gm_enums::FmodStudioLoadingState fmod_studio_event_description_get_sample_loading_state(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return (gm_enums::FmodStudioLoadingState)0;
 
 	FMOD_STUDIO_LOADING_STATE state = FMOD_STUDIO_LOADING_STATE_UNLOADED;
 	g_fmod_last_result = event_desc->getSampleLoadingState(&state);
-	return (double)state;
+	return (gm_enums::FmodStudioLoadingState)state;
 }
 
 // ============================================================
 // Event Description - Status
 // ============================================================
 
-double fmod_studio_event_description_is_valid(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_valid(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 
-	return event_desc->isValid() ? 1.0 : 0.0;
+	return event_desc->isValid();
 }
 
-double fmod_studio_event_description_is_3d(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_3d(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 
 	bool is_3d = false;
 	g_fmod_last_result = event_desc->is3D(&is_3d);
-	return is_3d ? 1.0 : 0.0;
+	return is_3d;
 }
 
-double fmod_studio_event_description_is_stream(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_stream(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 
 	bool is_stream = false;
 	g_fmod_last_result = event_desc->isStream(&is_stream);
-	return is_stream ? 1.0 : 0.0;
+	return is_stream;
 }
 
-double fmod_studio_event_description_is_doppler_enabled(uint64_t event_desc_ref)
+bool fmod_studio_event_description_is_doppler_enabled(uint64_t event_desc_ref)
 {
 	FMOD::Studio::EventDescription* event_desc = nullptr;
 	validate_fmod_studio_event_description(event_desc_ref, event_desc);
-	if (event_desc == nullptr) return 0.0;
+	if (event_desc == nullptr) return false;
 
 	bool doppler = false;
 	g_fmod_last_result = event_desc->isDopplerEnabled(&doppler);
-	return doppler ? 1.0 : 0.0;
+	return doppler;
 }
 
 std::string fmod_studio_event_description_get_id(uint64_t event_desc_ref)
@@ -531,7 +531,7 @@ static FmodStudioUserProperty convert_user_property(const FMOD_STUDIO_USER_PROPE
 		result.int_value = (double)property.intvalue;
 		break;
 	case FMOD_STUDIO_USER_PROPERTY_TYPE_BOOLEAN:
-		result.bool_value = property.boolvalue ? 1.0 : 0.0;
+		result.bool_value = property.boolvalue;
 		break;
 	case FMOD_STUDIO_USER_PROPERTY_TYPE_FLOAT:
 		result.float_value = (double)property.floatvalue;

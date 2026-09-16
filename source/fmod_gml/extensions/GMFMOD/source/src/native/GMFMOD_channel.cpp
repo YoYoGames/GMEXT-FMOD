@@ -64,7 +64,7 @@ double fmod_channel_get_priority(uint64_t channel_ref)
 // Channel - Position
 // ============================================================
 
-double fmod_channel_set_position(uint64_t channel_ref, double position, double time_unit)
+double fmod_channel_set_position(uint64_t channel_ref, double position, gm_enums::FmodTimeUnit time_unit)
 {
 	FMOD::Channel* channel = nullptr;
 	validate_fmod_channel(channel_ref, channel);
@@ -72,11 +72,11 @@ double fmod_channel_set_position(uint64_t channel_ref, double position, double t
 	if (channel == nullptr)
 		return 0;
 
-	g_fmod_last_result = channel->setPosition((unsigned int)position, (FMOD_TIMEUNIT)fmod_flag_word(time_unit));
+	g_fmod_last_result = channel->setPosition((unsigned int)position, (FMOD_TIMEUNIT)(std::uint64_t)time_unit);
 	return 0;
 }
 
-double fmod_channel_get_position(uint64_t channel_ref, double time_unit)
+double fmod_channel_get_position(uint64_t channel_ref, gm_enums::FmodTimeUnit time_unit)
 {
 	FMOD::Channel* channel = nullptr;
 	validate_fmod_channel(channel_ref, channel);
@@ -85,7 +85,7 @@ double fmod_channel_get_position(uint64_t channel_ref, double time_unit)
 		return 0.0;
 
 	unsigned int position = 0;
-	g_fmod_last_result = channel->getPosition(&position, (FMOD_TIMEUNIT)fmod_flag_word(time_unit));
+	g_fmod_last_result = channel->getPosition(&position, (FMOD_TIMEUNIT)(std::uint64_t)time_unit);
 	return (double)position;
 }
 
@@ -162,7 +162,7 @@ double fmod_channel_get_loop_count(uint64_t channel_ref)
 	return (double)loop_count;
 }
 
-double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, double loop_start_type, double loop_end, double loop_end_type)
+double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, gm_enums::FmodTimeUnit loop_start_type, double loop_end, gm_enums::FmodTimeUnit loop_end_type)
 {
 	FMOD::Channel* channel = nullptr;
 	validate_fmod_channel(channel_ref, channel);
@@ -171,13 +171,13 @@ double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, dou
 		return 0;
 
 	g_fmod_last_result = channel->setLoopPoints(
-		(unsigned int)loop_start, (FMOD_TIMEUNIT)fmod_flag_word(loop_start_type),
-		(unsigned int)loop_end, (FMOD_TIMEUNIT)fmod_flag_word(loop_end_type)
+		(unsigned int)loop_start, (FMOD_TIMEUNIT)(std::uint64_t)loop_start_type,
+		(unsigned int)loop_end, (FMOD_TIMEUNIT)(std::uint64_t)loop_end_type
 	);
 	return 0;
 }
 
-FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, double start_type, double end_type)
+FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, gm_enums::FmodTimeUnit start_type, gm_enums::FmodTimeUnit end_type)
 {
 	FmodLoopPoints result{};
 	FMOD::Channel* channel = nullptr;
@@ -186,8 +186,8 @@ FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, double start_t
 
 	unsigned int loop_start = 0, loop_end = 0;
 	g_fmod_last_result = channel->getLoopPoints(
-		&loop_start, (FMOD_TIMEUNIT)fmod_flag_word(start_type),
-		&loop_end, (FMOD_TIMEUNIT)fmod_flag_word(end_type)
+		&loop_start, (FMOD_TIMEUNIT)(std::uint64_t)start_type,
+		&loop_end, (FMOD_TIMEUNIT)(std::uint64_t)end_type
 	);
 
 	result.loop_start = (double)loop_start;
@@ -199,17 +199,17 @@ FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, double start_t
 // Channel - Status
 // ============================================================
 
-double fmod_channel_is_virtual(uint64_t channel_ref)
+bool fmod_channel_is_virtual(uint64_t channel_ref)
 {
 	FMOD::Channel* channel = nullptr;
 	validate_fmod_channel(channel_ref, channel);
 
 	if (channel == nullptr)
-		return 0.0;
+		return false;
 
 	bool is_virtual = false;
 	g_fmod_last_result = channel->isVirtual(&is_virtual);
-	return is_virtual ? 1.0 : 0.0;
+	return is_virtual;
 }
 
 double fmod_channel_get_index(uint64_t channel_ref)

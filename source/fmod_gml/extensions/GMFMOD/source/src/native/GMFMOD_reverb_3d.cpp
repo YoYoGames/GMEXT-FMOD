@@ -6,7 +6,7 @@ using namespace gm_structs;
 // Reverb3D - Configuration
 // ============================================================
 
-double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, double active)
+double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, bool active)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
@@ -14,21 +14,21 @@ double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, double active)
 	if (reverb_3d == nullptr)
 		return 0;
 
-	g_fmod_last_result = reverb_3d->setActive(active != 0.0);
+	g_fmod_last_result = reverb_3d->setActive(active);
 	return 0;
 }
 
-double fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
+bool fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
 {
 	FMOD::Reverb3D* reverb_3d = nullptr;
 	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
 
 	if (reverb_3d == nullptr)
-		return 0.0;
+		return false;
 
 	bool active = false;
 	g_fmod_last_result = reverb_3d->getActive(&active);
-	return active ? 1.0 : 0.0;
+	return active;
 }
 
 double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level)

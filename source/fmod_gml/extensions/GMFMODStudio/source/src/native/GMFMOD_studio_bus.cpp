@@ -35,26 +35,26 @@ double fmod_studio_bus_set_volume(uint64_t bus_ref, double volume)
 	return 0;
 }
 
-double fmod_studio_bus_get_paused(uint64_t bus_ref)
+bool fmod_studio_bus_get_paused(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
-	if (bus == nullptr) return 0.0;
+	if (bus == nullptr) return false;
 	bool paused = false;
 	g_fmod_last_result = bus->getPaused(&paused);
-	return paused ? 1.0 : 0.0;
+	return paused;
 }
 
-double fmod_studio_bus_set_paused(uint64_t bus_ref, double paused)
+double fmod_studio_bus_set_paused(uint64_t bus_ref, bool paused)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0;
-	g_fmod_last_result = bus->setPaused(paused != 0.0);
+	g_fmod_last_result = bus->setPaused(paused);
 	return 0;
 }
 
-double fmod_studio_bus_stop_all_events(uint64_t bus_ref, double stop_mode)
+double fmod_studio_bus_stop_all_events(uint64_t bus_ref, gm_enums::FmodStudioStopMode stop_mode)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
@@ -83,13 +83,13 @@ std::string fmod_studio_bus_get_id(uint64_t bus_ref)
 	return format_guid(guid);
 }
 
-double fmod_studio_bus_is_valid(uint64_t bus_ref)
+bool fmod_studio_bus_is_valid(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
-	if (bus == nullptr) return 0.0;
+	if (bus == nullptr) return false;
 
-	return bus->isValid() ? 1.0 : 0.0;
+	return bus->isValid();
 }
 
 // The raw pointer is what crosses the DLL boundary. A ref minted here would
@@ -158,24 +158,24 @@ FmodStudioMemoryUsage fmod_studio_bus_get_memory_usage(uint64_t bus_ref)
 	return result;
 }
 
-double fmod_studio_bus_get_mute(uint64_t bus_ref)
+bool fmod_studio_bus_get_mute(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
-	if (bus == nullptr) return 0.0;
+	if (bus == nullptr) return false;
 
 	bool mute = false;
 	g_fmod_last_result = bus->getMute(&mute);
-	return mute ? 1.0 : 0.0;
+	return mute;
 }
 
-double fmod_studio_bus_set_mute(uint64_t bus_ref, double mute)
+double fmod_studio_bus_set_mute(uint64_t bus_ref, bool mute)
 {
 	FMOD::Studio::Bus* bus = nullptr;
 	validate_fmod_studio_bus(bus_ref, bus);
 	if (bus == nullptr) return 0;
 
-	g_fmod_last_result = bus->setMute(mute != 0.0);
+	g_fmod_last_result = bus->setMute(mute);
 	return 0;
 }
 

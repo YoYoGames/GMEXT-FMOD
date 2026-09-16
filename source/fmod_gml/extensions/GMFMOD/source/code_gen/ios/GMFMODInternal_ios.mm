@@ -116,9 +116,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_memory_get_stats(blocking, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_thread_set_attributes:(double)thread_type arg1:(double)affinity arg2:(double)priority
+- (double)__EXT_NATIVE__fmod_thread_set_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_thread_set_attributes(thread_type, affinity, priority);
+    return __EXT_NATIVE__fmod_thread_set_attributes(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_set_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -188,9 +188,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_create(__ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_init:(double)max_channels arg1:(double)flags
+- (double)__EXT_NATIVE__fmod_system_init:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_init(max_channels, flags);
+    return __EXT_NATIVE__fmod_system_init(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -308,9 +308,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_set_software_format(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_set_stream_buffer_size:(double)file_buffer_size arg1:(double)file_buffer_size_type
+- (double)__EXT_NATIVE__fmod_system_set_stream_buffer_size:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type);
+    return __EXT_NATIVE__fmod_system_set_stream_buffer_size(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_get_driver_info:(double)driver_id arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -372,13 +372,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_get_speaker_mode_channels(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_get_speaker_position:(double)speaker arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_system_get_speaker_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_get_speaker_position(speaker, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_system_get_speaker_position(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_set_speaker_position:(double)speaker arg1:(double)x arg2:(double)y arg3:(double)active
+- (double)__EXT_NATIVE__fmod_system_set_speaker_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_set_speaker_position(speaker, x, y, active);
+    return __EXT_NATIVE__fmod_system_set_speaker_position(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_get_reverb_properties:(double)instance arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -476,17 +476,17 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_create_reverb_3d(__ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_create_sound:(char*)name_or_data arg1:(double)mode arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_system_create_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_create_sound(name_or_data, mode, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_system_create_sound(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_create_sound_ex:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_system_create_sound_ex(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_create_stream:(char*)name_or_data arg1:(double)mode arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_system_create_stream:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_create_stream(name_or_data, mode, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_system_create_stream(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_create_sound_memory:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -512,13 +512,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_set_mode(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_get_mode(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_get_mode(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_get_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_get_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_get_format(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_get_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_sound_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -720,9 +720,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_group_set_max_audible_behavior(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_group_get_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_group_get_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_sound_group_set_mute_fade_speed:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -852,9 +852,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_channel_control_set_mode(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_channel_control_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_channel_control_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_channel_control_get_mode(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_channel_control_get_mode(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_set_pitch:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -1204,9 +1204,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_reset(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_dsp_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_dsp_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_dsp_get_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
@@ -1252,9 +1252,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_dsp_connection_get_output(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_dsp_connection_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_dsp_connection_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_dsp_connection_get_type(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_dsp_connection_get_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_dsp_connection_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

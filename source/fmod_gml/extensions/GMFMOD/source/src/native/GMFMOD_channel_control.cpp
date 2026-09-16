@@ -8,14 +8,14 @@ using namespace gm_structs;
 // Playback
 // ============================================================
 
-double fmod_channel_control_is_playing(uint64_t channel_control_ref)
+bool fmod_channel_control_is_playing(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return false;
 	bool playing = false;
 	g_fmod_last_result = control->isPlaying(&playing);
-	return playing ? 1.0 : 0.0;
+	return playing;
 }
 
 double fmod_channel_control_stop(uint64_t channel_control_ref)
@@ -27,42 +27,42 @@ double fmod_channel_control_stop(uint64_t channel_control_ref)
 	return 0;
 }
 
-double fmod_channel_control_set_paused(uint64_t channel_control_ref, double paused)
+double fmod_channel_control_set_paused(uint64_t channel_control_ref, bool paused)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->setPaused(paused != 0.0);
+	g_fmod_last_result = control->setPaused(paused);
 	return 0;
 }
 
-double fmod_channel_control_get_paused(uint64_t channel_control_ref)
+bool fmod_channel_control_get_paused(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return false;
 	bool paused = false;
 	g_fmod_last_result = control->getPaused(&paused);
-	return paused ? 1.0 : 0.0;
+	return paused;
 }
 
-double fmod_channel_control_set_mode(uint64_t channel_control_ref, double mode)
+double fmod_channel_control_set_mode(uint64_t channel_control_ref, gm_enums::FmodMode mode)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->setMode((FMOD_MODE)fmod_flag_word(mode));
+	g_fmod_last_result = control->setMode((FMOD_MODE)(std::uint64_t)mode);
 	return 0;
 }
 
-double fmod_channel_control_get_mode(uint64_t channel_control_ref)
+gm_enums::FmodMode fmod_channel_control_get_mode(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return (gm_enums::FmodMode)0;
 	FMOD_MODE mode = FMOD_MODE(0);
 	g_fmod_last_result = control->getMode(&mode);
-	return (double)mode;
+	return (gm_enums::FmodMode)mode;
 }
 
 double fmod_channel_control_set_pitch(uint64_t channel_control_ref, double pitch)
@@ -117,42 +117,42 @@ double fmod_channel_control_get_volume(uint64_t channel_control_ref)
 	return (double)volume;
 }
 
-double fmod_channel_control_set_volume_ramp(uint64_t channel_control_ref, double ramp)
+double fmod_channel_control_set_volume_ramp(uint64_t channel_control_ref, bool ramp)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->setVolumeRamp(ramp != 0.0);
+	g_fmod_last_result = control->setVolumeRamp(ramp);
 	return 0;
 }
 
-double fmod_channel_control_get_volume_ramp(uint64_t channel_control_ref)
+bool fmod_channel_control_get_volume_ramp(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return false;
 	bool ramp = false;
 	g_fmod_last_result = control->getVolumeRamp(&ramp);
-	return ramp ? 1.0 : 0.0;
+	return ramp;
 }
 
-double fmod_channel_control_set_mute(uint64_t channel_control_ref, double mute)
+double fmod_channel_control_set_mute(uint64_t channel_control_ref, bool mute)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->setMute(mute != 0.0);
+	g_fmod_last_result = control->setMute(mute);
 	return 0;
 }
 
-double fmod_channel_control_get_mute(uint64_t channel_control_ref)
+bool fmod_channel_control_get_mute(uint64_t channel_control_ref)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
-	if (control == nullptr) return 0.0;
+	if (control == nullptr) return false;
 	bool mute = false;
 	g_fmod_last_result = control->getMute(&mute);
-	return mute ? 1.0 : 0.0;
+	return mute;
 }
 
 // ============================================================
@@ -243,12 +243,12 @@ double fmod_channel_control_get_3d_spread(uint64_t channel_control_ref)
 	return (double)angle;
 }
 
-double fmod_channel_control_set_3d_distance_filter(uint64_t channel_control_ref, double custom, double custom_level, double center_freq)
+double fmod_channel_control_set_3d_distance_filter(uint64_t channel_control_ref, bool custom, double custom_level, double center_freq)
 {
 	FMOD::ChannelControl* control = nullptr;
 	validate_fmod_channel_control(channel_control_ref, control);
 	if (control == nullptr) return 0;
-	g_fmod_last_result = control->set3DDistanceFilter(custom != 0.0, (float)custom_level, (float)center_freq);
+	g_fmod_last_result = control->set3DDistanceFilter(custom, (float)custom_level, (float)center_freq);
 	return 0;
 }
 
@@ -325,7 +325,7 @@ gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(uint6
 	bool custom = false;
 	float custom_level = 0.0f, center_freq = 0.0f;
 	g_fmod_last_result = control->get3DDistanceFilter(&custom, &custom_level, &center_freq);
-	result.custom = custom ? 1.0 : 0.0;
+	result.custom = custom;
 	result.custom_level = (double)custom_level;
 	result.center_freq = (double)center_freq;
 	return result;
@@ -770,11 +770,11 @@ FmodDelay fmod_channel_control_get_delay(uint64_t channel_ref)
 
 	result.dspclock_start = (double)dspclock_start;
 	result.dspclock_end = (double)dspclock_end;
-	result.stop_channels = stop_channels ? 1.0 : 0.0;
+	result.stop_channels = stop_channels;
 	return result;
 }
 
-double fmod_channel_control_set_delay(uint64_t channel_ref, double dspclock_start, double dspclock_end, double stop_channels)
+double fmod_channel_control_set_delay(uint64_t channel_ref, double dspclock_start, double dspclock_end, bool stop_channels)
 {
 	FMOD::Channel* channel = nullptr;
 	validate_fmod_channel(channel_ref, channel);
@@ -783,7 +783,7 @@ double fmod_channel_control_set_delay(uint64_t channel_ref, double dspclock_star
 	g_fmod_last_result = channel->setDelay(
 		(unsigned long long)dspclock_start,
 		(unsigned long long)dspclock_end,
-		stop_channels != 0.0);
+		stop_channels);
 	return 0;
 }
 

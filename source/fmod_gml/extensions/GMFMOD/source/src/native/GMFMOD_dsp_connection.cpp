@@ -166,17 +166,17 @@ uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 // DSP Connection - Properties
 // ============================================================
 
-double fmod_dsp_connection_get_type(uint64_t connection_ref)
+gm_enums::FmodDspConnectionType fmod_dsp_connection_get_type(uint64_t connection_ref)
 {
 	FMOD::DSPConnection* connection = nullptr;
 	validate_fmod_dsp_connection(connection_ref, connection);
 
 	if (connection == nullptr)
-		return 0;
+		return (gm_enums::FmodDspConnectionType)0;
 
 	FMOD_DSPCONNECTION_TYPE type;
 	g_fmod_last_result = connection->getType(&type);
-	return (double)type;
+	return (gm_enums::FmodDspConnectionType)type;
 }
 
 // ============================================================

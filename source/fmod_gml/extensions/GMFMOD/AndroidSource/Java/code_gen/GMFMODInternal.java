@@ -40,9 +40,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_memory_get_stats(blocking, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_thread_set_attributes(double thread_type, double affinity, double priority)
+    public double __EXT_NATIVE__fmod_thread_set_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_thread_set_attributes(thread_type, affinity, priority);
+        return __EXT_JNI__fmod_thread_set_attributes(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_channel_set_frequency(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -112,9 +112,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_create(__ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_init(double max_channels, double flags)
+    public double __EXT_NATIVE__fmod_system_init(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_system_init(max_channels, flags);
+        return __EXT_JNI__fmod_system_init(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_release(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -232,9 +232,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_set_software_format(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_set_stream_buffer_size(double file_buffer_size, double file_buffer_size_type)
+    public double __EXT_NATIVE__fmod_system_set_stream_buffer_size(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_system_set_stream_buffer_size(file_buffer_size, file_buffer_size_type);
+        return __EXT_JNI__fmod_system_set_stream_buffer_size(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_get_driver_info(double driver_id, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -296,13 +296,13 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_get_speaker_mode_channels(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_get_speaker_position(double speaker, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_system_get_speaker_position(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_get_speaker_position(speaker, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_system_get_speaker_position(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_set_speaker_position(double speaker, double x, double y, double active)
+    public double __EXT_NATIVE__fmod_system_set_speaker_position(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_system_set_speaker_position(speaker, x, y, active);
+        return __EXT_JNI__fmod_system_set_speaker_position(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_get_reverb_properties(double instance, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -400,17 +400,17 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_create_reverb_3d(__ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_create_sound(String name_or_data, double mode, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_system_create_sound(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_create_sound(name_or_data, mode, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_system_create_sound(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_create_sound_ex(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
         return __EXT_JNI__fmod_system_create_sound_ex(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_create_stream(String name_or_data, double mode, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_system_create_stream(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_create_stream(name_or_data, mode, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_system_create_stream(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_create_sound_memory(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -436,13 +436,13 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_sound_set_mode(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_sound_get_mode(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_sound_get_mode(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_sound_get_mode(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_sound_get_mode(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_sound_get_format(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_sound_get_format(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_sound_get_format(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_sound_get_format(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public String __EXT_NATIVE__fmod_sound_get_name(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -644,9 +644,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_sound_group_set_max_audible_behavior(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_sound_group_get_max_audible_behavior(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_sound_group_get_max_audible_behavior(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_sound_group_get_max_audible_behavior(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_sound_group_set_mute_fade_speed(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -776,9 +776,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_channel_control_set_mode(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_channel_control_get_mode(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_channel_control_get_mode(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_channel_control_get_mode(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_channel_control_get_mode(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_channel_control_set_pitch(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -1128,9 +1128,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_dsp_reset(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_dsp_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_dsp_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_dsp_get_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_dsp_get_info(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -1176,9 +1176,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_dsp_connection_get_output(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_dsp_connection_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_dsp_connection_get_type(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_dsp_connection_get_type(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_dsp_connection_get_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_dsp_connection_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {

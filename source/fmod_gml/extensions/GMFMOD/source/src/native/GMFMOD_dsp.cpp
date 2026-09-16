@@ -6,7 +6,7 @@ using namespace gm_structs;
 // Connections
 // ============================================================
 
-uint64_t fmod_dsp_add_input(uint64_t dsp_ref, uint64_t dsp_input_ref, double dsp_connection_type)
+uint64_t fmod_dsp_add_input(uint64_t dsp_ref, uint64_t dsp_input_ref, gm_enums::FmodDspConnectionType dsp_connection_type)
 {
 	uint64_t result = 0;
 	FMOD::DSP* dsp = nullptr;
@@ -45,12 +45,12 @@ double fmod_dsp_get_num_outputs(uint64_t dsp_ref)
 	return (double)num_outputs;
 }
 
-double fmod_dsp_disconnect_all(uint64_t dsp_ref, double inputs, double outputs)
+double fmod_dsp_disconnect_all(uint64_t dsp_ref, bool inputs, bool outputs)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return 0;
-	g_fmod_last_result = dsp->disconnectAll(inputs != 0.0, outputs != 0.0);
+	g_fmod_last_result = dsp->disconnectAll(inputs, outputs);
 	return 0;
 }
 
@@ -104,22 +104,22 @@ double fmod_dsp_get_parameter_int(uint64_t dsp_ref, double index)
 	return (double)value;
 }
 
-void fmod_dsp_set_parameter_bool(uint64_t dsp_ref, double index, double value)
+void fmod_dsp_set_parameter_bool(uint64_t dsp_ref, double index, bool value)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
-	g_fmod_last_result = dsp->setParameterBool((int)index, value != 0.0);
+	g_fmod_last_result = dsp->setParameterBool((int)index, value);
 }
 
-double fmod_dsp_get_parameter_bool(uint64_t dsp_ref, double index)
+bool fmod_dsp_get_parameter_bool(uint64_t dsp_ref, double index)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return false;
 	bool value = false;
 	g_fmod_last_result = dsp->getParameterBool((int)index, &value, nullptr, 0);
-	return value ? 1.0 : 0.0;
+	return value;
 }
 
 // ============================================================
@@ -222,7 +222,7 @@ double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, double data_type)
 	return (double)param_index;
 }
 
-void fmod_dsp_set_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
+void fmod_dsp_set_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
@@ -241,7 +241,7 @@ void fmod_dsp_set_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::
 // Returns the number of bytes the parameter needs. The caller passes the size
 // of its own buffer as `length`; when that is too small nothing is written and
 // the required size is still returned, so GML can resize and try again.
-double fmod_dsp_get_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
+double fmod_dsp_get_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
@@ -325,13 +325,13 @@ FmodDSPParameterInfo fmod_dsp_get_parameter_info(uint64_t dsp_ref, double index)
 // DSP - Channel Format
 // ============================================================
 
-void fmod_dsp_set_channel_format(uint64_t dsp_ref, double channel_mask, double num_channels)
+void fmod_dsp_set_channel_format(uint64_t dsp_ref, gm_enums::FmodChannelMask channel_mask, double num_channels)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)fmod_flag_word(channel_mask), (int)num_channels, FMOD_SPEAKERMODE_DEFAULT);
+	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)(std::uint64_t)channel_mask, (int)num_channels, FMOD_SPEAKERMODE_DEFAULT);
 }
 
 FmodDSPChannelFormat fmod_dsp_get_channel_format(uint64_t dsp_ref)
@@ -346,7 +346,7 @@ FmodDSPChannelFormat fmod_dsp_get_channel_format(uint64_t dsp_ref)
 	FMOD_SPEAKERMODE source_speaker_mode = FMOD_SPEAKERMODE_DEFAULT;
 	g_fmod_last_result = dsp->getChannelFormat(&channel_mask, &num_channels, &source_speaker_mode);
 
-	result.channel_mask = (double)channel_mask;
+	result.channel_mask = (gm_enums::FmodChannelMask)channel_mask;
 	result.num_channels = (double)num_channels;
 	return result;
 }
@@ -363,7 +363,7 @@ FmodDSPChannelFormat fmod_dsp_get_output_channel_format(uint64_t dsp_ref)
 	FMOD_SPEAKERMODE out_speaker_mode = FMOD_SPEAKERMODE_DEFAULT;
 	g_fmod_last_result = dsp->getOutputChannelFormat(FMOD_CHANNELMASK_STEREO, 2, FMOD_SPEAKERMODE_DEFAULT, &out_mask, &out_channels, &out_speaker_mode);
 
-	result.channel_mask = (double)out_mask;
+	result.channel_mask = (gm_enums::FmodChannelMask)out_mask;
 	result.num_channels = (double)out_channels;
 	return result;
 }
@@ -386,13 +386,13 @@ FmodDSPMeteringInfo fmod_dsp_get_metering_info(uint64_t dsp_ref)
 	return result;
 }
 
-void fmod_dsp_set_metering_enabled(uint64_t dsp_ref, double input_enabled, double output_enabled)
+void fmod_dsp_set_metering_enabled(uint64_t dsp_ref, bool input_enabled, bool output_enabled)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	g_fmod_last_result = dsp->setMeteringEnabled(input_enabled != 0.0, output_enabled != 0.0);
+	g_fmod_last_result = dsp->setMeteringEnabled(input_enabled, output_enabled);
 }
 
 FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(uint64_t dsp_ref)
@@ -405,8 +405,8 @@ FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(uint64_t dsp_ref)
 	bool input_enabled = false, output_enabled = false;
 	g_fmod_last_result = dsp->getMeteringEnabled(&input_enabled, &output_enabled);
 
-	result.input_enabled = input_enabled ? 1.0 : 0.0;
-	result.output_enabled = output_enabled ? 1.0 : 0.0;
+	result.input_enabled = input_enabled;
+	result.output_enabled = output_enabled;
 	return result;
 }
 
@@ -414,44 +414,44 @@ FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(uint64_t dsp_ref)
 // DSP - Active/Bypass
 // ============================================================
 
-void fmod_dsp_set_active(uint64_t dsp_ref, double active)
+void fmod_dsp_set_active(uint64_t dsp_ref, bool active)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	g_fmod_last_result = dsp->setActive(active != 0.0);
+	g_fmod_last_result = dsp->setActive(active);
 }
 
-double fmod_dsp_get_active(uint64_t dsp_ref)
+bool fmod_dsp_get_active(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return false;
 
 	bool active = false;
 	g_fmod_last_result = dsp->getActive(&active);
-	return active ? 1.0 : 0.0;
+	return active;
 }
 
-void fmod_dsp_set_bypass(uint64_t dsp_ref, double bypass)
+void fmod_dsp_set_bypass(uint64_t dsp_ref, bool bypass)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
 	if (dsp == nullptr) return;
 
-	g_fmod_last_result = dsp->setBypass(bypass != 0.0);
+	g_fmod_last_result = dsp->setBypass(bypass);
 }
 
-double fmod_dsp_get_bypass(uint64_t dsp_ref)
+bool fmod_dsp_get_bypass(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return false;
 
 	bool bypass = false;
 	g_fmod_last_result = dsp->getBypass(&bypass);
-	return bypass ? 1.0 : 0.0;
+	return bypass;
 }
 
 // ============================================================
@@ -487,15 +487,15 @@ FmodDSPWetDryMix fmod_dsp_get_wet_dry_mix(uint64_t dsp_ref)
 // DSP - Info & Status
 // ============================================================
 
-double fmod_dsp_get_idle(uint64_t dsp_ref)
+bool fmod_dsp_get_idle(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return false;
 
 	bool idle = false;
 	g_fmod_last_result = dsp->getIdle(&idle);
-	return idle ? 1.0 : 0.0;
+	return idle;
 }
 
 void fmod_dsp_reset(uint64_t dsp_ref)
@@ -507,15 +507,15 @@ void fmod_dsp_reset(uint64_t dsp_ref)
 	g_fmod_last_result = dsp->reset();
 }
 
-double fmod_dsp_get_type(uint64_t dsp_ref)
+gm_enums::FmodDspType fmod_dsp_get_type(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = nullptr;
 	validate_fmod_dsp(dsp_ref, dsp);
-	if (dsp == nullptr) return 0.0;
+	if (dsp == nullptr) return (gm_enums::FmodDspType)0;
 
 	FMOD_DSP_TYPE dsp_type = FMOD_DSP_TYPE_UNKNOWN;
 	g_fmod_last_result = dsp->getType(&dsp_type);
-	return (double)dsp_type;
+	return (gm_enums::FmodDspType)dsp_type;
 }
 
 FmodDSPInfo fmod_dsp_get_info(uint64_t dsp_ref)

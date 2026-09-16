@@ -58,12 +58,6 @@ uint64_t packIndexIntoRef(uint32_t index, uint8_t type);
 // alias onto the same ref - so fail loudly instead of quietly.
 uint64_t packPointerIntoRef(const void* pointer, uint8_t type);
 
-// A GML double carrying a 32-bit flag word. Converting one through a signed int
-// is undefined at or above 0x80000000, and FMOD_VIRTUAL_PLAYFROMSTART,
-// FMOD_SYSTEM_CALLBACK_ALL and FMOD_STUDIO_EVENT_CALLBACK_ALL all sit there.
-// Out-of-range values clamp rather than wrap.
-uint32_t fmod_flag_word(double value);
-
 // The system every "systemless" API call operates on. Defaults to the first
 // registered system; fmod_system_select() overrides it.
 FMOD::System* getCurrentSystem();

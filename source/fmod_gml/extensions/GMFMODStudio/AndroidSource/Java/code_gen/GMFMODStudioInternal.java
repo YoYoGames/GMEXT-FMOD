@@ -16,9 +16,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_system_create(__ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_system_init(double max_channels, double studio_flags, double core_flags)
+    public double __EXT_NATIVE__fmod_studio_system_init(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_system_init(max_channels, studio_flags, core_flags);
+        return __EXT_JNI__fmod_studio_system_init(__arg_buffer, __arg_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_system_release()
     {
@@ -36,9 +36,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_system_flush_sample_loading();
     }
-    public double __EXT_NATIVE__fmod_studio_system_load_bank_file(String filename, double flags, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_system_load_bank_file(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_system_load_bank_file(filename, flags, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_studio_system_load_bank_file(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_system_load_bank_memory(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -248,13 +248,13 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_bank_unload(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_bank_get_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_bank_get_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_bank_get_loading_state(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_bank_get_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_bank_get_sample_loading_state(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_bank_get_sample_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public String __EXT_NATIVE__fmod_studio_bank_get_path(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -396,9 +396,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_description_get_sound_size(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_event_description_get_sample_loading_state(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_event_description_get_sample_loading_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_event_description_unload_sample_data(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -456,9 +456,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_instance_stop(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_event_instance_get_playback_state(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_event_instance_get_playback_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_event_instance_get_paused(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
@@ -684,9 +684,9 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_vca_set_volume(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_studio_command_replay_get_playback_state(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_studio_command_replay_get_playback_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_studio_command_replay_get_current_command(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {

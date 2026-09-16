@@ -33,13 +33,6 @@ uint64_t packPointerIntoRef(const void* pointer, uint8_t type)
 	return packIndexIntoRef((uint32_t)address, type);
 }
 
-uint32_t fmod_flag_word(double value)
-{
-	if (!(value > 0.0)) return 0;
-	if (value >= 4294967295.0) return 0xFFFFFFFFu;
-	return (uint32_t)value;
-}
-
 // ============================================================
 // Utility Functions
 // ============================================================

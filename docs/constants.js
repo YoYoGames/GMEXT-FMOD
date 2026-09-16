@@ -1862,6 +1862,302 @@
  */
 
 /**
+ * @const FmodSpeaker
+ * @desc > **FMOD Constant:** [FMOD_SPEAKER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speaker)
+ *
+ * <br />
+ *
+ * This enum assigns an index to each speaker position, as used by ${function.fmod_system_set_speaker_position} and ${function.fmod_system_get_speaker_position}.
+ * @member None No speaker.
+ * @member FrontLeft The front left speaker.
+ * @member FrontRight The front right speaker.
+ * @member FrontCenter The front center speaker.
+ * @member LowFrequency The low frequency (subwoofer) speaker.
+ * @member SurroundLeft The surround left speaker.
+ * @member SurroundRight The surround right speaker.
+ * @member BackLeft The back left speaker.
+ * @member BackRight The back right speaker.
+ * @member TopFrontLeft The top front left speaker.
+ * @member TopFrontRight The top front right speaker.
+ * @member TopBackLeft The top back left speaker.
+ * @member TopBackRight The top back right speaker.
+ * @const_end
+ */
+
+/**
+ * @const FmodChannelMask
+ * @desc > **FMOD Constant:** [FMOD_CHANNELMASK](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_channelmask)
+ *
+ * <br />
+ *
+ * These flags describe the speakers present in a given signal. Combine them with the bitwise OR operator, or use one of the preset combinations.
+ * @member FrontLeft Front left channel.
+ * @member FrontRight Front right channel.
+ * @member FrontCenter Front center channel.
+ * @member LowFrequency Low frequency channel.
+ * @member SurroundLeft Surround left channel.
+ * @member SurroundRight Surround right channel.
+ * @member BackLeft Back left channel.
+ * @member BackRight Back right channel.
+ * @member BackCenter Back center channel.
+ * @member Mono Mono: `FrontLeft`.
+ * @member Stereo Stereo: `FrontLeft` and `FrontRight`.
+ * @member Lrc Left, right and center: `FrontLeft`, `FrontRight` and `FrontCenter`.
+ * @member Quad Quad: `FrontLeft`, `FrontRight`, `SurroundLeft` and `SurroundRight`.
+ * @member Surround 5.0 surround: `FrontLeft`, `FrontRight`, `FrontCenter`, `SurroundLeft` and `SurroundRight`.
+ * @member _5Point1 5.1 surround: `Surround` plus `LowFrequency`.
+ * @member _5Point1Rears 5.1 surround using the back speakers: `FrontLeft`, `FrontRight`, `FrontCenter`, `LowFrequency`, `BackLeft` and `BackRight`.
+ * @member _7Point0 7.0 surround: `Surround` plus `BackLeft` and `BackRight`.
+ * @member _7Point1 7.1 surround: `_7Point0` plus `LowFrequency`.
+ * @const_end
+ */
+
+/**
+ * @const FmodChannelOrder
+ * @desc > **FMOD Constant:** [FMOD_CHANNELORDER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_channelorder)
+ *
+ * <br />
+ *
+ * This enum specifies the speaker ordering of a multichannel signal.
+ * @member Default Left, Right, Center, LFE, Surround Left, Surround Right, Back Left, Back Right (see ${constant.FmodSpeaker}).
+ * @member WaveFormat Left, Right, Center, LFE, Back Left, Back Right, Surround Left, Surround Right (as per the Microsoft .wav WAVEFORMAT structure master order).
+ * @member ProTools Left, Center, Right, Surround Left, Surround Right, LFE.
+ * @member AllMono Mono, Mono, Mono, Mono, Mono, Mono, ... (each channel up to `FMOD_MAX_CHANNEL_WIDTH` is treated as mono).
+ * @member AllStereo Left, Right, Left, Right, Left, Right, ... (each pair of channels is treated as stereo).
+ * @member Alsa Left, Right, Surround Left, Surround Right, Center, LFE (as per the Linux ALSA channel order).
+ * @const_end
+ */
+
+/**
+ * @const FmodPortType
+ * @desc > **FMOD Constant:** [FMOD_PORT_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_port_type)
+ *
+ * <br />
+ *
+ * This enum specifies the output type a channel group is attached to with ${function.fmod_system_attach_channel_group_to_port}. Which types exist, and how many instances of each, depends on the platform.
+ * @member Music Port type for music.
+ * @member CopyrightMusic Port type for copyright music.
+ * @member Voice Port type for voice.
+ * @member Controller Port type for a controller.
+ * @member Personal Port type for a personal device.
+ * @member Vibration Port type for vibration.
+ * @member Aux Port type for auxiliary output.
+ * @member Passthrough Port type for passthrough output.
+ * @member VrVibration Port type for VR vibration.
+ * @const_end
+ */
+
+/**
+ * @const FmodThreadType
+ * @desc > **FMOD Constant:** [FMOD_THREAD_TYPE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_type)
+ *
+ * <br />
+ *
+ * This enum names the threads FMOD creates at runtime, for use with ${function.fmod_thread_set_attributes}.
+ * @member Mixer Thread responsible for mixing and processing blocks of audio.
+ * @member Feeder Thread used by some output plugins for transferring buffered audio from `Mixer` to the sound output device.
+ * @member Stream Thread that decodes compressed audio to PCM for Sounds created with `FmodMode.CreateStream`.
+ * @member File Thread that reads compressed audio from disk to be consumed by `Stream`.
+ * @member NonBlocking Thread that processes the creation of Sounds asynchronously when opened with `FmodMode.NonBlocking`.
+ * @member Record Thread used by some output plugins for transferring audio from a microphone to `Mixer`.
+ * @member Geometry Thread used by the `FmodInitFlags.GeometryUseClosest` feature to calculate geometry occlusion.
+ * @member Profiler Thread for network communication when using `FmodInitFlags.ProfileEnable`.
+ * @member StudioUpdate Thread for processing Studio API commands and scheduling sound playback.
+ * @member StudioLoadBank Thread for asynchronously loading `FmodStudioLoadBankFlags.NonBlocking` banks.
+ * @member StudioLoadSample Thread for asynchronously loading sample data with ${function.fmod_studio_bank_load_sample_data}.
+ * @member Convolution1 Thread for processing medium size convolution DSP.
+ * @member Convolution2 Thread for processing larger convolution DSP.
+ * @const_end
+ */
+
+/**
+ * @const FmodThreadPriority
+ * @desc > **FMOD Constant:** [FMOD_THREAD_PRIORITY](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_priority)
+ *
+ * <br />
+ *
+ * This enum names the platform-agnostic thread priorities for ${function.fmod_thread_set_attributes}. The named values map internally to a platform-specific priority; any value between `PlatformMin` and `PlatformMax` is passed through as a raw platform priority instead.
+ * @member PlatformMin Lower bound of the platform-specific priority range.
+ * @member PlatformMax Upper bound of the platform-specific priority range.
+ * @member Default The default priority for the thread.
+ * @member Low Low priority.
+ * @member Medium Medium priority.
+ * @member High High priority.
+ * @member VeryHigh Very high priority.
+ * @member Extreme Extreme priority.
+ * @member Critical Critical priority.
+ * @member Mixer The default priority of the mixer thread (`Extreme`).
+ * @member Feeder The default priority of the feeder thread (`Critical`).
+ * @const_end
+ */
+
+/**
+ * @const FmodSoundGroupBehavior
+ * @desc > **FMOD Constant:** [FMOD_SOUNDGROUP_BEHAVIOR](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_soundgroup_behavior)
+ *
+ * <br />
+ *
+ * This enum specifies what happens when a sound group's maximum audible count, set with ${function.fmod_sound_group_set_max_audible}, is exceeded.
+ * @member Fail Any sound played that puts the sound count over the limit simply fails during ${function.fmod_system_play_sound}.
+ * @member Mute Any sound played that puts the sound count over the limit is silent; when another sound in the group stops, the sound that was silent becomes audible again.
+ * @member StealLowest Any sound played that puts the sound count over the limit steals the quietest / least important sound playing in the group.
+ * @const_end
+ */
+
+/**
+ * @const FmodDspResampler
+ * @desc > **FMOD Constant:** [FMOD_DSP_RESAMPLER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_dsp_resampler)
+ *
+ * <br />
+ *
+ * This enum lists the interpolation types used for resampling, as set through `FmodAdvancedSettings.resampler_method`.
+ * @member Default Default interpolation method, the same as `Linear`.
+ * @member NoInterp No interpolation. High frequency aliasing hiss will be audible depending on the sample rate of the sound.
+ * @member Linear Linear interpolation (the default). Fast and good quality, causes a very slight lowpass effect on high frequency sounds.
+ * @member Cubic Cubic interpolation. Slower than linear interpolation but better quality.
+ * @member Spline 5 point spline interpolation. The slowest resampling method but the best quality.
+ * @const_end
+ */
+
+/**
+ * @const FmodAudioQueueCodecPolicy
+ * @desc > **FMOD Constant:** [FMOD_AUDIOQUEUE_CODECPOLICY](https://www.fmod.com/docs/2.03/api/platforms-ios.html#fmod_audioqueue_codecpolicy)
+ *
+ * <br />
+ *
+ * This enum controls whether an `FmodSoundType.AudioQueue` sound uses the dedicated hardware decoder or a software codec. iOS only; set through `FmodCreateSoundExInfo.audio_queue_policy`.
+ * @member Default Try hardware first; if it is in use or prohibited by the audio session, try software.
+ * @member SoftwareOnly Try software; if it is not available, fail.
+ * @member HardwareOnly Try hardware; if it is not available, fail.
+ * @const_end
+ */
+
+/**
+ * @const FmodStudioInstanceType
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_INSTANCETYPE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_instancetype)
+ *
+ * <br />
+ *
+ * This enum identifies the kind of object a command in a command replay refers to, as reported in `FmodStudioCommandInfo.instance_type` and `FmodStudioCommandInfo.output_type`.
+ * @member None No type, the handle is unused.
+ * @member System A Studio system.
+ * @member EventDescription An event description.
+ * @member EventInstance An event instance.
+ * @member ParameterInstance A parameter instance.
+ * @member Bus A bus.
+ * @member Vca A VCA.
+ * @member Bank A bank.
+ * @member CommandReplay A command replay.
+ * @const_end
+ */
+
+/**
+ * @const FmodStudioCoreInitFlags
+ * @desc > **FMOD Constant:** [FMOD_INITFLAGS](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_initflags)
+ *
+ * <br />
+ *
+ * This enum specifies the configuration flags used when initialising the FMOD system.
+ * @member Normal Initialize normally.
+ * @member StreamFromUpdate No stream thread is created internally. Streams are driven from ${function.fmod_system_update}. Mainly used with non-realtime outputs.
+ * @member MixFromUpdate No mixer thread is created internally. Mixing is driven from ${function.fmod_system_update}. Only applies to polling based output modes such as `FmodOutputType.NoSound`, `FmodOutputType.WavWriter`.
+ * @member RightHanded3D 3D calculations will be performed in right-handed coordinates.
+ * @member ClipOutput Enables hard clipping of output values greater than `1.0` or less than `-1.0`.
+ * @member ChannelLowpass Enables usage of ${function.fmod_channel_control_set_low_pass_gain}, ${function.fmod_channel_control_set_3d_occlusion}, or automatic usage by the [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) API. All voices will add a software lowpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which is idle unless one of the previous functions/features are used.
+ * @member ChannelDistanceFilter All `FmodStudioMode._3D` based voices will add a software lowpass and highpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which will act as a distance-automated bandpass filter. Use ${function.fmod_system_set_advanced_settings} to adjust the center frequency.
+ * @member ProfileEnable Enable TCP/IP based host which allows FMOD Studio or FMOD Profiler to connect to it, and view memory, CPU and the DSP network graph in real-time.
+ * @member Vol0BecomesVirtual Any sounds that are 0 volume will go virtual and not be processed except for having their positions updated virtually. Use ${function.fmod_system_set_advanced_settings} to adjust what volume besides zero to switch to virtual at.
+ * @member GeometryUseClosest With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects.
+ * @member PreferDolbyDownmix When using `FmodSpeakerMode._5Point1` with a stereo output device, use the Dolby Pro Logic II downmix algorithm instead of the default stereo downmix algorithm.
+ * @member ThreadUnsafe Disables thread safety for API calls. Only use this if FMOD is being called from a single thread, and if Studio API is not being used!
+ * @member ProfileMeterAll Slower, but adds level metering for every single DSP unit in the graph. Use ${function.fmod_dsp_set_metering_enabled} to turn meters off individually. Setting this flag implies `FmodInitFlags.ProfileEnable`.
+ * @member MemoryTracking Enables memory allocation tracking. Currently this is only useful when using the Studio API. Increases memory footprint and reduces performance. This flag is implied by `FmodStudioInitFlags.MemoryTracking`.
+ * @const_end
+ * */
+
+/**
+ * @const FmodStudioSoundType
+ * @desc > **FMOD Constant:** [FMOD_SOUND_TYPE](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_type)
+ *
+ * <br />
+ *
+ * This enum specifies the recognized audio formats that can be loaded into a Sound.
+ * @member Unknown Unknown or custom codec plugin.
+ * @member Aiff Audio Interchange File Format (.aif, .aiff). Uncompressed integer formats only.
+ * @member Asf Microsoft Advanced Systems Format (.asf, .wma, .wmv). Platform provided decoder, available only on Windows.
+ * @member Dls Downloadable Sounds sound bank (.dls).
+ * @member Flac Free Lossless Audio Codec (.flac).
+ * @member Fsb FMOD Sample Bank (.fsb). Proprietary multi-sound bank format. Supported encodings: PCM16, FADPCM, Vorbis, AT9, XMA, Opus.
+ * @member It Impulse Tracker (.it).
+ * @member Midi Musical Instrument Digital Interface (.mid).
+ * @member Mod Protracker / Fasttracker Module File (.mod).
+ * @member Mpeg Moving Picture Experts Group (.mp2, .mp3). Also supports .wav (RIFF) container format.
+ * @member OggVorbis Ogg Vorbis (.ogg).
+ * @member Playlist Play list information container (.asx, .pls, .m3u, .wax). No audio, tags only.
+ * @member Raw Raw uncompressed PCM data (.raw).
+ * @member S3m ScreamTracker 3 Module (.s3m).
+ * @member User User created sound.
+ * @member Wav Microsoft Waveform Audio File Format (.wav). Supported encodings: Uncompressed PCM, IMA ADPCM. Platform provided ACM decoder extensions, available only on Windows.
+ * @member Xm FastTracker 2 Extended Module (.xm).
+ * @member Xma Xbox Media Audio bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox.
+ * @member AudioQueue Apple Audio Queue decoder (.mp4, .m4a, .mp3). Platform provided decoder, available only on iOS and tvOS.
+ * @member At9 Sony ATRAC9 bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on PlayStation.
+ * @member Vorbis Vorbis bit-stream supported by FSB (.fsb) container format.
+ * @member MediaFoundation Microsoft Media Foundation decoder (.asf, .wma, .wmv, .mp4, .m4a). Platform provided decoder, available only on UWP.
+ * @member MediaCodec Google Media Codec decoder (.m4a, .mp4). Platform provided decoder, available only on Android.
+ * @member Fadpcm FMOD Adaptive Differential Pulse Code Modulation bit-stream supported by FSB (.fsb) container format.
+ * @member Opus Opus bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox Series X|S, PS5, and Switch.
+ * @const_end
+ * */
+
+/**
+ * @const FmodStudioTimeUnit
+ * @desc > **FMOD Constant:** [FMOD_TIMEUNIT](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_timeunit)
+ *
+ * <br />
+ *
+ * This enum specifies the time types used for position or length.
+ * @member Ms Milliseconds.
+ * @member Pcm PCM samples, related to milliseconds * samplerate / 1000.
+ * @member PcmBytes Bytes, related to PCM samples * channels * datawidth (i.e. 16bit = 2 bytes).
+ * @member RawBytes Raw file bytes of (compressed) sound data (does not include headers). Only used by ${function.fmod_sound_get_length} and ${function.fmod_channel_get_position}.
+ * @member PcmFraction Fractions of 1 PCM sample. Unsigned int range 0 to 0xFFFFFFFF. Used for sub-sample granularity for [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) purposes.
+ * @member ModOrder MOD/S3M/XM/IT. Order in a sequenced module format. Use ${function.fmod_sound_get_format} to determine the PCM format being decoded to.
+ * @member ModRow MOD/S3M/XM/IT. Current row in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of rows in the currently playing or seeked to pattern.
+ * @member ModPattern MOD/S3M/XM/IT. Current pattern in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of patterns in the song and ${function.fmod_channel_get_position} will return the currently playing pattern.
+ * @const_end
+ * */
+
+/**
+ * @const FmodStudioChannelOrder
+ * @desc > **FMOD Constant:** [FMOD_CHANNELORDER](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_channelorder)
+ *
+ * <br />
+ *
+ * This enum specifies the speaker ordering of a multichannel signal.
+ * @member Default Left, Right, Center, LFE, Surround Left, Surround Right, Back Left, Back Right (see ${constant.FmodSpeaker}).
+ * @member WaveFormat Left, Right, Center, LFE, Back Left, Back Right, Surround Left, Surround Right (as per the Microsoft .wav WAVEFORMAT structure master order).
+ * @member ProTools Left, Center, Right, Surround Left, Surround Right, LFE.
+ * @member AllMono Mono, Mono, Mono, Mono, Mono, Mono, ... (each channel up to `FMOD_MAX_CHANNEL_WIDTH` is treated as mono).
+ * @member AllStereo Left, Right, Left, Right, Left, Right, ... (each pair of channels is treated as stereo).
+ * @member Alsa Left, Right, Surround Left, Surround Right, Center, LFE (as per the Linux ALSA channel order).
+ * @const_end
+ * */
+
+/**
+ * @const FmodStudioAudioQueueCodecPolicy
+ * @desc > **FMOD Constant:** [FMOD_AUDIOQUEUE_CODECPOLICY](https://www.fmod.com/docs/2.03/api/platforms-ios.html#fmod_audioqueue_codecpolicy)
+ *
+ * <br />
+ *
+ * This enum controls whether an `FmodSoundType.AudioQueue` sound uses the dedicated hardware decoder or a software codec. iOS only; set through `FmodCreateSoundExInfo.audio_queue_policy`.
+ * @member Default Try hardware first; if it is in use or prohibited by the audio session, try software.
+ * @member SoftwareOnly Try software; if it is not available, fail.
+ * @member HardwareOnly Try hardware; if it is not available, fail.
+ * @const_end
+ * */
+
+/**
  * @module constants
  * @title Constants
  * @description These are the constants that you can use in the FMOD extension.
@@ -1949,6 +2245,21 @@
  * @ref FmodStudioPlaybackState
  * @ref FmodStudioStopMode
  * @ref FmodDspOscillatorType
+ * @ref FmodSpeaker
+ * @ref FmodChannelMask
+ * @ref FmodChannelOrder
+ * @ref FmodPortType
+ * @ref FmodThreadType
+ * @ref FmodThreadPriority
+ * @ref FmodSoundGroupBehavior
+ * @ref FmodDspResampler
+ * @ref FmodAudioQueueCodecPolicy
+ * @ref FmodStudioInstanceType
+ * @ref FmodStudioCoreInitFlags
+ * @ref FmodStudioSoundType
+ * @ref FmodStudioTimeUnit
+ * @ref FmodStudioChannelOrder
+ * @ref FmodStudioAudioQueueCodecPolicy
  * @section_end
  * 
  * @module_end

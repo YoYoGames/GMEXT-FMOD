@@ -50,7 +50,7 @@ void fmod_sound_reset_state()
 // Sound - Creation & Loading
 // ============================================================
 
-uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
+uint64_t fmod_system_create_sound(std::string_view name_or_data, gm_enums::FmodMode mode)
 {
 	uint64_t result = 0;
 
@@ -80,7 +80,7 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, double mode)
 		ex_info = &default_user_sound;
 	}
 
-	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), ex_info, &sound);
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(std::uint64_t)mode, ex_info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -114,8 +114,8 @@ static void fillCreateSoundExInfo(const FmodCreateSoundExInfo& ex_info, FMOD_CRE
 	info.filebuffersize = (int)ex_info.file_buffer_size;
 	info.channelorder = (FMOD_CHANNELORDER)(int)ex_info.channel_order;
 	info.initialseekposition = (unsigned int)ex_info.initial_seek_position;
-	info.initialseekpostype = (FMOD_TIMEUNIT)fmod_flag_word(ex_info.initial_seek_pos_type);
-	info.ignoresetfilesystem = (int)ex_info.ignore_set_filesystem;
+	info.initialseekpostype = (FMOD_TIMEUNIT)(std::uint64_t)ex_info.initial_seek_pos_type;
+	info.ignoresetfilesystem = ex_info.ignore_set_filesystem ? 1 : 0;
 	info.audioqueuepolicy = (unsigned int)ex_info.audio_queue_policy;
 	info.minmidigranularity = (unsigned int)ex_info.min_midi_granularity;
 	info.nonblockthreadid = (int)ex_info.non_block_thread_id;
@@ -134,7 +134,7 @@ static void fillCreateSoundExInfo(const FmodCreateSoundExInfo& ex_info, FMOD_CRE
 	}
 }
 
-uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode, const FmodCreateSoundExInfo& ex_info)
+uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, gm_enums::FmodMode mode, const FmodCreateSoundExInfo& ex_info)
 {
 	uint64_t result = 0;
 
@@ -150,7 +150,7 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 	FMOD_CREATESOUNDEXINFO info = {};
 	fillCreateSoundExInfo(ex_info, info);
 
-	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), &info, &sound);
+	g_fmod_last_result = system->createSound(name_or_data.data(), (FMOD_MODE)(std::uint64_t)mode, &info, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -160,7 +160,7 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, double mode,
 	return result;
 }
 
-uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode)
+uint64_t fmod_system_create_stream(std::string_view name_or_data, gm_enums::FmodMode mode)
 {
 	uint64_t result = 0;
 
@@ -172,7 +172,7 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, double mode)
 	}
 
 	FMOD::Sound* sound = nullptr;
-	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)fmod_flag_word(mode), nullptr, &sound);
+	g_fmod_last_result = system->createStream(name_or_data.data(), (FMOD_MODE)(std::uint64_t)mode, nullptr, &sound);
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
@@ -202,7 +202,7 @@ static bool fmodResolveMemoryRange(const gm::wire::GMBuffer& data, double length
 // caller's pointer instead of copying, and GML can guarantee neither the
 // alignment it wants nor that the buffer outlives the sound. FMOD_OPENMEMORY
 // copies, so the buffer can be freed as soon as this returns.
-uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length, double mode)
+uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length, gm_enums::FmodMode mode)
 {
 	uint64_t result = 0;
 
@@ -227,7 +227,7 @@ uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length,
 	info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
 	info.length = usable;
 
-	FMOD_MODE mode_word = (FMOD_MODE)fmod_flag_word(mode);
+	FMOD_MODE mode_word = (FMOD_MODE)(std::uint64_t)mode;
 	mode_word = (mode_word | FMOD_OPENMEMORY) & ~FMOD_OPENMEMORY_POINT;
 
 	FMOD::Sound* sound = nullptr;
@@ -241,7 +241,7 @@ uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length,
 	return result;
 }
 
-uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double length, double mode, const FmodCreateSoundExInfo& ex_info)
+uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double length, gm_enums::FmodMode mode, const FmodCreateSoundExInfo& ex_info)
 {
 	uint64_t result = 0;
 
@@ -267,7 +267,7 @@ uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double leng
 	if (info.length == 0 || info.length > usable)
 		info.length = usable;
 
-	FMOD_MODE mode_word = (FMOD_MODE)fmod_flag_word(mode);
+	FMOD_MODE mode_word = (FMOD_MODE)(std::uint64_t)mode;
 	mode_word = (mode_word | FMOD_OPENMEMORY) & ~FMOD_OPENMEMORY_POINT;
 
 	FMOD::Sound* sound = nullptr;
@@ -281,7 +281,7 @@ uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double leng
 	return result;
 }
 
-uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, double pause)
+uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, bool pause)
 {
 	uint64_t result = 0;
 
@@ -305,7 +305,7 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 	}
 
 	FMOD::Channel* channel = nullptr;
-	g_fmod_last_result = system->playSound(sound, channel_group, (pause != 0.0), &channel);
+	g_fmod_last_result = system->playSound(sound, channel_group, pause, &channel);
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
@@ -318,7 +318,7 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 // Sound - Properties
 // ============================================================
 
-double fmod_sound_get_length(uint64_t sound_ref, double length_type)
+double fmod_sound_get_length(uint64_t sound_ref, gm_enums::FmodTimeUnit length_type)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
@@ -327,7 +327,7 @@ double fmod_sound_get_length(uint64_t sound_ref, double length_type)
 		return 0.0;
 
 	unsigned int length = 0;
-	g_fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)fmod_flag_word(length_type));
+	g_fmod_last_result = sound->getLength(&length, (FMOD_TIMEUNIT)(std::uint64_t)length_type);
 	return (double)length;
 }
 
@@ -343,7 +343,7 @@ double fmod_sound_set_defaults(uint64_t sound_ref, double frequency, double prio
 	return 0;
 }
 
-double fmod_sound_set_mode(uint64_t sound_ref, double mode)
+double fmod_sound_set_mode(uint64_t sound_ref, gm_enums::FmodMode mode)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
@@ -351,21 +351,21 @@ double fmod_sound_set_mode(uint64_t sound_ref, double mode)
 	if (sound == nullptr)
 		return 0;
 
-	g_fmod_last_result = sound->setMode((FMOD_MODE)fmod_flag_word(mode));
+	g_fmod_last_result = sound->setMode((FMOD_MODE)(std::uint64_t)mode);
 	return 0;
 }
 
-double fmod_sound_get_mode(uint64_t sound_ref)
+gm_enums::FmodMode fmod_sound_get_mode(uint64_t sound_ref)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
-		return 0.0;
+		return (gm_enums::FmodMode)0;
 
 	FMOD_MODE mode = FMOD_MODE(0);
 	g_fmod_last_result = sound->getMode(&mode);
-	return (double)mode;
+	return (gm_enums::FmodMode)mode;
 }
 
 // ============================================================
@@ -397,7 +397,7 @@ double fmod_sound_get_loop_count(uint64_t sound_ref)
 	return (double)count;
 }
 
-double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, double loop_start_type, double loop_end, double loop_end_type)
+double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, gm_enums::FmodTimeUnit loop_start_type, double loop_end, gm_enums::FmodTimeUnit loop_end_type)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
@@ -406,8 +406,8 @@ double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, double 
 		return 0;
 
 	g_fmod_last_result = sound->setLoopPoints(
-		(unsigned int)loop_start, (FMOD_TIMEUNIT)fmod_flag_word(loop_start_type),
-		(unsigned int)loop_end, (FMOD_TIMEUNIT)fmod_flag_word(loop_end_type)
+		(unsigned int)loop_start, (FMOD_TIMEUNIT)(std::uint64_t)loop_start_type,
+		(unsigned int)loop_end, (FMOD_TIMEUNIT)(std::uint64_t)loop_end_type
 	);
 	return 0;
 }
@@ -647,7 +647,7 @@ FmodSoundTag fmod_sound_get_tag(uint64_t sound_ref, std::string_view name, doubl
 	result.name = tag.name != nullptr ? tag.name : "";
 	result.data = fmod_tag_data_to_string(tag);
 	result.datalen = (double)tag.datalen;
-	result.updated = tag.updated ? 1.0 : 0.0;
+	result.updated = tag.updated;
 
 	return result;
 }
@@ -669,19 +669,19 @@ double fmod_sound_get_num_tags(uint64_t sound_ref)
 // Sound - Additional Properties
 // ============================================================
 
-double fmod_sound_get_format(uint64_t sound_ref)
+gm_enums::FmodSoundFormat fmod_sound_get_format(uint64_t sound_ref)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
-		return 0;
+		return (gm_enums::FmodSoundFormat)0;
 
 	FMOD_SOUND_FORMAT format = FMOD_SOUND_FORMAT_NONE;
 	int channels = 0;
 	int bits = 0;
 	g_fmod_last_result = sound->getFormat(nullptr, &format, &channels, &bits);
-	return (double)format;
+	return (gm_enums::FmodSoundFormat)format;
 }
 
 std::string fmod_sound_get_name(uint64_t sound_ref)
@@ -717,7 +717,7 @@ FmodSoundDefaults fmod_sound_get_defaults(uint64_t sound_ref)
 	return result;
 }
 
-FmodLoopPoints fmod_sound_get_loop_points(uint64_t sound_ref, double start_type, double end_type)
+FmodLoopPoints fmod_sound_get_loop_points(uint64_t sound_ref, gm_enums::FmodTimeUnit start_type, gm_enums::FmodTimeUnit end_type)
 {
 	FmodLoopPoints result{};
 
@@ -729,8 +729,8 @@ FmodLoopPoints fmod_sound_get_loop_points(uint64_t sound_ref, double start_type,
 
 	unsigned int loop_start = 0, loop_end = 0;
 	g_fmod_last_result = sound->getLoopPoints(
-		&loop_start, (FMOD_TIMEUNIT)fmod_flag_word(start_type),
-		&loop_end, (FMOD_TIMEUNIT)fmod_flag_word(end_type)
+		&loop_start, (FMOD_TIMEUNIT)(std::uint64_t)start_type,
+		&loop_end, (FMOD_TIMEUNIT)(std::uint64_t)end_type
 	);
 	result.loop_start = (double)loop_start;
 	result.loop_end = (double)loop_end;
@@ -873,7 +873,7 @@ double fmod_sound_get_num_sync_points(uint64_t sound_ref)
 	return (double)num_sync_points;
 }
 
-FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_point_index, double offset_type)
+FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_point_index, gm_enums::FmodTimeUnit offset_type)
 {
 	FmodSyncPointInfo result{};
 
@@ -888,13 +888,13 @@ FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_poin
 	g_fmod_last_result = sound->getSyncPoint((int)sync_point_index, &sync_point);
 	if (g_fmod_last_result == FMOD_OK)
 	{
-		g_fmod_last_result = sound->getSyncPointInfo(sync_point, nullptr, 0, &offset, (FMOD_TIMEUNIT)fmod_flag_word(offset_type));
+		g_fmod_last_result = sound->getSyncPointInfo(sync_point, nullptr, 0, &offset, (FMOD_TIMEUNIT)(std::uint64_t)offset_type);
 		result.offset = (double)offset;
 	}
 	return result;
 }
 
-double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, double offset_type, std::string_view name)
+double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, gm_enums::FmodTimeUnit offset_type, std::string_view name)
 {
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
@@ -903,7 +903,7 @@ double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, double offse
 		return 0;
 
 	FMOD_SYNCPOINT* sync_point = nullptr;
-	g_fmod_last_result = sound->addSyncPoint((unsigned int)offset, (FMOD_TIMEUNIT)fmod_flag_word(offset_type), name.data(), &sync_point);
+	g_fmod_last_result = sound->addSyncPoint((unsigned int)offset, (FMOD_TIMEUNIT)(std::uint64_t)offset_type, name.data(), &sync_point);
 	return (double)(uintptr_t)sync_point;
 }
 
@@ -1056,8 +1056,8 @@ FmodSoundOpenState fmod_sound_get_open_state(uint64_t sound_ref)
 
 	result.open_state = (gm_enums::FmodOpenState)(int)open_state;
 	result.percent_buffered = (double)percent_buffered;
-	result.starving = starving ? 1.0 : 0.0;
-	result.disk_busy = disk_busy ? 1.0 : 0.0;
+	result.starving = starving;
+	result.disk_busy = disk_busy;
 	return result;
 }
 

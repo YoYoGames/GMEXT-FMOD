@@ -10,7 +10,7 @@
 - (double)__EXT_NATIVE__fmod_file_get_disk_busy;
 - (double)__EXT_NATIVE__fmod_file_set_disk_busy:(double)busy;
 - (double)__EXT_NATIVE__fmod_memory_get_stats:(double)blocking arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_thread_set_attributes:(double)thread_type arg1:(double)affinity arg2:(double)priority;
+- (double)__EXT_NATIVE__fmod_thread_set_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_set_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_get_frequency:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_set_priority:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -28,7 +28,7 @@
 - (double)__EXT_NATIVE__fmod_channel_get_current_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_init:(double)max_channels arg1:(double)flags;
+- (double)__EXT_NATIVE__fmod_system_init:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_close:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_update;
@@ -58,7 +58,7 @@
 - (double)__EXT_NATIVE__fmod_system_set_dsp_buffer_size:(double)buff_size arg1:(double)num_buffers;
 - (double)__EXT_NATIVE__fmod_system_get_software_format:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_set_software_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_set_stream_buffer_size:(double)file_buffer_size arg1:(double)file_buffer_size_type;
+- (double)__EXT_NATIVE__fmod_system_set_stream_buffer_size:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_driver_info:(double)driver_id arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create_channel_group:(char*)name arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_play_dsp:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
@@ -74,8 +74,8 @@
 - (double)__EXT_NATIVE__fmod_system_get_network_timeout;
 - (double)__EXT_NATIVE__fmod_system_set_network_timeout:(double)timeout_ms;
 - (double)__EXT_NATIVE__fmod_system_get_speaker_mode_channels:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_get_speaker_position:(double)speaker arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_set_speaker_position:(double)speaker arg1:(double)x arg2:(double)y arg3:(double)active;
+- (double)__EXT_NATIVE__fmod_system_get_speaker_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_system_set_speaker_position:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_reverb_properties:(double)instance arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_set_reverb_properties:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_default_mix_matrix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
@@ -100,17 +100,17 @@
 - (double)__EXT_NATIVE__fmod_system_get_geometry_settings;
 - (double)__EXT_NATIVE__fmod_system_set_geometry_settings:(double)max_world_size;
 - (double)__EXT_NATIVE__fmod_system_create_reverb_3d:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_create_sound:(char*)name_or_data arg1:(double)mode arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_system_create_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create_sound_ex:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_create_stream:(char*)name_or_data arg1:(double)mode arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_system_create_stream:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create_sound_memory:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create_sound_memory_ex:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_play_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_length:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_set_defaults:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_set_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_sound_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_sound_get_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_sound_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_sound_get_format:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (char*)__EXT_NATIVE__fmod_sound_get_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_defaults:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_set_loop_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -161,7 +161,7 @@
 - (double)__EXT_NATIVE__fmod_sound_group_set_max_audible:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_get_max_audible:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_set_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_sound_group_get_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_sound_group_get_max_audible_behavior:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_set_mute_fade_speed:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_get_mute_fade_speed:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_group_set_volume:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -194,7 +194,7 @@
 - (double)__EXT_NATIVE__fmod_channel_control_set_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_get_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_set_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_channel_control_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_control_get_mode:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_set_pitch:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_get_pitch:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_get_audibility:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -282,7 +282,7 @@
 - (double)__EXT_NATIVE__fmod_dsp_get_wet_dry_mix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_get_idle:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_reset:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_dsp_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_dsp_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_get_info:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_get_cpu_usage:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -294,7 +294,7 @@
 - (double)__EXT_NATIVE__fmod_dsp_connection_get_mix_matrix:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_connection_get_input:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_connection_get_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_dsp_connection_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_dsp_connection_get_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_connection_set_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_dsp_connection_get_user_data:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_geometry_add_polygon:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

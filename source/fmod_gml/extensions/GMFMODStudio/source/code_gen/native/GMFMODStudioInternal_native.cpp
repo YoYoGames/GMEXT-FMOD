@@ -36,9 +36,20 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_create(char* __ret_buffer, doub
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_init(double max_channels, double studio_flags, double core_flags)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_init(char* __arg_buffer, double __arg_buffer_length)
 {
-    auto&& __result = fmod_studio_system_init(static_cast<double>(max_channels), static_cast<double>(studio_flags), static_cast<double>(core_flags));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: max_channels, type: Float64
+    double max_channels = gm::wire::codec::readValue<double>(__br);
+
+    // field: studio_flags, type: enum FmodStudioInitFlags
+    gm_enums::FmodStudioInitFlags studio_flags = gm::wire::codec::readValue<gm_enums::FmodStudioInitFlags>(__br);
+
+    // field: core_flags, type: enum FmodStudioCoreInitFlags
+    gm_enums::FmodStudioCoreInitFlags core_flags = gm::wire::codec::readValue<gm_enums::FmodStudioCoreInitFlags>(__br);
+
+    auto&& __result = fmod_studio_system_init(max_channels, studio_flags, core_flags);
     return static_cast<double>(__result);
 }
 
@@ -66,9 +77,17 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_flush_sample_loading()
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* filename, double flags, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_file(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
-    auto&& __result = fmod_studio_system_load_bank_file(filename, static_cast<double>(flags));
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: filename, type: String
+    std::string_view filename = gm::wire::codec::readValue<std::string_view>(__br);
+
+    // field: flags, type: enum FmodStudioLoadBankFlags
+    gm_enums::FmodStudioLoadBankFlags flags = gm::wire::codec::readValue<gm_enums::FmodStudioLoadBankFlags>(__br);
+
+    auto&& __result = fmod_studio_system_load_bank_file(filename, flags);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
     // return: __result, type: optional<UInt64>
@@ -87,8 +106,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_load_bank_memory(char* __arg_bu
     // field: length, type: Float64
     double length = gm::wire::codec::readValue<double>(__br);
 
-    // field: flags, type: Float64
-    double flags = gm::wire::codec::readValue<double>(__br);
+    // field: flags, type: enum FmodStudioLoadBankFlags
+    gm_enums::FmodStudioLoadBankFlags flags = gm::wire::codec::readValue<gm_enums::FmodStudioLoadBankFlags>(__br);
 
     auto&& __result = fmod_studio_system_load_bank_memory(data, length, flags);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
@@ -398,7 +417,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_system_get_parameter_by_id(double id_d
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, double ignore_seek_speed)
 {
-    auto&& __result = fmod_studio_system_set_parameter_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2), static_cast<double>(value), static_cast<double>(ignore_seek_speed));
+    auto&& __result = fmod_studio_system_set_parameter_by_id(static_cast<double>(id_data1), static_cast<double>(id_data2), static_cast<double>(value), static_cast<bool>(ignore_seek_speed));
     return static_cast<double>(__result);
 }
 
@@ -454,13 +473,13 @@ GMEXPORT char* __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name(char
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, char* label, double ignore_seek_speed)
 {
-    auto&& __result = fmod_studio_system_set_parameter_by_id_with_label(static_cast<double>(id_data1), static_cast<double>(id_data2), label, static_cast<double>(ignore_seek_speed));
+    auto&& __result = fmod_studio_system_set_parameter_by_id_with_label(static_cast<double>(id_data1), static_cast<double>(id_data2), label, static_cast<bool>(ignore_seek_speed));
     return static_cast<double>(__result);
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label(char* name, char* label, double ignore_seek_speed)
 {
-    auto&& __result = fmod_studio_system_set_parameter_by_name_with_label(name, label, static_cast<double>(ignore_seek_speed));
+    auto&& __result = fmod_studio_system_set_parameter_by_name_with_label(name, label, static_cast<bool>(ignore_seek_speed));
     return static_cast<double>(__result);
 }
 
@@ -571,7 +590,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_unload(char* __arg_buffer, double
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -579,10 +598,14 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_loading_state(char* __arg_buf
     std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_loading_state(bank_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioLoadingState
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -590,7 +613,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bank_get_sample_loading_state(char* __
     std::uint64_t bank_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_bank_get_sample_loading_state(bank_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioLoadingState
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT char* __EXT_NATIVE__fmod_studio_bank_get_path(char* __arg_buffer, double __arg_buffer_length)
@@ -1043,7 +1070,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sound_size(char*
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1051,7 +1078,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_get_sample_loading_s
     std::uint64_t event_desc_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_description_get_sample_loading_state(event_desc_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioLoadingState
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_description_unload_sample_data(char* __arg_buffer, double __arg_buffer_length)
@@ -1276,14 +1307,14 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_stop(char* __arg_buffer
     // field: instance_ref, type: UInt64
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: stop_mode, type: Float64
-    double stop_mode = gm::wire::codec::readValue<double>(__br);
+    // field: stop_mode, type: enum FmodStudioStopMode
+    gm_enums::FmodStudioStopMode stop_mode = gm::wire::codec::readValue<gm_enums::FmodStudioStopMode>(__br);
 
     auto&& __result = fmod_studio_event_instance_stop(instance_ref, stop_mode);
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1291,7 +1322,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_playback_state(char
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_event_instance_get_playback_state(instance_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioPlaybackState
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_get_paused(char* __arg_buffer, double __arg_buffer_length)
@@ -1312,8 +1347,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_paused(char* __arg_
     // field: instance_ref, type: UInt64
     std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: paused, type: Float64
-    double paused = gm::wire::codec::readValue<double>(__br);
+    // field: paused, type: Bool
+    bool paused = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_event_instance_set_paused(instance_ref, paused);
     return static_cast<double>(__result);
@@ -1521,8 +1556,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_wit
     // field: label, type: String
     std::string_view label = gm::wire::codec::readValue<std::string_view>(__br);
 
-    // field: ignore_seek_speed, type: Float64
-    double ignore_seek_speed = gm::wire::codec::readValue<double>(__br);
+    // field: ignore_seek_speed, type: Bool
+    bool ignore_seek_speed = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_event_instance_set_parameter_by_id_with_label(instance_ref, id_data1, id_data2, label, ignore_seek_speed);
     return static_cast<double>(__result);
@@ -1541,8 +1576,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name_w
     // field: label, type: String
     std::string_view label = gm::wire::codec::readValue<std::string_view>(__br);
 
-    // field: ignore_seek_speed, type: Float64
-    double ignore_seek_speed = gm::wire::codec::readValue<double>(__br);
+    // field: ignore_seek_speed, type: Bool
+    bool ignore_seek_speed = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_event_instance_set_parameter_by_name_with_label(instance_ref, name, label, ignore_seek_speed);
     return static_cast<double>(__result);
@@ -1865,8 +1900,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_paused(char* __arg_buffer, dou
     // field: bus_ref, type: UInt64
     std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: paused, type: Float64
-    double paused = gm::wire::codec::readValue<double>(__br);
+    // field: paused, type: Bool
+    bool paused = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_bus_set_paused(bus_ref, paused);
     return static_cast<double>(__result);
@@ -1879,8 +1914,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_stop_all_events(char* __arg_buffer
     // field: bus_ref, type: UInt64
     std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: stop_mode, type: Float64
-    double stop_mode = gm::wire::codec::readValue<double>(__br);
+    // field: stop_mode, type: enum FmodStudioStopMode
+    gm_enums::FmodStudioStopMode stop_mode = gm::wire::codec::readValue<gm_enums::FmodStudioStopMode>(__br);
 
     auto&& __result = fmod_studio_bus_stop_all_events(bus_ref, stop_mode);
     return static_cast<double>(__result);
@@ -2004,8 +2039,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_bus_set_mute(char* __arg_buffer, doubl
     // field: bus_ref, type: UInt64
     std::uint64_t bus_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: mute, type: Float64
-    double mute = gm::wire::codec::readValue<double>(__br);
+    // field: mute, type: Bool
+    bool mute = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_bus_set_mute(bus_ref, mute);
     return static_cast<double>(__result);
@@ -2077,7 +2112,7 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_vca_set_volume(char* __arg_buffer, dou
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -2085,7 +2120,11 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(char
     std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_studio_command_replay_get_playback_state(replay_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: enum FmodStudioPlaybackState
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_get_current_command(char* __arg_buffer, double __arg_buffer_length)
@@ -2265,8 +2304,8 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_command_replay_set_paused(char* __arg_
     // field: replay_ref, type: UInt64
     std::uint64_t replay_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: paused, type: Float64
-    double paused = gm::wire::codec::readValue<double>(__br);
+    // field: paused, type: Bool
+    bool paused = gm::wire::codec::readValue<bool>(__br);
 
     auto&& __result = fmod_studio_command_replay_set_paused(replay_ref, paused);
     return static_cast<double>(__result);

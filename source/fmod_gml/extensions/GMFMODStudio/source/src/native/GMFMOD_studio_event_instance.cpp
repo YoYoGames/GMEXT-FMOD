@@ -16,7 +16,7 @@ double fmod_studio_event_instance_start(uint64_t instance_ref)
 	return 0;
 }
 
-double fmod_studio_event_instance_stop(uint64_t instance_ref, double stop_mode)
+double fmod_studio_event_instance_stop(uint64_t instance_ref, gm_enums::FmodStudioStopMode stop_mode)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
@@ -25,32 +25,32 @@ double fmod_studio_event_instance_stop(uint64_t instance_ref, double stop_mode)
 	return 0;
 }
 
-double fmod_studio_event_instance_get_playback_state(uint64_t instance_ref)
+gm_enums::FmodStudioPlaybackState fmod_studio_event_instance_get_playback_state(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return 0.0;
+	if (instance == nullptr) return (gm_enums::FmodStudioPlaybackState)0;
 	FMOD_STUDIO_PLAYBACK_STATE state = FMOD_STUDIO_PLAYBACK_STOPPED;
 	g_fmod_last_result = instance->getPlaybackState(&state);
-	return (double)state;
+	return (gm_enums::FmodStudioPlaybackState)state;
 }
 
-double fmod_studio_event_instance_get_paused(uint64_t instance_ref)
+bool fmod_studio_event_instance_get_paused(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return 0.0;
+	if (instance == nullptr) return false;
 	bool paused = false;
 	g_fmod_last_result = instance->getPaused(&paused);
-	return paused ? 1.0 : 0.0;
+	return paused;
 }
 
-double fmod_studio_event_instance_set_paused(uint64_t instance_ref, double paused)
+double fmod_studio_event_instance_set_paused(uint64_t instance_ref, bool paused)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
 	if (instance == nullptr) return 0;
-	g_fmod_last_result = instance->setPaused(paused != 0.0);
+	g_fmod_last_result = instance->setPaused(paused);
 	return 0;
 }
 
@@ -229,7 +229,7 @@ double fmod_studio_event_instance_set_parameter_by_id(uint64_t instance_ref, dou
 }
 
 double fmod_studio_event_instance_set_parameter_by_id_with_label(
-	uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, double ignore_seek_speed)
+	uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
@@ -240,12 +240,12 @@ double fmod_studio_event_instance_set_parameter_by_id_with_label(
 	id.data2 = (unsigned int)id_data2;
 
 	std::string label_str(label);
-	g_fmod_last_result = instance->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed != 0.0);
+	g_fmod_last_result = instance->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 
 double fmod_studio_event_instance_set_parameter_by_name_with_label(
-	uint64_t instance_ref, std::string_view name, std::string_view label, double ignore_seek_speed)
+	uint64_t instance_ref, std::string_view name, std::string_view label, bool ignore_seek_speed)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
@@ -253,7 +253,7 @@ double fmod_studio_event_instance_set_parameter_by_name_with_label(
 
 	std::string name_str(name);
 	std::string label_str(label);
-	g_fmod_last_result = instance->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed != 0.0);
+	g_fmod_last_result = instance->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 
@@ -387,22 +387,22 @@ double fmod_studio_event_instance_set_user_data(uint64_t instance_ref, int64_t u
 // Event Instance - Status / Diagnostics
 // ============================================================
 
-double fmod_studio_event_instance_is_valid(uint64_t instance_ref)
+bool fmod_studio_event_instance_is_valid(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return 0.0;
-	return instance->isValid() ? 1.0 : 0.0;
+	if (instance == nullptr) return false;
+	return instance->isValid();
 }
 
-double fmod_studio_event_instance_is_virtual(uint64_t instance_ref)
+bool fmod_studio_event_instance_is_virtual(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = nullptr;
 	validate_fmod_studio_event_instance(instance_ref, instance);
-	if (instance == nullptr) return 0.0;
+	if (instance == nullptr) return false;
 	bool is_virtual = false;
 	g_fmod_last_result = instance->isVirtual(&is_virtual);
-	return is_virtual ? 1.0 : 0.0;
+	return is_virtual;
 }
 
 // See fmod_studio_bus_get_channel_group_ptr(): the raw pointer is what crosses

@@ -40,17 +40,17 @@ double fmod_file_set_disk_busy(double busy)
 	return 0;
 }
 
-gm_structs::FmodMemoryStats fmod_memory_get_stats(double blocking)
+gm_structs::FmodMemoryStats fmod_memory_get_stats(bool blocking)
 {
 	gm_structs::FmodMemoryStats result{};
 	int current_alloced = 0, max_alloced = 0;
-	g_fmod_last_result = FMOD::Memory_GetStats(&current_alloced, &max_alloced, blocking != 0.0);
+	g_fmod_last_result = FMOD::Memory_GetStats(&current_alloced, &max_alloced, blocking);
 	result.current_alloced = (double)current_alloced;
 	result.max_alloced = (double)max_alloced;
 	return result;
 }
 
-double fmod_thread_set_attributes(double thread_type, double affinity, double priority)
+double fmod_thread_set_attributes(gm_enums::FmodThreadType thread_type, double affinity, gm_enums::FmodThreadPriority priority)
 {
 	g_fmod_last_result = FMOD::Thread_SetAttributes(
 		(FMOD_THREAD_TYPE)(int)thread_type,

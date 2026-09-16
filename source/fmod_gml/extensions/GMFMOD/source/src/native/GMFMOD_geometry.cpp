@@ -7,12 +7,12 @@ using namespace gm_structs;
 // Polygons
 // ============================================================
 
-double fmod_geometry_set_polygon_attributes(uint64_t geometry_ref, double polygon_index, double direct_occlusion, double reverb_occlusion, double double_sided)
+double fmod_geometry_set_polygon_attributes(uint64_t geometry_ref, double polygon_index, double direct_occlusion, double reverb_occlusion, bool double_sided)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
 	if (geometry == nullptr) return 0;
-	g_fmod_last_result = geometry->setPolygonAttributes((int)polygon_index, (float)direct_occlusion, (float)reverb_occlusion, double_sided != 0.0);
+	g_fmod_last_result = geometry->setPolygonAttributes((int)polygon_index, (float)direct_occlusion, (float)reverb_occlusion, double_sided);
 	return 0;
 }
 
@@ -26,7 +26,7 @@ double fmod_geometry_get_polygon_num_vertices(uint64_t geometry_ref, double poly
 	return (double)num_vertices;
 }
 
-double fmod_geometry_add_polygon(uint64_t geometry_ref, double direct_occlusion, double reverb_occlusion, double double_sided, double num_vertices, gm::wire::GMBuffer vertices)
+double fmod_geometry_add_polygon(uint64_t geometry_ref, double direct_occlusion, double reverb_occlusion, bool double_sided, double num_vertices, gm::wire::GMBuffer vertices)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
@@ -40,7 +40,7 @@ double fmod_geometry_add_polygon(uint64_t geometry_ref, double direct_occlusion,
 	}
 
 	int polygon_index = 0;
-	g_fmod_last_result = geometry->addPolygon((float)direct_occlusion, (float)reverb_occlusion, double_sided != 0.0,
+	g_fmod_last_result = geometry->addPolygon((float)direct_occlusion, (float)reverb_occlusion, double_sided,
 		count, reinterpret_cast<const FMOD_VECTOR*>(vertices.data()), &polygon_index);
 	return (double)polygon_index;
 }
@@ -59,7 +59,7 @@ FmodPolygonAttributes fmod_geometry_get_polygon_attributes(uint64_t geometry_ref
 
 	result.direct_occlusion = (double)direct_occlusion;
 	result.reverb_occlusion = (double)reverb_occlusion;
-	result.double_sided = double_sided ? 1.0 : 0.0;
+	result.double_sided = double_sided;
 	return result;
 }
 
@@ -207,24 +207,24 @@ FmodVec3 fmod_geometry_get_scale(uint64_t geometry_ref)
 	return result;
 }
 
-double fmod_geometry_get_active(uint64_t geometry_ref)
+bool fmod_geometry_get_active(uint64_t geometry_ref)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
-	if (geometry == nullptr) return 0.0;
+	if (geometry == nullptr) return false;
 
 	bool active = false;
 	g_fmod_last_result = geometry->getActive(&active);
-	return active ? 1.0 : 0.0;
+	return active;
 }
 
-double fmod_geometry_set_active(uint64_t geometry_ref, double active)
+double fmod_geometry_set_active(uint64_t geometry_ref, bool active)
 {
 	FMOD::Geometry* geometry = nullptr;
 	validate_fmod_geometry(geometry_ref, geometry);
 	if (geometry == nullptr) return 0;
 
-	g_fmod_last_result = geometry->setActive(active != 0.0);
+	g_fmod_last_result = geometry->setActive(active);
 	return 0;
 }
 

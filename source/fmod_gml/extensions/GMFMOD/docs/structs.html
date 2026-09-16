@@ -3169,7 +3169,7 @@ This happens in two situations:</p>
 <tbody>
 <tr>
 <td>channel_mask</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodchannelmask">FmodChannelMask</a></td>
 <td>Deprecated.</td>
 </tr>
 <tr>
@@ -3235,12 +3235,12 @@ This happens in two situations:</p>
 <tbody>
 <tr>
 <td>input_enabled</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether metering is enabled for the input signal.</td>
 </tr>
 <tr>
 <td>output_enabled</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether metering is enabled for the output signal.</td>
 </tr>
 </tbody>
@@ -3627,7 +3627,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>stop_channels</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>True: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_stop">fmod_channel_control_stop</a> has been called.<br>False: When <code>dspclock_end</code> is reached, behaves like <a href="channel_control.html#fmod_channel_control_set_paused">fmod_channel_control_set_paused</a> has been called, a subsequent <code>dspclock_start</code> allows it to resume.</td>
 </tr>
 </tbody>
@@ -3700,12 +3700,12 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>starving</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>The starving state. <code>true</code> if a stream has decoded more than the stream file buffer has ready.</td>
 </tr>
 <tr>
 <td>disk_busy</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether the disk is currently being accessed for this sound.</td>
 </tr>
 </tbody>
@@ -3762,7 +3762,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>updated</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>True if this tag has been updated since last being accessed with <a href="sound.html#fmod_sound_get_tag">fmod_sound_get_tag</a>.</td>
 </tr>
 </tbody>
@@ -3825,7 +3825,7 @@ This happens in two situations:</p>
 <tbody>
 <tr>
 <td>custom</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether to override automatic distance filtering and use <code>custom_level</code> instead.</td>
 </tr>
 <tr>
@@ -3945,7 +3945,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>double_sided</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Whether the polygon is double-sided. True: Polygon is double-sided.<br>False: Polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.</td>
 </tr>
 </tbody>
@@ -4221,7 +4221,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>resampler_method</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmoddspresampler">FmodDspResampler</a></td>
 <td>The resampling method used by <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a>.</td>
 </tr>
 <tr>
@@ -4275,7 +4275,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>active</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>The active state of the speaker. <code>true</code> = included in 3D calculations, <code>false</code> = ignored.</td>
 </tr>
 </tbody>
@@ -4405,7 +4405,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>file_buffer_size_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodtimeunit">FmodTimeUnit</a></td>
 <td>The type of units for <code>file_buffer_size</code>. The default is <code>FmodTimeUnit.RawBytes</code>.</td>
 </tr>
 </tbody>
@@ -4498,7 +4498,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>suggested_sound_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodsoundtype">FmodSoundType</a></td>
 <td>Attempt to load using the specified type first instead of loading in codec priority order.</td>
 </tr>
 <tr>
@@ -4508,7 +4508,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>channel_order</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodchannelorder">FmodChannelOrder</a></td>
 <td>Custom ordering of speakers for this sound data.</td>
 </tr>
 <tr>
@@ -4523,17 +4523,17 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>initial_seek_pos_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodtimeunit">FmodTimeUnit</a></td>
 <td>The time units for <code>initial_seek_position</code>.</td>
 </tr>
 <tr>
 <td>ignore_set_filesystem</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Ignore <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem">System::setFileSystem</a> and <code>FMOD_CREATESOUNDEXINFO</code> file callbacks. Not implemented.</td>
 </tr>
 <tr>
 <td>audio_queue_policy</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodaudioqueuecodecpolicy">FmodAudioQueueCodecPolicy</a></td>
 <td>The hardware / software decoding policy for <code>FMOD_SOUND_TYPE.AUDIOQUEUE</code>, see <code>FMOD_AUDIOQUEUE_CODECPOLICY</code>.</td>
 </tr>
 <tr>
@@ -4941,12 +4941,12 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>instance_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudioinstancetype">FmodStudioInstanceType</a></td>
 <td>The type of object that this command uses as an instance.</td>
 </tr>
 <tr>
 <td>output_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudioinstancetype">FmodStudioInstanceType</a></td>
 <td>The type of object that this command outputs.</td>
 </tr>
 <tr>
@@ -5039,7 +5039,7 @@ This happens in two situations:</p>
 </tr>
 <tr>
 <td>bool_value</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Boolean value. Only valid when type is <code>FmodStudioUserPropertyType.Boolean</code>.</td>
 </tr>
 <tr>
@@ -5278,7 +5278,7 @@ is a percentage of the total CPU time.</p>
 </tr>
 <tr>
 <td>suggested_sound_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudiosoundtype">FmodStudioSoundType</a></td>
 <td>Attempt to load using the specified type first instead of loading in codec priority order.</td>
 </tr>
 <tr>
@@ -5288,7 +5288,7 @@ is a percentage of the total CPU time.</p>
 </tr>
 <tr>
 <td>channel_order</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudiochannelorder">FmodStudioChannelOrder</a></td>
 <td>Custom ordering of speakers for this sound data.</td>
 </tr>
 <tr>
@@ -5303,17 +5303,17 @@ is a percentage of the total CPU time.</p>
 </tr>
 <tr>
 <td>initial_seek_pos_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudiotimeunit">FmodStudioTimeUnit</a></td>
 <td>The time units for <code>initial_seek_position</code>.</td>
 </tr>
 <tr>
 <td>ignore_set_filesystem</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>Ignore <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem">System::setFileSystem</a> and <code>FMOD_CREATESOUNDEXINFO</code> file callbacks. Not implemented.</td>
 </tr>
 <tr>
 <td>audio_queue_policy</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td><a href="constants.html#fmodstudioaudioqueuecodecpolicy">FmodStudioAudioQueueCodecPolicy</a></td>
 <td>The hardware / software decoding policy for <code>FMOD_SOUND_TYPE.AUDIOQUEUE</code>, see <code>FMOD_AUDIOQUEUE_CODECPOLICY</code>.</td>
 </tr>
 <tr>

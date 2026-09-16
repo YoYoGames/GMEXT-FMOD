@@ -148,19 +148,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_thread_set_attributes",
-          "argCount": 3,
+          "%Name": "__fmod_thread_set_attributes",
+          "argCount": 2,
           "args": [
-            2,
-            2,
+            1,
             2
           ],
-          "documentation": "@param {Real} thread_type\r\n@param {Real} affinity\r\n@param {Real} priority\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_thread_set_attributes",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_thread_set_attributes",
+          "name": "__fmod_thread_set_attributes",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -481,18 +480,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_init",
+          "%Name": "__fmod_system_init",
           "argCount": 2,
           "args": [
-            2,
+            1,
             2
           ],
-          "documentation": "@param {Real} max_channels\r\n@param {Real} flags\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_init",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_init",
+          "name": "__fmod_system_init",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1004,18 +1003,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_set_stream_buffer_size",
+          "%Name": "__fmod_system_set_stream_buffer_size",
           "argCount": 2,
           "args": [
-            2,
+            1,
             2
           ],
-          "documentation": "@param {Real} file_buffer_size\r\n@param {Real} file_buffer_size_type\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_set_stream_buffer_size",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_set_stream_buffer_size",
+          "name": "__fmod_system_set_stream_buffer_size",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1285,13 +1284,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_system_get_speaker_position",
-          "argCount": 3,
+          "argCount": 4,
           "args": [
+            1,
             2,
             1,
             2
           ],
-          "documentation": "@param {Real} speaker\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_get_speaker_position",
           "help": "",
           "hidden": true,
@@ -1303,20 +1303,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_set_speaker_position",
-          "argCount": 4,
+          "%Name": "__fmod_system_set_speaker_position",
+          "argCount": 2,
           "args": [
-            2,
-            2,
-            2,
+            1,
             2
           ],
-          "documentation": "@param {Real} speaker\r\n@param {Real} x\r\n@param {Real} y\r\n@param {Real} active\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_set_speaker_position",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_set_speaker_position",
+          "name": "__fmod_system_set_speaker_position",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -1750,7 +1748,7 @@
             1,
             2
           ],
-          "documentation": "@param {String} name_or_data\r\n@param {Real} mode\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_create_sound",
           "help": "",
           "hidden": true,
@@ -1790,7 +1788,7 @@
             1,
             2
           ],
-          "documentation": "@param {String} name_or_data\r\n@param {Real} mode\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_create_stream",
           "help": "",
           "hidden": true,
@@ -1917,12 +1915,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_get_mode",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_get_mode",
           "help": "",
           "hidden": true,
@@ -1935,12 +1935,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_get_format",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_get_format",
           "help": "",
           "hidden": true,
@@ -2891,12 +2893,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_group_get_max_audible_behavior",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_group_get_max_audible_behavior",
           "help": "",
           "hidden": true,
@@ -3499,12 +3503,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_channel_control_get_mode",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_channel_control_get_mode",
           "help": "",
           "hidden": true,
@@ -5129,12 +5135,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_dsp_get_type",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_dsp_get_type",
           "help": "",
           "hidden": true,
@@ -5357,12 +5365,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_dsp_connection_get_type",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_dsp_connection_get_type",
           "help": "",
           "hidden": true,

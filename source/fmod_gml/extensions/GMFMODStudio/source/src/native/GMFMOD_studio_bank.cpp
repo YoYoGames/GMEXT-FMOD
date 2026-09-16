@@ -21,24 +21,24 @@ double fmod_studio_bank_unload(uint64_t bank_ref)
 	return 0;
 }
 
-double fmod_studio_bank_get_loading_state(uint64_t bank_ref)
+gm_enums::FmodStudioLoadingState fmod_studio_bank_get_loading_state(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
-	if (bank == nullptr) return 0.0;
+	if (bank == nullptr) return (gm_enums::FmodStudioLoadingState)0;
 	FMOD_STUDIO_LOADING_STATE state = FMOD_STUDIO_LOADING_STATE_UNLOADED;
 	g_fmod_last_result = bank->getLoadingState(&state);
-	return (double)state;
+	return (gm_enums::FmodStudioLoadingState)state;
 }
 
-double fmod_studio_bank_get_sample_loading_state(uint64_t bank_ref)
+gm_enums::FmodStudioLoadingState fmod_studio_bank_get_sample_loading_state(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
-	if (bank == nullptr) return 0.0;
+	if (bank == nullptr) return (gm_enums::FmodStudioLoadingState)0;
 	FMOD_STUDIO_LOADING_STATE state = FMOD_STUDIO_LOADING_STATE_UNLOADED;
 	g_fmod_last_result = bank->getSampleLoadingState(&state);
-	return (double)state;
+	return (gm_enums::FmodStudioLoadingState)state;
 }
 
 std::string fmod_studio_bank_get_path(uint64_t bank_ref)
@@ -172,13 +172,13 @@ std::string fmod_studio_bank_get_id(uint64_t bank_ref)
 	return format_guid(guid);
 }
 
-double fmod_studio_bank_is_valid(uint64_t bank_ref)
+bool fmod_studio_bank_is_valid(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = nullptr;
 	validate_fmod_studio_bank(bank_ref, bank);
-	if (bank == nullptr) return 0.0;
+	if (bank == nullptr) return false;
 
-	return bank->isValid() ? 1.0 : 0.0;
+	return bank->isValid();
 }
 
 FmodStudioStringInfo fmod_studio_bank_get_string_info(uint64_t bank_ref, double string_index)

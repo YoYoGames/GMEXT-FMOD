@@ -7,8 +7,8 @@
 /**
  * @function_partial fmod_studio_system_init
  * @param {Real} max_channels
- * @param {Real} studio_flags
- * @param {Real} core_flags
+ * @param {Enum.FmodStudioInitFlags} studio_flags
+ * @param {Enum.FmodStudioCoreInitFlags} core_flags
  * @returns {Real}
  * @function_end
  */
@@ -40,7 +40,7 @@
 /**
  * @function_partial fmod_studio_system_load_bank_file
  * @param {String} filename
- * @param {Real} flags
+ * @param {Enum.FmodStudioLoadBankFlags} flags
  * @returns {Real}
  * @function_end
  */
@@ -49,7 +49,7 @@
  * @function_partial fmod_studio_system_load_bank_memory
  * @param {Buffer} data
  * @param {Real} length
- * @param {Real} flags
+ * @param {Enum.FmodStudioLoadBankFlags} flags
  * @returns {Real}
  * @function_end
  */
@@ -237,7 +237,7 @@
 
 /**
  * @function_partial fmod_studio_system_is_valid
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -283,7 +283,7 @@
  * @param {Real} id_data1
  * @param {Real} id_data2
  * @param {Real} value
- * @param {Real} ignore_seek_speed
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -338,7 +338,7 @@
  * @param {Real} id_data1
  * @param {Real} id_data2
  * @param {String} label
- * @param {Real} ignore_seek_speed
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -347,7 +347,7 @@
  * @function_partial fmod_studio_system_set_parameter_by_name_with_label
  * @param {String} name
  * @param {String} label
- * @param {Real} ignore_seek_speed
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -420,14 +420,14 @@
 /**
  * @function_partial fmod_studio_bank_get_loading_state
  * @param {Real} bank_ref
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bank_get_sample_loading_state
  * @param {Real} bank_ref
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 
@@ -507,7 +507,7 @@
 /**
  * @function_partial fmod_studio_bank_is_valid
  * @param {Real} bank_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -580,21 +580,21 @@
 /**
  * @function_partial fmod_studio_event_description_is_snapshot
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_one_shot
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_has_sustain_point
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -637,28 +637,28 @@
 /**
  * @function_partial fmod_studio_event_description_is_valid
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_3d
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_stream
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_description_is_doppler_enabled
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -686,7 +686,7 @@
 /**
  * @function_partial fmod_studio_event_description_get_sample_loading_state
  * @param {Real} event_desc_ref
- * @returns {Real}
+ * @returns {Enum.FmodStudioLoadingState}
  * @function_end
  */
 
@@ -799,7 +799,7 @@
 /**
  * @function_partial fmod_studio_event_instance_stop
  * @param {Real} instance_ref
- * @param {Real} stop_mode
+ * @param {Enum.FmodStudioStopMode} stop_mode
  * @returns {Real}
  * @function_end
  */
@@ -807,21 +807,21 @@
 /**
  * @function_partial fmod_studio_event_instance_get_playback_state
  * @param {Real} instance_ref
- * @returns {Real}
+ * @returns {Enum.FmodStudioPlaybackState}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_get_paused
  * @param {Real} instance_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_paused
  * @param {Real} instance_ref
- * @param {Real} paused
+ * @param {Bool} paused
  * @returns {Real}
  * @function_end
  */
@@ -936,7 +936,7 @@
  * @param {Real} id_data1
  * @param {Real} id_data2
  * @param {String} label
- * @param {Real} ignore_seek_speed
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -946,7 +946,7 @@
  * @param {Real} instance_ref
  * @param {String} name
  * @param {String} label
- * @param {Real} ignore_seek_speed
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -1043,14 +1043,14 @@
 /**
  * @function_partial fmod_studio_event_instance_is_valid
  * @param {Real} instance_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_is_virtual
  * @param {Real} instance_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -1114,14 +1114,14 @@
 /**
  * @function_partial fmod_studio_bus_get_paused
  * @param {Real} bus_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_set_paused
  * @param {Real} bus_ref
- * @param {Real} paused
+ * @param {Bool} paused
  * @returns {Real}
  * @function_end
  */
@@ -1129,7 +1129,7 @@
 /**
  * @function_partial fmod_studio_bus_stop_all_events
  * @param {Real} bus_ref
- * @param {Real} stop_mode
+ * @param {Enum.FmodStudioStopMode} stop_mode
  * @returns {Real}
  * @function_end
  */
@@ -1150,7 +1150,7 @@
 /**
  * @function_partial fmod_studio_bus_is_valid
  * @param {Real} bus_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -1192,14 +1192,14 @@
 /**
  * @function_partial fmod_studio_bus_get_mute
  * @param {Real} bus_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_bus_set_mute
  * @param {Real} bus_ref
- * @param {Real} mute
+ * @param {Bool} mute
  * @returns {Real}
  * @function_end
  */
@@ -1244,7 +1244,7 @@
 /**
  * @function_partial fmod_studio_command_replay_get_playback_state
  * @param {Real} replay_ref
- * @returns {Real}
+ * @returns {Enum.FmodStudioPlaybackState}
  * @function_end
  */
 
@@ -1286,7 +1286,7 @@
 /**
  * @function_partial fmod_studio_command_replay_is_valid
  * @param {Real} replay_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
@@ -1341,14 +1341,14 @@
 /**
  * @function_partial fmod_studio_command_replay_get_paused
  * @param {Real} replay_ref
- * @returns {Real}
+ * @returns {Bool}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_command_replay_set_paused
  * @param {Real} replay_ref
- * @param {Real} paused
+ * @param {Bool} paused
  * @returns {Real}
  * @function_end
  */
@@ -1446,8 +1446,8 @@
  * @member {String} command_name
  * @member {Real} parent_command_index
  * @member {Real} frame_time
- * @member {Real} instance_type
- * @member {Real} output_type
+ * @member {Enum.FmodStudioInstanceType} instance_type
+ * @member {Enum.FmodStudioInstanceType} output_type
  * @member {Real} instance_handle
  * @member {Real} output_handle
  * @struct_end
@@ -1466,7 +1466,7 @@
  * @member {Enum.FmodStudioUserPropertyType} type
  * @member {String} string_value
  * @member {Real} int_value
- * @member {Real} bool_value
+ * @member {Bool} bool_value
  * @member {Real} float_value
  * @struct_end
  */
@@ -1511,14 +1511,14 @@
  * @member {String} dls_name
  * @member {String} encryption_key
  * @member {Real} max_polyphony
- * @member {Real} suggested_sound_type
+ * @member {Enum.FmodStudioSoundType} suggested_sound_type
  * @member {Real} file_buffer_size
- * @member {Real} channel_order
+ * @member {Enum.FmodStudioChannelOrder} channel_order
  * @member {Real} initial_sound_group
  * @member {Real} initial_seek_position
- * @member {Real} initial_seek_pos_type
- * @member {Real} ignore_set_filesystem
- * @member {Real} audio_queue_policy
+ * @member {Enum.FmodStudioTimeUnit} initial_seek_pos_type
+ * @member {Bool} ignore_set_filesystem
+ * @member {Enum.FmodStudioAudioQueueCodecPolicy} audio_queue_policy
  * @member {Real} min_midi_granularity
  * @member {Real} non_block_thread_id
  * @struct_end
@@ -1758,6 +1758,25 @@
  */
 
 /**
+ * @enum_partial FmodStudioCoreInitFlags
+ * @member Normal
+ * @member StreamFromUpdate
+ * @member MixFromUpdate
+ * @member RightHanded3D
+ * @member ClipOutput
+ * @member ChannelLowpass
+ * @member ChannelDistanceFilter
+ * @member ProfileEnable
+ * @member Vol0BecomesVirtual
+ * @member GeometryUseClosest
+ * @member PreferDolbyDownmix
+ * @member ThreadUnsafe
+ * @member ProfileMeterAll
+ * @member MemoryTracking
+ * @enum_end
+ */
+
+/**
  * @enum_partial FmodStudioLoadingState
  * @member Unloading
  * @member Unloaded
@@ -1919,6 +1938,82 @@
  * @member Pcm32
  * @member PcmFloat
  * @member BitStream
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioSoundType
+ * @member Unknown
+ * @member Aiff
+ * @member Asf
+ * @member Dls
+ * @member Flac
+ * @member Fsb
+ * @member It
+ * @member Midi
+ * @member Mod
+ * @member Mpeg
+ * @member OggVorbis
+ * @member Playlist
+ * @member Raw
+ * @member S3m
+ * @member User
+ * @member Wav
+ * @member Xm
+ * @member Xma
+ * @member AudioQueue
+ * @member At9
+ * @member Vorbis
+ * @member MediaFoundation
+ * @member MediaCodec
+ * @member Fadpcm
+ * @member Opus
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioTimeUnit
+ * @member Ms
+ * @member Pcm
+ * @member PcmBytes
+ * @member RawBytes
+ * @member PcmFraction
+ * @member ModOrder
+ * @member ModRow
+ * @member ModPattern
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioChannelOrder
+ * @member Default
+ * @member WaveFormat
+ * @member ProTools
+ * @member AllMono
+ * @member AllStereo
+ * @member Alsa
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioAudioQueueCodecPolicy
+ * @member Default
+ * @member SoftwareOnly
+ * @member HardwareOnly
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioInstanceType
+ * @member None
+ * @member System
+ * @member EventDescription
+ * @member EventInstance
+ * @member ParameterInstance
+ * @member Bus
+ * @member Vca
+ * @member Bank
+ * @member CommandReplay
  * @enum_end
  */
 

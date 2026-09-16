@@ -4,6 +4,7 @@
 * This extension requires the user to download the FMOD SDKs (v2.03). (requires registration)
 * This extension is compatible with Windows, macOS, Linux, Android and iOS.
 * The FMOD plugin system is not implemented in this extension.
+* Boolean parameters take `true` / `false`; passing a number (`0` / `1`) as a boolean is rejected by the wrapper.
 
 ## CHANGES SINCE ${releaseOldVersion}
 
