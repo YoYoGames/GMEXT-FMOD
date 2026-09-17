@@ -7,10 +7,11 @@ set "EXTENSION_DIR=%~dp0"
 ::
 :: GMFMODStudio ships the FMOD Studio runtime only. The FMOD Core runtime is
 :: GMFMOD's responsibility - that extension is always present when this one is
-:: used - and console targets are GMFMOD's too. The desktop runtimes are copied
-:: into the output folder by post_build_step; Android is staged here, because it
-:: goes into this extension's own AndroidSource\libs and the asset compiler reads
-:: that before post_build_step runs.
+:: used. The desktop runtimes are copied into the output folder by
+:: post_build_step; Android is staged here, because it goes into this
+:: extension's own AndroidSource\libs and the asset compiler reads that before
+:: post_build_step runs; the consoles build this extension's CMake project here
+:: and stage next to the .yy, see the Consoles section at the bottom.
 
 :: Always init the script
 call %Utils% scriptInit
@@ -31,6 +32,10 @@ call %Utils% optionGetValue "androidSdkHash" ANDROID_SDK_HASH
 
 :: SDK Paths
 call %Utils% optionGetValue "androidSdkPath" ANDROID_SDK_PATH
+call %Utils% optionGetValue "gdkSdkPath" GDK_SDK_PATH
+call %Utils% optionGetValue "ps4SdkPath" PS4_SDK_PATH
+call %Utils% optionGetValue "ps5SdkPath" PS5_SDK_PATH
+call %Utils% optionGetValue "switchSdkPath" SWITCH_SDK_PATH
 
 :: Error String
 set "ERROR_SDK_HASH=Invalid FMOD SDK version, sha256 hash mismatch (expected v%SDK_VERSION%)."
@@ -48,7 +53,7 @@ if "%YYTARGET_runtime%" == "GMRT" (
 pushd "%YYoutputFolder%"
 
 :: Call setup method depending on the platform
-:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS)
+:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS, :setupXbox, :setupPlaystation, :setupSwitch)
 call :setup%YYPLATFORM_name%
 
 popd
@@ -127,4 +132,123 @@ exit /b 0
     :: Nothing to do here. Under "ios": {"mode": "native"} the FMOD Studio iOS static
     :: libraries are linked straight from the vendored SDK by source/third_party/CMakeLists.txt,
     :: so there is no iOSSource folder to stage into.
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:: Consoles
+::
+:: The console binaries are not committed. Each handler below configures and builds this extension's
+:: CMake project (source\) with the preset extgen generated for the platform, and the generated
+:: cmake\<platform>\extgen_post_build.cmake places the finished binary next to this script under the
+:: name GMFMODStudio.yy expects - so there is no copy step here. The release preset is always built,
+:: whatever the game's own configuration is.
+::
+:: The Xbox presets (xbox-one-release, xbox-scarlett-release) are in source\CMakePresets.json. The
+:: PlayStation and Switch ones (ps4-release, ps5-release, switch-release) are per developer, because
+:: they carry the toolchain paths of the SDK installed on the build machine: copy
+:: source\templates\CMakeUserPresets.json.template to source\CMakeUserPresets.json and fill it in.
+::
+:: The FMOD Studio runtime is staged next to GMFMODStudio.yy as well, where the manifest's proxy
+:: entries pick it up: fmodstudio.dll on Xbox, libfmodstudio.prx on PlayStation. Switch links it
+:: statically - nothing to stage. Studio only - the FMOD Core runtime is GMFMOD's, as everywhere else.
+:: ----------------------------------------------------------------------------------------------------
+
+:: ----------------------------------------------------------------------------------------------------
+:setupXbox
+    :: Xbox One or Xbox Series: xbox-type.bin when the IDE wrote one, else the package kind in the
+    :: target file name, else Series.
+    set "XBOX_TYPE_FILE=%YYoutputFolder%\xbox-type.bin"
+    set "IS_XBOX_ONE="
+    if exist "%XBOX_TYPE_FILE%" (
+        for /f "usebackq delims=" %%A in ("%XBOX_TYPE_FILE%") do (
+            if /i "%%A"=="XboxOne" set "IS_XBOX_ONE=1"
+            if /i "%%A"=="Scarlett" set "IS_XBOX_ONE=0"
+        )
+    )
+    if not defined IS_XBOX_ONE if defined YYtargetFile (
+        echo(%YYtargetFile%| findstr /i "xboxone-dev-pkg xboxone-pkg" >nul && set "IS_XBOX_ONE=1"
+        echo(%YYtargetFile%| findstr /i "xboxseriesxs-dev-pkg xboxseriesxs-pkg" >nul && set "IS_XBOX_ONE=0"
+    )
+    if not defined IS_XBOX_ONE (
+        echo Could not determine the Xbox target, defaulting to Xbox Series.
+        set "IS_XBOX_ONE=0"
+    )
+
+    if "%IS_XBOX_ONE%"=="1" (
+        set "CMAKE_PRESET=xbox-one-release"
+        set "PLATFORM_PATH=xboxone"
+    ) else (
+        set "CMAKE_PRESET=xbox-scarlett-release"
+        set "PLATFORM_PATH=scarlett"
+    )
+
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%GDK_SDK_PATH%" SDK_PATH
+
+    call :consoleBuild
+
+    :: Runtime, picked up by the Xbox proxy on the libfmodstudio.dylib manifest entry
+    echo Copying Xbox (%PLATFORM_PATH%) dependencies
+    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\%PLATFORM_PATH%\fmodstudio.dll" "%EXTENSION_DIR%\fmodstudio.dll"
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupPlaystation
+    :: Reached for both PS4 and PS5: "PlayStation 4" / "PlayStation 5" split on the space when
+    :: dispatched, so the two are told apart on the full variable, not on the label argument.
+    if "%YYPLATFORM_name%"=="PlayStation 4" (
+        set "CMAKE_PRESET=ps4-release"
+        set "SDK_PATH_OPTION=%PS4_SDK_PATH%"
+    ) else (
+        set "CMAKE_PRESET=ps5-release"
+        set "SDK_PATH_OPTION=%PS5_SDK_PATH%"
+    )
+
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%SDK_PATH_OPTION%" SDK_PATH
+
+    call :consoleBuild user
+
+    :: Runtime, picked up by the PS4 / PS5 proxies on the libfmodstudio.dylib manifest entry
+    echo Copying %YYPLATFORM_name% dependencies
+    call %Utils% itemCopyTo "%SDK_PATH%\api\studio\lib\libfmodstudio.prx" "%EXTENSION_DIR%\libfmodstudio.prx"
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupSwitch
+    set "CMAKE_PRESET=switch-release"
+
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%SWITCH_SDK_PATH%" SDK_PATH
+
+    call :consoleBuild user
+
+    :: FMOD Studio is a static library on Switch and is already inside GMFMODStudio.nro - nothing to stage.
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:: consoleBuild [user]
+::   Configures and builds source\ with the preset in CMAKE_PRESET against the SDK folder in SDK_PATH,
+::   which reaches CMake as FMOD_SDK_PLATFORM_DIR - the override source\third_party\CMakeLists.txt
+::   reads in its console branches. "user" marks a preset that lives in the per-developer
+::   source\CMakeUserPresets.json rather than in the generated source\CMakePresets.json.
+:consoleBuild
+    if "%~1"=="user" if not exist "%EXTENSION_DIR%\source\CMakeUserPresets.json" (
+        call %Utils% logError "Preset '%CMAKE_PRESET%' needs source\CMakeUserPresets.json with this machine's toolchain paths - copy source\templates\CMakeUserPresets.json.template there and fill it in."
+    )
+
+    :: A trailing separator would escape the closing quote of the -D argument below
+    if "%SDK_PATH:~-1%"=="\" set "SDK_PATH=%SDK_PATH:~0,-1%"
+
+    :: CMake's Visual Studio generator runs msbuild, so it needs the same environment msbuild does
+    call "%YYPREF_visual_studio_path%"
+    where cmake >nul 2>nul
+    if errorlevel 1 call %Utils% logError "cmake is not on PATH after loading the Visual Studio environment."
+
+    pushd "%EXTENSION_DIR%\source"
+    cmake --preset %CMAKE_PRESET% "-DFMOD_SDK_PLATFORM_DIR=%SDK_PATH%"
+    if errorlevel 1 call %Utils% logError "CMake configure failed for preset '%CMAKE_PRESET%'."
+    cmake --build --preset %CMAKE_PRESET% --target GMFMODStudio
+    if errorlevel 1 call %Utils% logError "CMake build failed for preset '%CMAKE_PRESET%'."
+    popd
 exit /b 0

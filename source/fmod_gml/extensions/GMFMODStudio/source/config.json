@@ -22,7 +22,11 @@
         },
         "ios":{
           "mode": "native"
-        }
+        },
+        "xbox":{},
+        "ps4":{},
+        "ps5":{},
+        "switch":{}
     },
   "extras": {
     "docs": { 

@@ -158,6 +158,9 @@ setupAndroid() {
 # ----------------------------------------------------------------------------------------------------
 # The iOS static libraries are linked at build time - nothing to stage.
 setupiOS() { :; }
+setupXbox() { :; }
+setupPlaystation() { :; }
+setupSwitch() { :; }
 
 # ######################################################################################
 # Script Logic

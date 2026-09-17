@@ -330,7 +330,7 @@
     {
       "name": "xbox-scarlett-debug",
       "displayName": "Xbox Series (Scarlett) Debug",
-      "hidden": true,
+      "hidden": false,
       "inherits": "base-vs",
       "architecture": { "value": "Gaming.Xbox.Scarlett.x64", "strategy": "set" },
       "toolset": { "value": "v142" },
@@ -339,7 +339,7 @@
     {
       "name": "xbox-scarlett-release",
       "displayName": "Xbox Series (Scarlett) Release",
-      "hidden": true,
+      "hidden": false,
       "inherits": "base-vs",
       "architecture": { "value": "Gaming.Xbox.Scarlett.x64", "strategy": "set" },
       "toolset": { "value": "v142" },
@@ -348,7 +348,7 @@
     {
       "name": "xbox-one-debug",
       "displayName": "Xbox One Debug",
-      "hidden": true,
+      "hidden": false,
       "inherits": "base-vs",
       "architecture": { "value": "Gaming.Xbox.XboxOne.x64", "strategy": "set" },
       "toolset": { "value": "v142" },
@@ -357,7 +357,7 @@
     {
       "name": "xbox-one-release",
       "displayName": "Xbox One Release",
-      "hidden": true,
+      "hidden": false,
       "inherits": "base-vs",
       "architecture": { "value": "Gaming.Xbox.XboxOne.x64", "strategy": "set" },
       "toolset": { "value": "v142" },

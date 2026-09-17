@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nintendo Switch MSBuild Configuration Template
+
+  This file is processed by CMake configure_file() - variables like @VAR@ are replaced.
+  Customize paths via CMakeUserPresets.json (see CMakeUserPresets.json.template).
+
+  REQUIRED: Set NINTENDO_SDK_ROOT environment variable.
+-->
+<Project>
+  <PropertyGroup>
+    <!-- Set SDK root from environment variable -->
+    <NintendoSdkRoot>$(NINTENDO_SDK_ROOT)\</NintendoSdkRoot>
+    <NintendoSdkSpec>NX</NintendoSdkSpec>
+  </PropertyGroup>
+
+  <!-- Import Nintendo SDK build configuration -->
+  <!-- Path is configured via NINTENDO_SDK_PROPS_PATH CMake variable -->
+  <Import Project="$(NintendoSdkRoot)@NINTENDO_SDK_PROPS_PATH@" />
+
+</Project>

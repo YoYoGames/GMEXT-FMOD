@@ -2,7 +2,8 @@
 
 * This extension is compatible with GameMaker 2023.11.
 * This extension requires the user to download the FMOD SDKs (v2.03). (requires registration)
-* This extension is compatible with Windows, macOS, Linux, Android and iOS.
+* This extension is compatible with Windows, macOS, Linux, Android, iOS, Xbox (GDK), PlayStation 4, PlayStation 5 and Nintendo Switch.
+* The console binaries are built at game-build time from the extension's CMake project; PlayStation and Switch need `source/CMakeUserPresets.json` created from `source/templates/CMakeUserPresets.json.template` with the toolchain paths of the installed SDK.
 * The FMOD plugin system is not implemented in this extension.
 * Boolean parameters take `true` / `false`; passing a number (`0` / `1`) as a boolean is rejected by the wrapper.
 

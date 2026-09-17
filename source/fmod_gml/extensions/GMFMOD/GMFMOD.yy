@@ -22,7 +22,7 @@
       "$GMExtensionFile": "v1",
       "%Name": "GMFMOD.ext",
       "constants": [],
-      "copyToTargets": 2891310973656760526,
+      "copyToTargets": 3035426161732616398,
       "filename": "GMFMOD.ext",
       "final": "fmod_shutdown",
       "functions": [
@@ -5950,7 +5950,7 @@
       "$GMExtensionFile": "v1",
       "%Name": "libfmod.dylib",
       "constants": [],
-      "copyToTargets": 576460756598390786,
+      "copyToTargets": 2882303765812084738,
       "filename": "libfmod.dylib",
       "final": "",
       "functions": [

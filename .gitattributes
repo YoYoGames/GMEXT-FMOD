@@ -1,0 +1,4 @@
+# cmd.exe can fail to find a 'call :label' / 'goto :label' target in a batch file with LF line
+# endings - the label is there, the scan misses it depending on where it falls in the file. Every
+# build-step script dispatches on 'call :setup%YYPLATFORM_name%', so keep them CRLF on every checkout.
+*.bat text eol=crlf

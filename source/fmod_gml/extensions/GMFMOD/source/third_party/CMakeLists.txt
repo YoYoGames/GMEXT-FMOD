@@ -26,6 +26,17 @@ if(NOT FMOD_SDK_ROOT)
     ABSOLUTE)
 endif()
 
+# The console handlers in pre_build_step.bat hand the platform folder they
+# resolved from the extension's SDK-path option straight through as
+# FMOD_SDK_PLATFORM_DIR, so the option and the build agree on one SDK. Left
+# empty - the desktop and mobile presets, or a console configure run by hand -
+# the platform's own folder under FMOD_SDK_ROOT is used.
+set(FMOD_SDK_PLATFORM_DIR
+    ""
+    CACHE PATH
+          "Path to the 'FMOD Studio API <Platform>' folder to build against (consoles only; empty = the platform's folder under FMOD_SDK_ROOT)"
+)
+
 # FMOD ships a logging build of each library alongside the normal one - fmodL
 # next to fmod. It is a development aid: extra validation, verbose output, and
 # the only build in which fmod_debug_initialize() does anything.
@@ -89,10 +100,96 @@ function(_fmod_resolve_so outVar dir basename)
   endif()
 endfunction()
 
+# Helper (consoles): the platform SDK folder - FMOD_SDK_PLATFORM_DIR when set,
+# else the named folder under FMOD_SDK_ROOT.
+function(_fmod_platform_root outVar folderName)
+  if(FMOD_SDK_PLATFORM_DIR)
+    get_filename_component(_dir "${FMOD_SDK_PLATFORM_DIR}" ABSOLUTE)
+  else()
+    set(_dir "${FMOD_SDK_ROOT}/${folderName}")
+  endif()
+  set(${outVar}
+      "${_dir}"
+      PARENT_SCOPE)
+endfunction()
+
+# =============================================================================
+# CONSOLES - checked before WIN32. Every console preset runs through the Visual
+# Studio generator with CMAKE_SYSTEM_NAME left as "Windows", so WIN32 is TRUE
+# for all of them; the EXTGEN_IS_* flags come from the generated CMakeLists.txt.
+# The runtime (fmod.dll, libfmod.prx) is staged by pre_build_step.bat, not here.
+# =============================================================================
+if(EXTGEN_IS_XBOX_ONE OR EXTGEN_IS_XBOX_SCARLETT)
+  # ----------------------
+  # Xbox One / Xbox Series (GDK) - one "Game Core" SDK, a lib folder per console
+  # ----------------------
+  _fmod_platform_root(_FMOD_GDK_ROOT "FMOD Studio API Game Core")
+  if(EXTGEN_IS_XBOX_ONE)
+    set(_FMOD_GDK_ARCH "xboxone")
+  else()
+    set(_FMOD_GDK_ARCH "scarlett")
+  endif()
+  set(_FMOD_GDK_CORE_LIB_DIR "${_FMOD_GDK_ROOT}/api/core/lib/${_FMOD_GDK_ARCH}")
+
+  target_include_directories(
+    ext_third_party INTERFACE "${_FMOD_GDK_ROOT}/api/core/inc")
+
+  # Import library by path, as on Windows. The GDK SDK names it fmod.lib.
+  set(_FMOD_GDK_CORE_IMPLIB "${_FMOD_GDK_CORE_LIB_DIR}/${_FMOD_CORE_LIB}.lib")
+  if(NOT EXISTS "${_FMOD_GDK_CORE_IMPLIB}")
+    message(
+      FATAL_ERROR "Missing FMOD Core import library: ${_FMOD_GDK_CORE_IMPLIB}")
+  endif()
+
+  target_link_libraries(ext_third_party INTERFACE "${_FMOD_GDK_CORE_IMPLIB}")
+
+# =============================================================================
+# PS4 (ORBIS) / PS5 (Prospero) - weak stub archive to link, .prx at runtime
+# =============================================================================
+elseif(EXTGEN_IS_PS4 OR EXTGEN_IS_PS5)
+  if(EXTGEN_IS_PS4)
+    _fmod_platform_root(_FMOD_PS_ROOT "FMOD Studio API PS4")
+  else()
+    _fmod_platform_root(_FMOD_PS_ROOT "FMOD Studio API PS5")
+  endif()
+  set(_FMOD_PS_CORE_LIB_DIR "${_FMOD_PS_ROOT}/api/core/lib")
+
+  target_include_directories(
+    ext_third_party INTERFACE "${_FMOD_PS_ROOT}/api/core/inc")
+
+  set(_FMOD_PS_CORE_STUB "${_FMOD_PS_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}_stub_weak.a")
+  if(NOT EXISTS "${_FMOD_PS_CORE_STUB}")
+    message(FATAL_ERROR "Missing FMOD Core stub library: ${_FMOD_PS_CORE_STUB}")
+  endif()
+
+  # The stub is an SCE ELF stub, not a regular archive. It is linked the way
+  # the pre-port .vcxproj linked it - a library directory plus a raw "-l" flag -
+  # so CMake forwards the name verbatim into AdditionalDependencies. A bare name
+  # would get a ".lib" suffix on this VS-generator platform.
+  target_link_directories(ext_third_party INTERFACE "${_FMOD_PS_CORE_LIB_DIR}")
+  target_link_libraries(ext_third_party INTERFACE "-l${_FMOD_CORE_LIB}_stub_weak")
+
+# =============================================================================
+# NINTENDO SWITCH (NX64) - static library, nothing to stage
+# =============================================================================
+elseif(EXTGEN_IS_SWITCH)
+  _fmod_platform_root(_FMOD_NX_ROOT "FMOD Studio API Switch")
+  set(_FMOD_NX_CORE_LIB_DIR "${_FMOD_NX_ROOT}/api/core/lib/nx64")
+
+  target_include_directories(
+    ext_third_party INTERFACE "${_FMOD_NX_ROOT}/api/core/inc")
+
+  set(_FMOD_NX_CORE_LIB "${_FMOD_NX_CORE_LIB_DIR}/lib${_FMOD_CORE_LIB}.a")
+  if(NOT EXISTS "${_FMOD_NX_CORE_LIB}")
+    message(FATAL_ERROR "Missing FMOD Core static library: ${_FMOD_NX_CORE_LIB}")
+  endif()
+
+  target_link_libraries(ext_third_party INTERFACE "${_FMOD_NX_CORE_LIB}")
+
 # =============================================================================
 # WINDOWS (MSVC/ClangCL) - x64 only
 # =============================================================================
-if(WIN32)
+elseif(WIN32)
   set(_FMOD_WIN_ROOT "${FMOD_SDK_ROOT}/FMOD Studio API Windows")
   set(_FMOD_WIN_CORE_LIB_DIR "${_FMOD_WIN_ROOT}/api/core/lib/x64")
 
@@ -265,14 +362,6 @@ elseif(UNIX)
   # copying the SDK into the extension folder is what put FMOD's redistributables
   # into git in the first place.
 endif()
-
-# =============================================================================
-# (OPTIONAL) Console SDK hooks (uncomment and point to vendor toolchains)
-# =============================================================================
-# if(CMAKE_SYSTEM_NAME STREQUAL "ORBIS") # PS4: add imported lib and link;
-# publish runtime if needed elseif(CMAKE_SYSTEM_NAME STREQUAL "Prospero") # PS5:
-# similar elseif(CMAKE_SYSTEM_NAME STREQUAL "NintendoSwitch" OR DEFINED
-# ENV{NINTENDO_SDK_ROOT}) # Switch: similar endif()
 
 # =============================================================================
 # Bubble up runtime list to parent

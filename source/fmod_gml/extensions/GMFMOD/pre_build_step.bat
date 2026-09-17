@@ -129,168 +129,120 @@ exit /b 0
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
+:: Consoles
+::
+:: The console binaries are not committed. Each handler below configures and builds this extension's
+:: CMake project (source\) with the preset extgen generated for the platform, and the generated
+:: cmake\<platform>\extgen_post_build.cmake places the finished binary next to this script under the
+:: name GMFMOD.yy expects - so there is no copy step here. The release preset is always built,
+:: whatever the game's own configuration is.
+::
+:: The Xbox presets (xbox-one-release, xbox-scarlett-release) are in source\CMakePresets.json. The
+:: PlayStation and Switch ones (ps4-release, ps5-release, switch-release) are per developer, because
+:: they carry the toolchain paths of the SDK installed on the build machine: copy
+:: source\templates\CMakeUserPresets.json.template to source\CMakeUserPresets.json and fill it in.
+::
+:: The FMOD runtime is staged next to GMFMOD.yy as well, where the manifest's proxy entries pick it
+:: up: fmod.dll on Xbox, libfmod.prx on PlayStation. Switch links FMOD statically - nothing to stage.
+:: Core only - GMFMODStudio stages its own fmodstudio.dll / libfmodstudio.prx.
+:: ----------------------------------------------------------------------------------------------------
+
+:: ----------------------------------------------------------------------------------------------------
 :setupXbox
-    :: Set building defaults
-    set "CONFIGURATION=Release-AutoBuild"
-    set "PLATFORM="
-    set "PLATFORM_PATH="
-    set "LIBRARY_NAME="
-    set "FMOD_SDK_PATH=%GDK_SDK_PATH%"
-    
-    :: Get Xbox type file
-    set "FilePath=%YYoutputFolder%\xbox-type.bin"
-    set IsXboxOne=0
-
-    :: ------------------------------------------------------------
-    :: First preference: xbox-type.bin if it exists
-    :: ------------------------------------------------------------
-    if exist "%FilePath%" (
-        for /f "usebackq delims=" %%A in ("%FilePath%") do (
-            if /i "%%A"=="XboxOne" (
-                set "IsXboxOne=1"
-            ) else if /i "%%A"=="Scarlett" (
-                set "IsXboxOne=0"
-            )
+    :: Xbox One or Xbox Series: xbox-type.bin when the IDE wrote one, else the package kind in the
+    :: target file name, else Series.
+    set "XBOX_TYPE_FILE=%YYoutputFolder%\xbox-type.bin"
+    set "IS_XBOX_ONE="
+    if exist "%XBOX_TYPE_FILE%" (
+        for /f "usebackq delims=" %%A in ("%XBOX_TYPE_FILE%") do (
+            if /i "%%A"=="XboxOne" set "IS_XBOX_ONE=1"
+            if /i "%%A"=="Scarlett" set "IS_XBOX_ONE=0"
         )
     )
-
-    :: ------------------------------------------------------------
-    :: Fallback: infer from YYtargetFile if IsXboxOne still unknown
-    :: ------------------------------------------------------------
-    if not defined IsXboxOne (
-        if defined YYtargetFile (
-            echo(%YYtargetFile% | findstr /i "xboxone-dev-pkg xboxone-pkg" >nul
-            if !errorlevel! == 0 (
-                set "IsXboxOne=1"
-            ) 
-            else (
-                echo(%YYtargetFile% | findstr /i "xboxseriesxs-dev-pkg xboxseriesxs-pkg" >nul
-                if !errorlevel! == 0 (
-                    set "IsXboxOne=0"
-                )
-            )
-        )
+    if not defined IS_XBOX_ONE if defined YYtargetFile (
+        echo(%YYtargetFile%| findstr /i "xboxone-dev-pkg xboxone-pkg" >nul && set "IS_XBOX_ONE=1"
+        echo(%YYtargetFile%| findstr /i "xboxseriesxs-dev-pkg xboxseriesxs-pkg" >nul && set "IS_XBOX_ONE=0"
+    )
+    if not defined IS_XBOX_ONE (
+        echo Could not determine the Xbox target, defaulting to Xbox Series.
+        set "IS_XBOX_ONE=0"
     )
 
-    :: ------------------------------------------------------------
-    :: Final fallback if nothing matched
-    :: ------------------------------------------------------------
-    if not defined IsXboxOne (
-        echo Could not determine Xbox target. Defaulting to Scarlett.
-        set "IsXboxOne=0"
-    )
-
-    :: Update default variables
-    if "%IsXboxOne%" == "1" (
+    if "%IS_XBOX_ONE%"=="1" (
+        set "CMAKE_PRESET=xbox-one-release"
         set "PLATFORM_PATH=xboxone"
-        set "PLATFORM=Gaming.Xbox.XboxOne.x64"
-        set "LIBRARY_NAME=YYFMOD_xboxone.dll"
     ) else (
+        set "CMAKE_PRESET=xbox-scarlett-release"
         set "PLATFORM_PATH=scarlett"
-        set "PLATFORM=Gaming.Xbox.Scarlett.x64"
-        set "LIBRARY_NAME=YYFMOD_xboxseriesxs.dll"
     )
 
-    :: Resolve the Fmod SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%FMOD_SDK_PATH%" FMOD_SDK_PATH
-
-    :: Resolve the Solution path (must exist)
-    set "GDK_VS_PATH=.\fmod_gdk\FMOD.sln"
-    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%GDK_VS_PATH%" SOLUTION_PATH
-
-    :: Build libraries
-    call "%YYPREF_visual_studio_path%" 
-    msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
-
-    :: Extract the directory part from the full path
-    call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
-
-    :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
-
-
-    :: Resolve SDK path
+    :: Resolve the SDK path (must exist)
     call %Utils% pathResolveExisting "%YYprojectDir%" "%GDK_SDK_PATH%" SDK_PATH
-    if errorlevel 1 (
-        exit /b 1
-    )
 
-    :: Library file path (core only - GMFMODStudio ships fmodstudio.dll)
-    set "SDK_CORE_SOURCE=%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmod.dll"
+    call :consoleBuild
 
+    :: Runtime, picked up by the Xbox proxy on the libfmod.dylib manifest entry
     echo Copying Xbox (%PLATFORM_PATH%) dependencies
-    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\fmod.dll"
-
+    call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\%PLATFORM_PATH%\fmod.dll" "%EXTENSION_DIR%\fmod.dll"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupPlaystation
-    :: Set building defaults
-    set "CONFIGURATION=Release-AutoBuild"
-    set "PLATFORM="
-    set "LIBRARY_NAME="
-    set "FMOD_SDK_PATH="
-
-    :: Check correct version PS4 or PS5
+    :: Reached for both PS4 and PS5: "PlayStation 4" / "PlayStation 5" split on the space when
+    :: dispatched, so the two are told apart on the full variable, not on the label argument.
     if "%YYPLATFORM_name%"=="PlayStation 4" (
-        set "PLATFORM=ORBIS"
-        set "LIBRARY_NAME=YYFMOD_ps4.prx"
-        set "FMOD_SDK_PATH=%PS4_SDK_PATH%"
+        set "CMAKE_PRESET=ps4-release"
+        set "SDK_PATH_OPTION=%PS4_SDK_PATH%"
     ) else (
-        set "PLATFORM=Prospero"
-        set "LIBRARY_NAME=YYFMOD_ps5.prx"
-        set "FMOD_SDK_PATH=%PS5_SDK_PATH%"
+        set "CMAKE_PRESET=ps5-release"
+        set "SDK_PATH_OPTION=%PS5_SDK_PATH%"
     )
 
-    :: Resolve the Fmod SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%FMOD_SDK_PATH%" FMOD_SDK_PATH
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%SDK_PATH_OPTION%" SDK_PATH
 
-    :: Resolve the Solution path (must exist)
-    set "PS_VS_PATH=.\fmod_playstation\FMOD.sln"
-    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%PS_VS_PATH%" SOLUTION_PATH
+    call :consoleBuild user
 
-    :: Build libraries
-    call "%YYPREF_visual_studio_path%"
-    msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
-
-    :: Extract the directory part from the full path
-    call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
-
-    :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\%LIBRARY_NAME%" "%EXTENSION_DIR%\%LIBRARY_NAME%"
-
-    :: Get library file path (core only - GMFMODStudio ships libfmodstudio.prx)
-    set "SDK_CORE_SOURCE=%FMOD_SDK_PATH%\api\core\lib\libfmod.prx"
-
-    echo "Copying %YYPLATFORM_name% dependencies"
-    call %Utils% itemCopyTo "%SDK_CORE_SOURCE%" "%EXTENSION_DIR%\libfmod.prx"
+    :: Runtime, picked up by the PS4 / PS5 proxies on the libfmod.dylib manifest entry
+    echo Copying %YYPLATFORM_name% dependencies
+    call %Utils% itemCopyTo "%SDK_PATH%\api\core\lib\libfmod.prx" "%EXTENSION_DIR%\libfmod.prx"
 exit /b 0
 
 :: ----------------------------------------------------------------------------------------------------
 :setupSwitch
-    :: Set building defaults
-    set "CONFIGURATION=Release-AutoBuild"
-    set "PLATFORM=NX64"
-    set "FMOD_SDK_PATH=%SWITCH_SDK_PATH%"
+    set "CMAKE_PRESET=switch-release"
 
-    :: Resolve the Fmod SDK path (must exist)
-    call %Utils% pathResolveExisting "%YYprojectDir%" "%FMOD_SDK_PATH%" FMOD_SDK_PATH
+    :: Resolve the SDK path (must exist)
+    call %Utils% pathResolveExisting "%YYprojectDir%" "%SWITCH_SDK_PATH%" SDK_PATH
 
-    :: Resolve the Solution path (must exist)
-    set "SWITCH_VS_PATH=.\fmod_switch\FMOD.sln"
-    call %Utils% pathResolveExisting "%EXTENSION_DIR%" "%SWITCH_VS_PATH%" SOLUTION_PATH
+    call :consoleBuild user
 
-    :: Build libraries
-    call "%YYPREF_visual_studio_path%"
-    msbuild "%SOLUTION_PATH%" /p:Configuration="%CONFIGURATION%" /p:Platform="%PLATFORM%" /p:FmodSdkPath="%FMOD_SDK_PATH%"
-
-    :: Extract the directory part from the full path
-    call %Utils% pathExtractDirectory "%SOLUTION_PATH%" SOLUTION_DIR
-
-    :: Copy libs to GML project
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nro" "%EXTENSION_DIR%\YYFMOD.nro"
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrr" "%EXTENSION_DIR%\YYFMOD.nrr"
-    call %Utils% itemCopyTo "%SOLUTION_DIR%%PLATFORM%\%CONFIGURATION%\YYFMOD.nrs" "%EXTENSION_DIR%\YYFMOD.nrs"
-
+    :: FMOD is a static library on Switch and is already inside GMFMOD.nro - nothing to stage.
 exit /b 0
 
+:: ----------------------------------------------------------------------------------------------------
+:: consoleBuild [user]
+::   Configures and builds source\ with the preset in CMAKE_PRESET against the SDK folder in SDK_PATH,
+::   which reaches CMake as FMOD_SDK_PLATFORM_DIR - the override source\third_party\CMakeLists.txt
+::   reads in its console branches. "user" marks a preset that lives in the per-developer
+::   source\CMakeUserPresets.json rather than in the generated source\CMakePresets.json.
+:consoleBuild
+    if "%~1"=="user" if not exist "%EXTENSION_DIR%\source\CMakeUserPresets.json" (
+        call %Utils% logError "Preset '%CMAKE_PRESET%' needs source\CMakeUserPresets.json with this machine's toolchain paths - copy source\templates\CMakeUserPresets.json.template there and fill it in."
+    )
+
+    :: A trailing separator would escape the closing quote of the -D argument below
+    if "%SDK_PATH:~-1%"=="\" set "SDK_PATH=%SDK_PATH:~0,-1%"
+
+    :: CMake's Visual Studio generator runs msbuild, so it needs the same environment msbuild does
+    call "%YYPREF_visual_studio_path%"
+    where cmake >nul 2>nul
+    if errorlevel 1 call %Utils% logError "cmake is not on PATH after loading the Visual Studio environment."
+
+    pushd "%EXTENSION_DIR%\source"
+    cmake --preset %CMAKE_PRESET% "-DFMOD_SDK_PLATFORM_DIR=%SDK_PATH%"
+    if errorlevel 1 call %Utils% logError "CMake configure failed for preset '%CMAKE_PRESET%'."
+    cmake --build --preset %CMAKE_PRESET% --target GMFMOD
+    if errorlevel 1 call %Utils% logError "CMake build failed for preset '%CMAKE_PRESET%'."
+    popd
+exit /b 0

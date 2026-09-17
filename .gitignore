@@ -31,23 +31,18 @@ source/fmod_gml/extensions/**/*.aar
 source/fmod_gml/extensions/**/Fmod Core/
 source/fmod_gml/extensions/**/Fmod Studio/
 
-# Pre-compiled console binaries
-source/fmod_gml/extensions/**/YYFMOD_xbox*.dll
+# Console binaries. pre_build_step builds them from source/ at game-build time and the
+# generated cmake/<platform>/extgen_post_build.cmake drops them next to the .yy - never
+# committed, same as the staged FMOD runtimes above.
+source/fmod_gml/extensions/**/*_xboxone.dll
+source/fmod_gml/extensions/**/*_xboxseriesxs.dll
 source/fmod_gml/extensions/**/*.prx
 source/fmod_gml/extensions/**/*.nro
 source/fmod_gml/extensions/**/*.nrr
+source/fmod_gml/extensions/**/*.nrs
 
-# Native build solutions (temp & output)
+# Native build tree (CMake presets configure into source/out/)
 source/fmod_gml/extensions/**/source/out/
-source/fmod_gml/extensions/**/fmod_android/out/
-source/fmod_gml/extensions/**/fmod_gdk/**/Gaming.Xbox.*.x64/
-source/fmod_gml/extensions/**/fmod_playstation/**/ORBIS/
-source/fmod_gml/extensions/**/fmod_playstation/**/Prospero/
-source/fmod_gml/extensions/**/fmod_switch/**/NX64/
-source/fmod_gml/extensions/**/fmod_switch2/**/Ounce64/
-source/fmod_gml/extensions/**/fmod_windows/**/x64/
-source/fmod_gml/extensions/**/fmod_ios/build/*
-source/fmod_gml/extensions/**/fmod_tvos/build/*
 
 # XCode and VS userdata
 *.user

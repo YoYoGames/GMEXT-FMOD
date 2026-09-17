@@ -45,7 +45,7 @@ if "%YYTARGET_runtime%" == "GMRT" (
 )
 
 :: Call setup method depending on the platform
-:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS)
+:: NOTE: the setup method can be (:setupWindows, :setupMacOS, :setupLinux, :setupAndroid, :setupiOS, :setupXbox, :setupPlaystation, :setupSwitch)
 call :setup%YYPLATFORM_name%
 
 popd
@@ -142,4 +142,19 @@ exit /b 0
 :: ----------------------------------------------------------------------------------------------------
 :setupiOS
     :: Nothing to do here - the iOS static libraries are linked at build time.
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupXbox
+    :: Nothing to do here - pre_build_step built the binary and staged fmodstudio.dll
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupPlaystation
+    :: Nothing to do here - pre_build_step built the binary and staged libfmodstudio.prx
+exit /b 0
+
+:: ----------------------------------------------------------------------------------------------------
+:setupSwitch
+    :: Nothing to do here - pre_build_step built the binary
 exit /b 0
