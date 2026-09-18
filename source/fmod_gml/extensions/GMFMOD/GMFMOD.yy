@@ -6023,9 +6023,9 @@
   "iosThirdPartyFrameworkEntries": [
     {
       "$GMExtensionFrameworkEntry": "",
-      "%Name": "libGMFMOD.xcframework",
+      "%Name": "GMFMOD.xcframework",
       "embed": 0,
-      "name": "libGMFMOD.xcframework",
+      "name": "GMFMOD.xcframework",
       "resourceType": "GMExtensionFrameworkEntry",
       "resourceVersion": "2.0",
       "weakReference": false
@@ -6642,9 +6642,9 @@
   "tvosThirdPartyFrameworkEntries": [
     {
       "$GMExtensionFrameworkEntry": "",
-      "%Name": "libGMFMOD.xcframework",
+      "%Name": "GMFMOD.xcframework",
       "embed": 0,
-      "name": "libGMFMOD.xcframework",
+      "name": "GMFMOD.xcframework",
       "resourceType": "GMExtensionFrameworkEntry",
       "resourceVersion": "2.0",
       "weakReference": false
