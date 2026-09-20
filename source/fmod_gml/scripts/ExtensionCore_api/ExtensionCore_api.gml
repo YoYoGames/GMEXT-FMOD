@@ -49,6 +49,17 @@ function __ext_core_buffer_unmarshal_value(_buff, _decoders)
 					_array[_i] = _decoders[_decoder_id](_buff, buffer_tell(_buff));
 				}
 			}
+			else if (_elem_type == buffer_string)
+			{
+				// Every string on the wire carries a u32 length prefix (see the
+				// buffer_string case below); buffer_read(buffer_string) does not
+				// consume it, so skip it per element like the generated struct
+				// decoders do.
+				for (var _i = 0 ; _i < _size ; _i++) {
+					buffer_read(_buff, buffer_u32);
+					_array[_i] = buffer_read(_buff, buffer_string);
+				}
+			}
 			else 
 			{
 				for (var _i = 0 ; _i < _size ; _i++) {
