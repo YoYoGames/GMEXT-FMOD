@@ -1412,6 +1412,12 @@ namespace gm::wire::details {
             return true;
         }
 
+    public:
+        // What writeTo() emits: the kind and count header, then the payload.
+        size_t getSerializedLength() const { return sizeof(uint8_t) + sizeof(uint16_t) + getBuffer().size(); }
+
+    protected:
+
         inline bool parseCollectionHeader(gm::byteio::BufferReader& bufferView, gm::wire::GMKind type)
         {
             if ((gm::wire::GMKind)bufferView.read<uint8_t>() != type) {
@@ -1689,8 +1695,7 @@ namespace gm::runtime {
 
     inline double DispatchQueue::fetch(gm::byteio::BufferWriter& output)
     {
-        std::size_t bytesNeeded = m_packed.getLength();
-        if (bytesNeeded == 0) // no pending stream
+        if (m_packed.getLength() == 0) // no pending stream
         {
             std::vector<gm::wire::DataStream> local;
             {
@@ -1703,10 +1708,11 @@ namespace gm::runtime {
             for (auto& ev : local) {
                 m_packed << std::move(ev); // append into ArrayStream
             }
-
-            bytesNeeded = m_packed.getLength();
         }
 
+        // writeTo() puts the array header in front of the payload, so the size
+        // reported back has to count it or the caller's buffer ends 3 bytes short.
+        std::size_t bytesNeeded = m_packed.getSerializedLength();
         if (bytesNeeded > output.remaining()) {
             return -static_cast<double>(bytesNeeded);
         }

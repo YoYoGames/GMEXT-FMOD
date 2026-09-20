@@ -2263,7 +2263,7 @@
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="constants.html#fmodsoundformat">FmodSoundFormat</a></p>
+<p><a href="structs.html#fmodsoundformatinfo">FmodSoundFormatInfo</a></p>
 </blockquote>
 <p><br></p>
 <hr />
@@ -2351,7 +2351,7 @@
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+<p><a href="structs.html#fmodsoundnumtags">FmodSoundNumTags</a></p>
 </blockquote>
 <p><br></p>
 <hr />
@@ -3495,9 +3495,10 @@ The first buffer will always store the data up to the end of the sound. The seco
 If the range of data you want to copy doesn't exceed the length of the sound the second buffer will have no data written to it.</p>
 <p>You can lock multiple regions of data of a sound at the same time, but you should make sure the regions don't overlap.
 If some bytes are locked by multiple calls to this function, they will remain locked after you make all corresponding calls to <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a>.</p>
-<blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
 <p>You must always unlock the data again after you have finished with it, using <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a>.</p>
-</blockquote>
+</div>
 <p>If the sound is created with <code>FmodStudioMode.CreateCompressedSample</code> the data retrieved will be the compressed bitstream.</p>
 <p>It is not possible to lock the following:</p>
 <ul>

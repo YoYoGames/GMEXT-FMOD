@@ -520,10 +520,16 @@ static jdouble __JNI_WRAPPER__fmod_system_update_1530B71DE176(JNIEnv* /* env */,
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_system_get_channels_playing JNI wrapper signature: ()D
-static jdouble __JNI_WRAPPER__fmod_system_get_channels_playing_F4705D109486(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+// fmod_system_get_channels_playing JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_channels_playing_B330E7E44E49(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_system_get_channels_playing();
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_channels_playing((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -660,10 +666,16 @@ static jdouble __JNI_WRAPPER__fmod_system_get_3d_listener_attributes_F9AC2C4038E
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_system_get_record_num_drivers JNI wrapper signature: ()D
-static jdouble __JNI_WRAPPER__fmod_system_get_record_num_drivers_8156700CFA5B(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+// fmod_system_get_record_num_drivers JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_record_num_drivers_BC6D41EBC3CC(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
-    double __ret = __EXT_NATIVE__fmod_system_get_record_num_drivers();
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_record_num_drivers((char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -1898,8 +1910,8 @@ static jdouble __JNI_WRAPPER__fmod_sound_get_open_state_9A2558E26FA9(JNIEnv* env
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_sound_get_num_tags JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_sound_get_num_tags_B7FE85A561BB(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+// fmod_sound_get_num_tags JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_sound_get_num_tags_9FE2FE0642DA(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
     void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
     jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
@@ -1907,7 +1919,13 @@ static jdouble __JNI_WRAPPER__fmod_sound_get_num_tags_B7FE85A561BB(JNIEnv* env, 
         throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    double __ret = __EXT_NATIVE__fmod_sound_get_num_tags((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_sound_get_num_tags((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -4627,7 +4645,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_release_9A723FAF4896 },
             { "__EXT_JNI__fmod_system_close", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_close_0F06B71DCB3F },
             { "__EXT_JNI__fmod_system_update", "()D", (void*)__JNI_WRAPPER__fmod_system_update_1530B71DE176 },
-            { "__EXT_JNI__fmod_system_get_channels_playing", "()D", (void*)__JNI_WRAPPER__fmod_system_get_channels_playing_F4705D109486 },
+            { "__EXT_JNI__fmod_system_get_channels_playing", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_channels_playing_B330E7E44E49 },
             { "__EXT_JNI__fmod_system_get_channel", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_channel_C8ACB0DF0503 },
             { "__EXT_JNI__fmod_system_get_master_channel_group", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_master_channel_group_5B394D9922DE },
             { "__EXT_JNI__fmod_system_set_output", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_output_920A4BD2850D },
@@ -4641,7 +4659,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_get_3d_settings", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_3d_settings_4C93E4C4EBBD },
             { "__EXT_JNI__fmod_system_set_3d_listener_attributes", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_3d_listener_attributes_37D044EE7FBD },
             { "__EXT_JNI__fmod_system_get_3d_listener_attributes", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_3d_listener_attributes_F9AC2C4038EB },
-            { "__EXT_JNI__fmod_system_get_record_num_drivers", "()D", (void*)__JNI_WRAPPER__fmod_system_get_record_num_drivers_8156700CFA5B },
+            { "__EXT_JNI__fmod_system_get_record_num_drivers", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_record_num_drivers_BC6D41EBC3CC },
             { "__EXT_JNI__fmod_system_get_record_driver_info", "(DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_record_driver_info_FA8F30E761E2 },
             { "__EXT_JNI__fmod_system_get_record_position", "(D)D", (void*)__JNI_WRAPPER__fmod_system_get_record_position_9818DABBE30C },
             { "__EXT_JNI__fmod_system_record_start", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_record_start_BC2603A958C6 },
@@ -4734,7 +4752,7 @@ extern "C" {
             { "__EXT_JNI__fmod_sound_release", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_release_63F705F123E1 },
             { "__EXT_JNI__fmod_sound_get_system_object", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_system_object_D1B750C37CB1 },
             { "__EXT_JNI__fmod_sound_get_open_state", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_open_state_9A2558E26FA9 },
-            { "__EXT_JNI__fmod_sound_get_num_tags", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_num_tags_B7FE85A561BB },
+            { "__EXT_JNI__fmod_sound_get_num_tags", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_num_tags_9FE2FE0642DA },
             { "__EXT_JNI__fmod_sound_get_tag", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_tag_50F846711AA1 },
             { "__EXT_JNI__fmod_sound_get_num_sub_sounds", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_num_sub_sounds_1F7905F18939 },
             { "__EXT_JNI__fmod_sound_get_sub_sound", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_sound_get_sub_sound_57D206BBAE9F },

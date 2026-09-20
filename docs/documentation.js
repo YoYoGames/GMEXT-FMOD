@@ -3312,9 +3312,9 @@ function fmod_sound_get_name(sound_ref) {}
  * <br />
  *
  * This function returns format information about the sound.
- * 
+ *
  * @param {Real} sound_ref A reference to a sound.
- * @returns {Enum.FmodSoundFormat}
+ * @returns {Struct.FmodSoundFormatInfo}
  * @function_end
  */
 function fmod_sound_get_format(sound_ref) {}
@@ -3353,9 +3353,9 @@ function fmod_sound_get_length(sound_ref, length_type) {}
  * 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.
  * 
  * [[Note: This value could be periodically checked to see if new tags are available in certain circumstances. This might be the case with internet based streams (i.e. shoutcast or icecast) where the name of the song or other attributes might change.]]
- * 
+ *
  * @param {Real} sound_ref A reference to a sound.
- * @returns {Real}
+ * @returns {Struct.FmodSoundNumTags}
  * @function_end
  */
 function fmod_sound_get_num_tags(sound_ref) {}
@@ -7807,7 +7807,7 @@ function fmod_system_get_num_drivers() {}
  * @returns {Struct.FmodDriverInfo}
  * @function_end
  */
-function fmod_system_get_driver_info(driver_index) {}
+function fmod_system_get_driver_info(driver_id) {}
 
 
 /**
@@ -8333,8 +8333,8 @@ function fmod_system_get_version() {}
  * This function retrieves the number of currently playing [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * 
  * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
- * 
- * @returns {Real}
+ *
+ * @returns {Struct.FmodChannelsPlaying}
  * @function_end
  */
 function fmod_system_get_channels_playing() {}
@@ -8839,8 +8839,8 @@ function fmod_system_detach_channel_group_from_port(channel_group_ref) {}
  * <br />
  *
  * This function retrieves the number of recording devices available for this output mode. Use this to enumerate all recording devices possible so that the user can select one.
- * 
- * @returns {Real}
+ *
+ * @returns {Struct.FmodRecordNumDrivers}
  * @function_end
  */
 function fmod_system_get_record_num_drivers() {}

@@ -1205,6 +1205,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodrecordnumdrivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodRecordNumDrivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmodrecorddriverinfo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1359,6 +1370,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodchannelsplaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodChannelsPlaying
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddelay" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1396,6 +1418,28 @@
     <span class="md-ellipsis">
       
         FmodSoundTag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodsoundnumtags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodSoundNumTags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodsoundformatinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodSoundFormatInfo
       
     </span>
   </a>
@@ -2008,6 +2052,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodrecordnumdrivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodRecordNumDrivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmodrecorddriverinfo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2162,6 +2217,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodchannelsplaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodChannelsPlaying
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddelay" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2199,6 +2265,28 @@
     <span class="md-ellipsis">
       
         FmodSoundTag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodsoundnumtags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodSoundNumTags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodsoundformatinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodSoundFormatInfo
       
     </span>
   </a>
@@ -2716,6 +2804,8 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmodgeometryrotation">FmodGeometryRotation</a></li>
 <li><a href="structs.html#fmodreverb3dattributes">FmodReverb3DAttributes</a></li>
 <li><a href="structs.html#fmodsoundtag">FmodSoundTag</a></li>
+<li><a href="structs.html#fmodsoundnumtags">FmodSoundNumTags</a></li>
+<li><a href="structs.html#fmodsoundformatinfo">FmodSoundFormatInfo</a></li>
 <li><a href="structs.html#fmodsounddefaults">FmodSoundDefaults</a></li>
 <li><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></li>
 <li><a href="structs.html#fmodsyncpoint">FmodSyncPoint</a></li>
@@ -2749,6 +2839,8 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmodstreambuffersize">FmodStreamBufferSize</a></li>
 <li><a href="structs.html#fmodspeakerposition">FmodSpeakerPosition</a></li>
 <li><a href="structs.html#fmodfileusage">FmodFileUsage</a></li>
+<li><a href="structs.html#fmodchannelsplaying">FmodChannelsPlaying</a></li>
+<li><a href="structs.html#fmodrecordnumdrivers">FmodRecordNumDrivers</a></li>
 <li><a href="structs.html#fmodrecorddriverinfo">FmodRecordDriverInfo</a></li>
 <li><a href="structs.html#fmodchannelcontrol3dattributes">FmodChannelControl3DAttributes</a></li>
 <li><a href="structs.html#fmoddistancefilter">FmodDistanceFilter</a></li>
@@ -2962,9 +3054,10 @@ This happens in two situations:</p>
 <p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector">FMOD_VECTOR</a></p>
 </blockquote>
 <p>This struct describes a vector in 3D space.</p>
-<blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
-</blockquote>
+</div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a></li>
@@ -3055,6 +3148,40 @@ This happens in two situations:</p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
+<h1 id="fmodrecordnumdrivers">FmodRecordNumDrivers<a class="headerlink" href="#fmodrecordnumdrivers" title="Permanent link">&para;</a></h1>
+<p>This struct holds the number of recording devices available in a certain output mode.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_record_num_drivers">fmod_system_get_record_num_drivers</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_drivers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of recording drivers available for this output mode.</td>
+</tr>
+<tr>
+<td>num_connected</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of recording drivers currently plugged in.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
 <h1 id="fmodrecorddriverinfo">FmodRecordDriverInfo<a class="headerlink" href="#fmodrecorddriverinfo" title="Permanent link">&para;</a></h1>
 <p>This struct holds identification information about an audio device, specific to an output mode.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -3075,6 +3202,11 @@ This happens in two situations:</p>
 <td>name</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
 <td>The name of the device.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The GUID that uniquely identifies the device, as a <code>{8-4-4-4-12}</code> string.</td>
 </tr>
 <tr>
 <td>speaker_mode</td>
@@ -3577,6 +3709,11 @@ This happens in two situations:</p>
 <td>The name of the device.</td>
 </tr>
 <tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The GUID that uniquely identifies the device, as a <code>{8-4-4-4-12}</code> string.</td>
+</tr>
+<tr>
 <td>speaker_mode</td>
 <td><a href="constants.html#fmodspeakermode">FmodSpeakerMode</a></td>
 <td>The speaker setup this device is currently using.</td>
@@ -3590,6 +3727,41 @@ This happens in two situations:</p>
 <td>speaker_mode_channels</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>The number of channels in the current speaker setup.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodchannelsplaying">FmodChannelsPlaying<a class="headerlink" href="#fmodchannelsplaying" title="Permanent link">&para;</a></h1>
+<p>This struct holds information on the number of playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a>.</p>
+<p>For differences between real and virtual voices see the <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> guide for more information.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_channels_playing">fmod_system_get_channels_playing</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of playing Channels (both real and virtual).</td>
+</tr>
+<tr>
+<td>real_channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of playing real (non-virtual) Channels.</td>
 </tr>
 </tbody>
 </table>
@@ -3764,6 +3936,88 @@ This happens in two situations:</p>
 <td>updated</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></td>
 <td>True if this tag has been updated since last being accessed with <a href="sound.html#fmod_sound_get_tag">fmod_sound_get_tag</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundnumtags">FmodSoundNumTags<a class="headerlink" href="#fmodsoundnumtags" title="Permanent link">&para;</a></h1>
+<p>This struct stores the number of metadata tags of a particular <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_num_tags">fmod_sound_get_num_tags</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>num_tags</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of tags.</td>
+</tr>
+<tr>
+<td>num_tags_updated</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of tags updated since this function was last called.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodsoundformatinfo">FmodSoundFormatInfo<a class="headerlink" href="#fmodsoundformatinfo" title="Permanent link">&para;</a></h1>
+<p>This struct stores format information about a <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="sound.html#fmod_sound_get_format">fmod_sound_get_format</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmodsoundtype">FmodSoundType</a></td>
+<td>The type of sound.</td>
+</tr>
+<tr>
+<td>format</td>
+<td><a href="constants.html#fmodsoundformat">FmodSoundFormat</a></td>
+<td>The format of the sound.</td>
+</tr>
+<tr>
+<td>channels</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of channels.</td>
+</tr>
+<tr>
+<td>bits</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of bits per sample, corresponding to <code>format</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -4558,9 +4812,10 @@ This happens in two situations:</p>
 <p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
 </blockquote>
 <p>This structure describes a position, velocity and orientation.</p>
-<blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
-</blockquote>
+</div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="system.html#fmod_system_get_3d_listener_attributes">fmod_system_get_3d_listener_attributes</a></li>
@@ -5060,9 +5315,10 @@ This happens in two situations:</p>
 <p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector">FMOD_VECTOR</a></p>
 </blockquote>
 <p>This struct describes a vector in 3D space.</p>
-<blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
-</blockquote>
+</div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_3d_attributes">fmod_studio_event_instance_set_3d_attributes</a></li>
@@ -5666,9 +5922,10 @@ is a percentage of the total CPU time.</p>
 <p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes">FMOD_3D_ATTRIBUTES</a></p>
 </blockquote>
 <p>This structure describes a position, velocity and orientation.</p>
-<blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
 <p>Vectors must be provided in the correct <a href="https://www.fmod.com/docs/2.03/api/glossary.html#handedness">handedness</a>.</p>
-</blockquote>
+</div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_3d_attributes">fmod_studio_event_instance_get_3d_attributes</a></li>

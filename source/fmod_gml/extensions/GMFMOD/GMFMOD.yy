@@ -549,15 +549,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_get_channels_playing",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
+          "%Name": "__fmod_system_get_channels_playing",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_get_channels_playing",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_get_channels_playing",
+          "name": "__fmod_system_get_channels_playing",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -790,15 +793,18 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_get_record_num_drivers",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
+          "%Name": "__fmod_system_get_record_num_drivers",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_system_get_record_num_drivers",
           "help": "",
-          "hidden": false,
+          "hidden": true,
           "kind": 4,
-          "name": "fmod_system_get_record_num_drivers",
+          "name": "__fmod_system_get_record_num_drivers",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2
@@ -2477,12 +2483,14 @@
         {
           "$GMExtensionFunction": "",
           "%Name": "__fmod_sound_get_num_tags",
-          "argCount": 2,
+          "argCount": 4,
           "args": [
+            1,
+            2,
             1,
             2
           ],
-          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
           "externalName": "__EXT_NATIVE__fmod_sound_get_num_tags",
           "help": "",
           "hidden": true,

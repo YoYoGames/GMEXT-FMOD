@@ -232,8 +232,9 @@
 /**
  * @struct FmodDriverInfo
  * @desc This struct holds identification information about a sound device specified by its index, and specific to a given output mode.
- * 
+ *
  * @member {String} name The name of the device.
+ * @member {String} guid The GUID that uniquely identifies the device, as a `{8-4-4-4-12}` string.
  * @member {Enum.FmodSpeakerMode} speaker_mode The speaker setup this device is currently using.
  * @member {Real} sample_rate The sample rate the output driver runs at, in Hz.
  * @member {Real} speaker_mode_channels The number of channels in the current speaker setup.
@@ -295,12 +296,30 @@
  * @struct_end
  * */
 
+/**
+ * @struct FmodChannelsPlaying
+ * @desc This struct holds information on the number of playing [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
+ *
+ * For differences between real and virtual voices see the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
+ *
+ * @member {Real} channels The number of playing Channels (both real and virtual).
+ * @member {Real} real_channels The number of playing real (non-virtual) Channels.
+ * @struct_end
+ * */
 
+/**
+ * @struct FmodRecordNumDrivers
+ * @desc This struct holds the number of recording devices available in a certain output mode.
+ * @member {Real} num_drivers The number of recording drivers available for this output mode.
+ * @member {Real} num_connected The number of recording drivers currently plugged in.
+ * @struct_end
+ * */
 
 /**
  * @struct FmodRecordDriverInfo
  * @desc This struct holds identification information about an audio device, specific to an output mode.
  * @member {String} name The name of the device.
+ * @member {String} guid The GUID that uniquely identifies the device, as a `{8-4-4-4-12}` string.
  * @member {Enum.FmodSpeakerMode} speaker_mode The speaker configuration the device is currently using.
  * @member {Real} speaker_mode_channels The number of channels in the current speaker setup.
  * @member {Real} sample_rate The sample rate the record driver runs at, in Hz.
@@ -499,6 +518,28 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {String} data The tag's data, rendered as a string.
  * @member {Real} datalen The length of the tag's data, in bytes.
  * @member {Bool} updated True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodSoundNumTags
+ * @desc This struct stores the number of metadata tags of a particular [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
+ *
+ * [[Note: 'Tags' are metadata stored within a sound file. These can be things like a song's name, composer, etc.]]
+ *
+ * @member {Real} num_tags The number of tags.
+ * @member {Real} num_tags_updated The number of tags updated since this function was last called.
+ * @struct_end
+ * */
+
+/**
+ * @struct FmodSoundFormatInfo
+ * @desc This struct stores format information about a [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
+ *
+ * @member {Enum.FmodSoundType} type The type of sound.
+ * @member {Enum.FmodSoundFormat} format The format of the sound.
+ * @member {Real} channels The number of channels.
+ * @member {Real} bits The number of bits per sample, corresponding to `format`.
  * @struct_end
  * */
 
@@ -793,6 +834,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodGeometryRotation
  * @ref FmodReverb3DAttributes
  * @ref FmodSoundTag
+ * @ref FmodSoundNumTags
+ * @ref FmodSoundFormatInfo
  * @ref FmodSoundDefaults
  * @ref FmodSoundOpenState
  * @ref FmodSyncPoint
@@ -826,6 +869,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodStreamBufferSize
  * @ref FmodSpeakerPosition
  * @ref FmodFileUsage
+ * @ref FmodChannelsPlaying
+ * @ref FmodRecordNumDrivers
  * @ref FmodRecordDriverInfo
  * @ref FmodChannelControl3DAttributes
  * @ref FmodDistanceFilter

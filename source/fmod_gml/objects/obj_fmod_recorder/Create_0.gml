@@ -9,7 +9,7 @@ if(os_type == os_android)
 #macro DRIFT_MS (1)
 #macro DEVICE_INDEX (0)
 
-var _num_drivers = fmod_system_get_record_num_drivers()
+var _num_drivers = fmod_system_get_record_num_drivers().num_drivers
 
 show_debug_message($"drivers_num: {_num_drivers}");
 

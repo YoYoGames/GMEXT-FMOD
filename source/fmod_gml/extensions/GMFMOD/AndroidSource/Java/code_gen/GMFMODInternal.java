@@ -128,9 +128,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_update();
     }
-    public double __EXT_NATIVE__fmod_system_get_channels_playing()
+    public double __EXT_NATIVE__fmod_system_get_channels_playing(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_get_channels_playing();
+        return __EXT_JNI__fmod_system_get_channels_playing(__ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_get_channel(double index, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -184,9 +184,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_get_3d_listener_attributes(listener_index, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_system_get_record_num_drivers()
+    public double __EXT_NATIVE__fmod_system_get_record_num_drivers(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_system_get_record_num_drivers();
+        return __EXT_JNI__fmod_system_get_record_num_drivers(__ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_system_get_record_driver_info(double record_driver_index, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
@@ -556,9 +556,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_sound_get_open_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_sound_get_num_tags(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    public double __EXT_NATIVE__fmod_sound_get_num_tags(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_sound_get_num_tags(__arg_buffer, __arg_buffer_length);
+        return __EXT_JNI__fmod_sound_get_num_tags(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_sound_get_tag(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {

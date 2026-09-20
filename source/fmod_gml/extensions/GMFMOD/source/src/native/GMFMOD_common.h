@@ -95,6 +95,10 @@ int64_t getResourceUserData(T resource)
 	return static_cast<int64_t>(reinterpret_cast<intptr_t>(userData));
 }
 
+// FMOD_GUID in Studio's own {8-4-4-4-12} spelling, the one string form every
+// GUID this extension pair hands to GML uses.
+std::string format_guid(const FMOD_GUID& guid);
+
 // ============================================================
 // Per-module state hooks
 // ============================================================

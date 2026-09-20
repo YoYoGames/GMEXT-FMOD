@@ -38,7 +38,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_init(char* __arg_buffer, double __arg_
 GMEXPORT double __EXT_NATIVE__fmod_system_release(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_close(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_update();
-GMEXPORT double __EXT_NATIVE__fmod_system_get_channels_playing();
+GMEXPORT double __EXT_NATIVE__fmod_system_get_channels_playing(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_channel(double index, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_master_channel_group(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_set_output(char* __arg_buffer, double __arg_buffer_length);
@@ -52,7 +52,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_settings(double doppler_scale, 
 GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_settings(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_listener_attributes(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_listener_attributes(double listener_index, char* __ret_buffer, double __ret_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_system_get_record_num_drivers();
+GMEXPORT double __EXT_NATIVE__fmod_system_get_record_num_drivers(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_record_driver_info(double record_driver_index, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_record_position(double device_index);
 GMEXPORT double __EXT_NATIVE__fmod_system_record_start(char* __arg_buffer, double __arg_buffer_length);
@@ -145,7 +145,7 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_user_data(char* __arg_buffer, doubl
 GMEXPORT double __EXT_NATIVE__fmod_sound_release(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_system_object(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_open_state(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
-GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_tag(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_sub_sounds(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_sub_sound(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);

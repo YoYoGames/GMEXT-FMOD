@@ -213,7 +213,7 @@
 
 /**
  * @function_partial fmod_system_get_channels_playing
- * @returns {Real}
+ * @returns {Struct.FmodChannelsPlaying}
  * @function_end
  */
 
@@ -310,7 +310,7 @@
 
 /**
  * @function_partial fmod_system_get_record_num_drivers
- * @returns {Real}
+ * @returns {Struct.FmodRecordNumDrivers}
  * @function_end
  */
 
@@ -772,7 +772,7 @@
 /**
  * @function_partial fmod_sound_get_format
  * @param {Real} sound_ref
- * @returns {Enum.FmodSoundFormat}
+ * @returns {Struct.FmodSoundFormatInfo}
  * @function_end
  */
 
@@ -1002,7 +1002,7 @@
 /**
  * @function_partial fmod_sound_get_num_tags
  * @param {Real} sound_ref
- * @returns {Real}
+ * @returns {Struct.FmodSoundNumTags}
  * @function_end
  */
 
@@ -2467,8 +2467,16 @@
  */
 
 /**
+ * @struct_partial FmodRecordNumDrivers
+ * @member {Real} num_drivers
+ * @member {Real} num_connected
+ * @struct_end
+ */
+
+/**
  * @struct_partial FmodRecordDriverInfo
  * @member {String} name
+ * @member {String} guid
  * @member {Enum.FmodSpeakerMode} speaker_mode
  * @member {Real} speaker_mode_channels
  * @member {Real} sample_rate
@@ -2569,9 +2577,17 @@
 /**
  * @struct_partial FmodDriverInfo
  * @member {String} name
+ * @member {String} guid
  * @member {Enum.FmodSpeakerMode} speaker_mode
  * @member {Real} sample_rate
  * @member {Real} speaker_mode_channels
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodChannelsPlaying
+ * @member {Real} channels
+ * @member {Real} real_channels
  * @struct_end
  */
 
@@ -2607,6 +2623,22 @@
  * @member {String} data
  * @member {Real} datalen
  * @member {Bool} updated
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundNumTags
+ * @member {Real} num_tags
+ * @member {Real} num_tags_updated
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSoundFormatInfo
+ * @member {Enum.FmodSoundType} type
+ * @member {Enum.FmodSoundFormat} format
+ * @member {Real} channels
+ * @member {Real} bits
  * @struct_end
  */
 

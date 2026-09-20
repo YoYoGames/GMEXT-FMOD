@@ -48,7 +48,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_close(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_update();
-    public static native double __EXT_JNI__fmod_system_get_channels_playing();
+    public static native double __EXT_JNI__fmod_system_get_channels_playing(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_channel(double index, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_master_channel_group(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_set_output(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -62,7 +62,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_get_3d_settings(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_set_3d_listener_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_3d_listener_attributes(double listener_index, ByteBuffer __ret_buffer, double __ret_buffer_length);
-    public static native double __EXT_JNI__fmod_system_get_record_num_drivers();
+    public static native double __EXT_JNI__fmod_system_get_record_num_drivers(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_record_driver_info(double record_driver_index, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_record_position(double device_index);
     public static native double __EXT_JNI__fmod_system_record_start(ByteBuffer __arg_buffer, double __arg_buffer_length);
@@ -155,7 +155,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_sound_release(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_system_object(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_open_state(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
-    public static native double __EXT_JNI__fmod_sound_get_num_tags(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_sound_get_num_tags(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_tag(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_num_sub_sounds(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_sound_get_sub_sound(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);

@@ -652,36 +652,49 @@ FmodSoundTag fmod_sound_get_tag(uint64_t sound_ref, std::string_view name, doubl
 	return result;
 }
 
-double fmod_sound_get_num_tags(uint64_t sound_ref)
+FmodSoundNumTags fmod_sound_get_num_tags(uint64_t sound_ref)
 {
+	FmodSoundNumTags result{};
+
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
-		return 0.0;
+		return result;
 
 	int num_tags = 0, num_tags_updated = 0;
 	g_fmod_last_result = sound->getNumTags(&num_tags, &num_tags_updated);
-	return (double)num_tags;
+
+	result.num_tags = (double)num_tags;
+	result.num_tags_updated = (double)num_tags_updated;
+	return result;
 }
 
 // ============================================================
 // Sound - Additional Properties
 // ============================================================
 
-gm_enums::FmodSoundFormat fmod_sound_get_format(uint64_t sound_ref)
+FmodSoundFormatInfo fmod_sound_get_format(uint64_t sound_ref)
 {
+	FmodSoundFormatInfo result{};
+
 	FMOD::Sound* sound = nullptr;
 	validate_fmod_sound(sound_ref, sound);
 
 	if (sound == nullptr)
-		return (gm_enums::FmodSoundFormat)0;
+		return result;
 
+	FMOD_SOUND_TYPE type = FMOD_SOUND_TYPE_UNKNOWN;
 	FMOD_SOUND_FORMAT format = FMOD_SOUND_FORMAT_NONE;
 	int channels = 0;
 	int bits = 0;
-	g_fmod_last_result = sound->getFormat(nullptr, &format, &channels, &bits);
-	return (gm_enums::FmodSoundFormat)format;
+	g_fmod_last_result = sound->getFormat(&type, &format, &channels, &bits);
+
+	result.type = (gm_enums::FmodSoundType)(int)type;
+	result.format = (gm_enums::FmodSoundFormat)(int)format;
+	result.channels = (double)channels;
+	result.bits = (double)bits;
+	return result;
 }
 
 std::string fmod_sound_get_name(uint64_t sound_ref)

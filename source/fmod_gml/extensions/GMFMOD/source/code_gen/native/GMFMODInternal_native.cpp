@@ -390,10 +390,14 @@ GMEXPORT double __EXT_NATIVE__fmod_system_update()
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_get_channels_playing()
+GMEXPORT double __EXT_NATIVE__fmod_system_get_channels_playing(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_get_channels_playing();
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodChannelsPlaying
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_system_get_channel(double index, char* __ret_buffer, double __ret_buffer_length)
@@ -516,10 +520,14 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_listener_attributes(double list
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_get_record_num_drivers()
+GMEXPORT double __EXT_NATIVE__fmod_system_get_record_num_drivers(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_get_record_num_drivers();
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodRecordNumDrivers
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_system_get_record_driver_info(double record_driver_index, char* __ret_buffer, double __ret_buffer_length)
@@ -1274,7 +1282,7 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_format(char* __arg_buffer, double _
     auto&& __result = fmod_sound_get_format(sound_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: enum FmodSoundFormat
+    // return: __result, type: struct FmodSoundFormatInfo
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -1707,7 +1715,7 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_open_state(char* __arg_buffer, doub
     return 0;
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double __arg_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
@@ -1715,7 +1723,11 @@ GMEXPORT double __EXT_NATIVE__fmod_sound_get_num_tags(char* __arg_buffer, double
     std::uint64_t sound_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     auto&& __result = fmod_sound_get_num_tags(sound_ref);
-    return static_cast<double>(__result);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodSoundNumTags
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_sound_get_tag(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)

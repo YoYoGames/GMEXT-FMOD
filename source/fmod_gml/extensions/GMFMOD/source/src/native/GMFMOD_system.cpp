@@ -149,19 +149,24 @@ double fmod_system_update()
 	return 0;
 }
 
-double fmod_system_get_channels_playing()
+FmodChannelsPlaying fmod_system_get_channels_playing()
 {
+	FmodChannelsPlaying result{};
+
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return 0;
+		return result;
 	}
 
 	int channels = 0;
 	int realchannels = 0;
 	g_fmod_last_result = system->getChannelsPlaying(&channels, &realchannels);
-	return (double)channels;
+
+	result.channels = (double)channels;
+	result.real_channels = (double)realchannels;
+	return result;
 }
 
 // ============================================================
@@ -423,18 +428,23 @@ FmodListener3DAttributes fmod_system_get_3d_listener_attributes(double listener_
 // System - Recording
 // ============================================================
 
-double fmod_system_get_record_num_drivers()
+FmodRecordNumDrivers fmod_system_get_record_num_drivers()
 {
+	FmodRecordNumDrivers result{};
+
 	FMOD::System* system = getCurrentSystem();
 	if (system == nullptr)
 	{
 		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return 0;
+		return result;
 	}
 
 	int num_drivers = 0, num_connected = 0;
 	g_fmod_last_result = system->getRecordNumDrivers(&num_drivers, &num_connected);
-	return (double)num_drivers;
+
+	result.num_drivers = (double)num_drivers;
+	result.num_connected = (double)num_connected;
+	return result;
 }
 
 FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_index)
@@ -457,6 +467,7 @@ FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_ind
 	g_fmod_last_result = system->getRecordDriverInfo((int)record_driver_index, name, sizeof(name), &guid, &system_rate, &speaker_mode, &speaker_mode_channels, &state);
 
 	result.name = std::string(name);
+	result.guid = format_guid(guid);
 	result.speaker_mode = (gm_enums::FmodSpeakerMode)(int)speaker_mode;
 	result.speaker_mode_channels = (double)speaker_mode_channels;
 	result.sample_rate = (double)system_rate;
@@ -671,6 +682,7 @@ FmodDriverInfo fmod_system_get_driver_info(double driver_id)
 	g_fmod_last_result = system->getDriverInfo((int)driver_id, name, sizeof(name), &guid, &sample_rate, &speaker_mode, &speaker_mode_channels);
 
 	result.name = std::string(name);
+	result.guid = format_guid(guid);
 	result.speaker_mode = (gm_enums::FmodSpeakerMode)(int)speaker_mode;
 	result.sample_rate = (double)sample_rate;
 	result.speaker_mode_channels = (double)speaker_mode_channels;

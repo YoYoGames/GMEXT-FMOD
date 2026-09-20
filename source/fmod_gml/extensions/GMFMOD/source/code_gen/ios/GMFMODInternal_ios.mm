@@ -204,9 +204,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_update();
 }
-- (double)__EXT_NATIVE__fmod_system_get_channels_playing
+- (double)__EXT_NATIVE__fmod_system_get_channels_playing:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_get_channels_playing();
+    return __EXT_NATIVE__fmod_system_get_channels_playing(__ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_get_channel:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -260,9 +260,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_get_3d_listener_attributes(listener_index, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_system_get_record_num_drivers
+- (double)__EXT_NATIVE__fmod_system_get_record_num_drivers:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_system_get_record_num_drivers();
+    return __EXT_NATIVE__fmod_system_get_record_num_drivers(__ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_system_get_record_driver_info:(double)record_driver_index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -632,9 +632,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_sound_get_open_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_sound_get_num_tags:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_sound_get_num_tags:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_sound_get_num_tags(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_sound_get_num_tags(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_sound_get_tag:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {

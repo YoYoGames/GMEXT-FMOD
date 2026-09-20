@@ -32,7 +32,7 @@
 - (double)__EXT_NATIVE__fmod_system_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_close:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_update;
-- (double)__EXT_NATIVE__fmod_system_get_channels_playing;
+- (double)__EXT_NATIVE__fmod_system_get_channels_playing:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_channel:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_master_channel_group:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_set_output:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -46,7 +46,7 @@
 - (double)__EXT_NATIVE__fmod_system_get_3d_settings:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_set_3d_listener_attributes:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_3d_listener_attributes:(double)listener_index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_system_get_record_num_drivers;
+- (double)__EXT_NATIVE__fmod_system_get_record_num_drivers:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_record_driver_info:(double)record_driver_index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_record_position:(double)device_index;
 - (double)__EXT_NATIVE__fmod_system_record_start:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
@@ -139,7 +139,7 @@
 - (double)__EXT_NATIVE__fmod_sound_release:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_open_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
-- (double)__EXT_NATIVE__fmod_sound_get_num_tags:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
+- (double)__EXT_NATIVE__fmod_sound_get_num_tags:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_tag:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_num_sub_sounds:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_sound_get_sub_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
