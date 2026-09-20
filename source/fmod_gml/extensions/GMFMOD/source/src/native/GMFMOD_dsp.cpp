@@ -1,4 +1,6 @@
 #include "GMFMOD_dsp.h"
+#include <map>
+#include <mutex>
 
 using namespace gm_structs;
 
@@ -9,26 +11,23 @@ using namespace gm_structs;
 uint64_t fmod_dsp_add_input(uint64_t dsp_ref, uint64_t dsp_input_ref, gm_enums::FmodDspConnectionType dsp_connection_type)
 {
 	uint64_t result = 0;
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
-	FMOD::DSP* dsp_input = nullptr;
-	validate_fmod_dsp(dsp_input_ref, dsp_input);
+	FMOD::DSP* dsp_input = resolve_fmod_dsp(dsp_input_ref);
 	if (dsp_input == nullptr) return result;
 	FMOD::DSPConnection* dsp_connection = nullptr;
 	g_fmod_last_result = dsp->addInput(dsp_input, &dsp_connection, (FMOD_DSPCONNECTION_TYPE)(int)dsp_connection_type);
 	if (g_fmod_last_result == FMOD_OK && dsp_connection != nullptr)
 	{
-		uint32_t dsp_connection_id = registerOrFindResource(dsp_connection, index_dsp_connections, map_dsp_connections);
-		result = packIndexIntoRef(dsp_connection_id, GM_FMOD_TYPE_DSP_CONNECTION);
+		uint32_t dsp_connection_id = g_registries.dspConnections.registerOrFind(dsp_connection);
+		result = gmfmod::packRef(dsp_connection_id, gmfmod::RefType::DspConnection);
 	}
 	return result;
 }
 
 double fmod_dsp_get_num_inputs(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0.0;
 	int num_inputs = 0;
 	g_fmod_last_result = dsp->getNumInputs(&num_inputs);
@@ -37,8 +36,7 @@ double fmod_dsp_get_num_inputs(uint64_t dsp_ref)
 
 double fmod_dsp_get_num_outputs(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0.0;
 	int num_outputs = 0;
 	g_fmod_last_result = dsp->getNumOutputs(&num_outputs);
@@ -47,8 +45,7 @@ double fmod_dsp_get_num_outputs(uint64_t dsp_ref)
 
 double fmod_dsp_disconnect_all(uint64_t dsp_ref, bool inputs, bool outputs)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
 	g_fmod_last_result = dsp->disconnectAll(inputs, outputs);
 	return 0;
@@ -60,8 +57,7 @@ double fmod_dsp_disconnect_all(uint64_t dsp_ref, bool inputs, bool outputs)
 
 double fmod_dsp_get_num_parameters(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0.0;
 	int num_parameters = 0;
 	g_fmod_last_result = dsp->getNumParameters(&num_parameters);
@@ -70,16 +66,14 @@ double fmod_dsp_get_num_parameters(uint64_t dsp_ref)
 
 void fmod_dsp_set_parameter_float(uint64_t dsp_ref, double index, double value)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 	g_fmod_last_result = dsp->setParameterFloat((int)index, (float)value);
 }
 
 double fmod_dsp_get_parameter_float(uint64_t dsp_ref, double index)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0.0;
 	float value = 0.0f;
 	g_fmod_last_result = dsp->getParameterFloat((int)index, &value, nullptr, 0);
@@ -88,16 +82,14 @@ double fmod_dsp_get_parameter_float(uint64_t dsp_ref, double index)
 
 void fmod_dsp_set_parameter_int(uint64_t dsp_ref, double index, double value)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 	g_fmod_last_result = dsp->setParameterInt((int)index, (int)value);
 }
 
 double fmod_dsp_get_parameter_int(uint64_t dsp_ref, double index)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0.0;
 	int value = 0;
 	g_fmod_last_result = dsp->getParameterInt((int)index, &value, nullptr, 0);
@@ -106,16 +98,14 @@ double fmod_dsp_get_parameter_int(uint64_t dsp_ref, double index)
 
 void fmod_dsp_set_parameter_bool(uint64_t dsp_ref, double index, bool value)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 	g_fmod_last_result = dsp->setParameterBool((int)index, value);
 }
 
 bool fmod_dsp_get_parameter_bool(uint64_t dsp_ref, double index)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return false;
 	bool value = false;
 	g_fmod_last_result = dsp->getParameterBool((int)index, &value, nullptr, 0);
@@ -128,10 +118,9 @@ bool fmod_dsp_get_parameter_bool(uint64_t dsp_ref, double index)
 
 void fmod_dsp_release(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
-	unregisterResource(dsp, map_dsps);
+	g_registries.dsps.unregister(dsp);
 	fmod_dsp_forget_callback(dsp);
 	g_fmod_last_result = dsp->release();
 }
@@ -139,15 +128,14 @@ void fmod_dsp_release(uint64_t dsp_ref)
 uint64_t fmod_dsp_get_system_object(uint64_t dsp_ref)
 {
 	uint64_t result = 0;
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 	FMOD::System* system = nullptr;
 	g_fmod_last_result = dsp->getSystemObject(&system);
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		uint32_t system_id = g_registries.systems.registerOrFind(system);
+		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
 	}
 	return result;
 }
@@ -159,8 +147,7 @@ uint64_t fmod_dsp_get_system_object(uint64_t dsp_ref)
 uint64_t fmod_dsp_get_input(uint64_t dsp_ref, double index)
 {
 	uint64_t result = 0;
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD::DSP* input_dsp = nullptr;
@@ -169,8 +156,8 @@ uint64_t fmod_dsp_get_input(uint64_t dsp_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
 	{
-		uint32_t dsp_id = registerOrFindResource(input_dsp, index_dsps, map_dsps);
-		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		uint32_t dsp_id = g_registries.dsps.registerOrFind(input_dsp);
+		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
 	}
 	return result;
 }
@@ -178,8 +165,7 @@ uint64_t fmod_dsp_get_input(uint64_t dsp_ref, double index)
 uint64_t fmod_dsp_get_output(uint64_t dsp_ref, double index)
 {
 	uint64_t result = 0;
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD::DSP* output_dsp = nullptr;
@@ -188,20 +174,18 @@ uint64_t fmod_dsp_get_output(uint64_t dsp_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && output_connection != nullptr)
 	{
-		uint32_t connection_id = registerOrFindResource(output_connection, index_dsp_connections, map_dsp_connections);
-		result = packIndexIntoRef(connection_id, GM_FMOD_TYPE_DSP_CONNECTION);
+		uint32_t connection_id = g_registries.dspConnections.registerOrFind(output_connection);
+		result = gmfmod::packRef(connection_id, gmfmod::RefType::DspConnection);
 	}
 	return result;
 }
 
 void fmod_dsp_disconnect_from(uint64_t dsp_ref, uint64_t target_dsp)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
-	FMOD::DSP* target = nullptr;
-	validate_fmod_dsp(target_dsp, target);
+	FMOD::DSP* target = resolve_fmod_dsp(target_dsp);
 	if (target == nullptr) return;
 
 	g_fmod_last_result = dsp->disconnectFrom(target);
@@ -213,8 +197,7 @@ void fmod_dsp_disconnect_from(uint64_t dsp_ref, uint64_t target_dsp)
 
 double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, double data_type)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return -1.0;
 
 	int param_index = -1;
@@ -224,8 +207,7 @@ double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, double data_type)
 
 void fmod_dsp_set_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	if (buffer.data() != nullptr && length > 0)
@@ -243,8 +225,7 @@ void fmod_dsp_set_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMBuf
 // the required size is still returned, so GML can resize and try again.
 double fmod_dsp_get_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
 
 	void* data = nullptr;
@@ -305,8 +286,7 @@ double fmod_dsp_get_parameter_data(uint64_t dsp_ref, double index, gm::wire::GMB
 FmodDSPParameterInfo fmod_dsp_get_parameter_info(uint64_t dsp_ref, double index)
 {
 	FmodDSPParameterInfo result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD_DSP_PARAMETER_DESC* param_desc = nullptr;
@@ -327,8 +307,7 @@ FmodDSPParameterInfo fmod_dsp_get_parameter_info(uint64_t dsp_ref, double index)
 
 void fmod_dsp_set_channel_format(uint64_t dsp_ref, gm_enums::FmodChannelMask channel_mask, double num_channels)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->setChannelFormat((FMOD_CHANNELMASK)(std::uint64_t)channel_mask, (int)num_channels, FMOD_SPEAKERMODE_DEFAULT);
@@ -337,8 +316,7 @@ void fmod_dsp_set_channel_format(uint64_t dsp_ref, gm_enums::FmodChannelMask cha
 FmodDSPChannelFormat fmod_dsp_get_channel_format(uint64_t dsp_ref)
 {
 	FmodDSPChannelFormat result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD_CHANNELMASK channel_mask = FMOD_CHANNELMASK_STEREO;
@@ -354,8 +332,7 @@ FmodDSPChannelFormat fmod_dsp_get_channel_format(uint64_t dsp_ref)
 FmodDSPChannelFormat fmod_dsp_get_output_channel_format(uint64_t dsp_ref)
 {
 	FmodDSPChannelFormat result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD_CHANNELMASK out_mask = FMOD_CHANNELMASK_STEREO;
@@ -375,8 +352,7 @@ FmodDSPChannelFormat fmod_dsp_get_output_channel_format(uint64_t dsp_ref)
 FmodDSPMeteringInfo fmod_dsp_get_metering_info(uint64_t dsp_ref)
 {
 	FmodDSPMeteringInfo result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD_DSP_METERING_INFO input_info{}, output_info{};
@@ -388,8 +364,7 @@ FmodDSPMeteringInfo fmod_dsp_get_metering_info(uint64_t dsp_ref)
 
 void fmod_dsp_set_metering_enabled(uint64_t dsp_ref, bool input_enabled, bool output_enabled)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->setMeteringEnabled(input_enabled, output_enabled);
@@ -398,8 +373,7 @@ void fmod_dsp_set_metering_enabled(uint64_t dsp_ref, bool input_enabled, bool ou
 FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(uint64_t dsp_ref)
 {
 	FmodDSPMeteringEnabled result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	bool input_enabled = false, output_enabled = false;
@@ -416,8 +390,7 @@ FmodDSPMeteringEnabled fmod_dsp_get_metering_enabled(uint64_t dsp_ref)
 
 void fmod_dsp_set_active(uint64_t dsp_ref, bool active)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->setActive(active);
@@ -425,8 +398,7 @@ void fmod_dsp_set_active(uint64_t dsp_ref, bool active)
 
 bool fmod_dsp_get_active(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return false;
 
 	bool active = false;
@@ -436,8 +408,7 @@ bool fmod_dsp_get_active(uint64_t dsp_ref)
 
 void fmod_dsp_set_bypass(uint64_t dsp_ref, bool bypass)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->setBypass(bypass);
@@ -445,8 +416,7 @@ void fmod_dsp_set_bypass(uint64_t dsp_ref, bool bypass)
 
 bool fmod_dsp_get_bypass(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return false;
 
 	bool bypass = false;
@@ -460,8 +430,7 @@ bool fmod_dsp_get_bypass(uint64_t dsp_ref)
 
 void fmod_dsp_set_wet_dry_mix(uint64_t dsp_ref, double prewet, double postwet, double dry)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->setWetDryMix((float)prewet, (float)postwet, (float)dry);
@@ -470,8 +439,7 @@ void fmod_dsp_set_wet_dry_mix(uint64_t dsp_ref, double prewet, double postwet, d
 FmodDSPWetDryMix fmod_dsp_get_wet_dry_mix(uint64_t dsp_ref)
 {
 	FmodDSPWetDryMix result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	float prewet = 0.0f, postwet = 0.0f, dry = 0.0f;
@@ -489,8 +457,7 @@ FmodDSPWetDryMix fmod_dsp_get_wet_dry_mix(uint64_t dsp_ref)
 
 bool fmod_dsp_get_idle(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return false;
 
 	bool idle = false;
@@ -500,8 +467,7 @@ bool fmod_dsp_get_idle(uint64_t dsp_ref)
 
 void fmod_dsp_reset(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
 
 	g_fmod_last_result = dsp->reset();
@@ -509,8 +475,7 @@ void fmod_dsp_reset(uint64_t dsp_ref)
 
 gm_enums::FmodDspType fmod_dsp_get_type(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return (gm_enums::FmodDspType)0;
 
 	FMOD_DSP_TYPE dsp_type = FMOD_DSP_TYPE_UNKNOWN;
@@ -521,8 +486,7 @@ gm_enums::FmodDspType fmod_dsp_get_type(uint64_t dsp_ref)
 FmodDSPInfo fmod_dsp_get_info(uint64_t dsp_ref)
 {
 	FmodDSPInfo result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	char name[256]{};
@@ -543,8 +507,7 @@ FmodDSPInfo fmod_dsp_get_info(uint64_t dsp_ref)
 FmodDSPCPUUsage fmod_dsp_get_cpu_usage(uint64_t dsp_ref)
 {
 	FmodDSPCPUUsage result{};
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	unsigned int exclusive = 0, inclusive = 0;
@@ -561,21 +524,19 @@ FmodDSPCPUUsage fmod_dsp_get_cpu_usage(uint64_t dsp_ref)
 
 double fmod_dsp_set_user_data(uint64_t dsp_ref, int64_t user_data)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
 
-	setResourceUserData(dsp, user_data);
+	gmfmod::setUserData(dsp, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_dsp_get_user_data(uint64_t dsp_ref)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
 
-	return getResourceUserData(dsp);
+	return gmfmod::getUserData(dsp, g_fmod_last_result);
 }
 
 // FMOD::DSP::setCallback takes FMOD_DSP_CALLBACK - (FMOD_DSP*, type, void*) -
@@ -631,8 +592,7 @@ void fmod_dsp_reset_state()
 
 double fmod_dsp_set_callback(uint64_t dsp_ref, const std::optional<gm::wire::GMFunction>& callback)
 {
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
 
 	const uintptr_t dsp_ptr = reinterpret_cast<uintptr_t>(dsp);

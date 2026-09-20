@@ -8,8 +8,7 @@ using namespace gm_structs;
 
 double fmod_channel_set_frequency(uint64_t channel_ref, double frequency)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
@@ -20,8 +19,7 @@ double fmod_channel_set_frequency(uint64_t channel_ref, double frequency)
 
 double fmod_channel_get_frequency(uint64_t channel_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0.0;
@@ -37,8 +35,7 @@ double fmod_channel_get_frequency(uint64_t channel_ref)
 
 double fmod_channel_set_priority(uint64_t channel_ref, double priority)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
@@ -49,8 +46,7 @@ double fmod_channel_set_priority(uint64_t channel_ref, double priority)
 
 double fmod_channel_get_priority(uint64_t channel_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0.0;
@@ -66,8 +62,7 @@ double fmod_channel_get_priority(uint64_t channel_ref)
 
 double fmod_channel_set_position(uint64_t channel_ref, double position, gm_enums::FmodTimeUnit time_unit)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
@@ -78,8 +73,7 @@ double fmod_channel_set_position(uint64_t channel_ref, double position, gm_enums
 
 double fmod_channel_get_position(uint64_t channel_ref, gm_enums::FmodTimeUnit time_unit)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0.0;
@@ -95,14 +89,12 @@ double fmod_channel_get_position(uint64_t channel_ref, gm_enums::FmodTimeUnit ti
 
 double fmod_channel_set_channel_group(uint64_t channel_ref, uint64_t channel_group_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
 
-	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref, channel_group);
+	FMOD::ChannelGroup* channel_group = resolve_fmod_channel_group(channel_group_ref);
 
 	if (channel_group == nullptr)
 		return 0;
@@ -115,9 +107,7 @@ uint64_t fmod_channel_get_channel_group(uint64_t channel_ref)
 {
 	uint64_t result = 0;
 
-	uint64_t _ref = (uint64_t)channel_ref;
-	uint32_t _ref_id = _ref & 0xFFFFFFFF;
-	FMOD::Channel* channel = reinterpret_cast<FMOD::Channel*>(static_cast<uintptr_t>(_ref_id));
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return result;
@@ -127,8 +117,8 @@ uint64_t fmod_channel_get_channel_group(uint64_t channel_ref)
 
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
 	}
 	return result;
 }
@@ -139,8 +129,7 @@ uint64_t fmod_channel_get_channel_group(uint64_t channel_ref)
 
 double fmod_channel_set_loop_count(uint64_t channel_ref, double loop_count)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
@@ -151,8 +140,7 @@ double fmod_channel_set_loop_count(uint64_t channel_ref, double loop_count)
 
 double fmod_channel_get_loop_count(uint64_t channel_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0.0;
@@ -164,8 +152,7 @@ double fmod_channel_get_loop_count(uint64_t channel_ref)
 
 double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, gm_enums::FmodTimeUnit loop_start_type, double loop_end, gm_enums::FmodTimeUnit loop_end_type)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0;
@@ -180,8 +167,7 @@ double fmod_channel_set_loop_points(uint64_t channel_ref, double loop_start, gm_
 FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, gm_enums::FmodTimeUnit start_type, gm_enums::FmodTimeUnit end_type)
 {
 	FmodLoopPoints result{};
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 	if (channel == nullptr) return result;
 
 	unsigned int loop_start = 0, loop_end = 0;
@@ -201,8 +187,7 @@ FmodLoopPoints fmod_channel_get_loop_points(uint64_t channel_ref, gm_enums::Fmod
 
 bool fmod_channel_is_virtual(uint64_t channel_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return false;
@@ -214,8 +199,7 @@ bool fmod_channel_is_virtual(uint64_t channel_ref)
 
 double fmod_channel_get_index(uint64_t channel_ref)
 {
-	FMOD::Channel* channel = nullptr;
-	validate_fmod_channel(channel_ref, channel);
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return 0.0;
@@ -233,9 +217,7 @@ uint64_t fmod_channel_get_current_sound(uint64_t channel_ref)
 {
 	uint64_t result = 0;
 
-	uint64_t _ref = (uint64_t)channel_ref;
-	uint32_t _ref_id = _ref & 0xFFFFFFFF;
-	FMOD::Channel* channel = reinterpret_cast<FMOD::Channel*>(static_cast<uintptr_t>(_ref_id));
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return result;
@@ -245,8 +227,8 @@ uint64_t fmod_channel_get_current_sound(uint64_t channel_ref)
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -255,9 +237,7 @@ uint64_t fmod_channel_get_system_object(uint64_t channel_ref)
 {
 	uint64_t result = 0;
 
-	uint64_t _ref = (uint64_t)channel_ref;
-	uint32_t _ref_id = _ref & 0xFFFFFFFF;
-	FMOD::Channel* channel = reinterpret_cast<FMOD::Channel*>(static_cast<uintptr_t>(_ref_id));
+	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
 
 	if (channel == nullptr)
 		return result;
@@ -267,8 +247,8 @@ uint64_t fmod_channel_get_system_object(uint64_t channel_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		uint32_t system_id = g_registries.systems.registerOrFind(system);
+		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
 	}
 	return result;
 }

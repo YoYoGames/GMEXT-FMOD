@@ -3701,9 +3701,19 @@
   "ioscodeinjection": "",
   "iosdelegatename": "",
   "iosplistinject": "\r\n\r\n\r\n\r\n",
-  "iosProps": false,
+  "iosProps": true,
   "iosSystemFrameworkEntries": [],
-  "iosThirdPartyFrameworkEntries": [],
+  "iosThirdPartyFrameworkEntries": [
+    {
+      "$GMExtensionFrameworkEntry": "",
+      "%Name": "GMFMODStudio.xcframework",
+      "embed": 0,
+      "name": "GMFMODStudio.xcframework",
+      "resourceType": "GMExtensionFrameworkEntry",
+      "resourceVersion": "2.0",
+      "weakReference": false
+    }
+  ],
   "license": "",
   "maccompilerflags": "",
   "maclinkerflags": "-ObjC",

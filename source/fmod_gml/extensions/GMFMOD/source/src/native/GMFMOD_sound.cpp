@@ -2,6 +2,8 @@
 #include <string_view>
 #include <cstring>
 #include <vector>
+#include <map>
+#include <mutex>
 
 using namespace gm_structs;
 
@@ -84,8 +86,8 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, gm_enums::FmodM
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -128,8 +130,7 @@ static void fillCreateSoundExInfo(const FmodCreateSoundExInfo& ex_info, FMOD_CRE
 
 	if (ex_info.initial_sound_group != 0)
 	{
-		FMOD::SoundGroup* sound_group = nullptr;
-		validate_fmod_sound_group(ex_info.initial_sound_group, sound_group);
+		FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(ex_info.initial_sound_group);
 		info.initialsoundgroup = (FMOD_SOUNDGROUP*)sound_group;
 	}
 }
@@ -154,8 +155,8 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, gm_enums::Fm
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -176,8 +177,8 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, gm_enums::Fmod
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -235,8 +236,8 @@ uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length,
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -275,8 +276,8 @@ uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double leng
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
@@ -285,14 +286,12 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 {
 	uint64_t result = 0;
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
 
-	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref, channel_group);
+	FMOD::ChannelGroup* channel_group = resolve_fmod_channel_group(channel_group_ref);
 
 	if (channel_group == nullptr)
 		return result;
@@ -309,7 +308,7 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
+			result = fmod_pointer_ref(channel, gmfmod::RefType::Channel);
 	}
 	return result;
 }
@@ -320,8 +319,7 @@ uint64_t fmod_system_play_sound(uint64_t sound_ref, uint64_t channel_group_ref, 
 
 double fmod_sound_get_length(uint64_t sound_ref, gm_enums::FmodTimeUnit length_type)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0.0;
@@ -333,8 +331,7 @@ double fmod_sound_get_length(uint64_t sound_ref, gm_enums::FmodTimeUnit length_t
 
 double fmod_sound_set_defaults(uint64_t sound_ref, double frequency, double priority)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -345,8 +342,7 @@ double fmod_sound_set_defaults(uint64_t sound_ref, double frequency, double prio
 
 double fmod_sound_set_mode(uint64_t sound_ref, gm_enums::FmodMode mode)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -357,8 +353,7 @@ double fmod_sound_set_mode(uint64_t sound_ref, gm_enums::FmodMode mode)
 
 gm_enums::FmodMode fmod_sound_get_mode(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return (gm_enums::FmodMode)0;
@@ -374,8 +369,7 @@ gm_enums::FmodMode fmod_sound_get_mode(uint64_t sound_ref)
 
 double fmod_sound_set_loop_count(uint64_t sound_ref, double count)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -386,8 +380,7 @@ double fmod_sound_set_loop_count(uint64_t sound_ref, double count)
 
 double fmod_sound_get_loop_count(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0.0;
@@ -399,8 +392,7 @@ double fmod_sound_get_loop_count(uint64_t sound_ref)
 
 double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, gm_enums::FmodTimeUnit loop_start_type, double loop_end, gm_enums::FmodTimeUnit loop_end_type)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -418,8 +410,7 @@ double fmod_sound_set_loop_points(uint64_t sound_ref, double loop_start, gm_enum
 
 double fmod_sound_set_3d_min_max_distance(uint64_t sound_ref, double min, double max)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -430,8 +421,7 @@ double fmod_sound_set_3d_min_max_distance(uint64_t sound_ref, double min, double
 
 double fmod_sound_set_3d_cone_settings(uint64_t sound_ref, double inside_cone_angle, double outside_cone_angle, double outside_volume)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -446,13 +436,12 @@ double fmod_sound_set_3d_cone_settings(uint64_t sound_ref, double inside_cone_an
 
 double fmod_sound_release(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
 
-	unregisterResource(sound, map_sounds);
+	g_registries.sounds.unregister(sound);
 	fmod_sound_forget_lock(sound);
 	fmod_sound_forget_rolloff(sound);
 	g_fmod_last_result = sound->release();
@@ -463,8 +452,7 @@ uint64_t fmod_sound_get_system_object(uint64_t sound_ref)
 {
 	uint64_t result = 0;
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -474,33 +462,31 @@ uint64_t fmod_sound_get_system_object(uint64_t sound_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		uint32_t system_id = g_registries.systems.registerOrFind(system);
+		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
 	}
 	return result;
 }
 
 double fmod_sound_set_user_data(uint64_t sound_ref, int64_t user_data)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
 
-	setResourceUserData(sound, user_data);
+	gmfmod::setUserData(sound, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_sound_get_user_data(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
 
-	return getResourceUserData(sound);
+	return gmfmod::getUserData(sound, g_fmod_last_result);
 }
 
 // ============================================================
@@ -628,8 +614,7 @@ FmodSoundTag fmod_sound_get_tag(uint64_t sound_ref, std::string_view name, doubl
 {
 	FmodSoundTag result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -656,8 +641,7 @@ FmodSoundNumTags fmod_sound_get_num_tags(uint64_t sound_ref)
 {
 	FmodSoundNumTags result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -678,8 +662,7 @@ FmodSoundFormatInfo fmod_sound_get_format(uint64_t sound_ref)
 {
 	FmodSoundFormatInfo result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -699,8 +682,7 @@ FmodSoundFormatInfo fmod_sound_get_format(uint64_t sound_ref)
 
 std::string fmod_sound_get_name(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return "";
@@ -714,8 +696,7 @@ FmodSoundDefaults fmod_sound_get_defaults(uint64_t sound_ref)
 {
 	FmodSoundDefaults result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 	{
@@ -734,8 +715,7 @@ FmodLoopPoints fmod_sound_get_loop_points(uint64_t sound_ref, gm_enums::FmodTime
 {
 	FmodLoopPoints result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -754,8 +734,7 @@ FmodSoundMinMaxDistance fmod_sound_get_3d_min_max_distance(uint64_t sound_ref)
 {
 	FmodSoundMinMaxDistance result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -771,8 +750,7 @@ FmodConeSettings fmod_sound_get_3d_cone_settings(uint64_t sound_ref)
 {
 	FmodConeSettings result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -787,8 +765,7 @@ FmodConeSettings fmod_sound_get_3d_cone_settings(uint64_t sound_ref)
 
 double fmod_sound_set_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer points, double num_points)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -847,8 +824,7 @@ double fmod_sound_set_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer p
 
 double fmod_sound_get_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer points)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0.0;
@@ -875,8 +851,7 @@ double fmod_sound_get_3d_custom_rolloff(uint64_t sound_ref, gm::wire::GMBuffer p
 
 double fmod_sound_get_num_sync_points(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -890,8 +865,7 @@ FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_poin
 {
 	FmodSyncPointInfo result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -909,8 +883,7 @@ FmodSyncPointInfo fmod_sound_get_sync_point(uint64_t sound_ref, double sync_poin
 
 double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, gm_enums::FmodTimeUnit offset_type, std::string_view name)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -922,8 +895,7 @@ double fmod_sound_add_sync_point(uint64_t sound_ref, double offset, gm_enums::Fm
 
 double fmod_sound_delete_sync_point(uint64_t sound_ref, double sync_point_index)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -943,8 +915,7 @@ double fmod_sound_delete_sync_point(uint64_t sound_ref, double sync_point_index)
 
 double fmod_sound_get_music_num_channels(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -956,8 +927,7 @@ double fmod_sound_get_music_num_channels(uint64_t sound_ref)
 
 double fmod_sound_set_music_channel_volume(uint64_t sound_ref, double channel_index, double volume)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -968,8 +938,7 @@ double fmod_sound_set_music_channel_volume(uint64_t sound_ref, double channel_in
 
 double fmod_sound_get_music_channel_volume(uint64_t sound_ref, double channel_index)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -981,8 +950,7 @@ double fmod_sound_get_music_channel_volume(uint64_t sound_ref, double channel_in
 
 double fmod_sound_set_music_speed(uint64_t sound_ref, double speed)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -993,8 +961,7 @@ double fmod_sound_set_music_speed(uint64_t sound_ref, double speed)
 
 double fmod_sound_get_music_speed(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -1010,14 +977,12 @@ double fmod_sound_get_music_speed(uint64_t sound_ref)
 
 double fmod_sound_set_sound_group(uint64_t sound_ref, uint64_t sound_group_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
 
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -1030,8 +995,7 @@ uint64_t fmod_sound_get_sound_group(uint64_t sound_ref)
 {
 	uint64_t result = 0;
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -1041,8 +1005,8 @@ uint64_t fmod_sound_get_sound_group(uint64_t sound_ref)
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(sound_group, index_sound_groups, map_sound_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_SOUND_GROUP);
+		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
 	}
 	return result;
 }
@@ -1055,8 +1019,7 @@ FmodSoundOpenState fmod_sound_get_open_state(uint64_t sound_ref)
 {
 	FmodSoundOpenState result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -1080,8 +1043,7 @@ FmodSoundOpenState fmod_sound_get_open_state(uint64_t sound_ref)
 
 double fmod_sound_get_num_sub_sounds(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0.0;
@@ -1095,8 +1057,7 @@ uint64_t fmod_sound_get_sub_sound(uint64_t sound_ref, double index)
 {
 	uint64_t result = 0;
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -1106,16 +1067,15 @@ uint64_t fmod_sound_get_sub_sound(uint64_t sound_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && sub_sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sub_sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sub_sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
 
 std::optional<uint64_t> fmod_sound_get_sub_sound_parent(uint64_t sound_ref)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return std::nullopt;
@@ -1126,8 +1086,8 @@ std::optional<uint64_t> fmod_sound_get_sub_sound_parent(uint64_t sound_ref)
 	if (g_fmod_last_result != FMOD_OK || parent == nullptr)
 		return std::nullopt;
 
-	uint32_t sound_id = registerOrFindResource(parent, index_sounds, map_sounds);
-	return packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+	uint32_t sound_id = g_registries.sounds.registerOrFind(parent);
+	return gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 }
 
 // ============================================================
@@ -1136,8 +1096,7 @@ std::optional<uint64_t> fmod_sound_get_sub_sound_parent(uint64_t sound_ref)
 
 double fmod_sound_read_data(uint64_t sound_ref, gm::wire::GMBuffer data, double length)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0.0;
@@ -1162,8 +1121,7 @@ double fmod_sound_read_data(uint64_t sound_ref, gm::wire::GMBuffer data, double 
 
 double fmod_sound_seek_data(uint64_t sound_ref, double pcm)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -1176,8 +1134,7 @@ FmodSoundLockLengths fmod_sound_lock(uint64_t sound_ref, double offset, double l
 {
 	FmodSoundLockLengths result{};
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return result;
@@ -1210,8 +1167,7 @@ FmodSoundLockLengths fmod_sound_lock(uint64_t sound_ref, double offset, double l
 
 double fmod_sound_unlock(uint64_t sound_ref, gm::wire::GMBuffer buffer1, gm::wire::GMBuffer buffer2, double length1, double length2)
 {
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;

@@ -21,8 +21,8 @@ uint64_t fmod_system_create()
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		uint32_t system_id = g_registries.systems.registerOrFind(system);
+		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
 	}
 	return result;
 }
@@ -50,25 +50,24 @@ uint64_t fmod_system_adopt(uint64_t system_ptr)
 
 	FMOD::System* system = reinterpret_cast<FMOD::System*>(static_cast<uintptr_t>(system_ptr));
 
-	uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
+	uint32_t system_id = g_registries.systems.registerOrFind(system);
 	g_adopted_systems.insert(system);
 
 	setCurrentSystem(system);
 	g_fmod_last_result = FMOD_OK;
-	return packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+	return gmfmod::packRef(system_id, gmfmod::RefType::System);
 }
 
 double fmod_system_release(uint64_t system_ref)
 {
-	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref, system);
+	FMOD::System* system = resolve_fmod_system(system_ref);
 
 	if (system == nullptr)
 		return 0;
 
 	if (getCurrentSystem() == system)
 		setCurrentSystem(nullptr);
-	unregisterResource(system, map_systems);
+	g_registries.systems.unregister(system);
 
 	// Adopted systems are owned elsewhere (Studio releases its own core system),
 	// so releasing here would double-free.
@@ -92,13 +91,11 @@ void fmod_shutdown()
 	// Adopted systems belong to whoever created them - GMFMODStudio releases its
 	// own core system - and shutdown order between the two DLLs is not defined,
 	// so an adopted system may already be gone. Never dereference one here.
-	for (auto& entry : map_systems)
-	{
-		FMOD::System* system = entry.second;
-		if (system == nullptr) continue;
-		if (g_adopted_systems.count(system) != 0) continue;
+	g_registries.systems.forEach([](FMOD::System* system) {
+		if (system == nullptr) return;
+		if (g_adopted_systems.count(system) != 0) return;
 		system->release();
-	}
+	});
 
 	g_adopted_systems.clear();
 	setCurrentSystem(nullptr);
@@ -106,15 +103,14 @@ void fmod_shutdown()
 	fmod_channel_control_reset_state();
 	fmod_sound_reset_state();
 	fmod_dsp_reset_state();
-	fmod_registry_clear_all();
+	g_registries.clear();
 
 	g_fmod_last_result = FMOD_OK;
 }
 
 double fmod_system_select(uint64_t system_ref)
 {
-	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref, system);
+	FMOD::System* system = resolve_fmod_system(system_ref);
 
 	if (system == nullptr)
 		return 0;
@@ -126,8 +122,7 @@ double fmod_system_select(uint64_t system_ref)
 
 double fmod_system_close(uint64_t system_ref)
 {
-	FMOD::System* system = nullptr;
-	validate_fmod_system(system_ref, system);
+	FMOD::System* system = resolve_fmod_system(system_ref);
 
 	if (system == nullptr)
 		return 0;
@@ -189,7 +184,7 @@ uint64_t fmod_system_get_channel(double index)
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
+			result = fmod_pointer_ref(channel, gmfmod::RefType::Channel);
 	}
 	return result;
 }
@@ -210,8 +205,8 @@ uint64_t fmod_system_get_master_channel_group()
 
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
 	}
 	return result;
 }
@@ -467,7 +462,7 @@ FmodRecordDriverInfo fmod_system_get_record_driver_info(double record_driver_ind
 	g_fmod_last_result = system->getRecordDriverInfo((int)record_driver_index, name, sizeof(name), &guid, &system_rate, &speaker_mode, &speaker_mode_channels, &state);
 
 	result.name = std::string(name);
-	result.guid = format_guid(guid);
+	result.guid = gmfmod::formatGuid(guid);
 	result.speaker_mode = (gm_enums::FmodSpeakerMode)(int)speaker_mode;
 	result.speaker_mode_channels = (double)speaker_mode_channels;
 	result.sample_rate = (double)system_rate;
@@ -498,8 +493,7 @@ double fmod_system_record_start(double device_index, uint64_t sound_ref, bool lo
 		return 0;
 	}
 
-	FMOD::Sound* sound = nullptr;
-	validate_fmod_sound(sound_ref, sound);
+	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
 
 	if (sound == nullptr)
 		return 0;
@@ -572,8 +566,8 @@ uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
-		uint32_t dsp_id = registerOrFindResource(dsp, index_dsps, map_dsps);
-		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		uint32_t dsp_id = g_registries.dsps.registerOrFind(dsp);
+		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
 	}
 	return result;
 }
@@ -682,7 +676,7 @@ FmodDriverInfo fmod_system_get_driver_info(double driver_id)
 	g_fmod_last_result = system->getDriverInfo((int)driver_id, name, sizeof(name), &guid, &sample_rate, &speaker_mode, &speaker_mode_channels);
 
 	result.name = std::string(name);
-	result.guid = format_guid(guid);
+	result.guid = gmfmod::formatGuid(guid);
 	result.speaker_mode = (gm_enums::FmodSpeakerMode)(int)speaker_mode;
 	result.sample_rate = (double)sample_rate;
 	result.speaker_mode_channels = (double)speaker_mode_channels;
@@ -710,8 +704,8 @@ uint64_t fmod_system_create_channel_group(std::string_view name)
 
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(channel_group, index_channel_groups, map_channel_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_CHANNEL_GROUP);
+		uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
 	}
 	return result;
 }
@@ -720,14 +714,12 @@ uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, bool
 {
 	uint64_t result = 0;
 
-	FMOD::DSP* dsp = nullptr;
-	validate_fmod_dsp(dsp_ref, dsp);
+	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 
 	if (dsp == nullptr)
 		return result;
 
-	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref, channel_group);
+	FMOD::ChannelGroup* channel_group = resolve_fmod_channel_group(channel_group_ref);
 
 	if (channel_group == nullptr)
 		return result;
@@ -744,7 +736,7 @@ uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, bool
 
 	if (g_fmod_last_result == FMOD_OK && channel != nullptr)
 	{
-			result = packPointerIntoRef(channel, GM_FMOD_TYPE_CHANNEL);
+			result = fmod_pointer_ref(channel, gmfmod::RefType::Channel);
 	}
 	return result;
 }
@@ -755,7 +747,7 @@ uint64_t fmod_system_play_dsp(uint64_t dsp_ref, uint64_t channel_group_ref, bool
 
 double fmod_system_count()
 {
-	return (double)map_systems.size();
+	return (double)g_registries.systems.size();
 }
 
 double fmod_system_get_version()
@@ -788,8 +780,8 @@ uint64_t fmod_system_get_master_sound_group()
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(sound_group, index_sound_groups, map_sound_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_SOUND_GROUP);
+		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
 	}
 	return result;
 }
@@ -1265,7 +1257,7 @@ int64_t fmod_system_get_user_data()
 		return 0;
 	}
 
-	return getResourceUserData(system);
+	return gmfmod::getUserData(system, g_fmod_last_result);
 }
 
 double fmod_system_set_user_data(int64_t user_data)
@@ -1277,7 +1269,7 @@ double fmod_system_set_user_data(int64_t user_data)
 		return 0;
 	}
 
-	setResourceUserData(system, user_data);
+	gmfmod::setUserData(system, user_data, g_fmod_last_result);
 	return 0;
 }
 
@@ -1294,8 +1286,7 @@ double fmod_system_attach_channel_group_to_port(gm_enums::FmodPortType port_type
 		return 0;
 	}
 
-	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref, channel_group);
+	FMOD::ChannelGroup* channel_group = resolve_fmod_channel_group(channel_group_ref);
 
 	if (channel_group == nullptr)
 		return 0;
@@ -1313,8 +1304,7 @@ double fmod_system_detach_channel_group_from_port(uint64_t channel_group_ref)
 		return 0;
 	}
 
-	FMOD::ChannelGroup* channel_group = nullptr;
-	validate_fmod_channel_group(channel_group_ref, channel_group);
+	FMOD::ChannelGroup* channel_group = resolve_fmod_channel_group(channel_group_ref);
 
 	if (channel_group == nullptr)
 		return 0;
@@ -1344,8 +1334,8 @@ uint64_t fmod_system_create_sound_group(std::string_view name)
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = registerOrFindResource(sound_group, index_sound_groups, map_sound_groups);
-		result = packIndexIntoRef(group_id, GM_FMOD_TYPE_SOUND_GROUP);
+		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
+		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
 	}
 	return result;
 }
@@ -1366,8 +1356,8 @@ uint64_t fmod_system_create_geometry(double max_polygons, double max_vertices)
 
 	if (g_fmod_last_result == FMOD_OK && geometry != nullptr)
 	{
-		uint32_t geometry_id = registerOrFindResource(geometry, index_geometries, map_geometries);
-		result = packIndexIntoRef(geometry_id, GM_FMOD_TYPE_GEOMETRY);
+		uint32_t geometry_id = g_registries.geometries.registerOrFind(geometry);
+		result = gmfmod::packRef(geometry_id, gmfmod::RefType::Geometry);
 	}
 	return result;
 }
@@ -1399,8 +1389,8 @@ std::optional<uint64_t> fmod_system_load_geometry(gm::wire::GMBuffer data, doubl
 	if (g_fmod_last_result != FMOD_OK || geometry == nullptr)
 		return std::nullopt;
 
-	uint32_t geometry_id = registerOrFindResource(geometry, index_geometries, map_geometries);
-	return packIndexIntoRef(geometry_id, GM_FMOD_TYPE_GEOMETRY);
+	uint32_t geometry_id = g_registries.geometries.registerOrFind(geometry);
+	return gmfmod::packRef(geometry_id, gmfmod::RefType::Geometry);
 }
 
 FmodOcclusion fmod_system_get_geometry_occlusion(const FmodVec3& listener, const FmodVec3& source)
@@ -1467,8 +1457,8 @@ uint64_t fmod_system_create_reverb_3d()
 
 	if (g_fmod_last_result == FMOD_OK && reverb != nullptr)
 	{
-		uint32_t reverb_id = registerOrFindResource(reverb, index_reverbs, map_reverbs);
-		result = packIndexIntoRef(reverb_id, GM_FMOD_TYPE_REVERB_3D);
+		uint32_t reverb_id = g_registries.reverbs.registerOrFind(reverb);
+		result = gmfmod::packRef(reverb_id, gmfmod::RefType::Reverb3D);
 	}
 	return result;
 }

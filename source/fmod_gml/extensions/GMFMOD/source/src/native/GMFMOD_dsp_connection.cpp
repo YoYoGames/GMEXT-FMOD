@@ -8,8 +8,7 @@ using namespace gm_structs;
 
 double fmod_dsp_connection_set_mix(uint64_t connection_ref, double volume)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return 0;
@@ -20,8 +19,7 @@ double fmod_dsp_connection_set_mix(uint64_t connection_ref, double volume)
 
 double fmod_dsp_connection_get_mix(uint64_t connection_ref)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return 0;
@@ -38,8 +36,7 @@ double fmod_dsp_connection_set_mix_matrix(
 	double in_channels,
 	double in_channel_hop)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return 0;
@@ -86,8 +83,7 @@ FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(
 	double in_channel_hop)
 {
 	FmodDSPMixMatrix result{};
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 	{
@@ -125,8 +121,7 @@ FmodDSPMixMatrix fmod_dsp_connection_get_mix_matrix(
 uint64_t fmod_dsp_connection_get_input(uint64_t connection_ref)
 {
 	uint64_t result = 0;
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return result;
@@ -136,8 +131,8 @@ uint64_t fmod_dsp_connection_get_input(uint64_t connection_ref)
 
 	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
 	{
-		uint32_t dsp_id = registerOrFindResource(input_dsp, index_dsps, map_dsps);
-		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		uint32_t dsp_id = g_registries.dsps.registerOrFind(input_dsp);
+		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
 	}
 	return result;
 }
@@ -145,8 +140,7 @@ uint64_t fmod_dsp_connection_get_input(uint64_t connection_ref)
 uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 {
 	uint64_t result = 0;
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return result;
@@ -156,8 +150,8 @@ uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 
 	if (g_fmod_last_result == FMOD_OK && output_dsp != nullptr)
 	{
-		uint32_t dsp_id = registerOrFindResource(output_dsp, index_dsps, map_dsps);
-		result = packIndexIntoRef(dsp_id, GM_FMOD_TYPE_DSP);
+		uint32_t dsp_id = g_registries.dsps.registerOrFind(output_dsp);
+		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
 	}
 	return result;
 }
@@ -168,8 +162,7 @@ uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 
 gm_enums::FmodDspConnectionType fmod_dsp_connection_get_type(uint64_t connection_ref)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return (gm_enums::FmodDspConnectionType)0;
@@ -185,23 +178,21 @@ gm_enums::FmodDspConnectionType fmod_dsp_connection_get_type(uint64_t connection
 
 double fmod_dsp_connection_set_user_data(uint64_t connection_ref, int64_t user_data)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return 0;
 
-	setResourceUserData(connection, user_data);
+	gmfmod::setUserData(connection, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_dsp_connection_get_user_data(uint64_t connection_ref)
 {
-	FMOD::DSPConnection* connection = nullptr;
-	validate_fmod_dsp_connection(connection_ref, connection);
+	FMOD::DSPConnection* connection = resolve_fmod_dsp_connection(connection_ref);
 
 	if (connection == nullptr)
 		return 0;
 
-	return getResourceUserData(connection);
+	return gmfmod::getUserData(connection, g_fmod_last_result);
 }

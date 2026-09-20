@@ -12,25 +12,23 @@ using namespace gm_structs;
 
 std::string fmod_studio_event_description_get_path(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return "";
-	return fmod_read_string([event_desc](char* buf, int size, int* got) {
+	return gmfmod::readString([event_desc](char* buf, int size, int* got) {
 		return event_desc->getPath(buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 std::optional<uint64_t> fmod_studio_event_description_create_instance(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::nullopt;
 	FMOD::Studio::EventInstance* instance = nullptr;
-	g_fmod_last_result = event_desc->createInstance(&instance);
-	if (g_fmod_last_result == FMOD_OK && instance != nullptr)
+	g_fmod_studio_last_result = event_desc->createInstance(&instance);
+	if (g_fmod_studio_last_result == FMOD_OK && instance != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+		result = fmod_pointer_ref(instance, gmfmod::RefType::StudioEventInstance);
 		return result;
 	}
 	return std::nullopt;
@@ -38,18 +36,16 @@ std::optional<uint64_t> fmod_studio_event_description_create_instance(uint64_t e
 
 double fmod_studio_event_description_get_instance_count(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0.0;
 	int count = 0;
-	g_fmod_last_result = event_desc->getInstanceCount(&count);
+	g_fmod_studio_last_result = event_desc->getInstanceCount(&count);
 	return (double)count;
 }
 
 std::optional<uint64_t> fmod_studio_event_description_get_instance_at(uint64_t event_desc_ref, double index)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::nullopt;
 
 	int idx = (int)index;
@@ -57,71 +53,65 @@ std::optional<uint64_t> fmod_studio_event_description_get_instance_at(uint64_t e
 
 	std::vector<FMOD::Studio::EventInstance*> instances((size_t)idx + 1, nullptr);
 	int count = 0;
-	g_fmod_last_result = event_desc->getInstanceList(instances.data(), (int)instances.size(), &count);
-	if (g_fmod_last_result != FMOD_OK || idx >= count) return std::nullopt;
+	g_fmod_studio_last_result = event_desc->getInstanceList(instances.data(), (int)instances.size(), &count);
+	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return std::nullopt;
 
 	FMOD::Studio::EventInstance* instance = instances[(size_t)idx];
 	if (instance == nullptr) return std::nullopt;
 
-	return packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+	return fmod_pointer_ref(instance, gmfmod::RefType::StudioEventInstance);
 }
 
 bool fmod_studio_event_description_is_snapshot(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 	bool is_snapshot = false;
-	g_fmod_last_result = event_desc->isSnapshot(&is_snapshot);
+	g_fmod_studio_last_result = event_desc->isSnapshot(&is_snapshot);
 	return is_snapshot;
 }
 
 bool fmod_studio_event_description_is_one_shot(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 	bool is_one_shot = false;
-	g_fmod_last_result = event_desc->isOneshot(&is_one_shot);
+	g_fmod_studio_last_result = event_desc->isOneshot(&is_one_shot);
 	return is_one_shot;
 }
 
 bool fmod_studio_event_description_has_sustain_point(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 	bool has_sustain = false;
-	g_fmod_last_result = event_desc->hasSustainPoint(&has_sustain);
+	g_fmod_studio_last_result = event_desc->hasSustainPoint(&has_sustain);
 	return has_sustain;
 }
 
 double fmod_studio_event_description_get_length(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0.0;
 	int length = 0;
-	g_fmod_last_result = event_desc->getLength(&length);
+	g_fmod_studio_last_result = event_desc->getLength(&length);
 	return (double)length;
 }
 
 double fmod_studio_event_description_get_parameter_count(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0.0;
 	int count = 0;
-	g_fmod_last_result = event_desc->getParameterDescriptionCount(&count);
+	g_fmod_studio_last_result = event_desc->getParameterDescriptionCount(&count);
 	return (double)count;
 }
 
 double fmod_studio_event_description_release_all_instances(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
-	g_fmod_last_result = event_desc->releaseAllInstances();
+	g_fmod_studio_last_result = event_desc->releaseAllInstances();
 	return 0;
 }
 
@@ -134,14 +124,13 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 {
 	FmodStudioParameterDescription result{};
 
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	std::string name_str(name);
 	FMOD_STUDIO_PARAMETER_DESCRIPTION desc{};
-	g_fmod_last_result = event_desc->getParameterDescriptionByName(name_str.c_str(), &desc);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = event_desc->getParameterDescriptionByName(name_str.c_str(), &desc);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
 	result.id_data1 = (double)desc.id.data1;
@@ -160,32 +149,29 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 
 double fmod_studio_event_description_load_sample_data(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
 
-	g_fmod_last_result = event_desc->loadSampleData();
+	g_fmod_studio_last_result = event_desc->loadSampleData();
 	return 0;
 }
 
 double fmod_studio_event_description_unload_sample_data(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
 
-	g_fmod_last_result = event_desc->unloadSampleData();
+	g_fmod_studio_last_result = event_desc->unloadSampleData();
 	return 0;
 }
 
 gm_enums::FmodStudioLoadingState fmod_studio_event_description_get_sample_loading_state(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return (gm_enums::FmodStudioLoadingState)0;
 
 	FMOD_STUDIO_LOADING_STATE state = FMOD_STUDIO_LOADING_STATE_UNLOADED;
-	g_fmod_last_result = event_desc->getSampleLoadingState(&state);
+	g_fmod_studio_last_result = event_desc->getSampleLoadingState(&state);
 	return (gm_enums::FmodStudioLoadingState)state;
 }
 
@@ -195,8 +181,7 @@ gm_enums::FmodStudioLoadingState fmod_studio_event_description_get_sample_loadin
 
 bool fmod_studio_event_description_is_valid(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 
 	return event_desc->isValid();
@@ -204,46 +189,42 @@ bool fmod_studio_event_description_is_valid(uint64_t event_desc_ref)
 
 bool fmod_studio_event_description_is_3d(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 
 	bool is_3d = false;
-	g_fmod_last_result = event_desc->is3D(&is_3d);
+	g_fmod_studio_last_result = event_desc->is3D(&is_3d);
 	return is_3d;
 }
 
 bool fmod_studio_event_description_is_stream(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 
 	bool is_stream = false;
-	g_fmod_last_result = event_desc->isStream(&is_stream);
+	g_fmod_studio_last_result = event_desc->isStream(&is_stream);
 	return is_stream;
 }
 
 bool fmod_studio_event_description_is_doppler_enabled(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return false;
 
 	bool doppler = false;
-	g_fmod_last_result = event_desc->isDopplerEnabled(&doppler);
+	g_fmod_studio_last_result = event_desc->isDopplerEnabled(&doppler);
 	return doppler;
 }
 
 std::string fmod_studio_event_description_get_id(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::string();
 
 	FMOD_GUID guid{};
-	g_fmod_last_result = event_desc->getID(&guid);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
+	g_fmod_studio_last_result = event_desc->getID(&guid);
+	if (g_fmod_studio_last_result != FMOD_OK) return std::string();
 
 	char buffer[64]{};
 	std::snprintf(buffer, sizeof(buffer),
@@ -257,12 +238,11 @@ std::string fmod_studio_event_description_get_id(uint64_t event_desc_ref)
 FmodStudioMinMaxDistance fmod_studio_event_description_get_min_max_distance(uint64_t event_desc_ref)
 {
 	FmodStudioMinMaxDistance result{};
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	float min_distance = 0.0f, max_distance = 0.0f;
-	g_fmod_last_result = event_desc->getMinMaxDistance(&min_distance, &max_distance);
+	g_fmod_studio_last_result = event_desc->getMinMaxDistance(&min_distance, &max_distance);
 	result.min_distance = (double)min_distance;
 	result.max_distance = (double)max_distance;
 	return result;
@@ -270,12 +250,11 @@ FmodStudioMinMaxDistance fmod_studio_event_description_get_min_max_distance(uint
 
 double fmod_studio_event_description_get_sound_size(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0.0;
 
 	float size = 0.0f;
-	g_fmod_last_result = event_desc->getSoundSize(&size);
+	g_fmod_studio_last_result = event_desc->getSoundSize(&size);
 	return (double)size;
 }
 
@@ -299,8 +278,8 @@ void fmod_studio_event_call(
 	void* parameters)
 {
 	// Keys are the truncated pointer the GML refs carry, so mask to match.
-	uintptr_t instance_ptr = reinterpret_cast<uintptr_t>(event) & 0xFFFFFFFFu;
-	uint64_t ref = packIndexIntoRef((uint32_t)instance_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+	uintptr_t instance_ptr = gmfmod::pointerKey(event);
+	uint64_t ref = gmfmod::packRef((uint32_t)instance_ptr, gmfmod::RefType::StudioEventInstance);
 	double kind = (double)type;
 
 	switch (type)
@@ -340,7 +319,7 @@ void fmod_studio_event_call(
 			if (props == nullptr) break;
 
 			FmodStudioTimelineNestedBeatProperties out{};
-			out.event_id = format_guid(props->eventid);
+			out.event_id = gmfmod::formatGuid(props->eventid);
 			out.bar = (double)props->properties.bar;
 			out.beat = (double)props->properties.beat;
 			out.position = (double)props->properties.position;
@@ -382,9 +361,9 @@ void fmod_studio_event_call(
 			FMOD_STUDIO_EVENTINSTANCE* started = (FMOD_STUDIO_EVENTINSTANCE*)parameters;
 			if (started == nullptr) break;
 
-			uintptr_t started_ptr = reinterpret_cast<uintptr_t>(started) & 0xFFFFFFFFu;
+			uintptr_t started_ptr = gmfmod::pointerKey(started);
 			callback.call(ref, kind,
-				packIndexIntoRef((uint32_t)started_ptr, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE));
+				gmfmod::packRef((uint32_t)started_ptr, gmfmod::RefType::StudioEventInstance));
 			return;
 		}
 		default:
@@ -421,7 +400,7 @@ void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank)
 	{
 		if (descriptions[i] == nullptr) continue;
 		g_event_description_callbacks.erase(
-			reinterpret_cast<uintptr_t>(descriptions[i]) & 0xFFFFFFFFu);
+			gmfmod::pointerKey(descriptions[i]));
 	}
 }
 
@@ -440,7 +419,7 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_description(
 		|| event_desc == nullptr)
 		return FMOD_OK;
 
-	uintptr_t desc_ptr = reinterpret_cast<uintptr_t>(event_desc) & 0xFFFFFFFFu;
+	uintptr_t desc_ptr = gmfmod::pointerKey(event_desc);
 
 	std::optional<gm::wire::GMFunction> callback;
 	{
@@ -461,11 +440,10 @@ double fmod_studio_event_description_set_callback(
 	const std::optional<gm::wire::GMFunction>& callback,
 	enum gm_enums::FmodStudioEventCallbackType callback_mask)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
 
-	uintptr_t desc_ptr = reinterpret_cast<uintptr_t>(event_desc) & 0xFFFFFFFFu;
+	uintptr_t desc_ptr = gmfmod::pointerKey(event_desc);
 
 	if (!callback.has_value())
 	{
@@ -473,7 +451,7 @@ double fmod_studio_event_description_set_callback(
 			std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
 			g_event_description_callbacks.erase(desc_ptr);
 		}
-		g_fmod_last_result = event_desc->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
+		g_fmod_studio_last_result = event_desc->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
 		return 0;
 	}
 
@@ -482,10 +460,10 @@ double fmod_studio_event_description_set_callback(
 		g_event_description_callbacks.insert_or_assign(desc_ptr, callback.value());
 	}
 
-	g_fmod_last_result = event_desc->setCallback(
+	g_fmod_studio_last_result = event_desc->setCallback(
 		CALLBACK_fmod_studio_event_description,
 		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)callback_mask);
-	if (g_fmod_last_result != FMOD_OK)
+	if (g_fmod_studio_last_result != FMOD_OK)
 	{
 		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
 		g_event_description_callbacks.erase(desc_ptr);
@@ -499,20 +477,18 @@ double fmod_studio_event_description_set_callback(
 
 int64_t fmod_studio_event_description_get_user_data(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
 
-	return getResourceUserData(event_desc);
+	return gmfmod::getUserData(event_desc, g_fmod_studio_last_result);
 }
 
 double fmod_studio_event_description_set_user_data(uint64_t event_desc_ref, int64_t user_data)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0;
 
-	setResourceUserData(event_desc, user_data);
+	gmfmod::setUserData(event_desc, user_data, g_fmod_studio_last_result);
 	return 0;
 }
 
@@ -548,14 +524,13 @@ static FmodStudioUserProperty convert_user_property(const FMOD_STUDIO_USER_PROPE
 FmodStudioUserProperty fmod_studio_event_description_get_user_property(uint64_t event_desc_ref, std::string_view name)
 {
 	FmodStudioUserProperty result{};
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	std::string name_str(name);
 	FMOD_STUDIO_USER_PROPERTY property{};
-	g_fmod_last_result = event_desc->getUserProperty(name_str.c_str(), &property);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = event_desc->getUserProperty(name_str.c_str(), &property);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	return convert_user_property(property);
 }
@@ -563,25 +538,23 @@ FmodStudioUserProperty fmod_studio_event_description_get_user_property(uint64_t 
 FmodStudioUserProperty fmod_studio_event_description_get_user_property_at(uint64_t event_desc_ref, double index)
 {
 	FmodStudioUserProperty result{};
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	FMOD_STUDIO_USER_PROPERTY property{};
-	g_fmod_last_result = event_desc->getUserPropertyByIndex((int)index, &property);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = event_desc->getUserPropertyByIndex((int)index, &property);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	return convert_user_property(property);
 }
 
 double fmod_studio_event_description_get_user_property_count(uint64_t event_desc_ref)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return 0.0;
 
 	int count = 0;
-	g_fmod_last_result = event_desc->getUserPropertyCount(&count);
+	g_fmod_studio_last_result = event_desc->getUserPropertyCount(&count);
 	return (double)count;
 }
 
@@ -607,8 +580,7 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 	uint64_t event_desc_ref, double id_data1, double id_data2)
 {
 	FmodStudioParameterDescription result{};
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	FMOD_STUDIO_PARAMETER_ID id{};
@@ -616,8 +588,8 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 	id.data2 = (unsigned int)id_data2;
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION desc{};
-	g_fmod_last_result = event_desc->getParameterDescriptionByID(id, &desc);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = event_desc->getParameterDescriptionByID(id, &desc);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	return convert_parameter_description(desc);
 }
@@ -626,13 +598,12 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 	uint64_t event_desc_ref, double index)
 {
 	FmodStudioParameterDescription result{};
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return result;
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION desc{};
-	g_fmod_last_result = event_desc->getParameterDescriptionByIndex((int)index, &desc);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = event_desc->getParameterDescriptionByIndex((int)index, &desc);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	return convert_parameter_description(desc);
 }
@@ -640,40 +611,37 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 std::string fmod_studio_event_description_get_parameter_label_by_id(
 	uint64_t event_desc_ref, double id_data1, double id_data2, double label_index)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::string();
 
 	FMOD_STUDIO_PARAMETER_ID id{};
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	return fmod_read_string([event_desc, id, label_index](char* buf, int size, int* got) {
+	return gmfmod::readString([event_desc, id, label_index](char* buf, int size, int* got) {
 		return event_desc->getParameterLabelByID(id, (int)label_index, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 std::string fmod_studio_event_description_get_parameter_label_at(
 	uint64_t event_desc_ref, double index, double label_index)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::string();
 
-	return fmod_read_string([event_desc, index, label_index](char* buf, int size, int* got) {
+	return gmfmod::readString([event_desc, index, label_index](char* buf, int size, int* got) {
 		return event_desc->getParameterLabelByIndex((int)index, (int)label_index, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 std::string fmod_studio_event_description_get_parameter_label_by_name(
 	uint64_t event_desc_ref, std::string_view name, double label_index)
 {
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	validate_fmod_studio_event_description(event_desc_ref, event_desc);
+	FMOD::Studio::EventDescription* event_desc = resolve_fmod_studio_event_description(event_desc_ref);
 	if (event_desc == nullptr) return std::string();
 
 	std::string name_str(name);
-	return fmod_read_string([event_desc, &name_str, label_index](char* buf, int size, int* got) {
+	return gmfmod::readString([event_desc, &name_str, label_index](char* buf, int size, int* got) {
 		return event_desc->getParameterLabelByName(name_str.c_str(), (int)label_index, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }

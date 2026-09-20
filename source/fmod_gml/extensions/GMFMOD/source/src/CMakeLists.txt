@@ -1,5 +1,15 @@
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 
+# The ref/registry layer both extensions compile, header-only, in GMFMOD's tree: the
+# package ships extension folders only and the consoles compile source/ at game-build
+# time inside the game project, so it has to sit inside an extension folder - and
+# GMFMODStudio already cannot load without GMFMOD's fmod runtime beside it.
+get_filename_component(_EXTENSIONS_DIR "${SRC_DIR}/../../.." ABSOLUTE)
+set(GMFMOD_SHARED_DIR "${_EXTENSIONS_DIR}/GMFMOD/source/src/shared")
+if(NOT EXISTS "${GMFMOD_SHARED_DIR}/gmfmod_ref.h")
+  message(FATAL_ERROR "GMFMOD shared headers not found at ${GMFMOD_SHARED_DIR} - the GMFMOD extension must be present beside ${PROJECT_NAME}")
+endif()
+
 # =============================================================================
 # GameMaker iOS integration (optional)
 # =============================================================================
@@ -52,4 +62,4 @@ elseif(UNIX)
 endif()
 
 target_sources(${PROJECT_NAME} PRIVATE ${TARGET_SRCS})
-target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
+target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}" "${GMFMOD_SHARED_DIR}")

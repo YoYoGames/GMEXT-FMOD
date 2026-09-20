@@ -26,26 +26,25 @@ uint64_t fmod_studio_system_create()
 	if (g_studio_system_ref != 0)
 	{
 		// Without this the caller reads whatever the previous call left behind.
-		g_fmod_last_result = FMOD_ERR_INITIALIZED;
+		g_fmod_studio_last_result = FMOD_ERR_INITIALIZED;
 		return result;
 	}
 
 	FMOD::Studio::System* studio_system = nullptr;
-	g_fmod_last_result = FMOD::Studio::System::create(&studio_system);
-	if (g_fmod_last_result != FMOD_OK || studio_system == nullptr) return result;
+	g_fmod_studio_last_result = FMOD::Studio::System::create(&studio_system);
+	if (g_fmod_studio_last_result != FMOD_OK || studio_system == nullptr) return result;
 
-	g_studio_system_ref = packPointerIntoRef(studio_system, GM_FMOD_STUDIO_TYPE_SYSTEM);
+	g_studio_system_ref = fmod_pointer_ref(studio_system, gmfmod::RefType::StudioSystem);
 	result = g_studio_system_ref;
 	return result;
 }
 
 double fmod_studio_system_init(double max_channels, gm_enums::FmodStudioInitFlags studio_flags, gm_enums::FmodStudioCoreInitFlags core_flags)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)(std::uint64_t)studio_flags, (FMOD_INITFLAGS)(std::uint64_t)core_flags, nullptr);
+	g_fmod_studio_last_result = studio_system->initialize((int)max_channels, (FMOD_STUDIO_INITFLAGS)(std::uint64_t)studio_flags, (FMOD_INITFLAGS)(std::uint64_t)core_flags, nullptr);
 	return 0;
 }
 
@@ -55,8 +54,7 @@ double fmod_studio_system_init(double max_channels, gm_enums::FmodStudioInitFlag
 // and why GMFMOD's own shutdown never dereferences one.
 void fmod_studio_shutdown()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system != nullptr)
 		studio_system->release();
 
@@ -71,17 +69,16 @@ void fmod_studio_shutdown()
 		g_studio_system_callback.reset();
 	}
 
-	g_fmod_last_result = FMOD_OK;
+	g_fmod_studio_last_result = FMOD_OK;
 }
 
 double fmod_studio_system_release()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->release();
-	if (g_fmod_last_result == FMOD_OK)
+	g_fmod_studio_last_result = studio_system->release();
+	if (g_fmod_studio_last_result == FMOD_OK)
 	{
 		g_studio_system_ref = 0;
 	}
@@ -90,31 +87,28 @@ double fmod_studio_system_release()
 
 double fmod_studio_system_update()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->update();
+	g_fmod_studio_last_result = studio_system->update();
 	return 0;
 }
 
 double fmod_studio_system_flush_commands()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->flushCommands();
+	g_fmod_studio_last_result = studio_system->flushCommands();
 	return 0;
 }
 
 double fmod_studio_system_flush_sample_loading()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->flushSampleLoading();
+	g_fmod_studio_last_result = studio_system->flushSampleLoading();
 	return 0;
 }
 
@@ -124,16 +118,15 @@ double fmod_studio_system_flush_sample_loading()
 
 std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filename, gm_enums::FmodStudioLoadBankFlags flags)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)(std::uint64_t)flags, &bank);
-	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
+	g_fmod_studio_last_result = studio_system->loadBankFile(filename.data(), (FMOD_STUDIO_LOAD_BANK_FLAGS)(std::uint64_t)flags, &bank);
+	if (g_fmod_studio_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+		result = fmod_pointer_ref(bank, gmfmod::RefType::StudioBank);
 		return result;
 	}
 	return std::nullopt;
@@ -149,13 +142,12 @@ std::optional<uint64_t> fmod_studio_system_load_bank_file(std::string_view filen
 // instant this returns.
 std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, gm_enums::FmodStudioLoadBankFlags flags)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	if (data.data() == nullptr || data.length() == 0)
 	{
-		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
+		g_fmod_studio_last_result = FMOD_ERR_INVALID_PARAM;
 		return std::nullopt;
 	}
 
@@ -169,17 +161,17 @@ std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer d
 		usable = (uint64_t)INT_MAX;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->loadBankMemory(
+	g_fmod_studio_last_result = studio_system->loadBankMemory(
 		(const char*)data.data(),
 		(int)usable,
 		FMOD_STUDIO_LOAD_MEMORY,
 		(FMOD_STUDIO_LOAD_BANK_FLAGS)(std::uint64_t)flags,
 		&bank);
 
-	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
+	if (g_fmod_studio_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+		result = fmod_pointer_ref(bank, gmfmod::RefType::StudioBank);
 		return result;
 	}
 	return std::nullopt;
@@ -187,29 +179,26 @@ std::optional<uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer d
 
 double fmod_studio_system_unload_all()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->unloadAll();
+	g_fmod_studio_last_result = studio_system->unloadAll();
 	return 0;
 }
 
 double fmod_studio_system_get_bank_count()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0.0;
 
 	int count = 0;
-	g_fmod_last_result = studio_system->getBankCount(&count);
+	g_fmod_studio_last_result = studio_system->getBankCount(&count);
 	return (double)count;
 }
 
 std::optional<uint64_t> fmod_studio_system_get_bank_at(double index)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	int idx = (int)index;
@@ -217,27 +206,26 @@ std::optional<uint64_t> fmod_studio_system_get_bank_at(double index)
 
 	std::vector<FMOD::Studio::Bank*> banks((size_t)idx + 1, nullptr);
 	int count = 0;
-	g_fmod_last_result = studio_system->getBankList(banks.data(), (int)banks.size(), &count);
-	if (g_fmod_last_result != FMOD_OK || idx >= count) return std::nullopt;
+	g_fmod_studio_last_result = studio_system->getBankList(banks.data(), (int)banks.size(), &count);
+	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = banks[(size_t)idx];
 	if (bank == nullptr) return std::nullopt;
 
-	return packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+	return fmod_pointer_ref(bank, gmfmod::RefType::StudioBank);
 }
 
 std::optional<uint64_t> fmod_studio_system_get_bank(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->getBank(path.data(), &bank);
-	if (g_fmod_last_result == FMOD_OK && bank != nullptr)
+	g_fmod_studio_last_result = studio_system->getBank(path.data(), &bank);
+	if (g_fmod_studio_last_result == FMOD_OK && bank != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+		result = fmod_pointer_ref(bank, gmfmod::RefType::StudioBank);
 		return result;
 	}
 	return std::nullopt;
@@ -251,18 +239,17 @@ static bool parse_guid_string(std::string_view str_guid, FMOD_GUID& guid)
 
 std::optional<uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_guid)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD_GUID guid{};
 	if (!parse_guid_string(str_guid, guid)) return std::nullopt;
 
 	FMOD::Studio::Bank* bank = nullptr;
-	g_fmod_last_result = studio_system->getBankByID(&guid, &bank);
-	if (g_fmod_last_result != FMOD_OK || bank == nullptr) return std::nullopt;
+	g_fmod_studio_last_result = studio_system->getBankByID(&guid, &bank);
+	if (g_fmod_studio_last_result != FMOD_OK || bank == nullptr) return std::nullopt;
 
-	return packPointerIntoRef(bank, GM_FMOD_STUDIO_TYPE_BANK);
+	return fmod_pointer_ref(bank, gmfmod::RefType::StudioBank);
 }
 
 // ============================================================
@@ -271,16 +258,15 @@ std::optional<uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_g
 
 std::optional<uint64_t> fmod_studio_system_get_event(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::EventDescription* event_desc = nullptr;
-	g_fmod_last_result = studio_system->getEvent(path.data(), &event_desc);
-	if (g_fmod_last_result == FMOD_OK && event_desc != nullptr)
+	g_fmod_studio_last_result = studio_system->getEvent(path.data(), &event_desc);
+	if (g_fmod_studio_last_result == FMOD_OK && event_desc != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(event_desc, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		result = fmod_pointer_ref(event_desc, gmfmod::RefType::StudioEventDescription);
 		return result;
 	}
 	return std::nullopt;
@@ -288,13 +274,12 @@ std::optional<uint64_t> fmod_studio_system_get_event(std::string_view path)
 
 std::optional<uint64_t> fmod_studio_system_create_event_instance(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::EventInstance* instance = nullptr;
-	g_fmod_last_result = studio_system->getEvent(path.data(), nullptr);
-	if (g_fmod_last_result == FMOD_OK)
+	g_fmod_studio_last_result = studio_system->getEvent(path.data(), nullptr);
+	if (g_fmod_studio_last_result == FMOD_OK)
 	{
 		// Create instance through event description
 		FMOD::Studio::EventDescription* event_desc = nullptr;
@@ -304,10 +289,10 @@ std::optional<uint64_t> fmod_studio_system_create_event_instance(std::string_vie
 			event_desc->createInstance(&instance);
 		}
 	}
-	if (g_fmod_last_result == FMOD_OK && instance != nullptr)
+	if (g_fmod_studio_last_result == FMOD_OK && instance != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(instance, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE);
+		result = fmod_pointer_ref(instance, gmfmod::RefType::StudioEventInstance);
 		return result;
 	}
 	return std::nullopt;
@@ -319,16 +304,15 @@ std::optional<uint64_t> fmod_studio_system_create_event_instance(std::string_vie
 
 std::optional<uint64_t> fmod_studio_system_get_bus(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bus* bus = nullptr;
-	g_fmod_last_result = studio_system->getBus(path.data(), &bus);
-	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
+	g_fmod_studio_last_result = studio_system->getBus(path.data(), &bus);
+	if (g_fmod_studio_last_result == FMOD_OK && bus != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
+		result = fmod_pointer_ref(bus, gmfmod::RefType::StudioBus);
 		return result;
 	}
 	return std::nullopt;
@@ -336,16 +320,15 @@ std::optional<uint64_t> fmod_studio_system_get_bus(std::string_view path)
 
 std::optional<uint64_t> fmod_studio_system_get_master_bus()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::Bus* bus = nullptr;
-	g_fmod_last_result = studio_system->getBus("bus:/", &bus);
-	if (g_fmod_last_result == FMOD_OK && bus != nullptr)
+	g_fmod_studio_last_result = studio_system->getBus("bus:/", &bus);
+	if (g_fmod_studio_last_result == FMOD_OK && bus != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
+		result = fmod_pointer_ref(bus, gmfmod::RefType::StudioBus);
 		return result;
 	}
 	return std::nullopt;
@@ -353,18 +336,17 @@ std::optional<uint64_t> fmod_studio_system_get_master_bus()
 
 std::optional<uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_guid)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD_GUID guid{};
 	if (!parse_guid_string(str_guid, guid)) return std::nullopt;
 
 	FMOD::Studio::Bus* bus = nullptr;
-	g_fmod_last_result = studio_system->getBusByID(&guid, &bus);
-	if (g_fmod_last_result != FMOD_OK || bus == nullptr) return std::nullopt;
+	g_fmod_studio_last_result = studio_system->getBusByID(&guid, &bus);
+	if (g_fmod_studio_last_result != FMOD_OK || bus == nullptr) return std::nullopt;
 
-	return packPointerIntoRef(bus, GM_FMOD_STUDIO_TYPE_BUS);
+	return fmod_pointer_ref(bus, gmfmod::RefType::StudioBus);
 }
 
 // ============================================================
@@ -373,16 +355,15 @@ std::optional<uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_gu
 
 std::optional<uint64_t> fmod_studio_system_get_vca(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD::Studio::VCA* vca = nullptr;
-	g_fmod_last_result = studio_system->getVCA(path.data(), &vca);
-	if (g_fmod_last_result == FMOD_OK && vca != nullptr)
+	g_fmod_studio_last_result = studio_system->getVCA(path.data(), &vca);
+	if (g_fmod_studio_last_result == FMOD_OK && vca != nullptr)
 	{
 		uint64_t result = 0;
-		result = packPointerIntoRef(vca, GM_FMOD_STUDIO_TYPE_VCA);
+		result = fmod_pointer_ref(vca, gmfmod::RefType::StudioVca);
 		return result;
 	}
 	return std::nullopt;
@@ -390,18 +371,17 @@ std::optional<uint64_t> fmod_studio_system_get_vca(std::string_view path)
 
 std::optional<uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_guid)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::nullopt;
 
 	FMOD_GUID guid{};
 	if (!parse_guid_string(str_guid, guid)) return std::nullopt;
 
 	FMOD::Studio::VCA* vca = nullptr;
-	g_fmod_last_result = studio_system->getVCAByID(&guid, &vca);
-	if (g_fmod_last_result != FMOD_OK || vca == nullptr) return std::nullopt;
+	g_fmod_studio_last_result = studio_system->getVCAByID(&guid, &vca);
+	if (g_fmod_studio_last_result != FMOD_OK || vca == nullptr) return std::nullopt;
 
-	return packPointerIntoRef(vca, GM_FMOD_STUDIO_TYPE_VCA);
+	return fmod_pointer_ref(vca, gmfmod::RefType::StudioVca);
 }
 
 // ============================================================
@@ -410,8 +390,7 @@ std::optional<uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_gu
 
 double fmod_studio_system_set_listener_attributes(double listener_index, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up, const std::optional<gm_structs::FmodStudioVec3>& attenuation_position)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	FMOD_3D_ATTRIBUTES attributes = {};
@@ -430,41 +409,38 @@ double fmod_studio_system_set_listener_attributes(double listener_index, const g
 		attenuation_ptr = &attenuation;
 	}
 
-	g_fmod_last_result = studio_system->setListenerAttributes((int)listener_index, &attributes, attenuation_ptr);
+	g_fmod_studio_last_result = studio_system->setListenerAttributes((int)listener_index, &attributes, attenuation_ptr);
 	return 0;
 }
 
 double fmod_studio_system_set_listener_weight(double listener_index, double weight)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->setListenerWeight((int)listener_index, (float)weight);
+	g_fmod_studio_last_result = studio_system->setListenerWeight((int)listener_index, (float)weight);
 	return 0;
 }
 
 double fmod_studio_system_get_num_listeners()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0.0;
 
 	int count = 0;
-	g_fmod_last_result = studio_system->getNumListeners(&count);
+	g_fmod_studio_last_result = studio_system->getNumListeners(&count);
 	return (double)count;
 }
 
 FmodStudioListenerAttributes fmod_studio_system_get_listener_attributes(double listener_index)
 {
 	FmodStudioListenerAttributes result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_3D_ATTRIBUTES attributes{};
 	FMOD_VECTOR attenuation{};
-	g_fmod_last_result = studio_system->getListenerAttributes((int)listener_index, &attributes, &attenuation);
+	g_fmod_studio_last_result = studio_system->getListenerAttributes((int)listener_index, &attributes, &attenuation);
 
 	result.attributes.position.x = (double)attributes.position.x;
 	result.attributes.position.y = (double)attributes.position.y;
@@ -486,12 +462,11 @@ FmodStudioListenerAttributes fmod_studio_system_get_listener_attributes(double l
 
 double fmod_studio_system_get_listener_weight(double listener_index)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0.0;
 
 	float weight = 0.0f;
-	g_fmod_last_result = studio_system->getListenerWeight((int)listener_index, &weight);
+	g_fmod_studio_last_result = studio_system->getListenerWeight((int)listener_index, &weight);
 	return (double)weight;
 }
 
@@ -501,34 +476,31 @@ double fmod_studio_system_get_listener_weight(double listener_index)
 
 double fmod_studio_system_set_parameter_by_name(std::string_view name, double value)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->setParameterByName(name.data(), (float)value);
+	g_fmod_studio_last_result = studio_system->setParameterByName(name.data(), (float)value);
 	return 0;
 }
 
 double fmod_studio_system_get_parameter_by_name(std::string_view name)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0.0;
 
 	float value = 0.0f;
-	g_fmod_last_result = studio_system->getParameterByName(name.data(), &value);
+	g_fmod_studio_last_result = studio_system->getParameterByName(name.data(), &value);
 	return (double)value;
 }
 
 uint64_t fmod_studio_system_get_core_system_ptr()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	FMOD::System* core_system = nullptr;
-	g_fmod_last_result = studio_system->getCoreSystem(&core_system);
-	if (g_fmod_last_result != FMOD_OK || core_system == nullptr) return 0;
+	g_fmod_studio_last_result = studio_system->getCoreSystem(&core_system);
+	if (g_fmod_studio_last_result != FMOD_OK || core_system == nullptr) return 0;
 
 	// Handed to GMFMOD's fmod_system_adopt(). A pointer, not a ref: both
 	// extensions pack refs identically, so a ref minted here would resolve
@@ -542,11 +514,10 @@ uint64_t fmod_studio_system_get_core_system_ptr()
 
 double fmod_studio_system_set_num_listeners(double count)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->setNumListeners((int)count);
+	g_fmod_studio_last_result = studio_system->setNumListeners((int)count);
 	return 0;
 }
 
@@ -556,14 +527,13 @@ double fmod_studio_system_set_num_listeners(double count)
 
 std::string fmod_studio_system_lookup_id(std::string_view path)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::string();
 
 	std::string path_str(path);
 	FMOD_GUID guid{};
-	g_fmod_last_result = studio_system->lookupID(path_str.c_str(), &guid);
-	if (g_fmod_last_result != FMOD_OK) return std::string();
+	g_fmod_studio_last_result = studio_system->lookupID(path_str.c_str(), &guid);
+	if (g_fmod_studio_last_result != FMOD_OK) return std::string();
 
 	char buffer[64]{};
 	std::snprintf(buffer, sizeof(buffer),
@@ -576,45 +546,42 @@ std::string fmod_studio_system_lookup_id(std::string_view path)
 
 std::string fmod_studio_system_lookup_path(std::string_view str_guid)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::string();
 
 	FMOD_GUID guid{};
 	if (!parse_guid_string(str_guid, guid)) return std::string();
 
-	return fmod_read_string([studio_system, &guid](char* buf, int size, int* got) {
+	return gmfmod::readString([studio_system, &guid](char* buf, int size, int* got) {
 		return studio_system->lookupPath(&guid, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 uint64_t fmod_studio_system_get_event_by_id(std::string_view id)
 {
 	uint64_t result = 0;
 
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	std::string id_str(id);
 	FMOD_GUID guid{};
-	g_fmod_last_result = FMOD::Studio::parseID(id_str.c_str(), &guid);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = FMOD::Studio::parseID(id_str.c_str(), &guid);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	FMOD::Studio::EventDescription* event_desc = nullptr;
-	g_fmod_last_result = studio_system->getEventByID(&guid, &event_desc);
-	if (g_fmod_last_result != FMOD_OK || event_desc == nullptr) return result;
+	g_fmod_studio_last_result = studio_system->getEventByID(&guid, &event_desc);
+	if (g_fmod_studio_last_result != FMOD_OK || event_desc == nullptr) return result;
 
-	result = packIndexIntoRef(
+	result = gmfmod::packRef(
 		(uint32_t)reinterpret_cast<uintptr_t>(event_desc),
-		GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION);
+		gmfmod::RefType::StudioEventDescription);
 	return result;
 }
 
 bool fmod_studio_system_is_valid()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return false;
 
 	return studio_system->isValid();
@@ -626,23 +593,21 @@ bool fmod_studio_system_is_valid()
 
 double fmod_studio_system_start_command_capture(std::string_view filename, enum gm_enums::FmodStudioCommandCaptureFlags flags)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	std::string filename_str(filename);
-	g_fmod_last_result = studio_system->startCommandCapture(
+	g_fmod_studio_last_result = studio_system->startCommandCapture(
 		filename_str.c_str(), (FMOD_STUDIO_COMMANDCAPTURE_FLAGS)(std::uint64_t)flags);
 	return 0;
 }
 
 double fmod_studio_system_stop_command_capture()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->stopCommandCapture();
+	g_fmod_studio_last_result = studio_system->stopCommandCapture();
 	return 0;
 }
 
@@ -650,19 +615,18 @@ uint64_t fmod_studio_system_load_command_replay(std::string_view filename, enum 
 {
 	uint64_t result = 0;
 
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	std::string filename_str(filename);
 	FMOD::Studio::CommandReplay* replay = nullptr;
-	g_fmod_last_result = studio_system->loadCommandReplay(
+	g_fmod_studio_last_result = studio_system->loadCommandReplay(
 		filename_str.c_str(), (FMOD_STUDIO_COMMANDREPLAY_FLAGS)(std::uint64_t)flags, &replay);
-	if (g_fmod_last_result != FMOD_OK || replay == nullptr) return result;
+	if (g_fmod_studio_last_result != FMOD_OK || replay == nullptr) return result;
 
-	result = packIndexIntoRef(
+	result = gmfmod::packRef(
 		(uint32_t)reinterpret_cast<uintptr_t>(replay),
-		GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY);
+		gmfmod::RefType::StudioCommandReplay);
 	return result;
 }
 
@@ -673,14 +637,13 @@ uint64_t fmod_studio_system_load_command_replay(std::string_view filename, enum 
 FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key)
 {
 	FmodStudioSoundInfo result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	std::string key_str(key);
 	FMOD_STUDIO_SOUND_INFO info{};
-	g_fmod_last_result = studio_system->getSoundInfo(key_str.c_str(), &info);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = studio_system->getSoundInfo(key_str.c_str(), &info);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
 	result.name_or_data = info.name_or_data != nullptr ? std::string(info.name_or_data) : std::string();
 	result.mode = (gm_enums::FmodStudioMode)(int)info.mode;
@@ -718,8 +681,7 @@ FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key)
 FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1, double id_data2)
 {
 	FmodStudioParameterValue result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_PARAMETER_ID id{};
@@ -727,7 +689,7 @@ FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1,
 	id.data2 = (unsigned int)id_data2;
 
 	float value = 0.0f, final_value = 0.0f;
-	g_fmod_last_result = studio_system->getParameterByID(id, &value, &final_value);
+	g_fmod_studio_last_result = studio_system->getParameterByID(id, &value, &final_value);
 	result.value = (double)value;
 	result.final_value = (double)final_value;
 	return result;
@@ -735,22 +697,20 @@ FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1,
 
 double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, bool ignore_seek_speed)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	FMOD_STUDIO_PARAMETER_ID id{};
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	g_fmod_last_result = studio_system->setParameterByID(id, (float)value, ignore_seek_speed);
+	g_fmod_studio_last_result = studio_system->setParameterByID(id, (float)value, ignore_seek_speed);
 	return 0;
 }
 
 double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	FMOD_STUDIO_PARAMETER_ID id{};
@@ -758,19 +718,18 @@ double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double
 	id.data2 = (unsigned int)id_data2;
 
 	std::string label_str(label);
-	g_fmod_last_result = studio_system->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed);
+	g_fmod_studio_last_result = studio_system->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 
 double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, bool ignore_seek_speed)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	std::string name_str(name);
 	std::string label_str(label);
-	g_fmod_last_result = studio_system->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed);
+	g_fmod_studio_last_result = studio_system->setParameterByNameWithLabel(name_str.c_str(), label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 
@@ -795,8 +754,7 @@ static FmodStudioParameterDescription convert_parameter_description(const FMOD_S
 FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2)
 {
 	FmodStudioParameterDescription result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_PARAMETER_ID id{};
@@ -804,41 +762,38 @@ FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_i
 	id.data2 = (unsigned int)id_data2;
 
 	FMOD_STUDIO_PARAMETER_DESCRIPTION desc{};
-	g_fmod_last_result = studio_system->getParameterDescriptionByID(id, &desc);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = studio_system->getParameterDescriptionByID(id, &desc);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 	return convert_parameter_description(desc);
 }
 
 FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_name(std::string_view name)
 {
 	FmodStudioParameterDescription result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	std::string name_str(name);
 	FMOD_STUDIO_PARAMETER_DESCRIPTION desc{};
-	g_fmod_last_result = studio_system->getParameterDescriptionByName(name_str.c_str(), &desc);
-	if (g_fmod_last_result != FMOD_OK) return result;
+	g_fmod_studio_last_result = studio_system->getParameterDescriptionByName(name_str.c_str(), &desc);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 	return convert_parameter_description(desc);
 }
 
 double fmod_studio_system_get_parameter_description_count()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0.0;
 
 	int count = 0;
-	g_fmod_last_result = studio_system->getParameterDescriptionCount(&count);
+	g_fmod_studio_last_result = studio_system->getParameterDescriptionCount(&count);
 	return (double)count;
 }
 
 FmodStudioParameterDescription fmod_studio_system_get_parameter_description_at(double index)
 {
 	FmodStudioParameterDescription result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	int idx = (int)index;
@@ -848,37 +803,35 @@ FmodStudioParameterDescription fmod_studio_system_get_parameter_description_at(d
 	// per-index getter, so probe with a capacity of idx+1 and take the tail.
 	std::vector<FMOD_STUDIO_PARAMETER_DESCRIPTION> descriptions((size_t)idx + 1, FMOD_STUDIO_PARAMETER_DESCRIPTION{});
 	int count = 0;
-	g_fmod_last_result = studio_system->getParameterDescriptionList(descriptions.data(), (int)descriptions.size(), &count);
-	if (g_fmod_last_result != FMOD_OK || idx >= count) return result;
+	g_fmod_studio_last_result = studio_system->getParameterDescriptionList(descriptions.data(), (int)descriptions.size(), &count);
+	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return result;
 
 	return convert_parameter_description(descriptions[(size_t)idx]);
 }
 
 std::string fmod_studio_system_get_parameter_label_by_id(double id_data1, double id_data2, double label_index)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::string();
 
 	FMOD_STUDIO_PARAMETER_ID id{};
 	id.data1 = (unsigned int)id_data1;
 	id.data2 = (unsigned int)id_data2;
 
-	return fmod_read_string([studio_system, id, label_index](char* buf, int size, int* got) {
+	return gmfmod::readString([studio_system, id, label_index](char* buf, int size, int* got) {
 		return studio_system->getParameterLabelByID(id, (int)label_index, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name, double label_index)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return std::string();
 
 	std::string name_str(name);
-	return fmod_read_string([studio_system, &name_str, label_index](char* buf, int size, int* got) {
+	return gmfmod::readString([studio_system, &name_str, label_index](char* buf, int size, int* got) {
 		return studio_system->getParameterLabelByName(name_str.c_str(), (int)label_index, buf, size, got);
-	});
+	}, g_fmod_studio_last_result);
 }
 
 // ============================================================
@@ -888,13 +841,12 @@ std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name
 FmodStudioSystemCPUUsage fmod_studio_system_get_cpu_usage()
 {
 	FmodStudioSystemCPUUsage result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_CPU_USAGE usage{};
 	FMOD_CPU_USAGE core{};
-	g_fmod_last_result = studio_system->getCPUUsage(&usage, &core);
+	g_fmod_studio_last_result = studio_system->getCPUUsage(&usage, &core);
 
 	result.studio_update = (double)usage.update;
 	result.core.dsp = (double)core.dsp;
@@ -920,12 +872,11 @@ static FmodStudioBufferInfo convert_buffer_info(const FMOD_STUDIO_BUFFER_INFO& i
 FmodStudioBufferUsage fmod_studio_system_get_buffer_usage()
 {
 	FmodStudioBufferUsage result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_BUFFER_USAGE usage{};
-	g_fmod_last_result = studio_system->getBufferUsage(&usage);
+	g_fmod_studio_last_result = studio_system->getBufferUsage(&usage);
 	result.command_queue = convert_buffer_info(usage.studiocommandqueue);
 	result.handle = convert_buffer_info(usage.studiohandle);
 	return result;
@@ -933,23 +884,21 @@ FmodStudioBufferUsage fmod_studio_system_get_buffer_usage()
 
 double fmod_studio_system_reset_buffer_usage()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	g_fmod_last_result = studio_system->resetBufferUsage();
+	g_fmod_studio_last_result = studio_system->resetBufferUsage();
 	return 0;
 }
 
 FmodStudioMemoryUsage fmod_studio_system_get_memory_usage()
 {
 	FmodStudioMemoryUsage result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_MEMORY_USAGE usage{};
-	g_fmod_last_result = studio_system->getMemoryUsage(&usage);
+	g_fmod_studio_last_result = studio_system->getMemoryUsage(&usage);
 	result.exclusive = (double)usage.exclusive;
 	result.inclusive = (double)usage.inclusive;
 	result.sample_data = (double)usage.sampledata;
@@ -963,13 +912,12 @@ FmodStudioMemoryUsage fmod_studio_system_get_memory_usage()
 FmodStudioAdvancedSettings fmod_studio_system_get_advanced_settings()
 {
 	FmodStudioAdvancedSettings result{};
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return result;
 
 	FMOD_STUDIO_ADVANCEDSETTINGS settings{};
 	settings.cbsize = sizeof(settings);
-	g_fmod_last_result = studio_system->getAdvancedSettings(&settings);
+	g_fmod_studio_last_result = studio_system->getAdvancedSettings(&settings);
 
 	result.command_queue_size = (double)settings.commandqueuesize;
 	result.handle_initial_size = (double)settings.handleinitialsize;
@@ -982,8 +930,7 @@ FmodStudioAdvancedSettings fmod_studio_system_get_advanced_settings()
 
 double fmod_studio_system_set_advanced_settings(const FmodStudioAdvancedSettings& settings)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	FMOD_STUDIO_ADVANCEDSETTINGS native{};
@@ -995,7 +942,7 @@ double fmod_studio_system_set_advanced_settings(const FmodStudioAdvancedSettings
 	native.streamingscheduledelay = (unsigned int)settings.streaming_schedule_delay;
 	native.encryptionkey = settings.encryption_key.empty() ? nullptr : settings.encryption_key.c_str();
 
-	g_fmod_last_result = studio_system->setAdvancedSettings(&native);
+	g_fmod_studio_last_result = studio_system->setAdvancedSettings(&native);
 	return 0;
 }
 
@@ -1023,9 +970,9 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_system(
 	// pointer-backed, so no registry is involved.
 	if (type == FMOD_STUDIO_SYSTEM_CALLBACK_BANK_UNLOAD && commanddata != nullptr)
 	{
-		uintptr_t bank_ptr = reinterpret_cast<uintptr_t>(commanddata) & 0xFFFFFFFFu;
+		uintptr_t bank_ptr = gmfmod::pointerKey(commanddata);
 		callback.value().call(kind,
-			packIndexIntoRef((uint32_t)bank_ptr, GM_FMOD_STUDIO_TYPE_BANK));
+			gmfmod::packRef((uint32_t)bank_ptr, gmfmod::RefType::StudioBank));
 		return FMOD_OK;
 	}
 
@@ -1037,8 +984,7 @@ double fmod_studio_system_set_callback(
 	const std::optional<gm::wire::GMFunction>& callback,
 	enum gm_enums::FmodStudioSystemCallbackType callback_mask)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
 	if (!callback.has_value())
@@ -1047,7 +993,7 @@ double fmod_studio_system_set_callback(
 			std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
 			g_studio_system_callback.reset();
 		}
-		g_fmod_last_result = studio_system->setCallback(nullptr, FMOD_STUDIO_SYSTEM_CALLBACK_ALL);
+		g_fmod_studio_last_result = studio_system->setCallback(nullptr, FMOD_STUDIO_SYSTEM_CALLBACK_ALL);
 		return 0;
 	}
 
@@ -1056,10 +1002,10 @@ double fmod_studio_system_set_callback(
 		g_studio_system_callback = callback;
 	}
 
-	g_fmod_last_result = studio_system->setCallback(
+	g_fmod_studio_last_result = studio_system->setCallback(
 		CALLBACK_fmod_studio_system,
 		(FMOD_STUDIO_SYSTEM_CALLBACK_TYPE)(std::uint64_t)callback_mask);
-	if (g_fmod_last_result != FMOD_OK)
+	if (g_fmod_studio_last_result != FMOD_OK)
 	{
 		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);
 		g_studio_system_callback.reset();
@@ -1073,19 +1019,17 @@ double fmod_studio_system_set_callback(
 
 int64_t fmod_studio_system_get_user_data()
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	return getResourceUserData(studio_system);
+	return gmfmod::getUserData(studio_system, g_fmod_studio_last_result);
 }
 
 double fmod_studio_system_set_user_data(int64_t user_data)
 {
-	FMOD::Studio::System* studio_system = nullptr;
-	validate_fmod_studio_system(g_studio_system_ref, studio_system);
+	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);
 	if (studio_system == nullptr) return 0;
 
-	setResourceUserData(studio_system, user_data);
+	gmfmod::setUserData(studio_system, user_data, g_fmod_studio_last_result);
 	return 0;
 }

@@ -9,8 +9,7 @@ using namespace gm_structs;
 
 double fmod_sound_group_set_max_audible(uint64_t sound_group_ref, double max_audible)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -21,8 +20,7 @@ double fmod_sound_group_set_max_audible(uint64_t sound_group_ref, double max_aud
 
 double fmod_sound_group_get_max_audible(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0.0;
@@ -34,8 +32,7 @@ double fmod_sound_group_get_max_audible(uint64_t sound_group_ref)
 
 double fmod_sound_group_set_max_audible_behavior(uint64_t sound_group_ref, gm_enums::FmodSoundGroupBehavior behavior)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -46,8 +43,7 @@ double fmod_sound_group_set_max_audible_behavior(uint64_t sound_group_ref, gm_en
 
 gm_enums::FmodSoundGroupBehavior fmod_sound_group_get_max_audible_behavior(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return (gm_enums::FmodSoundGroupBehavior)0;
@@ -59,8 +55,7 @@ gm_enums::FmodSoundGroupBehavior fmod_sound_group_get_max_audible_behavior(uint6
 
 double fmod_sound_group_set_mute_fade_speed(uint64_t sound_group_ref, double speed)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -71,8 +66,7 @@ double fmod_sound_group_set_mute_fade_speed(uint64_t sound_group_ref, double spe
 
 double fmod_sound_group_get_mute_fade_speed(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0.0;
@@ -84,8 +78,7 @@ double fmod_sound_group_get_mute_fade_speed(uint64_t sound_group_ref)
 
 double fmod_sound_group_set_volume(uint64_t sound_group_ref, double volume)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -96,8 +89,7 @@ double fmod_sound_group_set_volume(uint64_t sound_group_ref, double volume)
 
 double fmod_sound_group_get_volume(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0.0;
@@ -113,8 +105,7 @@ double fmod_sound_group_get_volume(uint64_t sound_group_ref)
 
 double fmod_sound_group_get_num_sounds(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0.0;
@@ -128,8 +119,7 @@ uint64_t fmod_sound_group_get_sound(uint64_t sound_group_ref, double sound_index
 {
 	uint64_t result = 0;
 
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return result;
@@ -139,16 +129,15 @@ uint64_t fmod_sound_group_get_sound(uint64_t sound_group_ref, double sound_index
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = registerOrFindResource(sound, index_sounds, map_sounds);
-		result = packIndexIntoRef(sound_id, GM_FMOD_TYPE_SOUND);
+		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
+		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
 	}
 	return result;
 }
 
 double fmod_sound_group_get_num_playing(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0.0;
@@ -160,8 +149,7 @@ double fmod_sound_group_get_num_playing(uint64_t sound_group_ref)
 
 double fmod_sound_group_stop(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
@@ -176,8 +164,7 @@ double fmod_sound_group_stop(uint64_t sound_group_ref)
 
 std::string fmod_sound_group_get_name(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return "";
@@ -189,13 +176,12 @@ std::string fmod_sound_group_get_name(uint64_t sound_group_ref)
 
 double fmod_sound_group_release(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return 0;
 
-	unregisterResource(sound_group, map_sound_groups);
+	g_registries.soundGroups.unregister(sound_group);
 	g_fmod_last_result = sound_group->release();
 	return 0;
 }
@@ -204,8 +190,7 @@ uint64_t fmod_sound_group_get_system_object(uint64_t sound_group_ref)
 {
 	uint64_t result = 0;
 
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 
 	if (sound_group == nullptr)
 		return result;
@@ -215,27 +200,25 @@ uint64_t fmod_sound_group_get_system_object(uint64_t sound_group_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = registerOrFindResource(system, index_systems, map_systems);
-		result = packIndexIntoRef(system_id, GM_FMOD_TYPE_SYSTEM);
+		uint32_t system_id = g_registries.systems.registerOrFind(system);
+		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
 	}
 	return result;
 }
 
 double fmod_sound_group_set_user_data(uint64_t sound_group_ref, int64_t user_data)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 	if (sound_group == nullptr) return 0;
 
-	setResourceUserData(sound_group, user_data);
+	gmfmod::setUserData(sound_group, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_sound_group_get_user_data(uint64_t sound_group_ref)
 {
-	FMOD::SoundGroup* sound_group = nullptr;
-	validate_fmod_sound_group(sound_group_ref, sound_group);
+	FMOD::SoundGroup* sound_group = resolve_fmod_sound_group(sound_group_ref);
 	if (sound_group == nullptr) return 0;
 
-	return getResourceUserData(sound_group);
+	return gmfmod::getUserData(sound_group, g_fmod_last_result);
 }

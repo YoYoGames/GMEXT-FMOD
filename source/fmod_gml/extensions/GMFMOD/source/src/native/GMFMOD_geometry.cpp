@@ -9,8 +9,7 @@ using namespace gm_structs;
 
 double fmod_geometry_set_polygon_attributes(uint64_t geometry_ref, double polygon_index, double direct_occlusion, double reverb_occlusion, bool double_sided)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 	g_fmod_last_result = geometry->setPolygonAttributes((int)polygon_index, (float)direct_occlusion, (float)reverb_occlusion, double_sided);
 	return 0;
@@ -18,8 +17,7 @@ double fmod_geometry_set_polygon_attributes(uint64_t geometry_ref, double polygo
 
 double fmod_geometry_get_polygon_num_vertices(uint64_t geometry_ref, double polygon_index)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0.0;
 	int num_vertices = 0;
 	g_fmod_last_result = geometry->getPolygonNumVertices((int)polygon_index, &num_vertices);
@@ -28,8 +26,7 @@ double fmod_geometry_get_polygon_num_vertices(uint64_t geometry_ref, double poly
 
 double fmod_geometry_add_polygon(uint64_t geometry_ref, double direct_occlusion, double reverb_occlusion, bool double_sided, double num_vertices, gm::wire::GMBuffer vertices)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0.0;
 
 	int count = (int)num_vertices;
@@ -48,8 +45,7 @@ double fmod_geometry_add_polygon(uint64_t geometry_ref, double direct_occlusion,
 FmodPolygonAttributes fmod_geometry_get_polygon_attributes(uint64_t geometry_ref, double polygon_index)
 {
 	FmodPolygonAttributes result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	float direct_occlusion = 0.0f, reverb_occlusion = 0.0f;
@@ -65,8 +61,7 @@ FmodPolygonAttributes fmod_geometry_get_polygon_attributes(uint64_t geometry_ref
 
 double fmod_geometry_set_polygon_vertex(uint64_t geometry_ref, double polygon_index, double vertex_index, const FmodVec3& vertex)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 
 	FMOD_VECTOR v{ (float)vertex.x, (float)vertex.y, (float)vertex.z };
@@ -77,8 +72,7 @@ double fmod_geometry_set_polygon_vertex(uint64_t geometry_ref, double polygon_in
 FmodVec3 fmod_geometry_get_polygon_vertex(uint64_t geometry_ref, double polygon_index, double vertex_index)
 {
 	FmodVec3 result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	FMOD_VECTOR v{};
@@ -93,8 +87,7 @@ FmodVec3 fmod_geometry_get_polygon_vertex(uint64_t geometry_ref, double polygon_
 
 double fmod_geometry_get_num_polygons(uint64_t geometry_ref)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0.0;
 
 	int num_polygons = 0;
@@ -105,8 +98,7 @@ double fmod_geometry_get_num_polygons(uint64_t geometry_ref)
 FmodGeometryMaxPolygons fmod_geometry_get_max_polygons(uint64_t geometry_ref)
 {
 	FmodGeometryMaxPolygons result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	int max_polygons = 0, max_vertices = 0;
@@ -124,8 +116,7 @@ FmodGeometryMaxPolygons fmod_geometry_get_max_polygons(uint64_t geometry_ref)
 
 double fmod_geometry_set_position(uint64_t geometry_ref, double x, double y, double z)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 	FMOD_VECTOR position = {(float)x, (float)y, (float)z};
 	g_fmod_last_result = geometry->setPosition(&position);
@@ -135,8 +126,7 @@ double fmod_geometry_set_position(uint64_t geometry_ref, double x, double y, dou
 FmodVec3 fmod_geometry_get_position(uint64_t geometry_ref)
 {
 	FmodVec3 result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	FMOD_VECTOR position{};
@@ -151,8 +141,7 @@ FmodVec3 fmod_geometry_get_position(uint64_t geometry_ref)
 
 double fmod_geometry_set_rotation(uint64_t geometry_ref, double forward_x, double forward_y, double forward_z, double up_x, double up_y, double up_z)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 	FMOD_VECTOR forward = {(float)forward_x, (float)forward_y, (float)forward_z};
 	FMOD_VECTOR up = {(float)up_x, (float)up_y, (float)up_z};
@@ -163,8 +152,7 @@ double fmod_geometry_set_rotation(uint64_t geometry_ref, double forward_x, doubl
 FmodGeometryRotation fmod_geometry_get_rotation(uint64_t geometry_ref)
 {
 	FmodGeometryRotation result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	FMOD_VECTOR forward{}, up{};
@@ -182,8 +170,7 @@ FmodGeometryRotation fmod_geometry_get_rotation(uint64_t geometry_ref)
 
 double fmod_geometry_set_scale(uint64_t geometry_ref, double scale_x, double scale_y, double scale_z)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 	FMOD_VECTOR scale = {(float)scale_x, (float)scale_y, (float)scale_z};
 	g_fmod_last_result = geometry->setScale(&scale);
@@ -193,8 +180,7 @@ double fmod_geometry_set_scale(uint64_t geometry_ref, double scale_x, double sca
 FmodVec3 fmod_geometry_get_scale(uint64_t geometry_ref)
 {
 	FmodVec3 result{};
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return result;
 
 	FMOD_VECTOR scale{};
@@ -209,8 +195,7 @@ FmodVec3 fmod_geometry_get_scale(uint64_t geometry_ref)
 
 bool fmod_geometry_get_active(uint64_t geometry_ref)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return false;
 
 	bool active = false;
@@ -220,8 +205,7 @@ bool fmod_geometry_get_active(uint64_t geometry_ref)
 
 double fmod_geometry_set_active(uint64_t geometry_ref, bool active)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 
 	g_fmod_last_result = geometry->setActive(active);
@@ -230,21 +214,19 @@ double fmod_geometry_set_active(uint64_t geometry_ref, bool active)
 
 double fmod_geometry_set_user_data(uint64_t geometry_ref, int64_t user_data)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 
-	setResourceUserData(geometry, user_data);
+	gmfmod::setUserData(geometry, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_geometry_get_user_data(uint64_t geometry_ref)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 
-	return getResourceUserData(geometry);
+	return gmfmod::getUserData(geometry, g_fmod_last_result);
 }
 
 // ============================================================
@@ -253,8 +235,7 @@ int64_t fmod_geometry_get_user_data(uint64_t geometry_ref)
 
 double fmod_geometry_save(uint64_t geometry_ref, std::string_view filename)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
 	// Geometry::save requires buffer pointer, not filename - skip for now
 	g_fmod_last_result = FMOD_OK;
@@ -263,10 +244,9 @@ double fmod_geometry_save(uint64_t geometry_ref, std::string_view filename)
 
 double fmod_geometry_release(uint64_t geometry_ref)
 {
-	FMOD::Geometry* geometry = nullptr;
-	validate_fmod_geometry(geometry_ref, geometry);
+	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
-	unregisterResource(geometry, map_geometries);
+	g_registries.geometries.unregister(geometry);
 	g_fmod_last_result = geometry->release();
 	return 0;
 }

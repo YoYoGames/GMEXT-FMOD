@@ -8,8 +8,7 @@ using namespace gm_structs;
 
 double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, bool active)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 
 	if (reverb_3d == nullptr)
 		return 0;
@@ -20,8 +19,7 @@ double fmod_reverb_3d_set_active(uint64_t reverb_3d_ref, bool active)
 
 bool fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 
 	if (reverb_3d == nullptr)
 		return false;
@@ -33,8 +31,7 @@ bool fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
 
 double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 
 	if (reverb_3d == nullptr)
 		return 0;
@@ -60,8 +57,7 @@ double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, double decay_time, 
 FmodReverbProperties fmod_reverb_3d_get_properties(uint64_t reverb_3d_ref)
 {
 	FmodReverbProperties result{};
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 	if (reverb_3d == nullptr) return result;
 
 	FMOD_REVERB_PROPERTIES props{};
@@ -85,8 +81,7 @@ FmodReverbProperties fmod_reverb_3d_get_properties(uint64_t reverb_3d_ref)
 
 double fmod_reverb_3d_set_3d_attributes(uint64_t reverb_3d_ref, const FmodVec3& position, double min_distance, double max_distance)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 	if (reverb_3d == nullptr) return 0;
 
 	FMOD_VECTOR pos{};
@@ -101,8 +96,7 @@ double fmod_reverb_3d_set_3d_attributes(uint64_t reverb_3d_ref, const FmodVec3& 
 FmodReverb3DAttributes fmod_reverb_3d_get_3d_attributes(uint64_t reverb_3d_ref)
 {
 	FmodReverb3DAttributes result{};
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 	if (reverb_3d == nullptr) return result;
 
 	FMOD_VECTOR pos{};
@@ -120,21 +114,19 @@ FmodReverb3DAttributes fmod_reverb_3d_get_3d_attributes(uint64_t reverb_3d_ref)
 
 double fmod_reverb_3d_set_user_data(uint64_t reverb_3d_ref, int64_t user_data)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 	if (reverb_3d == nullptr) return 0;
 
-	setResourceUserData(reverb_3d, user_data);
+	gmfmod::setUserData(reverb_3d, user_data, g_fmod_last_result);
 	return 0;
 }
 
 int64_t fmod_reverb_3d_get_user_data(uint64_t reverb_3d_ref)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 	if (reverb_3d == nullptr) return 0;
 
-	return getResourceUserData(reverb_3d);
+	return gmfmod::getUserData(reverb_3d, g_fmod_last_result);
 }
 
 // ============================================================
@@ -143,13 +135,12 @@ int64_t fmod_reverb_3d_get_user_data(uint64_t reverb_3d_ref)
 
 double fmod_reverb_3d_release(uint64_t reverb_3d_ref)
 {
-	FMOD::Reverb3D* reverb_3d = nullptr;
-	validate_fmod_reverb_3d(reverb_3d_ref, reverb_3d);
+	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 
 	if (reverb_3d == nullptr)
 		return 0;
 
-	unregisterResource(reverb_3d, map_reverbs);
+	g_registries.reverbs.unregister(reverb_3d);
 	g_fmod_last_result = reverb_3d->release();
 	return 0;
 }

@@ -2,102 +2,109 @@
 
 #include "fmod.hpp"
 #include <cstdint>
-#include <map>
-#include <string>
-#include <optional>
 #include <atomic>
-#include <mutex>
 #include <native/GMFMODInternal_native.h>
+#include "gmfmod_ref.h"
+#include "gmfmod_registry.h"
+#include "gmfmod_user_data.h"
+#include "gmfmod_string.h"
 
 // ============================================================
 // Global State
 // ============================================================
 
-// Written by every exported function and by the callback trampolines, which
-// on the Studio side run on Studio's own worker thread - so the store has to
-// be atomic. (That makes the race safe; it does not make "the last result"
-// meaningful when a background callback can land between a call and the read.
-// Returning the code per-call instead is an API change, left to the owner.)
+// Written by every exported function. The callback trampolines never touch
+// it, but they run on FMOD's threads and read state beside it, so the store
+// is atomic rather than relying on that staying true. (Returning the code
+// per-call instead is an API change across the whole surface, left alone.)
 extern std::atomic<FMOD_RESULT> g_fmod_last_result;
-extern enum gm_enums::FmodResult fmod_last_result();
-extern void fmod_debug_initialize(enum gm_enums::FmodDebugFlags flags, enum gm_enums::FmodDebugMode mode);
 
-extern std::map<uint32_t, FMOD::System*> map_systems;
-extern uint32_t index_systems;
+// One registry per registry-backed type. Channel is pointer-backed and has
+// none; see gmfmod_ref.h for the two backing strategies.
+struct FmodRegistries
+{
+	gmfmod::Registry<FMOD::System> systems;
+	gmfmod::Registry<FMOD::Sound> sounds;
+	gmfmod::Registry<FMOD::ChannelGroup> channelGroups;
+	gmfmod::Registry<FMOD::DSP> dsps;
+	gmfmod::Registry<FMOD::SoundGroup> soundGroups;
+	gmfmod::Registry<FMOD::DSPConnection> dspConnections;
+	gmfmod::Registry<FMOD::Reverb3D> reverbs;
+	gmfmod::Registry<FMOD::Geometry> geometries;
 
-extern std::map<uint32_t, FMOD::Sound*> map_sounds;
-extern uint32_t index_sounds;
+	// System::release() has already freed everything its systems owned, so
+	// the registries are cleared rather than walked - every pointer in them
+	// is dead by this point.
+	void clear();
+};
 
-extern std::map<uint32_t, FMOD::ChannelGroup*> map_channel_groups;
-extern uint32_t index_channel_groups;
-
-extern std::map<uint32_t, FMOD::DSP*> map_dsps;
-extern uint32_t index_dsps;
-
-extern std::map<uint32_t, FMOD::SoundGroup*> map_sound_groups;
-extern uint32_t index_sound_groups;
-
-extern std::map<uint32_t, FMOD::DSPConnection*> map_dsp_connections;
-extern uint32_t index_dsp_connections;
-
-extern std::map<uint32_t, FMOD::Reverb3D*> map_reverbs;
-extern uint32_t index_reverbs;
-
-extern std::map<uint32_t, FMOD::Geometry*> map_geometries;
-extern uint32_t index_geometries;
-
-// ============================================================
-// Helper Functions
-// ============================================================
-
-uint64_t packIndexIntoRef(uint32_t index, uint8_t type);
-
-// Pointer-backed handles (Channel, ChannelControl and every Studio type) carry
-// the object address in the low 32 bits. FMOD's opaque handles fit there by
-// construction, but if a future SDK ever widens one, two objects would silently
-// alias onto the same ref - so fail loudly instead of quietly.
-uint64_t packPointerIntoRef(const void* pointer, uint8_t type);
+extern FmodRegistries g_registries;
 
 // The system every "systemless" API call operates on. Defaults to the first
 // registered system; fmod_system_select() overrides it.
 FMOD::System* getCurrentSystem();
 void setCurrentSystem(FMOD::System* system);
 
-template <typename T>
-uint32_t registerOrFindResource(T resource, uint32_t& index, std::map<uint32_t, T>& map);
+// ============================================================
+// Refs
+// ============================================================
 
-template <typename T>
-uint32_t unregisterResource(T resource, std::map<uint32_t, T>& map);
-
-// GML user data lives in FMOD's own user-data slot, as it did before the
-// extgen port: the integer is the pointer, so there is nothing to allocate or
-// free and the value dies with the object. On a 32-bit target the pointer
-// cannot hold every int64; a value that does not round-trip is rejected rather
-// than truncated. Callers have already validated the ref, so a null resource
-// never reaches these.
-template <typename T>
-void setResourceUserData(T resource, int64_t data)
+// Pointer-backed ref for a Channel, bound to this extension's status slot.
+inline uint64_t fmod_pointer_ref(const void* pointer, gmfmod::RefType type)
 {
-	const intptr_t packed = static_cast<intptr_t>(data);
-	if (static_cast<int64_t>(packed) != data)
-	{
-		g_fmod_last_result = FMOD_ERR_INVALID_PARAM;
-		return;
-	}
-	g_fmod_last_result = resource->setUserData(reinterpret_cast<void*>(packed));
+	return gmfmod::packPointerRef(pointer, type, g_fmod_last_result);
 }
 
-template <typename T>
-int64_t getResourceUserData(T resource)
+// A rejected ref sets g_fmod_last_result and yields nullptr; every call site
+// null-checks before touching the handle.
+inline FMOD::Channel* resolve_fmod_channel(uint64_t ref)
 {
-	void* userData = nullptr;
-	g_fmod_last_result = resource->getUserData(&userData);
-	return static_cast<int64_t>(reinterpret_cast<intptr_t>(userData));
+	return gmfmod::resolvePointerRef<FMOD::Channel>(ref, gmfmod::RefType::Channel, g_fmod_last_result);
 }
 
-// FMOD_GUID in Studio's own {8-4-4-4-12} spelling, the one string form every
-// GUID this extension pair hands to GML uses.
-std::string format_guid(const FMOD_GUID& guid);
+inline FMOD::System* resolve_fmod_system(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::System, g_registries.systems, g_fmod_last_result);
+}
+
+inline FMOD::Sound* resolve_fmod_sound(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::Sound, g_registries.sounds, g_fmod_last_result);
+}
+
+inline FMOD::ChannelGroup* resolve_fmod_channel_group(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::ChannelGroup, g_registries.channelGroups, g_fmod_last_result);
+}
+
+inline FMOD::DSP* resolve_fmod_dsp(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::Dsp, g_registries.dsps, g_fmod_last_result);
+}
+
+inline FMOD::SoundGroup* resolve_fmod_sound_group(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::SoundGroup, g_registries.soundGroups, g_fmod_last_result);
+}
+
+inline FMOD::DSPConnection* resolve_fmod_dsp_connection(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::DspConnection, g_registries.dspConnections, g_fmod_last_result);
+}
+
+inline FMOD::Reverb3D* resolve_fmod_reverb_3d(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::Reverb3D, g_registries.reverbs, g_fmod_last_result);
+}
+
+inline FMOD::Geometry* resolve_fmod_geometry(uint64_t ref)
+{
+	return gmfmod::resolveRegistryRef(ref, gmfmod::RefType::Geometry, g_registries.geometries, g_fmod_last_result);
+}
+
+// ChannelControl is the common base: a channel ref or a channel group ref
+// are both acceptable here.
+FMOD::ChannelControl* resolve_fmod_channel_control(uint64_t ref);
 
 // ============================================================
 // Per-module state hooks
@@ -112,165 +119,3 @@ void fmod_sound_forget_lock(const void* sound);
 void fmod_sound_reset_state();
 void fmod_dsp_forget_callback(const void* dsp);
 void fmod_dsp_reset_state();
-void fmod_registry_clear_all();
-
-// ============================================================
-// Reference Layout
-// ============================================================
-
-// Every handle handed to GML is a plain 64-bit integer packed by
-// packIndexIntoRef():
-//
-//     10bit      |     8bit      |      32bit
-//   extension    |     type      |       ref
-//
-// The extension code rejects handles minted by some other GM extension; the
-// type code rejects passing e.g. a sound ref to a channel call. The low 32
-// bits are either a registry index (map-backed types) or the truncated
-// pointer itself (pointer-backed types).
-
-#define GM_FMOD_EXT 0x01
-
-#define gm_fmod_ref_ext(ref) ((uint32_t)(((uint64_t)(ref) >> 40) & 0x3FF))
-#define gm_fmod_ref_type(ref) ((uint8_t)(((uint64_t)(ref) >> 32) & 0xFF))
-#define gm_fmod_ref_id(ref) ((uint32_t)((uint64_t)(ref) & 0xFFFFFFFF))
-
-// ============================================================
-// Type Codes
-// ============================================================
-
-#define GM_FMOD_TYPE_CHANNEL 0x01
-#define GM_FMOD_TYPE_CHANNEL_GROUP 0x02
-#define GM_FMOD_TYPE_SOUND 0x03
-#define GM_FMOD_TYPE_SOUND_GROUP 0x04
-#define GM_FMOD_TYPE_DSP 0x05
-#define GM_FMOD_TYPE_DSP_CONNECTION 0x06
-#define GM_FMOD_TYPE_REVERB_3D 0x07
-#define GM_FMOD_TYPE_GEOMETRY 0x08
-#define GM_FMOD_TYPE_SYSTEM 0x09
-
-// ============================================================
-// Studio Type Codes
-// ============================================================
-
-#define GM_FMOD_STUDIO_TYPE_SYSTEM 0x10
-#define GM_FMOD_STUDIO_TYPE_BANK 0x11
-#define GM_FMOD_STUDIO_TYPE_BUS 0x12
-#define GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE 0x13
-#define GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION 0x14
-#define GM_FMOD_STUDIO_TYPE_VCA 0x15
-#define GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY 0x16
-
-// ============================================================
-// Validation Macros
-// ============================================================
-
-// A rejected ref leaves `output` null and sets g_fmod_last_result; every
-// call site already null-checks before touching the handle.
-#define gm_fmod_ref_reject(output) \
-	{ \
-		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE; \
-		output = nullptr; \
-	}
-
-// Payload is the truncated pointer itself.
-#define validate_fmod_ref_ptr(ref, type_code, cpp_type, output) \
-	{ \
-		if (gm_fmod_ref_ext(ref) == GM_FMOD_EXT && gm_fmod_ref_type(ref) == (type_code)) \
-		{ \
-			output = reinterpret_cast<cpp_type*>(static_cast<uintptr_t>(gm_fmod_ref_id(ref))); \
-		} \
-		else gm_fmod_ref_reject(output) \
-	}
-
-// Payload is an index into a registry map.
-#define validate_fmod_ref_map(ref, type_code, cpp_type, map, output) \
-	{ \
-		auto _search = (map).find(gm_fmod_ref_id(ref)); \
-		if (gm_fmod_ref_ext(ref) == GM_FMOD_EXT && gm_fmod_ref_type(ref) == (type_code) \
-			&& _search != (map).end()) \
-		{ \
-			output = (cpp_type*)_search->second; \
-		} \
-		else gm_fmod_ref_reject(output) \
-	}
-
-#define validate_fmod_channel(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_TYPE_CHANNEL, FMOD::Channel, output)
-
-#define validate_fmod_studio_system(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_SYSTEM, FMOD::Studio::System, output)
-
-#define validate_fmod_studio_bank(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_BANK, FMOD::Studio::Bank, output)
-
-#define validate_fmod_studio_bus(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_BUS, FMOD::Studio::Bus, output)
-
-#define validate_fmod_studio_event_instance(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_EVENT_INSTANCE, FMOD::Studio::EventInstance, output)
-
-#define validate_fmod_studio_event_description(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_EVENT_DESCRIPTION, FMOD::Studio::EventDescription, output)
-
-#define validate_fmod_studio_vca(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_VCA, FMOD::Studio::VCA, output)
-
-#define validate_fmod_studio_command_replay(ref, output) \
-	validate_fmod_ref_ptr(ref, GM_FMOD_STUDIO_TYPE_COMMAND_REPLAY, FMOD::Studio::CommandReplay, output)
-
-#define validate_fmod_channel_group(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_CHANNEL_GROUP, FMOD::ChannelGroup, map_channel_groups, output)
-
-#define validate_fmod_sound(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SOUND, FMOD::Sound, map_sounds, output)
-
-#define validate_fmod_system(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SYSTEM, FMOD::System, map_systems, output)
-
-#define validate_fmod_sound_group(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_SOUND_GROUP, FMOD::SoundGroup, map_sound_groups, output)
-
-#define validate_fmod_reverb_3d(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_REVERB_3D, FMOD::Reverb3D, map_reverbs, output)
-
-#define validate_fmod_dsp(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_DSP, FMOD::DSP, map_dsps, output)
-
-#define validate_fmod_dsp_connection(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_DSP_CONNECTION, FMOD::DSPConnection, map_dsp_connections, output)
-
-#define validate_fmod_geometry(ref, output) \
-	validate_fmod_ref_map(ref, GM_FMOD_TYPE_GEOMETRY, FMOD::Geometry, map_geometries, output)
-
-// ChannelControl is the common base: a channel ref or a channel group ref
-// are both acceptable here.
-#define validate_fmod_channel_control(ref, output) \
-	{ \
-		if (gm_fmod_ref_ext(ref) != GM_FMOD_EXT) gm_fmod_ref_reject(output) \
-		else if (gm_fmod_ref_type(ref) == GM_FMOD_TYPE_CHANNEL) \
-		{ \
-			output = reinterpret_cast<FMOD::ChannelControl*>(static_cast<uintptr_t>(gm_fmod_ref_id(ref))); \
-		} \
-		else if (gm_fmod_ref_type(ref) == GM_FMOD_TYPE_CHANNEL_GROUP) \
-		{ \
-			auto _search = map_channel_groups.find(gm_fmod_ref_id(ref)); \
-			if (_search != map_channel_groups.end()) \
-				output = (FMOD::ChannelControl*)_search->second; \
-			else gm_fmod_ref_reject(output) \
-		} \
-		else gm_fmod_ref_reject(output) \
-	}
-
-// ============================================================
-// Callback Contexts
-// ============================================================
-
-struct FmodCommandReplayCallbackContext
-{
-	std::optional<gm::wire::GMFunction> frame_callback;
-	std::optional<gm::wire::GMFunction> create_instance_callback;
-	std::optional<gm::wire::GMFunction> load_bank_callback;
-};
-
-extern std::map<uintptr_t, FmodCommandReplayCallbackContext> g_command_replay_callbacks;
