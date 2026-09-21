@@ -799,9 +799,12 @@ class `[[FmodStudioTimelineNestedBeatProperties]]` prototype Object
     property time_signature_lower: gmval { get; set; }
 }
 
-// FMOD's own struct also carries the sound to play and is written by the
-// callback. This extension dispatches callbacks asynchronously, so it cannot
-// answer FMOD in time; only the fields FMOD fills in are carried.
+// FMOD's own struct also carries the sound the callback must supply, and GML
+// callbacks here run a frame late, so the extension supplies it itself from
+// the key registered with fmod_studio_event_instance_set_programmer_sound().
+// `result` is this extension's own field: the FMOD_RESULT of that create (on
+// CreateProgrammerSound) or release (on DestroyProgrammerSound), and Ok when no
+// key was registered and nothing was attempted.
 [global]
 class `[[FmodStudioProgrammerSoundProperties]]` prototype Object
 {
@@ -810,6 +813,9 @@ class `[[FmodStudioProgrammerSoundProperties]]` prototype Object
 
     [field, type_hint=`real`]
     property sub_sound_index: gmval { get; set; }
+
+    [field, type_hint=`FmodStudioResult`]
+    property result: gmval { get; set; }
 }
 
 // FMOD's own struct also carries the plugin DSP. It belongs to the GMFMOD
@@ -1388,6 +1394,18 @@ function fmod_studio_event_instance_set_callback(
 	[type_hint=`uint64`] instance_ref: gmval,
 	[type_hint=`func?`] callback: gmval,
 	[type_hint=`FmodStudioEventCallbackType`] mask: gmval
+): real;
+
+// Registers the sound FMOD's programmer instrument on this instance will play.
+// `key` is an audio table key from a loaded bank, or - when no loaded audio
+// table has it - a file path. The sound is created and released natively when
+// FMOD asks for it, on FMOD's own thread; the event callback still reports
+// CreateProgrammerSound / DestroyProgrammerSound afterwards, with the result.
+// Pass undefined to clear it.
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_programmer_sound(
+	[type_hint=`uint64`] instance_ref: gmval,
+	[type_hint=`string?`] key: gmval
 ): real;
 
 [global, bind = typed_gml]

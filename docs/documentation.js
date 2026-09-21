@@ -5863,7 +5863,7 @@ function fmod_studio_event_description_get_path(event_description_ref) {}
  *
  * This function sets a callback for every instance of this event description.
  *
- * An instance uses this callback unless it has one of its own, set with ${function.fmod_studio_event_instance_set_callback} - an instance-level callback replaces this one entirely for that instance, rather than both firing. Instances that already exist when you call this function are covered too, not just ones created afterwards.
+ * An instance uses this callback unless it has one of its own, set with ${function.fmod_studio_event_instance_set_callback} - an instance-level callback replaces this one entirely for that instance, rather than both firing. Only instances created after this call use it: an instance that already exists keeps whatever callback it was created with, so set this before creating the instances you want it to reach.
  *
  * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
  *
@@ -6525,6 +6525,43 @@ function fmod_studio_event_instance_get_memory_usage(event_instance_ref) {}
  * @function_end
  */
 function fmod_studio_event_instance_set_callback(instance_ref, callback, mask) {}
+
+
+/**
+ * @function fmod_studio_event_instance_set_programmer_sound
+ * @desc This function names the sound that the programmer instrument in this event instance plays. It is this extension's own function rather than a wrapper of an FMOD one: FMOD asks for the sound from its own thread, inside the `FmodStudioEventCallbackType.CreateProgrammerSound` callback, and a GML callback runs a frame later than that, so the extension answers on your behalf from the key you register here.
+ *
+ * `key` is looked up first as an audio table key (the same lookup as ${function.fmod_studio_system_get_sound_info}) in the loaded banks, which covers audio tables whose data is inside the bank, and, when no loaded audio table has it, used as a file path. A sound created from a path is not a subsound, so `sub_sound_index` in the callback properties is `-1` for it. The sound is created with `FmodStudioMode.LoopOn`, `FmodStudioMode.CreateCompressedSample` and `FmodStudioMode.NonBlocking`, the way FMOD's own programmer sound example does, and is released for you when `FmodStudioEventCallbackType.DestroyProgrammerSound` fires.
+ *
+ * The key stays registered on the instance until you change it, so an instance that is started again plays the same sound unless you set another key in between. Pass `undefined` to clear it, after which the instrument plays nothing.
+ *
+ * You do not need a callback of your own for this to work. If the instance has one from ${function.fmod_studio_event_instance_set_callback}, or its description has one from ${function.fmod_studio_event_description_set_callback}, that callback keeps firing as before and, when its mask includes them, receives `CreateProgrammerSound` and `DestroyProgrammerSound` with a ${struct.FmodStudioProgrammerSoundProperties} whose `result` field is the outcome of the create or the release. A key that matched neither an audio table nor a file shows up there as `FmodStudioResult.FileNotFound`, and the instrument plays nothing.
+ *
+ * @param {Real} instance_ref A reference to an EventInstance.
+ * @param {String} [key] The audio table key or file path of the sound to play. Pass `undefined` to clear it.
+ * @returns {Real}
+ *
+ * @example
+ * ```gml
+ * event = fmod_studio_event_description_create_instance(fmod_studio_system_get_event("event:/Character/Dialogue"));
+ * fmod_studio_event_instance_set_callback(event, function(_instance, _type, _props)
+ * {
+ *     if (_type == FmodStudioEventCallbackType.CreateProgrammerSound)
+ *     {
+ *         show_debug_message($"programmer sound: {fmod_error_string(_props.result)}");
+ *     }
+ * }, FmodStudioEventCallbackType.CreateProgrammerSound);
+ *
+ * fmod_studio_event_instance_set_programmer_sound(event, "welcome");
+ * fmod_studio_event_instance_start(event);
+ * ```
+ * The code above plays the `"welcome"` entry of the loaded dialogue audio table through the programmer instrument in `event:/Character/Dialogue`, and logs the outcome when FMOD asks for the sound. A file works the same way:
+ * ```gml
+ * fmod_studio_event_instance_set_programmer_sound(event, fmod_path_bundle("jaguar.wav"));
+ * ```
+ * @function_end
+ */
+function fmod_studio_event_instance_set_programmer_sound(instance_ref, key) {}
 
 
 /**
@@ -10173,6 +10210,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_studio_event_instance_get_cpu_usage
  * @ref fmod_studio_event_instance_get_memory_usage
  * @ref fmod_studio_event_instance_set_callback
+ * @ref fmod_studio_event_instance_set_programmer_sound
  * @ref fmod_studio_event_instance_set_user_data
  * @ref fmod_studio_event_instance_get_user_data
  * @ref fmod_studio_event_instance_get_description

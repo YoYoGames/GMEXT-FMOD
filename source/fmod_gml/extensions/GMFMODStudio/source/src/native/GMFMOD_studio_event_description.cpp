@@ -270,12 +270,15 @@ double fmod_studio_event_description_get_sound_size(uint64_t event_desc_ref)
 // deliberately not forwarded: the FMOD_SOUND* on the programmer-sound and
 // sound-played types, and the FMOD_DSP* on the plugin types. Both belong to
 // GMFMOD's registry rather than this one, so a ref minted here would resolve
-// against the wrong map in the other DLL.
+// against the wrong map in the other DLL. The programmer sound is answered
+// natively instead - see the instance trampoline - and `result` is how that
+// went.
 void fmod_studio_event_call(
 	const gm::wire::GMFunction& callback,
 	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
 	FMOD_STUDIO_EVENTINSTANCE* event,
-	void* parameters)
+	void* parameters,
+	FMOD_RESULT result)
 {
 	// Keys are the truncated pointer the GML refs carry, so mask to match.
 	uintptr_t instance_ptr = gmfmod::pointerKey(event);
@@ -336,11 +339,12 @@ void fmod_studio_event_call(
 				(const FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES*)parameters;
 			if (props == nullptr) break;
 
-			// FMOD reads `sound` back out of this struct on CREATE, and callbacks
-			// here are dispatched to the game thread, so it cannot be answered.
+			// By the time this runs the instance trampoline has already filled
+			// (or released) `sound` for FMOD; GML gets the outcome, not the sound.
 			FmodStudioProgrammerSoundProperties out{};
 			out.name = props->name != nullptr ? props->name : "";
 			out.sub_sound_index = (double)props->subsoundIndex;
+			out.result = (gm_enums::FmodStudioResult)result;
 			callback.call(ref, kind, out);
 			return;
 		}
@@ -376,12 +380,23 @@ void fmod_studio_event_call(
 // Studio runs its update on a worker thread by default, so this map is touched
 // from both that thread and the game thread.
 static std::mutex g_event_description_callback_mutex;
-static std::map<uintptr_t, gm::wire::GMFunction> g_event_description_callbacks;
+static std::map<uintptr_t, FmodEventCallback> g_event_description_callbacks;
 
 void fmod_studio_event_description_reset_state()
 {
 	std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
 	g_event_description_callbacks.clear();
+}
+
+std::optional<FmodEventCallback> fmod_studio_event_description_get_callback(
+	FMOD::Studio::EventDescription* event_desc)
+{
+	if (event_desc == nullptr) return std::nullopt;
+
+	std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
+	auto it = g_event_description_callbacks.find(gmfmod::pointerKey(event_desc));
+	if (it == g_event_description_callbacks.end()) return std::nullopt;
+	return it->second;
 }
 
 void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank)
@@ -421,7 +436,7 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_description(
 
 	uintptr_t desc_ptr = gmfmod::pointerKey(event_desc);
 
-	std::optional<gm::wire::GMFunction> callback;
+	std::optional<FmodEventCallback> callback;
 	{
 		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
 		auto it = g_event_description_callbacks.find(desc_ptr);
@@ -431,7 +446,8 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_description(
 		callback = it->second;
 	}
 
-	fmod_studio_event_call(callback.value(), type, event, parameters);
+	// FMOD was given exactly the mask GML asked for on this path, so no filter.
+	fmod_studio_event_call(callback->callback, type, event, parameters);
 	return FMOD_OK;
 }
 
@@ -455,14 +471,16 @@ double fmod_studio_event_description_set_callback(
 		return 0;
 	}
 
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE fmod_mask =
+		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)callback_mask;
 	{
 		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);
-		g_event_description_callbacks.insert_or_assign(desc_ptr, callback.value());
+		g_event_description_callbacks.insert_or_assign(desc_ptr,
+			FmodEventCallback{ callback.value(), fmod_mask });
 	}
 
 	g_fmod_studio_last_result = event_desc->setCallback(
-		CALLBACK_fmod_studio_event_description,
-		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)callback_mask);
+		CALLBACK_fmod_studio_event_description, fmod_mask);
 	if (g_fmod_studio_last_result != FMOD_OK)
 	{
 		std::lock_guard<std::mutex> lock(g_event_description_callback_mutex);

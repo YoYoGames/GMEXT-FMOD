@@ -264,7 +264,7 @@ function __GMNativeFunctionDispatcher(_handler, _decoders) constructor {
 	}, [], -1);
 	
 	/// @func dispatch(_amount)
-	/// @desc Increments the internal reference count and ensures the dispatcher�s time source is running.
+	/// @desc Increments the internal reference count and ensures the dispatcher's time source is running.
     /// Should be called whenever a new function is registered on the GML side.
     /// @param {Real} [_amount=1] The number of active references to add.
 	static dispatch = function(_amount = 1) {

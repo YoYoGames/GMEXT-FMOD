@@ -17,7 +17,7 @@ if(EXTGEN_PLATFORM_PS5)
   set(CMAKE_CXX_COMPILER_WORKS TRUE CACHE BOOL "" FORCE)
 
   # Clear Windows default link libraries injected by CMake's Windows platform
-  # detection (kernel32, user32, gdi32, etc.) — these don't exist on Prospero.
+  # detection (kernel32, user32, gdi32, etc.) - these don't exist on Prospero.
   set(CMAKE_C_STANDARD_LIBRARIES   "" CACHE STRING "" FORCE)
   set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
 

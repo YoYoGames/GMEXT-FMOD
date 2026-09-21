@@ -948,10 +948,11 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  *
  * This struct describes a programmer sound. It arrives as the third argument of an event callback when `FmodStudioEventCallbackType.CreateProgrammerSound` or `FmodStudioEventCallbackType.DestroyProgrammerSound` fires.
  *
- * [[Note: FMOD's own struct also carries the Sound to play, which the callback is expected to fill in while FMOD waits. Callbacks in this extension run on the following frame, so there is no way to answer in time, and the field is not carried. Substituting a programmer sound from GML is not supported.]]
+ * [[Note: FMOD's own struct also carries the Sound to play, which the callback is expected to fill in while FMOD waits. Callbacks in this extension run on the following frame, so there is no way to answer in time from GML, and the field is not carried. Instead, the extension creates the sound itself from the key registered with ${function.fmod_studio_event_instance_set_programmer_sound}, before your callback sees the struct, and releases it when `DestroyProgrammerSound` fires; `result` reports how that went.]]
  *
- * @member {String} name The audio table key for the sound, as authored in FMOD Studio.
+ * @member {String} name The name of the programmer instrument, as set in FMOD Studio. Empty when the instrument has no name, which is the case in FMOD's own example project; the key the sound was created from is the one you registered.
  * @member {Real} sub_sound_index The subsound index, or `-1` when the sound is not a subsound.
+ * @member {Enum.FmodStudioResult} result This extension's own field. On `CreateProgrammerSound`, the result of creating the sound from the registered key; on `DestroyProgrammerSound`, the result of releasing it. `FmodStudioResult.Ok` when no key was registered and nothing was attempted.
  * @struct_end
  * */
 

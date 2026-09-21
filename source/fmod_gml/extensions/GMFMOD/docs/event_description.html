@@ -2827,7 +2827,7 @@
 </blockquote>
 <p><br /></p>
 <p>This function sets a callback for every instance of this event description.</p>
-<p>An instance uses this callback unless it has one of its own, set with <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a> - an instance-level callback replaces this one entirely for that instance, rather than both firing. Instances that already exist when you call this function are covered too, not just ones created afterwards.</p>
+<p>An instance uses this callback unless it has one of its own, set with <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a> - an instance-level callback replaces this one entirely for that instance, rather than both firing. Only instances created after this call use it: an instance that already exists keeps whatever callback it was created with, so set this before creating the instances you want it to reach.</p>
 <p>The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.</p>
 <p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a>.</p>
 <p><br></p>

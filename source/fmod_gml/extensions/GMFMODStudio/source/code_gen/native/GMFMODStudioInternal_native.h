@@ -568,6 +568,7 @@ namespace gm_structs
     {
         std::string name;
         double sub_sound_index;
+        gm_enums::FmodStudioResult result;
     };
 
     struct FmodStudioPluginInstanceProperties
@@ -1004,6 +1005,7 @@ namespace gm::wire::codec
     {
         gm::wire::codec::writeValue(_buf, obj.name);
         gm::wire::codec::writeValue(_buf, obj.sub_sound_index);
+        gm::wire::codec::writeValue(_buf, obj.result);
     }
 
     template<>
@@ -1012,6 +1014,7 @@ namespace gm::wire::codec
         gm_structs::FmodStudioProgrammerSoundProperties obj;
         obj.name = gm::wire::codec::readValue<std::string>(_buf);
         obj.sub_sound_index = gm::wire::codec::readValue<double>(_buf);
+        obj.result = gm::wire::codec::readValue<gm_enums::FmodStudioResult>(_buf);
         return obj;
     }
 
@@ -1418,6 +1421,7 @@ double fmod_studio_event_instance_get_parameter_count(std::uint64_t instance_ref
 double fmod_studio_event_instance_get_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2);
 double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2, double value);
 double fmod_studio_event_instance_set_callback(std::uint64_t instance_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType mask);
+double fmod_studio_event_instance_set_programmer_sound(std::uint64_t instance_ref, std::optional<std::string_view> key);
 double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up);

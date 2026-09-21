@@ -38,6 +38,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # Prospero SDK headers (target/include, target/include_common) and libraries are
 # injected automatically by VS MSBuild through the Prospero platform toolset props.
 # No explicit target_include_directories or target_link_libraries are needed
-# for the system SDK — add only extension-specific third-party paths here.
+# for the system SDK - add only extension-specific third-party paths here.
 
 message(STATUS "Including PS5 sources")

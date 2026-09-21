@@ -2339,6 +2339,24 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_studio_event_instance_set_programmer_sound",
+          "argCount": 2,
+          "args": [
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_studio_event_instance_set_programmer_sound",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_studio_event_instance_set_parameter_by_id_with_label",
           "argCount": 2,
           "args": [

@@ -72,6 +72,12 @@ void fmod_studio_shutdown()
 	g_fmod_studio_last_result = FMOD_OK;
 }
 
+FMOD::Studio::System* fmod_studio_current_system()
+{
+	if (g_studio_system_ref == 0) return nullptr;
+	return resolve_fmod_studio_system(g_studio_system_ref);
+}
+
 double fmod_studio_system_release()
 {
 	FMOD::Studio::System* studio_system = resolve_fmod_studio_system(g_studio_system_ref);

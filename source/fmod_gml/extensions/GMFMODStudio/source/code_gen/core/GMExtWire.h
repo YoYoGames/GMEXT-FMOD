@@ -17,14 +17,14 @@
 #include "GMExtUtils.h"
 
 // ---------------------------------------------------------------------------
-// GMWIRE_THROW — portable throw / fatal-abort for exception-disabled platforms
+// GMWIRE_THROW - portable throw / fatal-abort for exception-disabled platforms
 //
 // When C++ exceptions are enabled (__cpp_exceptions defined), GMWIRE_THROW(ex)
 // is a normal throw that callers can catch.
 //
 // When exceptions are disabled (e.g. Nintendo Switch, PS4 ORBIS toolset default),
 // throw is a compile error. GMWIRE_THROW instead prints a diagnostic via
-// GMWIRE_TRACE and calls std::abort(). This fires in BOTH Debug and Release —
+// GMWIRE_TRACE and calls std::abort(). This fires in BOTH Debug and Release -
 // unlike assert() which is stripped in Release builds.
 //
 // Override GMWIRE_TRACE before including this header to redirect output
@@ -1412,6 +1412,12 @@ namespace gm::wire::details {
             return true;
         }
 
+    public:
+        // What writeTo() emits: the kind and count header, then the payload.
+        size_t getSerializedLength() const { return sizeof(uint8_t) + sizeof(uint16_t) + getBuffer().size(); }
+
+    protected:
+
         inline bool parseCollectionHeader(gm::byteio::BufferReader& bufferView, gm::wire::GMKind type)
         {
             if ((gm::wire::GMKind)bufferView.read<uint8_t>() != type) {
@@ -1689,8 +1695,7 @@ namespace gm::runtime {
 
     inline double DispatchQueue::fetch(gm::byteio::BufferWriter& output)
     {
-        std::size_t bytesNeeded = m_packed.getLength();
-        if (bytesNeeded == 0) // no pending stream
+        if (m_packed.getLength() == 0) // no pending stream
         {
             std::vector<gm::wire::DataStream> local;
             {
@@ -1703,10 +1708,11 @@ namespace gm::runtime {
             for (auto& ev : local) {
                 m_packed << std::move(ev); // append into ArrayStream
             }
-
-            bytesNeeded = m_packed.getLength();
         }
 
+        // writeTo() puts the array header in front of the payload, so the size
+        // reported back has to count it or the caller's buffer ends 3 bytes short.
+        std::size_t bytesNeeded = m_packed.getSerializedLength();
         if (bytesNeeded > output.remaining()) {
             return -static_cast<double>(bytesNeeded);
         }

@@ -1540,6 +1540,20 @@ GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_callback(char* __ar
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: instance_ref, type: UInt64
+    std::uint64_t instance_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+
+    // field: key, type: optional<String>
+    std::optional<std::string_view> key = gm::wire::codec::readOptional<std::string_view>(__br);
+
+    auto&& __result = fmod_studio_event_instance_set_programmer_sound(instance_ref, key);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label(char* __arg_buffer, double __arg_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};

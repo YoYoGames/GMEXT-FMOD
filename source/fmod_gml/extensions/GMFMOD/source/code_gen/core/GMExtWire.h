@@ -17,14 +17,14 @@
 #include "GMExtUtils.h"
 
 // ---------------------------------------------------------------------------
-// GMWIRE_THROW — portable throw / fatal-abort for exception-disabled platforms
+// GMWIRE_THROW - portable throw / fatal-abort for exception-disabled platforms
 //
 // When C++ exceptions are enabled (__cpp_exceptions defined), GMWIRE_THROW(ex)
 // is a normal throw that callers can catch.
 //
 // When exceptions are disabled (e.g. Nintendo Switch, PS4 ORBIS toolset default),
 // throw is a compile error. GMWIRE_THROW instead prints a diagnostic via
-// GMWIRE_TRACE and calls std::abort(). This fires in BOTH Debug and Release —
+// GMWIRE_TRACE and calls std::abort(). This fires in BOTH Debug and Release -
 // unlike assert() which is stripped in Release builds.
 //
 // Override GMWIRE_TRACE before including this header to redirect output

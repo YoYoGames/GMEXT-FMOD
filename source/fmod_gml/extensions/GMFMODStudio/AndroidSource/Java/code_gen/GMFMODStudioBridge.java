@@ -146,6 +146,7 @@ public final class GMFMODStudioBridge {
     public static native double __EXT_JNI__fmod_studio_event_instance_get_parameter_by_id(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_parameter_by_id(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
+    public static native double __EXT_JNI__fmod_studio_event_instance_set_programmer_sound(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_parameter_by_id_with_label(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_parameter_by_name_with_label(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_studio_event_instance_set_3d_attributes(ByteBuffer __arg_buffer, double __arg_buffer_length);

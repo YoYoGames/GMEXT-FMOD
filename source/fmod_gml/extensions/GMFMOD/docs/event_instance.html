@@ -1316,6 +1316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_studio_event_instance_set_programmer_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_event_instance_set_programmer_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_studio_event_instance_set_user_data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1966,6 +1977,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_studio_event_instance_set_programmer_sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_studio_event_instance_set_programmer_sound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_studio_event_instance_set_user_data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2093,6 +2115,7 @@
 <li><a href="event_instance.html#fmod_studio_event_instance_get_cpu_usage">fmod_studio_event_instance_get_cpu_usage</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_programmer_sound">fmod_studio_event_instance_set_programmer_sound</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_set_user_data">fmod_studio_event_instance_set_user_data</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_user_data">fmod_studio_event_instance_get_user_data</a></li>
 <li><a href="event_instance.html#fmod_studio_event_instance_get_description">fmod_studio_event_instance_get_description</a></li>
@@ -3490,6 +3513,61 @@ For example to create a mask for listener index 0 and 2 the calculation would be
         show_debug_message($"bar {_props.bar} beat {_props.beat} at {_props.tempo}bpm");
     }
 }, FmodStudioEventCallbackType.TimelineBeat);</code></pre>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_studio_event_instance_set_programmer_sound">fmod_studio_event_instance_set_programmer_sound<a class="headerlink" href="#fmod_studio_event_instance_set_programmer_sound" title="Permanent link">&para;</a></h1>
+<p>This function names the sound that the programmer instrument in this event instance plays. It is this extension's own function rather than a wrapper of an FMOD one: FMOD asks for the sound from its own thread, inside the <code>FmodStudioEventCallbackType.CreateProgrammerSound</code> callback, and a GML callback runs a frame later than that, so the extension answers on your behalf from the key you register here.</p>
+<p><code>key</code> is looked up first as an audio table key (the same lookup as <a href="studio_system.html#fmod_studio_system_get_sound_info">fmod_studio_system_get_sound_info</a>) in the loaded banks, which covers audio tables whose data is inside the bank, and, when no loaded audio table has it, used as a file path. A sound created from a path is not a subsound, so <code>sub_sound_index</code> in the callback properties is <code>-1</code> for it. The sound is created with <code>FmodStudioMode.LoopOn</code>, <code>FmodStudioMode.CreateCompressedSample</code> and <code>FmodStudioMode.NonBlocking</code>, the way FMOD's own programmer sound example does, and is released for you when <code>FmodStudioEventCallbackType.DestroyProgrammerSound</code> fires.</p>
+<p>The key stays registered on the instance until you change it, so an instance that is started again plays the same sound unless you set another key in between. Pass <code>undefined</code> to clear it, after which the instrument plays nothing.</p>
+<p>You do not need a callback of your own for this to work. If the instance has one from <a href="event_instance.html#fmod_studio_event_instance_set_callback">fmod_studio_event_instance_set_callback</a>, or its description has one from <a href="event_description.html#fmod_studio_event_description_set_callback">fmod_studio_event_description_set_callback</a>, that callback keeps firing as before and, when its mask includes them, receives <code>CreateProgrammerSound</code> and <code>DestroyProgrammerSound</code> with a <a href="structs.html#fmodstudioprogrammersoundproperties">FmodStudioProgrammerSoundProperties</a> whose <code>result</code> field is the outcome of the create or the release. A key that matched neither an audio table nor a file shows up there as <code>FmodStudioResult.FileNotFound</code>, and the instrument plays nothing.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<pre class="highlight"><code class="language-gml">fmod_studio_event_instance_set_programmer_sound(instance_ref, key=undefined)</code></pre>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instance_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to an EventInstance.</td>
+</tr>
+<tr>
+<td>key</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The audio table key or file path of the sound to play. Pass <code>undefined</code> to clear it.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p><pre class="highlight"><code class="language-gml">event = fmod_studio_event_description_create_instance(fmod_studio_system_get_event("event:/Character/Dialogue"));
+fmod_studio_event_instance_set_callback(event, function(_instance, _type, _props)
+{
+    if (_type == FmodStudioEventCallbackType.CreateProgrammerSound)
+    {
+        show_debug_message($"programmer sound: {fmod_error_string(_props.result)}");
+    }
+}, FmodStudioEventCallbackType.CreateProgrammerSound);
+
+fmod_studio_event_instance_set_programmer_sound(event, "welcome");
+fmod_studio_event_instance_start(event);</code></pre>
+The code above plays the <code>"welcome"</code> entry of the loaded dialogue audio table through the programmer instrument in <code>event:/Character/Dialogue</code>, and logs the outcome when FMOD asks for the sound. A file works the same way:
+<pre class="highlight"><code class="language-gml">fmod_studio_event_instance_set_programmer_sound(event, fmod_path_bundle("jaguar.wav"));</code></pre></p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

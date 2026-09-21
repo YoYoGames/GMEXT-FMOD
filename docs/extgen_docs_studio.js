@@ -931,6 +931,14 @@
  */
 
 /**
+ * @function_partial fmod_studio_event_instance_set_programmer_sound
+ * @param {Real} instance_ref
+ * @param {String} [key]
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_event_instance_set_parameter_by_id_with_label
  * @param {Real} instance_ref
  * @param {Real} id_data1
@@ -1586,6 +1594,7 @@
  * @struct_partial FmodStudioProgrammerSoundProperties
  * @member {String} name
  * @member {Real} sub_sound_index
+ * @member {Enum.FmodStudioResult} result
  * @struct_end
  */
 

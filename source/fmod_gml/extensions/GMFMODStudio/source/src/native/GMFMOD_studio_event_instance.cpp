@@ -3,6 +3,7 @@
 #include <optional>
 #include <mutex>
 #include <map>
+#include <string>
 #include <string_view>
 
 using namespace gm_structs;
@@ -413,18 +414,79 @@ FmodStudioMemoryUsage fmod_studio_event_instance_get_memory_usage(uint64_t insta
 }
 
 // ============================================================
-// Event Instance - Callbacks
+// Event Instance - Callbacks and programmer sounds
 // ============================================================
 
-// Studio runs its update on a worker thread by default, so this map is touched
-// from both that thread and the game thread.
-static std::mutex g_event_instance_callback_mutex;
-static std::map<uintptr_t, gm::wire::GMFunction> g_event_instance_callbacks;
+// Everything the trampoline needs per instance. Studio runs its update on a
+// worker thread by default, so this map is touched from both that thread and
+// the game thread.
+struct EventInstanceState
+{
+	std::optional<FmodEventCallback> callback;
+	std::optional<std::string> programmer_key;
+	// Captured when the key is registered: the trampoline cannot ask the
+	// instance for it on every SDK this builds against (see the accessor).
+	FMOD::Studio::System* studio_system = nullptr;
+};
+
+static std::mutex g_event_instance_mutex;
+static std::map<uintptr_t, EventInstanceState> g_event_instances;
 
 void fmod_studio_event_instance_reset_state()
 {
-	std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
-	g_event_instance_callbacks.clear();
+	std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+	g_event_instances.clear();
+}
+
+// The mode FMOD's own programmer_sound example, the Unity integration and the
+// Godot plugin all create the sound with; an audio table's own mode is ORed in.
+static const FMOD_MODE kProgrammerSoundMode =
+	FMOD_LOOP_NORMAL | FMOD_CREATECOMPRESSEDSAMPLE | FMOD_NONBLOCKING;
+
+// Answers CREATE_PROGRAMMER_SOUND on FMOD's thread: an audio table key from a
+// loaded bank first, a file path when no loaded table has the key (that is
+// FMOD_ERR_EVENT_NOTFOUND, measured on 2.03.06 with and without a table
+// loaded). Fills the struct FMOD reads back once the callback returns.
+static FMOD_RESULT createProgrammerSound(
+	FMOD::Studio::System* studio_system,
+	const std::string& key,
+	FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES* props)
+{
+	if (studio_system == nullptr) return FMOD_ERR_INVALID_HANDLE;
+
+	FMOD::System* core_system = nullptr;
+	FMOD_RESULT result = studio_system->getCoreSystem(&core_system);
+	if (result != FMOD_OK) return result;
+
+	FMOD::Sound* sound = nullptr;
+	int subsound_index = -1;
+
+	FMOD_STUDIO_SOUND_INFO info{};
+	result = studio_system->getSoundInfo(key.c_str(), &info);
+	if (result == FMOD_OK)
+	{
+		result = core_system->createSound(info.name_or_data,
+			kProgrammerSoundMode | info.mode, &info.exinfo, &sound);
+		subsound_index = info.subsoundindex;
+	}
+	else if (result == FMOD_ERR_EVENT_NOTFOUND)
+	{
+		// A file path. The real create is non-blocking, so a missing file would
+		// come back FMOD_OK and only ever be heard as silence; an open-only pass
+		// first is a blocking file open with no decode, and it reports the
+		// failure here, through FMOD's own file system.
+		FMOD::Sound* probe = nullptr;
+		result = core_system->createSound(key.c_str(), FMOD_OPENONLY, nullptr, &probe);
+		if (result != FMOD_OK) return result;
+		probe->release();
+
+		result = core_system->createSound(key.c_str(), kProgrammerSoundMode, nullptr, &sound);
+	}
+	if (result != FMOD_OK) return result;
+
+	props->sound = (FMOD_SOUND*)sound;
+	props->subsoundIndex = subsound_index;
+	return FMOD_OK;
 }
 
 static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_instance(
@@ -438,23 +500,88 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_event_instance(
 	// Keys are the truncated pointer the GML refs carry, so mask to match.
 	uintptr_t instance_ptr = gmfmod::pointerKey(event);
 
-	std::optional<gm::wire::GMFunction> callback;
+	EventInstanceState state;
 	{
-		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
-		auto it = g_event_instance_callbacks.find(instance_ptr);
-		if (it == g_event_instance_callbacks.end())
+		std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+		auto it = g_event_instances.find(instance_ptr);
+		if (it == g_event_instances.end())
 			return FMOD_OK;
 
-		callback = it->second;
+		state = it->second;
 
 		// The instance is gone after this; drop the entry so a recycled
-		// pointer does not inherit this callback.
+		// pointer does not inherit this callback or key.
 		if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROYED)
-			g_event_instance_callbacks.erase(it);
+			g_event_instances.erase(it);
 	}
 
-	fmod_studio_event_call(callback.value(), type, event, parameters);
-	return FMOD_OK;
+	// The programmer sound has to be answered here, synchronously: FMOD reads
+	// the struct back as soon as this returns, and the GML callback only runs
+	// on the next frame. Nothing below holds the lock.
+	FMOD_RESULT result = FMOD_OK;
+	if (type == FMOD_STUDIO_EVENT_CALLBACK_CREATE_PROGRAMMER_SOUND && state.programmer_key.has_value())
+	{
+		auto* props = (FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES*)parameters;
+		if (props != nullptr)
+			result = createProgrammerSound(state.studio_system, state.programmer_key.value(), props);
+	}
+	else if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROY_PROGRAMMER_SOUND)
+	{
+		// Only the create above can have put a sound here, so it is ours to
+		// release - whether or not the key is still registered.
+		auto* props = (FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES*)parameters;
+		if (props != nullptr && props->sound != nullptr)
+			result = ((FMOD::Sound*)props->sound)->release();
+	}
+
+	// FMOD is asked for more types than GML wanted - DESTROYED for the entry
+	// above, the programmer pair for the key - so the mask is applied here.
+	if (state.callback.has_value() && (type & state.callback->mask) != 0)
+		fmod_studio_event_call(state.callback->callback, type, event, parameters, result);
+
+	return result;
+}
+
+// Tells FMOD what this instance's entry needs, or clears its callback when the
+// entry has nothing left. The entry is read under the lock and the lock is
+// released before FMOD is called.
+static FMOD_RESULT applyEventInstanceCallback(FMOD::Studio::EventInstance* instance, uintptr_t instance_ptr)
+{
+	std::optional<FMOD_STUDIO_EVENT_CALLBACK_TYPE> fmod_mask;
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+		auto it = g_event_instances.find(instance_ptr);
+		if (it != g_event_instances.end())
+		{
+			const EventInstanceState& state = it->second;
+			if (state.callback.has_value() || state.programmer_key.has_value())
+			{
+				// DESTROYED is always requested so the entry can be reclaimed.
+				std::uint64_t mask = FMOD_STUDIO_EVENT_CALLBACK_DESTROYED;
+				if (state.callback.has_value())
+					mask |= state.callback->mask;
+				if (state.programmer_key.has_value())
+					mask |= FMOD_STUDIO_EVENT_CALLBACK_CREATE_PROGRAMMER_SOUND
+						| FMOD_STUDIO_EVENT_CALLBACK_DESTROY_PROGRAMMER_SOUND;
+				fmod_mask = (FMOD_STUDIO_EVENT_CALLBACK_TYPE)mask;
+			}
+			else
+			{
+				g_event_instances.erase(it);
+			}
+		}
+	}
+
+	if (!fmod_mask.has_value())
+		return instance->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
+
+	FMOD_RESULT result = instance->setCallback(CALLBACK_fmod_studio_event_instance, fmod_mask.value());
+	if (result != FMOD_OK)
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+		g_event_instances.erase(instance_ptr);
+	}
+	return result;
 }
 
 double fmod_studio_event_instance_set_callback(
@@ -466,31 +593,54 @@ double fmod_studio_event_instance_set_callback(
 	if (instance == nullptr) return 0;
 
 	uintptr_t instance_ptr = gmfmod::pointerKey(instance);
-
-	if (!callback.has_value())
 	{
+		std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+		EventInstanceState& state = g_event_instances[instance_ptr];
+		if (callback.has_value())
+			state.callback = FmodEventCallback{ callback.value(), (FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)mask };
+		else
+			state.callback.reset();
+	}
+
+	g_fmod_studio_last_result = applyEventInstanceCallback(instance, instance_ptr);
+	return 0;
+}
+
+double fmod_studio_event_instance_set_programmer_sound(uint64_t instance_ref, std::optional<std::string_view> key)
+{
+	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
+	if (instance == nullptr) return 0;
+
+	uintptr_t instance_ptr = gmfmod::pointerKey(instance);
+
+	// Installing this extension's callback on the instance replaces whatever
+	// it inherited from its description, so an instance with no callback of
+	// its own takes a copy of the description's - the copy FMOD made at
+	// createInstance - and keeps reporting to it.
+	FMOD::Studio::EventDescription* event_desc = nullptr;
+	std::optional<FmodEventCallback> inherited;
+	if (instance->getDescription(&event_desc) == FMOD_OK)
+		inherited = fmod_studio_event_description_get_callback(event_desc);
+
+	FMOD::Studio::System* studio_system = fmod_studio_current_system();
+
+	{
+		std::lock_guard<std::mutex> lock(g_event_instance_mutex);
+		EventInstanceState& state = g_event_instances[instance_ptr];
+		if (!state.callback.has_value() && inherited.has_value())
+			state.callback = inherited;
+		if (key.has_value())
 		{
-			std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
-			g_event_instance_callbacks.erase(instance_ptr);
+			state.programmer_key = std::string(key.value());
+			state.studio_system = studio_system;
 		}
-		g_fmod_studio_last_result = instance->setCallback(nullptr, FMOD_STUDIO_EVENT_CALLBACK_ALL);
-		return 0;
+		else
+		{
+			state.programmer_key.reset();
+			state.studio_system = nullptr;
+		}
 	}
 
-	{
-		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
-		g_event_instance_callbacks.insert_or_assign(instance_ptr, callback.value());
-	}
-
-	// DESTROYED is always requested so the map entry can be reclaimed.
-	FMOD_STUDIO_EVENT_CALLBACK_TYPE fmod_mask =
-		(FMOD_STUDIO_EVENT_CALLBACK_TYPE)(std::uint64_t)mask | FMOD_STUDIO_EVENT_CALLBACK_DESTROYED;
-
-	g_fmod_studio_last_result = instance->setCallback(CALLBACK_fmod_studio_event_instance, fmod_mask);
-	if (g_fmod_studio_last_result != FMOD_OK)
-	{
-		std::lock_guard<std::mutex> lock(g_event_instance_callback_mutex);
-		g_event_instance_callbacks.erase(instance_ptr);
-	}
+	g_fmod_studio_last_result = applyEventInstanceCallback(instance, instance_ptr);
 	return 0;
 }

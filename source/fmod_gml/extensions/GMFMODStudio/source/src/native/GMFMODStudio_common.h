@@ -76,6 +76,16 @@ inline FMOD::Studio::CommandReplay* resolve_fmod_studio_command_replay(uint64_t 
 // Callback Contexts
 // ============================================================
 
+// A GML event callback and the mask it asked for. FMOD is sometimes asked for
+// more types than that - the instance trampoline needs DESTROYED to reclaim its
+// entry and the programmer-sound pair to answer a registered key - so the mask
+// is what decides which types reach GML.
+struct FmodEventCallback
+{
+	gm::wire::GMFunction callback;
+	FMOD_STUDIO_EVENT_CALLBACK_TYPE mask;
+};
+
 struct FmodCommandReplayCallbackContext
 {
 	std::optional<gm::wire::GMFunction> frame_callback;
@@ -90,6 +100,12 @@ extern std::map<uintptr_t, FmodCommandReplayCallbackContext> g_command_replay_ca
 // Per-module state hooks
 // ============================================================
 
+// The one Studio system this extension drives (fmod_studio_system_create
+// refuses a second), or nullptr. Game thread only - a trampoline that needs
+// it takes a copy at registration time instead. It exists because the
+// vendored Switch SDK is 2.02.19, where EventInstance has no getSystem.
+FMOD::Studio::System* fmod_studio_current_system();
+
 // Each file owning a file-local map exposes a reset entry point rather than
 // promoting the map to a global. fmod_studio_shutdown() drives them all.
 void fmod_studio_event_instance_reset_state();
@@ -100,11 +116,20 @@ void fmod_studio_event_description_reset_state();
 // the description-keyed callback map is swept here instead.
 void fmod_studio_event_description_forget_bank(FMOD::Studio::Bank* bank);
 
+// The callback registered on a description, if any - what an instance created
+// from it inherits. An instance that takes a callback slot of its own copies
+// this in first, the way FMOD itself does at createInstance.
+std::optional<FmodEventCallback> fmod_studio_event_description_get_callback(
+	FMOD::Studio::EventDescription* event_desc);
+
 // Shared by both event trampolines: turns FMOD's (type, event, parameters)
 // into the (event_instance_ref, type, properties) call GML sees. One decoder
-// so the description and instance paths cannot drift apart.
+// so the description and instance paths cannot drift apart. `result` is what
+// the extension's own answer to a programmer-sound callback came to; only
+// that pair of types carries it.
 void fmod_studio_event_call(
 	const gm::wire::GMFunction& callback,
 	FMOD_STUDIO_EVENT_CALLBACK_TYPE type,
 	FMOD_STUDIO_EVENTINSTANCE* event,
-	void* parameters);
+	void* parameters,
+	FMOD_RESULT result = FMOD_OK);

@@ -520,6 +520,10 @@ public class GMFMODStudioInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_studio_event_instance_set_callback(__arg_buffer, __arg_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound(ByteBuffer __arg_buffer, double __arg_buffer_length)
+    {
+        return __EXT_JNI__fmod_studio_event_instance_set_programmer_sound(__arg_buffer, __arg_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
         return __EXT_JNI__fmod_studio_event_instance_set_parameter_by_id_with_label(__arg_buffer, __arg_buffer_length);

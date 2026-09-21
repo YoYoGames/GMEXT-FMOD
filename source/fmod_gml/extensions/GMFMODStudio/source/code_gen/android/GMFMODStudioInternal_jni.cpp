@@ -1811,6 +1811,19 @@ static jdouble __JNI_WRAPPER__fmod_studio_event_instance_set_callback_0DCC3A1780
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_studio_event_instance_set_programmer_sound JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_studio_event_instance_set_programmer_sound_D3499C2C3655(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_studio_event_instance_set_parameter_by_id_with_label JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_id_with_label_DAD4DDED7A0A(JNIEnv* env, jclass /* GMFMODStudioBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
 {
@@ -2887,6 +2900,7 @@ extern "C" {
             { "__EXT_JNI__fmod_studio_event_instance_get_parameter_by_id", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_get_parameter_by_id_CF86024FF493 },
             { "__EXT_JNI__fmod_studio_event_instance_set_parameter_by_id", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_id_7F75BBB5369F },
             { "__EXT_JNI__fmod_studio_event_instance_set_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_callback_0DCC3A1780BB },
+            { "__EXT_JNI__fmod_studio_event_instance_set_programmer_sound", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_programmer_sound_D3499C2C3655 },
             { "__EXT_JNI__fmod_studio_event_instance_set_parameter_by_id_with_label", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_id_with_label_DAD4DDED7A0A },
             { "__EXT_JNI__fmod_studio_event_instance_set_parameter_by_name_with_label", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_parameter_by_name_with_label_6B354AE44315 },
             { "__EXT_JNI__fmod_studio_event_instance_set_3d_attributes", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_studio_event_instance_set_3d_attributes_2E5BE736BFE9 },

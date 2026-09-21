@@ -1,5 +1,5 @@
 # PS4 (ORBIS) pre-project setup
-# Bypasses CMake's compiler executable test — ORBIS binaries can't run on
+# Bypasses CMake's compiler executable test - ORBIS binaries can't run on
 # Windows during configure. VS MSBuild handles compilation via the ORBIS
 # platform toolset.
 #
@@ -21,7 +21,7 @@ if(EXTGEN_PLATFORM_PS4)
   set(CMAKE_CXX_COMPILER_WORKS TRUE CACHE BOOL "" FORCE)
 
   # Clear Windows default link libraries injected by CMake's Windows platform
-  # detection (kernel32, user32, gdi32, etc.) — these don't exist on ORBIS.
+  # detection (kernel32, user32, gdi32, etc.) - these don't exist on ORBIS.
   set(CMAKE_C_STANDARD_LIBRARIES   "" CACHE STRING "" FORCE)
   set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
 endif()

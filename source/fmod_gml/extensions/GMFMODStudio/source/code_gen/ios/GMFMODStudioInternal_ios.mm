@@ -596,6 +596,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_callback(__arg_buffer, __arg_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_programmer_sound(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id_with_label(__arg_buffer, __arg_buffer_length);
