@@ -134,7 +134,9 @@ FMOD::ChannelControl* resolve_fmod_channel_control(uint64_t ref);
 // Each file owning a file-local map exposes forget and reset entry points
 // rather than promoting the map to a global. The per-object forgets run from
 // that object's release and from FmodRegistries::evictOwnedBy; the resets from
-// fmod_shutdown().
+// fmod_shutdown(). The platform lifecycle entries, fmod_lifecycle_suspend()
+// and fmod_lifecycle_resume(), are spec functions (hidden) so the Java hooks
+// can reach them; GMFMOD_system.cpp's "System - Lifecycle" section has them.
 FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control);
 void fmod_channel_control_forget_rolloff(const void* control);
 void fmod_channel_control_forget_callback(const void* control);

@@ -6616,6 +6616,12 @@ function fmod_system_get_stream_buffer_size()
 // Skipping function fmod_system_mixer_resume (no wrapper is required)
 
 
+// Skipping function fmod_lifecycle_suspend (no wrapper is required)
+
+
+// Skipping function fmod_lifecycle_resume (no wrapper is required)
+
+
 // Skipping function fmod_system_lock_dsp (no wrapper is required)
 
 

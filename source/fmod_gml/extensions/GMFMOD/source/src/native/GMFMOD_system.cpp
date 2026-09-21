@@ -1227,6 +1227,45 @@ double fmod_system_mixer_resume()
 	return 0;
 }
 
+// ============================================================
+// System - Lifecycle
+// ============================================================
+
+// The platform hooks - GMFMOD.java on Android, GMFMOD_ios.mm on iOS - park
+// and wake every system this DLL knows about, adopted ones included, so a
+// Studio game is covered once fmod_system_adopt has registered its core
+// system. They write no status slot: on a cold start the hooks fire before
+// the game has created a system, and a game reading fmod_last_result() in
+// its first step must not see an error it did not cause. A system that is
+// not initialised answers an error here that means nothing to the game, so
+// the results are dropped.
+//
+// Android delivers the hooks on the UI thread while the runner has paused
+// the game thread; iOS on the main queue, which is the game thread. Either
+// way a suspend and its resume land on one thread, as FMOD requires, and the
+// registry is read through its locked snapshot rather than forEach.
+static void lifecycle_each_system(bool suspend)
+{
+	for (FMOD::System* system : g_registries.systems.snapshot())
+	{
+		if (system == nullptr) continue;
+		if (suspend)
+			system->mixerSuspend();
+		else
+			system->mixerResume();
+	}
+}
+
+void fmod_lifecycle_suspend()
+{
+	lifecycle_each_system(true);
+}
+
+void fmod_lifecycle_resume()
+{
+	lifecycle_each_system(false);
+}
+
 double fmod_system_lock_dsp()
 {
 	FMOD::System* system = getCurrentSystem();

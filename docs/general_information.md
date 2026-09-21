@@ -36,6 +36,21 @@ show_debug_message("Result of fmod_system_create: {0}", result);
 
 [[Note: ${function.fmod_last_result} returns `FmodResult.Ok` in case there were no errors.]]
 
+# Mobile Lifecycle
+
+On Android and iOS the extension suspends and resumes the FMOD mixer on its own, for every system it knows about, so a backgrounded or interrupted game stops using the audio hardware and the CPU and picks up where it left off:
+
+* **Android** suspends when the activity is stopped and resumes when it is started again.
+* **iOS** suspends when an audio session interruption begins (a phone call, Siri, another app taking the audio hardware) and when the app enters the background; it resumes when the interruption ends or the app becomes active again, once the audio session could be activated. When iOS restarts its media services, the extension resets FMOD's audio output with a suspend/resume pair, as [FMOD's iOS guide](https://www.fmod.com/docs/2.03/api/platforms-ios.html#handling-interruptions) prescribes - no FMOD object is invalidated by it, and nothing in your game needs rebuilding.
+
+This happens through the platform's own lifecycle, not through the functions below, and it never changes the value ${function.fmod_last_result} returns. The suspend and its matching resume always run on the thread your game calls FMOD from - the main thread on iOS, and on Android while the runner has the game paused - which is what FMOD requires of the pair.
+
+[[Note: FMOD advises against calling any FMOD function between a suspend and its resume. Your game keeps stepping during a foreground interruption on iOS, so keep your own FMOD calls to a minimum while the game is not the active app; `os_is_paused()` reports the step in which the OS paused the game.]]
+
+[[Note: On a Studio game, the lifecycle handling reaches the Studio system's core system once ${function.fmod_system_adopt} has registered it with the Core extension, which is what the demo does. A Studio game that never adopts its core system gets no automatic suspend.]]
+
+${function.fmod_system_mixer_suspend} and ${function.fmod_system_mixer_resume} are still yours to call for the selected system, for example to silence the game on a pause menu. They are not tracked by the lifecycle handling: a system you suspended by hand is woken by the next lifecycle resume along with every other.
+
 # Bug Reports
 
 If you experience a crash when using the FMOD extension, please create a [bug report](https://github.com/YoYoGames/GMEXT-FMOD/issues/new?assignees=&labels=extension-bug&projects=&template=extension_bug_report.yml). This allows the GameMaker team to look into the issue and improve the FMOD extension.

@@ -938,6 +938,18 @@ GMEXPORT double __EXT_NATIVE__fmod_system_mixer_resume()
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_lifecycle_suspend()
+{
+    fmod_lifecycle_suspend();
+    return 0;
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_lifecycle_resume()
+{
+    fmod_lifecycle_resume();
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_system_lock_dsp()
 {
     auto&& __result = fmod_system_lock_dsp();

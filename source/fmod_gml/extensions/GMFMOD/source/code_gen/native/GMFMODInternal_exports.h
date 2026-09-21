@@ -92,6 +92,8 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_num_listeners();
 GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_num_listeners(double num);
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_suspend();
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_resume();
+GMEXPORT double __EXT_NATIVE__fmod_lifecycle_suspend();
+GMEXPORT double __EXT_NATIVE__fmod_lifecycle_resume();
 GMEXPORT double __EXT_NATIVE__fmod_system_lock_dsp();
 GMEXPORT double __EXT_NATIVE__fmod_system_unlock_dsp();
 GMEXPORT double __EXT_NATIVE__fmod_system_set_callback(char* __arg_buffer, double __arg_buffer_length);

@@ -1135,6 +1135,20 @@ static jdouble __JNI_WRAPPER__fmod_system_mixer_resume_EFF924482C59(JNIEnv* /* e
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_lifecycle_suspend JNI wrapper signature: ()D
+static jdouble __JNI_WRAPPER__fmod_lifecycle_suspend_85D1B621634D(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+{
+    double __ret = __EXT_NATIVE__fmod_lifecycle_suspend();
+    return static_cast<jdouble>(__ret);
+}
+
+// fmod_lifecycle_resume JNI wrapper signature: ()D
+static jdouble __JNI_WRAPPER__fmod_lifecycle_resume_11A4C0EA442A(JNIEnv* /* env */, jclass /* GMFMODBridge */)
+{
+    double __ret = __EXT_NATIVE__fmod_lifecycle_resume();
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_lock_dsp JNI wrapper signature: ()D
 static jdouble __JNI_WRAPPER__fmod_system_lock_dsp_57536B325484(JNIEnv* /* env */, jclass /* GMFMODBridge */)
 {
@@ -4705,6 +4719,8 @@ extern "C" {
             { "__EXT_JNI__fmod_system_set_3d_num_listeners", "(D)D", (void*)__JNI_WRAPPER__fmod_system_set_3d_num_listeners_887316010779 },
             { "__EXT_JNI__fmod_system_mixer_suspend", "()D", (void*)__JNI_WRAPPER__fmod_system_mixer_suspend_FAE7B006D778 },
             { "__EXT_JNI__fmod_system_mixer_resume", "()D", (void*)__JNI_WRAPPER__fmod_system_mixer_resume_EFF924482C59 },
+            { "__EXT_JNI__fmod_lifecycle_suspend", "()D", (void*)__JNI_WRAPPER__fmod_lifecycle_suspend_85D1B621634D },
+            { "__EXT_JNI__fmod_lifecycle_resume", "()D", (void*)__JNI_WRAPPER__fmod_lifecycle_resume_11A4C0EA442A },
             { "__EXT_JNI__fmod_system_lock_dsp", "()D", (void*)__JNI_WRAPPER__fmod_system_lock_dsp_57536B325484 },
             { "__EXT_JNI__fmod_system_unlock_dsp", "()D", (void*)__JNI_WRAPPER__fmod_system_unlock_dsp_E6B9D0656241 },
             { "__EXT_JNI__fmod_system_set_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_callback_2366FEB90317 },

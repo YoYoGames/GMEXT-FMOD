@@ -2987,6 +2987,8 @@ double fmod_system_get_3d_num_listeners();
 double fmod_system_set_3d_num_listeners(double num);
 double fmod_system_mixer_suspend();
 double fmod_system_mixer_resume();
+void fmod_lifecycle_suspend();
+void fmod_lifecycle_resume();
 double fmod_system_lock_dsp();
 double fmod_system_unlock_dsp();
 double fmod_system_set_callback(const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodSystemCallbackType callback_mask);

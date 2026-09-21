@@ -19,11 +19,12 @@ namespace gmfmod
 // owned instead of leaving refs that resolve to freed memory.
 //
 // Threading: only the game thread mutates a registry, and the game thread
-// reads it without locking. idOf() is the one entry point another thread may
-// call - FMOD's error and mixer callbacks resolve an object to its ref through
-// it - so the mutators and idOf() share a mutex and the plain readers do not.
-// Nothing under the lock calls FMOD: an FMOD call can fire the error callback,
-// which comes straight back here through idOf().
+// reads it without locking. idOf() and snapshot() are the entry points another
+// thread may call - FMOD's error and mixer callbacks resolve an object to its
+// ref through idOf(), the platform lifecycle hooks walk the systems through
+// snapshot() - so the mutators and those two share a mutex and the plain
+// readers do not. Nothing under the lock calls FMOD: an FMOD call can fire the
+// error callback, which comes straight back here through idOf().
 //
 // Header-only - see gmfmod_ref.h. The mutex is a member, so no symbol.
 template <typename T>
@@ -101,6 +102,18 @@ public:
 		std::lock_guard<std::mutex> lock(mutex_);
 		auto found = by_object_.find(object);
 		return found == by_object_.end() ? 0 : found->second;
+	}
+
+	// Safe from any thread. Every registered object, lowest id first; the
+	// caller works on the copy after the lock is gone.
+	std::vector<T*> snapshot() const
+	{
+		std::vector<T*> objects;
+		std::lock_guard<std::mutex> lock(mutex_);
+		objects.reserve(by_id_.size());
+		for (const auto& entry : by_id_)
+			objects.push_back(entry.second.object);
+		return objects;
 	}
 
 	// The lowest-id object, or nullptr when empty.

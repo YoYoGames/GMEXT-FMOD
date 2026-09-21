@@ -86,6 +86,8 @@
 - (double)__EXT_NATIVE__fmod_system_set_3d_num_listeners:(double)num;
 - (double)__EXT_NATIVE__fmod_system_mixer_suspend;
 - (double)__EXT_NATIVE__fmod_system_mixer_resume;
+- (double)__EXT_NATIVE__fmod_lifecycle_suspend;
+- (double)__EXT_NATIVE__fmod_lifecycle_resume;
 - (double)__EXT_NATIVE__fmod_system_lock_dsp;
 - (double)__EXT_NATIVE__fmod_system_unlock_dsp;
 - (double)__EXT_NATIVE__fmod_system_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

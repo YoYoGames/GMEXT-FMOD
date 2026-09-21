@@ -2458,6 +2458,17 @@ function fmod_system_mixer_suspend(): real;
 [global, bind = typed_gml]
 function fmod_system_mixer_resume(): real;
 
+// The platform lifecycle hooks - GMFMOD.java on Android, GMFMOD_ios.mm on
+// iOS - suspend and resume every registered system through these two when
+// the app is interrupted, backgrounded or brought back. Hidden: a game has
+// fmod_system_mixer_suspend/resume for its own use, and these write no
+// status slot.
+[global, hidden, bind = typed_gml]
+function fmod_lifecycle_suspend(): unit;
+
+[global, hidden, bind = typed_gml]
+function fmod_lifecycle_resume(): unit;
+
 [global, bind = typed_gml]
 function fmod_system_lock_dsp(): real;
 

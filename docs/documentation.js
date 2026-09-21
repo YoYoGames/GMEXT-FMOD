@@ -7752,6 +7752,8 @@ function fmod_system_update() {}
  * It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.
  * 
  * All internal state will be maintained, i.e. created [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) will stay available in memory.
+ * 
+ * [[Note: On Android and iOS the extension suspends and resumes every system itself on the platform's lifecycle events, without touching ${function.fmod_last_result} - see the Mobile Lifecycle section of ${page.general_information}. This function acts on the selected system only and is for your game's own use.]]
  * @returns {Real}
  * 
  * @function_end
@@ -7772,11 +7774,29 @@ function fmod_system_mixer_suspend() {}
  * All internal state will resume, i.e. created [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html) and [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html) are still valid and playback will continue.
  * 
  * [[Note: On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.]]
+ * 
+ * [[Note: On Android and iOS the extension resumes every system itself when the app comes back - see the Mobile Lifecycle section of ${page.general_information}. A system you suspended by hand is woken by that resume too.]]
  * @returns {Real}
  * 
  * @function_end
  */
 function fmod_system_mixer_resume() {}
+
+/**
+ * @function fmod_lifecycle_suspend
+ * @desc Internal. The Android and iOS lifecycle hooks call this to suspend the mixer of every system the extension knows about when the app is stopped, interrupted or backgrounded. It is hidden from the IDE, it is not part of the game-facing API, and it does not change ${function.fmod_last_result}; use ${function.fmod_system_mixer_suspend} for your own suspend.
+ *
+ * @function_end
+ */
+function fmod_lifecycle_suspend() {}
+
+/**
+ * @function fmod_lifecycle_resume
+ * @desc Internal. The Android and iOS lifecycle hooks call this to resume the mixer of every system the extension knows about when the app is started again, becomes active or its interruption ends. It is hidden from the IDE, it is not part of the game-facing API, and it does not change ${function.fmod_last_result}; use ${function.fmod_system_mixer_resume} for your own resume.
+ *
+ * @function_end
+ */
+function fmod_lifecycle_resume() {}
 
 
 /**
@@ -9236,6 +9256,8 @@ function fmod_shutdown() {}
  * This is how the two halves of the extension are joined: pass the pointer returned by ${function.fmod_studio_system_get_core_system_ptr} and the Core functions then operate on FMOD Studio's core system.
  * 
  * [[Important: The adopted system stays owned by whoever created it. ${function.fmod_system_release} will not release it, and it must outlive every Core call made against it. Calling ${function.fmod_system_release} on the adopted reference drops every Core reference minted for that system's objects without freeing anything, so call it before ${function.fmod_studio_system_release} to leave no stale references behind.]]
+ * 
+ * Adoption is also what brings the mobile lifecycle handling described on ${page.general_information} to a Studio game: the adopted core system is suspended and resumed with the app on Android and iOS like any system created here.
  * 
  * @param {Real} system_ptr The raw core system pointer to adopt.
  * @returns {Real} A reference to the adopted system, or 0 on failure.

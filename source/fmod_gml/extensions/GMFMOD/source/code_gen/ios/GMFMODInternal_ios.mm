@@ -420,6 +420,14 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_mixer_resume();
 }
+- (double)__EXT_NATIVE__fmod_lifecycle_suspend
+{
+    return __EXT_NATIVE__fmod_lifecycle_suspend();
+}
+- (double)__EXT_NATIVE__fmod_lifecycle_resume
+{
+    return __EXT_NATIVE__fmod_lifecycle_resume();
+}
 - (double)__EXT_NATIVE__fmod_system_lock_dsp
 {
     return __EXT_NATIVE__fmod_system_lock_dsp();

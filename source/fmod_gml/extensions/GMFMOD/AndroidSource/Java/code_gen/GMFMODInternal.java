@@ -344,6 +344,14 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_mixer_resume();
     }
+    public double __EXT_NATIVE__fmod_lifecycle_suspend()
+    {
+        return __EXT_JNI__fmod_lifecycle_suspend();
+    }
+    public double __EXT_NATIVE__fmod_lifecycle_resume()
+    {
+        return __EXT_JNI__fmod_lifecycle_resume();
+    }
     public double __EXT_NATIVE__fmod_system_lock_dsp()
     {
         return __EXT_JNI__fmod_system_lock_dsp();

@@ -3309,6 +3309,10 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p>This function suspends the mixer thread and relinquishes usage of audio hardware while maintaining internal state.</p>
 <p>It is used on mobile platforms when entering a backgrounded state to reduce CPU to 0%.</p>
 <p>All internal state will be maintained, i.e. created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> and <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channels</a> will stay available in memory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Android and iOS the extension suspends and resumes every system itself on the platform's lifecycle events, without touching <a href="misc.html#fmod_last_result">fmod_last_result</a> - see the Mobile Lifecycle section of <a href="general_information.html">General Information</a>. This function acts on the selected system only and is for your game's own use.</p>
+</div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3334,6 +3338,10 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On HTML5, this function is used to start audio from a user interaction event, like a mouse click or screen touch event. Without this call audio may not start on some browsers.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Android and iOS the extension resumes every system itself when the app comes back - see the Mobile Lifecycle section of <a href="general_information.html">General Information</a>. A system you suspended by hand is woken by that resume too.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -5853,6 +5861,7 @@ The code above reports every failing FMOD call through the debug output, with th
 <p class="admonition-title">Important</p>
 <p>The adopted system stays owned by whoever created it. <a href="system.html#fmod_system_release">fmod_system_release</a> will not release it, and it must outlive every Core call made against it. Calling <a href="system.html#fmod_system_release">fmod_system_release</a> on the adopted reference drops every Core reference minted for that system's objects without freeing anything, so call it before <a href="studio_system.html#fmod_studio_system_release">fmod_studio_system_release</a> to leave no stale references behind.</p>
 </div>
+<p>Adoption is also what brings the mobile lifecycle handling described on <a href="general_information.html">General Information</a> to a Studio game: the adopted core system is suspended and resumed with the app on Android and iOS like any system created here.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

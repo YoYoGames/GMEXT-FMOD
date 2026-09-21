@@ -587,6 +587,16 @@
  */
 
 /**
+ * @function_partial fmod_lifecycle_suspend
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_lifecycle_resume
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_lock_dsp
  * @returns {Real}
  * @function_end
