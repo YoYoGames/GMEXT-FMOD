@@ -1419,6 +1419,42 @@ function FmodDSPInfo() constructor
 }
 
 /**
+ * @returns {Struct.FmodDSPDescription}
+ */
+function FmodDSPDescription() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 1863727068;
+
+    self.pluginsdkversion = undefined;
+    self.name = undefined;
+    self.version = undefined;
+    self.numinputbuffers = undefined;
+    self.numoutputbuffers = undefined;
+    self.numparameters = undefined;
+
+}
+
+/**
+ * @returns {Struct.FmodDSPConnectionEnd}
+ */
+function FmodDSPConnectionEnd() constructor
+{
+    /**
+     * Internally generated hash for quick validation
+     * @ignore
+     */
+    static __uid = 1972682779;
+
+    self.dsp_ref = undefined;
+    self.connection_ref = undefined;
+
+}
+
+/**
  * @returns {Struct.FmodDSPCPUUsage}
  */
 function FmodDSPCPUUsage() constructor
@@ -3143,6 +3179,134 @@ function __FmodDSPInfo_decode(_buffer, _offset)
 
         // field: configheight, type: Float64
         self.configheight = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPDescription_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPDescription} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPDescription_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: pluginsdkversion, type: Float64
+        if (!is_numeric(self.pluginsdkversion)) show_error($"{_where} :: self.pluginsdkversion expected number", true);
+        buffer_write(_buffer, buffer_f64, self.pluginsdkversion);
+
+        // field: name, type: String
+        if (!is_string(self.name)) show_error($"{_where} :: self.name expected string", true);
+        buffer_write(_buffer, buffer_u32, string_byte_length(self.name));
+        buffer_write(_buffer, buffer_string, self.name);
+
+        // field: version, type: Float64
+        if (!is_numeric(self.version)) show_error($"{_where} :: self.version expected number", true);
+        buffer_write(_buffer, buffer_f64, self.version);
+
+        // field: numinputbuffers, type: Float64
+        if (!is_numeric(self.numinputbuffers)) show_error($"{_where} :: self.numinputbuffers expected number", true);
+        buffer_write(_buffer, buffer_f64, self.numinputbuffers);
+
+        // field: numoutputbuffers, type: Float64
+        if (!is_numeric(self.numoutputbuffers)) show_error($"{_where} :: self.numoutputbuffers expected number", true);
+        buffer_write(_buffer, buffer_f64, self.numoutputbuffers);
+
+        // field: numparameters, type: Float64
+        if (!is_numeric(self.numparameters)) show_error($"{_where} :: self.numparameters expected number", true);
+        buffer_write(_buffer, buffer_f64, self.numparameters);
+
+    }
+}
+
+/**
+ * @func __FmodDSPDescription_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPDescription}
+ * @ignore
+ */
+function __FmodDSPDescription_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPDescription();
+    with (_inst)
+    {
+        // field: pluginsdkversion, type: Float64
+        self.pluginsdkversion = buffer_read(_buffer, buffer_f64);
+
+        // field: name, type: String
+        buffer_read(_buffer, buffer_u32);
+        self.name = buffer_read(_buffer, buffer_string);
+
+        // field: version, type: Float64
+        self.version = buffer_read(_buffer, buffer_f64);
+
+        // field: numinputbuffers, type: Float64
+        self.numinputbuffers = buffer_read(_buffer, buffer_f64);
+
+        // field: numoutputbuffers, type: Float64
+        self.numoutputbuffers = buffer_read(_buffer, buffer_f64);
+
+        // field: numparameters, type: Float64
+        self.numparameters = buffer_read(_buffer, buffer_f64);
+
+    }
+
+    return _inst;
+}
+
+/**
+ * @func __FmodDSPConnectionEnd_encode(_inst, _buffer, _offset, _where)
+ * @param {Struct.FmodDSPConnectionEnd} _inst
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @param {String} _where
+ * @ignore
+ */
+function __FmodDSPConnectionEnd_encode(_inst, _buffer, _offset, _where = _GMFUNCTION_)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+    with (_inst)
+    {
+        // field: dsp_ref, type: UInt64
+        if (!is_numeric(self.dsp_ref)) show_error($"{_where} :: self.dsp_ref expected number", true);
+        buffer_write(_buffer, buffer_u64, self.dsp_ref);
+
+        // field: connection_ref, type: UInt64
+        if (!is_numeric(self.connection_ref)) show_error($"{_where} :: self.connection_ref expected number", true);
+        buffer_write(_buffer, buffer_u64, self.connection_ref);
+
+    }
+}
+
+/**
+ * @func __FmodDSPConnectionEnd_decode(_buffer, _offset)
+ * @param {Id.Buffer} _buffer
+ * @param {Real} _offset
+ * @returns {Struct.FmodDSPConnectionEnd}
+ * @ignore
+ */
+function __FmodDSPConnectionEnd_decode(_buffer, _offset)
+{
+    buffer_seek(_buffer, buffer_seek_start, _offset);
+
+    _inst = new FmodDSPConnectionEnd();
+    with (_inst)
+    {
+        // field: dsp_ref, type: UInt64
+        self.dsp_ref = buffer_read(_buffer, buffer_u64);
+
+        // field: connection_ref, type: UInt64
+        self.connection_ref = buffer_read(_buffer, buffer_u64);
 
     }
 
@@ -6109,6 +6273,31 @@ function fmod_system_create_dsp_by_type(_dsp_type)
 
     var __result__ = undefined;
     __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    return __result__;
+}
+
+/**
+ * @param {Enum.FmodDspType} _dsp_type
+ * @returns {Struct.FmodDSPDescription}
+ */
+function fmod_system_get_dsp_info_by_type(_dsp_type)
+{
+    var __available__ = __GMFMOD_is_available();
+    if (!__available__) return;
+
+    var __args_buffer__ = __ext_core_get_args_buffer();
+
+    // param: _dsp_type, type: enum FmodDspType
+
+    if (!is_numeric(_dsp_type)) show_error($"{_GMFUNCTION_} :: _dsp_type expected number", true);
+    buffer_write(__args_buffer__, buffer_u64, _dsp_type);
+
+    var __ret_buffer__ = __ext_core_get_ret_buffer();
+
+    var __return_value__ = __fmod_system_get_dsp_info_by_type(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+
+    var __result__ = undefined;
+    __result__ = __FmodDSPDescription_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -9256,10 +9445,9 @@ function fmod_channel_control_get_fade_point_count(_channel_control_ref)
 
 /**
  * @param {Real} _channel_control_ref
- * @param {Real} _index
- * @returns {Struct.FmodFadePoint}
+ * @returns {Array[Struct.FmodFadePoint]}
  */
-function fmod_channel_control_get_fade_point_at(_channel_control_ref, _index)
+function fmod_channel_control_get_fade_points(_channel_control_ref)
 {
     var __available__ = __GMFMOD_is_available();
     if (!__available__) return;
@@ -9270,16 +9458,17 @@ function fmod_channel_control_get_fade_point_at(_channel_control_ref, _index)
     if (!is_numeric(_channel_control_ref)) show_error($"{_GMFUNCTION_} :: _channel_control_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _channel_control_ref);
 
-    // param: _index, type: Float64
-    if (!is_numeric(_index)) show_error($"{_GMFUNCTION_} :: _index expected number", true);
-    buffer_write(__args_buffer__, buffer_f64, _index);
-
     var __ret_buffer__ = __ext_core_get_ret_buffer();
 
-    var __return_value__ = __fmod_channel_control_get_fade_point_at(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
+    var __return_value__ = __fmod_channel_control_get_fade_points(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = __FmodFadePoint_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
+    var __length__ = buffer_read(__ret_buffer__, buffer_u32);
+    __result__ = array_create(__length__);
+    for (var _i = 0; _i < __length__; ++_i)
+    {
+        __result__[_i] = __FmodFadePoint_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
+    }
     return __result__;
 }
 
@@ -11159,7 +11348,7 @@ function fmod_dsp_get_system_object(_dsp_ref)
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @returns {Real}
+ * @returns {Struct.FmodDSPConnectionEnd}
  */
 function fmod_dsp_get_input(_dsp_ref, _index)
 {
@@ -11181,14 +11370,14 @@ function fmod_dsp_get_input(_dsp_ref, _index)
     var __return_value__ = __fmod_dsp_get_input(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    __result__ = __FmodDSPConnectionEnd_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
 /**
  * @param {Real} _dsp_ref
  * @param {Real} _index
- * @returns {Real}
+ * @returns {Struct.FmodDSPConnectionEnd}
  */
 function fmod_dsp_get_output(_dsp_ref, _index)
 {
@@ -11210,7 +11399,7 @@ function fmod_dsp_get_output(_dsp_ref, _index)
     var __return_value__ = __fmod_dsp_get_output(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__), buffer_get_address(__ret_buffer__), buffer_get_size(__ret_buffer__));
 
     var __result__ = undefined;
-    __result__ = buffer_read(__ret_buffer__, buffer_u64);
+    __result__ = __FmodDSPConnectionEnd_decode(__ret_buffer__, buffer_tell(__ret_buffer__));
     return __result__;
 }
 
@@ -12708,6 +12897,8 @@ function __GMFMOD_get_decoders()
         __FmodSystemRecordPosition_decode,
         __FmodDSPWetDryMix_decode,
         __FmodDSPInfo_decode,
+        __FmodDSPDescription_decode,
+        __FmodDSPConnectionEnd_decode,
         __FmodDSPCPUUsage_decode,
         __FmodMinMaxDistance_decode,
         __FmodSyncPoint_decode,
@@ -12758,4 +12949,4 @@ function __GMFMOD_is_available()
 // # Exports
 // #####################################################################
 
-#export FmodResult, FmodInitFlags, FmodMode, FmodTimeUnit, FmodDspType, FmodDspConnectionType, FmodDspResampler, FmodDspLowPass, FmodDspHighPass, FmodDspItLowPass, FmodDspEcho, FmodDspEchoDelayChangeMode, FmodDspFlange, FmodDspDistortion, FmodDspNormalize, FmodDspLimiter, FmodDspParamEq, FmodDspPitchShift, FmodDspChorus, FmodDspMultibandEq, FmodDspMultibandEqFilterType, FmodDspChannelMix, FmodDspChannelMixOutput, FmodDspTransceiver, FmodDspTransceiverSpeakerMode, FmodDspCompressor, FmodDspFft, FmodDspFftWindowType, FmodDspOscillator, FmodDspOscillatorType, FmodDspConvolution, FmodDspFader, FmodDspMultibandDynamics, FmodDspMultibandDynamicsModeType, FmodDspItEcho, FmodDspSfxReverb, FmodDspLowPassSimple, FmodDspHighPassSimple, FmodDspDelay, FmodDspTremolo, FmodDspSend, FmodDspReturn, FmodDspPan, FmodDspPanModeType, FmodDspPan2dStereoModeType, FmodDspPan3dRolloffType, FmodDspPan3dExtentModeType, FmodDspObjectPan, FmodDspThreeEq, FmodDspThreeEqCrossoverSlopeType, FmodDspFftDownmixType, FmodDspLoudnessMeter, FmodDspLoudnessMeterStateType, FmodSpeakerMode, FmodSpeaker, FmodChannelMask, FmodChannelOrder, FmodAudioQueueCodecPolicy, FmodDriverState, FmodDebugFlags, FmodDebugMode, FmodSoundType, FmodSoundFormat, FmodSoundGroupBehavior, FmodOutputType, FmodPortType, FmodChannelControlDspIndex, FmodChannelControlCallbackType, FmodDspCallbackType, FmodDspParameterDataType, FmodSystemCallbackType, FmodErrorCallbackInstanceType, FmodOpenState, FmodTagType, FmodTagDataType, FmodThreadType, FmodThreadPriority, FmodSoundDefaults, FmodLoopPoints, FmodSoundMinMaxDistance, FmodConeSettings, FmodSystem3DSettings, FmodVec3, FmodSyncPointInfo, FmodRecordNumDrivers, FmodRecordDriverInfo, FmodDSPMixMatrix, FmodDSPChannelFormat, FmodDSPMeteringInfo, FmodDSPMeteringEnabled, FmodDSPParameterInfo, FmodDSPDataParameterInfo, FmodErrorCallbackInfo, FmodSystemDeviceReinitialize, FmodSystemMemoryAllocationFailed, FmodSystemRecordPosition, FmodDSPWetDryMix, FmodDSPInfo, FmodDSPCPUUsage, FmodMinMaxDistance, FmodSyncPoint, FmodDSPBufferSize, FmodSoftwareFormat, FmodDriverInfo, FmodChannelsPlaying, FmodDelay, FmodDSPClock, FmodSoundOpenState, FmodSoundTag, FmodSoundNumTags, FmodSoundFormatInfo, FmodFadePoint, FmodDistanceFilter, FmodOcclusion, FmodGeometryMaxPolygons, FmodPolygonAttributes, FmodReverbProperties, FmodSoundLockLengths, FmodMemoryStats, FmodAdvancedSettings, FmodSpeakerPosition, FmodCPUUsage, FmodFileUsage, FmodStreamBufferSize, FmodCreateSoundExInfo, FmodListener3DAttributes, FmodChannelControl3DAttributes, FmodGeometryRotation, FmodReverb3DAttributes, fmod_last_result, fmod_debug_initialize, fmod_error_string, fmod_memory_get_stats, fmod_thread_set_attributes, fmod_channel_set_frequency, fmod_channel_get_frequency, fmod_channel_set_priority, fmod_channel_get_priority, fmod_channel_set_position, fmod_channel_get_position, fmod_channel_set_channel_group, fmod_channel_get_channel_group, fmod_channel_set_loop_count, fmod_channel_get_loop_count, fmod_channel_set_loop_points, fmod_channel_get_loop_points, fmod_channel_is_virtual, fmod_channel_get_index, fmod_channel_get_current_sound, fmod_channel_get_system_object, fmod_system_create, fmod_system_init, fmod_system_release, fmod_system_close, fmod_system_get_channels_playing, fmod_system_get_channel, fmod_system_get_master_channel_group, fmod_system_set_output, fmod_system_get_output, fmod_system_get_3d_settings, fmod_system_set_3d_listener_attributes, fmod_system_get_3d_listener_attributes, fmod_system_get_record_num_drivers, fmod_system_get_record_driver_info, fmod_system_record_start, fmod_system_create_dsp, fmod_system_create_dsp_by_type, fmod_system_get_dsp_buffer_size, fmod_system_get_software_format, fmod_system_set_software_format, fmod_system_set_stream_buffer_size, fmod_system_get_driver_info, fmod_system_create_channel_group, fmod_system_play_dsp, fmod_system_select, fmod_system_adopt, fmod_system_get_master_sound_group, fmod_system_get_advanced_settings, fmod_system_set_advanced_settings, fmod_system_get_speaker_mode_channels, fmod_system_get_speaker_position, fmod_system_set_speaker_position, fmod_system_get_reverb_properties, fmod_system_set_reverb_properties, fmod_system_get_default_mix_matrix, fmod_system_get_cpu_usage, fmod_system_get_file_usage, fmod_system_get_stream_buffer_size, fmod_system_set_callback, fmod_system_get_user_data, fmod_system_set_user_data, fmod_system_attach_channel_group_to_port, fmod_system_detach_channel_group_from_port, fmod_system_create_sound_group, fmod_system_create_geometry, fmod_system_load_geometry, fmod_system_get_geometry_occlusion, fmod_system_create_reverb_3d, fmod_system_create_sound, fmod_system_create_sound_ex, fmod_system_create_stream, fmod_system_create_sound_memory, fmod_system_create_sound_memory_ex, fmod_system_play_sound, fmod_sound_get_length, fmod_sound_set_defaults, fmod_sound_set_mode, fmod_sound_get_mode, fmod_sound_get_format, fmod_sound_get_name, fmod_sound_get_defaults, fmod_sound_set_loop_count, fmod_sound_get_loop_count, fmod_sound_set_loop_points, fmod_sound_get_loop_points, fmod_sound_set_3d_min_max_distance, fmod_sound_get_3d_min_max_distance, fmod_sound_set_3d_cone_settings, fmod_sound_get_3d_cone_settings, fmod_sound_set_3d_custom_rolloff, fmod_sound_get_3d_custom_rolloff, fmod_sound_get_num_sync_points, fmod_sound_get_sync_point, fmod_sound_add_sync_point, fmod_sound_delete_sync_point, fmod_sound_get_music_num_channels, fmod_sound_set_music_channel_volume, fmod_sound_get_music_channel_volume, fmod_sound_set_music_speed, fmod_sound_get_music_speed, fmod_sound_set_sound_group, fmod_sound_get_sound_group, fmod_sound_set_user_data, fmod_sound_get_user_data, fmod_sound_release, fmod_sound_get_system_object, fmod_sound_get_open_state, fmod_sound_get_num_tags, fmod_sound_get_tag, fmod_sound_get_num_sub_sounds, fmod_sound_get_sub_sound, fmod_sound_get_sub_sound_parent, fmod_sound_read_data, fmod_sound_seek_data, fmod_sound_lock, fmod_sound_unlock, fmod_channel_group_get_num_channels, fmod_channel_group_get_channel, fmod_channel_group_add_group, fmod_channel_group_get_num_groups, fmod_channel_group_get_group, fmod_channel_group_get_parent_group, fmod_channel_group_get_name, fmod_channel_group_release, fmod_channel_group_get_system_object, fmod_channel_group_adopt, fmod_sound_group_set_max_audible, fmod_sound_group_get_max_audible, fmod_sound_group_set_max_audible_behavior, fmod_sound_group_get_max_audible_behavior, fmod_sound_group_set_mute_fade_speed, fmod_sound_group_get_mute_fade_speed, fmod_sound_group_set_volume, fmod_sound_group_get_volume, fmod_sound_group_get_num_sounds, fmod_sound_group_get_sound, fmod_sound_group_get_num_playing, fmod_sound_group_stop, fmod_sound_group_set_user_data, fmod_sound_group_get_user_data, fmod_sound_group_get_name, fmod_sound_group_release, fmod_sound_group_get_system_object, fmod_reverb_3d_set_active, fmod_reverb_3d_get_active, fmod_reverb_3d_set_properties, fmod_reverb_3d_get_properties, fmod_reverb_3d_set_3d_attributes, fmod_reverb_3d_get_3d_attributes, fmod_reverb_3d_set_user_data, fmod_reverb_3d_get_user_data, fmod_reverb_3d_release, fmod_channel_control_add_fade_point, fmod_channel_control_remove_fade_points, fmod_channel_control_set_fade_point_ramp, fmod_channel_control_get_fade_point_count, fmod_channel_control_get_fade_point_at, fmod_channel_control_is_playing, fmod_channel_control_stop, fmod_channel_control_set_paused, fmod_channel_control_get_paused, fmod_channel_control_set_mode, fmod_channel_control_get_mode, fmod_channel_control_set_pitch, fmod_channel_control_get_pitch, fmod_channel_control_get_audibility, fmod_channel_control_set_volume, fmod_channel_control_get_volume, fmod_channel_control_set_volume_ramp, fmod_channel_control_get_volume_ramp, fmod_channel_control_set_mute, fmod_channel_control_get_mute, fmod_channel_control_set_3d_doppler_level, fmod_channel_control_get_3d_doppler_level, fmod_channel_control_set_3d_level, fmod_channel_control_get_3d_level, fmod_channel_control_set_3d_min_max_distance, fmod_channel_control_get_3d_min_max_distance, fmod_channel_control_set_3d_cone_settings, fmod_channel_control_get_3d_cone_settings, fmod_channel_control_set_3d_cone_orientation, fmod_channel_control_get_3d_cone_orientation, fmod_channel_control_set_3d_occlusion, fmod_channel_control_get_3d_occlusion, fmod_channel_control_set_3d_attributes, fmod_channel_control_get_3d_attributes, fmod_channel_control_set_3d_spread, fmod_channel_control_get_3d_spread, fmod_channel_control_set_3d_distance_filter, fmod_channel_control_get_3d_distance_filter, fmod_channel_control_set_3d_custom_rolloff, fmod_channel_control_get_3d_custom_rolloff_count, fmod_channel_control_get_3d_custom_rolloff_at, fmod_channel_control_get_3d_custom_rolloff, fmod_channel_control_set_pan, fmod_channel_control_set_mix_levels_output, fmod_channel_control_set_mix_levels_input, fmod_channel_control_set_mix_matrix, fmod_channel_control_get_mix_matrix, fmod_channel_control_set_reverb_properties, fmod_channel_control_get_reverb_properties, fmod_channel_control_set_low_pass_gain, fmod_channel_control_get_low_pass_gain, fmod_channel_control_add_dsp, fmod_channel_control_remove_dsp, fmod_channel_control_get_num_dsps, fmod_channel_control_get_dsp, fmod_channel_control_set_dsp_index, fmod_channel_control_get_dsp_index, fmod_channel_control_set_user_data, fmod_channel_control_get_user_data, fmod_channel_control_get_system_object, fmod_channel_control_get_delay, fmod_channel_control_set_delay, fmod_channel_control_get_dsp_clock, fmod_channel_control_set_callback, fmod_dsp_add_input, fmod_dsp_get_num_inputs, fmod_dsp_get_num_outputs, fmod_dsp_disconnect_all, fmod_dsp_get_num_parameters, fmod_dsp_set_parameter_float, fmod_dsp_get_parameter_float, fmod_dsp_set_parameter_int, fmod_dsp_get_parameter_int, fmod_dsp_set_parameter_bool, fmod_dsp_get_parameter_bool, fmod_dsp_release, fmod_dsp_get_system_object, fmod_dsp_get_input, fmod_dsp_get_output, fmod_dsp_disconnect_from, fmod_dsp_get_data_parameter_index, fmod_dsp_set_parameter_data, fmod_dsp_get_parameter_data, fmod_dsp_get_parameter_info, fmod_dsp_set_channel_format, fmod_dsp_get_channel_format, fmod_dsp_get_output_channel_format, fmod_dsp_get_metering_info, fmod_dsp_set_metering_enabled, fmod_dsp_get_metering_enabled, fmod_dsp_set_active, fmod_dsp_get_active, fmod_dsp_set_bypass, fmod_dsp_get_bypass, fmod_dsp_set_wet_dry_mix, fmod_dsp_get_wet_dry_mix, fmod_dsp_get_idle, fmod_dsp_reset, fmod_dsp_get_type, fmod_dsp_get_info, fmod_dsp_get_cpu_usage, fmod_dsp_set_user_data, fmod_dsp_get_user_data, fmod_dsp_set_callback, fmod_dsp_connection_set_mix, fmod_dsp_connection_get_mix, fmod_dsp_connection_set_mix_matrix, fmod_dsp_connection_get_mix_matrix, fmod_dsp_connection_get_input, fmod_dsp_connection_get_output, fmod_dsp_connection_get_type, fmod_dsp_connection_set_user_data, fmod_dsp_connection_get_user_data, fmod_geometry_add_polygon, fmod_geometry_set_polygon_attributes, fmod_geometry_get_polygon_attributes, fmod_geometry_get_polygon_num_vertices, fmod_geometry_set_polygon_vertex, fmod_geometry_get_polygon_vertex, fmod_geometry_get_num_polygons, fmod_geometry_get_max_polygons, fmod_geometry_set_position, fmod_geometry_get_position, fmod_geometry_set_rotation, fmod_geometry_get_rotation, fmod_geometry_set_scale, fmod_geometry_get_scale, fmod_geometry_set_user_data, fmod_geometry_get_user_data, fmod_geometry_get_active, fmod_geometry_set_active, fmod_geometry_save, fmod_geometry_release
+#export FmodResult, FmodInitFlags, FmodMode, FmodTimeUnit, FmodDspType, FmodDspConnectionType, FmodDspResampler, FmodDspLowPass, FmodDspHighPass, FmodDspItLowPass, FmodDspEcho, FmodDspEchoDelayChangeMode, FmodDspFlange, FmodDspDistortion, FmodDspNormalize, FmodDspLimiter, FmodDspParamEq, FmodDspPitchShift, FmodDspChorus, FmodDspMultibandEq, FmodDspMultibandEqFilterType, FmodDspChannelMix, FmodDspChannelMixOutput, FmodDspTransceiver, FmodDspTransceiverSpeakerMode, FmodDspCompressor, FmodDspFft, FmodDspFftWindowType, FmodDspOscillator, FmodDspOscillatorType, FmodDspConvolution, FmodDspFader, FmodDspMultibandDynamics, FmodDspMultibandDynamicsModeType, FmodDspItEcho, FmodDspSfxReverb, FmodDspLowPassSimple, FmodDspHighPassSimple, FmodDspDelay, FmodDspTremolo, FmodDspSend, FmodDspReturn, FmodDspPan, FmodDspPanModeType, FmodDspPan2dStereoModeType, FmodDspPan3dRolloffType, FmodDspPan3dExtentModeType, FmodDspObjectPan, FmodDspThreeEq, FmodDspThreeEqCrossoverSlopeType, FmodDspFftDownmixType, FmodDspLoudnessMeter, FmodDspLoudnessMeterStateType, FmodSpeakerMode, FmodSpeaker, FmodChannelMask, FmodChannelOrder, FmodAudioQueueCodecPolicy, FmodDriverState, FmodDebugFlags, FmodDebugMode, FmodSoundType, FmodSoundFormat, FmodSoundGroupBehavior, FmodOutputType, FmodPortType, FmodChannelControlDspIndex, FmodChannelControlCallbackType, FmodDspCallbackType, FmodDspParameterDataType, FmodSystemCallbackType, FmodErrorCallbackInstanceType, FmodOpenState, FmodTagType, FmodTagDataType, FmodThreadType, FmodThreadPriority, FmodSoundDefaults, FmodLoopPoints, FmodSoundMinMaxDistance, FmodConeSettings, FmodSystem3DSettings, FmodVec3, FmodSyncPointInfo, FmodRecordNumDrivers, FmodRecordDriverInfo, FmodDSPMixMatrix, FmodDSPChannelFormat, FmodDSPMeteringInfo, FmodDSPMeteringEnabled, FmodDSPParameterInfo, FmodDSPDataParameterInfo, FmodErrorCallbackInfo, FmodSystemDeviceReinitialize, FmodSystemMemoryAllocationFailed, FmodSystemRecordPosition, FmodDSPWetDryMix, FmodDSPInfo, FmodDSPDescription, FmodDSPConnectionEnd, FmodDSPCPUUsage, FmodMinMaxDistance, FmodSyncPoint, FmodDSPBufferSize, FmodSoftwareFormat, FmodDriverInfo, FmodChannelsPlaying, FmodDelay, FmodDSPClock, FmodSoundOpenState, FmodSoundTag, FmodSoundNumTags, FmodSoundFormatInfo, FmodFadePoint, FmodDistanceFilter, FmodOcclusion, FmodGeometryMaxPolygons, FmodPolygonAttributes, FmodReverbProperties, FmodSoundLockLengths, FmodMemoryStats, FmodAdvancedSettings, FmodSpeakerPosition, FmodCPUUsage, FmodFileUsage, FmodStreamBufferSize, FmodCreateSoundExInfo, FmodListener3DAttributes, FmodChannelControl3DAttributes, FmodGeometryRotation, FmodReverb3DAttributes, fmod_last_result, fmod_debug_initialize, fmod_error_string, fmod_memory_get_stats, fmod_thread_set_attributes, fmod_channel_set_frequency, fmod_channel_get_frequency, fmod_channel_set_priority, fmod_channel_get_priority, fmod_channel_set_position, fmod_channel_get_position, fmod_channel_set_channel_group, fmod_channel_get_channel_group, fmod_channel_set_loop_count, fmod_channel_get_loop_count, fmod_channel_set_loop_points, fmod_channel_get_loop_points, fmod_channel_is_virtual, fmod_channel_get_index, fmod_channel_get_current_sound, fmod_channel_get_system_object, fmod_system_create, fmod_system_init, fmod_system_release, fmod_system_close, fmod_system_get_channels_playing, fmod_system_get_channel, fmod_system_get_master_channel_group, fmod_system_set_output, fmod_system_get_output, fmod_system_get_3d_settings, fmod_system_set_3d_listener_attributes, fmod_system_get_3d_listener_attributes, fmod_system_get_record_num_drivers, fmod_system_get_record_driver_info, fmod_system_record_start, fmod_system_create_dsp, fmod_system_create_dsp_by_type, fmod_system_get_dsp_info_by_type, fmod_system_get_dsp_buffer_size, fmod_system_get_software_format, fmod_system_set_software_format, fmod_system_set_stream_buffer_size, fmod_system_get_driver_info, fmod_system_create_channel_group, fmod_system_play_dsp, fmod_system_select, fmod_system_adopt, fmod_system_get_master_sound_group, fmod_system_get_advanced_settings, fmod_system_set_advanced_settings, fmod_system_get_speaker_mode_channels, fmod_system_get_speaker_position, fmod_system_set_speaker_position, fmod_system_get_reverb_properties, fmod_system_set_reverb_properties, fmod_system_get_default_mix_matrix, fmod_system_get_cpu_usage, fmod_system_get_file_usage, fmod_system_get_stream_buffer_size, fmod_system_set_callback, fmod_system_get_user_data, fmod_system_set_user_data, fmod_system_attach_channel_group_to_port, fmod_system_detach_channel_group_from_port, fmod_system_create_sound_group, fmod_system_create_geometry, fmod_system_load_geometry, fmod_system_get_geometry_occlusion, fmod_system_create_reverb_3d, fmod_system_create_sound, fmod_system_create_sound_ex, fmod_system_create_stream, fmod_system_create_sound_memory, fmod_system_create_sound_memory_ex, fmod_system_play_sound, fmod_sound_get_length, fmod_sound_set_defaults, fmod_sound_set_mode, fmod_sound_get_mode, fmod_sound_get_format, fmod_sound_get_name, fmod_sound_get_defaults, fmod_sound_set_loop_count, fmod_sound_get_loop_count, fmod_sound_set_loop_points, fmod_sound_get_loop_points, fmod_sound_set_3d_min_max_distance, fmod_sound_get_3d_min_max_distance, fmod_sound_set_3d_cone_settings, fmod_sound_get_3d_cone_settings, fmod_sound_set_3d_custom_rolloff, fmod_sound_get_3d_custom_rolloff, fmod_sound_get_num_sync_points, fmod_sound_get_sync_point, fmod_sound_add_sync_point, fmod_sound_delete_sync_point, fmod_sound_get_music_num_channels, fmod_sound_set_music_channel_volume, fmod_sound_get_music_channel_volume, fmod_sound_set_music_speed, fmod_sound_get_music_speed, fmod_sound_set_sound_group, fmod_sound_get_sound_group, fmod_sound_set_user_data, fmod_sound_get_user_data, fmod_sound_release, fmod_sound_get_system_object, fmod_sound_get_open_state, fmod_sound_get_num_tags, fmod_sound_get_tag, fmod_sound_get_num_sub_sounds, fmod_sound_get_sub_sound, fmod_sound_get_sub_sound_parent, fmod_sound_read_data, fmod_sound_seek_data, fmod_sound_lock, fmod_sound_unlock, fmod_channel_group_get_num_channels, fmod_channel_group_get_channel, fmod_channel_group_add_group, fmod_channel_group_get_num_groups, fmod_channel_group_get_group, fmod_channel_group_get_parent_group, fmod_channel_group_get_name, fmod_channel_group_release, fmod_channel_group_get_system_object, fmod_channel_group_adopt, fmod_sound_group_set_max_audible, fmod_sound_group_get_max_audible, fmod_sound_group_set_max_audible_behavior, fmod_sound_group_get_max_audible_behavior, fmod_sound_group_set_mute_fade_speed, fmod_sound_group_get_mute_fade_speed, fmod_sound_group_set_volume, fmod_sound_group_get_volume, fmod_sound_group_get_num_sounds, fmod_sound_group_get_sound, fmod_sound_group_get_num_playing, fmod_sound_group_stop, fmod_sound_group_set_user_data, fmod_sound_group_get_user_data, fmod_sound_group_get_name, fmod_sound_group_release, fmod_sound_group_get_system_object, fmod_reverb_3d_set_active, fmod_reverb_3d_get_active, fmod_reverb_3d_set_properties, fmod_reverb_3d_get_properties, fmod_reverb_3d_set_3d_attributes, fmod_reverb_3d_get_3d_attributes, fmod_reverb_3d_set_user_data, fmod_reverb_3d_get_user_data, fmod_reverb_3d_release, fmod_channel_control_add_fade_point, fmod_channel_control_remove_fade_points, fmod_channel_control_set_fade_point_ramp, fmod_channel_control_get_fade_point_count, fmod_channel_control_get_fade_points, fmod_channel_control_is_playing, fmod_channel_control_stop, fmod_channel_control_set_paused, fmod_channel_control_get_paused, fmod_channel_control_set_mode, fmod_channel_control_get_mode, fmod_channel_control_set_pitch, fmod_channel_control_get_pitch, fmod_channel_control_get_audibility, fmod_channel_control_set_volume, fmod_channel_control_get_volume, fmod_channel_control_set_volume_ramp, fmod_channel_control_get_volume_ramp, fmod_channel_control_set_mute, fmod_channel_control_get_mute, fmod_channel_control_set_3d_doppler_level, fmod_channel_control_get_3d_doppler_level, fmod_channel_control_set_3d_level, fmod_channel_control_get_3d_level, fmod_channel_control_set_3d_min_max_distance, fmod_channel_control_get_3d_min_max_distance, fmod_channel_control_set_3d_cone_settings, fmod_channel_control_get_3d_cone_settings, fmod_channel_control_set_3d_cone_orientation, fmod_channel_control_get_3d_cone_orientation, fmod_channel_control_set_3d_occlusion, fmod_channel_control_get_3d_occlusion, fmod_channel_control_set_3d_attributes, fmod_channel_control_get_3d_attributes, fmod_channel_control_set_3d_spread, fmod_channel_control_get_3d_spread, fmod_channel_control_set_3d_distance_filter, fmod_channel_control_get_3d_distance_filter, fmod_channel_control_set_3d_custom_rolloff, fmod_channel_control_get_3d_custom_rolloff_count, fmod_channel_control_get_3d_custom_rolloff_at, fmod_channel_control_get_3d_custom_rolloff, fmod_channel_control_set_pan, fmod_channel_control_set_mix_levels_output, fmod_channel_control_set_mix_levels_input, fmod_channel_control_set_mix_matrix, fmod_channel_control_get_mix_matrix, fmod_channel_control_set_reverb_properties, fmod_channel_control_get_reverb_properties, fmod_channel_control_set_low_pass_gain, fmod_channel_control_get_low_pass_gain, fmod_channel_control_add_dsp, fmod_channel_control_remove_dsp, fmod_channel_control_get_num_dsps, fmod_channel_control_get_dsp, fmod_channel_control_set_dsp_index, fmod_channel_control_get_dsp_index, fmod_channel_control_set_user_data, fmod_channel_control_get_user_data, fmod_channel_control_get_system_object, fmod_channel_control_get_delay, fmod_channel_control_set_delay, fmod_channel_control_get_dsp_clock, fmod_channel_control_set_callback, fmod_dsp_add_input, fmod_dsp_get_num_inputs, fmod_dsp_get_num_outputs, fmod_dsp_disconnect_all, fmod_dsp_get_num_parameters, fmod_dsp_set_parameter_float, fmod_dsp_get_parameter_float, fmod_dsp_set_parameter_int, fmod_dsp_get_parameter_int, fmod_dsp_set_parameter_bool, fmod_dsp_get_parameter_bool, fmod_dsp_release, fmod_dsp_get_system_object, fmod_dsp_get_input, fmod_dsp_get_output, fmod_dsp_disconnect_from, fmod_dsp_get_data_parameter_index, fmod_dsp_set_parameter_data, fmod_dsp_get_parameter_data, fmod_dsp_get_parameter_info, fmod_dsp_set_channel_format, fmod_dsp_get_channel_format, fmod_dsp_get_output_channel_format, fmod_dsp_get_metering_info, fmod_dsp_set_metering_enabled, fmod_dsp_get_metering_enabled, fmod_dsp_set_active, fmod_dsp_get_active, fmod_dsp_set_bypass, fmod_dsp_get_bypass, fmod_dsp_set_wet_dry_mix, fmod_dsp_get_wet_dry_mix, fmod_dsp_get_idle, fmod_dsp_reset, fmod_dsp_get_type, fmod_dsp_get_info, fmod_dsp_get_cpu_usage, fmod_dsp_set_user_data, fmod_dsp_get_user_data, fmod_dsp_set_callback, fmod_dsp_connection_set_mix, fmod_dsp_connection_get_mix, fmod_dsp_connection_set_mix_matrix, fmod_dsp_connection_get_mix_matrix, fmod_dsp_connection_get_input, fmod_dsp_connection_get_output, fmod_dsp_connection_get_type, fmod_dsp_connection_set_user_data, fmod_dsp_connection_get_user_data, fmod_geometry_add_polygon, fmod_geometry_set_polygon_attributes, fmod_geometry_get_polygon_attributes, fmod_geometry_get_polygon_num_vertices, fmod_geometry_set_polygon_vertex, fmod_geometry_get_polygon_vertex, fmod_geometry_get_num_polygons, fmod_geometry_get_max_polygons, fmod_geometry_set_position, fmod_geometry_get_position, fmod_geometry_set_rotation, fmod_geometry_get_rotation, fmod_geometry_set_scale, fmod_geometry_get_scale, fmod_geometry_set_user_data, fmod_geometry_get_user_data, fmod_geometry_get_active, fmod_geometry_set_active, fmod_geometry_save, fmod_geometry_release

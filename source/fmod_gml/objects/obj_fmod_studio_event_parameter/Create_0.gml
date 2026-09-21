@@ -11,8 +11,8 @@ show_debug_message(fmod_error_string(fmod_studio_last_result()));
 
 // Find the parameter once and then set by handle
 // Or we can just find by name every time but by handle is more efficient if we are setting lots of parameters
-// The returned FmodStudioParameterDescription splits the parameter id across
-// two reals, id_data1 and id_data2, which the *_by_id calls take separately.
+// The returned FmodStudioParameterDescription carries the parameter id as
+// an FmodStudioParameterId struct, which the *_by_id calls take as one argument.
 param_description = fmod_studio_event_description_get_parameter_description_by_name(footsteps_event, "Surface")
 
 footsteps_index = fmod_studio_event_description_create_instance(footsteps_event)
@@ -20,5 +20,5 @@ show_debug_message(fmod_error_string(fmod_studio_last_result()));
 
 // Make the event audible to start with
 parameter_description_value = 1.0
-fmod_studio_event_instance_set_parameter_by_id(footsteps_index, param_description.id_data1, param_description.id_data2, parameter_description_value);
+fmod_studio_event_instance_set_parameter_by_id(footsteps_index, param_description.id, parameter_description_value, false);
 show_debug_message(fmod_error_string(fmod_studio_last_result()));

@@ -1096,6 +1096,8 @@ namespace gm_structs
     struct FmodSystemRecordPosition;
     struct FmodDSPWetDryMix;
     struct FmodDSPInfo;
+    struct FmodDSPDescription;
+    struct FmodDSPConnectionEnd;
     struct FmodDSPCPUUsage;
     struct FmodMinMaxDistance;
     struct FmodSyncPoint;
@@ -1267,6 +1269,22 @@ namespace gm_structs
         double channels;
         double configwidth;
         double configheight;
+    };
+
+    struct FmodDSPDescription
+    {
+        double pluginsdkversion;
+        std::string name;
+        double version;
+        double numinputbuffers;
+        double numoutputbuffers;
+        double numparameters;
+    };
+
+    struct FmodDSPConnectionEnd
+    {
+        std::uint64_t dsp_ref;
+        std::uint64_t connection_ref;
     };
 
     struct FmodDSPCPUUsage
@@ -1893,6 +1911,46 @@ namespace gm::wire::codec
         obj.channels = gm::wire::codec::readValue<double>(_buf);
         obj.configwidth = gm::wire::codec::readValue<double>(_buf);
         obj.configheight = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPDescription>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPDescription& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.pluginsdkversion);
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.version);
+        gm::wire::codec::writeValue(_buf, obj.numinputbuffers);
+        gm::wire::codec::writeValue(_buf, obj.numoutputbuffers);
+        gm::wire::codec::writeValue(_buf, obj.numparameters);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPDescription readValue<gm_structs::FmodDSPDescription>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPDescription obj;
+        obj.pluginsdkversion = gm::wire::codec::readValue<double>(_buf);
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.version = gm::wire::codec::readValue<double>(_buf);
+        obj.numinputbuffers = gm::wire::codec::readValue<double>(_buf);
+        obj.numoutputbuffers = gm::wire::codec::readValue<double>(_buf);
+        obj.numparameters = gm::wire::codec::readValue<double>(_buf);
+        return obj;
+    }
+
+    template<>
+    inline void writeValue<gm_structs::FmodDSPConnectionEnd>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodDSPConnectionEnd& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.dsp_ref);
+        gm::wire::codec::writeValue(_buf, obj.connection_ref);
+    }
+
+    template<>
+    inline gm_structs::FmodDSPConnectionEnd readValue<gm_structs::FmodDSPConnectionEnd>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodDSPConnectionEnd obj;
+        obj.dsp_ref = gm::wire::codec::readValue<std::uint64_t>(_buf);
+        obj.connection_ref = gm::wire::codec::readValue<std::uint64_t>(_buf);
         return obj;
     }
 
@@ -2686,220 +2744,234 @@ namespace gm::wire::details
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDSPCPUUsage>
+    struct gm_struct_traits<gm_structs::FmodDSPDescription>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 21;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodMinMaxDistance>
+    struct gm_struct_traits<gm_structs::FmodDSPConnectionEnd>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 22;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSyncPoint>
+    struct gm_struct_traits<gm_structs::FmodDSPCPUUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 23;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDSPBufferSize>
+    struct gm_struct_traits<gm_structs::FmodMinMaxDistance>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 24;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoftwareFormat>
+    struct gm_struct_traits<gm_structs::FmodSyncPoint>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 25;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDriverInfo>
+    struct gm_struct_traits<gm_structs::FmodDSPBufferSize>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 26;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodChannelsPlaying>
+    struct gm_struct_traits<gm_structs::FmodSoftwareFormat>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 27;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDelay>
+    struct gm_struct_traits<gm_structs::FmodDriverInfo>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 28;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDSPClock>
+    struct gm_struct_traits<gm_structs::FmodChannelsPlaying>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 29;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoundOpenState>
+    struct gm_struct_traits<gm_structs::FmodDelay>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 30;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoundTag>
+    struct gm_struct_traits<gm_structs::FmodDSPClock>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 31;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoundNumTags>
+    struct gm_struct_traits<gm_structs::FmodSoundOpenState>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 32;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoundFormatInfo>
+    struct gm_struct_traits<gm_structs::FmodSoundTag>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 33;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodFadePoint>
+    struct gm_struct_traits<gm_structs::FmodSoundNumTags>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 34;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodDistanceFilter>
+    struct gm_struct_traits<gm_structs::FmodSoundFormatInfo>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 35;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodOcclusion>
+    struct gm_struct_traits<gm_structs::FmodFadePoint>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 36;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodGeometryMaxPolygons>
+    struct gm_struct_traits<gm_structs::FmodDistanceFilter>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 37;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodPolygonAttributes>
+    struct gm_struct_traits<gm_structs::FmodOcclusion>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 38;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodReverbProperties>
+    struct gm_struct_traits<gm_structs::FmodGeometryMaxPolygons>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 39;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSoundLockLengths>
+    struct gm_struct_traits<gm_structs::FmodPolygonAttributes>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 40;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodMemoryStats>
+    struct gm_struct_traits<gm_structs::FmodReverbProperties>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 41;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodAdvancedSettings>
+    struct gm_struct_traits<gm_structs::FmodSoundLockLengths>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 42;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodSpeakerPosition>
+    struct gm_struct_traits<gm_structs::FmodMemoryStats>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 43;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodCPUUsage>
+    struct gm_struct_traits<gm_structs::FmodAdvancedSettings>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 44;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodFileUsage>
+    struct gm_struct_traits<gm_structs::FmodSpeakerPosition>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 45;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStreamBufferSize>
+    struct gm_struct_traits<gm_structs::FmodCPUUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 46;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodCreateSoundExInfo>
+    struct gm_struct_traits<gm_structs::FmodFileUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 47;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodListener3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodStreamBufferSize>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 48;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodChannelControl3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodCreateSoundExInfo>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 49;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodGeometryRotation>
+    struct gm_struct_traits<gm_structs::FmodListener3DAttributes>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 50;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodReverb3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodChannelControl3DAttributes>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 51;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodGeometryRotation>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 52;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodReverb3DAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 53;
     };
 
 }
@@ -2955,6 +3027,7 @@ double fmod_system_record_stop(double device_index);
 bool fmod_system_is_recording(double device_index);
 std::uint64_t fmod_system_create_dsp();
 std::uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type);
+gm_structs::FmodDSPDescription fmod_system_get_dsp_info_by_type(gm_enums::FmodDspType dsp_type);
 gm_structs::FmodDSPBufferSize fmod_system_get_dsp_buffer_size();
 double fmod_system_set_dsp_buffer_size(double buff_size, double num_buffers);
 gm_structs::FmodSoftwareFormat fmod_system_get_software_format();
@@ -3091,7 +3164,7 @@ double fmod_channel_control_add_fade_point(std::uint64_t channel_control_ref, do
 double fmod_channel_control_remove_fade_points(std::uint64_t channel_control_ref, double dsp_clock_start, double dsp_clock_end);
 double fmod_channel_control_set_fade_point_ramp(std::uint64_t channel_control_ref, double dsp_clock, double volume);
 double fmod_channel_control_get_fade_point_count(std::uint64_t channel_control_ref);
-gm_structs::FmodFadePoint fmod_channel_control_get_fade_point_at(std::uint64_t channel_control_ref, double index);
+std::vector<gm_structs::FmodFadePoint> fmod_channel_control_get_fade_points(std::uint64_t channel_control_ref);
 bool fmod_channel_control_is_playing(std::uint64_t channel_control_ref);
 double fmod_channel_control_stop(std::uint64_t channel_control_ref);
 double fmod_channel_control_set_paused(std::uint64_t channel_control_ref, bool paused);
@@ -3164,8 +3237,8 @@ void fmod_dsp_set_parameter_bool(std::uint64_t dsp_ref, double index, bool value
 bool fmod_dsp_get_parameter_bool(std::uint64_t dsp_ref, double index);
 void fmod_dsp_release(std::uint64_t dsp_ref);
 std::uint64_t fmod_dsp_get_system_object(std::uint64_t dsp_ref);
-std::uint64_t fmod_dsp_get_input(std::uint64_t dsp_ref, double index);
-std::uint64_t fmod_dsp_get_output(std::uint64_t dsp_ref, double index);
+gm_structs::FmodDSPConnectionEnd fmod_dsp_get_input(std::uint64_t dsp_ref, double index);
+gm_structs::FmodDSPConnectionEnd fmod_dsp_get_output(std::uint64_t dsp_ref, double index);
 void fmod_dsp_disconnect_from(std::uint64_t dsp_ref, std::uint64_t target_dsp);
 double fmod_dsp_get_data_parameter_index(std::uint64_t dsp_ref, gm_enums::FmodDspParameterDataType data_type);
 void fmod_dsp_set_parameter_data(std::uint64_t dsp_ref, double index, gm::wire::GMBuffer buffer, double length);

@@ -1,7 +1,7 @@
 
-// The by-name getters now return the parameter's current value directly.
-freq_value = fmod_studio_event_instance_get_parameter_by_name(ins_index, "Freq")
-spatializer_value = fmod_studio_event_instance_get_parameter_by_name(ins_index, "Spatializer")
+// The by-name getters return the value and the final value FMOD reports.
+freq_value = fmod_studio_event_instance_get_parameter_by_name(ins_index, "Freq").value
+spatializer_value = fmod_studio_event_instance_get_parameter_by_name(ins_index, "Spatializer").value
 
 show_debug_message($"Freq: {freq_value}")
 show_debug_message($"Spatializer: {spatializer_value}")

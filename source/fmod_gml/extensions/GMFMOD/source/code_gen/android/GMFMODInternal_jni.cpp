@@ -758,6 +758,25 @@ static jdouble __JNI_WRAPPER__fmod_system_create_dsp_by_type_00EB94D56285(JNIEnv
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_system_get_dsp_info_by_type JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_get_dsp_info_by_type_F9FAB1C87677(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    void* __ret_buffer_ptr = env->GetDirectBufferAddress(__ret_buffer);
+    jlong __ret_buffer_cap = env->GetDirectBufferCapacity(__ret_buffer);
+    if (!__ret_buffer_ptr || __ret_buffer_cap <= 0) {
+        throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_get_dsp_info_by_type((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_get_dsp_buffer_size JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_system_get_dsp_buffer_size_B3AA94332F29(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -2677,8 +2696,8 @@ static jdouble __JNI_WRAPPER__fmod_channel_control_get_fade_point_count_EC226EB5
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_channel_control_get_fade_point_at JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
-static jdouble __JNI_WRAPPER__fmod_channel_control_get_fade_point_at_D32DA3831693(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
+// fmod_channel_control_get_fade_points JNI wrapper signature: (Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_channel_control_get_fade_points_30C34454EE0A(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
     void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
     jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
@@ -2692,7 +2711,7 @@ static jdouble __JNI_WRAPPER__fmod_channel_control_get_fade_point_at_D32DA383169
         throwIAE(env, "__ret_buffer must be a DIRECT ByteBuffer");
         return 0.0;
     }
-    double __ret = __EXT_NATIVE__fmod_channel_control_get_fade_point_at((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
+    double __ret = __EXT_NATIVE__fmod_channel_control_get_fade_points((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length), (char *)__ret_buffer_ptr, static_cast<double>(__ret_buffer_length));
     return static_cast<jdouble>(__ret);
 }
 
@@ -4687,6 +4706,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_is_recording", "(D)D", (void*)__JNI_WRAPPER__fmod_system_is_recording_5DDABEBA55C5 },
             { "__EXT_JNI__fmod_system_create_dsp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_dsp_450EA531C930 },
             { "__EXT_JNI__fmod_system_create_dsp_by_type", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_create_dsp_by_type_00EB94D56285 },
+            { "__EXT_JNI__fmod_system_get_dsp_info_by_type", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_dsp_info_by_type_F9FAB1C87677 },
             { "__EXT_JNI__fmod_system_get_dsp_buffer_size", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_dsp_buffer_size_B3AA94332F29 },
             { "__EXT_JNI__fmod_system_set_dsp_buffer_size", "(DD)D", (void*)__JNI_WRAPPER__fmod_system_set_dsp_buffer_size_A36C68FF0DD1 },
             { "__EXT_JNI__fmod_system_get_software_format", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_software_format_60B315289946 },
@@ -4823,7 +4843,7 @@ extern "C" {
             { "__EXT_JNI__fmod_channel_control_remove_fade_points", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_remove_fade_points_19EC46B54316 },
             { "__EXT_JNI__fmod_channel_control_set_fade_point_ramp", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_fade_point_ramp_44BEAEA067DF },
             { "__EXT_JNI__fmod_channel_control_get_fade_point_count", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_fade_point_count_EC226EB530C4 },
-            { "__EXT_JNI__fmod_channel_control_get_fade_point_at", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_fade_point_at_D32DA3831693 },
+            { "__EXT_JNI__fmod_channel_control_get_fade_points", "(Ljava/nio/ByteBuffer;DLjava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_get_fade_points_30C34454EE0A },
             { "__EXT_JNI__fmod_channel_control_is_playing", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_is_playing_455D42F41C5E },
             { "__EXT_JNI__fmod_channel_control_stop", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_stop_982F5E79BE37 },
             { "__EXT_JNI__fmod_channel_control_set_paused", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_channel_control_set_paused_9C650601AF71 },

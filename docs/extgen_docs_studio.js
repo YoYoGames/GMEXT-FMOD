@@ -67,9 +67,8 @@
  */
 
 /**
- * @function_partial fmod_studio_system_get_bank_at
- * @param {Real} index
- * @returns {Real}
+ * @function_partial fmod_studio_system_get_bank_list
+ * @returns {Array[Real]}
  * @function_end
  */
 
@@ -95,21 +94,8 @@
  */
 
 /**
- * @function_partial fmod_studio_system_create_event_instance
- * @param {String} path
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_studio_system_get_bus
  * @param {String} path
- * @returns {Real}
- * @function_end
- */
-
-/**
- * @function_partial fmod_studio_system_get_master_bus
  * @returns {Real}
  * @function_end
  */
@@ -179,6 +165,7 @@
  * @function_partial fmod_studio_system_set_parameter_by_name
  * @param {String} name
  * @param {Real} value
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -186,7 +173,7 @@
 /**
  * @function_partial fmod_studio_system_get_parameter_by_name
  * @param {String} name
- * @returns {Real}
+ * @returns {Struct.FmodStudioParameterValue}
  * @function_end
  */
 
@@ -272,16 +259,14 @@
 
 /**
  * @function_partial fmod_studio_system_get_parameter_by_id
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @returns {Struct.FmodStudioParameterValue}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_set_parameter_by_id
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {Real} value
  * @param {Bool} ignore_seek_speed
  * @returns {Real}
@@ -289,9 +274,17 @@
  */
 
 /**
+ * @function_partial fmod_studio_system_set_parameters_by_ids
+ * @param {Array[Struct.FmodStudioParameterId]} ids
+ * @param {Array[Real]} values
+ * @param {Bool} ignore_seek_speed
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_system_get_parameter_description_by_id
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @returns {Struct.FmodStudioParameterDescription}
  * @function_end
  */
@@ -310,16 +303,14 @@
  */
 
 /**
- * @function_partial fmod_studio_system_get_parameter_description_at
- * @param {Real} index
- * @returns {Struct.FmodStudioParameterDescription}
+ * @function_partial fmod_studio_system_get_parameter_description_list
+ * @returns {Array[Struct.FmodStudioParameterDescription]}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_system_get_parameter_label_by_id
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {Real} label_index
  * @returns {String}
  * @function_end
@@ -335,8 +326,7 @@
 
 /**
  * @function_partial fmod_studio_system_set_parameter_by_id_with_label
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {String} label
  * @param {Bool} ignore_seek_speed
  * @returns {Real}
@@ -439,13 +429,6 @@
  */
 
 /**
- * @function_partial fmod_studio_bank_get_parent_studio_system
- * @param {Real} bank_ref
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_studio_bank_get_event_count
  * @param {Real} bank_ref
  * @returns {Real}
@@ -453,10 +436,9 @@
  */
 
 /**
- * @function_partial fmod_studio_bank_get_event_at
+ * @function_partial fmod_studio_bank_get_event_list
  * @param {Real} bank_ref
- * @param {Real} index
- * @returns {Real}
+ * @returns {Array[Real]}
  * @function_end
  */
 
@@ -468,10 +450,9 @@
  */
 
 /**
- * @function_partial fmod_studio_bank_get_bus_at
+ * @function_partial fmod_studio_bank_get_bus_list
  * @param {Real} bank_ref
- * @param {Real} index
- * @returns {Real}
+ * @returns {Array[Real]}
  * @function_end
  */
 
@@ -483,10 +464,9 @@
  */
 
 /**
- * @function_partial fmod_studio_bank_get_vca_at
+ * @function_partial fmod_studio_bank_get_vca_list
  * @param {Real} bank_ref
- * @param {Real} index
- * @returns {Real}
+ * @returns {Array[Real]}
  * @function_end
  */
 
@@ -570,10 +550,9 @@
  */
 
 /**
- * @function_partial fmod_studio_event_description_get_instance_at
+ * @function_partial fmod_studio_event_description_get_instance_list
  * @param {Real} event_desc_ref
- * @param {Real} index
- * @returns {Real}
+ * @returns {Array[Real]}
  * @function_end
  */
 
@@ -585,7 +564,7 @@
  */
 
 /**
- * @function_partial fmod_studio_event_description_is_one_shot
+ * @function_partial fmod_studio_event_description_is_oneshot
  * @param {Real} event_desc_ref
  * @returns {Bool}
  * @function_end
@@ -606,7 +585,7 @@
  */
 
 /**
- * @function_partial fmod_studio_event_description_get_parameter_count
+ * @function_partial fmod_studio_event_description_get_parameter_description_count
  * @param {Real} event_desc_ref
  * @returns {Real}
  * @function_end
@@ -730,7 +709,7 @@
  */
 
 /**
- * @function_partial fmod_studio_event_description_get_user_property_at
+ * @function_partial fmod_studio_event_description_get_user_property_by_index
  * @param {Real} event_desc_ref
  * @param {Real} index
  * @returns {Struct.FmodStudioUserProperty}
@@ -747,14 +726,13 @@
 /**
  * @function_partial fmod_studio_event_description_get_parameter_description_by_id
  * @param {Real} event_desc_ref
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @returns {Struct.FmodStudioParameterDescription}
  * @function_end
  */
 
 /**
- * @function_partial fmod_studio_event_description_get_parameter_description_at
+ * @function_partial fmod_studio_event_description_get_parameter_description_by_index
  * @param {Real} event_desc_ref
  * @param {Real} index
  * @returns {Struct.FmodStudioParameterDescription}
@@ -764,15 +742,14 @@
 /**
  * @function_partial fmod_studio_event_description_get_parameter_label_by_id
  * @param {Real} event_desc_ref
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {Real} label_index
  * @returns {String}
  * @function_end
  */
 
 /**
- * @function_partial fmod_studio_event_description_get_parameter_label_at
+ * @function_partial fmod_studio_event_description_get_parameter_label_by_index
  * @param {Real} event_desc_ref
  * @param {Real} index
  * @param {Real} label_index
@@ -883,6 +860,7 @@
  * @param {Real} instance_ref
  * @param {String} name
  * @param {Real} value
+ * @param {Bool} ignore_seek_speed
  * @returns {Real}
  * @function_end
  */
@@ -891,32 +869,41 @@
  * @function_partial fmod_studio_event_instance_get_parameter_by_name
  * @param {Real} instance_ref
  * @param {String} name
- * @returns {Real}
- * @function_end
- */
-
-/**
- * @function_partial fmod_studio_event_instance_get_parameter_count
- * @param {Real} instance_ref
- * @returns {Real}
+ * @returns {Struct.FmodStudioParameterValue}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_get_parameter_by_id
  * @param {Real} instance_ref
- * @param {Real} id_data1
- * @param {Real} id_data2
- * @returns {Real}
+ * @param {Struct.FmodStudioParameterId} id
+ * @returns {Struct.FmodStudioParameterValue}
  * @function_end
  */
 
 /**
  * @function_partial fmod_studio_event_instance_set_parameter_by_id
  * @param {Real} instance_ref
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {Real} value
+ * @param {Bool} ignore_seek_speed
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_instance_set_parameters_by_ids
+ * @param {Real} instance_ref
+ * @param {Array[Struct.FmodStudioParameterId]} ids
+ * @param {Array[Real]} values
+ * @param {Bool} ignore_seek_speed
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_event_instance_get_system
+ * @param {Real} instance_ref
  * @returns {Real}
  * @function_end
  */
@@ -941,8 +928,7 @@
 /**
  * @function_partial fmod_studio_event_instance_set_parameter_by_id_with_label
  * @param {Real} instance_ref
- * @param {Real} id_data1
- * @param {Real} id_data2
+ * @param {Struct.FmodStudioParameterId} id
  * @param {String} label
  * @param {Bool} ignore_seek_speed
  * @returns {Real}
@@ -1143,12 +1129,6 @@
  */
 
 /**
- * @function_partial fmod_studio_bus_get_master_bus
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_studio_bus_get_id
  * @param {Real} bus_ref
  * @returns {String}
@@ -1250,6 +1230,20 @@
  */
 
 /**
+ * @function_partial fmod_studio_vca_get_id
+ * @param {Real} vca_ref
+ * @returns {String}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_studio_vca_is_valid
+ * @param {Real} vca_ref
+ * @returns {Bool}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_studio_command_replay_get_playback_state
  * @param {Real} replay_ref
  * @returns {Enum.FmodStudioPlaybackState}
@@ -1285,7 +1279,7 @@
  */
 
 /**
- * @function_partial fmod_studio_command_replay_get_system_object
+ * @function_partial fmod_studio_command_replay_get_system
  * @param {Real} replay_ref
  * @returns {Real}
  * @function_end
@@ -1415,16 +1409,9 @@
  */
 
 /**
- * @struct_partial FmodStudioParameterDescription
- * @member {String} name
- * @member {Real} id_data1
- * @member {Real} id_data2
- * @member {Real} minimum
- * @member {Real} maximum
- * @member {Real} defaultvalue
- * @member {Enum.FmodStudioParameterType} type
- * @member {Enum.FmodStudioParameterFlags} flags
- * @member {String} guid
+ * @struct_partial FmodStudioParameterId
+ * @member {Real} data1
+ * @member {Real} data2
  * @struct_end
  */
 
@@ -1602,6 +1589,19 @@
 /**
  * @struct_partial FmodStudioPluginInstanceProperties
  * @member {String} name
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodStudioParameterDescription
+ * @member {String} name
+ * @member {Struct.FmodStudioParameterId} id
+ * @member {Real} minimum
+ * @member {Real} maximum
+ * @member {Real} defaultvalue
+ * @member {Enum.FmodStudioParameterType} type
+ * @member {Enum.FmodStudioParameterFlags} flags
+ * @member {String} guid
  * @struct_end
  */
 

@@ -394,7 +394,7 @@ namespace gm_enums
 
 namespace gm_structs
 {
-    struct FmodStudioParameterDescription;
+    struct FmodStudioParameterId;
     struct FmodStudioStringInfo;
     struct FmodStudioCPUUsage;
     struct FmodStudioMemoryUsage;
@@ -413,23 +413,17 @@ namespace gm_structs
     struct FmodStudioTimelineNestedBeatProperties;
     struct FmodStudioProgrammerSoundProperties;
     struct FmodStudioPluginInstanceProperties;
+    struct FmodStudioParameterDescription;
     struct FmodStudio3DAttributes;
     struct FmodStudioSystemCPUUsage;
     struct FmodStudioSoundInfo;
     struct FmodStudioBufferUsage;
     struct FmodStudioListenerAttributes;
 
-    struct FmodStudioParameterDescription
+    struct FmodStudioParameterId
     {
-        std::string name;
-        double id_data1;
-        double id_data2;
-        double minimum;
-        double maximum;
-        double defaultvalue;
-        gm_enums::FmodStudioParameterType type;
-        gm_enums::FmodStudioParameterFlags flags;
-        std::string guid;
+        double data1;
+        double data2;
     };
 
     struct FmodStudioStringInfo
@@ -591,6 +585,18 @@ namespace gm_structs
         std::string name;
     };
 
+    struct FmodStudioParameterDescription
+    {
+        std::string name;
+        gm_structs::FmodStudioParameterId id;
+        double minimum;
+        double maximum;
+        double defaultvalue;
+        gm_enums::FmodStudioParameterType type;
+        gm_enums::FmodStudioParameterFlags flags;
+        std::string guid;
+    };
+
     struct FmodStudio3DAttributes
     {
         gm_structs::FmodStudioVec3 position;
@@ -630,32 +636,18 @@ namespace gm_structs
 namespace gm::wire::codec
 {
     template<>
-    inline void writeValue<gm_structs::FmodStudioParameterDescription>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioParameterDescription& obj)
+    inline void writeValue<gm_structs::FmodStudioParameterId>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioParameterId& obj)
     {
-        gm::wire::codec::writeValue(_buf, obj.name);
-        gm::wire::codec::writeValue(_buf, obj.id_data1);
-        gm::wire::codec::writeValue(_buf, obj.id_data2);
-        gm::wire::codec::writeValue(_buf, obj.minimum);
-        gm::wire::codec::writeValue(_buf, obj.maximum);
-        gm::wire::codec::writeValue(_buf, obj.defaultvalue);
-        gm::wire::codec::writeValue(_buf, obj.type);
-        gm::wire::codec::writeValue(_buf, obj.flags);
-        gm::wire::codec::writeValue(_buf, obj.guid);
+        gm::wire::codec::writeValue(_buf, obj.data1);
+        gm::wire::codec::writeValue(_buf, obj.data2);
     }
 
     template<>
-    inline gm_structs::FmodStudioParameterDescription readValue<gm_structs::FmodStudioParameterDescription>(gm::byteio::BufferReader& _buf)
+    inline gm_structs::FmodStudioParameterId readValue<gm_structs::FmodStudioParameterId>(gm::byteio::BufferReader& _buf)
     {
-        gm_structs::FmodStudioParameterDescription obj;
-        obj.name = gm::wire::codec::readValue<std::string>(_buf);
-        obj.id_data1 = gm::wire::codec::readValue<double>(_buf);
-        obj.id_data2 = gm::wire::codec::readValue<double>(_buf);
-        obj.minimum = gm::wire::codec::readValue<double>(_buf);
-        obj.maximum = gm::wire::codec::readValue<double>(_buf);
-        obj.defaultvalue = gm::wire::codec::readValue<double>(_buf);
-        obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioParameterType>(_buf);
-        obj.flags = gm::wire::codec::readValue<gm_enums::FmodStudioParameterFlags>(_buf);
-        obj.guid = gm::wire::codec::readValue<std::string>(_buf);
+        gm_structs::FmodStudioParameterId obj;
+        obj.data1 = gm::wire::codec::readValue<double>(_buf);
+        obj.data2 = gm::wire::codec::readValue<double>(_buf);
         return obj;
     }
 
@@ -1050,6 +1042,34 @@ namespace gm::wire::codec
     }
 
     template<>
+    inline void writeValue<gm_structs::FmodStudioParameterDescription>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudioParameterDescription& obj)
+    {
+        gm::wire::codec::writeValue(_buf, obj.name);
+        gm::wire::codec::writeValue(_buf, obj.id);
+        gm::wire::codec::writeValue(_buf, obj.minimum);
+        gm::wire::codec::writeValue(_buf, obj.maximum);
+        gm::wire::codec::writeValue(_buf, obj.defaultvalue);
+        gm::wire::codec::writeValue(_buf, obj.type);
+        gm::wire::codec::writeValue(_buf, obj.flags);
+        gm::wire::codec::writeValue(_buf, obj.guid);
+    }
+
+    template<>
+    inline gm_structs::FmodStudioParameterDescription readValue<gm_structs::FmodStudioParameterDescription>(gm::byteio::BufferReader& _buf)
+    {
+        gm_structs::FmodStudioParameterDescription obj;
+        obj.name = gm::wire::codec::readValue<std::string>(_buf);
+        obj.id = gm::wire::codec::readValue<gm_structs::FmodStudioParameterId>(_buf);
+        obj.minimum = gm::wire::codec::readValue<double>(_buf);
+        obj.maximum = gm::wire::codec::readValue<double>(_buf);
+        obj.defaultvalue = gm::wire::codec::readValue<double>(_buf);
+        obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioParameterType>(_buf);
+        obj.flags = gm::wire::codec::readValue<gm_enums::FmodStudioParameterFlags>(_buf);
+        obj.guid = gm::wire::codec::readValue<std::string>(_buf);
+        return obj;
+    }
+
+    template<>
     inline void writeValue<gm_structs::FmodStudio3DAttributes>(gm::byteio::IByteWriter& _buf, const gm_structs::FmodStudio3DAttributes& obj)
     {
         gm::wire::codec::writeValue(_buf, obj.position);
@@ -1142,7 +1162,7 @@ namespace gm::wire::codec
 namespace gm::wire::details
 {
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioParameterDescription>
+    struct gm_struct_traits<gm_structs::FmodStudioParameterId>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 0;
@@ -1275,38 +1295,45 @@ namespace gm::wire::details
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudio3DAttributes>
+    struct gm_struct_traits<gm_structs::FmodStudioParameterDescription>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 19;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioSystemCPUUsage>
+    struct gm_struct_traits<gm_structs::FmodStudio3DAttributes>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 20;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioSoundInfo>
+    struct gm_struct_traits<gm_structs::FmodStudioSystemCPUUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 21;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioBufferUsage>
+    struct gm_struct_traits<gm_structs::FmodStudioSoundInfo>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 22;
     };
 
     template<>
-    struct gm_struct_traits<gm_structs::FmodStudioListenerAttributes>
+    struct gm_struct_traits<gm_structs::FmodStudioBufferUsage>
     {
         static constexpr bool is_gm_struct = true;
         static constexpr std::uint32_t codec_id = 23;
+    };
+
+    template<>
+    struct gm_struct_traits<gm_structs::FmodStudioListenerAttributes>
+    {
+        static constexpr bool is_gm_struct = true;
+        static constexpr std::uint32_t codec_id = 24;
     };
 
 }
@@ -1321,13 +1348,11 @@ std::optional<std::uint64_t> fmod_studio_system_load_bank_file(std::string_view 
 std::optional<std::uint64_t> fmod_studio_system_load_bank_memory(gm::wire::GMBuffer data, double length, gm_enums::FmodStudioLoadBankFlags flags);
 double fmod_studio_system_unload_all();
 double fmod_studio_system_get_bank_count();
-std::optional<std::uint64_t> fmod_studio_system_get_bank_at(double index);
+std::vector<std::uint64_t> fmod_studio_system_get_bank_list();
 std::optional<std::uint64_t> fmod_studio_system_get_bank(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_bank_by_id(std::string_view str_guid);
 std::optional<std::uint64_t> fmod_studio_system_get_event(std::string_view path);
-std::optional<std::uint64_t> fmod_studio_system_create_event_instance(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_bus(std::string_view path);
-std::optional<std::uint64_t> fmod_studio_system_get_master_bus();
 std::optional<std::uint64_t> fmod_studio_system_get_bus_by_id(std::string_view str_guid);
 std::optional<std::uint64_t> fmod_studio_system_get_vca(std::string_view path);
 std::optional<std::uint64_t> fmod_studio_system_get_vca_by_id(std::string_view str_guid);
@@ -1336,8 +1361,8 @@ double fmod_studio_system_set_listener_weight(double listener_index, double weig
 double fmod_studio_system_get_num_listeners();
 gm_structs::FmodStudioListenerAttributes fmod_studio_system_get_listener_attributes(double listener_index);
 double fmod_studio_system_get_listener_weight(double listener_index);
-double fmod_studio_system_set_parameter_by_name(std::string_view name, double value);
-double fmod_studio_system_get_parameter_by_name(std::string_view name);
+double fmod_studio_system_set_parameter_by_name(std::string_view name, double value, bool ignore_seek_speed);
+gm_structs::FmodStudioParameterValue fmod_studio_system_get_parameter_by_name(std::string_view name);
 std::uint64_t fmod_studio_system_get_core_system_ptr();
 gm_enums::FmodStudioResult fmod_studio_last_result();
 void fmod_studio_shutdown();
@@ -1350,15 +1375,16 @@ double fmod_studio_system_start_command_capture(std::string_view filename, gm_en
 double fmod_studio_system_stop_command_capture();
 std::uint64_t fmod_studio_system_load_command_replay(std::string_view filename, gm_enums::FmodStudioCommandReplayFlags flags);
 gm_structs::FmodStudioSoundInfo fmod_studio_system_get_sound_info(std::string_view key);
-gm_structs::FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(double id_data1, double id_data2);
-double fmod_studio_system_set_parameter_by_id(double id_data1, double id_data2, double value, bool ignore_seek_speed);
-gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2);
+gm_structs::FmodStudioParameterValue fmod_studio_system_get_parameter_by_id(const gm_structs::FmodStudioParameterId& id);
+double fmod_studio_system_set_parameter_by_id(const gm_structs::FmodStudioParameterId& id, double value, bool ignore_seek_speed);
+double fmod_studio_system_set_parameters_by_ids(const std::vector<gm_structs::FmodStudioParameterId>& ids, const std::vector<double>& values, bool ignore_seek_speed);
+gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(const gm_structs::FmodStudioParameterId& id);
 gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_name(std::string_view name);
 double fmod_studio_system_get_parameter_description_count();
-gm_structs::FmodStudioParameterDescription fmod_studio_system_get_parameter_description_at(double index);
-std::string fmod_studio_system_get_parameter_label_by_id(double id_data1, double id_data2, double label_index);
+std::vector<gm_structs::FmodStudioParameterDescription> fmod_studio_system_get_parameter_description_list();
+std::string fmod_studio_system_get_parameter_label_by_id(const gm_structs::FmodStudioParameterId& id, double label_index);
 std::string fmod_studio_system_get_parameter_label_by_name(std::string_view name, double label_index);
-double fmod_studio_system_set_parameter_by_id_with_label(double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed);
+double fmod_studio_system_set_parameter_by_id_with_label(const gm_structs::FmodStudioParameterId& id, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name, std::string_view label, bool ignore_seek_speed);
 gm_structs::FmodStudioSystemCPUUsage fmod_studio_system_get_cpu_usage();
 gm_structs::FmodStudioBufferUsage fmod_studio_system_get_buffer_usage();
@@ -1373,13 +1399,12 @@ double fmod_studio_bank_unload(std::uint64_t bank_ref);
 gm_enums::FmodStudioLoadingState fmod_studio_bank_get_loading_state(std::uint64_t bank_ref);
 gm_enums::FmodStudioLoadingState fmod_studio_bank_get_sample_loading_state(std::uint64_t bank_ref);
 std::string fmod_studio_bank_get_path(std::uint64_t bank_ref);
-std::optional<std::uint64_t> fmod_studio_bank_get_parent_studio_system(std::uint64_t bank_ref);
 double fmod_studio_bank_get_event_count(std::uint64_t bank_ref);
-std::optional<std::uint64_t> fmod_studio_bank_get_event_at(std::uint64_t bank_ref, double index);
+std::vector<std::uint64_t> fmod_studio_bank_get_event_list(std::uint64_t bank_ref);
 double fmod_studio_bank_get_bus_count(std::uint64_t bank_ref);
-std::optional<std::uint64_t> fmod_studio_bank_get_bus_at(std::uint64_t bank_ref, double index);
+std::vector<std::uint64_t> fmod_studio_bank_get_bus_list(std::uint64_t bank_ref);
 double fmod_studio_bank_get_vca_count(std::uint64_t bank_ref);
-std::optional<std::uint64_t> fmod_studio_bank_get_vca_at(std::uint64_t bank_ref, double index);
+std::vector<std::uint64_t> fmod_studio_bank_get_vca_list(std::uint64_t bank_ref);
 double fmod_studio_bank_get_string_count(std::uint64_t bank_ref);
 std::string fmod_studio_bank_get_id(std::uint64_t bank_ref);
 bool fmod_studio_bank_is_valid(std::uint64_t bank_ref);
@@ -1391,12 +1416,12 @@ double fmod_studio_bank_set_user_data(std::uint64_t bank_ref, std::int64_t user_
 std::string fmod_studio_event_description_get_path(std::uint64_t event_desc_ref);
 std::optional<std::uint64_t> fmod_studio_event_description_create_instance(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_instance_count(std::uint64_t event_desc_ref);
-std::optional<std::uint64_t> fmod_studio_event_description_get_instance_at(std::uint64_t event_desc_ref, double index);
+std::vector<std::uint64_t> fmod_studio_event_description_get_instance_list(std::uint64_t event_desc_ref);
 bool fmod_studio_event_description_is_snapshot(std::uint64_t event_desc_ref);
-bool fmod_studio_event_description_is_one_shot(std::uint64_t event_desc_ref);
+bool fmod_studio_event_description_is_oneshot(std::uint64_t event_desc_ref);
 bool fmod_studio_event_description_has_sustain_point(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_get_length(std::uint64_t event_desc_ref);
-double fmod_studio_event_description_get_parameter_count(std::uint64_t event_desc_ref);
+double fmod_studio_event_description_get_parameter_description_count(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_release_all_instances(std::uint64_t event_desc_ref);
 gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_name(std::uint64_t event_desc_ref, std::string_view name);
 double fmod_studio_event_description_load_sample_data(std::uint64_t event_desc_ref);
@@ -1413,12 +1438,12 @@ double fmod_studio_event_description_set_callback(std::uint64_t event_desc_ref, 
 std::int64_t fmod_studio_event_description_get_user_data(std::uint64_t event_desc_ref);
 double fmod_studio_event_description_set_user_data(std::uint64_t event_desc_ref, std::int64_t user_data);
 gm_structs::FmodStudioUserProperty fmod_studio_event_description_get_user_property(std::uint64_t event_desc_ref, std::string_view name);
-gm_structs::FmodStudioUserProperty fmod_studio_event_description_get_user_property_at(std::uint64_t event_desc_ref, double index);
+gm_structs::FmodStudioUserProperty fmod_studio_event_description_get_user_property_by_index(std::uint64_t event_desc_ref, double index);
 double fmod_studio_event_description_get_user_property_count(std::uint64_t event_desc_ref);
-gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_id(std::uint64_t event_desc_ref, double id_data1, double id_data2);
-gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_at(std::uint64_t event_desc_ref, double index);
-std::string fmod_studio_event_description_get_parameter_label_by_id(std::uint64_t event_desc_ref, double id_data1, double id_data2, double label_index);
-std::string fmod_studio_event_description_get_parameter_label_at(std::uint64_t event_desc_ref, double index, double label_index);
+gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_id(std::uint64_t event_desc_ref, const gm_structs::FmodStudioParameterId& id);
+gm_structs::FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_index(std::uint64_t event_desc_ref, double index);
+std::string fmod_studio_event_description_get_parameter_label_by_id(std::uint64_t event_desc_ref, const gm_structs::FmodStudioParameterId& id, double label_index);
+std::string fmod_studio_event_description_get_parameter_label_by_index(std::uint64_t event_desc_ref, double index, double label_index);
 std::string fmod_studio_event_description_get_parameter_label_by_name(std::uint64_t event_desc_ref, std::string_view name, double label_index);
 double fmod_studio_event_instance_start(std::uint64_t instance_ref);
 double fmod_studio_event_instance_stop(std::uint64_t instance_ref, gm_enums::FmodStudioStopMode stop_mode);
@@ -1432,14 +1457,15 @@ double fmod_studio_event_instance_get_volume(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_volume(std::uint64_t instance_ref, double volume);
 double fmod_studio_event_instance_get_pitch(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_pitch(std::uint64_t instance_ref, double pitch);
-double fmod_studio_event_instance_set_parameter_by_name(std::uint64_t instance_ref, std::string_view name, double value);
-double fmod_studio_event_instance_get_parameter_by_name(std::uint64_t instance_ref, std::string_view name);
-double fmod_studio_event_instance_get_parameter_count(std::uint64_t instance_ref);
-double fmod_studio_event_instance_get_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2);
-double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref, double id_data1, double id_data2, double value);
+double fmod_studio_event_instance_set_parameter_by_name(std::uint64_t instance_ref, std::string_view name, double value, bool ignore_seek_speed);
+gm_structs::FmodStudioParameterValue fmod_studio_event_instance_get_parameter_by_name(std::uint64_t instance_ref, std::string_view name);
+gm_structs::FmodStudioParameterValue fmod_studio_event_instance_get_parameter_by_id(std::uint64_t instance_ref, const gm_structs::FmodStudioParameterId& id);
+double fmod_studio_event_instance_set_parameter_by_id(std::uint64_t instance_ref, const gm_structs::FmodStudioParameterId& id, double value, bool ignore_seek_speed);
+double fmod_studio_event_instance_set_parameters_by_ids(std::uint64_t instance_ref, const std::vector<gm_structs::FmodStudioParameterId>& ids, const std::vector<double>& values, bool ignore_seek_speed);
+std::uint64_t fmod_studio_event_instance_get_system(std::uint64_t instance_ref);
 double fmod_studio_event_instance_set_callback(std::uint64_t instance_ref, const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodStudioEventCallbackType mask);
 double fmod_studio_event_instance_set_programmer_sound(std::uint64_t instance_ref, std::optional<std::string_view> key);
-double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed);
+double fmod_studio_event_instance_set_parameter_by_id_with_label(std::uint64_t instance_ref, const gm_structs::FmodStudioParameterId& id, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_event_instance_set_parameter_by_name_with_label(std::uint64_t instance_ref, std::string_view name, std::string_view label, bool ignore_seek_speed);
 double fmod_studio_event_instance_set_3d_attributes(std::uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up);
 gm_structs::FmodStudio3DAttributes fmod_studio_event_instance_get_3d_attributes(std::uint64_t instance_ref);
@@ -1465,7 +1491,6 @@ double fmod_studio_bus_set_volume(std::uint64_t bus_ref, double volume);
 bool fmod_studio_bus_get_paused(std::uint64_t bus_ref);
 double fmod_studio_bus_set_paused(std::uint64_t bus_ref, bool paused);
 double fmod_studio_bus_stop_all_events(std::uint64_t bus_ref, gm_enums::FmodStudioStopMode stop_mode);
-std::optional<std::uint64_t> fmod_studio_bus_get_master_bus();
 std::string fmod_studio_bus_get_id(std::uint64_t bus_ref);
 bool fmod_studio_bus_is_valid(std::uint64_t bus_ref);
 std::uint64_t fmod_studio_bus_get_channel_group_ptr(std::uint64_t bus_ref);
@@ -1480,12 +1505,14 @@ double fmod_studio_bus_set_port_index(std::uint64_t bus_ref, std::uint64_t port_
 std::string fmod_studio_vca_get_path(std::uint64_t vca_ref);
 double fmod_studio_vca_get_volume(std::uint64_t vca_ref);
 double fmod_studio_vca_set_volume(std::uint64_t vca_ref, double volume);
+std::string fmod_studio_vca_get_id(std::uint64_t vca_ref);
+bool fmod_studio_vca_is_valid(std::uint64_t vca_ref);
 gm_enums::FmodStudioPlaybackState fmod_studio_command_replay_get_playback_state(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_current_command(std::uint64_t replay_ref);
 double fmod_studio_command_replay_release(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_command_count(std::uint64_t replay_ref);
 double fmod_studio_command_replay_get_length(std::uint64_t replay_ref);
-std::uint64_t fmod_studio_command_replay_get_system_object(std::uint64_t replay_ref);
+std::uint64_t fmod_studio_command_replay_get_system(std::uint64_t replay_ref);
 bool fmod_studio_command_replay_is_valid(std::uint64_t replay_ref);
 gm_structs::FmodStudioCommandInfo fmod_studio_command_replay_get_command_info(std::uint64_t replay_ref, double command_index);
 std::string fmod_studio_command_replay_get_command_string(std::uint64_t replay_ref, double command_index);

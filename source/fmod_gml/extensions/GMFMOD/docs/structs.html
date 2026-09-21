@@ -1359,6 +1359,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmoddspdescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPDescription
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmoddspconnectionend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPConnectionEnd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddspcpuusage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1700,10 +1722,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fmodstudioparameterdescription" class="md-nav__link">
+  <a href="#fmodstudioparameterid" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FmodStudioParameterDescription
+        FmodStudioParameterId
       
     </span>
   </a>
@@ -1902,6 +1924,17 @@
     <span class="md-ellipsis">
       
         FmodStudioPluginInstanceProperties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodstudioparameterdescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodStudioParameterDescription
       
     </span>
   </a>
@@ -2261,6 +2294,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmoddspdescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPDescription
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmoddspconnectionend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPConnectionEnd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddspcpuusage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2602,10 +2657,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fmodstudioparameterdescription" class="md-nav__link">
+  <a href="#fmodstudioparameterid" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FmodStudioParameterDescription
+        FmodStudioParameterId
       
     </span>
   </a>
@@ -2811,6 +2866,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodstudioparameterdescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodStudioParameterDescription
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmodstudio3dattributes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2911,6 +2977,8 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmoddspchannelformat">FmodDSPChannelFormat</a></li>
 <li><a href="structs.html#fmoddspmeteringinfo">FmodDSPMeteringInfo</a></li>
 <li><a href="structs.html#fmoddspinfo">FmodDSPInfo</a></li>
+<li><a href="structs.html#fmoddspdescription">FmodDSPDescription</a></li>
+<li><a href="structs.html#fmoddspconnectionend">FmodDSPConnectionEnd</a></li>
 <li><a href="structs.html#fmodgeometryrotation">FmodGeometryRotation</a></li>
 <li><a href="structs.html#fmodreverb3dattributes">FmodReverb3DAttributes</a></li>
 <li><a href="structs.html#fmodsoundtag">FmodSoundTag</a></li>
@@ -2931,6 +2999,7 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmodstudiocpuusage">FmodStudioCPUUsage</a></li>
 <li><a href="structs.html#fmodstudiosoundinfo">FmodStudioSoundInfo</a></li>
 <li><a href="structs.html#fmodstudiostringinfo">FmodStudioStringInfo</a></li>
+<li><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></li>
 <li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
 <li><a href="structs.html#fmodstudiouserproperty">FmodStudioUserProperty</a></li>
 <li><a href="structs.html#fmodstudioadvancedsettings">FmodStudioAdvancedSettings</a></li>
@@ -3801,6 +3870,94 @@ This happens in two situations:</p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
+<h1 id="fmoddspdescription">FmodDSPDescription<a class="headerlink" href="#fmoddspdescription" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_description">FMOD_DSP_DESCRIPTION</a></p>
+</blockquote>
+<p>This struct describes a built-in DSP type, as returned by <a href="system.html#fmod_system_get_dsp_info_by_type">fmod_system_get_dsp_info_by_type</a>. It carries the data fields of FMOD's description; the plugin callbacks are not exposed.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="system.html#fmod_system_get_dsp_info_by_type">fmod_system_get_dsp_info_by_type</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pluginsdkversion</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The plugin SDK version this unit was compiled with.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The name of the unit.</td>
+</tr>
+<tr>
+<td>version</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The version number of this unit, usually formatted as hex AAAABBBB where AAAA is the major version number and BBBB the minor version number.</td>
+</tr>
+<tr>
+<td>numinputbuffers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of input buffers to process. Use 0 for DSPs that only generate sound and 1 for effects that process incoming sound.</td>
+</tr>
+<tr>
+<td>numoutputbuffers</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of audio output buffers. Only one output buffer is currently supported.</td>
+</tr>
+<tr>
+<td>numparameters</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The number of parameters used in this unit.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspconnectionend">FmodDSPConnectionEnd<a class="headerlink" href="#fmoddspconnectionend" title="Permanent link">&para;</a></h1>
+<p>This struct holds one end of a DSP graph edge: the DSP unit on the other side and the connection to it. It is what <a href="dsp.html#fmod_dsp_get_input">fmod_dsp_get_input</a> and <a href="dsp.html#fmod_dsp_get_output">fmod_dsp_get_output</a> return.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="dsp.html#fmod_dsp_get_input">fmod_dsp_get_input</a></li>
+<li><a href="dsp.html#fmod_dsp_get_output">fmod_dsp_get_output</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the DSP unit on the other side of the connection, or 0 on failure.</td>
+</tr>
+<tr>
+<td>connection_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>A reference to the connection between the two units, or 0 on failure.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
 <h1 id="fmoddspcpuusage">FmodDSPCPUUsage<a class="headerlink" href="#fmoddspcpuusage" title="Permanent link">&para;</a></h1>
 <p>This struct stores information about CPU time spent.</p>
 <p>This struct is referenced by the following functions:</p>
@@ -4319,7 +4476,7 @@ This happens in two situations:</p>
 <p>This struct holds information about stored fade points.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
-<li><a href="channel_control.html#fmod_channel_control_get_fade_point_at">fmod_channel_control_get_fade_point_at</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</a></li>
 </ul>
 <p><br></p>
 <table>
@@ -4774,7 +4931,7 @@ This happens in two situations:</p>
 <tr>
 <td>max_convolution_threads</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of CPU threads to use for <code>FmodDspType.ConvolutionReverb</code> effect. 1 = effect is entirely processed inside the <code>FMOD_THREAD_TYPE.MIXER</code> thread. 2 and 3 offloads different parts of the convolution processing into different threads (<code>FMOD_THREAD_TYPE.CONVOLUTION1</code> and <code>FMOD_THREAD_TYPE.CONVOLUTION2</code> to increase throughput. A value in the range [0, 3].</td>
+<td>The maximum number of CPU threads to use for <code>FmodDspType.ConvolutionReverb</code> effect. 1 = effect is entirely processed inside the <code>FmodThreadType.Mixer</code> thread. 2 and 3 offloads different parts of the convolution processing into different threads (<code>FmodThreadType.Convolution1</code> and <code>FmodThreadType.Convolution2</code> to increase throughput. A value in the range [0, 3].</td>
 </tr>
 <tr>
 <td>max_opus_codecs</td>
@@ -4850,17 +5007,17 @@ This happens in two situations:</p>
 <tr>
 <td>dsp</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The DSP mixing engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.MIXER</code>, or main thread if <code>FmodInitFlags.MixFromUpdate</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+<td>The DSP mixing engine CPU usage. A percentage of <code>FmodThreadType.Mixer</code>, or main thread if <code>FmodInitFlags.MixFromUpdate</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
 </tr>
 <tr>
 <td>stream</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The streaming engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.STREAM</code>, or main thread if <code>FmodInitFlags.StreamFromUpdate</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
+<td>The streaming engine CPU usage. A percentage of <code>FmodThreadType.Stream</code>, or main thread if <code>FmodInitFlags.StreamFromUpdate</code> flag is used with <a href="system.html#fmod_system_init">fmod_system_init</a>.</td>
 </tr>
 <tr>
 <td>geometry</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The geometry engine CPU usage. A percentage of <code>FMOD_THREAD_TYPE.GEOMETRY</code>.</td>
+<td>The geometry engine CPU usage. A percentage of <code>FmodThreadType.Geometry</code>.</td>
 </tr>
 <tr>
 <td>update</td>
@@ -4870,12 +5027,12 @@ This happens in two situations:</p>
 <tr>
 <td>convolution1</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The convolution reverb processing thread #1 CPU usage. A percentage of <code>FMOD_THREAD_TYPE.CONVOLUTION1</code>.</td>
+<td>The convolution reverb processing thread #1 CPU usage. A percentage of <code>FmodThreadType.Convolution1</code>.</td>
 </tr>
 <tr>
 <td>convolution2</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The convolution reverb processing thread #2 CPU usage. A percentage of <code>FMOD_THREAD_TYPE.CONVOLUTION2</code>.</td>
+<td>The convolution reverb processing thread #2 CPU usage. A percentage of <code>FmodThreadType.Convolution2</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -5252,19 +5409,29 @@ This happens in two situations:</p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmodstudioparameterdescription">FmodStudioParameterDescription<a class="headerlink" href="#fmodstudioparameterdescription" title="Permanent link">&para;</a></h1>
+<h1 id="fmodstudioparameterid">FmodStudioParameterId<a class="headerlink" href="#fmodstudioparameterid" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_id">FMOD_STUDIO_PARAMETER_ID</a></p>
 </blockquote>
-<p>This struct describes an event parameter.</p>
+<p>This struct holds an event parameter identifier. Read it from a <a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a> and pass it to the by-ID functions.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
-<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_name">fmod_studio_event_description_get_parameter_description_by_name</a></li>
 <li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_id">fmod_studio_event_description_get_parameter_description_by_id</a></li>
-<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_name">fmod_studio_system_get_parameter_description_by_name</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_label_by_id">fmod_studio_event_description_get_parameter_label_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id">fmod_studio_event_instance_set_parameter_by_id</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameter_by_id_with_label">fmod_studio_event_instance_set_parameter_by_id_with_label</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_set_parameters_by_ids">fmod_studio_event_instance_set_parameters_by_ids</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id">fmod_studio_system_set_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameter_by_id_with_label">fmod_studio_system_set_parameter_by_id_with_label</a></li>
+<li><a href="studio_system.html#fmod_studio_system_set_parameters_by_ids">fmod_studio_system_set_parameters_by_ids</a></li>
 <li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</a></li>
-<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_at">fmod_studio_system_get_parameter_description_at</a></li>
-<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_at">fmod_studio_event_description_get_parameter_description_at</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_label_by_id">fmod_studio_system_get_parameter_label_by_id</a></li>
+</ul>
+<p>This struct is referenced by the following structs:</p>
+<ul>
+<li><a href="structs.html#fmodstudioparameterdescription">FmodStudioParameterDescription</a></li>
 </ul>
 <p><br></p>
 <table>
@@ -5277,54 +5444,17 @@ This happens in two situations:</p>
 </thead>
 <tbody>
 <tr>
-<td>name</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The parameter name.</td>
-</tr>
-<tr>
-<td>id_data1</td>
+<td>data1</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The first half of the parameter ID, as passed to the by-ID functions.</td>
+<td>The first half of the ID.</td>
 </tr>
 <tr>
-<td>id_data2</td>
+<td>data2</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The second half of the parameter ID.</td>
-</tr>
-<tr>
-<td>minimum</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The minimum parameter value.</td>
-</tr>
-<tr>
-<td>maximum</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum parameter value.</td>
-</tr>
-<tr>
-<td>defaultvalue</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The default parameter value.</td>
-</tr>
-<tr>
-<td>type</td>
-<td><a href="constants.html#fmodstudioparametertype">FmodStudioParameterType</a></td>
-<td>The parameter type - what drives its value.</td>
-</tr>
-<tr>
-<td>flags</td>
-<td><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></td>
-<td>The parameter behavior flags.</td>
-</tr>
-<tr>
-<td>guid</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The parameter's GUID, in FMOD's <code>{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}</code> spelling.</td>
+<td>The second half of the ID.</td>
 </tr>
 </tbody>
 </table>
-<p>*/</p>
-<p>/**</p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
@@ -5553,7 +5683,7 @@ This happens in two situations:</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
 <li><a href="event_description.html#fmod_studio_event_description_get_user_property">fmod_studio_event_description_get_user_property</a></li>
-<li><a href="event_description.html#fmod_studio_event_description_get_user_property_at">fmod_studio_event_description_get_user_property_at</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_user_property_by_index">fmod_studio_event_description_get_user_property_by_index</a></li>
 </ul>
 <p><br></p>
 <table>
@@ -6005,7 +6135,10 @@ is a percentage of the total CPU time.</p>
 </div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_name">fmod_studio_event_instance_get_parameter_by_name</a></li>
+<li><a href="event_instance.html#fmod_studio_event_instance_get_parameter_by_id">fmod_studio_event_instance_get_parameter_by_id</a></li>
 <li><a href="studio_system.html#fmod_studio_system_get_parameter_by_id">fmod_studio_system_get_parameter_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_by_name">fmod_studio_system_get_parameter_by_name</a></li>
 </ul>
 <p><br></p>
 <table>
@@ -6211,6 +6344,78 @@ is a percentage of the total CPU time.</p>
 </tr>
 </tbody>
 </table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodstudioparameterdescription">FmodStudioParameterDescription<a class="headerlink" href="#fmodstudioparameterdescription" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_description">FMOD_STUDIO_PARAMETER_DESCRIPTION</a></p>
+</blockquote>
+<p>This struct describes an event parameter.</p>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_name">fmod_studio_event_description_get_parameter_description_by_name</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_id">fmod_studio_event_description_get_parameter_description_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_name">fmod_studio_system_get_parameter_description_by_name</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_by_id">fmod_studio_system_get_parameter_description_by_id</a></li>
+<li><a href="studio_system.html#fmod_studio_system_get_parameter_description_list">fmod_studio_system_get_parameter_description_list</a></li>
+<li><a href="event_description.html#fmod_studio_event_description_get_parameter_description_by_index">fmod_studio_event_description_get_parameter_description_by_index</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter name.</td>
+</tr>
+<tr>
+<td>id</td>
+<td><a href="structs.html#fmodstudioparameterid">FmodStudioParameterId</a></td>
+<td>The parameter ID, as passed to the by-ID functions.</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The minimum parameter value.</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The maximum parameter value.</td>
+</tr>
+<tr>
+<td>defaultvalue</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The default parameter value.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmodstudioparametertype">FmodStudioParameterType</a></td>
+<td>The parameter type - what drives its value.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></td>
+<td>The parameter behavior flags.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter's GUID, in FMOD's <code>{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}</code> spelling.</td>
+</tr>
+</tbody>
+</table>
+<p>*/</p>
+<p>/**</p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

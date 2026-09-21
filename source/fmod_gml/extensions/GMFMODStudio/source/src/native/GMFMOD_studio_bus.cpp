@@ -57,13 +57,6 @@ double fmod_studio_bus_stop_all_events(uint64_t bus_ref, gm_enums::FmodStudioSto
 	return 0;
 }
 
-std::optional<uint64_t> fmod_studio_bus_get_master_bus()
-{
-	// The master bus is a property of the Studio system, not of any one bus, so this is the same
-	// lookup fmod_studio_system_get_master_bus does. Delegating keeps one implementation.
-	return fmod_studio_system_get_master_bus();
-}
-
 std::string fmod_studio_bus_get_id(uint64_t bus_ref)
 {
 	FMOD::Studio::Bus* bus = resolve_fmod_studio_bus(bus_ref);

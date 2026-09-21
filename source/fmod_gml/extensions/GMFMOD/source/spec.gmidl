@@ -1450,6 +1450,42 @@ class `[[FmodDSPInfo]]` prototype Object
     property configheight: gmval { get; set; }
 }
 
+// The data fields of FMOD_DSP_DESCRIPTION, as System::getDSPInfoByType
+// reports them for a built-in effect. The callbacks are not data.
+[global]
+class `[[FmodDSPDescription]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property pluginsdkversion: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property name: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property version: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property numinputbuffers: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property numoutputbuffers: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property numparameters: gmval { get; set; }
+}
+
+// One end of a DSP graph edge: the DSP on the other side and the
+// connection to it, the pair DSP::getInput and DSP::getOutput hand back.
+[global]
+class `[[FmodDSPConnectionEnd]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property dsp_ref: gmval { get; set; }
+
+    [field, type_hint=`uint64`]
+    property connection_ref: gmval { get; set; }
+}
+
 [global]
 class `[[FmodDSPCPUUsage]]` prototype Object
 {
@@ -2302,6 +2338,11 @@ function fmod_system_create_dsp(): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64`]
 function fmod_system_create_dsp_by_type(
+    [type_hint=`FmodDspType`] dsp_type: gmval
+): gmval;
+
+[global, bind = typed_gml, type_hint=`FmodDSPDescription`]
+function fmod_system_get_dsp_info_by_type(
     [type_hint=`FmodDspType`] dsp_type: gmval
 ): gmval;
 
@@ -3204,10 +3245,9 @@ function fmod_channel_control_get_fade_point_count(
     [type_hint=`uint64`] channel_control_ref: gmval
 ): real;
 
-[global, bind = typed_gml, type_hint=`FmodFadePoint`]
-function fmod_channel_control_get_fade_point_at(
-    [type_hint=`uint64`] channel_control_ref: gmval,
-    index: real
+[global, bind = typed_gml, type_hint=`FmodFadePoint[]`]
+function fmod_channel_control_get_fade_points(
+    [type_hint=`uint64`] channel_control_ref: gmval
 ): gmval;
 
 // ============================================================
@@ -3697,13 +3737,13 @@ function fmod_dsp_get_system_object(
 // DSP - Input/Output & Connections
 // ============================================================
 
-[global, bind = typed_gml, type_hint=`uint64`]
+[global, bind = typed_gml, type_hint=`FmodDSPConnectionEnd`]
 function fmod_dsp_get_input(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real
 ): gmval;
 
-[global, bind = typed_gml, type_hint=`uint64`]
+[global, bind = typed_gml, type_hint=`FmodDSPConnectionEnd`]
 function fmod_dsp_get_output(
     [type_hint=`uint64`] dsp_ref: gmval,
     index: real

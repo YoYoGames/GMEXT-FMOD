@@ -2207,7 +2207,7 @@
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getinput">DSP::getInput</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the DSP unit at the specified index in the input list.</p>
+<p>This function retrieves the DSP unit at the specified index in the input list, and the connection to it, as a <a href="structs.html#fmoddspconnectionend">FmodDSPConnectionEnd</a>.</p>
 <p>The returned connection will remain valid until the units are disconnected.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2242,7 +2242,7 @@
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+<p><a href="structs.html#fmoddspconnectionend">FmodDSPConnectionEnd</a></p>
 </blockquote>
 <p><br></p>
 <hr />
@@ -2253,7 +2253,7 @@
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_getoutput">DSP::getOutput</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function retrieves the DSP unit at the specified index in the output list.</p>
+<p>This function retrieves the DSP unit at the specified index in the output list, and the connection to it, as a <a href="structs.html#fmoddspconnectionend">FmodDSPConnectionEnd</a>.</p>
 <p>The returned connection will remain valid until the units are disconnected.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2281,14 +2281,14 @@
 <tr>
 <td>index</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A value in the range [0, <a href="dsp.html#fmod_dsp_get_num_inputs">fmod_dsp_get_num_inputs</a>]</td>
+<td>A value in the range [0, <a href="dsp.html#fmod_dsp_get_num_outputs">fmod_dsp_get_num_outputs</a>]</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+<p><a href="structs.html#fmoddspconnectionend">FmodDSPConnectionEnd</a></p>
 </blockquote>
 <p><br></p>
 <hr />

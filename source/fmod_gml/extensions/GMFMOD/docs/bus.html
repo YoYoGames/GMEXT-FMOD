@@ -1066,17 +1066,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#fmod_studio_bus_get_master_bus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        fmod_studio_bus_get_master_bus
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1580,17 +1569,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#fmod_studio_bus_get_master_bus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        fmod_studio_bus_get_master_bus
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1638,7 +1616,6 @@
 <li><a href="bus.html#fmod_studio_bus_get_id">fmod_studio_bus_get_id</a></li>
 <li><a href="bus.html#fmod_studio_bus_get_path">fmod_studio_bus_get_path</a></li>
 <li><a href="bus.html#fmod_studio_bus_is_valid">fmod_studio_bus_is_valid</a></li>
-<li><a href="bus.html#fmod_studio_bus_get_master_bus">fmod_studio_bus_get_master_bus</a></li>
 </ul>
 <p><br></p>
 <hr />
@@ -2039,7 +2016,7 @@
 <p><strong>Example:</strong></p>
 <pre class="highlight"><code class="language-gml">var _ptr = fmod_studio_bus_get_channel_group_ptr(bus);
 var _group = fmod_channel_group_adopt(_ptr);
-fmod_channel_group_set_volume(_group, 0.5);</code></pre>
+fmod_channel_control_set_volume(_group, 0.5);</code></pre>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
@@ -2299,27 +2276,6 @@ fmod_channel_group_set_volume(_group, 0.5);</code></pre>
 <blockquote>
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Boolean</a></p>
 </blockquote>
-<p><br></p>
-<hr />
-<p align="right"><a href="#top">Back To Top</a></p>
-
-<h1 id="fmod_studio_bus_get_master_bus">fmod_studio_bus_get_master_bus<a class="headerlink" href="#fmod_studio_bus_get_master_bus" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/studio-api-system.html#studio_system_getbus">Studio::System::getBus</a></p>
-</blockquote>
-<p><br /></p>
-<p>This function returns the master bus, the bus every other bus mixes into. It is the same lookup as <a href="studio_system.html#fmod_studio_system_get_master_bus">fmod_studio_system_get_master_bus</a> and exists so the call can be made from the bus functions as well.</p>
-<p><br></p>
-<p><strong>Syntax:</strong></p>
-<blockquote>
-<pre class="highlight"><code class="language-gml">fmod_studio_bus_get_master_bus()</code></pre>
-</blockquote>
-<p><br></p>
-<p><strong>Returns:</strong></p>
-<blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
-</blockquote>
-<p>A reference to the master bus, or 0 on failure.</p>
 <p><br></p>
 <hr />
 

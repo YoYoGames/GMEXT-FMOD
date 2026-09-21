@@ -1217,10 +1217,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fmod_channel_control_get_fade_point_at" class="md-nav__link">
+  <a href="#fmod_channel_control_get_fade_points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        fmod_channel_control_get_fade_point_at
+        fmod_channel_control_get_fade_points
       
     </span>
   </a>
@@ -2571,10 +2571,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fmod_channel_control_get_fade_point_at" class="md-nav__link">
+  <a href="#fmod_channel_control_get_fade_points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        fmod_channel_control_get_fade_point_at
+        fmod_channel_control_get_fade_points
       
     </span>
   </a>
@@ -2695,7 +2695,7 @@
 <li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff">fmod_channel_control_get_3d_custom_rolloff</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_at">fmod_channel_control_get_3d_custom_rolloff_at</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_3d_custom_rolloff_count">fmod_channel_control_get_3d_custom_rolloff_count</a></li>
-<li><a href="channel_control.html#fmod_channel_control_get_fade_point_at">fmod_channel_control_get_fade_point_at</a></li>
+<li><a href="channel_control.html#fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</a></li>
 <li><a href="channel_control.html#fmod_channel_control_get_fade_point_count">fmod_channel_control_get_fade_point_count</a></li>
 </ul>
 <p><br></p>
@@ -4413,42 +4413,42 @@ A sound with a large minimum distance will make the sound appear larger.</p>
 <tr>
 <td>front_left</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.FRONT_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.FrontLeft</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>front_right</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.FRONT_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.FrontRight</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>center</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.FRONT_CENTER</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.FrontCenter</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>lfe</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.LOW_FREQUENCY</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.LowFrequency</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>surround_left</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.SURROUND_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.SurroundLeft</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>surround_right</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.SURROUND_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.SurroundRight</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>back_left</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.BACK_LEFT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.BackLeft</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 <tr>
 <td>back_right</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The volume level for <code>FMOD_SPEAKER.BACK_RIGHT</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
+<td>The volume level for <code>FmodSpeaker.BackRight</code>. Volume level. 0 = silent, 1 = full. Negative level inverts the signal. Values larger than 1 amplify the signal.</td>
 </tr>
 </tbody>
 </table>
@@ -5508,7 +5508,7 @@ The above code shows how to perform sample accurate fading. It ramps from full v
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getfadepoints">ChannelControl::getFadePoints</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function returns how many fade points are currently queued on a Channel or ChannelGroup. Read each one with <a href="channel_control.html#fmod_channel_control_get_fade_point_at">fmod_channel_control_get_fade_point_at</a>.</p>
+<p>This function returns how many fade points are currently queued on a Channel or ChannelGroup. Read them with <a href="channel_control.html#fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -5539,16 +5539,16 @@ The above code shows how to perform sample accurate fading. It ramps from full v
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
-<h1 id="fmod_channel_control_get_fade_point_at">fmod_channel_control_get_fade_point_at<a class="headerlink" href="#fmod_channel_control_get_fade_point_at" title="Permanent link">&para;</a></h1>
+<h1 id="fmod_channel_control_get_fade_points">fmod_channel_control_get_fade_points<a class="headerlink" href="#fmod_channel_control_get_fade_points" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#channelcontrol_getfadepoints">ChannelControl::getFadePoints</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function returns one of the fade points queued on a Channel or ChannelGroup. Get the number of points from <a href="channel_control.html#fmod_channel_control_get_fade_point_count">fmod_channel_control_get_fade_point_count</a> first.</p>
+<p>This function returns every fade point queued on a Channel or ChannelGroup, as an array of <a href="structs.html#fmodfadepoint">FmodFadePoint</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<pre class="highlight"><code class="language-gml">fmod_channel_control_get_fade_point_at(channel_control_ref, index)</code></pre>
+<pre class="highlight"><code class="language-gml">fmod_channel_control_get_fade_points(channel_control_ref)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -5564,18 +5564,14 @@ The above code shows how to perform sample accurate fading. It ramps from full v
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
 <td>A reference to a Channel or a ChannelGroup.</td>
 </tr>
-<tr>
-<td>index</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The index of the fade point, from 0 to the fade point count minus 1.</td>
-</tr>
 </tbody>
 </table>
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
-<p><a href="structs.html#fmodfadepoint">FmodFadePoint</a></p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm">Array</a> of <a href="structs.html#fmodfadepoint">FmodFadePoint</a></p>
 </blockquote>
+<p>An array of fade points, empty when none are queued.</p>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>

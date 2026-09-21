@@ -937,6 +937,26 @@
         },
         {
           "$GMExtensionFunction": "",
+          "%Name": "__fmod_system_get_dsp_info_by_type",
+          "argCount": 4,
+          "args": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
+          "externalName": "__EXT_NATIVE__fmod_system_get_dsp_info_by_type",
+          "help": "",
+          "hidden": true,
+          "kind": 4,
+          "name": "__fmod_system_get_dsp_info_by_type",
+          "resourceType": "GMExtensionFunction",
+          "resourceVersion": "2.0",
+          "returnType": 2
+        },
+        {
+          "$GMExtensionFunction": "",
           "%Name": "__fmod_system_get_dsp_buffer_size",
           "argCount": 2,
           "args": [
@@ -3433,7 +3453,7 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "__fmod_channel_control_get_fade_point_at",
+          "%Name": "__fmod_channel_control_get_fade_points",
           "argCount": 4,
           "args": [
             1,
@@ -3442,11 +3462,11 @@
             2
           ],
           "documentation": "@param {Pointer} _arg_buffer\r\n@param {Real} _arg_buffer_length\r\n@param {Pointer} _ret_buffer\r\n@param {Real} _ret_buffer_length\r\n@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_channel_control_get_fade_point_at",
+          "externalName": "__EXT_NATIVE__fmod_channel_control_get_fade_points",
           "help": "",
           "hidden": true,
           "kind": 4,
-          "name": "__fmod_channel_control_get_fade_point_at",
+          "name": "__fmod_channel_control_get_fade_points",
           "resourceType": "GMExtensionFunction",
           "resourceVersion": "2.0",
           "returnType": 2

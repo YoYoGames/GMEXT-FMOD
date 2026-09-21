@@ -32,12 +32,12 @@
  * 
  * This struct stores performance information for FMOD's Core API functionality.
  * 
- * @member {Real} dsp The DSP mixing engine CPU usage. A percentage of `FMOD_THREAD_TYPE.MIXER`, or main thread if `FmodInitFlags.MixFromUpdate` flag is used with ${function.fmod_system_init}.
- * @member {Real} stream The streaming engine CPU usage. A percentage of `FMOD_THREAD_TYPE.STREAM`, or main thread if `FmodInitFlags.StreamFromUpdate` flag is used with ${function.fmod_system_init}.
- * @member {Real} geometry The geometry engine CPU usage. A percentage of `FMOD_THREAD_TYPE.GEOMETRY`.
+ * @member {Real} dsp The DSP mixing engine CPU usage. A percentage of `FmodThreadType.Mixer`, or main thread if `FmodInitFlags.MixFromUpdate` flag is used with ${function.fmod_system_init}.
+ * @member {Real} stream The streaming engine CPU usage. A percentage of `FmodThreadType.Stream`, or main thread if `FmodInitFlags.StreamFromUpdate` flag is used with ${function.fmod_system_init}.
+ * @member {Real} geometry The geometry engine CPU usage. A percentage of `FmodThreadType.Geometry`.
  * @member {Real} update The ${function.fmod_system_update} CPU usage. A percentage of the main thread.
- * @member {Real} convolution1 The convolution reverb processing thread #1 CPU usage. A percentage of `FMOD_THREAD_TYPE.CONVOLUTION1`.
- * @member {Real} convolution2 The convolution reverb processing thread #2 CPU usage. A percentage of `FMOD_THREAD_TYPE.CONVOLUTION2`.
+ * @member {Real} convolution1 The convolution reverb processing thread #1 CPU usage. A percentage of `FmodThreadType.Convolution1`.
+ * @member {Real} convolution2 The convolution reverb processing thread #2 CPU usage. A percentage of `FmodThreadType.Convolution2`.
  * @struct_end
  * */
 
@@ -224,7 +224,7 @@
  * @member {Real} dsp_buffer_pool_size The number of intermediate mixing buffers in the 'DSP buffer pool'. Each buffer in bytes will be `buffer_length` (See ${function.fmod_system_get_dsp_buffer_size}) * sizeof(float) * output mode speaker count (See [FMOD_SPEAKERMODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_speakermode)). i.e. 7.1 @ 1024 DSP block size = 1024 * 4 * 8 = 32kB.
  * @member {Enum.FmodDspResampler} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * @member {Real} random_seed The seed value to initialize the internal random number generator.
- * @member {Real} max_convolution_threads The maximum number of CPU threads to use for `FmodDspType.ConvolutionReverb` effect. 1 = effect is entirely processed inside the `FMOD_THREAD_TYPE.MIXER` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FMOD_THREAD_TYPE.CONVOLUTION1` and `FMOD_THREAD_TYPE.CONVOLUTION2` to increase throughput. A value in the range [0, 3].
+ * @member {Real} max_convolution_threads The maximum number of CPU threads to use for `FmodDspType.ConvolutionReverb` effect. 1 = effect is entirely processed inside the `FmodThreadType.Mixer` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FmodThreadType.Convolution1` and `FmodThreadType.Convolution2` to increase throughput. A value in the range [0, 3].
  * @member {Real} max_opus_codecs The maximum number of Opus Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
  * @struct_end
  * */
@@ -711,8 +711,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * This struct describes an event parameter.
  * 
  * @member {String} name The parameter name.
- * @member {Real} id_data1 The first half of the parameter ID, as passed to the by-ID functions.
- * @member {Real} id_data2 The second half of the parameter ID.
+ * @member {Struct.FmodStudioParameterId} id The parameter ID, as passed to the by-ID functions.
  * @member {Real} minimum The minimum parameter value.
  * @member {Real} maximum The maximum parameter value.
  * @member {Real} defaultvalue The default parameter value.
@@ -864,6 +863,41 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  */
 
 /**
+ * @struct FmodStudioParameterId
+ * @desc > **FMOD Struct:** [FMOD_STUDIO_PARAMETER_ID](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_id)
+ *
+ * This struct holds an event parameter identifier. Read it from a ${struct.FmodStudioParameterDescription} and pass it to the by-ID functions.
+ *
+ * @member {Real} data1 The first half of the ID.
+ * @member {Real} data2 The second half of the ID.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodDSPConnectionEnd
+ * @desc This struct holds one end of a DSP graph edge: the DSP unit on the other side and the connection to it. It is what ${function.fmod_dsp_get_input} and ${function.fmod_dsp_get_output} return.
+ *
+ * @member {Real} dsp_ref A reference to the DSP unit on the other side of the connection, or 0 on failure.
+ * @member {Real} connection_ref A reference to the connection between the two units, or 0 on failure.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodDSPDescription
+ * @desc > **FMOD Struct:** [FMOD_DSP_DESCRIPTION](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_description)
+ *
+ * This struct describes a built-in DSP type, as returned by ${function.fmod_system_get_dsp_info_by_type}. It carries the data fields of FMOD's description; the plugin callbacks are not exposed.
+ *
+ * @member {Real} pluginsdkversion The plugin SDK version this unit was compiled with.
+ * @member {String} name The name of the unit.
+ * @member {Real} version The version number of this unit, usually formatted as hex AAAABBBB where AAAA is the major version number and BBBB the minor version number.
+ * @member {Real} numinputbuffers The number of input buffers to process. Use 0 for DSPs that only generate sound and 1 for effects that process incoming sound.
+ * @member {Real} numoutputbuffers The number of audio output buffers. Only one output buffer is currently supported.
+ * @member {Real} numparameters The number of parameters used in this unit.
+ * @struct_end
+ */
+
+/**
  * @module structs
  * @title Structs
  * @desc This module contains the structs used by the FMOD extension.
@@ -888,6 +922,8 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPChannelFormat
  * @ref FmodDSPMeteringInfo
  * @ref FmodDSPInfo
+ * @ref FmodDSPDescription
+ * @ref FmodDSPConnectionEnd
  * @ref FmodGeometryRotation
  * @ref FmodReverb3DAttributes
  * @ref FmodSoundTag
@@ -908,6 +944,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodStudioCPUUsage
  * @ref FmodStudioSoundInfo
  * @ref FmodStudioStringInfo
+ * @ref FmodStudioParameterId
  * @ref FmodStudioParameterDescription
  * @ref FmodStudioUserProperty
  * @ref FmodStudioAdvancedSettings

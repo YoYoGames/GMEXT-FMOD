@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <string_view>
+#include <vector>
 
 using namespace gm_structs;
 
@@ -109,36 +110,41 @@ double fmod_studio_event_instance_set_pitch(uint64_t instance_ref, double pitch)
 	return 0;
 }
 
-double fmod_studio_event_instance_set_parameter_by_name(uint64_t instance_ref, std::string_view name, double value)
+double fmod_studio_event_instance_set_parameter_by_name(uint64_t instance_ref, std::string_view name, double value, bool ignore_seek_speed)
 {
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
 	if (instance == nullptr) return 0;
-	g_fmod_studio_last_result = instance->setParameterByName(name.data(), (float)value);
+	g_fmod_studio_last_result = instance->setParameterByName(name.data(), (float)value, ignore_seek_speed);
 	return 0;
 }
 
-double fmod_studio_event_instance_get_parameter_by_name(uint64_t instance_ref, std::string_view name)
+FmodStudioParameterValue fmod_studio_event_instance_get_parameter_by_name(uint64_t instance_ref, std::string_view name)
 {
+	FmodStudioParameterValue result{};
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
-	if (instance == nullptr) return 0.0;
-	float value = 0.0f;
-	g_fmod_studio_last_result = instance->getParameterByName(name.data(), &value);
-	return (double)value;
+	if (instance == nullptr) return result;
+	float value = 0.0f, final_value = 0.0f;
+	g_fmod_studio_last_result = instance->getParameterByName(name.data(), &value, &final_value);
+	return to_parameter_value(value, final_value);
 }
 
-double fmod_studio_event_instance_get_parameter_count(uint64_t instance_ref)
+uint64_t fmod_studio_event_instance_get_system(uint64_t instance_ref)
 {
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
-	if (instance == nullptr) return 0.0;
+	if (instance == nullptr) return 0;
 
-	// EventInstance has no parameter count of its own; the count belongs to the description.
-	FMOD::Studio::EventDescription* event_desc = nullptr;
-	g_fmod_studio_last_result = instance->getDescription(&event_desc);
-	if (g_fmod_studio_last_result != FMOD_OK || event_desc == nullptr) return 0.0;
+	FMOD::Studio::System* system = nullptr;
+#if FMOD_VERSION >= 0x00020300
+	g_fmod_studio_last_result = instance->getSystem(&system);
+#else
+	// EventInstance::getSystem arrived in 2.03 and the vendored Switch SDK is
+	// 2.02.19. The extension drives one Studio system, so that is the answer.
+	system = fmod_studio_current_system();
+	g_fmod_studio_last_result = FMOD_OK;
+#endif
+	if (g_fmod_studio_last_result != FMOD_OK || system == nullptr) return 0;
 
-	int count = 0;
-	g_fmod_studio_last_result = event_desc->getParameterDescriptionCount(&count);
-	return (double)count;
+	return fmod_pointer_ref(system, gmfmod::RefType::StudioSystem);
 }
 
 double fmod_studio_event_instance_set_3d_attributes(uint64_t instance_ref, const gm_structs::FmodStudioVec3& position, const gm_structs::FmodStudioVec3& velocity, const gm_structs::FmodStudioVec3& forward, const gm_structs::FmodStudioVec3& up)
@@ -182,45 +188,57 @@ double fmod_studio_event_instance_release(uint64_t instance_ref)
 // Event Instance - Parameters by ID
 // ============================================================
 
-double fmod_studio_event_instance_get_parameter_by_id(uint64_t instance_ref, double id_data1, double id_data2)
+FmodStudioParameterValue fmod_studio_event_instance_get_parameter_by_id(uint64_t instance_ref, const FmodStudioParameterId& id)
 {
+	FmodStudioParameterValue result{};
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
-	if (instance == nullptr) return 0.0;
+	if (instance == nullptr) return result;
 
-	FMOD_STUDIO_PARAMETER_ID id{};
-	id.data1 = (unsigned int)id_data1;
-	id.data2 = (unsigned int)id_data2;
-
-	float value = 0.0f;
-	g_fmod_studio_last_result = instance->getParameterByID(id, &value, nullptr);
-	return (double)value;
+	float value = 0.0f, final_value = 0.0f;
+	g_fmod_studio_last_result = instance->getParameterByID(to_fmod_parameter_id(id), &value, &final_value);
+	return to_parameter_value(value, final_value);
 }
 
-double fmod_studio_event_instance_set_parameter_by_id(uint64_t instance_ref, double id_data1, double id_data2, double value)
+double fmod_studio_event_instance_set_parameter_by_id(uint64_t instance_ref, const FmodStudioParameterId& id, double value, bool ignore_seek_speed)
 {
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
 	if (instance == nullptr) return 0;
 
-	FMOD_STUDIO_PARAMETER_ID id{};
-	id.data1 = (unsigned int)id_data1;
-	id.data2 = (unsigned int)id_data2;
+	g_fmod_studio_last_result = instance->setParameterByID(to_fmod_parameter_id(id), (float)value, ignore_seek_speed);
+	return 0;
+}
 
-	g_fmod_studio_last_result = instance->setParameterByID(id, (float)value, false);
+double fmod_studio_event_instance_set_parameters_by_ids(uint64_t instance_ref, const std::vector<FmodStudioParameterId>& ids, const std::vector<double>& values, bool ignore_seek_speed)
+{
+	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
+	if (instance == nullptr) return 0;
+
+	if (ids.size() != values.size())
+	{
+		g_fmod_studio_last_result = FMOD_ERR_INVALID_PARAM;
+		return 0;
+	}
+
+	std::vector<FMOD_STUDIO_PARAMETER_ID> fmod_ids(ids.size());
+	std::vector<float> fmod_values(values.size());
+	for (size_t i = 0; i < ids.size(); ++i)
+	{
+		fmod_ids[i] = to_fmod_parameter_id(ids[i]);
+		fmod_values[i] = (float)values[i];
+	}
+
+	g_fmod_studio_last_result = instance->setParametersByIDs(fmod_ids.data(), fmod_values.data(), (int)ids.size(), ignore_seek_speed);
 	return 0;
 }
 
 double fmod_studio_event_instance_set_parameter_by_id_with_label(
-	uint64_t instance_ref, double id_data1, double id_data2, std::string_view label, bool ignore_seek_speed)
+	uint64_t instance_ref, const FmodStudioParameterId& id, std::string_view label, bool ignore_seek_speed)
 {
 	FMOD::Studio::EventInstance* instance = resolve_fmod_studio_event_instance(instance_ref);
 	if (instance == nullptr) return 0;
 
-	FMOD_STUDIO_PARAMETER_ID id{};
-	id.data1 = (unsigned int)id_data1;
-	id.data2 = (unsigned int)id_data2;
-
 	std::string label_str(label);
-	g_fmod_studio_last_result = instance->setParameterByIDWithLabel(id, label_str.c_str(), ignore_seek_speed);
+	g_fmod_studio_last_result = instance->setParameterByIDWithLabel(to_fmod_parameter_id(id), label_str.c_str(), ignore_seek_speed);
 	return 0;
 }
 

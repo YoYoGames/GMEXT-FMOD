@@ -600,6 +600,21 @@ GMEXPORT double __EXT_NATIVE__fmod_system_create_dsp_by_type(char* __arg_buffer,
     return 0;
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_system_get_dsp_info_by_type(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: dsp_type, type: enum FmodDspType
+    gm_enums::FmodDspType dsp_type = gm::wire::codec::readValue<gm_enums::FmodDspType>(__br);
+
+    auto&& __result = fmod_system_get_dsp_info_by_type(dsp_type);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodDSPDescription
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_system_get_dsp_buffer_size(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_get_dsp_buffer_size();
@@ -2498,20 +2513,17 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_fade_point_count(char* __
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_fade_point_at(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+GMEXPORT double __EXT_NATIVE__fmod_channel_control_get_fade_points(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
     // field: channel_control_ref, type: UInt64
     std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: index, type: Float64
-    double index = gm::wire::codec::readValue<double>(__br);
-
-    auto&& __result = fmod_channel_control_get_fade_point_at(channel_control_ref, index);
+    auto&& __result = fmod_channel_control_get_fade_points(channel_control_ref);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: struct FmodFadePoint
+    // return: __result, type: struct FmodFadePoint[]
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3610,7 +3622,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_input(char* __arg_buffer, double __ar
     auto&& __result = fmod_dsp_get_input(dsp_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: UInt64
+    // return: __result, type: struct FmodDSPConnectionEnd
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }
@@ -3628,7 +3640,7 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_output(char* __arg_buffer, double __a
     auto&& __result = fmod_dsp_get_output(dsp_ref, index);
     gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
 
-    // return: __result, type: UInt64
+    // return: __result, type: struct FmodDSPConnectionEnd
     gm::wire::codec::writeValue(__bw, __result);
     return 0;
 }

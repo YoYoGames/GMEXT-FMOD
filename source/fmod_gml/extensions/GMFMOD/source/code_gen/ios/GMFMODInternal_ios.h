@@ -54,6 +54,7 @@
 - (double)__EXT_NATIVE__fmod_system_is_recording:(double)device_index;
 - (double)__EXT_NATIVE__fmod_system_create_dsp:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_create_dsp_by_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_system_get_dsp_info_by_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_get_dsp_buffer_size:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_system_set_dsp_buffer_size:(double)buff_size arg1:(double)num_buffers;
 - (double)__EXT_NATIVE__fmod_system_get_software_format:(char*)__ret_buffer arg1:(double)__ret_buffer_length;
@@ -190,7 +191,7 @@
 - (double)__EXT_NATIVE__fmod_channel_control_remove_fade_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_set_fade_point_ramp:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_get_fade_point_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
-- (double)__EXT_NATIVE__fmod_channel_control_get_fade_point_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
+- (double)__EXT_NATIVE__fmod_channel_control_get_fade_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_is_playing:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_stop:(char*)__arg_buffer arg1:(double)__arg_buffer_length;
 - (double)__EXT_NATIVE__fmod_channel_control_set_paused:(char*)__arg_buffer arg1:(double)__arg_buffer_length;

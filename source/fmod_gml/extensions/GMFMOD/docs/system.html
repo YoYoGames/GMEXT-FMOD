@@ -985,6 +985,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_system_get_dsp_info_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_dsp_info_by_type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_system_create_channel_group" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2560,6 +2571,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_system_get_dsp_info_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_get_dsp_info_by_type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_system_create_channel_group" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3009,6 +3031,7 @@
 <li><a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a></li>
 <li><a href="system.html#fmod_system_create_dsp">fmod_system_create_dsp</a></li>
 <li><a href="system.html#fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</a></li>
+<li><a href="system.html#fmod_system_get_dsp_info_by_type">fmod_system_get_dsp_info_by_type</a></li>
 <li><a href="system.html#fmod_system_create_channel_group">fmod_system_create_channel_group</a></li>
 <li><a href="system.html#fmod_system_create_sound_group">fmod_system_create_sound_group</a></li>
 <li><a href="system.html#fmod_system_create_reverb_3d">fmod_system_create_reverb_3d</a></li>
@@ -3367,7 +3390,7 @@ This can be used for faster than realtime updates to the decoding or DSP engine 
 <p>It is only necessary to call this function if you want to specifically switch away from the default output mode for the operating system. The most optimal mode is selected by default for the operating system.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>(Windows, UWP, GameCore, Android, MacOS, iOS, Linux Only) This function can be called after <a href="system.html#fmod_system_init">fmod_system_init</a> to perform special handling of driver disconnections, see <code>FMOD_SYSTEM_CALLBACK.DEVICELISTCHANGED</code>.</p>
+<p>(Windows, UWP, GameCore, Android, MacOS, iOS, Linux Only) This function can be called after <a href="system.html#fmod_system_init">fmod_system_init</a> to perform special handling of driver disconnections, see <code>FmodSystemCallbackType.DeviceListChanged</code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3911,18 +3934,18 @@ It also allows the user to disable speakers from 3D consideration in a game.</p>
 When disabling a speaker, 3D spatialization will be redistributed around the missing speaker so the signal isn't lost.</p>
 <p>A stereo setup would look like this:</p>
 <p><code>gml
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.FRONT_LEFT, -1, 0, true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.FRONT_RIGHT, 1, 0, true);</code></p>
+fmod_system_set_speaker_position(system, FmodSpeaker.FrontLeft, -1, 0, true);
+fmod_system_set_speaker_position(system, FmodSpeaker.FrontRight, 1, 0, true);</code></p>
 <p>A 7.1 setup would look like this:</p>
 <p><code>gml
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.FRONT_LEFT,     dsin( -30), dcos( -30), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.FRONT_RIGHT,    dsin(  30), dcos(  30), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.FRONT_CENTER,   dsin(   0), dcos(   0), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.LOW_FREQUENCY,  dsin(   0), dcos(   0), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.SURROUND_LEFT,  dsin( -90), dcos( -90), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.SURROUND_RIGHT, dsin(  90), dcos(  90), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_LEFT,      dsin(-150), dcos(-150), true);
-fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150), dcos( 150), true);</code></p>
+fmod_system_set_speaker_position(system, FmodSpeaker.FrontLeft,     dsin( -30), dcos( -30), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.FrontRight,    dsin(  30), dcos(  30), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.FrontCenter,   dsin(   0), dcos(   0), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.LowFrequency,  dsin(   0), dcos(   0), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.SurroundLeft,  dsin( -90), dcos( -90), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.SurroundRight, dsin(  90), dcos(  90), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.BackLeft,      dsin(-150), dcos(-150), true);
+fmod_system_set_speaker_position(system, FmodSpeaker.BackRight,     dsin( 150), dcos( 150), true);</code></p>
 <p>Calling <a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a> will override any customization made with this function.</p>
 <p>Users of the Studio API should be aware this function does not affect the speaker positions used by the Spatializer DSPs, it is purely for Core API spatialization via <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
 <p><br></p>
@@ -4570,7 +4593,6 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> unit.</p>
 <p>A DSP object is a module that can be inserted into the mixing graph to allow sound filtering or sound generation. See the FMOD <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a> for more information.</p>
 <p>DSPs must be attached to the DSP graph before they become active, either via <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a> or <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a>.</p>
-<p>Using <code>FMOD_DSP_TYPE.VSTPLUGIN</code> or <code>FMOD_DSP_TYPE.WINAMPPLUGIN</code> will return the first loaded plugin of this type.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The extension currently doesn't support plugins.</p>
@@ -4600,6 +4622,43 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><strong>Returns:</strong></p>
 <blockquote>
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_system_get_dsp_info_by_type">fmod_system_get_dsp_info_by_type<a class="headerlink" href="#fmod_system_get_dsp_info_by_type" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_getdspinfobytype">System::getDSPInfoByType</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function retrieves the description of a built-in DSP type without creating a DSP unit of it: its name, version, buffer counts and parameter count, as a <a href="structs.html#fmoddspdescription">FmodDSPDescription</a>.</p>
+<p>Read the individual parameters of a DSP unit with <a href="dsp.html#fmod_dsp_get_parameter_info">fmod_dsp_get_parameter_info</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<pre class="highlight"><code class="language-gml">fmod_system_get_dsp_info_by_type(dsp_type)</code></pre>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsp_type</td>
+<td><a href="constants.html#fmoddsptype">FmodDspType</a></td>
+<td>The built-in DSP type to describe.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmoddspdescription">FmodDSPDescription</a></p>
 </blockquote>
 <p><br></p>
 <hr />

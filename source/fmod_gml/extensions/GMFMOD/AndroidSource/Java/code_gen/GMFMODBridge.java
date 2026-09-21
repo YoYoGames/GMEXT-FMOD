@@ -70,6 +70,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_is_recording(double device_index);
     public static native double __EXT_JNI__fmod_system_create_dsp(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_create_dsp_by_type(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_system_get_dsp_info_by_type(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_dsp_buffer_size(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_set_dsp_buffer_size(double buff_size, double num_buffers);
     public static native double __EXT_JNI__fmod_system_get_software_format(ByteBuffer __ret_buffer, double __ret_buffer_length);
@@ -206,7 +207,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_channel_control_remove_fade_points(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_set_fade_point_ramp(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_get_fade_point_count(ByteBuffer __arg_buffer, double __arg_buffer_length);
-    public static native double __EXT_JNI__fmod_channel_control_get_fade_point_at(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
+    public static native double __EXT_JNI__fmod_channel_control_get_fade_points(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_is_playing(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_stop(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_channel_control_set_paused(ByteBuffer __arg_buffer, double __arg_buffer_length);

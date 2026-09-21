@@ -365,6 +365,13 @@
  */
 
 /**
+ * @function_partial fmod_system_get_dsp_info_by_type
+ * @param {Enum.FmodDspType} dsp_type
+ * @returns {Struct.FmodDSPDescription}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_get_dsp_buffer_size
  * @returns {Struct.FmodDSPBufferSize}
  * @function_end
@@ -1402,10 +1409,9 @@
  */
 
 /**
- * @function_partial fmod_channel_control_get_fade_point_at
+ * @function_partial fmod_channel_control_get_fade_points
  * @param {Real} channel_control_ref
- * @param {Real} index
- * @returns {Struct.FmodFadePoint}
+ * @returns {Array[Struct.FmodFadePoint]}
  * @function_end
  */
 
@@ -1985,7 +1991,7 @@
  * @function_partial fmod_dsp_get_input
  * @param {Real} dsp_ref
  * @param {Real} index
- * @returns {Real}
+ * @returns {Struct.FmodDSPConnectionEnd}
  * @function_end
  */
 
@@ -1993,7 +1999,7 @@
  * @function_partial fmod_dsp_get_output
  * @param {Real} dsp_ref
  * @param {Real} index
- * @returns {Real}
+ * @returns {Struct.FmodDSPConnectionEnd}
  * @function_end
  */
 
@@ -2585,6 +2591,24 @@
  * @member {Real} channels
  * @member {Real} configwidth
  * @member {Real} configheight
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPDescription
+ * @member {Real} pluginsdkversion
+ * @member {String} name
+ * @member {Real} version
+ * @member {Real} numinputbuffers
+ * @member {Real} numoutputbuffers
+ * @member {Real} numparameters
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPConnectionEnd
+ * @member {Real} dsp_ref
+ * @member {Real} connection_ref
  * @struct_end
  */
 

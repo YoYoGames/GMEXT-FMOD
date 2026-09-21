@@ -128,9 +128,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_bank_count();
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_bank_at:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_system_get_bank_list:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_bank_at(index, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_system_get_bank_list(__ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_get_bank:(char*)path arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -144,17 +144,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_event(path, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_create_event_instance:(char*)path arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_system_create_event_instance(path, __ret_buffer, __ret_buffer_length);
-}
 - (double)__EXT_NATIVE__fmod_studio_system_get_bus:(char*)path arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_system_get_bus(path, __ret_buffer, __ret_buffer_length);
-}
-- (double)__EXT_NATIVE__fmod_studio_system_get_master_bus:(char*)__ret_buffer arg1:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_system_get_master_bus(__ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_get_bus_by_id:(char*)str_guid arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -188,13 +180,13 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_listener_weight(listener_index);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name:(char*)name arg1:(double)value
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name:(char*)name arg1:(double)value arg2:(double)ignore_seek_speed
 {
-    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_name(name, value);
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_name(name, value, ignore_seek_speed);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_name:(char*)name
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_name:(char*)name arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_parameter_by_name(name);
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_by_name(name, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_get_core_system_ptr:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
@@ -244,17 +236,21 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_sound_info(key, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_parameter_by_id(id_data1, id_data2, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_by_id(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(double)value arg3:(double)ignore_seek_speed
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id(id_data1, id_data2, value, ignore_seek_speed);
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameters_by_ids:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id(id_data1, id_data2, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_system_set_parameters_by_ids(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_by_id(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_by_name:(char*)name arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
 {
@@ -264,21 +260,21 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_system_get_parameter_description_count();
 }
-- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_at:(double)index arg1:(char*)__ret_buffer arg2:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_system_get_parameter_description_list:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_at(index, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_description_list(__ret_buffer, __ret_buffer_length);
 }
-- (char*)__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id:(double)id_data1 arg1:(double)id_data2 arg2:(double)label_index
+- (char*)__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id(id_data1, id_data2, label_index);
+    return __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_id(__arg_buffer, __arg_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name:(char*)name arg1:(double)label_index
 {
     return __EXT_NATIVE__fmod_studio_system_get_parameter_label_by_name(name, label_index);
 }
-- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label:(double)id_data1 arg1:(double)id_data2 arg2:(char*)label arg3:(double)ignore_seek_speed
+- (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label(id_data1, id_data2, label, ignore_seek_speed);
+    return __EXT_NATIVE__fmod_studio_system_set_parameter_by_id_with_label(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_system_set_parameter_by_name_with_label:(char*)name arg1:(char*)label arg2:(double)ignore_seek_speed
 {
@@ -336,33 +332,29 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_bank_get_path(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_parent_studio_system:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_bank_get_parent_studio_system(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
-}
 - (double)__EXT_NATIVE__fmod_studio_bank_get_event_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_bank_get_event_count(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_event_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_bank_get_event_list:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_bank_get_event_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_bank_get_event_list(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_bank_get_bus_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_bank_get_bus_count(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_bus_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_bank_get_bus_list:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_bank_get_bus_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_bank_get_bus_list(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_bank_get_vca_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_bank_get_vca_count(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bank_get_vca_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_bank_get_vca_list:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_bank_get_vca_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_bank_get_vca_list(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_bank_get_string_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -408,17 +400,17 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_instance_count(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_instance_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_instance_list:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_instance_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_instance_list(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_description_is_snapshot:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_description_is_snapshot(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_is_one_shot:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_is_oneshot:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_is_one_shot(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_is_oneshot(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_description_has_sustain_point:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -428,9 +420,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_length(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_count(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_count(__arg_buffer, __arg_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_description_release_all_instances:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -496,9 +488,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_user_property(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_by_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_user_property_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_user_property_by_index(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_description_get_user_property_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -508,17 +500,17 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_id(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_description_by_index(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_id(__arg_buffer, __arg_buffer_length);
 }
-- (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_index:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_at(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_index(__arg_buffer, __arg_buffer_length);
 }
 - (char*)__EXT_NATIVE__fmod_studio_event_description_get_parameter_label_by_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -576,21 +568,25 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_name(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_name:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_name(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_name(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_parameter_count:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_event_instance_get_parameter_count(__arg_buffer, __arg_buffer_length);
-}
-- (double)__EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id(__arg_buffer, __arg_buffer_length);
+    return __EXT_NATIVE__fmod_studio_event_instance_get_parameter_by_id(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_event_instance_set_parameter_by_id(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_set_parameters_by_ids:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_set_parameters_by_ids(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_event_instance_get_system:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_event_instance_get_system(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_event_instance_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
@@ -704,10 +700,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_bus_stop_all_events(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_bus_get_master_bus:(char*)__ret_buffer arg1:(double)__ret_buffer_length
-{
-    return __EXT_NATIVE__fmod_studio_bus_get_master_bus(__ret_buffer, __ret_buffer_length);
-}
 - (char*)__EXT_NATIVE__fmod_studio_bus_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_bus_get_id(__arg_buffer, __arg_buffer_length);
@@ -764,6 +756,14 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_vca_set_volume(__arg_buffer, __arg_buffer_length);
 }
+- (char*)__EXT_NATIVE__fmod_studio_vca_get_id:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_vca_get_id(__arg_buffer, __arg_buffer_length);
+}
+- (double)__EXT_NATIVE__fmod_studio_vca_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_studio_vca_is_valid(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_studio_command_replay_get_playback_state:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_studio_command_replay_get_playback_state(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
@@ -784,9 +784,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_studio_command_replay_get_length(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_studio_command_replay_get_system_object:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_studio_command_replay_get_system:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_studio_command_replay_get_system_object(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_studio_command_replay_get_system(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_studio_command_replay_is_valid:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

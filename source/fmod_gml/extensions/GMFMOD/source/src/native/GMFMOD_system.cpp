@@ -1,5 +1,6 @@
 #include "GMFMOD_system.h"
 
+#include <cstring>
 #include <map>
 #include <mutex>
 #include <optional>
@@ -595,6 +596,30 @@ uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 	{
 		result = fmod_dsp_ref(dsp);
 	}
+	return result;
+}
+
+FmodDSPDescription fmod_system_get_dsp_info_by_type(gm_enums::FmodDspType dsp_type)
+{
+	FmodDSPDescription result{};
+
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return result;
+	}
+
+	const FMOD_DSP_DESCRIPTION* desc = nullptr;
+	g_fmod_last_result = system->getDSPInfoByType((FMOD_DSP_TYPE)(int)dsp_type, &desc);
+	if (g_fmod_last_result != FMOD_OK || desc == nullptr) return result;
+
+	result.pluginsdkversion = (double)desc->pluginsdkversion;
+	result.name = std::string(desc->name, strnlen(desc->name, sizeof(desc->name)));
+	result.version = (double)desc->version;
+	result.numinputbuffers = (double)desc->numinputbuffers;
+	result.numoutputbuffers = (double)desc->numoutputbuffers;
+	result.numparameters = (double)desc->numparameters;
 	return result;
 }
 

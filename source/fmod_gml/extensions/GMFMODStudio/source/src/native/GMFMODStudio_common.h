@@ -76,6 +76,22 @@ inline FMOD::Studio::CommandReplay* resolve_fmod_studio_command_replay(uint64_t 
 // Struct Conversion
 // ============================================================
 
+inline FMOD_STUDIO_PARAMETER_ID to_fmod_parameter_id(const gm_structs::FmodStudioParameterId& id)
+{
+	FMOD_STUDIO_PARAMETER_ID result{};
+	result.data1 = (unsigned int)id.data1;
+	result.data2 = (unsigned int)id.data2;
+	return result;
+}
+
+inline gm_structs::FmodStudioParameterValue to_parameter_value(float value, float final_value)
+{
+	gm_structs::FmodStudioParameterValue result{};
+	result.value = (double)value;
+	result.final_value = (double)final_value;
+	return result;
+}
+
 // Shared by the System and EventDescription getters, which both hand back the
 // same SDK struct. FMOD documents `name` as always set (its optional members
 // are marked Opt, and this one is not), so the null check only keeps
@@ -85,8 +101,8 @@ inline gm_structs::FmodStudioParameterDescription convert_parameter_description(
 {
 	gm_structs::FmodStudioParameterDescription result{};
 	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
-	result.id_data1 = (double)desc.id.data1;
-	result.id_data2 = (double)desc.id.data2;
+	result.id.data1 = (double)desc.id.data1;
+	result.id.data2 = (double)desc.id.data2;
 	result.minimum = (double)desc.minimum;
 	result.maximum = (double)desc.maximum;
 	result.defaultvalue = (double)desc.defaultvalue;

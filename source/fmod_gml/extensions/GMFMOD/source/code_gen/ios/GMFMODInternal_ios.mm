@@ -292,6 +292,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_create_dsp_by_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
+- (double)__EXT_NATIVE__fmod_system_get_dsp_info_by_type:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_get_dsp_info_by_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_system_get_dsp_buffer_size:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_system_get_dsp_buffer_size(__ret_buffer, __ret_buffer_length);
@@ -836,9 +840,9 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_channel_control_get_fade_point_count(__arg_buffer, __arg_buffer_length);
 }
-- (double)__EXT_NATIVE__fmod_channel_control_get_fade_point_at:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
+- (double)__EXT_NATIVE__fmod_channel_control_get_fade_points:(char*)__arg_buffer arg1:(double)__arg_buffer_length arg2:(char*)__ret_buffer arg3:(double)__ret_buffer_length
 {
-    return __EXT_NATIVE__fmod_channel_control_get_fade_point_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    return __EXT_NATIVE__fmod_channel_control_get_fade_points(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
 }
 - (double)__EXT_NATIVE__fmod_channel_control_is_playing:(char*)__arg_buffer arg1:(double)__arg_buffer_length
 {

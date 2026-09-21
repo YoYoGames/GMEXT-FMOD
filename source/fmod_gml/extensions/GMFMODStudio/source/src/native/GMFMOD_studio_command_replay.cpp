@@ -277,7 +277,7 @@ double fmod_studio_command_replay_get_length(uint64_t replay_ref)
 	return (double)length;
 }
 
-uint64_t fmod_studio_command_replay_get_system_object(uint64_t replay_ref)
+uint64_t fmod_studio_command_replay_get_system(uint64_t replay_ref)
 {
 	FMOD::Studio::CommandReplay* replay = resolve_fmod_studio_command_replay(replay_ref);
 	if (replay == nullptr) return 0;

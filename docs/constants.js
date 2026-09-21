@@ -1026,7 +1026,7 @@
  *
  * This enum specifies FFT DSP parameter types.
  * 
- * Set the attributes for the spectrum analysis with `FmodDspFft.WindowSize` and `FmodDspFft.WindowType`, and retrieve the results with `FmodDspFft.SpectrumData` and `FMOD_DSP_FFT.DOMINANT_FREQ`.
+ * Set the attributes for the spectrum analysis with `FmodDspFft.WindowSize` and `FmodDspFft.WindowType`, and retrieve the results with `FmodDspFft.SpectrumData`.
  * `FmodDspFft.SpectrumData` stores its data in the `FMOD_DSP_PARAMETER_DATA_TYPE_FFT`. You will need to cast to this structure to get the right data.
  * 
  * @member WindowSize Window size. Must be a power of 2 between 128 and 16384.
@@ -1077,7 +1077,7 @@
  *
  * This enum specifies channel Mix DSP parameter types.
  * 
- * For `FMOD_DSP_CHANNELMIX.OUTPUTGROUPING`, this value will set the output speaker format for the DSP which determines the number of output channels.
+ * For `FmodDspChannelMix.OutputGrouping`, this value will set the output speaker format for the DSP which determines the number of output channels.
  *
  * For input channels mapped to an output channel in excess of the number of output channels, it will instead be mapped to the modulo of that channel index. E.g., if there are 4 output channels, the input channel mapped to output channel index 5 will be mapped to index 1.
  * 

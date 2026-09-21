@@ -184,38 +184,45 @@ uint64_t fmod_dsp_get_system_object(uint64_t dsp_ref)
 // DSP - Input/Output
 // ============================================================
 
-uint64_t fmod_dsp_get_input(uint64_t dsp_ref, double index)
+// getInput and getOutput each hand back the DSP on the other side and the
+// connection to it; both are registered, the connection under the DSP's owner
+// the way fmod_dsp_add_input registers the one it creates.
+static FmodDSPConnectionEnd fmod_dsp_connection_end(FMOD::DSP* dsp, FMOD::DSP* other, FMOD::DSPConnection* connection)
 {
-	uint64_t result = 0;
+	FmodDSPConnectionEnd result{};
+	if (other != nullptr)
+		result.dsp_ref = fmod_dsp_ref(other);
+	if (connection != nullptr)
+		result.connection_ref = fmod_dsp_connection_ref(connection, (FMOD::System*)g_registries.dsps.ownerOf(dsp));
+	return result;
+}
+
+FmodDSPConnectionEnd fmod_dsp_get_input(uint64_t dsp_ref, double index)
+{
+	FmodDSPConnectionEnd result{};
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD::DSP* input_dsp = nullptr;
 	FMOD::DSPConnection* input_connection = nullptr;
 	g_fmod_last_result = dsp->getInput((int)index, &input_dsp, &input_connection);
+	if (g_fmod_last_result != FMOD_OK) return result;
 
-	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
-	{
-		result = fmod_dsp_ref(input_dsp);
-	}
-	return result;
+	return fmod_dsp_connection_end(dsp, input_dsp, input_connection);
 }
 
-uint64_t fmod_dsp_get_output(uint64_t dsp_ref, double index)
+FmodDSPConnectionEnd fmod_dsp_get_output(uint64_t dsp_ref, double index)
 {
-	uint64_t result = 0;
+	FmodDSPConnectionEnd result{};
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return result;
 
 	FMOD::DSP* output_dsp = nullptr;
 	FMOD::DSPConnection* output_connection = nullptr;
 	g_fmod_last_result = dsp->getOutput((int)index, &output_dsp, &output_connection);
+	if (g_fmod_last_result != FMOD_OK) return result;
 
-	if (g_fmod_last_result == FMOD_OK && output_connection != nullptr)
-	{
-		result = fmod_dsp_connection_ref(output_connection, (FMOD::System*)g_registries.dsps.ownerOf(dsp));
-	}
-	return result;
+	return fmod_dsp_connection_end(dsp, output_dsp, output_connection);
 }
 
 void fmod_dsp_disconnect_from(uint64_t dsp_ref, uint64_t target_dsp)

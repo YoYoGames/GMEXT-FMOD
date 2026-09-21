@@ -41,8 +41,8 @@ master_group_channel = fmod_system_get_master_channel_group();
 
 dsp_head = fmod_channel_control_get_dsp(master_group_channel, FmodChannelControlDspIndex.Head)
 
-// fmod_dsp_get_input returns the input DSP itself (a FmodDSPRef).
-dsp_channel_mixer = fmod_dsp_get_input(dsp_head, 0);
+// fmod_dsp_get_input returns the input DSP and the connection to it.
+dsp_channel_mixer = fmod_dsp_get_input(dsp_head, 0).dsp_ref;
 
 /*
     Now disconnect channel dsp_head from wavetable to look like this.

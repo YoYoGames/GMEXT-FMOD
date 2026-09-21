@@ -16,7 +16,7 @@ show_debug_message(string(fmod_studio_last_result()))
 vehicle_event_inst = fmod_studio_event_description_create_instance(vehicle_event_desc)
 show_debug_message(string(fmod_studio_last_result()))
 
-fmod_studio_event_instance_set_parameter_by_name(vehicle_event_inst,"RPM", 650);
+fmod_studio_event_instance_set_parameter_by_name(vehicle_event_inst,"RPM", 650, false);
 show_debug_message(fmod_studio_last_result())
 
 

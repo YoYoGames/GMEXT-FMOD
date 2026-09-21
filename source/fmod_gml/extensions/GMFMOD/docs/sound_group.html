@@ -1628,7 +1628,7 @@
 <p><br /></p>
 <p>This function sets the maximum number of playbacks to be audible at once in a sound group.</p>
 <p>If playing instances of sounds in this group equal or exceed number specified here, attempts to play more of the sounds will be met with <code>FmodResult.MaxAudible</code> by default.
-Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_sound_group_set_max_audible_behavior</a> to change the way the sound playback behaves when too many sounds are playing. Muting, failing and stealing behaviors can be specified. See <code>FMOD_SOUNDGROUP_BEHAVIOR</code>.</p>
+Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_sound_group_set_max_audible_behavior</a> to change the way the sound playback behaves when too many sounds are playing. Muting, failing and stealing behaviors can be specified. See <a href="constants.html#fmodsoundgroupbehavior">FmodSoundGroupBehavior</a>.</p>
 <p><a href="sound_group.html#fmod_sound_group_get_num_playing">fmod_sound_group_get_num_playing</a> can be used to determine how many instances of the sounds in the SoundGroup are currently playing.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1729,7 +1729,7 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 <tr>
 <td>behavior</td>
 <td><a href="constants.html#fmodsoundgroupbehavior">FmodSoundGroupBehavior</a></td>
-<td>The <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>'s max playbacks behavior. The default is <code>FMOD_SOUNDGROUP_BEHAVIOR.FAIL</code>.</td>
+<td>The <a href="https://www.fmod.com/docs/2.03/api/core-api-soundgroup.html">SoundGroup</a>'s max playbacks behavior. The default is <code>FmodSoundGroupBehavior.Fail</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1784,8 +1784,8 @@ Use <a href="sound_group.html#fmod_sound_group_set_max_audible_behavior">fmod_so
 </blockquote>
 <p><br /></p>
 <p>This function sets a mute fade time.</p>
-<p>If a mode besides <code>FMOD_SOUNDGROUP_BEHAVIOR.MUTE</code> is used, the fade speed is ignored.</p>
-<p>When more sounds are playing in a SoundGroup than are specified with <a href="sound_group.html#fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</a>, the least important <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if <code>FMOD_SOUNDGROUP_BEHAVIOR.MUTE</code> is used, and any previous sounds that were silent because of this rule will fade in if they are more important.</p>
+<p>If a mode besides <code>FmodSoundGroupBehavior.Mute</code> is used, the fade speed is ignored.</p>
+<p>When more sounds are playing in a SoundGroup than are specified with <a href="sound_group.html#fmod_sound_group_set_max_audible">fmod_sound_group_set_max_audible</a>, the least important <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> (i.e. lowest priority / lowest audible volume due to 3D position, volume, etc.) will fade to silence if <code>FmodSoundGroupBehavior.Mute</code> is used, and any previous sounds that were silent because of this rule will fade in if they are more important.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

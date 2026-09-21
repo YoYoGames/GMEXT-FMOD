@@ -54,7 +54,7 @@ show_debug_message(string(fmod_studio_last_result()))
 parameter_description_struct = fmod_studio_event_description_get_parameter_description_by_name(event_guid,"Progression")
 show_debug_message(fmod_error_string(fmod_studio_last_result()))
 
-fmod_studio_event_instance_set_parameter_by_id(event_ins_index,parameter_description_struct.id_data1, parameter_description_struct.id_data2, 0)
+fmod_studio_event_instance_set_parameter_by_id(event_ins_index,parameter_description_struct.id, 0, false)
 show_debug_message(string(fmod_studio_last_result()))
 
 

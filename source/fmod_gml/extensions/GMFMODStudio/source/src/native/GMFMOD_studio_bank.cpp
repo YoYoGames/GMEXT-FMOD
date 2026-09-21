@@ -47,14 +47,6 @@ std::string fmod_studio_bank_get_path(uint64_t bank_ref)
 	}, g_fmod_studio_last_result);
 }
 
-std::optional<uint64_t> fmod_studio_bank_get_parent_studio_system(uint64_t bank_ref)
-{
-	// The Studio API gives Bank no getSystem - only EventInstance and CommandReplay have one - so a
-	// bank cannot report its owning system. There is one Studio system here anyway.
-	g_fmod_studio_last_result = FMOD_ERR_UNSUPPORTED;
-	return std::nullopt;
-}
-
 double fmod_studio_bank_get_event_count(uint64_t bank_ref)
 {
 	FMOD::Studio::Bank* bank = resolve_fmod_studio_bank(bank_ref);
@@ -64,23 +56,28 @@ double fmod_studio_bank_get_event_count(uint64_t bank_ref)
 	return (double)count;
 }
 
-std::optional<uint64_t> fmod_studio_bank_get_event_at(uint64_t bank_ref, double index)
+std::vector<uint64_t> fmod_studio_bank_get_event_list(uint64_t bank_ref)
 {
+	std::vector<uint64_t> result;
 	FMOD::Studio::Bank* bank = resolve_fmod_studio_bank(bank_ref);
-	if (bank == nullptr) return std::nullopt;
+	if (bank == nullptr) return result;
 
-	int idx = (int)index;
-	if (idx < 0) return std::nullopt;
+	int capacity = 0;
+	g_fmod_studio_last_result = bank->getEventCount(&capacity);
+	if (g_fmod_studio_last_result != FMOD_OK || capacity <= 0) return result;
 
-	std::vector<FMOD::Studio::EventDescription*> events((size_t)idx + 1, nullptr);
+	std::vector<FMOD::Studio::EventDescription*> events((size_t)capacity, nullptr);
 	int count = 0;
-	g_fmod_studio_last_result = bank->getEventList(events.data(), (int)events.size(), &count);
-	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return std::nullopt;
+	g_fmod_studio_last_result = bank->getEventList(events.data(), capacity, &count);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
-	FMOD::Studio::EventDescription* event_desc = events[(size_t)idx];
-	if (event_desc == nullptr) return std::nullopt;
-
-	return fmod_pointer_ref(event_desc, gmfmod::RefType::StudioEventDescription);
+	result.reserve((size_t)count);
+	for (int i = 0; i < count; ++i)
+	{
+		if (events[(size_t)i] != nullptr)
+			result.push_back(fmod_pointer_ref(events[(size_t)i], gmfmod::RefType::StudioEventDescription));
+	}
+	return result;
 }
 
 double fmod_studio_bank_get_bus_count(uint64_t bank_ref)
@@ -92,23 +89,28 @@ double fmod_studio_bank_get_bus_count(uint64_t bank_ref)
 	return (double)count;
 }
 
-std::optional<uint64_t> fmod_studio_bank_get_bus_at(uint64_t bank_ref, double index)
+std::vector<uint64_t> fmod_studio_bank_get_bus_list(uint64_t bank_ref)
 {
+	std::vector<uint64_t> result;
 	FMOD::Studio::Bank* bank = resolve_fmod_studio_bank(bank_ref);
-	if (bank == nullptr) return std::nullopt;
+	if (bank == nullptr) return result;
 
-	int idx = (int)index;
-	if (idx < 0) return std::nullopt;
+	int capacity = 0;
+	g_fmod_studio_last_result = bank->getBusCount(&capacity);
+	if (g_fmod_studio_last_result != FMOD_OK || capacity <= 0) return result;
 
-	std::vector<FMOD::Studio::Bus*> buses((size_t)idx + 1, nullptr);
+	std::vector<FMOD::Studio::Bus*> buses((size_t)capacity, nullptr);
 	int count = 0;
-	g_fmod_studio_last_result = bank->getBusList(buses.data(), (int)buses.size(), &count);
-	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return std::nullopt;
+	g_fmod_studio_last_result = bank->getBusList(buses.data(), capacity, &count);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
-	FMOD::Studio::Bus* bus = buses[(size_t)idx];
-	if (bus == nullptr) return std::nullopt;
-
-	return fmod_pointer_ref(bus, gmfmod::RefType::StudioBus);
+	result.reserve((size_t)count);
+	for (int i = 0; i < count; ++i)
+	{
+		if (buses[(size_t)i] != nullptr)
+			result.push_back(fmod_pointer_ref(buses[(size_t)i], gmfmod::RefType::StudioBus));
+	}
+	return result;
 }
 
 double fmod_studio_bank_get_vca_count(uint64_t bank_ref)
@@ -120,23 +122,28 @@ double fmod_studio_bank_get_vca_count(uint64_t bank_ref)
 	return (double)count;
 }
 
-std::optional<uint64_t> fmod_studio_bank_get_vca_at(uint64_t bank_ref, double index)
+std::vector<uint64_t> fmod_studio_bank_get_vca_list(uint64_t bank_ref)
 {
+	std::vector<uint64_t> result;
 	FMOD::Studio::Bank* bank = resolve_fmod_studio_bank(bank_ref);
-	if (bank == nullptr) return std::nullopt;
+	if (bank == nullptr) return result;
 
-	int idx = (int)index;
-	if (idx < 0) return std::nullopt;
+	int capacity = 0;
+	g_fmod_studio_last_result = bank->getVCACount(&capacity);
+	if (g_fmod_studio_last_result != FMOD_OK || capacity <= 0) return result;
 
-	std::vector<FMOD::Studio::VCA*> vcas((size_t)idx + 1, nullptr);
+	std::vector<FMOD::Studio::VCA*> vcas((size_t)capacity, nullptr);
 	int count = 0;
-	g_fmod_studio_last_result = bank->getVCAList(vcas.data(), (int)vcas.size(), &count);
-	if (g_fmod_studio_last_result != FMOD_OK || idx >= count) return std::nullopt;
+	g_fmod_studio_last_result = bank->getVCAList(vcas.data(), capacity, &count);
+	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
-	FMOD::Studio::VCA* vca = vcas[(size_t)idx];
-	if (vca == nullptr) return std::nullopt;
-
-	return fmod_pointer_ref(vca, gmfmod::RefType::StudioVca);
+	result.reserve((size_t)count);
+	for (int i = 0; i < count; ++i)
+	{
+		if (vcas[(size_t)i] != nullptr)
+			result.push_back(fmod_pointer_ref(vcas[(size_t)i], gmfmod::RefType::StudioVca));
+	}
+	return result;
 }
 
 double fmod_studio_bank_get_string_count(uint64_t bank_ref)

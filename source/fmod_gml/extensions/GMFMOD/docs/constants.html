@@ -5677,6 +5677,7 @@
 <ul>
 <li><a href="dsp.html#fmod_dsp_get_type">fmod_dsp_get_type</a></li>
 <li><a href="system.html#fmod_system_create_dsp_by_type">fmod_system_create_dsp_by_type</a></li>
+<li><a href="system.html#fmod_system_get_dsp_info_by_type">fmod_system_get_dsp_info_by_type</a></li>
 </ul>
 <p><br></p>
 <table>
@@ -6587,7 +6588,7 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </blockquote>
 <p><br /></p>
 <p>This enum specifies FFT DSP parameter types.</p>
-<p>Set the attributes for the spectrum analysis with <code>FmodDspFft.WindowSize</code> and <code>FmodDspFft.WindowType</code>, and retrieve the results with <code>FmodDspFft.SpectrumData</code> and <code>FMOD_DSP_FFT.DOMINANT_FREQ</code>.
+<p>Set the attributes for the spectrum analysis with <code>FmodDspFft.WindowSize</code> and <code>FmodDspFft.WindowType</code>, and retrieve the results with <code>FmodDspFft.SpectrumData</code>.
 <code>FmodDspFft.SpectrumData</code> stores its data in the <code>FMOD_DSP_PARAMETER_DATA_TYPE_FFT</code>. You will need to cast to this structure to get the right data.</p>
 <p><br></p>
 <table>
@@ -6692,7 +6693,7 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </blockquote>
 <p><br /></p>
 <p>This enum specifies channel Mix DSP parameter types.</p>
-<p>For <code>FMOD_DSP_CHANNELMIX.OUTPUTGROUPING</code>, this value will set the output speaker format for the DSP which determines the number of output channels.</p>
+<p>For <code>FmodDspChannelMix.OutputGrouping</code>, this value will set the output speaker format for the DSP which determines the number of output channels.</p>
 <p>For input channels mapped to an output channel in excess of the number of output channels, it will instead be mapped to the modulo of that channel index. E.g., if there are 4 output channels, the input channel mapped to output channel index 5 will be mapped to index 1.</p>
 <p><br></p>
 <table>

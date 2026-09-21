@@ -782,25 +782,27 @@ double fmod_channel_control_get_fade_point_count(uint64_t channel_control_ref)
 	return (double)num_points;
 }
 
-FmodFadePoint fmod_channel_control_get_fade_point_at(uint64_t channel_control_ref, double index)
+std::vector<FmodFadePoint> fmod_channel_control_get_fade_points(uint64_t channel_control_ref)
 {
-	FmodFadePoint result{};
+	std::vector<FmodFadePoint> result;
 	FMOD::ChannelControl* control = resolve_fmod_channel_control(channel_control_ref);
 	if (control == nullptr) return result;
 
 	unsigned int num_points = 0;
 	g_fmod_last_result = control->getFadePoints(&num_points, nullptr, nullptr);
-	if (g_fmod_last_result != FMOD_OK || (int)index < 0 || (unsigned int)index >= num_points)
-		return result;
+	if (g_fmod_last_result != FMOD_OK || num_points == 0) return result;
 
 	std::vector<unsigned long long> dspclocks(num_points);
 	std::vector<float> volumes(num_points);
 	g_fmod_last_result = control->getFadePoints(&num_points, dspclocks.data(), volumes.data());
-	if (g_fmod_last_result != FMOD_OK)
-		return result;
+	if (g_fmod_last_result != FMOD_OK) return result;
 
-	result.dsp_clock = (double)dspclocks[(size_t)index];
-	result.volume = (double)volumes[(size_t)index];
+	result.resize(num_points);
+	for (unsigned int i = 0; i < num_points; ++i)
+	{
+		result[i].dsp_clock = (double)dspclocks[i];
+		result[i].volume = (double)volumes[i];
+	}
 	return result;
 }
 

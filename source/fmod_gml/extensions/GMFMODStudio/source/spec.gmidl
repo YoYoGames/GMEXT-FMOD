@@ -404,16 +404,23 @@ enum FmodStudioInstanceType
 }
 
 [global]
+class `[[FmodStudioParameterId]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property data1: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property data2: gmval { get; set; }
+}
+
+[global]
 class `[[FmodStudioParameterDescription]]` prototype Object
 {
     [field, type_hint=`string`]
     property name: gmval { get; set; }
 
-    [field, type_hint=`real`]
-    property id_data1: gmval { get; set; }
-
-    [field, type_hint=`real`]
-    property id_data2: gmval { get; set; }
+    [field, type_hint=`FmodStudioParameterId`]
+    property id: gmval { get; set; }
 
     [field, type_hint=`real`]
     property minimum: gmval { get; set; }
@@ -895,8 +902,8 @@ function fmod_studio_system_unload_all(): real;
 [global, bind = typed_gml]
 function fmod_studio_system_get_bank_count(): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_system_get_bank_at(index: real): gmval;
+[global, bind = typed_gml, type_hint=`uint64[]`]
+function fmod_studio_system_get_bank_list(): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_bank(path: string): gmval;
@@ -911,18 +918,12 @@ function fmod_studio_system_get_bank_by_id(str_guid: string): gmval;
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_event(path: string): gmval;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_system_create_event_instance(path: string): gmval;
-
 // ============================================================
 // Studio System - Buses
 // ============================================================
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_bus(path: string): gmval;
-
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_system_get_master_bus(): gmval;
 
 [global, bind = typed_gml, type_hint=`uint64?`]
 function fmod_studio_system_get_bus_by_id(str_guid: string): gmval;
@@ -968,10 +969,10 @@ function fmod_studio_system_get_listener_weight(listener_index: real): real;
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_studio_system_set_parameter_by_name(name: string, value: real): real;
+function fmod_studio_system_set_parameter_by_name(name: string, value: real, ignore_seek_speed: bool): real;
 
-[global, bind = typed_gml]
-function fmod_studio_system_get_parameter_by_name(name: string): real;
+[global, bind = typed_gml, type_hint=`FmodStudioParameterValue`]
+function fmod_studio_system_get_parameter_by_name(name: string): gmval;
 
 // Raw FMOD::System* of the Studio-owned core system, as an integer. A pointer,
 // not a ref, is how a handle crosses the DLL boundary: GMFMOD links its own
@@ -1035,18 +1036,27 @@ function fmod_studio_system_get_sound_info(key: string): gmval;
 // ============================================================
 
 [global, bind = typed_gml, type_hint=`FmodStudioParameterValue`]
-function fmod_studio_system_get_parameter_by_id(id_data1: real, id_data2: real): gmval;
+function fmod_studio_system_get_parameter_by_id([type_hint=`FmodStudioParameterId`] id: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_system_set_parameter_by_id(
-    id_data1: real,
-    id_data2: real,
+    [type_hint=`FmodStudioParameterId`] id: gmval,
     value: real,
     ignore_seek_speed: bool
 ): real;
 
+// Sets several parameters in one call. `ids` and `values` are parallel arrays
+// of the same length; a length mismatch sets FMOD_ERR_INVALID_PARAM and
+// changes nothing.
+[global, bind = typed_gml]
+function fmod_studio_system_set_parameters_by_ids(
+    [type_hint=`FmodStudioParameterId[]`] ids: gmval,
+    [type_hint=`real[]`] values: gmval,
+    ignore_seek_speed: bool
+): real;
+
 [global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
-function fmod_studio_system_get_parameter_description_by_id(id_data1: real, id_data2: real): gmval;
+function fmod_studio_system_get_parameter_description_by_id([type_hint=`FmodStudioParameterId`] id: gmval): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
 function fmod_studio_system_get_parameter_description_by_name(name: string): gmval;
@@ -1054,19 +1064,18 @@ function fmod_studio_system_get_parameter_description_by_name(name: string): gmv
 [global, bind = typed_gml]
 function fmod_studio_system_get_parameter_description_count(): real;
 
-[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
-function fmod_studio_system_get_parameter_description_at(index: real): gmval;
+[global, bind = typed_gml, type_hint=`FmodStudioParameterDescription[]`]
+function fmod_studio_system_get_parameter_description_list(): gmval;
 
 [global, bind = typed_gml]
-function fmod_studio_system_get_parameter_label_by_id(id_data1: real, id_data2: real, label_index: real): string;
+function fmod_studio_system_get_parameter_label_by_id([type_hint=`FmodStudioParameterId`] id: gmval, label_index: real): string;
 
 [global, bind = typed_gml]
 function fmod_studio_system_get_parameter_label_by_name(name: string, label_index: real): string;
 
 [global, bind = typed_gml]
 function fmod_studio_system_set_parameter_by_id_with_label(
-    id_data1: real,
-    id_data2: real,
+    [type_hint=`FmodStudioParameterId`] id: gmval,
     label: string,
     ignore_seek_speed: bool
 ): real;
@@ -1141,26 +1150,23 @@ function fmod_studio_bank_get_sample_loading_state([type_hint=`uint64`] bank_ref
 [global, bind = typed_gml]
 function fmod_studio_bank_get_path([type_hint=`uint64`] bank_ref: gmval): string;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_bank_get_parent_studio_system([type_hint=`uint64`] bank_ref: gmval): gmval;
-
 [global, bind = typed_gml]
 function fmod_studio_bank_get_event_count([type_hint=`uint64`] bank_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_bank_get_event_at([type_hint=`uint64`] bank_ref: gmval, index: real): gmval;
+[global, bind = typed_gml, type_hint=`uint64[]`]
+function fmod_studio_bank_get_event_list([type_hint=`uint64`] bank_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_bank_get_bus_count([type_hint=`uint64`] bank_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_bank_get_bus_at([type_hint=`uint64`] bank_ref: gmval, index: real): gmval;
+[global, bind = typed_gml, type_hint=`uint64[]`]
+function fmod_studio_bank_get_bus_list([type_hint=`uint64`] bank_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_bank_get_vca_count([type_hint=`uint64`] bank_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_bank_get_vca_at([type_hint=`uint64`] bank_ref: gmval, index: real): gmval;
+[global, bind = typed_gml, type_hint=`uint64[]`]
+function fmod_studio_bank_get_vca_list([type_hint=`uint64`] bank_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_bank_get_string_count([type_hint=`uint64`] bank_ref: gmval): real;
@@ -1204,14 +1210,14 @@ function fmod_studio_event_description_create_instance([type_hint=`uint64`] even
 [global, bind = typed_gml]
 function fmod_studio_event_description_get_instance_count([type_hint=`uint64`] event_desc_ref: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_event_description_get_instance_at([type_hint=`uint64`] event_desc_ref: gmval, index: real): gmval;
+[global, bind = typed_gml, type_hint=`uint64[]`]
+function fmod_studio_event_description_get_instance_list([type_hint=`uint64`] event_desc_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_event_description_is_snapshot([type_hint=`uint64`] event_desc_ref: gmval): bool;
 
 [global, bind = typed_gml]
-function fmod_studio_event_description_is_one_shot([type_hint=`uint64`] event_desc_ref: gmval): bool;
+function fmod_studio_event_description_is_oneshot([type_hint=`uint64`] event_desc_ref: gmval): bool;
 
 [global, bind = typed_gml]
 function fmod_studio_event_description_has_sustain_point([type_hint=`uint64`] event_desc_ref: gmval): bool;
@@ -1220,7 +1226,7 @@ function fmod_studio_event_description_has_sustain_point([type_hint=`uint64`] ev
 function fmod_studio_event_description_get_length([type_hint=`uint64`] event_desc_ref: gmval): real;
 
 [global, bind = typed_gml]
-function fmod_studio_event_description_get_parameter_count([type_hint=`uint64`] event_desc_ref: gmval): real;
+function fmod_studio_event_description_get_parameter_description_count([type_hint=`uint64`] event_desc_ref: gmval): real;
 
 [global, bind = typed_gml]
 function fmod_studio_event_description_release_all_instances([type_hint=`uint64`] event_desc_ref: gmval): real;
@@ -1287,7 +1293,7 @@ function fmod_studio_event_description_get_user_property(
 ): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodStudioUserProperty`]
-function fmod_studio_event_description_get_user_property_at(
+function fmod_studio_event_description_get_user_property_by_index(
 	[type_hint=`uint64`] event_desc_ref: gmval,
 	index: real
 ): gmval;
@@ -1298,12 +1304,11 @@ function fmod_studio_event_description_get_user_property_count([type_hint=`uint6
 [global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
 function fmod_studio_event_description_get_parameter_description_by_id(
 	[type_hint=`uint64`] event_desc_ref: gmval,
-	id_data1: real,
-	id_data2: real
+	[type_hint=`FmodStudioParameterId`] id: gmval
 ): gmval;
 
 [global, bind = typed_gml, type_hint=`FmodStudioParameterDescription`]
-function fmod_studio_event_description_get_parameter_description_at(
+function fmod_studio_event_description_get_parameter_description_by_index(
 	[type_hint=`uint64`] event_desc_ref: gmval,
 	index: real
 ): gmval;
@@ -1311,13 +1316,12 @@ function fmod_studio_event_description_get_parameter_description_at(
 [global, bind = typed_gml]
 function fmod_studio_event_description_get_parameter_label_by_id(
 	[type_hint=`uint64`] event_desc_ref: gmval,
-	id_data1: real,
-	id_data2: real,
+	[type_hint=`FmodStudioParameterId`] id: gmval,
 	label_index: real
 ): string;
 
 [global, bind = typed_gml]
-function fmod_studio_event_description_get_parameter_label_at(
+function fmod_studio_event_description_get_parameter_label_by_index(
 	[type_hint=`uint64`] event_desc_ref: gmval,
 	index: real,
 	label_index: real
@@ -1384,28 +1388,38 @@ function fmod_studio_event_instance_set_pitch([type_hint=`uint64`] instance_ref:
 // ============================================================
 
 [global, bind = typed_gml]
-function fmod_studio_event_instance_set_parameter_by_name([type_hint=`uint64`] instance_ref: gmval, name: string, value: real): real;
+function fmod_studio_event_instance_set_parameter_by_name([type_hint=`uint64`] instance_ref: gmval, name: string, value: real, ignore_seek_speed: bool): real;
 
-[global, bind = typed_gml]
-function fmod_studio_event_instance_get_parameter_by_name([type_hint=`uint64`] instance_ref: gmval, name: string): real;
+[global, bind = typed_gml, type_hint=`FmodStudioParameterValue`]
+function fmod_studio_event_instance_get_parameter_by_name([type_hint=`uint64`] instance_ref: gmval, name: string): gmval;
 
-[global, bind = typed_gml]
-function fmod_studio_event_instance_get_parameter_count([type_hint=`uint64`] instance_ref: gmval): real;
-
-[global, bind = typed_gml]
+[global, bind = typed_gml, type_hint=`FmodStudioParameterValue`]
 function fmod_studio_event_instance_get_parameter_by_id(
 	[type_hint=`uint64`] instance_ref: gmval,
-	id_data1: real,
-	id_data2: real
-): real;
+	[type_hint=`FmodStudioParameterId`] id: gmval
+): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_event_instance_set_parameter_by_id(
 	[type_hint=`uint64`] instance_ref: gmval,
-	id_data1: real,
-	id_data2: real,
-	value: real
+	[type_hint=`FmodStudioParameterId`] id: gmval,
+	value: real,
+	ignore_seek_speed: bool
 ): real;
+
+// Sets several parameters in one call. `ids` and `values` are parallel arrays
+// of the same length; a length mismatch sets FMOD_ERR_INVALID_PARAM and
+// changes nothing.
+[global, bind = typed_gml]
+function fmod_studio_event_instance_set_parameters_by_ids(
+	[type_hint=`uint64`] instance_ref: gmval,
+	[type_hint=`FmodStudioParameterId[]`] ids: gmval,
+	[type_hint=`real[]`] values: gmval,
+	ignore_seek_speed: bool
+): real;
+
+[global, bind = typed_gml, type_hint=`uint64`]
+function fmod_studio_event_instance_get_system([type_hint=`uint64`] instance_ref: gmval): gmval;
 
 [global, bind = typed_gml]
 function fmod_studio_event_instance_set_callback(
@@ -1429,8 +1443,7 @@ function fmod_studio_event_instance_set_programmer_sound(
 [global, bind = typed_gml]
 function fmod_studio_event_instance_set_parameter_by_id_with_label(
 	[type_hint=`uint64`] instance_ref: gmval,
-	id_data1: real,
-	id_data2: real,
+	[type_hint=`FmodStudioParameterId`] id: gmval,
 	label: string,
 	ignore_seek_speed: bool
 ): real;
@@ -1554,9 +1567,6 @@ function fmod_studio_bus_set_paused([type_hint=`uint64`] bus_ref: gmval, paused:
 [global, bind = typed_gml]
 function fmod_studio_bus_stop_all_events([type_hint=`uint64`] bus_ref: gmval, [type_hint=`FmodStudioStopMode`] stop_mode: gmval): real;
 
-[global, bind = typed_gml, type_hint=`uint64?`]
-function fmod_studio_bus_get_master_bus(): gmval;
-
 [global, bind = typed_gml]
 function fmod_studio_bus_get_id([type_hint=`uint64`] bus_ref: gmval): string;
 
@@ -1611,6 +1621,12 @@ function fmod_studio_vca_get_volume([type_hint=`uint64`] vca_ref: gmval): real;
 [global, bind = typed_gml]
 function fmod_studio_vca_set_volume([type_hint=`uint64`] vca_ref: gmval, volume: real): real;
 
+[global, bind = typed_gml]
+function fmod_studio_vca_get_id([type_hint=`uint64`] vca_ref: gmval): string;
+
+[global, bind = typed_gml]
+function fmod_studio_vca_is_valid([type_hint=`uint64`] vca_ref: gmval): bool;
+
 }
 
 group
@@ -1640,7 +1656,7 @@ function fmod_studio_command_replay_get_length(
 ): real;
 
 [global, bind = typed_gml, type_hint=`uint64`]
-function fmod_studio_command_replay_get_system_object(
+function fmod_studio_command_replay_get_system(
 	[type_hint=`uint64`] replay_ref: gmval
 ): gmval;
 

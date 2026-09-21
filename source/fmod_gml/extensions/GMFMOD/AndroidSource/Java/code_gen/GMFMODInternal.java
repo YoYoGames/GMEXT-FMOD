@@ -216,6 +216,10 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_create_dsp_by_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_system_get_dsp_info_by_type(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_system_get_dsp_info_by_type(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_system_get_dsp_buffer_size(ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
         return __EXT_JNI__fmod_system_get_dsp_buffer_size(__ret_buffer, __ret_buffer_length);
@@ -760,9 +764,9 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_channel_control_get_fade_point_count(__arg_buffer, __arg_buffer_length);
     }
-    public double __EXT_NATIVE__fmod_channel_control_get_fade_point_at(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    public double __EXT_NATIVE__fmod_channel_control_get_fade_points(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
     {
-        return __EXT_JNI__fmod_channel_control_get_fade_point_at(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+        return __EXT_JNI__fmod_channel_control_get_fade_points(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
     }
     public double __EXT_NATIVE__fmod_channel_control_is_playing(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
