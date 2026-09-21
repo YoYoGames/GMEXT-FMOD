@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 sed -i -e 's/\r$//' "$(dirname "$0")/scriptUtils.sh"
 chmod +x "$(dirname "$0")/scriptUtils.sh"
@@ -62,13 +63,13 @@ setupmacOS() {
         if [ -f "./game.zip" ]; then
             TEMP_FOLDER="${YYprojectName}___temp___"
 
-            mkdir "./${TEMP_FOLDER}"
+            mkdir -p "./${TEMP_FOLDER}"
 
             itemCopyTo "./libGMFMOD.dylib" "${TEMP_FOLDER}/assets/libGMFMOD.dylib"
             itemCopyTo "./libfmod.dylib" "${TEMP_FOLDER}/assets/libfmod.dylib"
 
             zipUpdate "${TEMP_FOLDER}" "game.zip"
-            rm -r ${TEMP_FOLDER}
+            rm -r "${TEMP_FOLDER}"
         fi
     else
 
@@ -134,10 +135,10 @@ setupLinux() {
 
     TEMP_FOLDER="${YYprojectName}___temp___"
 
-    mkdir "./${TEMP_FOLDER}"
+    mkdir -p "./${TEMP_FOLDER}"
     itemCopyTo "$SDK_CORE_SOURCE" "${TEMP_FOLDER}/assets/libfmod.so.14"
     zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
-    rm -r ${TEMP_FOLDER}
+    rm -r "${TEMP_FOLDER}"
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -203,5 +204,3 @@ pushd "$YYoutputFolder" >/dev/null
 setup$YYPLATFORM_name
 
 popd >/dev/null
-
-exit 0

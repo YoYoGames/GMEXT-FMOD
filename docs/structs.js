@@ -12,7 +12,9 @@
  * @member {Real} y The y coordinate of the 3D vector.
  * @member {Real} z The z coordinate of the 3D vector.
  * @struct_end
- * *//**
+ */
+
+/**
  * @struct FmodVec3
  * @desc > **FMOD Struct:** [FMOD_VECTOR](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_vector)
  * 
@@ -24,7 +26,7 @@
  * @member {Real} y The y coordinate of the 3D vector.
  * @member {Real} z The z coordinate of the 3D vector.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodCPUUsage
@@ -39,7 +41,7 @@
  * @member {Real} convolution1 The convolution reverb processing thread #1 CPU usage. A percentage of `FmodThreadType.Convolution1`.
  * @member {Real} convolution2 The convolution reverb processing thread #2 CPU usage. A percentage of `FmodThreadType.Convolution2`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPCPUUsage
@@ -47,7 +49,7 @@
  * @member {Real} exclusive The CPU time spent processing this unit and all of its input during the last mixer update. Expressed in microseconds.
  * @member {Real} inclusive The CPU time spent processing just this unit during the last mixer update. Expressed in microseconds.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodLoopPoints
@@ -55,7 +57,7 @@
  * @member {Real} loop_start The loop start point. A value in the range [0, ${function.fmod_sound_get_length} - 1].
  * @member {Real} loop_end The loop end point. A value in the range [0, ${function.fmod_sound_get_length} - 1].
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodMinMaxDistance
@@ -63,7 +65,7 @@
  * @member {Real} min_distance The minimum volume distance for the sound.
  * @member {Real} max_distance The maximum volume distance for the sound.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodReverbProperties
@@ -88,7 +90,7 @@
  * @member {Real} early_late_mix The early reflections level relative to room effect, as a percentage. A value in the range [0, 100].
  * @member {Real} wet_level The room effect level at mid frequencies, in decibels (dB). A value in the range [-80, 20].
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodConeSettings
@@ -97,7 +99,7 @@
  * @member {Real} outside_cone_angle The outside cone angle, in degrees. This is the angle spread outside of which the sound is attenuated to its `outsidevolume`. Default is 360.
  * @member {Real} outside_volume The cone outside volume. A value in the range [0, 1]. Default is 1.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodListener3DAttributes
@@ -112,7 +114,9 @@
  * @member {Struct.FmodVec3} forward The "forward" vector as the first vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to `up`.
  * @member {Struct.FmodVec3} up The "up" vector as the second vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to `forward`.
  * @struct_end
- * *//**
+ */
+
+/**
  * @struct FmodStudio3DAttributes
  * @desc > **FMOD Struct:** [FMOD_3D_ATTRIBUTES](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_3d_attributes)
  * 
@@ -125,7 +129,7 @@
  * @member {Struct.FmodStudioVec3} forward The "forward" vector as the first vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to `up`.
  * @member {Struct.FmodStudioVec3} up The "up" vector as the second vector that defines orientation in 3D space. Must be of unit length (1.0) and perpendicular to `forward`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodMemoryStats
@@ -133,7 +137,7 @@
  * @member {Real} current_alloced The currently allocated memory at the time of the call.
  * @member {Real} max_alloced The maximum allocated memory since ${function.fmod_system_init}.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodCreateSoundExInfo
@@ -164,7 +168,9 @@
  * @member {Real} min_midi_granularity The mixer granularity for `FmodSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {Real} non_block_thread_id The thread index to execute `FmodMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
- * *//**
+ */
+
+/**
  * @struct FmodStudioCreateSoundExInfo
  * @desc > **FMOD Struct:** [FMOD_CREATESOUNDEXINFO](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_createsoundexinfo)
  * 
@@ -193,7 +199,7 @@
  * @member {Real} min_midi_granularity The mixer granularity for `FmodStudioSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {Real} non_block_thread_id The thread index to execute `FmodStudioMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodAdvancedSettings
@@ -227,7 +233,7 @@
  * @member {Real} max_convolution_threads The maximum number of CPU threads to use for `FmodDspType.ConvolutionReverb` effect. 1 = effect is entirely processed inside the `FmodThreadType.Mixer` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FmodThreadType.Convolution1` and `FmodThreadType.Convolution2` to increase throughput. A value in the range [0, 3].
  * @member {Real} max_opus_codecs The maximum number of Opus Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDriverInfo
@@ -239,7 +245,7 @@
  * @member {Real} sample_rate The sample rate the output driver runs at, in Hz.
  * @member {Real} speaker_mode_channels The number of channels in the current speaker setup.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoftwareFormat
@@ -248,7 +254,7 @@
  * @member {Enum.FmodSpeakerMode} speaker_mode The speaker setup of the mixer.
  * @member {Real} num_raw_speakers The number of speakers for `FmodSpeakerMode.Raw` mode.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPBufferSize
@@ -256,7 +262,7 @@
  * @member {Real} buff_size The mixer engine block size, in samples. The default value is 1024.
  * @member {Real} num_buffers The number of buffers used by the mixer engine. The default value is 4.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStreamBufferSize
@@ -264,7 +270,7 @@
  * @member {Real} file_buffer_size The buffer size.
  * @member {Enum.FmodTimeUnit} file_buffer_size_type The type of units for `file_buffer_size`. The default is `FmodTimeUnit.RawBytes`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSpeakerPosition
@@ -273,7 +279,7 @@
  * @member {Real} y The speaker's 2D Y position relative to the listener. -1 = back, 0 = middle, +1 = front.
  * @member {Bool} active The active state of the speaker. `true` = included in 3D calculations, `false` = ignored.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSystem3DSettings
@@ -282,7 +288,7 @@
  * @member {Real} distance_factor This is a factor for converting game distance units to FMOD distance units.
  * @member {Real} rolloff_scale This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FmodMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.
  * @struct_end
- * */
+ */
 
 
 
@@ -294,7 +300,7 @@
  * @member {Real} stream_bytes_read Total bytes read from file for streaming sounds.
  * @member {Real} other_bytes_read Total bytes read for non-audio data such as FMOD Studio banks.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodChannelsPlaying
@@ -305,7 +311,7 @@
  * @member {Real} channels The number of playing Channels (both real and virtual).
  * @member {Real} real_channels The number of playing real (non-virtual) Channels.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodRecordNumDrivers
@@ -313,7 +319,7 @@
  * @member {Real} num_drivers The number of recording drivers available for this output mode.
  * @member {Real} num_connected The number of recording drivers currently plugged in.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodRecordDriverInfo
@@ -325,7 +331,7 @@
  * @member {Real} sample_rate The sample rate the record driver runs at, in Hz.
  * @member {Enum.FmodDriverState} state Flags that provide additional information about the driver.
  * @struct_end
- * */
+ */
 
 
 
@@ -336,14 +342,16 @@
  * @member {Struct.FmodVec3} position The position in 3D space used for panning and attenuation. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units).
  * @member {Struct.FmodVec3} velocity The velocity in 3D space used for doppler. Expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units) per second.
  * @struct_end
- * *//**
+ */
+
+/**
  * @struct FmodDistanceFilter
  * @desc This struct holds override values for the 3D distance filter.
  * @member {Bool} custom Whether to override automatic distance filtering and use `custom_level` instead.
  * @member {Real} custom_level The attenuation factor where 1 represents no attenuation and 0 represents complete attenuation.
  * @member {Real} center_freq The center frequency of the band-pass filter used to simulate distance attenuation. A value in the range [10, 22050]. 0 for default of `FmodSystemAdvancedSettings.distance_filter_center_freq`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoundMinMaxDistance
@@ -351,13 +359,15 @@
  * @member {Real} min_distance The distance from the source where attenuation begins, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [0, `infinity`]. Default is 1.
  * @member {Real} max_distance The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [`min_dist`, `infinity`]. Default is 1.
  * @struct_end
- * *//**
+ */
+
+/**
  * @struct FmodStudioMinMaxDistance
  * @desc This struct holds the minimum and maximum distances used to calculate the 3D roll-off attenuation.
  * @member {Real} min_distance The distance from the source where attenuation begins, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [0, `infinity`]. Default is 1.
  * @member {Real} max_distance The distance from the source where attenuation ends, expressed in [Distance units](https://www.fmod.com/docs/2.03/api/glossary.html#distance-units). A value in the range [`min_dist`, `infinity`]. Default is 1.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodOcclusion
@@ -365,7 +375,7 @@
  * @member {Real} direct The occlusion factor for the direct path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
  * @member {Real} reverb The occlusion factor for the reverb path where 0 represents no occlusion and 1 represents full occlusion. Default is 0.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPMixMatrix
@@ -379,7 +389,7 @@
  * @member {Real} in_channels Number of valid input channels (columns) in the matrix. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
  * @member {Real} required_bytes The size the buffer needs to be, in bytes, to hold the whole matrix. Nothing is written unless the buffer is at least this large, so resize to this value and call the getter again.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPClock
@@ -387,7 +397,7 @@
  * @member {Real} dspclock The DSP clock value for the tail DSP (`FmodChannelControlDspIndex.Tail`) node. Expressed in samples.
  * @member {Real} parent_clock DSP clock value for the tail DSP (`FmodChannelControlDspIndex.Tail`) node of the parent ChannelGroup. Expressed in samples.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDelay
@@ -397,7 +407,7 @@
  * @member {Bool} stop_channels True: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_stop} has been called.
 False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_control_set_paused} has been called, a subsequent `dspclock_start` allows it to resume.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodFadePoint
@@ -405,7 +415,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Real} dsp_clock The DSP clock value, in output samples, at which the fade point applies.
  * @member {Real} volume The volume level at the fade point, where 0 is silent and 1 is full volume.
  * @struct_end
- * */
+ */
 
 
 
@@ -415,7 +425,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Enum.FmodChannelMask} channel_mask Deprecated.
  * @member {Real} num_channels The number of channels to be processed.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPMeteringInfo
@@ -425,7 +435,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * 
  * @member {Real} num_samples_analysed The number of samples considered for this metering info.
  * @struct_end
- * */
+ */
 
 
 
@@ -435,7 +445,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Bool} input_enabled Whether metering is enabled for the input signal.
  * @member {Bool} output_enabled Whether metering is enabled for the output signal.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPWetDryMix
@@ -444,7 +454,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Real} postwet The level of the 'Wet' (post-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
  * @member {Real} dry The level of the 'Dry' (pre-processed signal) mix that is output. 0 = silent, 1 = full. A negative level inverts the signal. Values larger than 1 amplify the signal. Default is 1.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodDSPInfo
@@ -455,7 +465,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Real} configwidth The configuration dialog box width where 0 represents "no dialog box".
  * @member {Real} configheight The configuration dialog box height where 0 represents "no dialog box".
  * @struct_end
- * */
+ */
 
 
 
@@ -469,7 +479,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {String} label The unit type label.
  * @member {String} description The description of the parameter.
  * @struct_end
- * */
+ */
 
 
 
@@ -481,7 +491,7 @@ False: When `dspclock_end` is reached, behaves like ${function.fmod_channel_cont
  * @member {Bool} double_sided Whether the polygon is double-sided. True: Polygon is double-sided.
 False: Polygon is single-sided, and the winding of the polygon (which determines the polygon's normal) determines which side of the polygon will cause occlusion.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodGeometryRotation
@@ -489,7 +499,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Struct.FmodVec3} forward The "forward" vector as the first vector that defines orientation in 3D space. This vector must be of unit length and perpendicular to the up vector.
  * @member {Struct.FmodVec3} up The "up" vector as the second vector that defines orientation in 3D space.This vector must be of unit length and perpendicular to the forward vector.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodReverb3DAttributes
@@ -501,7 +511,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} min_distance The distance from the centerpoint within which the reverb will have full effect.
  * @member {Real} max_distance The distance from the centerpoint beyond which the reverb will have no effect.
  * @struct_end
- * */
+ */
 
 
 
@@ -519,7 +529,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} datalen The length of the tag's data, in bytes.
  * @member {Bool} updated True if this tag has been updated since last being accessed with ${function.fmod_sound_get_tag}.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoundNumTags
@@ -530,7 +540,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} num_tags The number of tags.
  * @member {Real} num_tags_updated The number of tags updated since this function was last called.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoundFormatInfo
@@ -541,7 +551,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} channels The number of channels.
  * @member {Real} bits The number of bits per sample, corresponding to `format`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoundDefaults
@@ -549,7 +559,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} frequency The default playback frequency, in Hertz. Default is 48000.
  * @member {Real} priority The default priority where 0 is the highest priority. A value in the range [0, 256]. Default is 128.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSoundOpenState
@@ -559,7 +569,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Bool} starving The starving state. `true` if a stream has decoded more than the stream file buffer has ready.
  * @member {Bool} disk_busy Whether the disk is currently being accessed for this sound.
  * @struct_end
- * */
+ */
 
 
 
@@ -569,7 +579,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} length1 The first chunk of the sound's data in FMOD memory that's been locked.
  * @member {Real} length2 The second chunk of the sound's data in FMOD memory that's been locked. Can be zero-length.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodSyncPoint
@@ -580,7 +590,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} offset The offset of the sync point (expressed in the units as passed to ${function.fmod_sound_get_sync_point})
  * @member {String} name The name of the sync point.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioMemoryUsage
@@ -594,7 +604,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} inclusive The size of memory belonging exclusively to the bus or event plus the inclusive memory sizes of all buses and event instances which route into it.
  * @member {Real} sample_data The size of shared sample memory referenced by the bus or event instance, inclusive of all sample memory referenced by all buses and event instances which route into it.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioParameterValue
@@ -607,7 +617,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} value The parameter value as set from the public API.
  * @member {Real} final_value The final combined parameter value.
  * @struct_end
- * */
+ */
 
 
 
@@ -617,7 +627,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} command_index The current command index.
  * @member {Real} current_time The current playback time.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioCommandInfo
@@ -635,7 +645,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} instance_handle The original handle value of the instance.
  * @member {Real} output_handle The original handle value of the command output.
  * @struct_end
- * */
+ */
 
 
 
@@ -645,7 +655,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Struct.FmodStudio3DAttributes} attributes The 3D attributes.
  * @member {Struct.FmodStudioVec3} attenuation The position used for calculating attenuation.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioBufferInfo
@@ -659,7 +669,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} stall_count The cumulative number of stalls due to buffer overflow.
  * @member {Real} stall_time The cumulative amount of time stalled due to buffer overflow, in seconds.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioBufferUsage
@@ -670,7 +680,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Struct.FmodStudioBufferInfo} command_queue Information for the Studio Async Command buffer.
  * @member {Struct.FmodStudioBufferInfo} handle Information for the Studio handle table.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioCPUUsage
@@ -681,7 +691,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} exclusive The CPU usage of FMOD Core.
  * @member {Real} inclusive The CPU usage of FMOD Studio. A struct that contains a single variable `update`. This is the ${function.fmod_studio_system_update} CPU usage. Percentage of main thread, or main thread if `FmodStudioInitFlags.SynchronousUpdate` flag is used with ${function.fmod_studio_system_init}.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioSoundInfo
@@ -694,7 +704,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Enum.FmodStudioMode} mode The mode flags required for loading the sound. Default is `FmodStudioMode.Default`.
  * @member {Real} sub_sound_index The subsound index for loading the sound.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioStringInfo
@@ -702,7 +712,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {String} guid The [GUID](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) of an object.
  * @member {String} path The [Path](https://www.fmod.com/docs/2.03/api/glossary.html#studio-guids-and-paths) to an object.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioParameterDescription
@@ -719,7 +729,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Enum.FmodStudioParameterFlags} flags The parameter behavior flags.
  * @member {String} guid The parameter's GUID, in FMOD's `{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}` spelling.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioUserProperty
@@ -734,7 +744,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Bool} bool_value Boolean value. Only valid when type is `FmodStudioUserPropertyType.Boolean`.
  * @member {Real} float_value Float (real) value. Only valid when type is `FmodStudioUserPropertyType.Float`.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioAdvancedSettings
@@ -749,7 +759,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} streaming_schedule_delay Specify the schedule delay for streams, in samples. Lower values can reduce latency when scheduling events containing streams but may cause scheduling issues if too small. Default: 8192
  * @member {String} encryption_key Specify the key for loading sounds from encrypted banks. (UTF-8 string). Default: `pointer_null`
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodGeometryMaxPolygons
@@ -1006,7 +1016,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {String} name The marker name, as authored in FMOD Studio.
  * @member {Real} position The position of the marker on the timeline, in milliseconds.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioTimelineBeatProperties
@@ -1021,7 +1031,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} time_signature_upper The numerator of the time signature.
  * @member {Real} time_signature_lower The denominator of the time signature.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioTimelineNestedBeatProperties
@@ -1039,7 +1049,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} time_signature_upper The numerator of the time signature.
  * @member {Real} time_signature_lower The denominator of the time signature.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioProgrammerSoundProperties
@@ -1053,7 +1063,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @member {Real} sub_sound_index The subsound index, or `-1` when the sound is not a subsound.
  * @member {Enum.FmodStudioResult} result This extension's own field. On `CreateProgrammerSound`, the result of creating the sound from the registered key; on `DestroyProgrammerSound`, the result of releasing it. `FmodStudioResult.Ok` when no key was registered and nothing was attempted.
  * @struct_end
- * */
+ */
 
 /**
  * @struct FmodStudioPluginInstanceProperties
@@ -1065,4 +1075,4 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  *
  * @member {String} name The plugin name.
  * @struct_end
- * */
+ */

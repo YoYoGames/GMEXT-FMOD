@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 sed -i -e 's/\r$//' "$(dirname "$0")/scriptUtils.sh"
 chmod +x "$(dirname "$0")/scriptUtils.sh"
@@ -148,5 +149,3 @@ pushd "$YYoutputFolder" >/dev/null
 setup$YYPLATFORM_name
 
 popd >/dev/null
-
-exit 0

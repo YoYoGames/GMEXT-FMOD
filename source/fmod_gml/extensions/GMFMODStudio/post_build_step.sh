@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 sed -i -e 's/\r$//' "$(dirname "$0")/scriptUtils.sh"
 chmod +x "$(dirname "$0")/scriptUtils.sh"
@@ -7,9 +8,9 @@ source "$(dirname "$0")/scriptUtils.sh"
 # ######################################################################################
 # Script Functions
 #
-# GMFMODStudio targets desktop only (Windows / macOS / Linux) and ships the FMOD
-# Studio runtime only. The FMOD Core runtime is GMFMOD's responsibility - that
-# extension is always present when this one is used.
+# GMFMODStudio ships the FMOD Studio runtime only. The FMOD Core runtime and the
+# console SDKs are GMFMOD's responsibility - that extension is always present
+# when this one is used.
 
 # ----------------------------------------------------------------------------------------------------
 setupWindows() {
@@ -69,13 +70,13 @@ setupmacOS() {
         if [ -f "./game.zip" ]; then
             TEMP_FOLDER="${YYprojectName}___temp___"
 
-            mkdir "./${TEMP_FOLDER}"
+            mkdir -p "./${TEMP_FOLDER}"
 
             itemCopyTo "./libGMFMODStudio.dylib" "${TEMP_FOLDER}/assets/libGMFMODStudio.dylib"
             itemCopyTo "./libfmodstudio.dylib" "${TEMP_FOLDER}/assets/libfmodstudio.dylib"
 
             zipUpdate "${TEMP_FOLDER}" "game.zip"
-            rm -r ${TEMP_FOLDER}
+            rm -r "${TEMP_FOLDER}"
         fi
     else
 
@@ -141,10 +142,10 @@ setupLinux() {
 
     TEMP_FOLDER="${YYprojectName}___temp___"
 
-    mkdir "./${TEMP_FOLDER}"
+    mkdir -p "./${TEMP_FOLDER}"
     itemCopyTo "$SDK_STUDIO_SOURCE" "${TEMP_FOLDER}/assets/libfmodstudio.so.14"
     zipUpdate "${TEMP_FOLDER}" "${YYprojectName}.zip"
-    rm -r ${TEMP_FOLDER}
+    rm -r "${TEMP_FOLDER}"
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -201,5 +202,3 @@ pushd "$YYoutputFolder" >/dev/null
 setup$YYPLATFORM_name
 
 popd >/dev/null
-
-exit 0

@@ -23,7 +23,9 @@
  * @member DisplayLineNumbers This displays the source code file and line number for where the message originated.
  * @member DisplayThread This displays the thread ID of the calling function that generated the message.
  * @const_end
- * *//**
+ */
+
+/**
  * @const FmodStudioDebugFlags
  * @desc > **FMOD Constant:** [FMOD_DEBUG_FLAGS](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_flags)
  *
@@ -42,7 +44,7 @@
  * @member DisplayLineNumbers This displays the source code file and line number for where the message originated.
  * @member DisplayThread This displays the thread ID of the calling function that generated the message.
  * @const_end
- * */
+ */
 
 
 
@@ -68,7 +70,7 @@
  * @member ProfileMeterAll Slower, but adds level metering for every single DSP unit in the graph. Use ${function.fmod_dsp_set_metering_enabled} to turn meters off individually. Setting this flag implies `FmodInitFlags.ProfileEnable`.
  * @member MemoryTracking Enables memory allocation tracking. Currently this is only useful when using the Studio API. Increases memory footprint and reduces performance. This flag is implied by `FmodStudioInitFlags.MemoryTracking`.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDriverState
@@ -80,7 +82,7 @@
  * @member Connected Device is currently plugged in.
  * @member Default Device is the user's preferred choice.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodTimeUnit
@@ -98,7 +100,7 @@
  * @member ModRow MOD/S3M/XM/IT. Current row in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of rows in the currently playing or seeked to pattern.
  * @member ModPattern MOD/S3M/XM/IT. Current pattern in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of patterns in the song and ${function.fmod_channel_get_position} will return the currently playing pattern.
  * @const_end
- * */
+ */
 
 
 
@@ -139,7 +141,9 @@
  * @member LowMem Removes some features from samples to give a lower memory overhead, like ${function.fmod_sound_get_name}.
  * @member VirtualPlayFromStart For Channels that start virtual (due to being quiet or low importance), instead of swapping back to audible, and playing at the correct offset according to time, this flag makes the Channel play from the start.
  * @const_end
- * *//**
+ */
+
+/**
  * @const FmodStudioMode
  * @desc > **FMOD Constant:** [FMOD_MODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_mode)
  *
@@ -176,7 +180,7 @@
  * @member LowMem Removes some features from samples to give a lower memory overhead, like ${function.fmod_sound_get_name}.
  * @member VirtualPlayFromStart For Channels that start virtual (due to being quiet or low importance), instead of swapping back to audible, and playing at the correct offset according to time, this flag makes the Channel play from the start.
  * @const_end
- * */
+ */
 
 
 
@@ -292,7 +296,9 @@
  * @member RecordDisconnected The specified recording driver has been disconnected.
  * @member TooManySamples The length provided exceeds the allowable limit.
  * @const_end
- * *//**
+ */
+
+/**
  * @const FmodStudioResult
  * @desc > **FMOD Constant:** [FMOD_RESULT](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_result)
  *
@@ -382,7 +388,7 @@
  * @member RecordDisconnected The specified recording driver has been disconnected.
  * @member TooManySamples The length provided exceeds the allowable limit.
  * @const_end
- * */
+ */
 
 
 
@@ -416,7 +422,7 @@
  * @member Phase iOS - PHASE framework. (Disabled)
  * @member OhAudio OpenHarmony - OHAudio.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDebugMode
@@ -429,7 +435,9 @@
  * @member File Write log to specified file path.
  * @member Callback Call specified callback with log information.
  * @const_end
- * *//**
+ */
+
+/**
  * @const FmodStudioDebugMode
  * @desc > **FMOD Constant:** [FMOD_DEBUG_MODE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_debug_mode)
  *
@@ -440,7 +448,7 @@
  * @member File Write log to specified file path.
  * @member Callback Call specified callback with log information.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodSpeakerMode
@@ -459,7 +467,7 @@
  * @member _7Point1 8 speaker setup (7.1) front left, front right, center, low frequency, surround left, surround right, back left, back right.
  * @member _7Point1Point4 12 speaker setup (7.1.4) front left, front right, center, low frequency, surround left, surround right, back left, back right, top front left, top front right, top back left, top back right.
  * @const_end
- * */
+ */
 
 
 
@@ -500,7 +508,7 @@
  * @member Fadpcm FMOD Adaptive Differential Pulse Code Modulation bit-stream supported by FSB (.fsb) container format.
  * @member Opus Opus bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox Series X|S, PS5, and Switch.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodSoundFormat
@@ -517,7 +525,9 @@
  * @member PcmFloat 32bit floating point PCM data.
  * @member BitStream Sound data is in its native compressed format. See `FmodMode.CreateCompressedSample`
  * @const_end
- * *//**
+ */
+
+/**
  * @const FmodStudioSoundFormat
  * @desc > **FMOD Constant:** [FMOD_SOUND_FORMAT](https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_sound_format)
  *
@@ -532,7 +542,7 @@
  * @member PcmFloat 32bit floating point PCM data.
  * @member BitStream Sound data is in its native compressed format. See `FmodStudioMode.CreateCompressedSample`
  * @const_end
- * */
+ */
 
 /**
  * @const FmodOpenState
@@ -551,7 +561,7 @@
  * @member SetPosition Seeking within a stream to a different position.
  * @member Max The number of open states. Not a state a sound is ever reported in.
  * @const_end
- * */
+ */
 
 
 
@@ -568,7 +578,7 @@
  * @member Fader Built-in fader DSP.
  * @member Tail Tail of the DSP chain, equivalent of the number of DSPs minus 1.
  * @const_end
- * */
+ */
 
 
 
@@ -588,7 +598,7 @@
  * @member Send Send connection type. Audio is mixed from the input to the output DSP's audible buffer, but the input is NOT executed, only copied from. A standard connection or sidechain needs to make an input execute to generate data.
  * @member SendSidechain Send sidechain connection type. Audio is mixed from the input to the output DSP's sidechain buffer, but the input is NOT executed, only copied from. A standard connection or sidechain needs to make an input execute to generate data.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodTagType
@@ -609,7 +619,7 @@
  * @member Fmod Tag type used by FMOD's MIDI, MOD, S3M, XM, IT format support, and netstreams to notify of internet stream events like a sample rate change.
  * @member User For codec developers, this tag type can be used with `FMOD_CODEC_METADATA_FUNC` to generate custom metadata.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodTagDataType
@@ -626,7 +636,7 @@
  * @member StringUtf16Be 16bit UTF string Big endian byte order. See ${struct.FmodSoundTag} structure for string length in bytes.
  * @member StringUtf8 8 bit UTF string. See ${struct.FmodSoundTag} structure for string length in bytes.
  * @const_end
- * */
+ */
 
 
 
@@ -684,7 +694,7 @@
  * @member MultibandEq Five band parametric equalizer. See ${constant.FmodDspMultibandEq} for parameter information, [Effect reference - Multiband Equalizer](https://www.fmod.com/docs/2.03/api/effects-reference.html#multiband-equalizer) for overview.
  * @member MultibandDynamics Multiband dynamics processor unit. See ${constant.FmodDspMultibandDynamics} for parameter information, [Effect reference - Multiband Dynamics](https://www.fmod.com/docs/2.03/api/effects-reference.html#multiband-dynamics) for overview.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspOscillator
@@ -696,7 +706,7 @@
  * @member Type Waveform type. 0 = sine. 1 = square. 2 = sawup. 3 = sawdown. 4 = triangle. 5 = noise.
  * @member Rate Frequency of the tone. Does not affect the noise generator.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspLowPass
@@ -711,7 +721,7 @@
  * @member Cutoff Lowpass cutoff frequency.
  * @member Resonance Lowpass resonance Q value.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspItLowPass
@@ -723,7 +733,7 @@
  * @member Cutoff Lowpass cutoff frequency.
  * @member Resonance Lowpass resonance Q value.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspHighPass
@@ -735,7 +745,7 @@
  * @member Cutoff Highpass cutoff frequency.
  * @member Resonance Highpass resonance Q value.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspEcho
@@ -750,7 +760,7 @@
  * @member WetLevel Volume of echo signal to pass to output.
  * @member DelayChangeMode How the echo responds to a change of the Delay parameter - a member of ${constant.FmodDspEchoDelayChangeMode}.
  * @const_end
- * */
+ */
 
 
 
@@ -765,7 +775,7 @@
  * @member Lerp Interpolate towards the new delay, changing the pitch of the echo while it moves.
  * @member None Jump straight to the new delay.
  * @const_end
- * */
+ */
 
 
 
@@ -780,7 +790,7 @@
  * @member Depth Flange depth.
  * @member Rate Flange speed.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspDistortion
@@ -791,7 +801,7 @@
  * This enum specifies distortion DSP parameter types.
  * @member Level Distortion value.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspNormalize
@@ -813,7 +823,7 @@
  * @member Threshold Lower volume range threshold to ignore.
  * @member MaxAmplitude Maximum amplification allowed.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspLimiter
@@ -827,7 +837,7 @@
  * @member MaximizerGain Maximum amplification allowed.
  * @member Mode Channel processing mode where false is independent (limiter per channel) and true is linked (all channels are summed together before processing).
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspParamEq
@@ -847,7 +857,7 @@
  * @member Bandwidth Octave range around the center frequency to filter.
  * @member Gain Frequency Gain in dB.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspMultibandEq
@@ -880,7 +890,7 @@
  * @member EQ Band E: See Band A.
  * @member EGain Band E: See Band A.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspMultibandEqFilterType
@@ -905,7 +915,7 @@
  * @member Lowpass6db Low-pass filter, attenuates frequencies (6dB per octave) above a given point while allowing the rest to pass.
  * @member Highpass6db High-pass filter, attenuates frequencies (6dB per octave) below a given point while allowing the rest to pass.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspPitchShift
@@ -928,7 +938,7 @@
  * @member Overlap Removed. Do not use. FMOD now uses 4 overlaps and cannot be changed.
  * @member MaxChannels Maximum channels supported. 0 = same as FMOD's default output polyphony, 1 = mono, 2 = stereo etc. See remarks for more. It is recommended to leave it at 0.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspChorus
@@ -944,7 +954,7 @@
  * @member Rate Chorus modulation rate.
  * @member Depth Chorus modulation depth.
  * @const_end
- * */
+ */
 
 
 
@@ -967,7 +977,7 @@
  * @member UseSidechain Data of type `FMOD_DSP_PARAMETER_SIDECHAIN`. Whether to analyse the sidechain signal instead of the input signal. The FMOD_DSP_PARAMETER_SIDECHAIN::sidechainenable default is false.
  * @member Linked `false` = Independent (compressor per channel), `true` = Linked.
  * @const_end
- * */
+ */
 
 
 
@@ -1016,7 +1026,7 @@
  * @member Blackman w[n] = 0.42 - (0.5 * COS(n/N) ) + (0.08 * COS(2.0 * n/N) )
  * @member BlackmanHarris w[n] = 0.35875 - (0.48829 * COS(1.0 * n/N)) + (0.14128 * COS(2.0 * n/N)) - (0.01168 * COS(3.0 * n/N))
  * @const_end
- * */
+ */
 
 /**
  * @const FmodDspFft
@@ -1040,7 +1050,7 @@
  * @member Downmix How to downmix a multichannel signal before the transform.
  * @member Channel The channel to analyse when the signal is not downmixed.
  * @const_end
- * */
+ */
 
 
 
@@ -1065,7 +1075,7 @@
  * @member Dry Original sound volume.
  * @member Linked Linked - channels are mixed together before processing through the reverb.
  * @const_end
- * */
+ */
 
 
 
@@ -1147,7 +1157,7 @@
  * @member OutputCh30 Output channel that input channel 30 is routed to. Range 0 to 31.
  * @member OutputCh31 Output channel that input channel 31 is routed to. Range 0 to 31.
  * @const_end
- * */
+ */
 
 
 
@@ -1167,7 +1177,7 @@
  * @member AllLfe Every output channel is an LFE channel.
  * @member All7Point1Point4 Every group of twelve output channels is 7.1.4.
  * @const_end
- * */
+ */
 
 
 
@@ -1183,7 +1193,7 @@
  * @member Channel The global transceiver channel this DSP transmits on or receives from. Range 0 to 31, default 0.
  * @member TransmitSpeakerMode The speaker mode of the transmitted signal - a member of ${constant.FmodDspTransceiverSpeakerMode}.
  * @const_end
- * */
+ */
 
 
 
@@ -1199,7 +1209,7 @@
  * @member Stereo Transmit as stereo.
  * @member Surround Transmit using the speaker mode set in the FMOD system.
  * @const_end
- * */
+ */
 
 
 
@@ -1228,7 +1238,7 @@
  * @member LoadFromUpdate No additional threads are created for bank and resource loading. Loading is driven from ${function.fmod_studio_system_update}.
  * @member MemoryTracking Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See ${function.fmod_studio_bus_get_memory_usage} and ${function.fmod_studio_event_instance_get_memory_usage} for more information. Implies `FmodStudioCoreInitFlags.MemoryTracking`.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioParameterFlags
@@ -1243,7 +1253,7 @@
  * @member Discrete Discrete parameter that operates on integers (whole numbers) rather than continuous fractional numbers.
  * @member Labeled Labeled discrete parameter that has a label for each integer value. This flag will never be set in banks built with FMOD Studio versions prior to 2.01.10. If this flag is set, `FmodStudioParameterFlags.Discrete` will also be set.
  * @const_end
- * */
+ */
 
 
 
@@ -1296,7 +1306,7 @@
  * @member NestedTimelineBeat Called when the timeline hits a beat in a tempo section of a nested event. Parameters = `FMOD_STUDIO_TIMELINE_NESTED_BEAT_PROPERTIES`.
  * @member All Pass this mask to ${function.fmod_studio_event_description_set_callback} or ${function.fmod_studio_event_instance_set_callback} to receive all callback types.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioLoadBankFlags
@@ -1310,7 +1320,7 @@
  * @member DecompressSamples Force samples to decompress into memory when they are loaded, rather than staying compressed.
  * @member Unencrypted Ignore the encryption key specified by ${function.fmod_studio_system_set_advanced_settings} when loading sounds from this bank (assume the sounds in the bank are not encrypted).
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioCommandCaptureFlags
@@ -1323,7 +1333,7 @@
  * @member FileFlush Call file flush on every command.
  * @member SkipInitialState Normally the initial state of banks and instances is captured, unless this flag is set.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioCommandReplayFlags
@@ -1337,7 +1347,7 @@
  * @member FastForward Play back at maximum speed, ignoring the timing of the original replay.
  * @member SkipBankLoad Skip commands related to bank loading.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioLoadingState
@@ -1352,7 +1362,7 @@
  * @member Loaded Loaded and ready to play.
  * @member Error Failed to load.
  * @const_end
- * */
+ */
 
 
 
@@ -1370,7 +1380,7 @@
  * @member Float Floating point number.
  * @member String String.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioEventProperty
@@ -1389,7 +1399,7 @@
  * @member MaximumDistance Override the event's 3D maximum distance, or -1 for default.
  * @member CoolDown Override the event's cooldown, or -1 for default.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioPlaybackState
@@ -1404,7 +1414,7 @@
  * @member Starting Preparing to start.
  * @member Stopping Preparing to stop.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioStopMode
@@ -1416,7 +1426,7 @@
  * @member AllowFadeOut Allows AHDSR modulators to complete their release, and DSP effect tails to play out.
  * @member Immediate Stops the event instance immediately.
  * @const_end
- * */
+ */
 
 
 
@@ -2073,7 +2083,7 @@
  * @member ProfileMeterAll Slower, but adds level metering for every single DSP unit in the graph. Use ${function.fmod_dsp_set_metering_enabled} to turn meters off individually. Setting this flag implies `FmodStudioCoreInitFlags.ProfileEnable`.
  * @member MemoryTracking Enables memory allocation tracking. Currently this is only useful when using the Studio API. Increases memory footprint and reduces performance. This flag is implied by `FmodStudioInitFlags.MemoryTracking`.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioSoundType
@@ -2108,7 +2118,7 @@
  * @member Fadpcm FMOD Adaptive Differential Pulse Code Modulation bit-stream supported by FSB (.fsb) container format.
  * @member Opus Opus bit-stream supported by FSB (.fsb) container format. Platform provided decoder, available only on Xbox Series X|S, PS5, and Switch.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioTimeUnit
@@ -2126,7 +2136,7 @@
  * @member ModRow MOD/S3M/XM/IT. Current row in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of rows in the currently playing or seeked to pattern.
  * @member ModPattern MOD/S3M/XM/IT. Current pattern in a sequenced module format. Cannot use with ${function.fmod_channel_set_position}. ${function.fmod_sound_get_length} will return the number of patterns in the song and ${function.fmod_channel_get_position} will return the currently playing pattern.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioChannelOrder
@@ -2142,7 +2152,7 @@
  * @member AllStereo Left, Right, Left, Right, Left, Right, ... (each pair of channels is treated as stereo).
  * @member Alsa Left, Right, Surround Left, Surround Right, Center, LFE (as per the Linux ALSA channel order).
  * @const_end
- * */
+ */
 
 /**
  * @const FmodStudioAudioQueueCodecPolicy
@@ -2155,7 +2165,7 @@
  * @member SoftwareOnly Try software; if it is not available, fail.
  * @member HardwareOnly Try hardware; if it is not available, fail.
  * @const_end
- * */
+ */
 
 /**
  * @const FmodChannelControlCallbackType
