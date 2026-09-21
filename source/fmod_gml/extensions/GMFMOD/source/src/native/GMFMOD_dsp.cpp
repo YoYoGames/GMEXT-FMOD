@@ -8,6 +8,46 @@ using namespace gm_structs;
 // Connections
 // ============================================================
 
+// A DSPConnection is freed when either DSP it joins is released or
+// disconnected, so the refs for the connections about to go are dropped
+// before the SDK call that frees them. `only_with` narrows the walk to the
+// connections shared with one other DSP; null means every one on the chosen
+// sides. FMOD is asked what is connected rather than the registry remembering
+// endpoints.
+void fmod_dsp_forget_connections(FMOD::DSP* dsp, FMOD::DSP* only_with, bool inputs, bool outputs)
+{
+	if (dsp == nullptr)
+		return;
+
+	int count = 0;
+	if (inputs && dsp->getNumInputs(&count) == FMOD_OK)
+	{
+		for (int i = 0; i < count; ++i)
+		{
+			FMOD::DSP* other = nullptr;
+			FMOD::DSPConnection* connection = nullptr;
+			if (dsp->getInput(i, &other, &connection) != FMOD_OK || connection == nullptr)
+				continue;
+			if (only_with == nullptr || other == only_with)
+				g_registries.dspConnections.unregister(connection);
+		}
+	}
+
+	count = 0;
+	if (outputs && dsp->getNumOutputs(&count) == FMOD_OK)
+	{
+		for (int i = 0; i < count; ++i)
+		{
+			FMOD::DSP* other = nullptr;
+			FMOD::DSPConnection* connection = nullptr;
+			if (dsp->getOutput(i, &other, &connection) != FMOD_OK || connection == nullptr)
+				continue;
+			if (only_with == nullptr || other == only_with)
+				g_registries.dspConnections.unregister(connection);
+		}
+	}
+}
+
 uint64_t fmod_dsp_add_input(uint64_t dsp_ref, uint64_t dsp_input_ref, gm_enums::FmodDspConnectionType dsp_connection_type)
 {
 	uint64_t result = 0;
@@ -19,8 +59,7 @@ uint64_t fmod_dsp_add_input(uint64_t dsp_ref, uint64_t dsp_input_ref, gm_enums::
 	g_fmod_last_result = dsp->addInput(dsp_input, &dsp_connection, (FMOD_DSPCONNECTION_TYPE)(int)dsp_connection_type);
 	if (g_fmod_last_result == FMOD_OK && dsp_connection != nullptr)
 	{
-		uint32_t dsp_connection_id = g_registries.dspConnections.registerOrFind(dsp_connection);
-		result = gmfmod::packRef(dsp_connection_id, gmfmod::RefType::DspConnection);
+		result = fmod_dsp_connection_ref(dsp_connection, (FMOD::System*)g_registries.dsps.ownerOf(dsp));
 	}
 	return result;
 }
@@ -47,6 +86,7 @@ double fmod_dsp_disconnect_all(uint64_t dsp_ref, bool inputs, bool outputs)
 {
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
+	fmod_dsp_forget_connections(dsp, nullptr, inputs, outputs);
 	g_fmod_last_result = dsp->disconnectAll(inputs, outputs);
 	return 0;
 }
@@ -120,6 +160,7 @@ void fmod_dsp_release(uint64_t dsp_ref)
 {
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return;
+	fmod_dsp_forget_connections(dsp, nullptr, true, true);
 	g_registries.dsps.unregister(dsp);
 	fmod_dsp_forget_callback(dsp);
 	g_fmod_last_result = dsp->release();
@@ -134,8 +175,7 @@ uint64_t fmod_dsp_get_system_object(uint64_t dsp_ref)
 	g_fmod_last_result = dsp->getSystemObject(&system);
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }
@@ -156,8 +196,7 @@ uint64_t fmod_dsp_get_input(uint64_t dsp_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
 	{
-		uint32_t dsp_id = g_registries.dsps.registerOrFind(input_dsp);
-		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
+		result = fmod_dsp_ref(input_dsp);
 	}
 	return result;
 }
@@ -174,8 +213,7 @@ uint64_t fmod_dsp_get_output(uint64_t dsp_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && output_connection != nullptr)
 	{
-		uint32_t connection_id = g_registries.dspConnections.registerOrFind(output_connection);
-		result = gmfmod::packRef(connection_id, gmfmod::RefType::DspConnection);
+		result = fmod_dsp_connection_ref(output_connection, (FMOD::System*)g_registries.dsps.ownerOf(dsp));
 	}
 	return result;
 }
@@ -188,6 +226,7 @@ void fmod_dsp_disconnect_from(uint64_t dsp_ref, uint64_t target_dsp)
 	FMOD::DSP* target = resolve_fmod_dsp(target_dsp);
 	if (target == nullptr) return;
 
+	fmod_dsp_forget_connections(dsp, target, true, true);
 	g_fmod_last_result = dsp->disconnectFrom(target);
 }
 

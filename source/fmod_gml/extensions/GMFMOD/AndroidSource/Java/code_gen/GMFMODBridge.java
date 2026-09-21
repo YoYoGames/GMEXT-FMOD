@@ -104,6 +104,7 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_mixer_resume();
     public static native double __EXT_JNI__fmod_system_lock_dsp();
     public static native double __EXT_JNI__fmod_system_unlock_dsp();
+    public static native double __EXT_JNI__fmod_system_set_callback(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_user_data(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_set_user_data(ByteBuffer __arg_buffer, double __arg_buffer_length);
     public static native double __EXT_JNI__fmod_system_attach_channel_group_to_port(ByteBuffer __arg_buffer, double __arg_buffer_length);

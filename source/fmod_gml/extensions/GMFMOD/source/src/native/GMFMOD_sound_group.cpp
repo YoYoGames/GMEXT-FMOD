@@ -129,8 +129,7 @@ uint64_t fmod_sound_group_get_sound(uint64_t sound_group_ref, double sound_index
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -200,8 +199,7 @@ uint64_t fmod_sound_group_get_system_object(uint64_t sound_group_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }

@@ -62,8 +62,8 @@ uint64_t fmod_channel_group_add_group(uint64_t channel_group_ref, uint64_t child
 
 	if (g_fmod_last_result == FMOD_OK && dsp_connection != nullptr)
 	{
-		uint32_t dsp_connection_id = g_registries.dspConnections.registerOrFind(dsp_connection);
-		result = gmfmod::packRef(dsp_connection_id, gmfmod::RefType::DspConnection);
+		result = fmod_dsp_connection_ref(dsp_connection,
+			(FMOD::System*)g_registries.channelGroups.ownerOf(channel_group));
 	}
 	return result;
 }
@@ -94,8 +94,7 @@ uint64_t fmod_channel_group_get_group(uint64_t channel_group_ref, double group_i
 
 	if (g_fmod_last_result == FMOD_OK && child_group != nullptr)
 	{
-		uint32_t group_id = g_registries.channelGroups.registerOrFind(child_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
+		result = fmod_channel_group_ref(child_group);
 	}
 	return result;
 }
@@ -114,8 +113,7 @@ uint64_t fmod_channel_group_get_parent_group(uint64_t channel_group_ref)
 
 	if (g_fmod_last_result == FMOD_OK && parent_group != nullptr)
 	{
-		uint32_t parent_id = g_registries.channelGroups.registerOrFind(parent_group);
-		result = gmfmod::packRef(parent_id, gmfmod::RefType::ChannelGroup);
+		result = fmod_channel_group_ref(parent_group);
 	}
 	return result;
 }
@@ -141,6 +139,11 @@ std::string fmod_channel_group_get_name(uint64_t channel_group_ref)
 // reach them, but their lifetime belongs to whoever created them.
 static std::set<FMOD::ChannelGroup*> g_adopted_channel_groups;
 
+void fmod_channel_group_forget_adopted(const void* group)
+{
+	g_adopted_channel_groups.erase(static_cast<FMOD::ChannelGroup*>(const_cast<void*>(group)));
+}
+
 // Registers a group created by GMFMODStudio, whose own ref indexes a registry
 // this DLL cannot see.
 uint64_t fmod_channel_group_adopt(uint64_t channel_group_ptr)
@@ -154,11 +157,13 @@ uint64_t fmod_channel_group_adopt(uint64_t channel_group_ptr)
 	FMOD::ChannelGroup* channel_group =
 		reinterpret_cast<FMOD::ChannelGroup*>(static_cast<uintptr_t>(channel_group_ptr));
 
-	uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
+	uint64_t ref = fmod_channel_group_ref(channel_group);
+	if (ref == 0)
+		return 0;
 	g_adopted_channel_groups.insert(channel_group);
 
 	g_fmod_last_result = FMOD_OK;
-	return gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
+	return ref;
 }
 
 double fmod_channel_group_release(uint64_t channel_group_ref)
@@ -202,8 +207,7 @@ uint64_t fmod_channel_group_get_system_object(uint64_t channel_group_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }

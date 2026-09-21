@@ -131,8 +131,7 @@ uint64_t fmod_dsp_connection_get_input(uint64_t connection_ref)
 
 	if (g_fmod_last_result == FMOD_OK && input_dsp != nullptr)
 	{
-		uint32_t dsp_id = g_registries.dsps.registerOrFind(input_dsp);
-		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
+		result = fmod_dsp_ref(input_dsp);
 	}
 	return result;
 }
@@ -150,8 +149,7 @@ uint64_t fmod_dsp_connection_get_output(uint64_t connection_ref)
 
 	if (g_fmod_last_result == FMOD_OK && output_dsp != nullptr)
 	{
-		uint32_t dsp_id = g_registries.dsps.registerOrFind(output_dsp);
-		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
+		result = fmod_dsp_ref(output_dsp);
 	}
 	return result;
 }

@@ -950,6 +950,24 @@ GMEXPORT double __EXT_NATIVE__fmod_system_unlock_dsp()
     return static_cast<double>(__result);
 }
 
+GMEXPORT double __EXT_NATIVE__fmod_system_set_callback(char* __arg_buffer, double __arg_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: callback, type: optional<Function>
+    std::optional<gm::wire::GMFunction> callback = std::nullopt;
+    if (gm::wire::codec::readValue<bool>(__br))
+    {
+        callback = gm::wire::codec::readFunction(__br, &__dispatch_queue);
+    }
+
+    // field: callback_mask, type: enum FmodSystemCallbackType
+    gm_enums::FmodSystemCallbackType callback_mask = gm::wire::codec::readValue<gm_enums::FmodSystemCallbackType>(__br);
+
+    auto&& __result = fmod_system_set_callback(callback, callback_mask);
+    return static_cast<double>(__result);
+}
+
 GMEXPORT double __EXT_NATIVE__fmod_system_get_user_data(char* __ret_buffer, double __ret_buffer_length)
 {
     auto&& __result = fmod_system_get_user_data();

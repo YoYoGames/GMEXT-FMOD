@@ -599,6 +599,14 @@
  */
 
 /**
+ * @function_partial fmod_system_set_callback
+ * @param {Function} [callback]
+ * @param {Enum.FmodSystemCallbackType} callback_mask
+ * @returns {Real}
+ * @function_end
+ */
+
+/**
  * @function_partial fmod_system_get_user_data
  * @returns {Real}
  * @function_end
@@ -2518,6 +2526,37 @@
  * @struct_partial FmodDSPDataParameterInfo
  * @member {Real} index
  * @member {Real} length
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodErrorCallbackInfo
+ * @member {Enum.FmodResult} result
+ * @member {Enum.FmodErrorCallbackInstanceType} instance_type
+ * @member {Real} instance
+ * @member {String} function_name
+ * @member {String} function_params
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSystemDeviceReinitialize
+ * @member {Enum.FmodOutputType} output_type
+ * @member {Real} driver_index
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSystemMemoryAllocationFailed
+ * @member {String} file
+ * @member {Real} size
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodSystemRecordPosition
+ * @member {Real} sound_ref
+ * @member {Real} position
  * @struct_end
  */
 

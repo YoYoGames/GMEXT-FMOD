@@ -94,6 +94,7 @@ GMEXPORT double __EXT_NATIVE__fmod_system_mixer_suspend();
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_resume();
 GMEXPORT double __EXT_NATIVE__fmod_system_lock_dsp();
 GMEXPORT double __EXT_NATIVE__fmod_system_unlock_dsp();
+GMEXPORT double __EXT_NATIVE__fmod_system_set_callback(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_user_data(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_set_user_data(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_attach_channel_group_to_port(char* __arg_buffer, double __arg_buffer_length);

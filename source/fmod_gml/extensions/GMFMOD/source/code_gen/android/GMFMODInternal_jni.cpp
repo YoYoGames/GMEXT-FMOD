@@ -1149,6 +1149,19 @@ static jdouble __JNI_WRAPPER__fmod_system_unlock_dsp_E6B9D0656241(JNIEnv* /* env
     return static_cast<jdouble>(__ret);
 }
 
+// fmod_system_set_callback JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
+static jdouble __JNI_WRAPPER__fmod_system_set_callback_2366FEB90317(JNIEnv* env, jclass /* GMFMODBridge */, jobject __arg_buffer, jdouble __arg_buffer_length)
+{
+    void* __arg_buffer_ptr = env->GetDirectBufferAddress(__arg_buffer);
+    jlong __arg_buffer_cap = env->GetDirectBufferCapacity(__arg_buffer);
+    if (!__arg_buffer_ptr || __arg_buffer_cap <= 0) {
+        throwIAE(env, "__arg_buffer must be a DIRECT ByteBuffer");
+        return 0.0;
+    }
+    double __ret = __EXT_NATIVE__fmod_system_set_callback((char *)__arg_buffer_ptr, static_cast<double>(__arg_buffer_length));
+    return static_cast<jdouble>(__ret);
+}
+
 // fmod_system_get_user_data JNI wrapper signature: (Ljava/nio/ByteBuffer;D)D
 static jdouble __JNI_WRAPPER__fmod_system_get_user_data_380634FE4C2B(JNIEnv* env, jclass /* GMFMODBridge */, jobject __ret_buffer, jdouble __ret_buffer_length)
 {
@@ -4694,6 +4707,7 @@ extern "C" {
             { "__EXT_JNI__fmod_system_mixer_resume", "()D", (void*)__JNI_WRAPPER__fmod_system_mixer_resume_EFF924482C59 },
             { "__EXT_JNI__fmod_system_lock_dsp", "()D", (void*)__JNI_WRAPPER__fmod_system_lock_dsp_57536B325484 },
             { "__EXT_JNI__fmod_system_unlock_dsp", "()D", (void*)__JNI_WRAPPER__fmod_system_unlock_dsp_E6B9D0656241 },
+            { "__EXT_JNI__fmod_system_set_callback", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_callback_2366FEB90317 },
             { "__EXT_JNI__fmod_system_get_user_data", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_user_data_380634FE4C2B },
             { "__EXT_JNI__fmod_system_set_user_data", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_set_user_data_0EC69C57E8B6 },
             { "__EXT_JNI__fmod_system_attach_channel_group_to_port", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_attach_channel_group_to_port_7C1FD4C5CF6F },

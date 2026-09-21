@@ -2381,6 +2381,7 @@
 <p><br /></p>
 <p>This function disconnects all inputs and/or outputs.</p>
 <p>This is a convenience function that is faster than disconnecting all inputs and outputs individually.</p>
+<p>After this operation every reference to a connection on the disconnected side is invalid.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -2428,7 +2429,7 @@
 <p><br /></p>
 <p>This function disconnects the specified input DSP.</p>
 <p>If <code>dsp_other_ref</code> had only one output, after this operation that entire subgraph will no longer be connected to the DSP network.</p>
-<p>After this operation <code>dsp_connection_ref</code> is no longer valid.</p>
+<p>After this operation every reference to a connection between the two DSPs is invalid.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3564,6 +3565,7 @@ Note that no new call to the function is made since this code executes in the St
 <p><br /></p>
 <p>This function frees a DSP object.</p>
 <p>If the DSP is not removed from the network with <a href="channel_control.html#fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</a> after being added with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a>, it will not release and <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.DspInUse</code>.</p>
+<p>References to the DSP's connections (see <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a> and <a href="dsp.html#fmod_dsp_get_output">fmod_dsp_get_output</a>) are invalid afterwards, along with the DSP's own.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

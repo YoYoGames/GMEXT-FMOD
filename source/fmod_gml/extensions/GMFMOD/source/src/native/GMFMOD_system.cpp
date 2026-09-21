@@ -1,6 +1,11 @@
 #include "GMFMOD_system.h"
 
+#include <map>
+#include <mutex>
+#include <optional>
 #include <set>
+#include <string>
+#include <vector>
 
 using namespace gm_structs;
 
@@ -21,8 +26,7 @@ uint64_t fmod_system_create()
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }
@@ -50,12 +54,12 @@ uint64_t fmod_system_adopt(uint64_t system_ptr)
 
 	FMOD::System* system = reinterpret_cast<FMOD::System*>(static_cast<uintptr_t>(system_ptr));
 
-	uint32_t system_id = g_registries.systems.registerOrFind(system);
+	uint64_t ref = fmod_system_ref(system);
 	g_adopted_systems.insert(system);
 
 	setCurrentSystem(system);
 	g_fmod_last_result = FMOD_OK;
-	return gmfmod::packRef(system_id, gmfmod::RefType::System);
+	return ref;
 }
 
 double fmod_system_release(uint64_t system_ref)
@@ -64,6 +68,11 @@ double fmod_system_release(uint64_t system_ref)
 
 	if (system == nullptr)
 		return 0;
+
+	// Everything this system created dies with it, adopted or not: for an
+	// adopted system Studio frees the objects, and what goes here is only the
+	// refs this DLL minted for them.
+	g_registries.evictOwnedBy(system);
 
 	if (getCurrentSystem() == system)
 		setCurrentSystem(nullptr);
@@ -74,11 +83,14 @@ double fmod_system_release(uint64_t system_ref)
 	if (g_adopted_systems.count(system) != 0)
 	{
 		g_adopted_systems.erase(system);
+		fmod_system_forget_callback(system);
 		g_fmod_last_result = FMOD_OK;
 		return 0;
 	}
 
 	g_fmod_last_result = system->release();
+	// After the SDK call, so a failing release still reaches the callback.
+	fmod_system_forget_callback(system);
 	return 0;
 }
 
@@ -88,19 +100,31 @@ double fmod_system_release(uint64_t system_ref)
 // starts from nothing.
 void fmod_shutdown()
 {
+	// The callback map goes first so a failing release cannot queue a GML call
+	// into a game that is ending, and the channel maps go with it so the
+	// per-system eviction below has no live handle to ask about.
+	fmod_system_reset_callbacks();
+	fmod_channel_control_reset_state();
+
 	// Adopted systems belong to whoever created them - GMFMODStudio releases its
 	// own core system - and shutdown order between the two DLLs is not defined,
-	// so an adopted system may already be gone. Never dereference one here.
-	g_registries.systems.forEach([](FMOD::System* system) {
-		if (system == nullptr) return;
-		if (g_adopted_systems.count(system) != 0) return;
-		system->release();
+	// so an adopted system may already be gone. Never dereference one here; the
+	// eviction only drops what this DLL recorded about its objects.
+	std::vector<FMOD::System*> systems;
+	g_registries.systems.forEach([&systems](FMOD::System* system) {
+		systems.push_back(system);
 	});
+	for (FMOD::System* system : systems)
+	{
+		if (system == nullptr) continue;
+		g_registries.evictOwnedBy(system);
+		if (g_adopted_systems.count(system) != 0) continue;
+		system->release();
+	}
 
 	g_adopted_systems.clear();
 	setCurrentSystem(nullptr);
 
-	fmod_channel_control_reset_state();
 	fmod_sound_reset_state();
 	fmod_dsp_reset_state();
 	g_registries.clear();
@@ -127,6 +151,10 @@ double fmod_system_close(uint64_t system_ref)
 	if (system == nullptr)
 		return 0;
 
+	// close() invalidates every object the system created and keeps the system
+	// itself, its settings and its callback - init() after close() is a
+	// supported sequence - so only the owned refs go.
+	g_registries.evictOwnedBy(system);
 	g_fmod_last_result = system->close();
 	return 0;
 }
@@ -205,8 +233,7 @@ uint64_t fmod_system_get_master_channel_group()
 
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
-		uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
+		result = fmod_channel_group_ref(channel_group);
 	}
 	return result;
 }
@@ -566,8 +593,7 @@ uint64_t fmod_system_create_dsp_by_type(gm_enums::FmodDspType dsp_type)
 
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
-		uint32_t dsp_id = g_registries.dsps.registerOrFind(dsp);
-		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
+		result = fmod_dsp_ref(dsp);
 	}
 	return result;
 }
@@ -704,8 +730,7 @@ uint64_t fmod_system_create_channel_group(std::string_view name)
 
 	if (g_fmod_last_result == FMOD_OK && channel_group != nullptr)
 	{
-		uint32_t group_id = g_registries.channelGroups.registerOrFind(channel_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::ChannelGroup);
+		result = fmod_channel_group_ref(channel_group);
 	}
 	return result;
 }
@@ -780,8 +805,7 @@ uint64_t fmod_system_get_master_sound_group()
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
+		result = fmod_sound_group_ref(sound_group);
 	}
 	return result;
 }
@@ -1259,6 +1283,298 @@ double fmod_system_set_user_data(int64_t user_data)
 }
 
 // ============================================================
+// System - Callback
+// ============================================================
+
+// Same storage model as the DSP and ChannelControl trampolines: the packed
+// system ref beside the GMFunction, keyed by the FMOD::System*, read under
+// the mutex and called after it is dropped. Core is multi-system, so the
+// entry is per system and the callback is told which one it came from.
+struct FmodSystemCallbackEntry
+{
+	uint64_t system_ref = 0;
+	gm::wire::GMFunction callback;
+};
+
+static std::mutex g_system_callback_mutex;
+static std::map<uintptr_t, FmodSystemCallbackEntry> g_system_callbacks;
+
+// FMOD keeps one process-wide slot for ERROR, not one per system: every
+// System::setCallback call on any system replaces it, mask included, so a
+// call whose mask lacks ERROR - or a clear - stops error delivery for every
+// system, and the callback arrives with a null system and the failing object
+// in FMOD_ERRORCALLBACK_INFO::instance. Measured against 2.03.06 with two
+// systems (errcb_probe, 2026-09-21); the System page does not say. This is
+// the entry FMOD would be handing errors to: the most recent set_callback
+// whose mask carried Error, or none.
+static uintptr_t g_system_error_owner = 0;
+
+// The mask crosses by symbol in both directions, never by bit: the 2.02 SDK
+// on Switch still has FMOD_SYSTEM_CALLBACK_MIDMIX at 0x100, so every flag from
+// THREADDESTROYED up sits one bit higher there than the values the GML enum
+// carries. All expands to this table rather than FMOD_SYSTEM_CALLBACK_ALL, so
+// a type the enum cannot name is never subscribed.
+struct FmodSystemCallbackTypePair
+{
+	gm_enums::FmodSystemCallbackType gm;
+	FMOD_SYSTEM_CALLBACK_TYPE sdk;
+};
+
+static const FmodSystemCallbackTypePair kSystemCallbackTypes[] = {
+	{ gm_enums::FmodSystemCallbackType::DeviceListChanged, FMOD_SYSTEM_CALLBACK_DEVICELISTCHANGED },
+	{ gm_enums::FmodSystemCallbackType::DeviceLost, FMOD_SYSTEM_CALLBACK_DEVICELOST },
+	{ gm_enums::FmodSystemCallbackType::MemoryAllocationFailed, FMOD_SYSTEM_CALLBACK_MEMORYALLOCATIONFAILED },
+	{ gm_enums::FmodSystemCallbackType::ThreadCreated, FMOD_SYSTEM_CALLBACK_THREADCREATED },
+	{ gm_enums::FmodSystemCallbackType::BadDspConnection, FMOD_SYSTEM_CALLBACK_BADDSPCONNECTION },
+	{ gm_enums::FmodSystemCallbackType::PreMix, FMOD_SYSTEM_CALLBACK_PREMIX },
+	{ gm_enums::FmodSystemCallbackType::PostMix, FMOD_SYSTEM_CALLBACK_POSTMIX },
+	{ gm_enums::FmodSystemCallbackType::Error, FMOD_SYSTEM_CALLBACK_ERROR },
+	{ gm_enums::FmodSystemCallbackType::ThreadDestroyed, FMOD_SYSTEM_CALLBACK_THREADDESTROYED },
+	{ gm_enums::FmodSystemCallbackType::PreUpdate, FMOD_SYSTEM_CALLBACK_PREUPDATE },
+	{ gm_enums::FmodSystemCallbackType::PostUpdate, FMOD_SYSTEM_CALLBACK_POSTUPDATE },
+	{ gm_enums::FmodSystemCallbackType::RecordListChanged, FMOD_SYSTEM_CALLBACK_RECORDLISTCHANGED },
+	{ gm_enums::FmodSystemCallbackType::BufferedNoMix, FMOD_SYSTEM_CALLBACK_BUFFEREDNOMIX },
+	{ gm_enums::FmodSystemCallbackType::DeviceReinitialize, FMOD_SYSTEM_CALLBACK_DEVICEREINITIALIZE },
+	{ gm_enums::FmodSystemCallbackType::OutputUnderrun, FMOD_SYSTEM_CALLBACK_OUTPUTUNDERRUN },
+	{ gm_enums::FmodSystemCallbackType::RecordPositionChanged, FMOD_SYSTEM_CALLBACK_RECORDPOSITIONCHANGED },
+};
+
+static FMOD_SYSTEM_CALLBACK_TYPE fmod_system_callback_mask_to_sdk(gm_enums::FmodSystemCallbackType mask)
+{
+	const uint64_t bits = (uint64_t)mask;
+	FMOD_SYSTEM_CALLBACK_TYPE sdk = 0;
+	for (const FmodSystemCallbackTypePair& pair : kSystemCallbackTypes)
+	{
+		if ((bits & (uint64_t)pair.gm) != 0)
+			sdk |= pair.sdk;
+	}
+	return sdk;
+}
+
+static std::optional<gm_enums::FmodSystemCallbackType> fmod_system_callback_type_to_gm(FMOD_SYSTEM_CALLBACK_TYPE type)
+{
+	for (const FmodSystemCallbackTypePair& pair : kSystemCallbackTypes)
+	{
+		if (pair.sdk == type)
+			return pair.gm;
+	}
+	return std::nullopt;
+}
+
+// FMOD_ERRORCALLBACK_INFO::instance as the ref the game holds for it. Core's
+// registry-backed types go through the registry's cross-thread reader; a
+// Channel and every Studio type are pointer-backed, and the Studio ones pack
+// to the same bits GMFMODStudio minted, so they compare equal to a ref the
+// game got from that extension. 0 for anything this extension never minted.
+static uint64_t fmod_error_instance_ref(FMOD_ERRORCALLBACK_INSTANCETYPE type, void* instance)
+{
+	if (instance == nullptr)
+		return 0;
+
+	auto registry_ref = [](uint32_t id, gmfmod::RefType ref_type) -> uint64_t {
+		return id == 0 ? 0 : gmfmod::packRef(id, ref_type);
+	};
+	auto pointer_ref = [instance](gmfmod::RefType ref_type) -> uint64_t {
+		const uintptr_t address = reinterpret_cast<uintptr_t>(instance);
+		return (uint64_t)address > 0xFFFFFFFFull ? 0 : gmfmod::packRef((uint32_t)address, ref_type);
+	};
+
+	switch (type)
+	{
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_SYSTEM:
+			return registry_ref(g_registries.systems.idOf((FMOD::System*)instance), gmfmod::RefType::System);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_CHANNEL:
+			return pointer_ref(gmfmod::RefType::Channel);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_CHANNELGROUP:
+			return registry_ref(g_registries.channelGroups.idOf((FMOD::ChannelGroup*)instance), gmfmod::RefType::ChannelGroup);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_CHANNELCONTROL:
+		{
+			// Either a group or a channel; a registered group answers first.
+			const uint32_t id = g_registries.channelGroups.idOf((FMOD::ChannelGroup*)instance);
+			return id != 0 ? gmfmod::packRef(id, gmfmod::RefType::ChannelGroup) : pointer_ref(gmfmod::RefType::Channel);
+		}
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_SOUND:
+			return registry_ref(g_registries.sounds.idOf((FMOD::Sound*)instance), gmfmod::RefType::Sound);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_SOUNDGROUP:
+			return registry_ref(g_registries.soundGroups.idOf((FMOD::SoundGroup*)instance), gmfmod::RefType::SoundGroup);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_DSP:
+			return registry_ref(g_registries.dsps.idOf((FMOD::DSP*)instance), gmfmod::RefType::Dsp);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_DSPCONNECTION:
+			return registry_ref(g_registries.dspConnections.idOf((FMOD::DSPConnection*)instance), gmfmod::RefType::DspConnection);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_GEOMETRY:
+			return registry_ref(g_registries.geometries.idOf((FMOD::Geometry*)instance), gmfmod::RefType::Geometry);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_REVERB3D:
+			return registry_ref(g_registries.reverbs.idOf((FMOD::Reverb3D*)instance), gmfmod::RefType::Reverb3D);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_SYSTEM:
+			return pointer_ref(gmfmod::RefType::StudioSystem);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_EVENTDESCRIPTION:
+			return pointer_ref(gmfmod::RefType::StudioEventDescription);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_EVENTINSTANCE:
+			return pointer_ref(gmfmod::RefType::StudioEventInstance);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_BUS:
+			return pointer_ref(gmfmod::RefType::StudioBus);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_VCA:
+			return pointer_ref(gmfmod::RefType::StudioVca);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_BANK:
+			return pointer_ref(gmfmod::RefType::StudioBank);
+		case FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_COMMANDREPLAY:
+			return pointer_ref(gmfmod::RefType::StudioCommandReplay);
+		default:
+			// NONE, and STUDIO_PARAMETERINSTANCE, which has no ref type.
+			return 0;
+	}
+}
+
+static FMOD_RESULT F_CALL CALLBACK_fmod_system(
+	FMOD_SYSTEM* system,
+	FMOD_SYSTEM_CALLBACK_TYPE type,
+	void* commanddata1,
+	void* commanddata2,
+	void* userdata)
+{
+	(void)userdata;
+
+	// A null system is the process-wide ERROR path; it belongs to whoever set
+	// the slot last.
+	std::optional<FmodSystemCallbackEntry> entry;
+	{
+		std::lock_guard<std::mutex> lock(g_system_callback_mutex);
+		const uintptr_t key = system != nullptr ? reinterpret_cast<uintptr_t>(system) : g_system_error_owner;
+		auto it = key != 0 ? g_system_callbacks.find(key) : g_system_callbacks.end();
+		if (it != g_system_callbacks.end())
+			entry = it->second;
+	}
+	if (!entry.has_value())
+		return FMOD_OK;
+
+	const std::optional<gm_enums::FmodSystemCallbackType> gm_type = fmod_system_callback_type_to_gm(type);
+	if (!gm_type.has_value())
+		return FMOD_OK;
+
+	const uint64_t ref = entry.value().system_ref;
+	const double kind = (double)(uint64_t)gm_type.value();
+
+	// Payloads as the System page documents commanddata1/commanddata2. ERROR
+	// and MEMORYALLOCATIONFAILED arrive on whichever thread made the failing
+	// call; the mixer-rate types on the mixer thread; GMFunction::call queues
+	// for the game thread either way.
+	switch (type)
+	{
+		case FMOD_SYSTEM_CALLBACK_ERROR:
+		{
+			const FMOD_ERRORCALLBACK_INFO* info = (const FMOD_ERRORCALLBACK_INFO*)commanddata1;
+			if (info == nullptr)
+				break;
+			FmodErrorCallbackInfo out{};
+			out.result = (gm_enums::FmodResult)info->result;
+			out.instance_type = (gm_enums::FmodErrorCallbackInstanceType)info->instancetype;
+			out.instance = fmod_error_instance_ref(info->instancetype, info->instance);
+			out.function_name = info->functionname != nullptr ? info->functionname : "";
+			out.function_params = info->functionparams != nullptr ? info->functionparams : "";
+			entry.value().callback.call(ref, kind, out);
+			return FMOD_OK;
+		}
+		case FMOD_SYSTEM_CALLBACK_DEVICEREINITIALIZE:
+		{
+			FmodSystemDeviceReinitialize out{};
+			out.output_type = (gm_enums::FmodOutputType)(intptr_t)commanddata1;
+			out.driver_index = (double)(int)(intptr_t)commanddata2;
+			entry.value().callback.call(ref, kind, out);
+			return FMOD_OK;
+		}
+		case FMOD_SYSTEM_CALLBACK_MEMORYALLOCATIONFAILED:
+		{
+			FmodSystemMemoryAllocationFailed out{};
+			out.file = commanddata1 != nullptr ? (const char*)commanddata1 : "";
+			out.size = (double)(int)(intptr_t)commanddata2;
+			entry.value().callback.call(ref, kind, out);
+			return FMOD_OK;
+		}
+		case FMOD_SYSTEM_CALLBACK_RECORDPOSITIONCHANGED:
+		{
+			FmodSystemRecordPosition out{};
+			const uint32_t sound_id = g_registries.sounds.idOf((FMOD::Sound*)commanddata1);
+			out.sound_ref = sound_id == 0 ? 0 : gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+			out.position = (double)(int)(intptr_t)commanddata2;
+			entry.value().callback.call(ref, kind, out);
+			return FMOD_OK;
+		}
+		case FMOD_SYSTEM_CALLBACK_THREADCREATED:
+		case FMOD_SYSTEM_CALLBACK_THREADDESTROYED:
+		{
+			// commanddata1 is the platform thread handle, which means nothing
+			// to GML; the name is what is carried.
+			const std::string name = commanddata2 != nullptr ? (const char*)commanddata2 : "";
+			entry.value().callback.call(ref, kind, name);
+			return FMOD_OK;
+		}
+		default:
+			break;
+	}
+
+	entry.value().callback.call(ref, kind, std::optional<double>{});
+	return FMOD_OK;
+}
+
+void fmod_system_forget_callback(const void* system)
+{
+	std::lock_guard<std::mutex> lock(g_system_callback_mutex);
+	const uintptr_t key = reinterpret_cast<uintptr_t>(system);
+	g_system_callbacks.erase(key);
+	if (g_system_error_owner == key)
+		g_system_error_owner = 0;
+}
+
+void fmod_system_reset_callbacks()
+{
+	std::lock_guard<std::mutex> lock(g_system_callback_mutex);
+	g_system_callbacks.clear();
+	g_system_error_owner = 0;
+}
+
+double fmod_system_set_callback(const std::optional<gm::wire::GMFunction>& callback, gm_enums::FmodSystemCallbackType callback_mask)
+{
+	FMOD::System* system = getCurrentSystem();
+	if (system == nullptr)
+	{
+		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
+		return 0;
+	}
+
+	const uintptr_t key = reinterpret_cast<uintptr_t>(system);
+
+	if (!callback.has_value())
+	{
+		{
+			std::lock_guard<std::mutex> lock(g_system_callback_mutex);
+			g_system_callbacks.erase(key);
+			// FMOD's clear empties the process-wide slot whoever owned it.
+			g_system_error_owner = 0;
+		}
+		g_fmod_last_result = system->setCallback(nullptr, FMOD_SYSTEM_CALLBACK_ALL);
+		return 0;
+	}
+
+	const FMOD_SYSTEM_CALLBACK_TYPE sdk_mask = fmod_system_callback_mask_to_sdk(callback_mask);
+
+	FmodSystemCallbackEntry entry;
+	entry.system_ref = fmod_system_ref(system);
+	entry.callback = callback.value();
+	{
+		std::lock_guard<std::mutex> lock(g_system_callback_mutex);
+		g_system_callbacks.insert_or_assign(key, entry);
+		// Every setCallback replaces FMOD's error slot, so this call owns it
+		// when Error is in the mask and empties it when not.
+		g_system_error_owner = (sdk_mask & FMOD_SYSTEM_CALLBACK_ERROR) != 0 ? key : 0;
+	}
+
+	g_fmod_last_result = system->setCallback(CALLBACK_fmod_system, sdk_mask);
+	if (g_fmod_last_result != FMOD_OK)
+		fmod_system_forget_callback(system);
+	return 0;
+}
+
+// ============================================================
 // System - Ports
 // ============================================================
 
@@ -1319,8 +1635,7 @@ uint64_t fmod_system_create_sound_group(std::string_view name)
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
+		result = fmod_sound_group_ref(sound_group);
 	}
 	return result;
 }
@@ -1341,8 +1656,7 @@ uint64_t fmod_system_create_geometry(double max_polygons, double max_vertices)
 
 	if (g_fmod_last_result == FMOD_OK && geometry != nullptr)
 	{
-		uint32_t geometry_id = g_registries.geometries.registerOrFind(geometry);
-		result = gmfmod::packRef(geometry_id, gmfmod::RefType::Geometry);
+		result = fmod_geometry_ref(geometry, system);
 	}
 	return result;
 }
@@ -1374,8 +1688,7 @@ std::optional<uint64_t> fmod_system_load_geometry(gm::wire::GMBuffer data, doubl
 	if (g_fmod_last_result != FMOD_OK || geometry == nullptr)
 		return std::nullopt;
 
-	uint32_t geometry_id = g_registries.geometries.registerOrFind(geometry);
-	return gmfmod::packRef(geometry_id, gmfmod::RefType::Geometry);
+	return fmod_geometry_ref(geometry, system);
 }
 
 FmodOcclusion fmod_system_get_geometry_occlusion(const FmodVec3& listener, const FmodVec3& source)
@@ -1442,8 +1755,7 @@ uint64_t fmod_system_create_reverb_3d()
 
 	if (g_fmod_last_result == FMOD_OK && reverb != nullptr)
 	{
-		uint32_t reverb_id = g_registries.reverbs.registerOrFind(reverb);
-		result = gmfmod::packRef(reverb_id, gmfmod::RefType::Reverb3D);
+		result = fmod_reverb_3d_ref(reverb, system);
 	}
 	return result;
 }

@@ -1363,6 +1363,61 @@ class `[[FmodDSPDataParameterInfo]]` prototype Object
     property length: gmval { get; set; }
 }
 
+// The system callback payloads, one per FMOD_SYSTEM_CALLBACK_TYPE that
+// carries data in commanddata1/commanddata2. Thread callbacks carry a bare
+// string (the thread name) and need no class.
+
+// FMOD_ERRORCALLBACK_INFO with the void* instance carried as the ref the game
+// holds for it, or 0 when the instance is not one this extension minted.
+[global]
+class `[[FmodErrorCallbackInfo]]` prototype Object
+{
+    [field, type_hint=`FmodResult`]
+    property result: gmval { get; set; }
+
+    [field, type_hint=`FmodErrorCallbackInstanceType`]
+    property instance_type: gmval { get; set; }
+
+    [field, type_hint=`uint64`]
+    property instance: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property function_name: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property function_params: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSystemDeviceReinitialize]]` prototype Object
+{
+    [field, type_hint=`FmodOutputType`]
+    property output_type: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property driver_index: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSystemMemoryAllocationFailed]]` prototype Object
+{
+    [field, type_hint=`string`]
+    property file: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property size: gmval { get; set; }
+}
+
+[global]
+class `[[FmodSystemRecordPosition]]` prototype Object
+{
+    [field, type_hint=`uint64`]
+    property sound_ref: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property position: gmval { get; set; }
+}
+
 [global]
 class `[[FmodDSPWetDryMix]]` prototype Object
 {
@@ -2408,6 +2463,19 @@ function fmod_system_lock_dsp(): real;
 
 [global, bind = typed_gml]
 function fmod_system_unlock_dsp(): real;
+
+// callback receives (system_ref, type, payload). payload is an
+// FmodErrorCallbackInfo on Error, an FmodSystemDeviceReinitialize on
+// DeviceReinitialize, an FmodSystemMemoryAllocationFailed on
+// MemoryAllocationFailed, an FmodSystemRecordPosition on
+// RecordPositionChanged, the thread's name on ThreadCreated and
+// ThreadDestroyed, and undefined for every other type. Acts on the selected
+// system. Pass undefined to clear.
+[global, bind = typed_gml]
+function fmod_system_set_callback(
+    [type_hint=`func?`] callback: gmval,
+    [type_hint=`FmodSystemCallbackType`] callback_mask: gmval
+): real;
 
 [global, bind = typed_gml]
 function fmod_system_get_user_data(): int64;

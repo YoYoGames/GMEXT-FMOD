@@ -1293,6 +1293,8 @@ function fmod_channel_control_add_dsp(channel_control_ref, dsp_chain_offset, dsp
  *
  * This function removes the specified DSP unit from the DSP chain.
  * 
+ * The DSP is disconnected from its neighbours in the chain, so every reference to one of its connections is invalid afterwards.
+ * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @param {Real} dsp_ref The DSP unit to be removed.
  * @returns {Real}
@@ -1950,6 +1952,8 @@ function fmod_dsp_get_num_outputs(dsp_ref) {}
  * 
  * This is a convenience function that is faster than disconnecting all inputs and outputs individually.
  * 
+ * After this operation every reference to a connection on the disconnected side is invalid.
+ * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Bool} inputs Whether all inputs should be disconnected.
  * @param {Bool} outputs Whether all outputs should be disconnected.
@@ -1969,7 +1973,7 @@ function fmod_dsp_disconnect_all(dsp_ref, inputs, outputs) {}
  * 
  * If `dsp_other_ref` had only one output, after this operation that entire subgraph will no longer be connected to the DSP network.
  * 
- * After this operation `dsp_connection_ref` is no longer valid.
+ * After this operation every reference to a connection between the two DSPs is invalid.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Real} target_dsp A reference to the DSP unit to disconnect from.
@@ -2439,6 +2443,8 @@ function fmod_dsp_reset(dsp_ref) {}
  * This function frees a DSP object.
  * 
  * If the DSP is not removed from the network with ${function.fmod_channel_control_remove_dsp} after being added with ${function.fmod_channel_control_add_dsp}, it will not release and ${function.fmod_last_result} will return `FmodResult.DspInUse`.
+ * 
+ * References to the DSP's connections (see ${function.fmod_dsp_add_input} and ${function.fmod_dsp_get_output}) are invalid afterwards, along with the DSP's own.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @function_end
@@ -4141,6 +4147,8 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
  * This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.
  * 
  * If the sound was opened with `FmodMode.NonBlocking` and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using ${function.fmod_sound_get_open_state} and checking the open state for `FmodOpenState.Ready` and `FmodOpenState.Error` is a good way to avoid stalls.
+ * 
+ * References to the sound's sub-sounds (see ${function.fmod_sound_get_sub_sound}) are invalid afterwards, along with the sound's own.
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @returns {Real}
@@ -7669,6 +7677,9 @@ function fmod_system_init(max_channels, flags) {}
  * This function closes and frees the given FMOD [System](https://www.fmod.com/docs/2.03/api/core-api-system.html) object and its resources.
  * 
  * [[Note: This will internally call ${function.fmod_system_close}, so calling ${function.fmod_system_close} before this function is not necessary.]]
+ * 
+ * Every reference to an object this system created - sounds, channel groups, sound groups, DSPs, DSP connections, reverbs and geometry - is invalid afterwards, and any call made with one sets ${function.fmod_last_result} to `FmodResult.InvalidHandle`. For a system adopted with ${function.fmod_system_adopt} the objects themselves are left to their owner; only the references are dropped.
+ * 
  * @param {Real} system_ref A reference to the system to release.
  * @returns {Real}
  * @function_end
@@ -7687,6 +7698,8 @@ function fmod_system_release(system_ref) {}
  * Closing renders FMOD objects created with this System invalid. You should make sure any [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html), [ChannelGroup](https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html), [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) and [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html) objects are released before calling this.
  * 
  * All pre-initialize configuration settings will remain and the System can be reinitialized as needed.
+ * 
+ * Every reference to an object this system created is invalid afterwards, and any call made with one sets ${function.fmod_last_result} to `FmodResult.InvalidHandle`. The system reference itself, and a callback set with ${function.fmod_system_set_callback}, stay valid across a close.
  * 
  * @param {Real} system_ref A reference to a system.
  * @returns {Real}
@@ -9090,7 +9103,58 @@ function fmod_system_lock_dsp() {}
 function fmod_system_unlock_dsp() {}
 
 
-function fmod_system_set_callback(type) {}
+/**
+ * @function fmod_system_set_callback
+ * @desc > **FMOD Function:** [System::setCallback](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setcallback)
+ *
+ * <br />
+ *
+ * This function sets the callback for system notifications on the currently selected system (see ${function.fmod_system_select}).
+ *
+ * `callback_mask` picks which types fire; combine ${constant.FmodSystemCallbackType} values with `|`, or pass `FmodSystemCallbackType.All`. The `Error` type is the one most games want: FMOD reports every API call that fails, with the function name, its parameters and the result, including calls made from FMOD Studio on a Studio game whose core system was adopted with ${function.fmod_system_adopt}.
+ *
+ * [[Note: `Error` is process-wide in FMOD, not per system. The most recent call to this function on any system decides who receives errors for every system - a call whose mask lacks `Error`, or one that clears the callback, stops error delivery for all of them - and the `system_ref` the callback receives is the one the callback was set on. The `instance` field of the payload names the object the failing call was made on.]]
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
+ * [[Important: `PreMix`, `PostMix`, `OutputUnderrun` and `RecordPositionChanged` are raised on FMOD's mixer thread once per mix block, so a mask that includes them costs a queued GML call per block. Using `All` or `DeviceListChanged` will disable any automated device ejection/insertion handling; use the callback to control that behaviour yourself.]]
+ *
+ * The `payload` argument depends on the type:
+ *
+ * | Type | `payload` |
+ * | ---- | --------- |
+ * | `Error` | ${struct.FmodErrorCallbackInfo} |
+ * | `DeviceReinitialize` | ${struct.FmodSystemDeviceReinitialize} |
+ * | `MemoryAllocationFailed` | ${struct.FmodSystemMemoryAllocationFailed} |
+ * | `RecordPositionChanged` | ${struct.FmodSystemRecordPosition} |
+ * | `ThreadCreated`, `ThreadDestroyed` | The thread's name, as a string. FMOD also passes the platform thread handle, which has no meaning in GML and is not carried. |
+ * | every other type | `undefined` |
+ *
+ * The callback is kept across ${function.fmod_system_close} and dropped by ${function.fmod_system_release}. It is set on the currently selected system: on a multi-system game, ${function.fmod_system_select} the one it is for first.
+ *
+ * @param {Function} [callback] The function to call when a notification fires. Omit it to clear the current callback.
+ * @param {Constant.FmodSystemCallbackType} callback_mask A bitfield of the system callback types to receive.
+ * @returns {Real}
+ *
+ * @event callback
+ * @member {Real} system_ref The system that raised the callback.
+ * @member {Constant.FmodSystemCallbackType} type The callback type that fired.
+ * @member {Any} payload The value the table above lists for `type`.
+ * @event_end
+ *
+ * @example
+ * ```gml
+ * fmod_system_set_callback(function(_system_ref, _type, _payload) {
+ *     if (_type == FmodSystemCallbackType.Error) {
+ *         show_debug_message("FMOD " + _payload.function_name + "(" + _payload.function_params + ") failed: " + string(_payload.result));
+ *     }
+ * }, FmodSystemCallbackType.Error);
+ * ```
+ * The code above reports every failing FMOD call through the debug output, with the function name, the parameters FMOD saw and the ${constant.FmodResult}.
+ *
+ * @function_end
+ */
+function fmod_system_set_callback(callback, callback_mask) {}
 
 
 /**
@@ -9171,7 +9235,7 @@ function fmod_shutdown() {}
  * 
  * This is how the two halves of the extension are joined: pass the pointer returned by ${function.fmod_studio_system_get_core_system_ptr} and the Core functions then operate on FMOD Studio's core system.
  * 
- * [[Important: The adopted system stays owned by whoever created it. ${function.fmod_system_release} will not release it, and it must outlive every Core call made against it.]]
+ * [[Important: The adopted system stays owned by whoever created it. ${function.fmod_system_release} will not release it, and it must outlive every Core call made against it. Calling ${function.fmod_system_release} on the adopted reference drops every Core reference minted for that system's objects without freeing anything, so call it before ${function.fmod_studio_system_release} to leave no stale references behind.]]
  * 
  * @param {Real} system_ptr The raw core system pointer to adopt.
  * @returns {Real} A reference to the adopted system, or 0 on failure.
@@ -10365,6 +10429,7 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_system_get_geometry_occlusion
  * @ref fmod_system_lock_dsp
  * @ref fmod_system_unlock_dsp
+ * @ref fmod_system_set_callback
  * @ref fmod_system_set_user_data
  * @ref fmod_system_get_user_data
  * @ref fmod_system_adopt

@@ -428,6 +428,10 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_unlock_dsp();
 }
+- (double)__EXT_NATIVE__fmod_system_set_callback:(char*)__arg_buffer arg1:(double)__arg_buffer_length
+{
+    return __EXT_NATIVE__fmod_system_set_callback(__arg_buffer, __arg_buffer_length);
+}
 - (double)__EXT_NATIVE__fmod_system_get_user_data:(char*)__ret_buffer arg1:(double)__ret_buffer_length
 {
     return __EXT_NATIVE__fmod_system_get_user_data(__ret_buffer, __ret_buffer_length);

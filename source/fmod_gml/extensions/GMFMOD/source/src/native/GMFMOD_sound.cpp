@@ -35,7 +35,7 @@ void fmod_sound_forget_lock(const void* sound)
 	g_sound_lock_ptrs.erase(reinterpret_cast<uintptr_t>(sound));
 }
 
-static void fmod_sound_forget_rolloff(const void* sound)
+void fmod_sound_forget_rolloff(const void* sound)
 {
 	std::lock_guard<std::mutex> lock(g_sound_rolloff_mutex);
 	g_sound_rolloff.erase(reinterpret_cast<uintptr_t>(sound));
@@ -86,8 +86,7 @@ uint64_t fmod_system_create_sound(std::string_view name_or_data, gm_enums::FmodM
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -155,8 +154,7 @@ uint64_t fmod_system_create_sound_ex(std::string_view name_or_data, gm_enums::Fm
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -177,8 +175,7 @@ uint64_t fmod_system_create_stream(std::string_view name_or_data, gm_enums::Fmod
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -236,8 +233,7 @@ uint64_t fmod_system_create_sound_memory(gm::wire::GMBuffer data, double length,
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -276,8 +272,7 @@ uint64_t fmod_system_create_sound_memory_ex(gm::wire::GMBuffer data, double leng
 
 	if (g_fmod_last_result == FMOD_OK && sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sound);
 	}
 	return result;
 }
@@ -434,6 +429,27 @@ double fmod_sound_set_3d_cone_settings(uint64_t sound_ref, double inside_cone_an
 // Sound - Release
 // ============================================================
 
+// Sound::release frees a multi-sound's sub-sounds with it, so their refs are
+// dropped first. FMOD is asked what it is about to free rather than the
+// registry remembering parents: no state to keep in step.
+static void fmod_sound_forget_sub_sounds(FMOD::Sound* sound)
+{
+	int count = 0;
+	if (sound->getNumSubSounds(&count) != FMOD_OK)
+		return;
+
+	for (int i = 0; i < count; ++i)
+	{
+		FMOD::Sound* sub_sound = nullptr;
+		if (sound->getSubSound(i, &sub_sound) != FMOD_OK || sub_sound == nullptr)
+			continue;
+		fmod_sound_forget_sub_sounds(sub_sound);
+		g_registries.sounds.unregister(sub_sound);
+		fmod_sound_forget_lock(sub_sound);
+		fmod_sound_forget_rolloff(sub_sound);
+	}
+}
+
 double fmod_sound_release(uint64_t sound_ref)
 {
 	FMOD::Sound* sound = resolve_fmod_sound(sound_ref);
@@ -441,6 +457,7 @@ double fmod_sound_release(uint64_t sound_ref)
 	if (sound == nullptr)
 		return 0;
 
+	fmod_sound_forget_sub_sounds(sound);
 	g_registries.sounds.unregister(sound);
 	fmod_sound_forget_lock(sound);
 	fmod_sound_forget_rolloff(sound);
@@ -462,8 +479,7 @@ uint64_t fmod_sound_get_system_object(uint64_t sound_ref)
 
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }
@@ -1005,8 +1021,7 @@ uint64_t fmod_sound_get_sound_group(uint64_t sound_ref)
 
 	if (g_fmod_last_result == FMOD_OK && sound_group != nullptr)
 	{
-		uint32_t group_id = g_registries.soundGroups.registerOrFind(sound_group);
-		result = gmfmod::packRef(group_id, gmfmod::RefType::SoundGroup);
+		result = fmod_sound_group_ref(sound_group);
 	}
 	return result;
 }
@@ -1067,8 +1082,7 @@ uint64_t fmod_sound_get_sub_sound(uint64_t sound_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && sub_sound != nullptr)
 	{
-		uint32_t sound_id = g_registries.sounds.registerOrFind(sub_sound);
-		result = gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+		result = fmod_sound_ref(sub_sound);
 	}
 	return result;
 }
@@ -1086,8 +1100,7 @@ std::optional<uint64_t> fmod_sound_get_sub_sound_parent(uint64_t sound_ref)
 	if (g_fmod_last_result != FMOD_OK || parent == nullptr)
 		return std::nullopt;
 
-	uint32_t sound_id = g_registries.sounds.registerOrFind(parent);
-	return gmfmod::packRef(sound_id, gmfmod::RefType::Sound);
+	return fmod_sound_ref(parent);
 }
 
 // ============================================================

@@ -821,6 +821,49 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  */
 
 /**
+ * @struct FmodErrorCallbackInfo
+ * @desc > **FMOD Struct:** [FMOD_ERRORCALLBACK_INFO](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_errorcallback_info)
+ *
+ * This struct describes an API call that failed. It arrives as the third argument of a system callback (see ${function.fmod_system_set_callback}) when `FmodSystemCallbackType.Error` fires.
+ *
+ * [[Note: FMOD's own struct carries the failing instance as a pointer. It arrives here as the reference you hold for that object - a Core object registered by GMFMOD, a Channel, or any FMOD Studio object - and as 0 when the instance is one this extension never handed out.]]
+ *
+ * @member {Constant.FmodResult} result The result the call returned.
+ * @member {Constant.FmodErrorCallbackInstanceType} instance_type The type of the object the call was made on.
+ * @member {Real} instance A reference to the object the call was made on, or 0.
+ * @member {String} function_name The name of the function that failed, e.g. `"System::createSound"`.
+ * @member {String} function_params The parameters FMOD saw, as text.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodSystemDeviceReinitialize
+ * @desc This struct describes the output device a system re-initialised. It arrives as the third argument of a system callback (see ${function.fmod_system_set_callback}) when `FmodSystemCallbackType.DeviceReinitialize` fires.
+ *
+ * @member {Constant.FmodOutputType} output_type The output type of the device.
+ * @member {Real} driver_index The selected driver index.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodSystemMemoryAllocationFailed
+ * @desc This struct describes an allocation FMOD could not make. It arrives as the third argument of a system callback (see ${function.fmod_system_set_callback}) when `FmodSystemCallbackType.MemoryAllocationFailed` fires.
+ *
+ * @member {String} file The file and line of the failure.
+ * @member {Real} size The size of the requested allocation, in bytes.
+ * @struct_end
+ */
+
+/**
+ * @struct FmodSystemRecordPosition
+ * @desc This struct describes a change of record position. It arrives as the third argument of a system callback (see ${function.fmod_system_set_callback}) when `FmodSystemCallbackType.RecordPositionChanged` fires.
+ *
+ * @member {Real} sound_ref The sound being recorded to.
+ * @member {Real} position The new record position.
+ * @struct_end
+ */
+
+/**
  * @module structs
  * @title Structs
  * @desc This module contains the structs used by the FMOD extension.
@@ -899,6 +942,10 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPWetDryMix
  * @ref FmodDSPParameterInfo
  * @ref FmodDSPDataParameterInfo
+ * @ref FmodErrorCallbackInfo
+ * @ref FmodSystemDeviceReinitialize
+ * @ref FmodSystemMemoryAllocationFailed
+ * @ref FmodSystemRecordPosition
  * @ref FmodPolygonAttributes
  * @ref FmodSoundLockLengths
  * @ref FmodStudioParameterValue

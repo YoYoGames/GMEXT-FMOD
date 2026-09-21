@@ -4002,6 +4002,7 @@ If some bytes are locked by multiple calls to this function, they will remain lo
 <p>This function frees a sound object.</p>
 <p>This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.</p>
 <p>If the sound was opened with <code>FmodMode.NonBlocking</code> and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> and checking the open state for <code>FmodOpenState.Ready</code> and <code>FmodOpenState.Error</code> is a good way to avoid stalls.</p>
+<p>References to the sound's sub-sounds (see <a href="sound.html#fmod_sound_get_sub_sound">fmod_sound_get_sub_sound</a>) are invalid afterwards, along with the sound's own.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

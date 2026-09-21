@@ -306,15 +306,16 @@ gm_structs::FmodDistanceFilter fmod_channel_control_get_3d_distance_filter(uint6
 // get3DCustomRolloff gives the very same address back - so a GML buffer can
 // never be passed through: the mixer thread would read freed memory the moment
 // GML resized or freed it. Each control that has a curve owns a copy here.
-// Keys are the truncated pointer the GML refs carry, matching the callback
-// table below so CALLBACK_END can reclaim both in one pass.
+// Keyed by the full ChannelControl pointer like the callback table below, so
+// CALLBACK_END reclaims both in one pass and a sweep can tell a registered
+// group's key from a channel handle.
 static std::mutex g_channel_rolloff_mutex;
 static std::map<uintptr_t, std::vector<FMOD_VECTOR>> g_channel_rolloff;
 
 void fmod_channel_control_forget_rolloff(const void* control)
 {
 	std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-	g_channel_rolloff.erase(gmfmod::pointerKey(control));
+	g_channel_rolloff.erase(reinterpret_cast<uintptr_t>(control));
 }
 
 double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, gm::wire::GMBuffer points, double num_points)
@@ -322,7 +323,7 @@ double fmod_channel_control_set_3d_custom_rolloff(uint64_t channel_control_ref, 
 	FMOD::ChannelControl* control = resolve_fmod_channel_control(channel_control_ref);
 	if (control == nullptr) return 0;
 
-	const uintptr_t control_ptr = gmfmod::pointerKey(control);
+	const uintptr_t control_ptr = reinterpret_cast<uintptr_t>(control);
 	const int count = (int)num_points;
 
 	// Disabling: point FMOD away from our copy before reclaiming it, never the
@@ -598,6 +599,8 @@ double fmod_channel_control_remove_dsp(uint64_t channel_control_ref, uint64_t ds
 	if (control == nullptr) return 0;
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return 0;
+	// Removing a DSP from a chain disconnects it from both neighbours.
+	fmod_dsp_forget_connections(dsp, nullptr, true, true);
 	g_fmod_last_result = control->removeDSP(dsp);
 	return 0;
 }
@@ -620,8 +623,7 @@ uint64_t fmod_channel_control_get_dsp(uint64_t channel_control_ref, double index
 	g_fmod_last_result = control->getDSP((int)index, &dsp);
 	if (g_fmod_last_result == FMOD_OK && dsp != nullptr)
 	{
-		uint32_t dsp_id = g_registries.dsps.registerOrFind(dsp);
-		result = gmfmod::packRef(dsp_id, gmfmod::RefType::Dsp);
+		result = fmod_dsp_ref(dsp);
 	}
 	return result;
 }
@@ -660,8 +662,7 @@ uint64_t fmod_channel_control_get_system_object(uint64_t channel_control_ref)
 	g_fmod_last_result = control->getSystemObject(&system);
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
-		uint32_t system_id = g_registries.systems.registerOrFind(system);
-		result = gmfmod::packRef(system_id, gmfmod::RefType::System);
+		result = fmod_system_ref(system);
 	}
 	return result;
 }
@@ -882,13 +883,12 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	}
 
 	// Runs whether or not GML registered a callback - set_3d_custom_rolloff arms
-	// this hook precisely so the rolloff copy gets an end-of-life signal. The
-	// rolloff map keys on the truncated pointer the refs carry.
+	// this hook precisely so the rolloff copy gets an end-of-life signal.
 	if (ended)
 	{
 		// The channel is gone, so FMOD is no longer reading the rolloff copy.
 		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-		g_channel_rolloff.erase(gmfmod::pointerKey(channelcontrol));
+		g_channel_rolloff.erase(control_key);
 	}
 
 	if (!entry.has_value())
@@ -947,6 +947,49 @@ void fmod_channel_control_reset_state()
 	g_channel_rolloff.clear();
 }
 
+// A channel handle is only ever asked about while its system is still open,
+// which is why this runs before the release or close. A key that is a
+// registered group belongs to some other system and is skipped without being
+// touched - the groups of the system going away were already forgotten by the
+// registry eviction - so what is left to ask is a channel handle: FMOD answers
+// its system, or an error for one that has already ended, and both go.
+void fmod_channel_control_forget_owned_by(FMOD::System* system)
+{
+	std::vector<uintptr_t> keys;
+	{
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+		for (const auto& entry : g_channel_callbacks)
+			keys.push_back(entry.first);
+	}
+	{
+		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+		for (const auto& entry : g_channel_rolloff)
+			keys.push_back(entry.first);
+	}
+
+	std::vector<uintptr_t> gone;
+	for (uintptr_t key : keys)
+	{
+		FMOD::ChannelControl* control = reinterpret_cast<FMOD::ChannelControl*>(key);
+		if (g_registries.channelGroups.ownerOf(static_cast<FMOD::ChannelGroup*>(control)) != nullptr)
+			continue;
+
+		FMOD::System* owner = nullptr;
+		const FMOD_RESULT result = control->getSystemObject(&owner);
+		if (result != FMOD_OK || owner == system)
+			gone.push_back(key);
+	}
+
+	{
+		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+		for (uintptr_t key : gone)
+			g_channel_callbacks.erase(key);
+	}
+	std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
+	for (uintptr_t key : gone)
+		g_channel_rolloff.erase(key);
+}
+
 double fmod_channel_control_set_callback(uint64_t channel_control_ref, const std::optional<gm::wire::GMFunction>& callback)
 {
 	FMOD::ChannelControl* control = resolve_fmod_channel_control(channel_control_ref);
@@ -964,7 +1007,7 @@ double fmod_channel_control_set_callback(uint64_t channel_control_ref, const std
 		bool keep_hook = false;
 		{
 			std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-			keep_hook = g_channel_rolloff.count(gmfmod::pointerKey(control)) != 0;
+			keep_hook = g_channel_rolloff.count(control_key) != 0;
 		}
 		g_fmod_last_result = control->setCallback(keep_hook ? CALLBACK_fmod_channel_control : nullptr);
 		return 0;

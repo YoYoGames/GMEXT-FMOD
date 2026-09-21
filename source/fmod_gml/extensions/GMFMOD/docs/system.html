@@ -1282,6 +1282,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_system_set_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_callback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_system_set_user_data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2846,6 +2857,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_system_set_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_system_set_callback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_system_set_user_data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3014,6 +3036,7 @@
 <li><a href="system.html#fmod_system_get_geometry_occlusion">fmod_system_get_geometry_occlusion</a></li>
 <li><a href="system.html#fmod_system_lock_dsp">fmod_system_lock_dsp</a></li>
 <li><a href="system.html#fmod_system_unlock_dsp">fmod_system_unlock_dsp</a></li>
+<li><a href="system.html#fmod_system_set_callback">fmod_system_set_callback</a></li>
 <li><a href="system.html#fmod_system_set_user_data">fmod_system_set_user_data</a></li>
 <li><a href="system.html#fmod_system_get_user_data">fmod_system_get_user_data</a></li>
 <li><a href="system.html#fmod_system_adopt">fmod_system_adopt</a></li>
@@ -3170,6 +3193,7 @@
 <p class="admonition-title">Note</p>
 <p>This will internally call <a href="system.html#fmod_system_close">fmod_system_close</a>, so calling <a href="system.html#fmod_system_close">fmod_system_close</a> before this function is not necessary.</p>
 </div>
+<p>Every reference to an object this system created - sounds, channel groups, sound groups, DSPs, DSP connections, reverbs and geometry - is invalid afterwards, and any call made with one sets <a href="misc.html#fmod_last_result">fmod_last_result</a> to <code>FmodResult.InvalidHandle</code>. For a system adopted with <a href="system.html#fmod_system_adopt">fmod_system_adopt</a> the objects themselves are left to their owner; only the references are dropped.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3208,6 +3232,7 @@
 <p>This function close the connections to the output and returns to an uninitialized state without releasing the object.</p>
 <p>Closing renders FMOD objects created with this System invalid. You should make sure any <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>, <a href="https://www.fmod.com/docs/2.03/api/core-api-channelgroup.html">ChannelGroup</a>, <a href="https://www.fmod.com/docs/2.03/api/core-api-geometry.html">Geometry</a> and <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html">DSP</a> objects are released before calling this.</p>
 <p>All pre-initialize configuration settings will remain and the System can be reinitialized as needed.</p>
+<p>Every reference to an object this system created is invalid afterwards, and any call made with one sets <a href="misc.html#fmod_last_result">fmod_last_result</a> to <code>FmodResult.InvalidHandle</code>. The system reference itself, and a callback set with <a href="system.html#fmod_system_set_callback">fmod_system_set_callback</a>, stay valid across a close.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -5622,6 +5647,133 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
 
+<h1 id="fmod_system_set_callback">fmod_system_set_callback<a class="headerlink" href="#fmod_system_set_callback" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setcallback">System::setCallback</a></p>
+</blockquote>
+<p><br /></p>
+<p>This function sets the callback for system notifications on the currently selected system (see <a href="system.html#fmod_system_select">fmod_system_select</a>).</p>
+<p><code>callback_mask</code> picks which types fire; combine <a href="constants.html#fmodsystemcallbacktype">FmodSystemCallbackType</a> values with <code>|</code>, or pass <code>FmodSystemCallbackType.All</code>. The <code>Error</code> type is the one most games want: FMOD reports every API call that fails, with the function name, its parameters and the result, including calls made from FMOD Studio on a Studio game whose core system was adopted with <a href="system.html#fmod_system_adopt">fmod_system_adopt</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>Error</code> is process-wide in FMOD, not per system. The most recent call to this function on any system decides who receives errors for every system - a call whose mask lacks <code>Error</code>, or one that clears the callback, stops error delivery for all of them - and the <code>system_ref</code> the callback receives is the one the callback was set on. The <code>instance</code> field of the payload names the object the failing call was made on.</p>
+</div>
+<p>The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p><code>PreMix</code>, <code>PostMix</code>, <code>OutputUnderrun</code> and <code>RecordPositionChanged</code> are raised on FMOD's mixer thread once per mix block, so a mask that includes them costs a queued GML call per block. Using <code>All</code> or <code>DeviceListChanged</code> will disable any automated device ejection/insertion handling; use the callback to control that behaviour yourself.</p>
+</div>
+<p>The <code>payload</code> argument depends on the type:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th><code>payload</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Error</code></td>
+<td><a href="structs.html#fmoderrorcallbackinfo">FmodErrorCallbackInfo</a></td>
+</tr>
+<tr>
+<td><code>DeviceReinitialize</code></td>
+<td><a href="structs.html#fmodsystemdevicereinitialize">FmodSystemDeviceReinitialize</a></td>
+</tr>
+<tr>
+<td><code>MemoryAllocationFailed</code></td>
+<td><a href="structs.html#fmodsystemmemoryallocationfailed">FmodSystemMemoryAllocationFailed</a></td>
+</tr>
+<tr>
+<td><code>RecordPositionChanged</code></td>
+<td><a href="structs.html#fmodsystemrecordposition">FmodSystemRecordPosition</a></td>
+</tr>
+<tr>
+<td><code>ThreadCreated</code>, <code>ThreadDestroyed</code></td>
+<td>The thread's name, as a string. FMOD also passes the platform thread handle, which has no meaning in GML and is not carried.</td>
+</tr>
+<tr>
+<td>every other type</td>
+<td><code>undefined</code></td>
+</tr>
+</tbody>
+</table>
+<p>The callback is kept across <a href="system.html#fmod_system_close">fmod_system_close</a> and dropped by <a href="system.html#fmod_system_release">fmod_system_release</a>. It is set on the currently selected system: on a multi-system game, <a href="system.html#fmod_system_select">fmod_system_select</a> the one it is for first.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a>.</p>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<pre class="highlight"><code class="language-gml">fmod_system_set_callback(callback=undefined, callback_mask)</code></pre>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Script_Functions.htm">Function</a></td>
+<td>The function to call when a notification fires. Omit it to clear the current callback.</td>
+</tr>
+<tr>
+<td>callback_mask</td>
+<td><a href="constants.html#fmodsystemcallbacktype">FmodSystemCallbackType</a></td>
+<td>A bitfield of the system callback types to receive.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<p><strong>Triggers:</strong></p>
+<blockquote>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system_ref</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The system that raised the callback.</td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="constants.html#fmodsystemcallbacktype">FmodSystemCallbackType</a></td>
+<td>The callback type that fired.</td>
+</tr>
+<tr>
+<td>payload</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Any</a></td>
+<td>The value the table above lists for <code>type</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Example:</strong></p>
+<p><pre class="highlight"><code class="language-gml">fmod_system_set_callback(function(_system_ref, _type, _payload) {
+    if (_type == FmodSystemCallbackType.Error) {
+        show_debug_message("FMOD " + _payload.function_name + "(" + _payload.function_params + ") failed: " + string(_payload.result));
+    }
+}, FmodSystemCallbackType.Error);</code></pre>
+The code above reports every failing FMOD call through the debug output, with the function name, the parameters FMOD saw and the <a href="constants.html#fmodresult">FmodResult</a>.</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
 <h1 id="fmod_system_set_user_data">fmod_system_set_user_data<a class="headerlink" href="#fmod_system_set_user_data" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setuserdata">System::setUserData</a></p>
@@ -5699,7 +5851,7 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 <p>This is how the two halves of the extension are joined: pass the pointer returned by <a href="studio_system.html#fmod_studio_system_get_core_system_ptr">fmod_studio_system_get_core_system_ptr</a> and the Core functions then operate on FMOD Studio's core system.</p>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
-<p>The adopted system stays owned by whoever created it. <a href="system.html#fmod_system_release">fmod_system_release</a> will not release it, and it must outlive every Core call made against it.</p>
+<p>The adopted system stays owned by whoever created it. <a href="system.html#fmod_system_release">fmod_system_release</a> will not release it, and it must outlive every Core call made against it. Calling <a href="system.html#fmod_system_release">fmod_system_release</a> on the adopted reference drops every Core reference minted for that system's objects without freeing anything, so call it before <a href="studio_system.html#fmod_studio_system_release">fmod_studio_system_release</a> to leave no stale references behind.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>

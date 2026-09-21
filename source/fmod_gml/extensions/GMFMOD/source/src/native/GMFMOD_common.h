@@ -32,9 +32,14 @@ struct FmodRegistries
 	gmfmod::Registry<FMOD::Reverb3D> reverbs;
 	gmfmod::Registry<FMOD::Geometry> geometries;
 
-	// System::release() has already freed everything its systems owned, so
-	// the registries are cleared rather than walked - every pointer in them
-	// is dead by this point.
+	// System::release() and System::close() free or invalidate every object the
+	// system created, so everything registered under it goes first - the
+	// registry entries and the per-module state each object's own release
+	// would have dropped. Never calls into FMOD on the evicted objects.
+	void evictOwnedBy(FMOD::System* system);
+
+	// Drops every entry without touching the objects - fmod_shutdown() has
+	// already released, or evicted, everything by this point.
 	void clear();
 };
 
@@ -48,6 +53,22 @@ void setCurrentSystem(FMOD::System* system);
 // ============================================================
 // Refs
 // ============================================================
+
+// Registers `object` under the system that owns it and packs its ref; 0 for
+// a null object. Sound, ChannelGroup, SoundGroup and DSP answer
+// getSystemObject, asked once on first registration. DSPConnection, Geometry
+// and Reverb3D have no such call, so their owner comes from the caller - the
+// system that created them, or the registered DSP or group a connection was
+// reached through. An object whose owner cannot be determined is not
+// registered: the helper returns 0 and leaves FMOD's result in the slot.
+uint64_t fmod_system_ref(FMOD::System* system);
+uint64_t fmod_sound_ref(FMOD::Sound* sound);
+uint64_t fmod_channel_group_ref(FMOD::ChannelGroup* group);
+uint64_t fmod_sound_group_ref(FMOD::SoundGroup* group);
+uint64_t fmod_dsp_ref(FMOD::DSP* dsp);
+uint64_t fmod_dsp_connection_ref(FMOD::DSPConnection* connection, FMOD::System* owner);
+uint64_t fmod_geometry_ref(FMOD::Geometry* geometry, FMOD::System* owner);
+uint64_t fmod_reverb_3d_ref(FMOD::Reverb3D* reverb, FMOD::System* owner);
 
 // Pointer-backed ref for a Channel, bound to this extension's status slot.
 inline uint64_t fmod_pointer_ref(const void* pointer, gmfmod::RefType type)
@@ -110,13 +131,26 @@ FMOD::ChannelControl* resolve_fmod_channel_control(uint64_t ref);
 // Per-module state hooks
 // ============================================================
 
-// Each file owning a file-local map exposes a reset entry point rather than
-// promoting the map to a global. fmod_shutdown() drives them all.
+// Each file owning a file-local map exposes forget and reset entry points
+// rather than promoting the map to a global. The per-object forgets run from
+// that object's release and from FmodRegistries::evictOwnedBy; the resets from
+// fmod_shutdown().
 FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control);
 void fmod_channel_control_forget_rolloff(const void* control);
 void fmod_channel_control_forget_callback(const void* control);
+// Channels are pointer-backed and have no registry entry to evict through, so
+// the channel-side maps are swept by asking each live handle for its system.
+// Runs before the SDK call that would invalidate the handles.
+void fmod_channel_control_forget_owned_by(FMOD::System* system);
 void fmod_channel_control_reset_state();
+void fmod_channel_group_forget_adopted(const void* group);
 void fmod_sound_forget_lock(const void* sound);
+void fmod_sound_forget_rolloff(const void* sound);
 void fmod_sound_reset_state();
 void fmod_dsp_forget_callback(const void* dsp);
+// Drops the refs of the connections FMOD is about to free with a release,
+// a disconnect or a chain removal; `only_with` narrows to one neighbour.
+void fmod_dsp_forget_connections(FMOD::DSP* dsp, FMOD::DSP* only_with, bool inputs, bool outputs);
 void fmod_dsp_reset_state();
+void fmod_system_forget_callback(const void* system);
+void fmod_system_reset_callbacks();
