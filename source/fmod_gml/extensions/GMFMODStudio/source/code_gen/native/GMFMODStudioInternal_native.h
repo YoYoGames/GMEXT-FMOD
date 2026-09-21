@@ -203,6 +203,20 @@ namespace gm_enums
         String = 3
     };
 
+    enum class FmodStudioParameterType : std::int64_t
+    {
+        GameControlled = 0,
+        AutomaticDistance = 1,
+        AutomaticEventConeAngle = 2,
+        AutomaticEventOrientation = 3,
+        AutomaticDirection = 4,
+        AutomaticElevation = 5,
+        AutomaticListenerOrientation = 6,
+        AutomaticSpeed = 7,
+        AutomaticSpeedAbsolute = 8,
+        AutomaticDistanceNormalized = 9
+    };
+
     enum class FmodStudioLoadBankFlags : std::int64_t
     {
         Normal = 0,
@@ -413,8 +427,9 @@ namespace gm_structs
         double minimum;
         double maximum;
         double defaultvalue;
-        gm_enums::FmodStudioUserPropertyType type;
+        gm_enums::FmodStudioParameterType type;
         gm_enums::FmodStudioParameterFlags flags;
+        std::string guid;
     };
 
     struct FmodStudioStringInfo
@@ -625,6 +640,7 @@ namespace gm::wire::codec
         gm::wire::codec::writeValue(_buf, obj.defaultvalue);
         gm::wire::codec::writeValue(_buf, obj.type);
         gm::wire::codec::writeValue(_buf, obj.flags);
+        gm::wire::codec::writeValue(_buf, obj.guid);
     }
 
     template<>
@@ -637,8 +653,9 @@ namespace gm::wire::codec
         obj.minimum = gm::wire::codec::readValue<double>(_buf);
         obj.maximum = gm::wire::codec::readValue<double>(_buf);
         obj.defaultvalue = gm::wire::codec::readValue<double>(_buf);
-        obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioUserPropertyType>(_buf);
+        obj.type = gm::wire::codec::readValue<gm_enums::FmodStudioParameterType>(_buf);
         obj.flags = gm::wire::codec::readValue<gm_enums::FmodStudioParameterFlags>(_buf);
+        obj.guid = gm::wire::codec::readValue<std::string>(_buf);
         return obj;
     }
 

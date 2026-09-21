@@ -2158,6 +2158,125 @@
  * */
 
 /**
+ * @const FmodChannelControlCallbackType
+ * @desc > **FMOD Constant:** [FMOD_CHANNELCONTROL_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-channelcontrol.html#fmod_channelcontrol_callback_type)
+ *
+ * <br />
+ *
+ * This enum lists the types of callback a Channel or ChannelGroup raises through ${function.fmod_channel_control_set_callback}. The payload the callback receives with each type is described there.
+ * @member End Called when a sound ends. Channel only; this is the last callback that Channel raises.
+ * @member VirtualVoice Called when a Channel is made virtual or real. Channel only.
+ * @member SyncPoint Called when a sync point is encountered, from a wav file marker or one added with ${function.fmod_sound_add_sync_point}. Channel only.
+ * @member Occlusion Called when geometry occlusion values are calculated. Channel and ChannelGroup.
+ * @const_end
+ */
+
+/**
+ * @const FmodDspCallbackType
+ * @desc > **FMOD Constant:** [FMOD_DSP_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#fmod_dsp_callback_type)
+ *
+ * <br />
+ *
+ * This enum lists the types of callback a DSP raises through ${function.fmod_dsp_set_callback}.
+ * @member DataParameterRelease Called when a DSP's data parameter can be released. The callback receives a ${struct.FmodDSPDataParameterInfo}.
+ * @const_end
+ */
+
+/**
+ * @const FmodDspParameterDataType
+ * @desc > **FMOD Constant:** [FMOD_DSP_PARAMETER_DATA_TYPE](https://www.fmod.com/docs/2.03/api/plugin-api-dsp.html#fmod_dsp_parameter_data_type)
+ *
+ * <br />
+ *
+ * This enum lists the built-in data parameter types a DSP can expose, for use with ${function.fmod_dsp_get_data_parameter_index}. A DSP's own data parameters are `User`; the negative values are the types FMOD defines.
+ * @member User The default data type. All user data types should be 0 or above.
+ * @member OverallGain The data type for `FMOD_DSP_PARAMETER_OVERALLGAIN` parameters. There should be a maximum of one per DSP.
+ * @member _3DAttributes The data type for `FMOD_DSP_PARAMETER_3DATTRIBUTES` parameters. There should be a maximum of one per DSP.
+ * @member SideChain The data type for `FMOD_DSP_PARAMETER_SIDECHAIN` parameters. There should be a maximum of one per DSP.
+ * @member Fft The data type for `FMOD_DSP_PARAMETER_FFT` parameters. There should be a maximum of one per DSP.
+ * @member _3DAttributesMulti The data type for `FMOD_DSP_PARAMETER_3DATTRIBUTES_MULTI` parameters. There should be a maximum of one per DSP.
+ * @member AttenuationRange The data type for `FMOD_DSP_PARAMETER_ATTENUATION_RANGE` parameters. There should be a maximum of one per DSP.
+ * @member DynamicResponse The data type for `FMOD_DSP_PARAMETER_DYNAMIC_RESPONSE` parameters. There should be a maximum of one per DSP. Not present in FMOD 2.02, which the Switch build links; there the index query fails.
+ * @const_end
+ */
+
+/**
+ * @const FmodSystemCallbackType
+ * @desc > **FMOD Constant:** [FMOD_SYSTEM_CALLBACK_TYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_system_callback_type)
+ *
+ * <br />
+ *
+ * This enum is a bitfield of the notifications a Core System can raise. It is declared for the System callback API; the values are FMOD 2.03's.
+ * @member DeviceListChanged Called from ${function.fmod_system_update} when the enumerated list of devices has changed.
+ * @member DeviceLost Deprecated.
+ * @member MemoryAllocationFailed Called directly when a memory allocation fails.
+ * @member ThreadCreated Called from the game thread when a thread is created.
+ * @member BadDspConnection Deprecated.
+ * @member PreMix Called from the mixer thread before it starts the next block.
+ * @member PostMix Called from the mixer thread after it finishes a block.
+ * @member Error Called directly when an API function returns an error, including delayed async functions.
+ * @member ThreadDestroyed Called from the game thread when a thread is destroyed.
+ * @member PreUpdate Called at the start of ${function.fmod_system_update}.
+ * @member PostUpdate Called at the end of ${function.fmod_system_update}.
+ * @member RecordListChanged Called from ${function.fmod_system_update} when the enumerated list of recording devices has changed.
+ * @member BufferedNoMix Called from the feeder thread after audio was consumed from the ring buffer, but not enough to allow another mix to run.
+ * @member DeviceReinitialize Called from ${function.fmod_system_update} when an output device is re-initialized.
+ * @member OutputUnderrun Called from the mixer thread when the device output attempts to read more samples than are available in the output buffer.
+ * @member RecordPositionChanged Called from the mixer thread when the System record position changed.
+ * @member All Mask representing all callback types.
+ * @const_end
+ */
+
+/**
+ * @const FmodErrorCallbackInstanceType
+ * @desc > **FMOD Constant:** [FMOD_ERRORCALLBACK_INSTANCETYPE](https://www.fmod.com/docs/2.03/api/core-api-system.html#fmod_errorcallback_instancetype)
+ *
+ * <br />
+ *
+ * This enum identifies the type of object an error callback refers to.
+ * @member None No known instance type.
+ * @member System A System.
+ * @member Channel A Channel.
+ * @member ChannelGroup A ChannelGroup.
+ * @member ChannelControl A ChannelControl.
+ * @member Sound A Sound.
+ * @member SoundGroup A SoundGroup.
+ * @member Dsp A DSP.
+ * @member DspConnection A DSPConnection.
+ * @member Geometry A Geometry.
+ * @member Reverb3D A Reverb3D.
+ * @member StudioSystem A Studio System.
+ * @member StudioEventDescription A Studio EventDescription.
+ * @member StudioEventInstance A Studio EventInstance.
+ * @member StudioParameterInstance Deprecated.
+ * @member StudioBus A Studio Bus.
+ * @member StudioVca A Studio VCA.
+ * @member StudioBank A Studio Bank.
+ * @member StudioCommandReplay A Studio CommandReplay.
+ * @const_end
+ */
+
+/**
+ * @const FmodStudioParameterType
+ * @desc > **FMOD Constant:** [FMOD_STUDIO_PARAMETER_TYPE](https://www.fmod.com/docs/2.03/api/studio-api-common.html#fmod_studio_parameter_type)
+ *
+ * <br />
+ *
+ * This enum describes what drives a Studio parameter's value: the game, or one of the built-in automatic sources. It is the `type` of a ${struct.FmodStudioParameterDescription}.
+ * @member GameControlled API settable parameter.
+ * @member AutomaticDistance Distance between the event and the listener.
+ * @member AutomaticEventConeAngle Angle between the event's forward vector and the vector pointing from the event to the listener (0 to 180 degrees).
+ * @member AutomaticEventOrientation Horizontal angle between the event's forward vector and the listener's forward vector (-180 to 180 degrees).
+ * @member AutomaticDirection Horizontal angle between the listener's forward vector and the vector pointing from the listener to the event (-180 to 180 degrees).
+ * @member AutomaticElevation Angle between the listener's XZ plane and the vector pointing from the listener to the event (-90 to 90 degrees).
+ * @member AutomaticListenerOrientation Horizontal angle between the listener's forward vector and the global positive Z axis (-180 to 180 degrees).
+ * @member AutomaticSpeed Magnitude of the relative velocity of the event and the listener.
+ * @member AutomaticSpeedAbsolute Magnitude of the absolute velocity of the event.
+ * @member AutomaticDistanceNormalized Distance between the event and the listener, normalized to the event's minimum and maximum distance.
+ * @const_end
+ */
+
+/**
  * @module constants
  * @title Constants
  * @description These are the constants that you can use in the FMOD extension.
@@ -2184,6 +2303,11 @@
  * @ref FmodStudioSystemCallbackType
  * @ref FmodOpenState
  * @ref FmodChannelControlDspIndex
+ * @ref FmodChannelControlCallbackType
+ * @ref FmodDspCallbackType
+ * @ref FmodDspParameterDataType
+ * @ref FmodSystemCallbackType
+ * @ref FmodErrorCallbackInstanceType
  * @ref FmodDspConnectionType
  * @ref FmodTagType
  * @ref FmodTagDataType
@@ -2241,6 +2365,7 @@
  * @ref FmodStudioCommandReplayFlags
  * @ref FmodStudioLoadingState
  * @ref FmodStudioUserPropertyType
+ * @ref FmodStudioParameterType
  * @ref FmodStudioEventProperty
  * @ref FmodStudioPlaybackState
  * @ref FmodStudioStopMode

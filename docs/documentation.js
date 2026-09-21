@@ -742,6 +742,8 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
  *
  * [[Note: This function must be used in conjunction with `FmodMode._3DCustomRollOff` flag to be activated.]]
  *
+ * This curve, and the Sound-level one set with ${function.fmod_sound_set_3d_custom_rolloff}, are the two routes to a custom attenuation here. FMOD's `System::set3DRolloffCallback` is not wrapped: it has to return the attenuation synchronously per channel per update, which a GML callback cannot do.
+ *
  * If `FmodMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodMode._3DInverseTaperedRollOff` roll-off mode.
  *
  * When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.
@@ -1504,36 +1506,27 @@ function fmod_channel_control_get_fade_points(channel_control_ref) {}
  *
  * <br />
  *
- * This function enables the callback for ChannelControl level notifications.
- * 
- * [[Note: the ${event.social}'s ${var.async_load} will either hold a `channel_ref` or a `channel_group_ref`.]]
- * 
- * @param {Real} channel_ref A reference to a Channel or a ChannelGroup.
+ * This function sets the callback for ChannelControl level notifications on a Channel or a ChannelGroup.
+ *
+ * `End`, `VirtualVoice` and `SyncPoint` are raised by Channels only; `Occlusion` by both. `End` is the last callback a Channel raises - FMOD reuses the handle after it - and the callback is dropped with it. A ChannelGroup keeps its callback until ${function.fmod_channel_group_release}.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code. FMOD raises these from ${function.fmod_system_update} for a Core system, and from the Studio update thread for a system that Studio owns.
+ *
+ * [[Note: FMOD lets a synchronous host change the two occlusion values from inside the callback. A GML callback runs later, so here they are read-only; to alter occlusion, call ${function.fmod_channel_control_set_3d_occlusion}.]]
+ *
+ * @param {Real} channel_control_ref A reference to a Channel or a ChannelGroup.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
  * @returns {Real}
- * 
- * @event social
- * @desc When kind is one of `FMOD_CHANNELCONTROL_CALLBACK_TYPE.END`, `FMOD_CHANNELCONTROL_CALLBACK_TYPE.VIRTUALVOICE` or `FMOD_CHANNELCONTROL_CALLBACK_TYPE.SYNCPOINT`:
- * @member {String} type The string `"fmod_channel_control_set_callback"`
- * @member {Real} kind The kind of callback Matches FMOD's `FMOD_CHANNELCONTROL_CALLBACK_TYPE`.
- * @member {Real} channel_ref A reference to the channel.
- * @member {Real} channel_group_ref A reference to a channel group.
- * @member {Real} point_index If kind is `FMOD_CHANNELCONTROL_CALLBACK_TYPE.VIRTUALVOICE`, this is a value where 0 represents 'virtual to real' and 1 represents 'real to virtual'. If kind is `FMOD_CHANNELCONTROL_CALLBACK_TYPE.SYNCPOINT`, this is a value representing the index of the sync point for use with ${function.fmod_sound_get_sync_point}.
+ *
+ * @event callback
+ * @member {Real} channel_control_ref The reference this callback was set on - the Channel or the ChannelGroup.
+ * @member {Enum.FmodChannelControlCallbackType} type The callback type that fired.
+ * @member {Any} payload What FMOD passed with this type: `undefined` for `End`; for `VirtualVoice` a Real, `0` when the Channel went from virtual to real and `1` when it went from real to virtual; for `SyncPoint` the index of the sync point, for use with ${function.fmod_sound_get_sync_point}; for `Occlusion` a ${struct.FmodOcclusion} holding the calculated direct and reverb occlusion.
  * @event_end
- * 
- * @event social
- * @desc When kind is `FMOD_CHANNELCONTROL_CALLBACK_TYPE.OCCLUSION`: 
- * @member {String} type The string `"fmod_channel_control_set_callback"`
- * @member {Real} kind The kind of callback Matches FMOD's `FMOD_CHANNELCONTROL_CALLBACK_TYPE`.
- * @member {Real} channel_ref A reference to the channel.
- * @member {Real} channel_group_ref A reference to a channel group.
- * @member {Real} direct_occlusion A value that represents the calculated direct occlusion value.
- * @member {Real} reverb_occlusion A value that represents the calculated reverb occlusion value.
- * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_channel_control_set_callback(channel_control_ref) {}
+function fmod_channel_control_set_callback(channel_control_ref, callback) {}
 
 
 /**
@@ -1998,7 +1991,7 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
  * ${function.fmod_last_result} returns `FmodResult.Ok` if a parameter of matching type is found and `FmodResult.InvalidParam` if no matches were found.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
- * @param {Real} data_type The type of data to find. Typically of type `FMOD_DSP_PARAMETER_DATA_TYPE`.
+ * @param {Enum.FmodDspParameterDataType} data_type The type of data to find. `FmodDspParameterDataType.User` for a DSP's own data parameters, or one of the built-in types.
  * @returns {Real}
  * @function_end
  */
@@ -2543,24 +2536,25 @@ function fmod_dsp_get_user_data(dsp_ref) {}
  *
  * <br />
  *
- * This function enables DSP notifications for the given DSP.
- * 
- * When enabled, callbacks for this DSP will be triggered as an ${event.social}.
- * 
+ * This function sets the callback for DSP notifications on the given DSP.
+ *
+ * The only type FMOD raises today is `FmodDspCallbackType.DataParameterRelease`, when a data parameter previously set with ${function.fmod_dsp_set_parameter_data} may be released. This is not the realtime read callback; no audio processing happens on this path.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
  * @returns {Real}
- * 
- * @event social
- * @member {String} type The string `"fmod_dsp_set_callback"`.
- * @member {Real} kind The kind of DSP callback Matches FMOD's `FMOD_DSP_CALLBACK_TYPE`.
- * @member {Real} dsp_ref The DSP for which this callback is triggered.
- * @member {Real} parameter_index OPTIONAL The index of the DSP parameter that's released (only included when `kind` is `FMOD_DSP_CALLBACK_TYPE.DATAPARAMETERRELEASE`).
+ *
+ * @event callback
+ * @member {Real} dsp_ref The DSP that raised the callback.
+ * @member {Enum.FmodDspCallbackType} type The callback type that fired.
+ * @member {Struct.FmodDSPDataParameterInfo} info The data parameter this callback refers to, or `undefined` for a type that carries none.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_dsp_set_callback(dsp_ref) {}
+function fmod_dsp_set_callback(dsp_ref, callback) {}
 
 
 /**
@@ -5083,29 +5077,27 @@ function fmod_studio_command_replay_set_bank_path(command_replay_ref, path) {}
  *
  * <br />
  *
- * This function enables the create event instance callback, received in the Async Social event.
- * 
- * The create instance callback is invoked each time a ${function.fmod_studio_event_description_create_instance} command is processed.
- * 
- * The callback can either create a new event instance based on the callback parameters or skip creating the instance. If the instance is not created then subsequent commands for the event instance will be ignored in the replay.
- * 
- * If this callback is not set then the system will always create an event instance.
- * 
+ * This function sets a callback that is invoked each time a ${function.fmod_studio_event_description_create_instance} command is processed during the replay.
+ *
+ * FMOD expects the host to create the instance from inside this callback, and every later command for that instance addresses whatever the host created. A GML callback runs on the following frame, so it cannot answer in time; instead the extension creates the instance itself, exactly as FMOD does when no callback is set, and then calls your function with the result. The instance is always created; what you get is a notification of it, with the references you need to act on it.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} replay_ref A reference to a CommandReplay.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
  * @returns {Real}
- * 
- * @event social
- * @desc The Social Async event executed for the create event instance callback
- * @member {String} type The value `"fmod_studio_command_replay_set_create_instance_callback"`
- * @member {Real} command_replay_ref The handle of the Command Replay triggering this event
- * @member {Real} event_description_ref The handle of the event description associated with the newly created instance
- * @member {Real} event_instance_ref The handle of the created instance
+ *
+ * @event callback
+ * @member {Real} replay_ref The CommandReplay that raised the callback.
+ * @member {Real} command_index The index of the command being processed.
+ * @member {Real} event_description_ref The EventDescription the instance was created from.
+ * @member {Real} event_instance_ref The EventInstance the extension created, or `0` when creating it failed.
+ * @member {Enum.FmodStudioResult} result The result of creating the instance.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_studio_command_replay_set_create_instance_callback(command_replay_ref) {}
+function fmod_studio_command_replay_set_create_instance_callback(replay_ref, callback) {}
 
 
 /**
@@ -5114,23 +5106,23 @@ function fmod_studio_command_replay_set_create_instance_callback(command_replay_
  *
  * <br />
  *
- * This function enables a callback that is issued each time the replay reaches a new frame. This is received in the Async Social event.
- * 
+ * This function sets a callback that is issued each time the replay reaches a new frame.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} replay_ref A reference to a CommandReplay.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
  * @returns {Real}
- * 
- * @event social
- * @desc The Social Async event executed for the create event instance callback
- * @member {String} type  The value `"fmod_studio_command_replay_set_frame_callback"`
- * @member {Real} command_replay_ref The handle of the Command Replay triggering this event
- * @member {Real} command_index Current playback command index
- * @member {Real} current_time Current playback time
+ *
+ * @event callback
+ * @member {Real} replay_ref The CommandReplay that raised the callback.
+ * @member {Real} command_index The current playback command index.
+ * @member {Real} current_time The current playback time, in seconds.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
+function fmod_studio_command_replay_set_frame_callback(replay_ref, callback) {}
 
 
 /**
@@ -5139,33 +5131,29 @@ function fmod_studio_command_replay_set_frame_callback(command_replay_ref) {}
  *
  * <br />
  *
- * This function enables the bank loading callback, received in the Async Social event.
- * 
- * The load bank callback is invoked whenever any of the Studio load bank functions are reached.
- * 
- * This callback is required to be implemented to successfully replay ${function.fmod_studio_system_load_bank_memory} commands.
- * 
- * The callback is responsible for loading the bank based on the callback parameters. If the bank is not loaded subsequent commands which reference objects in the bank will fail.
- * 
- * If this callback is not set then the system will attempt to load banks from file according to recorded ${function.fmod_studio_system_load_bank_file} commands and skip other load commands.
- * 
+ * This function sets a callback that is invoked whenever the replay reaches one of the bank loading commands.
+ *
+ * FMOD expects the host to load the bank from inside this callback. A GML callback runs on the following frame, so it cannot answer in time; instead the extension loads the bank itself and then calls your function with the result. For a bank the capture recorded through ${function.fmod_studio_system_load_bank_file}, the extension loads the file FMOD names - with any ${function.fmod_studio_command_replay_set_bank_path} already applied - which is what FMOD does when no callback is set. A bank recorded through ${function.fmod_studio_system_load_bank_memory} arrives with no filename, only its GUID: the extension has no way to know which file holds it, so that load is answered with `FmodStudioResult.FileNotFound` and later commands that reference the bank fail, as they do in FMOD's own no-callback replay.
+ *
+ * The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.
+ *
  * @param {Real} replay_ref A reference to a CommandReplay.
  * @param {Function} [callback] The function to call when the callback fires. Omit it to clear the current callback.
  * @returns {Real}
- * 
- * @event social
- * @desc The Social Async event executed for the create event instance callback
- * @member {String} type  The value `"fmod_studio_command_replay_set_load_bank_callback"`
- * @member {Real} command_replay_ref The handle of the Command Replay triggering this event
- * @member {Real} command_index The command that involved this callback
- * @member {Real} bank_ref The bank loaded by this function
- * @member {Real} bank_guid The GUID of the bank that needs to be loaded
- * @member {Real} bank_filename The filename of the bank that needs to be loaded
+ *
+ * @event callback
+ * @member {Real} replay_ref The CommandReplay that raised the callback.
+ * @member {Real} command_index The index of the command being processed.
+ * @member {String} bank_guid The GUID of the bank, or `undefined` when the capture did not record one.
+ * @member {String} bank_filename The file the bank is loaded from, or `undefined` for a bank recorded from a memory load.
+ * @member {Enum.FmodStudioLoadBankFlags} flags The flags the bank was recorded as loading with.
+ * @member {Real} bank_ref The Bank the extension loaded, or `0` when loading it failed.
+ * @member {Enum.FmodStudioResult} result The result of loading the bank.
  * @event_end
- * 
+ *
  * @function_end
  */
-function fmod_studio_command_replay_set_load_bank_callback(command_replay_ref, path) {}
+function fmod_studio_command_replay_set_load_bank_callback(replay_ref, callback) {}
 
 
 /**
@@ -8258,30 +8246,6 @@ function fmod_system_get_3d_num_listeners() {}
 
 
 /**
- * @function fmod_system_set_3d_rolloff_callback
- * @desc > **FMOD Function:** [System::set3DRolloffCallback](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_set3drolloffcallback)
- *
- * <br />
- *
- * This function enables callbacks for custom calculation of distance attenuation.
- * 
- * This function overrides `FmodMode._3DInverseRollOff`, `FmodMode._3DLinearRollOff`, `FmodMode._3DLinearSquareRollOff`, `FmodMode._3DInverseTaperedRollOff` and `FmodMode._3DCustomRollOff`.
- * 
- * See also: [Callback behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
- * 
- * @event social
- * @member {String} type The string value `"fmod_system_set_3d_rolloff_callback"`.
- * @member {Real} distance The distance.
- * @member {Real} channel_ref The reference to the channel for which this event is triggered.
- * @event_end
- * @returns {Real}
- * 
- * @function_end
- */
-function fmod_system_set_3d_rolloff_callback() {}
-
-
-/**
  * @function fmod_system_set_network_proxy
  * @desc > **FMOD Function:** [System::setNetworkProxy](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setnetworkproxy)
  *
@@ -10360,7 +10324,6 @@ function fmod_studio_bus_get_master_bus() {}
  * @ref fmod_system_get_3d_settings
  * @ref fmod_system_set_3d_num_listeners
  * @ref fmod_system_get_3d_num_listeners
- * @ref fmod_system_set_3d_rolloff_callback
  * @ref fmod_system_set_network_proxy
  * @ref fmod_system_get_network_proxy
  * @ref fmod_system_set_network_timeout

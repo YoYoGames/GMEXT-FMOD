@@ -170,8 +170,10 @@ double fmod_channel_group_release(uint64_t channel_group_ref)
 
 	g_registries.channelGroups.unregister(channel_group);
 	// A ChannelGroup never gets FMOD_CHANNELCONTROL_CALLBACK_END, so this is the
-	// only point at which a custom rolloff copy it owns can be reclaimed.
+	// only point at which a custom rolloff copy it owns can be reclaimed - and
+	// the only point its callback entry is dropped.
 	fmod_channel_control_forget_rolloff(channel_group);
+	fmod_channel_control_forget_callback(channel_group);
 
 	// Adopted groups are owned elsewhere (Studio releases the bus or event
 	// instance that owns them), so releasing here would double-free.

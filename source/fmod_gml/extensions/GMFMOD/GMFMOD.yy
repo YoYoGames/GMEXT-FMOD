@@ -1470,21 +1470,6 @@
         },
         {
           "$GMExtensionFunction": "",
-          "%Name": "fmod_system_set_3d_rolloff_callback",
-          "argCount": 0,
-          "args": [],
-          "documentation": "@returns {Real}",
-          "externalName": "__EXT_NATIVE__fmod_system_set_3d_rolloff_callback",
-          "help": "",
-          "hidden": false,
-          "kind": 4,
-          "name": "fmod_system_set_3d_rolloff_callback",
-          "resourceType": "GMExtensionFunction",
-          "resourceVersion": "2.0",
-          "returnType": 2
-        },
-        {
-          "$GMExtensionFunction": "",
           "%Name": "fmod_system_mixer_suspend",
           "argCount": 0,
           "args": [],

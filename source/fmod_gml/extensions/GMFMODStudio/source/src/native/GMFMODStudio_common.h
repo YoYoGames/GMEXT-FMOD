@@ -73,6 +73,30 @@ inline FMOD::Studio::CommandReplay* resolve_fmod_studio_command_replay(uint64_t 
 }
 
 // ============================================================
+// Struct Conversion
+// ============================================================
+
+// Shared by the System and EventDescription getters, which both hand back the
+// same SDK struct. FMOD documents `name` as always set (its optional members
+// are marked Opt, and this one is not), so the null check only keeps
+// std::string away from a null pointer - it is not an absent value in disguise.
+inline gm_structs::FmodStudioParameterDescription convert_parameter_description(
+	const FMOD_STUDIO_PARAMETER_DESCRIPTION& desc)
+{
+	gm_structs::FmodStudioParameterDescription result{};
+	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
+	result.id_data1 = (double)desc.id.data1;
+	result.id_data2 = (double)desc.id.data2;
+	result.minimum = (double)desc.minimum;
+	result.maximum = (double)desc.maximum;
+	result.defaultvalue = (double)desc.defaultvalue;
+	result.type = (gm_enums::FmodStudioParameterType)(int)desc.type;
+	result.flags = (gm_enums::FmodStudioParameterFlags)(int)desc.flags;
+	result.guid = gmfmod::formatGuid(desc.guid);
+	return result;
+}
+
+// ============================================================
 // Callback Contexts
 // ============================================================
 
@@ -86,8 +110,12 @@ struct FmodEventCallback
 	FMOD_STUDIO_EVENT_CALLBACK_TYPE mask;
 };
 
+// The replay ref is stored at registration rather than packed on FMOD's
+// thread, the way every other callback entry here does it. The three slots
+// are set independently and an entry exists while any of them is.
 struct FmodCommandReplayCallbackContext
 {
+	uint64_t replay_ref = 0;
 	std::optional<gm::wire::GMFunction> frame_callback;
 	std::optional<gm::wire::GMFunction> create_instance_callback;
 	std::optional<gm::wire::GMFunction> load_bank_callback;

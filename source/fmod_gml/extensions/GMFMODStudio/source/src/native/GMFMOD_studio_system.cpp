@@ -743,20 +743,6 @@ double fmod_studio_system_set_parameter_by_name_with_label(std::string_view name
 // Studio System - Global Parameter Description
 // ============================================================
 
-static FmodStudioParameterDescription convert_parameter_description(const FMOD_STUDIO_PARAMETER_DESCRIPTION& desc)
-{
-	FmodStudioParameterDescription result{};
-	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
-	result.id_data1 = (double)desc.id.data1;
-	result.id_data2 = (double)desc.id.data2;
-	result.minimum = (double)desc.minimum;
-	result.maximum = (double)desc.maximum;
-	result.defaultvalue = (double)desc.defaultvalue;
-	result.type = (gm_enums::FmodStudioUserPropertyType)(int)desc.type;
-	result.flags = (gm_enums::FmodStudioParameterFlags)(int)desc.flags;
-	return result;
-}
-
 FmodStudioParameterDescription fmod_studio_system_get_parameter_description_by_id(double id_data1, double id_data2)
 {
 	FmodStudioParameterDescription result{};

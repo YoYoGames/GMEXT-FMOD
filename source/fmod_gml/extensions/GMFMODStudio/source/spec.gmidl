@@ -203,6 +203,21 @@ enum FmodStudioUserPropertyType
 }
 
 [global, bind = typed_gml]
+enum FmodStudioParameterType
+{
+	GameControlled = 0,
+	AutomaticDistance = 1,
+	AutomaticEventConeAngle = 2,
+	AutomaticEventOrientation = 3,
+	AutomaticDirection = 4,
+	AutomaticElevation = 5,
+	AutomaticListenerOrientation = 6,
+	AutomaticSpeed = 7,
+	AutomaticSpeedAbsolute = 8,
+	AutomaticDistanceNormalized = 9,
+}
+
+[global, bind = typed_gml]
 enum FmodStudioLoadBankFlags
 {
 	Normal = 0x00000000,
@@ -409,11 +424,14 @@ class `[[FmodStudioParameterDescription]]` prototype Object
     [field, type_hint=`real`]
     property defaultvalue: gmval { get; set; }
 
-    [field, type_hint=`FmodStudioUserPropertyType`]
+    [field, type_hint=`FmodStudioParameterType`]
     property type: gmval { get; set; }
 
     [field, type_hint=`FmodStudioParameterFlags`]
     property flags: gmval { get; set; }
+
+    [field, type_hint=`string`]
+    property guid: gmval { get; set; }
 }
 
 

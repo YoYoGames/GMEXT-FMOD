@@ -1121,13 +1121,6 @@ static jdouble __JNI_WRAPPER__fmod_system_set_3d_num_listeners_887316010779(JNIE
     return static_cast<jdouble>(__ret);
 }
 
-// fmod_system_set_3d_rolloff_callback JNI wrapper signature: ()D
-static jdouble __JNI_WRAPPER__fmod_system_set_3d_rolloff_callback_31F94C4CB578(JNIEnv* /* env */, jclass /* GMFMODBridge */)
-{
-    double __ret = __EXT_NATIVE__fmod_system_set_3d_rolloff_callback();
-    return static_cast<jdouble>(__ret);
-}
-
 // fmod_system_mixer_suspend JNI wrapper signature: ()D
 static jdouble __JNI_WRAPPER__fmod_system_mixer_suspend_FAE7B006D778(JNIEnv* /* env */, jclass /* GMFMODBridge */)
 {
@@ -4697,7 +4690,6 @@ extern "C" {
             { "__EXT_JNI__fmod_system_get_stream_buffer_size", "(Ljava/nio/ByteBuffer;D)D", (void*)__JNI_WRAPPER__fmod_system_get_stream_buffer_size_0AF31B1697AC },
             { "__EXT_JNI__fmod_system_get_3d_num_listeners", "()D", (void*)__JNI_WRAPPER__fmod_system_get_3d_num_listeners_57B9AFAF4E77 },
             { "__EXT_JNI__fmod_system_set_3d_num_listeners", "(D)D", (void*)__JNI_WRAPPER__fmod_system_set_3d_num_listeners_887316010779 },
-            { "__EXT_JNI__fmod_system_set_3d_rolloff_callback", "()D", (void*)__JNI_WRAPPER__fmod_system_set_3d_rolloff_callback_31F94C4CB578 },
             { "__EXT_JNI__fmod_system_mixer_suspend", "()D", (void*)__JNI_WRAPPER__fmod_system_mixer_suspend_FAE7B006D778 },
             { "__EXT_JNI__fmod_system_mixer_resume", "()D", (void*)__JNI_WRAPPER__fmod_system_mixer_resume_EFF924482C59 },
             { "__EXT_JNI__fmod_system_lock_dsp", "()D", (void*)__JNI_WRAPPER__fmod_system_lock_dsp_57536B325484 },

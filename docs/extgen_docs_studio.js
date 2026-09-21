@@ -1422,8 +1422,9 @@
  * @member {Real} minimum
  * @member {Real} maximum
  * @member {Real} defaultvalue
- * @member {Enum.FmodStudioUserPropertyType} type
+ * @member {Enum.FmodStudioParameterType} type
  * @member {Enum.FmodStudioParameterFlags} flags
+ * @member {String} guid
  * @struct_end
  */
 
@@ -1839,6 +1840,21 @@
  * @member Boolean
  * @member Float
  * @member String
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodStudioParameterType
+ * @member GameControlled
+ * @member AutomaticDistance
+ * @member AutomaticEventConeAngle
+ * @member AutomaticEventOrientation
+ * @member AutomaticDirection
+ * @member AutomaticElevation
+ * @member AutomaticListenerOrientation
+ * @member AutomaticSpeed
+ * @member AutomaticSpeedAbsolute
+ * @member AutomaticDistanceNormalized
  * @enum_end
  */
 

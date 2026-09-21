@@ -1173,21 +1173,6 @@ double fmod_system_set_3d_num_listeners(double num)
 	return 0;
 }
 
-double fmod_system_set_3d_rolloff_callback()
-{
-	FMOD::System* system = getCurrentSystem();
-	if (system == nullptr)
-	{
-		g_fmod_last_result = FMOD_ERR_INVALID_HANDLE;
-		return 0;
-	}
-
-	// The spec has no way to pass a custom rolloff function pointer through to GML,
-	// so this only supports clearing any previously-set custom rolloff callback.
-	g_fmod_last_result = system->set3DRolloffCallback(nullptr);
-	return 0;
-}
-
 // ============================================================
 // System - Mixer / DSP Lock
 // ============================================================

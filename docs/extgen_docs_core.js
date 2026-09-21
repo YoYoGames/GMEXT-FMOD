@@ -575,12 +575,6 @@
  */
 
 /**
- * @function_partial fmod_system_set_3d_rolloff_callback
- * @returns {Real}
- * @function_end
- */
-
-/**
  * @function_partial fmod_system_mixer_suspend
  * @returns {Real}
  * @function_end
@@ -1863,7 +1857,7 @@
 
 /**
  * @function_partial fmod_channel_control_set_callback
- * @param {Real} channel_ref
+ * @param {Real} channel_control_ref
  * @param {Function} [callback]
  * @returns {Real}
  * @function_end
@@ -1995,7 +1989,7 @@
 /**
  * @function_partial fmod_dsp_get_data_parameter_index
  * @param {Real} dsp_ref
- * @param {Real} data_type
+ * @param {Enum.FmodDspParameterDataType} data_type
  * @returns {Real}
  * @function_end
  */
@@ -2517,6 +2511,13 @@
  * @member {String} name
  * @member {String} label
  * @member {String} description
+ * @struct_end
+ */
+
+/**
+ * @struct_partial FmodDSPDataParameterInfo
+ * @member {Real} index
+ * @member {Real} length
  * @struct_end
  */
 
@@ -3805,6 +3806,80 @@
  * @member Head
  * @member Fader
  * @member Tail
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodChannelControlCallbackType
+ * @member End
+ * @member VirtualVoice
+ * @member SyncPoint
+ * @member Occlusion
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspCallbackType
+ * @member DataParameterRelease
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodDspParameterDataType
+ * @member User
+ * @member OverallGain
+ * @member _3DAttributes
+ * @member SideChain
+ * @member Fft
+ * @member _3DAttributesMulti
+ * @member AttenuationRange
+ * @member DynamicResponse
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodSystemCallbackType
+ * @member DeviceListChanged
+ * @member DeviceLost
+ * @member MemoryAllocationFailed
+ * @member ThreadCreated
+ * @member BadDspConnection
+ * @member PreMix
+ * @member PostMix
+ * @member Error
+ * @member ThreadDestroyed
+ * @member PreUpdate
+ * @member PostUpdate
+ * @member RecordListChanged
+ * @member BufferedNoMix
+ * @member DeviceReinitialize
+ * @member OutputUnderrun
+ * @member RecordPositionChanged
+ * @member All
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodErrorCallbackInstanceType
+ * @member None
+ * @member System
+ * @member Channel
+ * @member ChannelGroup
+ * @member ChannelControl
+ * @member Sound
+ * @member SoundGroup
+ * @member Dsp
+ * @member DspConnection
+ * @member Geometry
+ * @member Reverb3D
+ * @member StudioSystem
+ * @member StudioEventDescription
+ * @member StudioEventInstance
+ * @member StudioParameterInstance
+ * @member StudioBus
+ * @member StudioVca
+ * @member StudioBank
+ * @member StudioCommandReplay
  * @enum_end
  */
 

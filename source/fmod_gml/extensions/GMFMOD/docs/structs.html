@@ -1282,6 +1282,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmoddspdataparameterinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPDataParameterInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddspwetdrymix" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2129,6 +2140,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmoddspdataparameterinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodDSPDataParameterInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmoddspwetdrymix" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2854,6 +2876,7 @@ This happens in two situations:</p>
 <li><a href="structs.html#fmoddspmeteringenabled">FmodDSPMeteringEnabled</a></li>
 <li><a href="structs.html#fmoddspwetdrymix">FmodDSPWetDryMix</a></li>
 <li><a href="structs.html#fmoddspparameterinfo">FmodDSPParameterInfo</a></li>
+<li><a href="structs.html#fmoddspdataparameterinfo">FmodDSPDataParameterInfo</a></li>
 <li><a href="structs.html#fmodpolygonattributes">FmodPolygonAttributes</a></li>
 <li><a href="structs.html#fmodsoundlocklengths">FmodSoundLockLengths</a></li>
 <li><a href="structs.html#fmodstudioparametervalue">FmodStudioParameterValue</a></li>
@@ -3421,6 +3444,45 @@ This happens in two situations:</p>
 </table>
 <p>*/</p>
 <p>/**</p>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmoddspdataparameterinfo">FmodDSPDataParameterInfo<a class="headerlink" href="#fmoddspdataparameterinfo" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Struct:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html#fmod_dsp_data_parameter_info">FMOD_DSP_DATA_PARAMETER_INFO</a></p>
+</blockquote>
+<p>This struct describes the data parameter a DSP callback refers to. It arrives as the third argument of a DSP callback when <code>FmodDspCallbackType.DataParameterRelease</code> fires.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>FMOD's own struct also carries the pointer to the data. That is the memory FMOD is saying it has finished with, and there is nothing for GML to do with the address, so it is not carried.</p>
+</div>
+<p>This struct is referenced by the following functions:</p>
+<ul>
+<li><a href="dsp.html#fmod_dsp_set_callback">fmod_dsp_set_callback</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The index of the data parameter.</td>
+</tr>
+<tr>
+<td>length</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
+<td>The length of the data, in bytes.</td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 <hr />
 <p align="right"><a href="#top">Back To Top</a></p>
@@ -4996,12 +5058,12 @@ This happens in two situations:</p>
 <tr>
 <td>id_data1</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The parameter ID.</td>
+<td>The first half of the parameter ID, as passed to the by-ID functions.</td>
 </tr>
 <tr>
 <td>id_data2</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The minimum parameter value.</td>
+<td>The second half of the parameter ID.</td>
 </tr>
 <tr>
 <td>minimum</td>
@@ -5016,17 +5078,22 @@ This happens in two situations:</p>
 <tr>
 <td>defaultvalue</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The parameter type.</td>
+<td>The default parameter value.</td>
 </tr>
 <tr>
 <td>type</td>
-<td><a href="constants.html#fmodstudiouserpropertytype">FmodStudioUserPropertyType</a></td>
-<td>The parameter type.</td>
+<td><a href="constants.html#fmodstudioparametertype">FmodStudioParameterType</a></td>
+<td>The parameter type - what drives its value.</td>
 </tr>
 <tr>
 <td>flags</td>
 <td><a href="constants.html#fmodstudioparameterflags">FmodStudioParameterFlags</a></td>
 <td>The parameter behavior flags.</td>
+</tr>
+<tr>
+<td>guid</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
+<td>The parameter's GUID, in FMOD's <code>{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}</code> spelling.</td>
 </tr>
 </tbody>
 </table>

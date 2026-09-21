@@ -90,7 +90,6 @@ GMEXPORT double __EXT_NATIVE__fmod_system_get_file_usage(char* __ret_buffer, dou
 GMEXPORT double __EXT_NATIVE__fmod_system_get_stream_buffer_size(char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_system_get_3d_num_listeners();
 GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_num_listeners(double num);
-GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_rolloff_callback();
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_suspend();
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_resume();
 GMEXPORT double __EXT_NATIVE__fmod_system_lock_dsp();

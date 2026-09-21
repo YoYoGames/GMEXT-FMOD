@@ -132,15 +132,7 @@ FmodStudioParameterDescription fmod_studio_event_description_get_parameter_descr
 	g_fmod_studio_last_result = event_desc->getParameterDescriptionByName(name_str.c_str(), &desc);
 	if (g_fmod_studio_last_result != FMOD_OK) return result;
 
-	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
-	result.id_data1 = (double)desc.id.data1;
-	result.id_data2 = (double)desc.id.data2;
-	result.minimum = (double)desc.minimum;
-	result.maximum = (double)desc.maximum;
-	result.defaultvalue = (double)desc.defaultvalue;
-	result.type = (gm_enums::FmodStudioUserPropertyType)(int)desc.type;
-	result.flags = (gm_enums::FmodStudioParameterFlags)(int)desc.flags;
-	return result;
+	return convert_parameter_description(desc);
 }
 
 // ============================================================
@@ -579,20 +571,6 @@ double fmod_studio_event_description_get_user_property_count(uint64_t event_desc
 // ============================================================
 // Event Description - Parameter Introspection (by id / by index)
 // ============================================================
-
-static FmodStudioParameterDescription convert_parameter_description(const FMOD_STUDIO_PARAMETER_DESCRIPTION& desc)
-{
-	FmodStudioParameterDescription result{};
-	result.name = desc.name != nullptr ? std::string(desc.name) : std::string();
-	result.id_data1 = (double)desc.id.data1;
-	result.id_data2 = (double)desc.id.data2;
-	result.minimum = (double)desc.minimum;
-	result.maximum = (double)desc.maximum;
-	result.defaultvalue = (double)desc.defaultvalue;
-	result.type = (gm_enums::FmodStudioUserPropertyType)(int)desc.type;
-	result.flags = (gm_enums::FmodStudioParameterFlags)(int)desc.flags;
-	return result;
-}
 
 FmodStudioParameterDescription fmod_studio_event_description_get_parameter_description_by_id(
 	uint64_t event_desc_ref, double id_data1, double id_data2)

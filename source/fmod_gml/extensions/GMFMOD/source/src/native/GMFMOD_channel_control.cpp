@@ -831,16 +831,29 @@ int64_t fmod_channel_control_get_user_data(uint64_t channel_control_ref)
 // ============================================================
 
 // FMOD Core dispatches ChannelControl callbacks from System::update() on the
-// calling thread, so contention here is unlikely - but that is a property of
-// how FMOD schedules rather than anything this code enforces, and the map is
-// reachable from fmod_channel_control_set_callback on the game thread either
-// way. Lock it, and fire the GML callback only after the lock is released.
+// calling thread when the system is a Core one, and from the Studio update
+// thread when it is Studio's in async mode - and the map is reachable from
+// fmod_channel_control_set_callback on the game thread either way. Lock it,
+// and fire the GML callback only after the lock is released.
+//
+// The GML ref is stored beside the callback rather than rebuilt from the
+// FMOD_CHANNELCONTROL* on arrival: a Channel ref is the pointer, but a
+// ChannelGroup ref is a registry index, and touching the registry from FMOD's
+// thread would be a lock this code does not otherwise need. The map is keyed
+// by the full pointer for the same reason the DSP map is - a group is a heap
+// object, and truncating two of them can alias.
+struct FmodChannelCallbackEntry
+{
+	uint64_t ref = 0;
+	gm::wire::GMFunction callback;
+};
+
 static std::mutex g_channel_callback_mutex;
-static std::map<uintptr_t, gm::wire::GMFunction> g_channel_callbacks;
+static std::map<uintptr_t, FmodChannelCallbackEntry> g_channel_callbacks;
 
 static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	FMOD_CHANNELCONTROL* channelcontrol,
-	FMOD_CHANNELCONTROL_TYPE controltype,
+	FMOD_CHANNELCONTROL_TYPE /* controltype */,
 	FMOD_CHANNELCONTROL_CALLBACK_TYPE callbacktype,
 	void* commanddata1,
 	void* commanddata2)
@@ -848,40 +861,74 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_channel_control(
 	if (channelcontrol == nullptr)
 		return FMOD_OK;
 
-	// Keys are the truncated pointer the GML refs carry, so mask to match.
-	uintptr_t control_ptr = gmfmod::pointerKey(channelcontrol);
+	const uintptr_t control_key = reinterpret_cast<uintptr_t>(channelcontrol);
 	const bool ended = (callbacktype == FMOD_CHANNELCONTROL_CALLBACK_END);
 
-	std::optional<gm::wire::GMFunction> callback;
+	std::optional<FmodChannelCallbackEntry> entry;
 	{
 		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
-		auto it = g_channel_callbacks.find(control_ptr);
+		auto it = g_channel_callbacks.find(control_key);
 		if (it != g_channel_callbacks.end())
 		{
-			callback = it->second;
+			entry = it->second;
 
-			// The channel handle dies once playback ends; drop the entry so a
-			// recycled pointer does not inherit this callback.
+			// END is the last time this Channel pointer is valid and FMOD
+			// reuses it; drop the entry so a recycled pointer does not inherit
+			// this callback. A ChannelGroup never receives END, so its entry
+			// lives until fmod_channel_group_release forgets it.
 			if (ended)
 				g_channel_callbacks.erase(it);
 		}
 	}
 
 	// Runs whether or not GML registered a callback - set_3d_custom_rolloff arms
-	// this hook precisely so the rolloff copy gets an end-of-life signal.
+	// this hook precisely so the rolloff copy gets an end-of-life signal. The
+	// rolloff map keys on the truncated pointer the refs carry.
 	if (ended)
 	{
 		// The channel is gone, so FMOD is no longer reading the rolloff copy.
 		std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-		g_channel_rolloff.erase(control_ptr);
+		g_channel_rolloff.erase(gmfmod::pointerKey(channelcontrol));
 	}
 
-	if (callback.has_value())
+	if (!entry.has_value())
+		return FMOD_OK;
+
+	// (ref, type, payload): the payload is what FMOD_CHANNELCONTROL_CALLBACK_TYPE
+	// documents for commanddata1/2 - a bare int for VIRTUALVOICE (0 virtual to
+	// real, 1 real to virtual) and SYNCPOINT (the sync point index), the two
+	// occlusion floats for OCCLUSION, nothing for END. The occlusion values are
+	// in-out for a synchronous host; a queued GML call can only read them.
+	const uint64_t ref = entry.value().ref;
+	const double kind = (double)(int)callbacktype;
+	switch (callbacktype)
 	{
-		uint64_t channel_ref = gmfmod::packRef((uint32_t)control_ptr, gmfmod::RefType::Channel);
-		callback.value().call(channel_ref, (double)(int)callbacktype);
+		case FMOD_CHANNELCONTROL_CALLBACK_VIRTUALVOICE:
+		case FMOD_CHANNELCONTROL_CALLBACK_SYNCPOINT:
+			entry.value().callback.call(ref, kind, (double)(int)(intptr_t)commanddata1);
+			return FMOD_OK;
+		case FMOD_CHANNELCONTROL_CALLBACK_OCCLUSION:
+			if (commanddata1 != nullptr && commanddata2 != nullptr)
+			{
+				FmodOcclusion out{};
+				out.direct = (double)*(const float*)commanddata1;
+				out.reverb = (double)*(const float*)commanddata2;
+				entry.value().callback.call(ref, kind, out);
+				return FMOD_OK;
+			}
+			break;
+		default:
+			break;
 	}
+
+	entry.value().callback.call(ref, kind, std::optional<double>{});
 	return FMOD_OK;
+}
+
+void fmod_channel_control_forget_callback(const void* control)
+{
+	std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
+	g_channel_callbacks.erase(reinterpret_cast<uintptr_t>(control));
 }
 
 FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control)
@@ -900,19 +947,16 @@ void fmod_channel_control_reset_state()
 	g_channel_rolloff.clear();
 }
 
-double fmod_channel_control_set_callback(uint64_t channel_ref, const std::optional<gm::wire::GMFunction>& callback)
+double fmod_channel_control_set_callback(uint64_t channel_control_ref, const std::optional<gm::wire::GMFunction>& callback)
 {
-	FMOD::Channel* channel = resolve_fmod_channel(channel_ref);
-	if (channel == nullptr) return 0;
+	FMOD::ChannelControl* control = resolve_fmod_channel_control(channel_control_ref);
+	if (control == nullptr) return 0;
 
-	uintptr_t control_ptr = gmfmod::pointerKey(channel);
+	const uintptr_t control_key = reinterpret_cast<uintptr_t>(control);
 
 	if (!callback.has_value())
 	{
-		{
-			std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
-			g_channel_callbacks.erase(control_ptr);
-		}
+		fmod_channel_control_forget_callback(control);
 
 		// Keep the trampoline installed while this channel still has a rolloff
 		// copy to reclaim; clearing it would strip the only CALLBACK_END we get,
@@ -920,21 +964,21 @@ double fmod_channel_control_set_callback(uint64_t channel_ref, const std::option
 		bool keep_hook = false;
 		{
 			std::lock_guard<std::mutex> lock(g_channel_rolloff_mutex);
-			keep_hook = g_channel_rolloff.count(control_ptr) != 0;
+			keep_hook = g_channel_rolloff.count(gmfmod::pointerKey(control)) != 0;
 		}
-		g_fmod_last_result = channel->setCallback(keep_hook ? CALLBACK_fmod_channel_control : nullptr);
+		g_fmod_last_result = control->setCallback(keep_hook ? CALLBACK_fmod_channel_control : nullptr);
 		return 0;
 	}
 
+	FmodChannelCallbackEntry entry;
+	entry.ref = channel_control_ref;
+	entry.callback = callback.value();
 	{
 		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
-		g_channel_callbacks.insert_or_assign(control_ptr, callback.value());
+		g_channel_callbacks.insert_or_assign(control_key, entry);
 	}
-	g_fmod_last_result = channel->setCallback(CALLBACK_fmod_channel_control);
+	g_fmod_last_result = control->setCallback(CALLBACK_fmod_channel_control);
 	if (g_fmod_last_result != FMOD_OK)
-	{
-		std::lock_guard<std::mutex> lock(g_channel_callback_mutex);
-		g_channel_callbacks.erase(control_ptr);
-	}
+		fmod_channel_control_forget_callback(control);
 	return 0;
 }

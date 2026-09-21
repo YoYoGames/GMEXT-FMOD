@@ -336,10 +336,6 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_system_set_3d_num_listeners(num);
     }
-    public double __EXT_NATIVE__fmod_system_set_3d_rolloff_callback()
-    {
-        return __EXT_JNI__fmod_system_set_3d_rolloff_callback();
-    }
     public double __EXT_NATIVE__fmod_system_mixer_suspend()
     {
         return __EXT_JNI__fmod_system_mixer_suspend();

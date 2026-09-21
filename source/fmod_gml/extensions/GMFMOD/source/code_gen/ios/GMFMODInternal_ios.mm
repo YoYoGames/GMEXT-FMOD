@@ -412,10 +412,6 @@ static void GMInjectSelectorsIntoSubclass(Class subclass, Class base)
 {
     return __EXT_NATIVE__fmod_system_set_3d_num_listeners(num);
 }
-- (double)__EXT_NATIVE__fmod_system_set_3d_rolloff_callback
-{
-    return __EXT_NATIVE__fmod_system_set_3d_rolloff_callback();
-}
 - (double)__EXT_NATIVE__fmod_system_mixer_suspend
 {
     return __EXT_NATIVE__fmod_system_mixer_suspend();

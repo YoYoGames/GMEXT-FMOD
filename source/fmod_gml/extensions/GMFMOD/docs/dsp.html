@@ -2493,8 +2493,8 @@
 </tr>
 <tr>
 <td>data_type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The type of data to find. Typically of type <code>FMOD_DSP_PARAMETER_DATA_TYPE</code>.</td>
+<td><a href="constants.html#fmoddspparameterdatatype">FmodDspParameterDataType</a></td>
+<td>The type of data to find. <code>FmodDspParameterDataType.User</code> for a DSP's own data parameters, or one of the built-in types.</td>
 </tr>
 </tbody>
 </table>
@@ -3798,9 +3798,10 @@ Note that no new call to the function is made since this code executes in the St
 <p><strong>FMOD Function:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-dsp.html#dsp_setcallback">DSP::setCallback</a></p>
 </blockquote>
 <p><br /></p>
-<p>This function enables DSP notifications for the given DSP.</p>
-<p>When enabled, callbacks for this DSP will be triggered as an <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
-<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
+<p>This function sets the callback for DSP notifications on the given DSP.</p>
+<p>The only type FMOD raises today is <code>FmodDspCallbackType.DataParameterRelease</code>, when a data parameter previously set with <a href="dsp.html#fmod_dsp_set_parameter_data">fmod_dsp_set_parameter_data</a> may be released. This is not the realtime read callback; no audio processing happens on this path.</p>
+<p>The callback runs on the frame after FMOD raised it, on the same thread as the rest of your game code.</p>
+<p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3835,7 +3836,7 @@ Note that no new call to the function is made since this code executes in the St
 <p><br></p>
 <p><strong>Triggers:</strong></p>
 <blockquote>
-<p><a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a></p>
+<p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Method_Variables.htm">Callback</a></p>
 </blockquote>
 <table>
 <thead>
@@ -3847,24 +3848,19 @@ Note that no new call to the function is made since this code executes in the St
 </thead>
 <tbody>
 <tr>
-<td>type</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The string <code>"fmod_dsp_set_callback"</code>.</td>
-</tr>
-<tr>
-<td>kind</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The kind of DSP callback Matches FMOD's <code>FMOD_DSP_CALLBACK_TYPE</code>.</td>
-</tr>
-<tr>
 <td>dsp_ref</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The DSP for which this callback is triggered.</td>
+<td>The DSP that raised the callback.</td>
 </tr>
 <tr>
-<td>parameter_index</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>OPTIONAL The index of the DSP parameter that's released (only included when <code>kind</code> is <code>FMOD_DSP_CALLBACK_TYPE.DATAPARAMETERRELEASE</code>).</td>
+<td>type</td>
+<td><a href="constants.html#fmoddspcallbacktype">FmodDspCallbackType</a></td>
+<td>The callback type that fired.</td>
+</tr>
+<tr>
+<td>info</td>
+<td><a href="structs.html#fmoddspdataparameterinfo">FmodDSPDataParameterInfo</a></td>
+<td>The data parameter this callback refers to, or <code>undefined</code> for a type that carries none.</td>
 </tr>
 </tbody>
 </table>

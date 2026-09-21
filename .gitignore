@@ -33,7 +33,9 @@ source/fmod_gml/extensions/**/Fmod Studio/
 
 # Console binaries. pre_build_step builds them from source/ at game-build time and the
 # generated cmake/<platform>/extgen_post_build.cmake drops them next to the .yy - never
-# committed, same as the staged FMOD runtimes above.
+# committed, same as the staged FMOD runtimes above. metadata.json's postRemovals carries
+# the same globs (minus the source/fmod_gml/ prefix) so the package strips them too - a
+# product renamed here is renamed there in the same change.
 source/fmod_gml/extensions/**/*_xboxone.dll
 source/fmod_gml/extensions/**/*_xboxseriesxs.dll
 source/fmod_gml/extensions/**/*.prx

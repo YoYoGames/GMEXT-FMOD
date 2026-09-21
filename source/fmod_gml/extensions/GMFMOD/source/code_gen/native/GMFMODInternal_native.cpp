@@ -926,12 +926,6 @@ GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_num_listeners(double num)
     return static_cast<double>(__result);
 }
 
-GMEXPORT double __EXT_NATIVE__fmod_system_set_3d_rolloff_callback()
-{
-    auto&& __result = fmod_system_set_3d_rolloff_callback();
-    return static_cast<double>(__result);
-}
-
 GMEXPORT double __EXT_NATIVE__fmod_system_mixer_suspend()
 {
     auto&& __result = fmod_system_mixer_suspend();
@@ -3369,8 +3363,8 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_callback(char* __arg_buff
 {
     gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
 
-    // field: channel_ref, type: UInt64
-    std::uint64_t channel_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
+    // field: channel_control_ref, type: UInt64
+    std::uint64_t channel_control_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
     // field: callback, type: optional<Function>
     std::optional<gm::wire::GMFunction> callback = std::nullopt;
@@ -3379,7 +3373,7 @@ GMEXPORT double __EXT_NATIVE__fmod_channel_control_set_callback(char* __arg_buff
         callback = gm::wire::codec::readFunction(__br, &__dispatch_queue);
     }
 
-    auto&& __result = fmod_channel_control_set_callback(channel_ref, callback);
+    auto&& __result = fmod_channel_control_set_callback(channel_control_ref, callback);
     return static_cast<double>(__result);
 }
 
@@ -3630,8 +3624,8 @@ GMEXPORT double __EXT_NATIVE__fmod_dsp_get_data_parameter_index(char* __arg_buff
     // field: dsp_ref, type: UInt64
     std::uint64_t dsp_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: data_type, type: Float64
-    double data_type = gm::wire::codec::readValue<double>(__br);
+    // field: data_type, type: enum FmodDspParameterDataType
+    gm_enums::FmodDspParameterDataType data_type = gm::wire::codec::readValue<gm_enums::FmodDspParameterDataType>(__br);
 
     auto&& __result = fmod_dsp_get_data_parameter_index(dsp_ref, data_type);
     return static_cast<double>(__result);

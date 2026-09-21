@@ -100,7 +100,6 @@ public final class GMFMODBridge {
     public static native double __EXT_JNI__fmod_system_get_stream_buffer_size(ByteBuffer __ret_buffer, double __ret_buffer_length);
     public static native double __EXT_JNI__fmod_system_get_3d_num_listeners();
     public static native double __EXT_JNI__fmod_system_set_3d_num_listeners(double num);
-    public static native double __EXT_JNI__fmod_system_set_3d_rolloff_callback();
     public static native double __EXT_JNI__fmod_system_mixer_suspend();
     public static native double __EXT_JNI__fmod_system_mixer_resume();
     public static native double __EXT_JNI__fmod_system_lock_dsp();

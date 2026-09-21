@@ -994,6 +994,84 @@ enum FmodChannelControlDspIndex
 }
 
 [global, bind = typed_gml]
+enum FmodChannelControlCallbackType
+{
+	End = 0,
+	VirtualVoice = 1,
+	SyncPoint = 2,
+	Occlusion = 3,
+}
+
+[global, bind = typed_gml]
+enum FmodDspCallbackType
+{
+	DataParameterRelease = 0,
+}
+
+[global, bind = typed_gml]
+enum FmodDspParameterDataType
+{
+	User = 0,
+	OverallGain = -1,
+	_3DAttributes = -2,
+	SideChain = -3,
+	Fft = -4,
+	_3DAttributesMulti = -5,
+	AttenuationRange = -6,
+	DynamicResponse = -7,
+}
+
+// FMOD_SYSTEM_CALLBACK_* at their 2.03 values. The Switch SDK is 2.02.19, which
+// still has FMOD_SYSTEM_CALLBACK_MIDMIX = 0x100 and so carries every flag from
+// ThreadDestroyed onwards one bit higher; a mask must be translated flag by flag
+// through the SDK's own constants, never cast.
+[global, bind = typed_gml]
+enum FmodSystemCallbackType
+{
+	DeviceListChanged = 0x00000001,
+	DeviceLost = 0x00000002,
+	MemoryAllocationFailed = 0x00000004,
+	ThreadCreated = 0x00000008,
+	BadDspConnection = 0x00000010,
+	PreMix = 0x00000020,
+	PostMix = 0x00000040,
+	Error = 0x00000080,
+	ThreadDestroyed = 0x00000100,
+	PreUpdate = 0x00000200,
+	PostUpdate = 0x00000400,
+	RecordListChanged = 0x00000800,
+	BufferedNoMix = 0x00001000,
+	DeviceReinitialize = 0x00002000,
+	OutputUnderrun = 0x00004000,
+	RecordPositionChanged = 0x00008000,
+	All = 0xFFFFFFFF,
+}
+
+[global, bind = typed_gml]
+enum FmodErrorCallbackInstanceType
+{
+	None = 0,
+	System = 1,
+	Channel = 2,
+	ChannelGroup = 3,
+	ChannelControl = 4,
+	Sound = 5,
+	SoundGroup = 6,
+	Dsp = 7,
+	DspConnection = 8,
+	Geometry = 9,
+	Reverb3D = 10,
+	StudioSystem = 11,
+	StudioEventDescription = 12,
+	StudioEventInstance = 13,
+	StudioParameterInstance = 14,
+	StudioBus = 15,
+	StudioVca = 16,
+	StudioBank = 17,
+	StudioCommandReplay = 18,
+}
+
+[global, bind = typed_gml]
 enum FmodOpenState
 {
 	Ready = 0,
@@ -1270,6 +1348,19 @@ class `[[FmodDSPParameterInfo]]` prototype Object
 
     [field, type_hint=`string`]
     property description: gmval { get; set; }
+}
+
+// FMOD_DSP_DATA_PARAMETER_INFO minus its data pointer - what the DSP callback
+// carries for DataParameterRelease. FMOD is saying the memory may now be freed,
+// so there is nothing for GML in the pointer itself.
+[global]
+class `[[FmodDSPDataParameterInfo]]` prototype Object
+{
+    [field, type_hint=`real`]
+    property index: gmval { get; set; }
+
+    [field, type_hint=`real`]
+    property length: gmval { get; set; }
 }
 
 [global]
@@ -2305,9 +2396,6 @@ function fmod_system_get_3d_num_listeners(): real;
 function fmod_system_set_3d_num_listeners(
     num: real
 ): real;
-
-[global, bind = typed_gml]
-function fmod_system_set_3d_rolloff_callback(): real;
 
 [global, bind = typed_gml]
 function fmod_system_mixer_suspend(): real;
@@ -3427,7 +3515,7 @@ function fmod_channel_control_get_dsp_clock(
 
 [global, bind = typed_gml]
 function fmod_channel_control_set_callback(
-    [type_hint=`uint64`] channel_ref: gmval,
+    [type_hint=`uint64`] channel_control_ref: gmval,
     [type_hint=`func?`] callback: gmval
 ): real;
 
@@ -3555,7 +3643,7 @@ function fmod_dsp_disconnect_from(
 [global, bind = typed_gml]
 function fmod_dsp_get_data_parameter_index(
     [type_hint=`uint64`] dsp_ref: gmval,
-    data_type: real
+    [type_hint=`FmodDspParameterDataType`] data_type: gmval
 ): real;
 
 [global, bind = typed_gml]

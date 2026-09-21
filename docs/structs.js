@@ -711,13 +711,14 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * This struct describes an event parameter.
  * 
  * @member {String} name The parameter name.
- * @member {Real} id_data1 The parameter ID.
- * @member {Real} id_data2 The minimum parameter value.
+ * @member {Real} id_data1 The first half of the parameter ID, as passed to the by-ID functions.
+ * @member {Real} id_data2 The second half of the parameter ID.
  * @member {Real} minimum The minimum parameter value.
  * @member {Real} maximum The maximum parameter value.
- * @member {Real} defaultvalue The parameter type.
- * @member {Enum.FmodStudioUserPropertyType} type The parameter type.
+ * @member {Real} defaultvalue The default parameter value.
+ * @member {Enum.FmodStudioParameterType} type The parameter type - what drives its value.
  * @member {Enum.FmodStudioParameterFlags} flags The parameter behavior flags.
+ * @member {String} guid The parameter's GUID, in FMOD's `{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}` spelling.
  * @struct_end
  * */
 
@@ -807,6 +808,19 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  */
 
 /**
+ * @struct FmodDSPDataParameterInfo
+ * @desc > **FMOD Struct:** [FMOD_DSP_DATA_PARAMETER_INFO](https://www.fmod.com/docs/2.03/api/core-api-dsp.html#fmod_dsp_data_parameter_info)
+ *
+ * This struct describes the data parameter a DSP callback refers to. It arrives as the third argument of a DSP callback when `FmodDspCallbackType.DataParameterRelease` fires.
+ *
+ * [[Note: FMOD's own struct also carries the pointer to the data. That is the memory FMOD is saying it has finished with, and there is nothing for GML to do with the address, so it is not carried.]]
+ *
+ * @member {Real} index The index of the data parameter.
+ * @member {Real} length The length of the data, in bytes.
+ * @struct_end
+ */
+
+/**
  * @module structs
  * @title Structs
  * @desc This module contains the structs used by the FMOD extension.
@@ -884,6 +898,7 @@ False: Polygon is single-sided, and the winding of the polygon (which determines
  * @ref FmodDSPMeteringEnabled
  * @ref FmodDSPWetDryMix
  * @ref FmodDSPParameterInfo
+ * @ref FmodDSPDataParameterInfo
  * @ref FmodPolygonAttributes
  * @ref FmodSoundLockLengths
  * @ref FmodStudioParameterValue

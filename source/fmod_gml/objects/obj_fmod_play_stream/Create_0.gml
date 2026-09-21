@@ -22,10 +22,11 @@ var play_this_sound = fmod_sound_get_sub_sound(sound_index, 0)
 channel_index = fmod_system_play_sound(play_this_sound, fmod_system_get_master_channel_group(), false)
 
 // Channel callbacks fire from fmod_system_update(). The callback receives the
-// channel that raised it and the raw FMOD_CHANNELCONTROL_CALLBACK_TYPE value
-// (0 = End, 1 = Virtual Voice, 2 = Sync Point, 3 = Occlusion).
-fmod_channel_control_set_callback(channel_index, function(_channel, _callback_type)
+// ref it was set on, a FmodChannelControlCallbackType, and that type's payload
+// (undefined for End, 0/1 for VirtualVoice, the sync point index for SyncPoint,
+// a FmodOcclusion struct for Occlusion).
+fmod_channel_control_set_callback(channel_index, function(_channel_control, _type, _payload)
 {
-	show_debug_message($"[fmod] stream channel callback, type {_callback_type}");
+	show_debug_message($"[fmod] stream channel callback, type {_type}, payload {_payload}");
 });
 

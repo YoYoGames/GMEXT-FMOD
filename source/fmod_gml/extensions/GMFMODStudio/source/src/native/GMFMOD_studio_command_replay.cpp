@@ -26,80 +26,122 @@ void fmod_studio_command_replay_reset_state()
 // Native Callback Handlers
 // ============================================================
 
-static FMOD_RESULT CALLBACK_fmod_studio_command_replay_frame(
-	FMOD_STUDIO_COMMANDREPLAY* replay, int command_index, float current_time, void* userdata)
+// The Studio update thread fires these while the game thread sets them, so
+// the context is copied out under the lock and used after it is released.
+static std::optional<FmodCommandReplayCallbackContext> command_replay_context(
+	FMOD_STUDIO_COMMANDREPLAY* replay)
 {
-	if (!replay) return FMOD_OK;
+	std::lock_guard<std::mutex> lock(g_command_replay_callback_mutex);
+	auto it = g_command_replay_callbacks.find(reinterpret_cast<uintptr_t>(replay));
+	if (it == g_command_replay_callbacks.end()) return std::nullopt;
+	return it->second;
+}
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto it = g_command_replay_callbacks.find(replay_ptr);
-	if (it != g_command_replay_callbacks.end() && it->second.frame_callback)
-	{
-		uint64_t replay_ref = 0;
-		replay_ref = gmfmod::packRef((uint32_t)replay_ptr, gmfmod::RefType::StudioCommandReplay);
+static FMOD_RESULT F_CALL CALLBACK_fmod_studio_command_replay_frame(
+	FMOD_STUDIO_COMMANDREPLAY* replay, int command_index, float current_time, void* /* userdata */)
+{
+	if (replay == nullptr) return FMOD_OK;
 
-		it->second.frame_callback.value().call(
-			replay_ref,
-			(double)command_index,
-			(double)current_time
-		);
-	}
+	std::optional<FmodCommandReplayCallbackContext> ctx = command_replay_context(replay);
+	if (!ctx.has_value() || !ctx->frame_callback.has_value()) return FMOD_OK;
+
+	ctx->frame_callback.value().call(
+		ctx->replay_ref,
+		(double)command_index,
+		(double)current_time
+	);
 	return FMOD_OK;
 }
 
-static FMOD_RESULT CALLBACK_fmod_studio_command_replay_create_instance(
+// FMOD is asking the host to create the instance: what it gets back in
+// *event_instance is what the rest of the replay addresses, and a null there
+// silences every later command for that instance. A queued GML call cannot
+// answer, so this does what FMOD does when no callback is set - creates the
+// instance - and GML is told what was created, and whether it worked.
+static FMOD_RESULT F_CALL CALLBACK_fmod_studio_command_replay_create_instance(
 	FMOD_STUDIO_COMMANDREPLAY* replay,
 	int command_index,
 	FMOD_STUDIO_EVENTDESCRIPTION* event_description,
 	FMOD_STUDIO_EVENTINSTANCE** event_instance,
-	void* userdata)
+	void* /* userdata */)
 {
-	if (!replay || !event_description) return FMOD_OK;
+	if (replay == nullptr || event_description == nullptr || event_instance == nullptr) return FMOD_OK;
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto it = g_command_replay_callbacks.find(replay_ptr);
-	if (it != g_command_replay_callbacks.end() && it->second.create_instance_callback)
-	{
-		uint64_t replay_ref = 0;
-		replay_ref = gmfmod::packRef((uint32_t)replay_ptr, gmfmod::RefType::StudioCommandReplay);
+	FMOD::Studio::EventInstance* created = nullptr;
+	FMOD_RESULT result = ((FMOD::Studio::EventDescription*)event_description)->createInstance(&created);
+	*event_instance = (FMOD_STUDIO_EVENTINSTANCE*)created;
 
-		uint64_t desc_ref = 0;
-		desc_ref = fmod_pointer_ref(event_description, gmfmod::RefType::StudioEventDescription);
+	std::optional<FmodCommandReplayCallbackContext> ctx = command_replay_context(replay);
+	if (!ctx.has_value() || !ctx->create_instance_callback.has_value()) return FMOD_OK;
 
-		it->second.create_instance_callback.value().call(
-			replay_ref,
-			(double)command_index,
-			desc_ref
-		);
-	}
+	// Refs packed from the pointer rather than through fmod_pointer_ref, which
+	// would write the status slot from Studio's thread.
+	uint64_t desc_ref = gmfmod::packRef(gmfmod::pointerKey(event_description), gmfmod::RefType::StudioEventDescription);
+	uint64_t instance_ref = created != nullptr
+		? gmfmod::packRef(gmfmod::pointerKey(created), gmfmod::RefType::StudioEventInstance)
+		: 0;
+
+	ctx->create_instance_callback.value().call(
+		ctx->replay_ref,
+		(double)command_index,
+		desc_ref,
+		instance_ref,
+		(double)(int)result
+	);
 	return FMOD_OK;
 }
 
-static FMOD_RESULT CALLBACK_fmod_studio_command_replay_load_bank(
+// Same shape: the host loads the bank, FMOD reads *bank. bank_filename is what
+// FMOD would have opened itself - setBankPath is already applied by the time
+// the callback runs (probed against the vendored 2.03.06 SDK on 2026-09-21), so
+// it is loaded verbatim. A bank recorded from loadBankMemory arrives with no
+// filename; the extension cannot know which file holds it, so that load is
+// answered FILE_NOTFOUND, which is what FMOD's own no-callback path does
+// with those commands - the difference is that GML now hears about it.
+// bank_guid and bank_filename are both optional in FMOD's contract, and go
+// out as undefined rather than as an empty string when absent.
+static FMOD_RESULT F_CALL CALLBACK_fmod_studio_command_replay_load_bank(
 	FMOD_STUDIO_COMMANDREPLAY* replay,
 	int command_index,
 	const FMOD_GUID* bank_guid,
 	const char* bank_filename,
 	FMOD_STUDIO_LOAD_BANK_FLAGS flags,
 	FMOD_STUDIO_BANK** bank,
-	void* userdata)
+	void* /* userdata */)
 {
-	if (!replay) return FMOD_OK;
+	if (replay == nullptr || bank == nullptr) return FMOD_OK;
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto it = g_command_replay_callbacks.find(replay_ptr);
-	if (it != g_command_replay_callbacks.end() && it->second.load_bank_callback)
+	FMOD::Studio::Bank* loaded = nullptr;
+	FMOD_RESULT result = FMOD_ERR_FILE_NOTFOUND;
+	if (bank_filename != nullptr)
 	{
-		uint64_t replay_ref = 0;
-		replay_ref = gmfmod::packRef((uint32_t)replay_ptr, gmfmod::RefType::StudioCommandReplay);
-
-		it->second.load_bank_callback.value().call(
-			replay_ref,
-			(double)command_index,
-			std::string(bank_filename ? bank_filename : ""),
-			(double)flags
-		);
+		FMOD::Studio::System* system = nullptr;
+		result = ((FMOD::Studio::CommandReplay*)replay)->getSystem(&system);
+		if (result == FMOD_OK && system != nullptr)
+			result = system->loadBankFile(bank_filename, flags, &loaded);
 	}
+	*bank = (FMOD_STUDIO_BANK*)loaded;
+
+	std::optional<FmodCommandReplayCallbackContext> ctx = command_replay_context(replay);
+	if (!ctx.has_value() || !ctx->load_bank_callback.has_value()) return FMOD_OK;
+
+	std::optional<std::string> guid;
+	if (bank_guid != nullptr) guid = gmfmod::formatGuid(*bank_guid);
+	std::optional<std::string> filename;
+	if (bank_filename != nullptr) filename = std::string(bank_filename);
+	uint64_t bank_ref = loaded != nullptr
+		? gmfmod::packRef(gmfmod::pointerKey(loaded), gmfmod::RefType::StudioBank)
+		: 0;
+
+	ctx->load_bank_callback.value().call(
+		ctx->replay_ref,
+		(double)command_index,
+		guid,
+		filename,
+		(double)flags,
+		bank_ref,
+		(double)(int)result
+	);
 	return FMOD_OK;
 }
 
@@ -155,6 +197,24 @@ double fmod_studio_command_replay_release(uint64_t replay_ref)
 	return 0;
 }
 
+// Writes one slot of the replay's context under the lock, dropping the entry
+// when its last slot is cleared so a released-and-recycled pointer does not
+// inherit it.
+static void command_replay_set_slot(
+	FMOD::Studio::CommandReplay* replay,
+	uint64_t replay_ref,
+	std::optional<gm::wire::GMFunction> FmodCommandReplayCallbackContext::* slot,
+	const std::optional<gm::wire::GMFunction>& callback)
+{
+	std::lock_guard<std::mutex> lock(g_command_replay_callback_mutex);
+	const uintptr_t key = reinterpret_cast<uintptr_t>(replay);
+	FmodCommandReplayCallbackContext& ctx = g_command_replay_callbacks[key];
+	ctx.replay_ref = replay_ref;
+	ctx.*slot = callback;
+	if (!ctx.frame_callback && !ctx.create_instance_callback && !ctx.load_bank_callback)
+		g_command_replay_callbacks.erase(key);
+}
+
 double fmod_studio_command_replay_set_frame_callback(
 	uint64_t replay_ref,
 	const std::optional<gm::wire::GMFunction>& callback)
@@ -162,18 +222,9 @@ double fmod_studio_command_replay_set_frame_callback(
 	FMOD::Studio::CommandReplay* replay = resolve_fmod_studio_command_replay(replay_ref);
 	if (replay == nullptr) return 0;
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto& ctx = g_command_replay_callbacks[replay_ptr];
-	ctx.frame_callback = callback;
-
-	if (callback)
-	{
-		g_fmod_studio_last_result = replay->setFrameCallback(&CALLBACK_fmod_studio_command_replay_frame);
-	}
-	else
-	{
-		g_fmod_studio_last_result = replay->setFrameCallback(nullptr);
-	}
+	command_replay_set_slot(replay, replay_ref, &FmodCommandReplayCallbackContext::frame_callback, callback);
+	g_fmod_studio_last_result = replay->setFrameCallback(
+		callback.has_value() ? &CALLBACK_fmod_studio_command_replay_frame : nullptr);
 	return 0;
 }
 
@@ -184,18 +235,9 @@ double fmod_studio_command_replay_set_create_instance_callback(
 	FMOD::Studio::CommandReplay* replay = resolve_fmod_studio_command_replay(replay_ref);
 	if (replay == nullptr) return 0;
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto& ctx = g_command_replay_callbacks[replay_ptr];
-	ctx.create_instance_callback = callback;
-
-	if (callback)
-	{
-		g_fmod_studio_last_result = replay->setCreateInstanceCallback(&CALLBACK_fmod_studio_command_replay_create_instance);
-	}
-	else
-	{
-		g_fmod_studio_last_result = replay->setCreateInstanceCallback(nullptr);
-	}
+	command_replay_set_slot(replay, replay_ref, &FmodCommandReplayCallbackContext::create_instance_callback, callback);
+	g_fmod_studio_last_result = replay->setCreateInstanceCallback(
+		callback.has_value() ? &CALLBACK_fmod_studio_command_replay_create_instance : nullptr);
 	return 0;
 }
 
@@ -206,18 +248,9 @@ double fmod_studio_command_replay_set_load_bank_callback(
 	FMOD::Studio::CommandReplay* replay = resolve_fmod_studio_command_replay(replay_ref);
 	if (replay == nullptr) return 0;
 
-	uintptr_t replay_ptr = reinterpret_cast<uintptr_t>(replay);
-	auto& ctx = g_command_replay_callbacks[replay_ptr];
-	ctx.load_bank_callback = callback;
-
-	if (callback)
-	{
-		g_fmod_studio_last_result = replay->setLoadBankCallback(&CALLBACK_fmod_studio_command_replay_load_bank);
-	}
-	else
-	{
-		g_fmod_studio_last_result = replay->setLoadBankCallback(nullptr);
-	}
+	command_replay_set_slot(replay, replay_ref, &FmodCommandReplayCallbackContext::load_bank_callback, callback);
+	g_fmod_studio_last_result = replay->setLoadBankCallback(
+		callback.has_value() ? &CALLBACK_fmod_studio_command_replay_load_bank : nullptr);
 	return 0;
 }
 // ============================================================

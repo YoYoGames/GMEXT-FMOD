@@ -195,13 +195,16 @@ void fmod_dsp_disconnect_from(uint64_t dsp_ref, uint64_t target_dsp)
 // DSP - Parameter Data
 // ============================================================
 
-double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, double data_type)
+double fmod_dsp_get_data_parameter_index(uint64_t dsp_ref, gm_enums::FmodDspParameterDataType data_type)
 {
 	FMOD::DSP* dsp = resolve_fmod_dsp(dsp_ref);
 	if (dsp == nullptr) return -1.0;
 
+	// The enum's values are FMOD_DSP_PARAMETER_DATA_TYPE's own, so the cast is
+	// the mapping. A value the linked SDK lacks (DynamicResponse on the 2.02
+	// Switch build) is FMOD's to reject, and it does.
 	int param_index = -1;
-	g_fmod_last_result = dsp->getDataParameterIndex((int)data_type, &param_index);
+	g_fmod_last_result = dsp->getDataParameterIndex(static_cast<int>(data_type), &param_index);
 	return (double)param_index;
 }
 
@@ -558,7 +561,7 @@ static std::map<uintptr_t, FmodDspCallbackEntry> g_dsp_callbacks;
 static FMOD_RESULT F_CALL CALLBACK_fmod_dsp(
 	FMOD_DSP* dsp,
 	FMOD_DSP_CALLBACK_TYPE type,
-	void* /* data */)
+	void* data)
 {
 	if (dsp == nullptr)
 		return FMOD_OK;
@@ -571,10 +574,25 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_dsp(
 			entry = it->second;
 	}
 
-	// Fire outside the lock, exactly as the ChannelControl trampoline does.
-	if (entry.has_value())
-		entry.value().callback.call(entry.value().dsp_ref, (double)(int)type);
+	if (!entry.has_value())
+		return FMOD_OK;
 
+	// Fire outside the lock, exactly as the ChannelControl trampoline does.
+	// DATAPARAMETERRELEASE points `data` at an FMOD_DSP_DATA_PARAMETER_INFO; its
+	// pointer member is the memory FMOD is about to let go of, so GML gets the
+	// index and length and not the address.
+	double kind = (double)(int)type;
+	if (type == FMOD_DSP_CALLBACK_DATAPARAMETERRELEASE && data != nullptr)
+	{
+		const FMOD_DSP_DATA_PARAMETER_INFO* info = (const FMOD_DSP_DATA_PARAMETER_INFO*)data;
+		FmodDSPDataParameterInfo out{};
+		out.index = (double)info->index;
+		out.length = (double)info->length;
+		entry.value().callback.call(entry.value().dsp_ref, kind, out);
+		return FMOD_OK;
+	}
+
+	entry.value().callback.call(entry.value().dsp_ref, kind, std::optional<double>{});
 	return FMOD_OK;
 }
 

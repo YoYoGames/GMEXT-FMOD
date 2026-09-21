@@ -114,6 +114,7 @@ FMOD::ChannelControl* resolve_fmod_channel_control(uint64_t ref);
 // promoting the map to a global. fmod_shutdown() drives them all.
 FMOD_RESULT fmod_channel_control_arm_end_hook(FMOD::ChannelControl* control);
 void fmod_channel_control_forget_rolloff(const void* control);
+void fmod_channel_control_forget_callback(const void* control);
 void fmod_channel_control_reset_state();
 void fmod_sound_forget_lock(const void* sound);
 void fmod_sound_reset_state();
