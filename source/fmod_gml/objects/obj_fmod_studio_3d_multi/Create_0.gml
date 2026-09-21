@@ -4,20 +4,20 @@ show_debug_message("3D multi")
 //fmod_system_set_software_format(0,FmodSpeakerMode._5Point1,0)
 
 master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("master: " + string(fmod_last_result()))
+show_debug_message("master: " + string(fmod_studio_last_result()))
 master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.strings.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("masterstrings: " + string(fmod_last_result()))
+show_debug_message("masterstrings: " + string(fmod_studio_last_result()))
 vehicles_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Vehicles.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("vehicles: " + string(fmod_last_result()));
+show_debug_message("vehicles: " + string(fmod_studio_last_result()));
 
 vehicle_event_desc = fmod_studio_system_get_event("event:/Vehicles/Ride-on Mower")
 show_debug_message(vehicle_event_desc);
-show_debug_message(string(fmod_last_result()))
+show_debug_message(string(fmod_studio_last_result()))
 vehicle_event_inst = fmod_studio_event_description_create_instance(vehicle_event_desc)
-show_debug_message(string(fmod_last_result()))
+show_debug_message(string(fmod_studio_last_result()))
 
 fmod_studio_event_instance_set_parameter_by_name(vehicle_event_inst,"RPM", 650);
-show_debug_message(fmod_last_result())
+show_debug_message(fmod_studio_last_result())
 
 
 fmod_studio_event_instance_start(vehicle_event_inst)

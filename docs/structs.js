@@ -141,28 +141,28 @@
  * 
  * This struct holds additional options for creating a Sound.
  * 
- * @member {Real} length The number of bytes to read starting at `file_offset`, or the length of the Sound to create for `FmodStudioMode.OpenUser`, or the length of `name_or_buff` for `FmodStudioMode.OpenMemory` / `FmodStudioMode.OpenMemoryPoint`.
+ * @member {Real} length The number of bytes to read starting at `file_offset`, or the length of the Sound to create for `FmodMode.OpenUser`, or the length of `name_or_buff` for `FmodMode.OpenMemory` / `FmodMode.OpenMemoryPoint`.
  * @member {Real} file_offset The file offset (in bytes) to start reading from.
- * @member {Real} num_channels The number of channels in sound data for `FmodStudioMode.OpenUser` / `FmodStudioMode.OpenRaw`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
- * @member {Real} default_frequency The default frequency (in Hertz) of sound data for `FmodStudioMode.OpenUser` / `FmodStudioMode.OpenRaw`.
- * @member {Enum.FmodSoundFormat} format The format of sound data for `FmodStudioMode.OpenUser` / `FmodStudioMode.OpenRaw`.
- * @member {Real} decode_buffer_size The size (in samples) of the decoded buffer for `FmodStudioMode.CreateStream`, or the block size used for `FmodStudioMode.OpenUser`.
- * @member {Real} initial_subsound The initial subsound to seek to for `FmodStudioMode.CreateStream`.
- * @member {Real} num_subsounds Number of subsounds available for `FmodStudioMode.OpenUser`, or the maximum subsounds to load from file.
+ * @member {Real} num_channels The number of channels in sound data for `FmodMode.OpenUser` / `FmodMode.OpenRaw`. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
+ * @member {Real} default_frequency The default frequency (in Hertz) of sound data for `FmodMode.OpenUser` / `FmodMode.OpenRaw`.
+ * @member {Enum.FmodSoundFormat} format The format of sound data for `FmodMode.OpenUser` / `FmodMode.OpenRaw`.
+ * @member {Real} decode_buffer_size The size (in samples) of the decoded buffer for `FmodMode.CreateStream`, or the block size used for `FmodMode.OpenUser`.
+ * @member {Real} initial_subsound The initial subsound to seek to for `FmodMode.CreateStream`.
+ * @member {Real} num_subsounds Number of subsounds available for `FmodMode.OpenUser`, or the maximum subsounds to load from file.
  * @member {Real} inclusion_list_num The list of subsound indices to load from file.
- * @member {String} dls_name The file path to a `FMOD_SOUND_TYPE.DLS` sample set to use when loading a `FmodSoundType.Midi` file, see the description for defaults.
- * @member {String} encryption_key Key for encrypted `FmodSoundType.Fsb` file, cannot be used in conjunction with `FmodStudioMode.OpenMemoryPoint`.
+ * @member {String} dls_name The file path to a `FmodSoundType.Dls` sample set to use when loading a `FmodSoundType.Midi` file, see the description for defaults.
+ * @member {String} encryption_key Key for encrypted `FmodSoundType.Fsb` file, cannot be used in conjunction with `FmodMode.OpenMemoryPoint`.
  * @member {Real} max_polyphony The maximum voice count for `FmodSoundType.Midi` / `FmodSoundType.It`. Default is 64.
  * @member {Enum.FmodSoundType} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
  * @member {Real} file_buffer_size The buffer size for reading the file, use -1 to disable buffering.
  * @member {Enum.FmodChannelOrder} channel_order Custom ordering of speakers for this sound data.
  * @member {Real} initial_sound_group A reference to the sound group the new sound joins, or 0 for the master sound group.
- * @member {Real} initial_seek_position The initial position to seek to for `FmodStudioMode.CreateStream`.
+ * @member {Real} initial_seek_position The initial position to seek to for `FmodMode.CreateStream`.
  * @member {Enum.FmodTimeUnit} initial_seek_pos_type The time units for `initial_seek_position`.
  * @member {Bool} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
- * @member {Enum.FmodAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
+ * @member {Enum.FmodAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FmodSoundType.AudioQueue`, see ${constant.FmodAudioQueueCodecPolicy}.
  * @member {Real} min_midi_granularity The mixer granularity for `FmodSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
- * @member {Real} non_block_thread_id The thread index to execute `FmodStudioMode.NonBlocking` loads on for parallel Sound loading.
+ * @member {Real} non_block_thread_id The thread index to execute `FmodMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
  * *//**
  * @struct FmodStudioCreateSoundExInfo
@@ -179,9 +179,9 @@
  * @member {Real} initial_subsound The initial subsound to seek to for `FmodStudioMode.CreateStream`.
  * @member {Real} num_subsounds Number of subsounds available for `FmodStudioMode.OpenUser`, or the maximum subsounds to load from file.
  * @member {Real} inclusion_list_num The list of subsound indices to load from file.
- * @member {String} dls_name The file path to a `FMOD_SOUND_TYPE.DLS` sample set to use when loading a `FmodSoundType.Midi` file, see the description for defaults.
- * @member {String} encryption_key Key for encrypted `FmodSoundType.Fsb` file, cannot be used in conjunction with `FmodStudioMode.OpenMemoryPoint`.
- * @member {Real} max_polyphony The maximum voice count for `FmodSoundType.Midi` / `FmodSoundType.It`. Default is 64.
+ * @member {String} dls_name The file path to a `FmodStudioSoundType.Dls` sample set to use when loading a `FmodStudioSoundType.Midi` file, see the description for defaults.
+ * @member {String} encryption_key Key for encrypted `FmodStudioSoundType.Fsb` file, cannot be used in conjunction with `FmodStudioMode.OpenMemoryPoint`.
+ * @member {Real} max_polyphony The maximum voice count for `FmodStudioSoundType.Midi` / `FmodStudioSoundType.It`. Default is 64.
  * @member {Enum.FmodStudioSoundType} suggested_sound_type Attempt to load using the specified type first instead of loading in codec priority order.
  * @member {Real} file_buffer_size The buffer size for reading the file, use -1 to disable buffering.
  * @member {Enum.FmodStudioChannelOrder} channel_order Custom ordering of speakers for this sound data.
@@ -189,8 +189,8 @@
  * @member {Real} initial_seek_position The initial position to seek to for `FmodStudioMode.CreateStream`.
  * @member {Enum.FmodStudioTimeUnit} initial_seek_pos_type The time units for `initial_seek_position`.
  * @member {Bool} ignore_set_filesystem Ignore [System::setFileSystem](https://www.fmod.com/docs/2.03/api/core-api-system.html#system_setfilesystem) and `FMOD_CREATESOUNDEXINFO` file callbacks. Not implemented.
- * @member {Enum.FmodStudioAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FMOD_SOUND_TYPE.AUDIOQUEUE`, see `FMOD_AUDIOQUEUE_CODECPOLICY`.
- * @member {Real} min_midi_granularity The mixer granularity for `FmodSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
+ * @member {Enum.FmodStudioAudioQueueCodecPolicy} audio_queue_policy The hardware / software decoding policy for `FmodStudioSoundType.AudioQueue`, see ${constant.FmodStudioAudioQueueCodecPolicy}.
+ * @member {Real} min_midi_granularity The mixer granularity for `FmodStudioSoundType.Midi` sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.
  * @member {Real} non_block_thread_id The thread index to execute `FmodStudioMode.NonBlocking` loads on for parallel Sound loading.
  * @struct_end
  * */
@@ -203,16 +203,16 @@
  * 
  * This is a structure to allow configuration of lesser used system level settings. These tweaks generally allow the user to set resource limits and customize settings to better fit their application.
  * 
- * Specifying one of the codec maximums will help determine the maximum CPU usage of playing `FmodStudioMode.CreateCompressedSample` Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during ${function.fmod_system_init}) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if `max_mpeg_codecs` is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.
+ * Specifying one of the codec maximums will help determine the maximum CPU usage of playing `FmodMode.CreateCompressedSample` Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during ${function.fmod_system_init}) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if `max_mpeg_codecs` is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.
  * 
  * Setting `dsp_buffer_pool_size` will pre-allocate memory for the FMOD DSP network. See [DSP architecture guide](https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html). By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.
  * 
- * @member {Real} max_mpeg_codecs The maximum number of MPEG Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
- * @member {Real} max_adpcm_codecs The maximum number of IMA-ADPCM Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
- * @member {Real} max_xma_codecs The maximum number of XMA Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
- * @member {Real} max_vorbis_codecs The maximum number of Vorbis Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
- * @member {Real} max_at9_codecs The maximum number of AT9 Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
- * @member {Real} max_fadpcm_codecs The maximum number of FADPCM Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_mpeg_codecs The maximum number of MPEG Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_adpcm_codecs The maximum number of IMA-ADPCM Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_xma_codecs The maximum number of XMA Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_vorbis_codecs The maximum number of Vorbis Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_at9_codecs The maximum number of AT9 Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_fadpcm_codecs The maximum number of FADPCM Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
  * @member {Real} max_pcm_codecs Deprecated.
  * @member {Real} asio_num_channels The number of elements in the `ASIOSpeakerList` on input, the number of elements in `ASIOChannelList` on output. A value in the range [0, `FMOD_MAX_CHANNEL_WIDTH`].
  * @member {Real} vol0_virtualvol For use with `FmodInitFlags.Vol0BecomesVirtual`, Channels with audibility below this will become virtual. See the [Virtual Voices](https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html) guide for more information.
@@ -225,7 +225,7 @@
  * @member {Enum.FmodDspResampler} resampler_method The resampling method used by [Channels](https://www.fmod.com/docs/2.03/api/core-api-channel.html).
  * @member {Real} random_seed The seed value to initialize the internal random number generator.
  * @member {Real} max_convolution_threads The maximum number of CPU threads to use for `FmodDspType.ConvolutionReverb` effect. 1 = effect is entirely processed inside the `FMOD_THREAD_TYPE.MIXER` thread. 2 and 3 offloads different parts of the convolution processing into different threads (`FMOD_THREAD_TYPE.CONVOLUTION1` and `FMOD_THREAD_TYPE.CONVOLUTION2` to increase throughput. A value in the range [0, 3].
- * @member {Real} max_opus_codecs The maximum number of Opus Sounds created as `FmodStudioMode.CreateCompressedSample`. A value in the range [0, 256].
+ * @member {Real} max_opus_codecs The maximum number of Opus Sounds created as `FmodMode.CreateCompressedSample`. A value in the range [0, 256].
  * @struct_end
  * */
 
@@ -280,7 +280,7 @@
  * @desc This struct stores the global doppler scale, distance factor and roll-off scale for all 3D sounds.
  * @member {Real} doppler_scale This is a scaling factor for doppler shift.
  * @member {Real} distance_factor This is a factor for converting game distance units to FMOD distance units.
- * @member {Real} rolloff_scale This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FmodStudioMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.
+ * @member {Real} rolloff_scale This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FmodMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.
  * @struct_end
  * */
 

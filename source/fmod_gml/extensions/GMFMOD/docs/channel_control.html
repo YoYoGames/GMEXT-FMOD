@@ -2755,7 +2755,7 @@
 <p>This will free up internal resources for reuse by the virtual voice system.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return <code>FmodStudioResult.InvalidHandle</code>.</p>
+<p>Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return <code>FmodResult.InvalidHandle</code>.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -2882,9 +2882,9 @@
 <p>This function sets the playback mode that controls how this object behaves.</p>
 <p>The supported modes are:</p>
 <ul>
-<li><code>FmodStudioMode.LoopOff</code></li>
-<li><code>FmodStudioMode.LoopOn</code></li>
-<li><code>FmodStudioMode.LoopBidi</code></li>
+<li><code>FmodMode.LoopOff</code></li>
+<li><code>FmodMode.LoopOn</code></li>
+<li><code>FmodMode.LoopBidi</code></li>
 <li><code>FmodMode._2D</code></li>
 <li><code>FmodMode._3D</code></li>
 <li><code>FmodMode._3DHeadRelative</code></li>
@@ -2897,8 +2897,8 @@
 <li><code>FmodMode._3DIgnoreGeometry</code></li>
 <li><code>FmodMode.VirtualPlayFromStart</code></li>
 </ul>
-<p>When changing the loop mode, sounds created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FmodStudioMode.CreateStream</code> may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>). If this happens, you may need to reflush the stream buffer by calling <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.</p>
-<p>When changing the loop mode of sounds created with <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> or <code>FmodStudioMode.CreateSample</code>, if the sound was set up as <code>FmodStudioMode.LoopOff</code>, then set to <code>FmodStudioMode.LoopOn</code> with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>), to let it prepare the data as if it was looping so that it does not click whenever <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> is used to turn looping on.</p>
+<p>When changing the loop mode, sounds created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FmodMode.CreateStream</code> may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>). If this happens, you may need to reflush the stream buffer by calling <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a>. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.</p>
+<p>When changing the loop mode of sounds created with <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> or <code>FmodMode.CreateSample</code>, if the sound was set up as <code>FmodMode.LoopOff</code>, then set to <code>FmodMode.LoopOn</code> with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use <a href="sound.html#fmod_sound_set_mode">fmod_sound_set_mode</a>), to let it prepare the data as if it was looping so that it does not click whenever <a href="channel_control.html#fmod_channel_control_set_mode">fmod_channel_control_set_mode</a> is used to turn looping on.</p>
 <p>If <code>FmodMode._3DIgnoreGeometry</code> or <code>FmodMode.VirtualPlayFromStart</code> is not specified, the flag will be cleared if it was specified previously.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -2922,7 +2922,7 @@
 <tr>
 <td>mode</td>
 <td><a href="constants.html#fmodmode">FmodMode</a></td>
-<td>The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is <code>FmodStudioMode.Default</code>.</td>
+<td>The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is <code>FmodMode.Default</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -2941,7 +2941,7 @@
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the playback mode bits that control how this object behaves.</p>
-<p>You can test the playback mode bitfield against a specific <a href="constants.html#fmodstudiomode">FmodStudioMode</a> with the AND operator.</p>
+<p>You can test the playback mode bitfield against a specific <a href="constants.html#fmodmode">FmodMode</a> with the AND operator.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3358,7 +3358,7 @@
 <p>This function sets the 3D position and velocity used to apply panning, attenuation and doppler.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <code>FmodStudioResult.Needs3D</code> is returned.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <code>FmodResult.Needs3D</code> is returned.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3452,7 +3452,7 @@
 <p>This function sets the orientation of a 3D cone shape, used for simulated occlusion.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <code>FmodStudioResult.Needs3D</code> is returned.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <code>FmodResult.Needs3D</code> is returned.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3548,7 +3548,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.Needs3D</code>.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.Needs3D</code>.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -3647,7 +3647,7 @@
 <p class="admonition-title">Note</p>
 <p>This function must be used in conjunction with <code>FmodMode._3DCustomRollOff</code> flag to be activated.</p>
 </div>
-<p>If <code>FmodMode._3DCustomRollOff</code> is set and the roll-off shape is not set, FMOD will revert to <code>FmodStudioMode._3DInverseTaperedRollOff</code> roll-off mode.</p>
+<p>If <code>FmodMode._3DCustomRollOff</code> is set and the roll-off shape is not set, FMOD will revert to <code>FmodMode._3DInverseTaperedRollOff</code> roll-off mode.</p>
 <p>When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.</p>
 <p>The distance in-between point values is linearly interpolated until the final point where the last value is held.</p>
 <p>If the points are not sorted by distance, an error will result.</p>
@@ -3849,7 +3849,7 @@ This function allows the distance filter effect to be set manually, or to be set
 <p>The doppler effect will be disabled if <a href="system.html#fmod_system_set_3d_num_listeners">fmod_system_set_3d_num_listeners</a> is given a value greater than 1.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <code>FmodStudioResult.Needs3D</code> is returned.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <code>FmodResult.Needs3D</code> is returned.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -3973,7 +3973,7 @@ This function allows the distance filter effect to be set manually, or to be set
 <p>The value returned is the (linear) 3D pan level where 0 represents panning/attenuating solely with 2D panning functions and 1 represents solely 3D.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <code>FmodStudioResult.Needs3D</code> is returned.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <code>FmodResult.Needs3D</code> is returned.</p>
 </div>
 <p>The 2D functions include:</p>
 <ul>
@@ -4025,13 +4025,13 @@ This function allows the distance filter effect to be set manually, or to be set
 <p><br /></p>
 <p>This function sets the minimum and maximum distances used to calculate the 3D roll-off attenuation.</p>
 <p>When the listener is within the minimum distance of the sound source the 3D volume will be at its maximum. As the listener moves from the minimum distance to the maximum distance the sound will attenuate following the roll-off curve set. When outside the maximum distance the sound will no longer attenuate.</p>
-<p>Attenuation in 3D space is controlled by the roll-off mode, which can be one of <code>FmodStudioMode._3DInverseRollOff</code>, <code>FmodStudioMode._3DLinearRollOff</code>, <code>FmodStudioMode._3DLinearSquareRollOff</code>, <code>FmodStudioMode._3DInverseTaperedRollOff</code>, <code>FmodStudioMode._3DCustomRollOff</code>.</p>
+<p>Attenuation in 3D space is controlled by the roll-off mode, which can be one of <code>FmodMode._3DInverseRollOff</code>, <code>FmodMode._3DLinearRollOff</code>, <code>FmodMode._3DLinearSquareRollOff</code>, <code>FmodMode._3DInverseTaperedRollOff</code>, <code>FmodMode._3DCustomRollOff</code>.</p>
 <p>Minimum distance is useful to give the impression that the sound is loud or soft in 3D space.
 A sound with a small 3D minimum distance in a typical (non custom) roll-off mode will make the sound appear small, and the sound will attenuate quickly.
 A sound with a large minimum distance will make the sound appear larger.</p>
-<p>The <code>FmodStudioMode._3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.Needs3D</code>.</p>
+<p>The <code>FmodMode._3D</code> flag must be set on this object otherwise <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.Needs3D</code>.</p>
 <p>To define the min and max distance per Sound instead of Channel or ChannelGroup use <a href="sound.html#fmod_sound_set_3d_min_max_distance">fmod_sound_set_3d_min_max_distance</a>.</p>
-<p>If <code>FmodStudioMode._3DCustomRollOff</code> has been set on this object these values are stored, but ignored in 3D processing.</p>
+<p>If <code>FmodMode._3DCustomRollOff</code> has been set on this object these values are stored, but ignored in 3D processing.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

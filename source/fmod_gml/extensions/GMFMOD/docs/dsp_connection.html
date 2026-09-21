@@ -1640,7 +1640,7 @@
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the connection's input DSP unit.</p>
-<p>If <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a> was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.NotReady</code> and the value 0 will be returned.</p>
+<p>If <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a> was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.NotReady</code> and the value 0 will be returned.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -1677,7 +1677,7 @@
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the connection's output DSP unit.</p>
-<p>If <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a> was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return <code>FmodStudioResult.NotReady</code> and the value 0 will be returned.</p>
+<p>If <a href="dsp.html#fmod_dsp_add_input">fmod_dsp_add_input</a> was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return <code>FmodResult.NotReady</code> and the value 0 will be returned.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

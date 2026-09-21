@@ -3039,7 +3039,7 @@ This happens in two situations:</p>
 <tr>
 <td>rolloff_scale</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FmodStudioMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.</td>
+<td>This is a scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FmodMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale.</td>
 </tr>
 </tbody>
 </table>
@@ -4381,7 +4381,7 @@ This happens in two situations:</p>
 </blockquote>
 <p>This struct stores advanced configuration settings.</p>
 <p>This is a structure to allow configuration of lesser used system level settings. These tweaks generally allow the user to set resource limits and customize settings to better fit their application.</p>
-<p>Specifying one of the codec maximums will help determine the maximum CPU usage of playing <code>FmodStudioMode.CreateCompressedSample</code> Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during <a href="system.html#fmod_system_init">fmod_system_init</a>) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if <code>max_mpeg_codecs</code> is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.</p>
+<p>Specifying one of the codec maximums will help determine the maximum CPU usage of playing <code>FmodMode.CreateCompressedSample</code> Sounds of that type as well as the memory requirements. Memory will be allocated for 'up front' (during <a href="system.html#fmod_system_init">fmod_system_init</a>) if these values are specified as non zero. If any are zero, it allocates memory for the codec whenever a file of the type in question is loaded. So if <code>max_mpeg_codecs</code> is 0 for example, it will allocate memory for the MPEG codecs the first time an MP3 is loaded or an MP3 based .FSB file is loaded.</p>
 <p>Setting <code>dsp_buffer_pool_size</code> will pre-allocate memory for the FMOD DSP network. See <a href="https://www.fmod.com/docs/2.03/api/white-papers-dsp-architecture.html">DSP architecture guide</a>. By default 8 buffers are created up front. A large network might require more if the aim is to avoid real-time allocations from the FMOD mixer thread.</p>
 <p>This struct is referenced by the following functions:</p>
 <ul>
@@ -4401,32 +4401,32 @@ This happens in two situations:</p>
 <tr>
 <td>max_mpeg_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of MPEG Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of MPEG Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_adpcm_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of IMA-ADPCM Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of IMA-ADPCM Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_xma_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of XMA Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of XMA Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_vorbis_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of Vorbis Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of Vorbis Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_at9_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of AT9 Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of AT9 Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_fadpcm_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of FADPCM Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of FADPCM Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 <tr>
 <td>max_pcm_codecs</td>
@@ -4491,7 +4491,7 @@ This happens in two situations:</p>
 <tr>
 <td>max_opus_codecs</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum number of Opus Sounds created as <code>FmodStudioMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
+<td>The maximum number of Opus Sounds created as <code>FmodMode.CreateCompressedSample</code>. A value in the range [0, 256].</td>
 </tr>
 </tbody>
 </table>
@@ -4693,7 +4693,7 @@ This happens in two situations:</p>
 <tr>
 <td>length</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The number of bytes to read starting at <code>file_offset</code>, or the length of the Sound to create for <code>FmodStudioMode.OpenUser</code>, or the length of <code>name_or_buff</code> for <code>FmodStudioMode.OpenMemory</code> / <code>FmodStudioMode.OpenMemoryPoint</code>.</td>
+<td>The number of bytes to read starting at <code>file_offset</code>, or the length of the Sound to create for <code>FmodMode.OpenUser</code>, or the length of <code>name_or_buff</code> for <code>FmodMode.OpenMemory</code> / <code>FmodMode.OpenMemoryPoint</code>.</td>
 </tr>
 <tr>
 <td>file_offset</td>
@@ -4703,32 +4703,32 @@ This happens in two situations:</p>
 <tr>
 <td>num_channels</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The number of channels in sound data for <code>FmodStudioMode.OpenUser</code> / <code>FmodStudioMode.OpenRaw</code>. A value in the range [0, <code>FMOD_MAX_CHANNEL_WIDTH</code>].</td>
+<td>The number of channels in sound data for <code>FmodMode.OpenUser</code> / <code>FmodMode.OpenRaw</code>. A value in the range [0, <code>FMOD_MAX_CHANNEL_WIDTH</code>].</td>
 </tr>
 <tr>
 <td>default_frequency</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The default frequency (in Hertz) of sound data for <code>FmodStudioMode.OpenUser</code> / <code>FmodStudioMode.OpenRaw</code>.</td>
+<td>The default frequency (in Hertz) of sound data for <code>FmodMode.OpenUser</code> / <code>FmodMode.OpenRaw</code>.</td>
 </tr>
 <tr>
 <td>format</td>
 <td><a href="constants.html#fmodsoundformat">FmodSoundFormat</a></td>
-<td>The format of sound data for <code>FmodStudioMode.OpenUser</code> / <code>FmodStudioMode.OpenRaw</code>.</td>
+<td>The format of sound data for <code>FmodMode.OpenUser</code> / <code>FmodMode.OpenRaw</code>.</td>
 </tr>
 <tr>
 <td>decode_buffer_size</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The size (in samples) of the decoded buffer for <code>FmodStudioMode.CreateStream</code>, or the block size used for <code>FmodStudioMode.OpenUser</code>.</td>
+<td>The size (in samples) of the decoded buffer for <code>FmodMode.CreateStream</code>, or the block size used for <code>FmodMode.OpenUser</code>.</td>
 </tr>
 <tr>
 <td>initial_subsound</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The initial subsound to seek to for <code>FmodStudioMode.CreateStream</code>.</td>
+<td>The initial subsound to seek to for <code>FmodMode.CreateStream</code>.</td>
 </tr>
 <tr>
 <td>num_subsounds</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>Number of subsounds available for <code>FmodStudioMode.OpenUser</code>, or the maximum subsounds to load from file.</td>
+<td>Number of subsounds available for <code>FmodMode.OpenUser</code>, or the maximum subsounds to load from file.</td>
 </tr>
 <tr>
 <td>inclusion_list_num</td>
@@ -4738,12 +4738,12 @@ This happens in two situations:</p>
 <tr>
 <td>dls_name</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The file path to a <code>FMOD_SOUND_TYPE.DLS</code> sample set to use when loading a <code>FmodSoundType.Midi</code> file, see the description for defaults.</td>
+<td>The file path to a <code>FmodSoundType.Dls</code> sample set to use when loading a <code>FmodSoundType.Midi</code> file, see the description for defaults.</td>
 </tr>
 <tr>
 <td>encryption_key</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>Key for encrypted <code>FmodSoundType.Fsb</code> file, cannot be used in conjunction with <code>FmodStudioMode.OpenMemoryPoint</code>.</td>
+<td>Key for encrypted <code>FmodSoundType.Fsb</code> file, cannot be used in conjunction with <code>FmodMode.OpenMemoryPoint</code>.</td>
 </tr>
 <tr>
 <td>max_polyphony</td>
@@ -4773,7 +4773,7 @@ This happens in two situations:</p>
 <tr>
 <td>initial_seek_position</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The initial position to seek to for <code>FmodStudioMode.CreateStream</code>.</td>
+<td>The initial position to seek to for <code>FmodMode.CreateStream</code>.</td>
 </tr>
 <tr>
 <td>initial_seek_pos_type</td>
@@ -4788,7 +4788,7 @@ This happens in two situations:</p>
 <tr>
 <td>audio_queue_policy</td>
 <td><a href="constants.html#fmodaudioqueuecodecpolicy">FmodAudioQueueCodecPolicy</a></td>
-<td>The hardware / software decoding policy for <code>FMOD_SOUND_TYPE.AUDIOQUEUE</code>, see <code>FMOD_AUDIOQUEUE_CODECPOLICY</code>.</td>
+<td>The hardware / software decoding policy for <code>FmodSoundType.AudioQueue</code>, see <a href="constants.html#fmodaudioqueuecodecpolicy">FmodAudioQueueCodecPolicy</a>.</td>
 </tr>
 <tr>
 <td>min_midi_granularity</td>
@@ -4798,7 +4798,7 @@ This happens in two situations:</p>
 <tr>
 <td>non_block_thread_id</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The thread index to execute <code>FmodStudioMode.NonBlocking</code> loads on for parallel Sound loading.</td>
+<td>The thread index to execute <code>FmodMode.NonBlocking</code> loads on for parallel Sound loading.</td>
 </tr>
 </tbody>
 </table>
@@ -5520,17 +5520,17 @@ is a percentage of the total CPU time.</p>
 <tr>
 <td>dls_name</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The file path to a <code>FMOD_SOUND_TYPE.DLS</code> sample set to use when loading a <code>FmodSoundType.Midi</code> file, see the description for defaults.</td>
+<td>The file path to a <code>FmodStudioSoundType.Dls</code> sample set to use when loading a <code>FmodStudioSoundType.Midi</code> file, see the description for defaults.</td>
 </tr>
 <tr>
 <td>encryption_key</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>Key for encrypted <code>FmodSoundType.Fsb</code> file, cannot be used in conjunction with <code>FmodStudioMode.OpenMemoryPoint</code>.</td>
+<td>Key for encrypted <code>FmodStudioSoundType.Fsb</code> file, cannot be used in conjunction with <code>FmodStudioMode.OpenMemoryPoint</code>.</td>
 </tr>
 <tr>
 <td>max_polyphony</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The maximum voice count for <code>FmodSoundType.Midi</code> / <code>FmodSoundType.It</code>. Default is 64.</td>
+<td>The maximum voice count for <code>FmodStudioSoundType.Midi</code> / <code>FmodStudioSoundType.It</code>. Default is 64.</td>
 </tr>
 <tr>
 <td>suggested_sound_type</td>
@@ -5570,12 +5570,12 @@ is a percentage of the total CPU time.</p>
 <tr>
 <td>audio_queue_policy</td>
 <td><a href="constants.html#fmodstudioaudioqueuecodecpolicy">FmodStudioAudioQueueCodecPolicy</a></td>
-<td>The hardware / software decoding policy for <code>FMOD_SOUND_TYPE.AUDIOQUEUE</code>, see <code>FMOD_AUDIOQUEUE_CODECPOLICY</code>.</td>
+<td>The hardware / software decoding policy for <code>FmodStudioSoundType.AudioQueue</code>, see <a href="constants.html#fmodstudioaudioqueuecodecpolicy">FmodStudioAudioQueueCodecPolicy</a>.</td>
 </tr>
 <tr>
 <td>min_midi_granularity</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The mixer granularity for <code>FmodSoundType.Midi</code> sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.</td>
+<td>The mixer granularity for <code>FmodStudioSoundType.Midi</code> sounds, smaller numbers give a more accurate reproduction at the cost of higher CPU usage.</td>
 </tr>
 <tr>
 <td>non_block_thread_id</td>

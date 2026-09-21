@@ -10,7 +10,7 @@
  * 
  * [[Note: The default frequency is determined by the audio format of the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) or [DSP](https://www.fmod.com/docs/2.03/api/core-api-dsp.html).]]
  *
- * [[Note: Sounds opened as `FmodStudioMode.CreateSample` (not `FmodStudioMode.CreateStream` or `FmodStudioMode.CreateCompressedSample`) can be played backwards by giving a negative frequency.]]
+ * [[Note: Sounds opened as `FmodMode.CreateSample` (not `FmodMode.CreateStream` or `FmodMode.CreateCompressedSample`) can be played backwards by giving a negative frequency.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
  * @param {Real} frequency The playback rate, expressed in Hertz.
@@ -84,9 +84,9 @@ function fmod_channel_get_priority(channel_ref) {}
  * 
  * [[Note: Certain ${constant.FmodTimeUnit} types are always available: `FmodTimeUnit.Pcm`, `FmodTimeUnit.PcmBytes` and `FmodTimeUnit.Ms`. The others are format specific such as `FmodTimeUnit.ModOrder` / `FmodTimeUnit.ModRow` / `FmodTimeUnit.ModPattern` which is specific to files of type MOD / S3M / XM / IT.]]
  * 
- * [[Note: If playing a Sound created with ${function.fmod_system_create_stream} or `FmodStudioMode.CreateStream` changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with `FmodStudioMode.NonBlocking`. This will cause the stream to go into `FmodOpenState.SetPosition` state (see ${function.fmod_sound_get_open_state}) and Sound commands will return `FmodStudioResult.NotReady`. ${function.fmod_channel_get_position} will also not update until this non-blocking set position operation has completed.]]
+ * [[Note: If playing a Sound created with ${function.fmod_system_create_stream} or `FmodMode.CreateStream` changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with `FmodMode.NonBlocking`. This will cause the stream to go into `FmodOpenState.SetPosition` state (see ${function.fmod_sound_get_open_state}) and Sound commands will return `FmodResult.NotReady`. ${function.fmod_channel_get_position} will also not update until this non-blocking set position operation has completed.]]
  * 
- * [[Note: Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify `FmodTimeUnit.Ms` or `FmodTimeUnit.Pcm`. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify `FmodStudioMode.AccurateTime` when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.]]
+ * [[Note: Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify `FmodTimeUnit.Ms` or `FmodTimeUnit.Pcm`. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify `FmodMode.AccurateTime` when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
  * @param {Real} position The playback position.
@@ -160,7 +160,7 @@ function fmod_channel_get_channel_group(channel_ref) {}
  *
  * This function sets the number of times to loop before stopping.
  * 
- * [[Note: The 'mode' of the sound or channel must be `FmodStudioMode.LoopOn` or `FmodStudioMode.LoopBidi` for this function to work.]]
+ * [[Note: The 'mode' of the sound or channel must be `FmodMode.LoopOn` or `FmodMode.LoopBidi` for this function to work.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
  * @param {Real} loop_count The number of times to loop before stopping where 0 represents "oneshot", 1 represents "loop once then stop" and -1 represents "loop forever".
@@ -199,10 +199,10 @@ function fmod_channel_get_loop_count(channel_ref) {}
  * 
  * Loop points may only be set on a channel playing a sound, not a channel playing a DSP (See ${function.fmod_system_play_dsp}).
  * 
- * [[Note: Valid ${constant.FmodTimeUnit} types are `FmodTimeUnit.Pcm`, `FmodTimeUnit.Ms`, `FmodTimeUnit.PcmBytes`. Any other time units return `FmodStudioResult.Format`.
+ * [[Note: Valid ${constant.FmodTimeUnit} types are `FmodTimeUnit.Pcm`, `FmodTimeUnit.Ms`, `FmodTimeUnit.PcmBytes`. Any other time units return `FmodResult.Format`.
  * If `FmodTimeUnit.Ms` or `FmodTimeUnit.PcmBytes` are used, the value is internally converted from `FmodTimeUnit.Pcm`, so the retrieved value may not exactly match the set value.]]
  * 
- * The Channel's mode must be set to `FmodStudioMode.LoopOn` or `FmodStudioMode.LoopBidi` for loop points to affect playback.
+ * The Channel's mode must be set to `FmodMode.LoopOn` or `FmodMode.LoopBidi` for loop points to affect playback.
  * 
  * See also: [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues)
  * 
@@ -225,7 +225,7 @@ function fmod_channel_set_loop_points(channel_ref, loop_start, loop_start_type, 
  *
  * This function retrieves the loop start and end points.
  * 
- * [[Note: Valid ${constant.FmodTimeUnit} types are `FmodTimeUnit.Pcm`, `FmodTimeUnit.Ms`, `FmodTimeUnit.PcmBytes`. For all other time units ${function.fmod_last_result} returns `FmodStudioResult.Format`.
+ * [[Note: Valid ${constant.FmodTimeUnit} types are `FmodTimeUnit.Pcm`, `FmodTimeUnit.Ms`, `FmodTimeUnit.PcmBytes`. For all other time units ${function.fmod_last_result} returns `FmodResult.Format`.
  * If `FmodTimeUnit.Ms` or `FmodTimeUnit.PcmBytes` are used, the value is internally converted from `FmodTimeUnit.Pcm`, so the retrieved value may not exactly match the set value.]]
  * 
  * @param {Real} channel_ref A reference to a channel.
@@ -335,7 +335,7 @@ function fmod_channel_control_is_playing(channel_control_ref) {}
  * 
  * This will free up internal resources for reuse by the virtual voice system.
  * 
- * [[Note: Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return `FmodStudioResult.InvalidHandle`.]]
+ * [[Note: Channels are stopped automatically when their playback position reaches the length of the sound being played. This is not the case however if the channel is playing a DSP or the sound is looping, in which case the channel will continue playing until stop is called. Once stopped, the channel handle will become invalid and can be discarded and any API calls made with it will return `FmodResult.InvalidHandle`.]]
  * 
  * @param {Real} channel_control_ref A reference to a channelcontrol.
  * @returns {Real}
@@ -391,9 +391,9 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
  * 
  * The supported modes are: 
  * 
- * * `FmodStudioMode.LoopOff`
- * * `FmodStudioMode.LoopOn`
- * * `FmodStudioMode.LoopBidi`
+ * * `FmodMode.LoopOff`
+ * * `FmodMode.LoopOn`
+ * * `FmodMode.LoopBidi`
  * * `FmodMode._2D`
  * * `FmodMode._3D`
  * * `FmodMode._3DHeadRelative`
@@ -406,14 +406,14 @@ function fmod_channel_control_get_paused(channel_control_ref) {}
  * * `FmodMode._3DIgnoreGeometry`
  * * `FmodMode.VirtualPlayFromStart`
  * 
- * When changing the loop mode, sounds created with ${function.fmod_system_create_stream} or `FmodStudioMode.CreateStream` may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see ${struct.FmodCreateSoundExInfo}). If this happens, you may need to reflush the stream buffer by calling ${function.fmod_channel_set_position}. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.
+ * When changing the loop mode, sounds created with ${function.fmod_system_create_stream} or `FmodMode.CreateStream` may have already been pre-buffered and executed their loop logic ahead of time before this call was even made. This is dependent on the size of the sound versus the size of the stream decode buffer (see ${struct.FmodCreateSoundExInfo}). If this happens, you may need to reflush the stream buffer by calling ${function.fmod_channel_set_position}. Note this will usually only happen if you have sounds or loop points that are smaller than the stream decode buffer size.
  * 
- * When changing the loop mode of sounds created with ${function.fmod_system_create_sound} or `FmodStudioMode.CreateSample`, if the sound was set up as `FmodStudioMode.LoopOff`, then set to `FmodStudioMode.LoopOn` with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using ${function.fmod_sound_set_mode}, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use ${function.fmod_channel_control_set_mode} it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use ${function.fmod_sound_set_mode}), to let it prepare the data as if it was looping so that it does not click whenever ${function.fmod_channel_control_set_mode} is used to turn looping on.
+ * When changing the loop mode of sounds created with ${function.fmod_system_create_sound} or `FmodMode.CreateSample`, if the sound was set up as `FmodMode.LoopOff`, then set to `FmodMode.LoopOn` with this function, the sound may click when playing the end of the sound. This is because the sound needs to be prepared for looping using ${function.fmod_sound_set_mode}, by modifying the content of the PCM data (i.e. data past the end of the actual sample data) to allow the interpolators to read ahead without clicking. If you use ${function.fmod_channel_control_set_mode} it will not do this (because different Channels may have different loop modes for the same sound) and may click if you try to set it to looping on an unprepared sound. If you want to change the loop mode at runtime it may be better to load the sound as looping first (or use ${function.fmod_sound_set_mode}), to let it prepare the data as if it was looping so that it does not click whenever ${function.fmod_channel_control_set_mode} is used to turn looping on.
  * 
  * If `FmodMode._3DIgnoreGeometry` or `FmodMode.VirtualPlayFromStart` is not specified, the flag will be cleared if it was specified previously.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
- * @param {Enum.FmodMode} mode The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is `FmodStudioMode.Default`.
+ * @param {Enum.FmodMode} mode The playback mode. More than one mode can be set at once by combining them with the OR operator. The default is `FmodMode.Default`.
  * @returns {Real}
  * @function_end
  */
@@ -428,7 +428,7 @@ function fmod_channel_control_set_mode(channel_control_ref, mode) {}
  *
  * This function retrieves the playback mode bits that control how this object behaves.
  * 
- * You can test the playback mode bitfield against a specific ${constant.FmodStudioMode} with the AND operator.
+ * You can test the playback mode bitfield against a specific ${constant.FmodMode} with the AND operator.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @returns {Enum.FmodMode}
@@ -616,7 +616,7 @@ function fmod_channel_control_get_mute(channel_control_ref) {}
  *
  * This function sets the 3D position and velocity used to apply panning, attenuation and doppler.
  * 
- * [[Note: The `FmodStudioMode._3D` flag must be set on this object otherwise `FmodStudioResult.Needs3D` is returned.]]
+ * [[Note: The `FmodMode._3D` flag must be set on this object otherwise `FmodResult.Needs3D` is returned.]]
  * 
  * [[Note: Vectors must be provided in the correct [handedness](https://www.fmod.com/docs/2.03/api/glossary.html#handedness).]]
  * 
@@ -654,7 +654,7 @@ function fmod_channel_control_get_3d_attributes(channel_control_ref) {}
  *
  * This function sets the orientation of a 3D cone shape, used for simulated occlusion.
  * 
- * [[Note: The `FmodStudioMode._3D` flag must be set on this object otherwise `FmodStudioResult.Needs3D` is returned.]]
+ * [[Note: The `FmodMode._3D` flag must be set on this object otherwise `FmodResult.Needs3D` is returned.]]
  * 
  * [[Note: This function has no effect unless ${function.fmod_channel_control_set_3d_cone_settings} has been used to change the cone inside/outside angles from the default.]]
  * 
@@ -699,7 +699,7 @@ function fmod_channel_control_get_3d_cone_orientation(channel_control_ref) {}
  * * If the relative angle is between the `inside_cone_angle` and `outside_cone_angle`, linear volume attenuation (between 1 and `outsidevolume`) is applied between the two angles until it reaches the `outside_cone_angle`.
  * * If the relative angle is outside of the `outside_cone_angle` the volume does not attenuate any further.
  * 
- * [[Note: The `FmodStudioMode._3D` flag must be set on this object otherwise ${function.fmod_last_result} will return `FmodStudioResult.Needs3D`.]]
+ * [[Note: The `FmodMode._3D` flag must be set on this object otherwise ${function.fmod_last_result} will return `FmodResult.Needs3D`.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @param {Real} inside_cone_angle The inside cone angle. This is the angle spread within which the sound is unattenuated, expressed in degrees. The default value is 360.
@@ -742,7 +742,7 @@ function fmod_channel_control_get_3d_cone_settings(channel_control_ref) {}
  *
  * [[Note: This function must be used in conjunction with `FmodMode._3DCustomRollOff` flag to be activated.]]
  *
- * If `FmodMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodStudioMode._3DInverseTaperedRollOff` roll-off mode.
+ * If `FmodMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodMode._3DInverseTaperedRollOff` roll-off mode.
  *
  * When a custom roll-off is specified a Channel or ChannelGroup's 3D 'minimum' and 'maximum' distances are ignored.
  *
@@ -845,7 +845,7 @@ function fmod_channel_control_get_3d_distance_filter(channel_control_ref) {}
  * 
  * The doppler effect will be disabled if ${function.fmod_system_set_3d_num_listeners} is given a value greater than 1.
  * 
- * [[Note: The `FmodStudioMode._3D` flag must be set on this object otherwise `FmodStudioResult.Needs3D` is returned.]]
+ * [[Note: The `FmodMode._3D` flag must be set on this object otherwise `FmodResult.Needs3D` is returned.]]
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @param {Real} level Doppler scale where 0 represents no doppler, 1 represents natural doppler and 5 represents exaggerated doppler. The default value is 1.
@@ -898,7 +898,7 @@ function fmod_channel_control_set_3d_level(channel_control_ref, level) {}
  * 
  * The value returned is the (linear) 3D pan level where 0 represents panning/attenuating solely with 2D panning functions and 1 represents solely 3D.
  * 
- * [[Note: The `FmodStudioMode._3D` flag must be set on this object otherwise `FmodStudioResult.Needs3D` is returned.]]
+ * [[Note: The `FmodMode._3D` flag must be set on this object otherwise `FmodResult.Needs3D` is returned.]]
  * 
  * The 2D functions include: 
  * 
@@ -930,17 +930,17 @@ function fmod_channel_control_get_3d_level(channel_control_ref) {}
  * 
  * When the listener is within the minimum distance of the sound source the 3D volume will be at its maximum. As the listener moves from the minimum distance to the maximum distance the sound will attenuate following the roll-off curve set. When outside the maximum distance the sound will no longer attenuate.
  * 
- * Attenuation in 3D space is controlled by the roll-off mode, which can be one of `FmodStudioMode._3DInverseRollOff`, `FmodStudioMode._3DLinearRollOff`, `FmodStudioMode._3DLinearSquareRollOff`, `FmodStudioMode._3DInverseTaperedRollOff`, `FmodStudioMode._3DCustomRollOff`.
+ * Attenuation in 3D space is controlled by the roll-off mode, which can be one of `FmodMode._3DInverseRollOff`, `FmodMode._3DLinearRollOff`, `FmodMode._3DLinearSquareRollOff`, `FmodMode._3DInverseTaperedRollOff`, `FmodMode._3DCustomRollOff`.
  * 
  * Minimum distance is useful to give the impression that the sound is loud or soft in 3D space.
  * A sound with a small 3D minimum distance in a typical (non custom) roll-off mode will make the sound appear small, and the sound will attenuate quickly.
  * A sound with a large minimum distance will make the sound appear larger.
  * 
- * The `FmodStudioMode._3D` flag must be set on this object otherwise ${function.fmod_last_result} will return `FmodStudioResult.Needs3D`.
+ * The `FmodMode._3D` flag must be set on this object otherwise ${function.fmod_last_result} will return `FmodResult.Needs3D`.
  * 
  * To define the min and max distance per Sound instead of Channel or ChannelGroup use ${function.fmod_sound_set_3d_min_max_distance}.
  * 
- * If `FmodStudioMode._3DCustomRollOff` has been set on this object these values are stored, but ignored in 3D processing.
+ * If `FmodMode._3DCustomRollOff` has been set on this object these values are stored, but ignored in 3D processing.
  * 
  * @param {Real} channel_control_ref A reference to a ChannelControl.
  * @param {Real} min_dist The distance from the source where attenuation begins. A value in the range [0, `max`]. Default is 1.
@@ -1807,23 +1807,23 @@ function fmod_memory_get_stats(blocking) {}
  *
  * This function specifies the level and delivery method of log messages when using the logging version of FMOD.
  * 
- * ${function.fmod_last_result} will return `FmodStudioResult.Unsupported` when using the non-logging (release) versions of FMOD.
+ * ${function.fmod_last_result} will return `FmodResult.Unsupported` when using the non-logging (release) versions of FMOD.
  * 
- * > **NOTE**: This extension ships the non-logging build of FMOD on every platform, so this function always fails with `FmodStudioResult.Unsupported`. Using it requires rebuilding the extension's native libraries against FMOD's logging (`fmodL`) build.
+ * > **NOTE**: This extension ships the non-logging build of FMOD on every platform, so this function always fails with `FmodResult.Unsupported`. Using it requires rebuilding the extension's native libraries against FMOD's logging (`fmodL`) build.
  * 
  * Note that:
  * 
- * * `FmodStudioDebugFlags.LevelLog` produces informational, warning and error messages.
- * * `FmodStudioDebugFlags.LevelWarning` produces warnings and error messages.
- * * `FmodStudioDebugFlags.LevelError` produces error messages only.
+ * * `FmodDebugFlags.LevelLog` produces informational, warning and error messages.
+ * * `FmodDebugFlags.LevelWarning` produces warnings and error messages.
+ * * `FmodDebugFlags.LevelError` produces error messages only.
  * 
  * See Also: [Callback Behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
  * 
  * @param {Enum.FmodDebugFlags} flags The debug level, type and display control flags. More than one mode can be set at once by combining them with the OR operator.
- * @param {Enum.FmodDebugMode} mode The destination for log messages. The default is `FmodStudioDebugMode.Tty`.
+ * @param {Enum.FmodDebugMode} mode The destination for log messages. The default is `FmodDebugMode.Tty`.
  * @function_end
  */
-function fmod_debug_initialize(flags, mode=FmodStudioDebugMode.Tty, filename=pointer_null) {}
+function fmod_debug_initialize(flags, mode=FmodDebugMode.Tty, filename=pointer_null) {}
 
 
 /**
@@ -1995,7 +1995,7 @@ function fmod_dsp_disconnect_from(dsp_ref, dsp_other_ref, dsp_connection_ref) {}
  * 
  * The function returns the index of the first data parameter of type `data_type` after the function is called. This will be -1 if no matches were found.
  * 
- * ${function.fmod_last_result} returns `FmodStudioResult.Ok` if a parameter of matching type is found and `FmodStudioResult.InvalidParam` if no matches were found.
+ * ${function.fmod_last_result} returns `FmodResult.Ok` if a parameter of matching type is found and `FmodResult.InvalidParam` if no matches were found.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @param {Real} data_type The type of data to find. Typically of type `FMOD_DSP_PARAMETER_DATA_TYPE`.
@@ -2250,7 +2250,7 @@ function fmod_dsp_get_output_channel_format(dsp_ref, channel_mask_in, num_channe
  *
  * This function retrieves the signal metering information.
  * 
- * [[Note: Requesting metering information when it hasn't been enabled will result in `FmodStudioResult.BadCommand`.]]
+ * [[Note: Requesting metering information when it hasn't been enabled will result in `FmodResult.BadCommand`.]]
  * 
  * [[Note: `FmodInitFlags.ProfileMeterAll` with ${function.fmod_system_init} will automatically enable metering for all DSP units inside the mixer graph.]]
  * 
@@ -2445,7 +2445,7 @@ function fmod_dsp_reset(dsp_ref) {}
  *
  * This function frees a DSP object.
  * 
- * If the DSP is not removed from the network with ${function.fmod_channel_control_remove_dsp} after being added with ${function.fmod_channel_control_add_dsp}, it will not release and ${function.fmod_last_result} will return `FmodStudioResult.DspInUse`.
+ * If the DSP is not removed from the network with ${function.fmod_channel_control_remove_dsp} after being added with ${function.fmod_channel_control_add_dsp}, it will not release and ${function.fmod_last_result} will return `FmodResult.DspInUse`.
  * 
  * @param {Real} dsp_ref A reference to a DSP.
  * @function_end
@@ -2678,7 +2678,7 @@ function fmod_dsp_connection_get_mix_matrix(dsp_connection_ref, matrix, in_chann
  *
  * This function retrieves the connection's input DSP unit.
  * 
- * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so ${function.fmod_last_result} will return `FmodStudioResult.NotReady` and the value 0 will be returned.
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so ${function.fmod_last_result} will return `FmodResult.NotReady` and the value 0 will be returned.
  * 
  * @param {Real} connection_ref A reference to a DSPConnection.
  * @returns {Real}
@@ -2695,7 +2695,7 @@ function fmod_dsp_connection_get_input(dsp_connection_ref) {}
  *
  * This function retrieves the connection's output DSP unit.
  * 
- * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FmodStudioResult.NotReady` and the value 0 will be returned.
+ * If ${function.fmod_dsp_add_input} was just called, the connection might not be ready because the DSP system is still queued to be connected, and may need to wait several milliseconds for the next mix to occur. If so the function will return `FmodResult.NotReady` and the value 0 will be returned.
  * 
  * @param {Real} connection_ref A reference to a DSPConnection.
  * @returns {Real}
@@ -3332,7 +3332,7 @@ function fmod_sound_get_format(sound_ref) {}
  * 
  * A length of 0xFFFFFFFF means the sound is of unlimited length, such as an internet radio stream or MOD/S3M/XM/IT file which may loop forever.
  * 
- * [[Note: Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as untagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use `FmodStudioMode.AccurateTime` when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.]]
+ * [[Note: Using a VBR (Variable Bit Rate) source that does not have metadata containing its accurate length (such as untagged MP3 or MOD/S3M/XM/IT) may return inaccurate length values. For these formats, use `FmodMode.AccurateTime` when creating the sound. This will cause a slight delay and memory increase, as FMOD will scan the whole during creation to find the correct length. This flag also creates a seek table to enable sample accurate seeking.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Enum.FmodTimeUnit} length_type The time unit type to retrieve.
@@ -3376,7 +3376,7 @@ function fmod_sound_get_num_tags(sound_ref) {}
  * Displaying or retrieving tags can be done in 3 different ways:
  * 
  * * All tags can be continuously retrieved by looping from 0 to the `num_tags` value in ${function.fmod_sound_get_num_tags} - 1. Updated tags will refresh automatically, and the `update` member of the ${struct.FmodSoundTag} structure will be set to `true` if a tag has been updated, due to something like a netstream changing the song name for example.
- * * Tags can be retrieved by specifying -1 as the index and only updating tags that are returned. If all tags are retrieved and this function is called ${function.fmod_last_result} will return an error of `FmodStudioResult.TagNotFound`.
+ * * Tags can be retrieved by specifying -1 as the index and only updating tags that are returned. If all tags are retrieved and this function is called ${function.fmod_last_result} will return an error of `FmodResult.TagNotFound`.
  * * Specific tags can be retrieved by specifying a name parameter. The index can be 0 based or -1 in the same fashion as described previously.
  * 
  * [[Note: With netstreams an important consideration must be made between songs, a tag may occur that changes the playback rate of the song. It is up to the user to catch this and reset the playback rate with ${function.fmod_channel_set_frequency}. A sample rate change will be signalled with a tag of type `FmodTagType.Fmod`.]]
@@ -3392,7 +3392,7 @@ function fmod_sound_get_num_tags(sound_ref) {}
  * 
  * ``gml
  * var _tag = fmod_sound_get_tag(sound_index, -1, tag_data_buff);
- * while (fmod_last_result() == FmodStudioResult.Ok)
+ * while (fmod_last_result() == FmodResult.Ok)
  * {
  *     // Move cursor to the beginning of the buffer
  *     buffer_seek(tag_data_buff, buffer_seek_start, 0);
@@ -3408,7 +3408,7 @@ function fmod_sound_get_num_tags(sound_ref) {}
  *             var _url = _value;
  *             fmod_sound_release(sound_index);
  *             
- *             sound_index = fmod_system_create_sound(_url, FmodStudioMode.CreateStream | FmodStudioMode.NonBlocking, extra);
+ *             sound_index = fmod_system_create_sound(_url, FmodMode.CreateStream | FmodMode.NonBlocking, extra);
  *         }
  *     }
  *     else if (_tag.type == FmodTagType.Fmod)
@@ -3476,9 +3476,9 @@ function fmod_sound_get_3d_cone_settings(sound_ref) {}
  *
  * This function sets a custom roll-off shape for 3D distance attenuation.
  *
- * [[Note: This function must be used in conjunction with the `FmodStudioMode._3DCustomRollOff` flag to be activated.]]
+ * [[Note: This function must be used in conjunction with the `FmodMode._3DCustomRollOff` flag to be activated.]]
  *
- * If `FmodStudioMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodStudioMode._3DInverseRollOff` roll-off mode.
+ * If `FmodMode._3DCustomRollOff` is set and the roll-off shape is not set, FMOD will revert to `FmodMode._3DInverseRollOff` roll-off mode.
  *
  * When a custom roll-off is specified a sound's 3D 'minimum' and 'maximum' distances are ignored.
  *
@@ -3548,17 +3548,17 @@ function fmod_sound_get_3d_custom_rolloff(sound_ref, points) {}
  * 
  * For these modes the volume will attenuate to 0 volume (silence), when the distance from the sound is equal to or further than the `max` distance:
  * 
- * * `FmodStudioMode._3DLinearRollOff`
- * * `FmodStudioMode._3DLinearSquareRollOff`
+ * * `FmodMode._3DLinearRollOff`
+ * * `FmodMode._3DLinearSquareRollOff`
  * 
  * For these modes the volume will stop attenuating at the point of the `max` distance, without affecting the rate of attenuation:
  * 
- * * `FmodStudioMode._3DInverseRollOff`
- * * `FmodStudioMode._3DInverseTaperedRollOff`
+ * * `FmodMode._3DInverseRollOff`
+ * * `FmodMode._3DInverseTaperedRollOff`
  * 
  * For this mode the `max` distance is ignored:
  * 
- * * `FmodStudioMode._3DCustomRollOff`
+ * * `FmodMode._3DCustomRollOff`
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} min The sound's minimum volume distance, or the distance that the sound has no attenuation due to 3D positioning. The default value is 1.
@@ -3632,24 +3632,24 @@ function fmod_sound_get_defaults(sound_ref) {}
  * 
  * Flags supported: 
  * 
- * `FmodStudioMode.LoopOff`
- * `FmodStudioMode.LoopOn`
- * `FmodStudioMode.LoopBidi`
- * `FmodStudioMode._3DHeadRelative`
- * `FmodStudioMode._3DWorldRelative`
- * `FmodStudioMode._2D`
- `* FmodStudioMode._3D`
- * `FmodStudioMode._3DInverseRollOff`
- * `FmodStudioMode._3DLinearRollOff`
- * `FmodStudioMode._3DLinearSquareRollOff`
- * `FmodStudioMode._3DInverseTaperedRollOff`
- * `FmodStudioMode._3DCustomRollOff`
- * `FmodStudioMode._3DIgnoreGeometry`
+ * `FmodMode.LoopOff`
+ * `FmodMode.LoopOn`
+ * `FmodMode.LoopBidi`
+ * `FmodMode._3DHeadRelative`
+ * `FmodMode._3DWorldRelative`
+ * `FmodMode._2D`
+ `* FmodMode._3D`
+ * `FmodMode._3DInverseRollOff`
+ * `FmodMode._3DLinearRollOff`
+ * `FmodMode._3DLinearSquareRollOff`
+ * `FmodMode._3DInverseTaperedRollOff`
+ * `FmodMode._3DCustomRollOff`
+ * `FmodMode._3DIgnoreGeometry`
  * 
- * If `FmodStudioMode._3DIgnoreGeometry` is not specified, the flag will be cleared if it was specified previously.
+ * If `FmodMode._3DIgnoreGeometry` is not specified, the flag will be cleared if it was specified previously.
  * 
  * @param {Real} sound_ref A reference to a sound.
- * @param {Enum.FmodMode} mode The mode bits to set. The default is `FmodStudioMode.Default`.
+ * @param {Enum.FmodMode} mode The mode bits to set. The default is `FmodMode.Default`.
  * @returns {Real}
  * @function_end
  */
@@ -3724,7 +3724,7 @@ function fmod_sound_get_loop_count(sound_ref) {}
  * 
  * [[Note: Changing loop points on an already buffered stream may not produced desired output. See [Streaming Issues](https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues).]]
  * 
- * [[Note: The [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html)'s mode must be set to `FmodStudioMode.LoopOn` or `FmodStudioMode.LoopBidi` for loop points to affect playback.]]
+ * [[Note: The [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html)'s mode must be set to `FmodMode.LoopOn` or `FmodMode.LoopBidi` for loop points to affect playback.]]
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} loop_start The loop start point. A value in the range [0, `loop_end`].
@@ -3814,11 +3814,11 @@ function fmod_sound_get_num_sub_sounds(sound_ref) {}
  *
  * This function retrieves a handle to a Sound object that is contained within the parent sound.
  * 
- * If the sound is a stream and `FmodStudioMode.NonBlocking` was not used, then this call will perform a blocking seek/flush to the specified subsound.
+ * If the sound is a stream and `FmodMode.NonBlocking` was not used, then this call will perform a blocking seek/flush to the specified subsound.
  * 
- * If `FmodStudioMode.NonBlocking` was used to open this sound and the sound is a stream, FMOD will do a non blocking seek/flush and set the state of the subsound to `FmodOpenState.Seeking`.
+ * If `FmodMode.NonBlocking` was used to open this sound and the sound is a stream, FMOD will do a non blocking seek/flush and set the state of the subsound to `FmodOpenState.Seeking`.
  * 
- * The sound won't be ready to be used when `FmodStudioMode.NonBlocking` is used, until the state of the sound becomes `FmodOpenState.Ready` or `FmodOpenState.Error`.
+ * The sound won't be ready to be used when `FmodMode.NonBlocking` is used, until the state of the sound becomes `FmodOpenState.Ready` or `FmodOpenState.Error`.
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} index The index of the subsound.
@@ -3853,15 +3853,15 @@ function fmod_sound_get_sub_sound_parent(sound_ref) {}
  *
  * This function retrieves the state a sound is in after being opened with the non blocking flag, or the current state of the streaming buffer.
  * 
- * When a sound is opened with `FmodStudioMode.NonBlocking`, it is opened and prepared in the background, or asynchronously. This allows the main application to execute without stalling on audio loads.
+ * When a sound is opened with `FmodMode.NonBlocking`, it is opened and prepared in the background, or asynchronously. This allows the main application to execute without stalling on audio loads.
  * This function will describe the state of the asynchronous load routine i.e. whether it has succeeded, failed or is still in progress.
  * 
  * If `starving` is true, then you will most likely hear a stuttering/repeating sound as the decode buffer loops on itself and replays old data.
  * With the ability to detect stream starvation, muting the sound with ${function.fmod_channel_control_set_mute} will keep the stream quiet until it is not starving anymore.
  * 
- * [[Note: Always check `open_state` to determine the state of the sound. Do not assume that if this function returns `FmodStudioResult.Ok` then the sound has finished loading.]]
+ * [[Note: Always check `open_state` to determine the state of the sound. Do not assume that if this function returns `FmodResult.Ok` then the sound has finished loading.]]
  * 
- * See also: ${constant.FmodStudioMode}
+ * See also: ${constant.FmodMode}
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @returns {Struct.FmodSoundOpenState}
@@ -3882,12 +3882,12 @@ function fmod_sound_get_open_state(sound_ref) {}
  * 
  * This can be used for decoding data offline in small pieces (or big pieces), rather than playing and capturing it, or loading the whole file at once and having to ${function.fmod_sound_lock} / ${function.fmod_sound_unlock} the data.
  * 
- * If you read too much data, it is possible that ${function.fmod_last_result} will return `FmodStudioResult.FileEof`, meaning it is out of data. The returned 'read' parameter will reflect this by returning a smaller number of bytes read than was requested.
+ * If you read too much data, it is possible that ${function.fmod_last_result} will return `FmodResult.FileEof`, meaning it is out of data. The returned 'read' parameter will reflect this by returning a smaller number of bytes read than was requested.
  * 
- * As a non streaming sound reads and decodes the whole file then closes it upon calling ${function.fmod_system_create_sound}, ${function.fmod_sound_read_data} will then not work because the file handle is closed. Use `FmodStudioMode.OpenOnly` to stop FMOD reading/decoding the file.
- * If `FmodStudioMode.OpenOnly` flag is used when opening a sound, it will leave the file handle open, and FMOD will not read/decode any data internally, so the read cursor will stay at position 0. This will allow the user to read the data from the start.
+ * As a non streaming sound reads and decodes the whole file then closes it upon calling ${function.fmod_system_create_sound}, ${function.fmod_sound_read_data} will then not work because the file handle is closed. Use `FmodMode.OpenOnly` to stop FMOD reading/decoding the file.
+ * If `FmodMode.OpenOnly` flag is used when opening a sound, it will leave the file handle open, and FMOD will not read/decode any data internally, so the read cursor will stay at position 0. This will allow the user to read the data from the start.
  * 
- * For streams, the streaming engine will decode a small chunk of data and this will advance the read cursor. You need to either use `FmodStudioMode.OpenOnly` to stop the stream pre-buffering or call ${function.fmod_sound_seek_data} to reset the read cursor back to the start of the file, otherwise it will appear as if the start of the stream is missing.
+ * For streams, the streaming engine will decode a small chunk of data and this will advance the read cursor. You need to either use `FmodMode.OpenOnly` to stop the stream pre-buffering or call ${function.fmod_sound_seek_data} to reset the read cursor back to the start of the file, otherwise it will appear as if the start of the stream is missing.
  * ${function.fmod_channel_set_position} will have the same result. These functions will flush the stream buffer and read in a chunk of audio internally. This is why if you want to read from an absolute position you should use ${function.fmod_sound_seek_data} and not the previously mentioned functions.
  * 
  * If you are calling ${function.fmod_sound_read_data} and ${function.fmod_sound_seek_data} on a stream, information functions such as ${function.fmod_channel_get_position} may give misleading results. Calling ${function.fmod_channel_get_position} will cause the streaming engine to reset and flush the stream, leading to the time values returning to their correct position.
@@ -3909,7 +3909,7 @@ function fmod_sound_read_data(sound_ref, buff, length, offset) {}
  *
  * This function seeks a sound for use with data reading, using FMOD's internal codecs.
  * 
- * [[Warning: This function is for use in conjunction with ${function.fmod_sound_read_data} and `FmodStudioMode.OpenOnly`.]]
+ * [[Warning: This function is for use in conjunction with ${function.fmod_sound_read_data} and `FmodMode.OpenOnly`.]]
  * 
  * For streaming sounds, if this function is called, it will advance the internal file pointer but not update the streaming engine. This can lead to de-synchronization of position information for the stream and audible playback.
  * 
@@ -3942,12 +3942,12 @@ function fmod_sound_seek_data(sound_ref, pcm) {}
  * 
  * [[Important: You must always unlock the data again after you have finished with it, using ${function.fmod_sound_unlock}.]]
  * 
- * If the sound is created with `FmodStudioMode.CreateCompressedSample` the data retrieved will be the compressed bitstream.
+ * If the sound is created with `FmodMode.CreateCompressedSample` the data retrieved will be the compressed bitstream.
  * 
  * It is not possible to lock the following:
  * 
- * * A parent sound containing subsounds. A parent sound has no audio data and ${function.fmod_last_result} will return `FmodStudioResult.SubSounds`.
- * * A stream / sound created with `FmodStudioMode.CreateStream`. `FmodStudioResult.BadCommand` will be returned by ${function.fmod_last_result} in this case.
+ * * A parent sound containing subsounds. A parent sound has no audio data and ${function.fmod_last_result} will return `FmodResult.SubSounds`.
+ * * A stream / sound created with `FmodMode.CreateStream`. `FmodResult.BadCommand` will be returned by ${function.fmod_last_result} in this case.
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @param {Real} offset The offset into the sound's buffer to be retrieved, in bytes.
@@ -4146,7 +4146,7 @@ function fmod_sound_delete_sync_point(sound_ref, point_index) {}
  * 
  * This will stop any instances of this sound, and free the sound object and its children if it is a multi-sound object.
  * 
- * If the sound was opened with `FmodStudioMode.NonBlocking` and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using ${function.fmod_sound_get_open_state} and checking the open state for `FmodOpenState.Ready` and `FmodOpenState.Error` is a good way to avoid stalls.
+ * If the sound was opened with `FmodMode.NonBlocking` and hasn't finished opening yet, it will block. Additionally, if the sound is still playing or has recently been stopped, the release may stall, as the mixer may still be using the sound. Using ${function.fmod_sound_get_open_state} and checking the open state for `FmodOpenState.Ready` and `FmodOpenState.Error` is a good way to avoid stalls.
  * 
  * @param {Real} sound_ref A reference to a sound.
  * @returns {Real}
@@ -4213,7 +4213,7 @@ function fmod_sound_get_user_data(sound_ref) {}
  *
  * This function sets the maximum number of playbacks to be audible at once in a sound group.
  * 
- * If playing instances of sounds in this group equal or exceed number specified here, attempts to play more of the sounds will be met with `FmodStudioResult.MaxAudible` by default.
+ * If playing instances of sounds in this group equal or exceed number specified here, attempts to play more of the sounds will be met with `FmodResult.MaxAudible` by default.
  * Use ${function.fmod_sound_group_set_max_audible_behavior} to change the way the sound playback behaves when too many sounds are playing. Muting, failing and stealing behaviors can be specified. See `FMOD_SOUNDGROUP_BEHAVIOR`.
  * 
  * ${function.fmod_sound_group_get_num_playing} can be used to determine how many instances of the sounds in the SoundGroup are currently playing.
@@ -4731,7 +4731,7 @@ function fmod_studio_bank_is_valid(bank_ref) {}
  *
  * This function sets an integer user value on this object.
  *
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodStudioResult.InvalidParam` and nothing is stored.]]
  *
  * @param {Real} bank_ref A reference to a bank.
  * @param {Real} user_data The integer value to store on this object.
@@ -4985,7 +4985,7 @@ function fmod_studio_bus_unlock_channel_group(bus_ref) {}
  *
  * This function retrieves the bus CPU usage data.
  * 
- * `FmodInitFlags.ProfileEnable` with ${function.fmod_system_init} is required to call this function.
+ * `FmodStudioCoreInitFlags.ProfileEnable` in the core flags of ${function.fmod_studio_system_init} is required to call this function.
  * 
  * @param {Real} bus_ref A reference to a bus.
  * @returns {Struct.FmodStudioCPUUsage}
@@ -5421,7 +5421,7 @@ function fmod_studio_command_replay_is_valid(command_replay_ref) {}
  *
  * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodStudioResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} replay_ref A reference to a CommandReplay.
  * @param {Real} user_data The integer value to store on this object.
@@ -5891,7 +5891,7 @@ function fmod_studio_event_description_set_callback(event_desc_ref, callback, ca
  *
  * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodStudioResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} event_desc_ref A reference to an EventDescription.
  * @param {Real} user_data The integer value to store on this object.
@@ -6463,7 +6463,7 @@ function fmod_studio_event_instance_get_reverb_level(event_instance_ref, index) 
  *
  * This function retrieves the event CPU usage data.
  * 
- * `FmodInitFlags.ProfileEnable` with ${function.fmod_system_init} is required to call this function.
+ * `FmodStudioCoreInitFlags.ProfileEnable` in the core flags of ${function.fmod_studio_system_init} is required to call this function.
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
  * @returns {Struct.FmodStudioCPUUsage}
@@ -6572,7 +6572,7 @@ function fmod_studio_event_instance_set_programmer_sound(instance_ref, key) {}
  *
  * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodStudioResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} instance_ref A reference to an EventInstance.
  * @param {Real} user_data The integer value to store on this object.
@@ -7445,7 +7445,7 @@ function fmod_studio_system_set_callback(callback, callback_mask) {}
  *
  * This function sets an integer user value on this object.
  * 
- * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodResult.InvalidParam` and nothing is stored.]]
+ * [[Note: While FMOD supports arbitrary [User Data](https://www.fmod.com/docs/2.03/api/glossary.html#user-data), this function only stores a 64-bit integer. To attach a GML value, keep it in a struct, array or `ds_map` of your own and store its key or index here. On 32-bit platforms the value must fit in 32 bits; one that does not is rejected with `FmodStudioResult.InvalidParam` and nothing is stored.]]
  * 
  * @param {Real} user_data The integer value to store on this object.
  * @returns {Real}
@@ -7654,7 +7654,7 @@ function fmod_system_count() {}
  * 
  * [[Important: A system object must first be created with ${function.fmod_system_create}.]]
  * 
- * Most API functions require an initialized System object before they will succeed, otherwise they will return `FmodStudioResult.Uninitialized`. Some can only be called before initialization. These are:
+ * Most API functions require an initialized System object before they will succeed, otherwise they will return `FmodResult.Uninitialized`. Some can only be called before initialization. These are:
  * 
  * * ${function.fmod_system_set_software_format}
  * * ${function.fmod_system_set_software_channels}
@@ -8045,9 +8045,9 @@ function fmod_system_get_dsp_buffer_size() {}
  * 
  * Larger values will consume more memory, whereas smaller values may cause buffer under-run / starvation / stuttering caused by large delays in disk access (i.e. netstream), or CPU usage in slow machines, or by trying to play too many streams at once.
  * 
- * This does not affect streams created with `FmodStudioMode.OpenUser`, as the buffer size is specified in ${function.fmod_system_create_sound}.
+ * This does not affect streams created with `FmodMode.OpenUser`, as the buffer size is specified in ${function.fmod_system_create_sound}.
  * 
- * This does not affect latency of playback. All streams are pre-buffered (unless opened with `FmodStudioMode.OpenOnly`), so they will always start immediately.
+ * This does not affect latency of playback. All streams are pre-buffered (unless opened with `FmodMode.OpenOnly`), so they will always start immediately.
  * 
  * Seek and Play operations can sometimes cause a reflush of this buffer.
  * 
@@ -8195,11 +8195,11 @@ function fmod_system_get_speaker_position(speaker) {}
  * The `distance_factor` is the FMOD 3D engine relative distance factor, compared to 1.0 meters. Another way to put it is that it equates to "how many units per meter does your engine have". For example, if you are using feet then "scale" would equal 3.28.
  * This only affects doppler. If you keep your min/max distance, custom roll-off curves, and positions in scale relative to each other, the volume roll-off will not change. If you set this, the mindistance of a sound will automatically set itself to this value when it is created in case the user forgets to set the mindistance to match the new `distance_factor`.
  * 
- * The `rolloff_scale` is a global factor applied to the roll-off of sounds using roll-off modes other than `FmodStudioMode._3DCustomRollOff`. When a sound uses a roll-off mode other than `FmodStudioMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula `distance = (distance - minDistance) * rolloffscale + minDistance`.
+ * The `rolloff_scale` is a global factor applied to the roll-off of sounds using roll-off modes other than `FmodMode._3DCustomRollOff`. When a sound uses a roll-off mode other than `FmodMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula `distance = (distance - minDistance) * rolloffscale + minDistance`.
  * 
  * @param {Real} doppler_scale A scaling factor for doppler shift. Default is 1.
  * @param {Real} distance_factor A factor for converting game distance units to FMOD distance units. Default is 1.
- * @param {Real} rolloff_scale A scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FmodStudioMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.
+ * @param {Real} rolloff_scale A scaling factor for distance attenuation. When a sound uses a roll-off mode other than `FmodMode._3DCustomRollOff` and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.
  * @returns {Real}
  * @function_end
  */
@@ -8265,7 +8265,7 @@ function fmod_system_get_3d_num_listeners() {}
  *
  * This function enables callbacks for custom calculation of distance attenuation.
  * 
- * This function overrides `FmodStudioMode._3DInverseRollOff`, `FmodStudioMode._3DLinearRollOff`, `FmodStudioMode._3DLinearSquareRollOff`, `FmodStudioMode._3DInverseTaperedRollOff` and `FmodStudioMode._3DCustomRollOff`.
+ * This function overrides `FmodMode._3DInverseRollOff`, `FmodMode._3DLinearRollOff`, `FmodMode._3DLinearSquareRollOff`, `FmodMode._3DInverseTaperedRollOff` and `FmodMode._3DCustomRollOff`.
  * 
  * See also: [Callback behavior](https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior)
  * 
@@ -8421,7 +8421,7 @@ function fmod_system_get_file_usage() {}
  *
  * The gain for source channel 's' to target channel 't' is `matrix[t * in_channels + s]`, where `in_channels` is the number of channels of `source_speaker_mode`.
  *
- * If `source_speaker_mode` or `target_speaker_mode` is `FmodSpeakerMode.Raw`, this function will return `FmodStudioResult.InvalidParam`.
+ * If `source_speaker_mode` or `target_speaker_mode` is `FmodSpeakerMode.Raw`, this function will return `FmodResult.InvalidParam`.
  *
  * @param {Enum.FmodSpeakerMode} source_speaker_mode The speaker mode being converted from.
  * @param {Enum.FmodSpeakerMode} target_speaker_mode The speaker mode being converted to.
@@ -8457,26 +8457,26 @@ function fmod_system_get_speaker_mode_channels(mode) {}
  * 
  * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
- * `FmodStudioMode.CreateSample` will try to load and decompress the whole sound into memory, use `FmodStudioMode.CreateStream` to open it as a stream and have it play back in realtime from disk or another medium. `FmodStudioMode.CreateCompressedSample` can also be used for certain formats to play the sound directly in its compressed format from the mixer.
+ * `FmodMode.CreateSample` will try to load and decompress the whole sound into memory, use `FmodMode.CreateStream` to open it as a stream and have it play back in realtime from disk or another medium. `FmodMode.CreateCompressedSample` can also be used for certain formats to play the sound directly in its compressed format from the mixer.
  * 
- * * To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the `FmodStudioMode.CreateStream` flag.
- * * To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use `FmodStudioMode.CreateCompressedSample`. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed sound effects, but not the overhead of disk access.
- * * To open a sound as 2D, so that it is not affected by 3D processing, use the `FmodStudioMode._2D` flag. 3D sound commands will be ignored on these types of sounds.
- * * To open a sound as 3D, so that it is treated as a 3D sound, use the `FmodStudioMode._3D` flag.
+ * * To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the `FmodMode.CreateStream` flag.
+ * * To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use `FmodMode.CreateCompressedSample`. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed sound effects, but not the overhead of disk access.
+ * * To open a sound as 2D, so that it is not affected by 3D processing, use the `FmodMode._2D` flag. 3D sound commands will be ignored on these types of sounds.
+ * * To open a sound as 3D, so that it is treated as a 3D sound, use the `FmodMode._3D` flag.
  * 
- * [[Note: `FmodStudioMode.OpenRaw`, `FmodStudioMode.OpenMemory`, `FmodStudioMode.OpenMemoryPoint` and `FmodStudioMode.OpenUser` will not work here without the exinfo structure present, as more information is needed.]]
+ * [[Note: `FmodMode.OpenRaw`, `FmodMode.OpenMemory`, `FmodMode.OpenMemoryPoint` and `FmodMode.OpenUser` will not work here without the exinfo structure present, as more information is needed.]]
  * 
- * Use `FmodStudioMode.NonBlocking` to have the sound open or load in the background. You can use ${function.fmod_sound_get_open_state} to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with `FmodStudioMode.OpenMemory` if the sound is not in a ready state, as it will most likely lead to a crash.
+ * Use `FmodMode.NonBlocking` to have the sound open or load in the background. You can use ${function.fmod_sound_get_open_state} to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with `FmodMode.OpenMemory` if the sound is not in a ready state, as it will most likely lead to a crash.
  * 
- * To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with `FmodStudioMode.CreateStream`, use ${function.fmod_system_set_stream_buffer_size} to increase read ahead.
+ * To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with `FmodMode.CreateStream`, use ${function.fmod_system_set_stream_buffer_size} to increase read ahead.
  * 
- * As using `FmodStudioMode.OpenUser` causes FMOD to ignore whatever is passed as the first argument `name_or_buffer`, recommended practice is to pass 0 or equivalent.
+ * As using `FmodMode.OpenUser` causes FMOD to ignore whatever is passed as the first argument `name_or_buffer`, recommended practice is to pass 0 or equivalent.
  * 
- * Specifying `FmodStudioMode.OpenMemoryPoint` will POINT to the ${type.buffer} that you pass as `name_or_buff`, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after ${function.fmod_sound_release} is called.
+ * Specifying `FmodMode.OpenMemoryPoint` will POINT to the ${type.buffer} that you pass as `name_or_buff`, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after ${function.fmod_sound_release} is called.
  * 
- * With `FmodStudioMode.OpenMemoryPoint`, only PCM formats and compressed formats using `FmodStudioMode.CreateCompressedSample` are supported.
+ * With `FmodMode.OpenMemoryPoint`, only PCM formats and compressed formats using `FmodMode.CreateCompressedSample` are supported.
  * 
- * [[Warning: Use of FmodStudioMode.NonBlocking is currently not supported for JavaScript.]]
+ * [[Warning: Use of FmodMode.NonBlocking is currently not supported for JavaScript.]]
  * 
  * @param {String} name_or_data The name of the file to open, or the memory buffer holding the sound when the mode includes an open-memory flag.
  * @param {Enum.FmodMode} mode The behavior modifier for opening the sound.
@@ -8496,7 +8496,7 @@ function fmod_system_create_sound(name_or_data, mode, buff_extra) {}
  * 
  * It returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * 
- * This is a convenience function for ${function.fmod_system_create_sound} with the `FmodStudioMode.CreateStream` flag added.
+ * This is a convenience function for ${function.fmod_system_create_sound} with the `FmodMode.CreateStream` flag added.
  * 
  * A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.
  * 
@@ -8653,7 +8653,7 @@ function fmod_system_create_reverb_3d() {}
  * 
  * When a sound is played, it will use the sound's default frequency and priority. See ${function.fmod_sound_set_defaults}.
  * 
- * A sound defined as `FmodStudioMode._3D` will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to `true`, and call ${function.fmod_channel_control_set_3d_attributes}.
+ * A sound defined as `FmodMode._3D` will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to `true`, and call ${function.fmod_channel_control_set_3d_attributes}.
  * 
  * Specifying a `channel_group_ref` as part of `fmod_system_play_sound` is more efficient than using ${function.fmod_channel_set_channel_group} after `fmod_system_play_sound`, and could avoid audible glitches if the sound is not in a paused state.
  * 
@@ -8906,11 +8906,11 @@ function fmod_system_get_record_driver_info(recording_device_index) {}
  *
  * This function retrieves the current recording position of the record buffer in PCM samples.
  * 
- * ${function.fmod_last_result} will return `FmodStudioResult.RecordDisconnected` if the driver is unplugged.
+ * ${function.fmod_last_result} will return `FmodResult.RecordDisconnected` if the driver is unplugged.
  * 
  * The position will return to 0 when ${function.fmod_system_record_stop} is called or when a non-looping recording reaches the end.
  * 
- * [[Note: on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FmodStudioResult.RecordDisconnected` for your information though.]]
+ * [[Note: on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FmodResult.RecordDisconnected` for your information though.]]
  * 
  * @param {Real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @returns {Real}
@@ -8927,9 +8927,9 @@ function fmod_system_get_record_position(device_index) {}
  *
  * This function starts the recording engine recording to a pre-created Sound object.
  * 
- * ${function.fmod_last_result} will return `FmodStudioResult.RecordDisconnected` if the driver is unplugged.
+ * ${function.fmod_last_result} will return `FmodResult.RecordDisconnected` if the driver is unplugged.
  * 
- * The sound must be created as `FmodStudioMode.CreateSample`. Raw PCM data can be accessed with ${function.fmod_sound_lock}, ${function.fmod_sound_unlock} and ${function.fmod_system_get_record_position}.
+ * The sound must be created as `FmodMode.CreateSample`. Raw PCM data can be accessed with ${function.fmod_sound_lock}, ${function.fmod_sound_unlock} and ${function.fmod_system_get_record_position}.
  * 
  * Recording from the same driver a second time will stop the first recording.
  * 
@@ -8971,9 +8971,9 @@ function fmod_system_record_stop(device_index) {}
  * 
  * Recording can be started with ${function.fmod_system_record_start} and stopped with ${function.fmod_system_record_stop}.
  * 
- * ${function.fmod_last_result} will return `FmodStudioResult.RecordDisconnected` if the driver is unplugged.
+ * ${function.fmod_last_result} will return `FmodResult.RecordDisconnected` if the driver is unplugged.
  * 
- * [[Note: On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FmodStudioResult.RecordDisconnected` for your information though.]]
+ * [[Note: On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). ${function.fmod_last_result} will still report `FmodResult.RecordDisconnected` for your information though.]]
  * 
  * @param {Real} device_index The index of the recording device. A value in the range [0, ${function.fmod_system_get_record_num_drivers}].
  * @returns {Bool}
@@ -9169,10 +9169,10 @@ function fmod_system_get_user_data() {}
 
 /**
  * @function fmod_last_result
- * @desc This function returns the result of the last call to any of FMOD's functions.
+ * @desc This function returns the result of the last call to any GMFMOD (Core) function. Calls into the GMFMODStudio extension report through ${function.fmod_studio_last_result} instead; the two extensions keep separate results.
  * 
- * The extension functions themselves don't return a value indicating if a function call was succesful or not.
- * You should therefore use this function if you want to get the result of the last function that you called.
+ * The extension functions themselves don't return a value indicating if a function call was successful or not.
+ * You should therefore use this function if you want to get the result of the last Core function that you called.
  * 
  * @returns {Enum.FmodResult}
  * @function_end
@@ -9241,13 +9241,13 @@ function fmod_system_create_sound_ex(name_or_data, mode, ex_info) {}
  *
  * This function creates a sound from audio data already held in a ${type.buffer}, rather than from a file on disk.
  *
- * It is ${function.fmod_system_create_sound} with `FmodStudioMode.OpenMemory` forced into the mode, and it returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) the same way.
+ * It is ${function.fmod_system_create_sound} with `FmodMode.OpenMemory` forced into the mode, and it returns a reference to the newly created [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) the same way.
  *
  * FMOD copies the audio data out of the buffer, so the buffer may be deleted as soon as this function returns.
  *
- * [[Note: The zero-copy `FmodStudioMode.OpenMemoryPoint` mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until ${function.fmod_sound_release} is called, and GML can guarantee neither. It is stripped from `mode` if you pass it.]]
+ * [[Note: The zero-copy `FmodMode.OpenMemoryPoint` mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until ${function.fmod_sound_release} is called, and GML can guarantee neither. It is stripped from `mode` if you pass it.]]
  *
- * To stream the sound from the buffer instead of decompressing it up front, add `FmodStudioMode.CreateStream` to `mode`; there is no separate memory stream function.
+ * To stream the sound from the buffer instead of decompressing it up front, add `FmodMode.CreateStream` to `mode`; there is no separate memory stream function.
  *
  * Use ${function.fmod_system_create_sound_memory_ex} instead when the data needs a ${struct.FmodCreateSoundExInfo} to describe it, such as raw PCM.
  *

@@ -1565,7 +1565,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Sounds opened as <code>FmodStudioMode.CreateSample</code> (not <code>FmodStudioMode.CreateStream</code> or <code>FmodStudioMode.CreateCompressedSample</code>) can be played backwards by giving a negative frequency.</p>
+<p>Sounds opened as <code>FmodMode.CreateSample</code> (not <code>FmodMode.CreateStream</code> or <code>FmodMode.CreateCompressedSample</code>) can be played backwards by giving a negative frequency.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1738,11 +1738,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If playing a Sound created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FmodStudioMode.CreateStream</code> changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with <code>FmodStudioMode.NonBlocking</code>. This will cause the stream to go into <code>FmodOpenState.SetPosition</code> state (see <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a>) and Sound commands will return <code>FmodStudioResult.NotReady</code>. <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> will also not update until this non-blocking set position operation has completed.</p>
+<p>If playing a Sound created with <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a> or <code>FmodMode.CreateStream</code> changing the position may cause a slow reflush operation while the file seek and decode occurs. You can avoid this by creating the stream with <code>FmodMode.NonBlocking</code>. This will cause the stream to go into <code>FmodOpenState.SetPosition</code> state (see <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a>) and Sound commands will return <code>FmodResult.NotReady</code>. <a href="channel.html#fmod_channel_get_position">fmod_channel_get_position</a> will also not update until this non-blocking set position operation has completed.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify <code>FmodTimeUnit.Ms</code> or <code>FmodTimeUnit.Pcm</code>. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify <code>FmodStudioMode.AccurateTime</code> when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.</p>
+<p>Using a VBR source that does not have an associated seek table or seek information (such as MP3 or MOD/S3M/XM/IT) may cause inaccurate seeking if you specify <code>FmodTimeUnit.Ms</code> or <code>FmodTimeUnit.Pcm</code>. If you want FMOD to create a PCM vs bytes seek table so that seeking is accurate, you will have to specify <code>FmodMode.AccurateTime</code> when loading or opening the sound. This means there is a slight delay as FMOD scans the whole file when loading the sound to create this table.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1841,7 +1841,7 @@
 <p>This function sets the number of times to loop before stopping.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The 'mode' of the sound or channel must be <code>FmodStudioMode.LoopOn</code> or <code>FmodStudioMode.LoopBidi</code> for this function to work.</p>
+<p>The 'mode' of the sound or channel must be <code>FmodMode.LoopOn</code> or <code>FmodMode.LoopBidi</code> for this function to work.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1928,10 +1928,10 @@
 <p>Loop points may only be set on a channel playing a sound, not a channel playing a DSP (See <a href="system.html#fmod_system_play_dsp">fmod_system_play_dsp</a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Valid <a href="constants.html#fmodtimeunit">FmodTimeUnit</a> types are <code>FmodTimeUnit.Pcm</code>, <code>FmodTimeUnit.Ms</code>, <code>FmodTimeUnit.PcmBytes</code>. Any other time units return <code>FmodStudioResult.Format</code>.
+<p>Valid <a href="constants.html#fmodtimeunit">FmodTimeUnit</a> types are <code>FmodTimeUnit.Pcm</code>, <code>FmodTimeUnit.Ms</code>, <code>FmodTimeUnit.PcmBytes</code>. Any other time units return <code>FmodResult.Format</code>.
 If <code>FmodTimeUnit.Ms</code> or <code>FmodTimeUnit.PcmBytes</code> are used, the value is internally converted from <code>FmodTimeUnit.Pcm</code>, so the retrieved value may not exactly match the set value.</p>
 </div>
-<p>The Channel's mode must be set to <code>FmodStudioMode.LoopOn</code> or <code>FmodStudioMode.LoopBidi</code> for loop points to affect playback.</p>
+<p>The Channel's mode must be set to <code>FmodMode.LoopOn</code> or <code>FmodMode.LoopBidi</code> for loop points to affect playback.</p>
 <p>See also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#streaming-issues">Streaming Issues</a></p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -1991,7 +1991,7 @@ If <code>FmodTimeUnit.Ms</code> or <code>FmodTimeUnit.PcmBytes</code> are used, 
 <p>This function retrieves the loop start and end points.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Valid <a href="constants.html#fmodtimeunit">FmodTimeUnit</a> types are <code>FmodTimeUnit.Pcm</code>, <code>FmodTimeUnit.Ms</code>, <code>FmodTimeUnit.PcmBytes</code>. For all other time units <a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FmodStudioResult.Format</code>.
+<p>Valid <a href="constants.html#fmodtimeunit">FmodTimeUnit</a> types are <code>FmodTimeUnit.Pcm</code>, <code>FmodTimeUnit.Ms</code>, <code>FmodTimeUnit.PcmBytes</code>. For all other time units <a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FmodResult.Format</code>.
 If <code>FmodTimeUnit.Ms</code> or <code>FmodTimeUnit.PcmBytes</code> are used, the value is internally converted from <code>FmodTimeUnit.Pcm</code>, so the retrieved value may not exactly match the set value.</p>
 </div>
 <p><br></p>

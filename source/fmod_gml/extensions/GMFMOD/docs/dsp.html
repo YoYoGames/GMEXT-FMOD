@@ -2471,7 +2471,7 @@
 <p><br /></p>
 <p>This function retrieves the index of the first data parameter of a particular data type.</p>
 <p>The function returns the index of the first data parameter of type <code>data_type</code> after the function is called. This will be -1 if no matches were found.</p>
-<p><a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FmodStudioResult.Ok</code> if a parameter of matching type is found and <code>FmodStudioResult.InvalidParam</code> if no matches were found.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> returns <code>FmodResult.Ok</code> if a parameter of matching type is found and <code>FmodResult.InvalidParam</code> if no matches were found.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -3105,7 +3105,7 @@ Note that no new call to the function is made since this code executes in the St
 <p>This function retrieves the signal metering information.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Requesting metering information when it hasn't been enabled will result in <code>FmodStudioResult.BadCommand</code>.</p>
+<p>Requesting metering information when it hasn't been enabled will result in <code>FmodResult.BadCommand</code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3563,7 +3563,7 @@ Note that no new call to the function is made since this code executes in the St
 </blockquote>
 <p><br /></p>
 <p>This function frees a DSP object.</p>
-<p>If the DSP is not removed from the network with <a href="channel_control.html#fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</a> after being added with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a>, it will not release and <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.DspInUse</code>.</p>
+<p>If the DSP is not removed from the network with <a href="channel_control.html#fmod_channel_control_remove_dsp">fmod_channel_control_remove_dsp</a> after being added with <a href="channel_control.html#fmod_channel_control_add_dsp">fmod_channel_control_add_dsp</a>, it will not release and <a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.DspInUse</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

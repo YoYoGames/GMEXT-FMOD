@@ -1525,15 +1525,15 @@
 </blockquote>
 <p><br /></p>
 <p>This function specifies the level and delivery method of log messages when using the logging version of FMOD.</p>
-<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.Unsupported</code> when using the non-logging (release) versions of FMOD.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.Unsupported</code> when using the non-logging (release) versions of FMOD.</p>
 <blockquote>
-<p><strong>NOTE</strong>: This extension ships the non-logging build of FMOD on every platform, so this function always fails with <code>FmodStudioResult.Unsupported</code>. Using it requires rebuilding the extension's native libraries against FMOD's logging (<code>fmodL</code>) build.</p>
+<p><strong>NOTE</strong>: This extension ships the non-logging build of FMOD on every platform, so this function always fails with <code>FmodResult.Unsupported</code>. Using it requires rebuilding the extension's native libraries against FMOD's logging (<code>fmodL</code>) build.</p>
 </blockquote>
 <p>Note that:</p>
 <ul>
-<li><code>FmodStudioDebugFlags.LevelLog</code> produces informational, warning and error messages.</li>
-<li><code>FmodStudioDebugFlags.LevelWarning</code> produces warnings and error messages.</li>
-<li><code>FmodStudioDebugFlags.LevelError</code> produces error messages only.</li>
+<li><code>FmodDebugFlags.LevelLog</code> produces informational, warning and error messages.</li>
+<li><code>FmodDebugFlags.LevelWarning</code> produces warnings and error messages.</li>
+<li><code>FmodDebugFlags.LevelError</code> produces error messages only.</li>
 </ul>
 <p>See Also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior">Callback Behavior</a></p>
 <p><br></p>
@@ -1558,7 +1558,7 @@
 <tr>
 <td>mode</td>
 <td><a href="constants.html#fmoddebugmode">FmodDebugMode</a></td>
-<td>The destination for log messages. The default is <code>FmodStudioDebugMode.Tty</code>.</td>
+<td>The destination for log messages. The default is <code>FmodDebugMode.Tty</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1622,9 +1622,9 @@
 <p align="right"><a href="#top">Back To Top</a></p>
 
 <h1 id="fmod_last_result">fmod_last_result<a class="headerlink" href="#fmod_last_result" title="Permanent link">&para;</a></h1>
-<p>This function returns the result of the last call to any of FMOD's functions.</p>
-<p>The extension functions themselves don't return a value indicating if a function call was succesful or not.
-You should therefore use this function if you want to get the result of the last function that you called.</p>
+<p>This function returns the result of the last call to any GMFMOD (Core) function. Calls into the GMFMODStudio extension report through <a href="studio_system.html#fmod_studio_last_result">fmod_studio_last_result</a> instead; the two extensions keep separate results.</p>
+<p>The extension functions themselves don't return a value indicating if a function call was successful or not.
+You should therefore use this function if you want to get the result of the last Core function that you called.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>

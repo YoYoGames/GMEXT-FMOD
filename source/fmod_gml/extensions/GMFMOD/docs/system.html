@@ -3137,7 +3137,7 @@
 <p class="admonition-title">Important</p>
 <p>A system object must first be created with <a href="system.html#fmod_system_create">fmod_system_create</a>.</p>
 </div>
-<p>Most API functions require an initialized System object before they will succeed, otherwise they will return <code>FmodStudioResult.Uninitialized</code>. Some can only be called before initialization. These are:</p>
+<p>Most API functions require an initialized System object before they will succeed, otherwise they will return <code>FmodResult.Uninitialized</code>. Some can only be called before initialization. These are:</p>
 <ul>
 <li><a href="system.html#fmod_system_set_software_format">fmod_system_set_software_format</a></li>
 <li><a href="system.html#fmod_system_set_software_channels">fmod_system_set_software_channels</a></li>
@@ -3766,8 +3766,8 @@ show_debug_message("Mixer Average Latency   = {0}", _ms * (_num_buffers - 1.5));
 <code>FmodTimeUnit.PcmBytes</code>
 <code>FmodTimeUnit.RawBytes</code></p>
 <p>Larger values will consume more memory, whereas smaller values may cause buffer under-run / starvation / stuttering caused by large delays in disk access (i.e. netstream), or CPU usage in slow machines, or by trying to play too many streams at once.</p>
-<p>This does not affect streams created with <code>FmodStudioMode.OpenUser</code>, as the buffer size is specified in <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>.</p>
-<p>This does not affect latency of playback. All streams are pre-buffered (unless opened with <code>FmodStudioMode.OpenOnly</code>), so they will always start immediately.</p>
+<p>This does not affect streams created with <code>FmodMode.OpenUser</code>, as the buffer size is specified in <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a>.</p>
+<p>This does not affect latency of playback. All streams are pre-buffered (unless opened with <code>FmodMode.OpenOnly</code>), so they will always start immediately.</p>
 <p>Seek and Play operations can sometimes cause a reflush of this buffer.</p>
 <p>If <code>FmodTimeUnit.RawBytes</code> is used, the memory allocated is two times the size passed in, because FMOD allocates a double buffer.</p>
 <p>If <code>FmodTimeUnit.Ms</code>, <code>FmodTimeUnit.Pcm</code> or <code>FmodTimeUnit.PcmBytes</code> is used, and the stream is infinite (such as a shoutcast netstream), or VBR, then FMOD cannot calculate an accurate compression ratio to work with when the file is opened. This means it will then base the buffersize on <code>FmodTimeUnit.PcmBytes</code>, or in other words the number of PCM bytes, but this will be incorrect for some compressed formats. Use <code>FmodTimeUnit.RawBytes</code> for these type (infinite / undetermined length) of streams for more accurate read sizes.</p>
@@ -4005,7 +4005,7 @@ fmod_system_set_speaker_position(system, FMOD_SPEAKER.BACK_RIGHT,     dsin( 150)
 <p>The <code>doppler_scale</code> is a general scaling factor for how much the pitch varies due to doppler shifting in 3D sound. Doppler is the pitch bending effect when a sound comes towards the listener or moves away from it, much like the effect you hear when a train goes past you with its horn sounding. With "dopplerscale" you can exaggerate or diminish the effect. FMOD's effective speed of sound at a doppler factor of 1.0 is 340 m/s.</p>
 <p>The <code>distance_factor</code> is the FMOD 3D engine relative distance factor, compared to 1.0 meters. Another way to put it is that it equates to "how many units per meter does your engine have". For example, if you are using feet then "scale" would equal 3.28.
 This only affects doppler. If you keep your min/max distance, custom roll-off curves, and positions in scale relative to each other, the volume roll-off will not change. If you set this, the mindistance of a sound will automatically set itself to this value when it is created in case the user forgets to set the mindistance to match the new <code>distance_factor</code>.</p>
-<p>The <code>rolloff_scale</code> is a global factor applied to the roll-off of sounds using roll-off modes other than <code>FmodStudioMode._3DCustomRollOff</code>. When a sound uses a roll-off mode other than <code>FmodStudioMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula <code>distance = (distance - minDistance) * rolloffscale + minDistance</code>.</p>
+<p>The <code>rolloff_scale</code> is a global factor applied to the roll-off of sounds using roll-off modes other than <code>FmodMode._3DCustomRollOff</code>. When a sound uses a roll-off mode other than <code>FmodMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance for the purposes of distance attenuation is calculated according to the formula <code>distance = (distance - minDistance) * rolloffscale + minDistance</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -4033,7 +4033,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <tr>
 <td>rolloff_scale</td>
 <td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FmodStudioMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.</td>
+<td>A scaling factor for distance attenuation. When a sound uses a roll-off mode other than <code>FmodMode._3DCustomRollOff</code> and the distance is greater than the sound's minimum distance, the distance is scaled by the roll-off scale. Default is 1.</td>
 </tr>
 </tbody>
 </table>
@@ -4138,7 +4138,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 </blockquote>
 <p><br /></p>
 <p>This function enables callbacks for custom calculation of distance attenuation.</p>
-<p>This function overrides <code>FmodStudioMode._3DInverseRollOff</code>, <code>FmodStudioMode._3DLinearRollOff</code>, <code>FmodStudioMode._3DLinearSquareRollOff</code>, <code>FmodStudioMode._3DInverseTaperedRollOff</code> and <code>FmodStudioMode._3DCustomRollOff</code>.</p>
+<p>This function overrides <code>FmodMode._3DInverseRollOff</code>, <code>FmodMode._3DLinearRollOff</code>, <code>FmodMode._3DLinearSquareRollOff</code>, <code>FmodMode._3DInverseTaperedRollOff</code> and <code>FmodMode._3DCustomRollOff</code>.</p>
 <p>See also: <a href="https://www.fmod.com/docs/2.03/api/glossary.html#callback-behavior">Callback behavior</a></p>
 <p>This function operates asynchronously, which means that it does not immediately return the requested result. Instead, upon completion of the task, it will trigger the <a href="https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Async_Events/Social.htm">Social Async Event</a>.</p>
 <p><br></p>
@@ -4399,7 +4399,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p>This function retrieves the default matrix used to convert from one speaker mode to another.</p>
 <p>The matrix is written into a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> as 32-bit floats in row-major order, starting at the beginning of the buffer. The returned struct's <code>required_bytes</code> member says how big that buffer has to be; nothing is written unless the buffer is at least that large, so a caller that does not know the size up front calls the function once, resizes the buffer to <code>required_bytes</code> and calls it again. The channel counts in the returned struct are filled in either way.</p>
 <p>The gain for source channel 's' to target channel 't' is <code>matrix[t * in_channels + s]</code>, where <code>in_channels</code> is the number of channels of <code>source_speaker_mode</code>.</p>
-<p>If <code>source_speaker_mode</code> or <code>target_speaker_mode</code> is <code>FmodSpeakerMode.Raw</code>, this function will return <code>FmodStudioResult.InvalidParam</code>.</p>
+<p>If <code>source_speaker_mode</code> or <code>target_speaker_mode</code> is <code>FmodSpeakerMode.Raw</code>, this function will return <code>FmodResult.InvalidParam</code>.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
@@ -4483,25 +4483,25 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br /></p>
 <p>This function loads a sound into memory, opens it for streaming or sets it up for callback-based sounds.</p>
 <p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
-<p><code>FmodStudioMode.CreateSample</code> will try to load and decompress the whole sound into memory, use <code>FmodStudioMode.CreateStream</code> to open it as a stream and have it play back in realtime from disk or another medium. <code>FmodStudioMode.CreateCompressedSample</code> can also be used for certain formats to play the sound directly in its compressed format from the mixer.</p>
+<p><code>FmodMode.CreateSample</code> will try to load and decompress the whole sound into memory, use <code>FmodMode.CreateStream</code> to open it as a stream and have it play back in realtime from disk or another medium. <code>FmodMode.CreateCompressedSample</code> can also be used for certain formats to play the sound directly in its compressed format from the mixer.</p>
 <ul>
-<li>To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the <code>FmodStudioMode.CreateStream</code> flag.</li>
-<li>To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use <code>FmodStudioMode.CreateCompressedSample</code>. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed sound effects, but not the overhead of disk access.</li>
-<li>To open a sound as 2D, so that it is not affected by 3D processing, use the <code>FmodStudioMode._2D</code> flag. 3D sound commands will be ignored on these types of sounds.</li>
-<li>To open a sound as 3D, so that it is treated as a 3D sound, use the <code>FmodStudioMode._3D</code> flag.</li>
+<li>To open a file or URL as a stream, so that it decompresses / reads at runtime, instead of loading / decompressing into memory all at the time of this call, use the <code>FmodMode.CreateStream</code> flag.</li>
+<li>To open a file or URL as a compressed sound effect that is not streamed and is not decompressed into memory at load time, use <code>FmodMode.CreateCompressedSample</code>. This is supported with MPEG (mp2/mp3), ADPCM/FADPCM, XMA, AT9 and FSB Vorbis files only. This is useful for those who want realtime compressed sound effects, but not the overhead of disk access.</li>
+<li>To open a sound as 2D, so that it is not affected by 3D processing, use the <code>FmodMode._2D</code> flag. 3D sound commands will be ignored on these types of sounds.</li>
+<li>To open a sound as 3D, so that it is treated as a 3D sound, use the <code>FmodMode._3D</code> flag.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>FmodStudioMode.OpenRaw</code>, <code>FmodStudioMode.OpenMemory</code>, <code>FmodStudioMode.OpenMemoryPoint</code> and <code>FmodStudioMode.OpenUser</code> will not work here without the exinfo structure present, as more information is needed.</p>
+<p><code>FmodMode.OpenRaw</code>, <code>FmodMode.OpenMemory</code>, <code>FmodMode.OpenMemoryPoint</code> and <code>FmodMode.OpenUser</code> will not work here without the exinfo structure present, as more information is needed.</p>
 </div>
-<p>Use <code>FmodStudioMode.NonBlocking</code> to have the sound open or load in the background. You can use <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with <code>FmodStudioMode.OpenMemory</code> if the sound is not in a ready state, as it will most likely lead to a crash.</p>
-<p>To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with <code>FmodStudioMode.CreateStream</code>, use <a href="system.html#fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</a> to increase read ahead.</p>
-<p>As using <code>FmodStudioMode.OpenUser</code> causes FMOD to ignore whatever is passed as the first argument <code>name_or_buffer</code>, recommended practice is to pass 0 or equivalent.</p>
-<p>Specifying <code>FmodStudioMode.OpenMemoryPoint</code> will POINT to the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you pass as <code>name_or_buff</code>, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called.</p>
-<p>With <code>FmodStudioMode.OpenMemoryPoint</code>, only PCM formats and compressed formats using <code>FmodStudioMode.CreateCompressedSample</code> are supported.</p>
+<p>Use <code>FmodMode.NonBlocking</code> to have the sound open or load in the background. You can use <a href="sound.html#fmod_sound_get_open_state">fmod_sound_get_open_state</a> to determine if it has finished loading / opening or not. While it is loading (not ready), sound functions are not accessible for that sound. Do not free memory provided with <code>FmodMode.OpenMemory</code> if the sound is not in a ready state, as it will most likely lead to a crash.</p>
+<p>To account for slow media that might cause buffer underrun (skipping / stuttering / repeating blocks of audio) with sounds created with <code>FmodMode.CreateStream</code>, use <a href="system.html#fmod_system_set_stream_buffer_size">fmod_system_set_stream_buffer_size</a> to increase read ahead.</p>
+<p>As using <code>FmodMode.OpenUser</code> causes FMOD to ignore whatever is passed as the first argument <code>name_or_buffer</code>, recommended practice is to pass 0 or equivalent.</p>
+<p>Specifying <code>FmodMode.OpenMemoryPoint</code> will POINT to the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you pass as <code>name_or_buff</code>, rather than allocating its own sound buffers and duplicating it internally, this means you cannot free the memory while FMOD is using it, until after <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called.</p>
+<p>With <code>FmodMode.OpenMemoryPoint</code>, only PCM formats and compressed formats using <code>FmodMode.CreateCompressedSample</code> are supported.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Use of FmodStudioMode.NonBlocking is currently not supported for JavaScript.</p>
+<p>Use of FmodMode.NonBlocking is currently not supported for JavaScript.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -4545,7 +4545,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p><br /></p>
 <p>This function opens a sound for streaming.</p>
 <p>It returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a>.</p>
-<p>This is a convenience function for <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with the <code>FmodStudioMode.CreateStream</code> flag added.</p>
+<p>This is a convenience function for <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with the <code>FmodMode.CreateStream</code> flag added.</p>
 <p>A stream only has one decode buffer and file handle, and therefore can only be played once. It cannot play multiple times at once because it cannot share a stream buffer if the stream is playing at different positions. Open multiple streams to have them play concurrently.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -4777,7 +4777,7 @@ This only affects doppler. If you keep your min/max distance, custom roll-off cu
 <p>This function plays a Sound on a Channel.</p>
 <p>It returns the newly playing <a href="https://www.fmod.com/docs/2.03/api/core-api-channel.html">Channel</a>.</p>
 <p>When a sound is played, it will use the sound's default frequency and priority. See <a href="sound.html#fmod_sound_set_defaults">fmod_sound_set_defaults</a>.</p>
-<p>A sound defined as <code>FmodStudioMode._3D</code> will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to <code>true</code>, and call <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
+<p>A sound defined as <code>FmodMode._3D</code> will by default play at the 3D position of the listener. To set the 3D position of the Channel before the sound is audible, start the Channel paused by setting the pause parameter to <code>true</code>, and call <a href="channel_control.html#fmod_channel_control_set_3d_attributes">fmod_channel_control_set_3d_attributes</a>.</p>
 <p>Specifying a <code>channel_group_ref</code> as part of <code>fmod_system_play_sound</code> is more efficient than using <a href="channel_group.html#fmod_channel_set_channel_group">fmod_channel_set_channel_group</a> after <code>fmod_system_play_sound</code>, and could avoid audible glitches if the sound is not in a paused state.</p>
 <p>Channels are reference counted to handle dead or stolen Channel handles. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-handle-system.html#core-api-channels">Channel handles</a> for more information.</p>
 <p>Playing more <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a> than physical Channels allow is handled with virtual voices. See the white paper on <a href="https://www.fmod.com/docs/2.03/api/white-papers-virtual-voices.html">Virtual Voices</a> for more information.</p>
@@ -5289,11 +5289,11 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 </blockquote>
 <p><br /></p>
 <p>This function retrieves the current recording position of the record buffer in PCM samples.</p>
-<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.RecordDisconnected</code> if the driver is unplugged.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.RecordDisconnected</code> if the driver is unplugged.</p>
 <p>The position will return to 0 when <a href="system.html#fmod_system_record_stop">fmod_system_record_stop</a> is called or when a non-looping recording reaches the end.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FmodStudioResult.RecordDisconnected</code> for your information though.</p>
+<p>on PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FmodResult.RecordDisconnected</code> for your information though.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -5331,8 +5331,8 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 </blockquote>
 <p><br /></p>
 <p>This function starts the recording engine recording to a pre-created Sound object.</p>
-<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.RecordDisconnected</code> if the driver is unplugged.</p>
-<p>The sound must be created as <code>FmodStudioMode.CreateSample</code>. Raw PCM data can be accessed with <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>, <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> and <a href="system.html#fmod_system_get_record_position">fmod_system_get_record_position</a>.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.RecordDisconnected</code> if the driver is unplugged.</p>
+<p>The sound must be created as <code>FmodMode.CreateSample</code>. Raw PCM data can be accessed with <a href="sound.html#fmod_sound_lock">fmod_sound_lock</a>, <a href="sound.html#fmod_sound_unlock">fmod_sound_unlock</a> and <a href="system.html#fmod_system_get_record_position">fmod_system_get_record_position</a>.</p>
 <p>Recording from the same driver a second time will stop the first recording.</p>
 <p>For lowest latency set the Sound sample rate to the rate returned by <a href="system.html#fmod_system_get_record_driver_info">fmod_system_get_record_driver_info</a>, otherwise a resampler will be allocated to handle the difference in frequencies, which adds latency.</p>
 <p><br></p>
@@ -5419,10 +5419,10 @@ velocity_units_per_second = (position_currentframe - position_lastframe) / time_
 <p><br /></p>
 <p>This function retrieves the state of the FMOD recording API, i.e. if it is currently recording or not.</p>
 <p>Recording can be started with <a href="system.html#fmod_system_record_start">fmod_system_record_start</a> and stopped with <a href="system.html#fmod_system_record_stop">fmod_system_record_stop</a>.</p>
-<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodStudioResult.RecordDisconnected</code> if the driver is unplugged.</p>
+<p><a href="misc.html#fmod_last_result">fmod_last_result</a> will return <code>FmodResult.RecordDisconnected</code> if the driver is unplugged.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FmodStudioResult.RecordDisconnected</code> for your information though.</p>
+<p>On PS4, record devices are virtual so 'position' will continue to update if the device is unplugged (the OS is generating silence). <a href="misc.html#fmod_last_result">fmod_last_result</a> will still report <code>FmodResult.RecordDisconnected</code> for your information though.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
@@ -5863,13 +5863,13 @@ Excessive world size settings can also cause loss of precision and efficiency.</
 </blockquote>
 <p><br /></p>
 <p>This function creates a sound from audio data already held in a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>, rather than from a file on disk.</p>
-<p>It is <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with <code>FmodStudioMode.OpenMemory</code> forced into the mode, and it returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> the same way.</p>
+<p>It is <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> with <code>FmodMode.OpenMemory</code> forced into the mode, and it returns a reference to the newly created <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> the same way.</p>
 <p>FMOD copies the audio data out of the buffer, so the buffer may be deleted as soon as this function returns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The zero-copy <code>FmodStudioMode.OpenMemoryPoint</code> mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called, and GML can guarantee neither. It is stripped from <code>mode</code> if you pass it.</p>
+<p>The zero-copy <code>FmodMode.OpenMemoryPoint</code> mode is deliberately not reachable from this function: it requires the buffer to stay alive and aligned until <a href="sound.html#fmod_sound_release">fmod_sound_release</a> is called, and GML can guarantee neither. It is stripped from <code>mode</code> if you pass it.</p>
 </div>
-<p>To stream the sound from the buffer instead of decompressing it up front, add <code>FmodStudioMode.CreateStream</code> to <code>mode</code>; there is no separate memory stream function.</p>
+<p>To stream the sound from the buffer instead of decompressing it up front, add <code>FmodMode.CreateStream</code> to <code>mode</code>; there is no separate memory stream function.</p>
 <p>Use <a href="system.html#fmod_system_create_sound_memory_ex">fmod_system_create_sound_memory_ex</a> instead when the data needs a <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a> to describe it, such as raw PCM.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>

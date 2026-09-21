@@ -74,7 +74,7 @@ var _flags_studio = FmodStudioInitFlags.LiveUpdate;
     If we enable debug callbacks in the macro above set them ON.
 
     Note that this extension ships the non-logging build of FMOD, so
-    fmod_debug_initialize() always fails with FmodStudioResult.Unsupported.
+    fmod_debug_initialize() always fails with FmodResult.Unsupported.
     It is kept here because the call is harmless and the extension can be
     rebuilt against FMOD's logging (fmodL) libraries if you need it.
 */
@@ -94,10 +94,10 @@ if (USE_FMOD_STUDIO)
         The FMOD Studio System function also initialises the core FMOD system, which is why you do not need to call fmod_system_create() here.
 	*/
 	fmod_studio_system_create();	
-	show_debug_message("fmod_studio_system_create: " + string(fmod_last_result()));
+	show_debug_message("fmod_studio_system_create: " + string(fmod_studio_last_result()));
 	
 	fmod_studio_system_init(_max_channels, _flags_studio, _flags_core);
-	show_debug_message("fmod_studio_system_init: " + string(fmod_last_result()));
+	show_debug_message("fmod_studio_system_init: " + string(fmod_studio_last_result()));
 	
 	/*
 		FMOD Studio creates and initialises an underlying core system to work with.

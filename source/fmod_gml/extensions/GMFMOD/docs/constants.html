@@ -3597,7 +3597,7 @@
 </tr>
 <tr>
 <td><code>ChannelDistanceFilter</code></td>
-<td>All <code>FmodStudioMode._3D</code> based voices will add a software lowpass and highpass filter effect into the <a href="https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain">DSP chain</a> which will act as a distance-automated bandpass filter. Use <a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a> to adjust the center frequency.</td>
+<td>All <code>FmodMode._3D</code> based voices will add a software lowpass and highpass filter effect into the <a href="https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain">DSP chain</a> which will act as a distance-automated bandpass filter. Use <a href="system.html#fmod_system_set_advanced_settings">fmod_system_set_advanced_settings</a> to adjust the center frequency.</td>
 </tr>
 <tr>
 <td><code>ProfileEnable</code></td>
@@ -3772,11 +3772,11 @@
 <tbody>
 <tr>
 <td><code>Default</code></td>
-<td>Default for all modes listed below. <code>FmodStudioMode.LoopOff</code>, <code>FmodStudioMode._2D</code>, <code>FmodStudioMode._3DWorldRelative</code>, <code>FmodStudioMode._3DInverseRollOff</code></td>
+<td>Default for all modes listed below. <code>FmodMode.LoopOff</code>, <code>FmodMode._2D</code>, <code>FmodMode._3DWorldRelative</code>, <code>FmodMode._3DInverseRollOff</code></td>
 </tr>
 <tr>
 <td><code>LoopOff</code></td>
-<td>For non looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (DEFAULT). Overrides <code>FmodStudioMode.LoopOn</code> / <code>FmodStudioMode.LoopBidi</code>.</td>
+<td>For non looping <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sounds</a>. (DEFAULT). Overrides <code>FmodMode.LoopOn</code> / <code>FmodMode.LoopBidi</code>.</td>
 </tr>
 <tr>
 <td><code>LoopOn</code></td>
@@ -3792,11 +3792,11 @@
 </tr>
 <tr>
 <td><code>_3D</code></td>
-<td>Makes the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> positionable in 3D. Overrides <code>FmodStudioMode._2D</code>.</td>
+<td>Makes the <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html">Sound</a> positionable in 3D. Overrides <code>FmodMode._2D</code>.</td>
 </tr>
 <tr>
 <td><code>CreateStream</code></td>
-<td>Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides <code>FmodStudioMode.CreateSample</code> and <code>FmodStudioMode.CreateCompressedSample</code>. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.</td>
+<td>Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides <code>FmodMode.CreateSample</code> and <code>FmodMode.CreateCompressedSample</code>. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.</td>
 </tr>
 <tr>
 <td><code>CreateSample</code></td>
@@ -3804,7 +3804,7 @@
 </tr>
 <tr>
 <td><code>CreateCompressedSample</code></td>
-<td>Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides <code>FmodStudioMode.CreateSample</code>. If the sound data is not one of the supported formats, it will behave as if it was created with <code>FmodStudioMode.CreateSample</code> and decode the sound into PCM.</td>
+<td>Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides <code>FmodMode.CreateSample</code>. If the sound data is not one of the supported formats, it will behave as if it was created with <code>FmodMode.CreateSample</code> and decode the sound into PCM.</td>
 </tr>
 <tr>
 <td><code>OpenUser</code></td>
@@ -3812,11 +3812,11 @@
 </tr>
 <tr>
 <td><code>OpenMemory</code></td>
-<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. If used with <code>FmodStudioMode.CreateSample</code> or <code>FmodStudioMode.CreateCompressedSample</code>, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using <code>FmodStudioMode.NonBlocking</code> then wait until the Sound is in the <code>FmodOpenState.Ready</code> state. If used with <code>FmodStudioMode.CreateStream</code>, FMOD will stream out of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.</td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. If used with <code>FmodMode.CreateSample</code> or <code>FmodMode.CreateCompressedSample</code>, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using <code>FmodMode.NonBlocking</code> then wait until the Sound is in the <code>FmodOpenState.Ready</code> state. If used with <code>FmodMode.CreateStream</code>, FMOD will stream out of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.</td>
 </tr>
 <tr>
 <td><code>OpenMemoryPoint</code></td>
-<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. This differs to <code>FmodStudioMode.OpenMemory</code> in that it uses the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after <a href="sound.html#fmod_sound_release">fmod_sound_release</a>. Will not work if the data is compressed and <code>FmodStudioMode.CreateCompressedSample</code> is not used. Cannot be used in conjunction with <code>FmodSystemCreateSoundExInfo.encryptionkey</code>.</td>
+<td>When used, the first argument of <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> and <a href="system.html#fmod_system_create_stream">fmod_system_create_stream</a>, <code>name_or_buff</code>, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using <a href="structs.html#fmodcreatesoundexinfo">FmodCreateSoundExInfo</a>: cbsize, and length. This differs to <code>FmodMode.OpenMemory</code> in that it uses the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after <a href="sound.html#fmod_sound_release">fmod_sound_release</a>. Will not work if the data is compressed and <code>FmodMode.CreateCompressedSample</code> is not used. Cannot be used in conjunction with <code>FmodSystemCreateSoundExInfo.encryptionkey</code>.</td>
 </tr>
 <tr>
 <td><code>OpenRaw</code></td>
@@ -3828,7 +3828,7 @@
 </tr>
 <tr>
 <td><code>AccurateTime</code></td>
-<td>For <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> - for accurate <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> / <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a> on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. <code>FmodStudioMode.OpenOnly</code> does not affect this.</td>
+<td>For <a href="system.html#fmod_system_create_sound">fmod_system_create_sound</a> - for accurate <a href="sound.html#fmod_sound_get_length">fmod_sound_get_length</a> / <a href="channel.html#fmod_channel_set_position">fmod_channel_set_position</a> on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. <code>FmodMode.OpenOnly</code> does not affect this.</td>
 </tr>
 <tr>
 <td><code>MpegSearch</code></td>
@@ -4215,7 +4215,7 @@
 </tr>
 <tr>
 <td><code>MemoryCantPoint</code></td>
-<td>Can't use <code>FmodStudioMode.OpenMemoryPoint</code> on non PCM source data, or non mp3/xma/adpcm data if <code>FmodStudioMode.CreateCompressedSample</code> was used.</td>
+<td>Can't use <code>FmodMode.OpenMemoryPoint</code> on non PCM source data, or non mp3/xma/adpcm data if <code>FmodMode.CreateCompressedSample</code> was used.</td>
 </tr>
 <tr>
 <td><code>Needs3D</code></td>
@@ -5185,7 +5185,7 @@
 </tr>
 <tr>
 <td><code>BitStream</code></td>
-<td>Sound data is in its native compressed format. See <code>FmodStudioMode.CreateCompressedSample</code></td>
+<td>Sound data is in its native compressed format. See <code>FmodMode.CreateCompressedSample</code></td>
 </tr>
 </tbody>
 </table>
@@ -5254,7 +5254,7 @@
 <p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-sound.html#fmod_openstate">FMOD_OPENSTATE</a></p>
 </blockquote>
 <p><br /></p>
-<p>This enum specifies values describing what state a sound is in after <code>FmodStudioMode.NonBlocking</code> has been used to open it.</p>
+<p>This enum specifies values describing what state a sound is in after <code>FmodMode.NonBlocking</code> has been used to open it.</p>
 <p>These constants are referenced by the following structs:</p>
 <ul>
 <li><a href="structs.html#fmodsoundopenstate">FmodSoundOpenState</a></li>
@@ -7003,7 +7003,7 @@ The limiter is not guaranteed to catch every peak above the threshold level, bec
 </tr>
 <tr>
 <td><code>MemoryTracking</code></td>
-<td>Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See <a href="bus.html#fmod_studio_bus_get_memory_usage">fmod_studio_bus_get_memory_usage</a> and <a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a> for more information. Implies <code>FmodInitFlags.MemoryTracking</code>.</td>
+<td>Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See <a href="bus.html#fmod_studio_bus_get_memory_usage">fmod_studio_bus_get_memory_usage</a> and <a href="event_instance.html#fmod_studio_event_instance_get_memory_usage">fmod_studio_event_instance_get_memory_usage</a> for more information. Implies <code>FmodStudioCoreInitFlags.MemoryTracking</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -9396,7 +9396,7 @@ of the oscillator's <code>FmodDspOscillator.Type</code> parameter.</p>
 </tr>
 <tr>
 <td><code>ProfileMeterAll</code></td>
-<td>Slower, but adds level metering for every single DSP unit in the graph. Use <a href="dsp.html#fmod_dsp_set_metering_enabled">fmod_dsp_set_metering_enabled</a> to turn meters off individually. Setting this flag implies <code>FmodInitFlags.ProfileEnable</code>.</td>
+<td>Slower, but adds level metering for every single DSP unit in the graph. Use <a href="dsp.html#fmod_dsp_set_metering_enabled">fmod_dsp_set_metering_enabled</a> to turn meters off individually. Setting this flag implies <code>FmodStudioCoreInitFlags.ProfileEnable</code>.</td>
 </tr>
 <tr>
 <td><code>MemoryTracking</code></td>
@@ -9652,7 +9652,7 @@ of the oscillator's <code>FmodDspOscillator.Type</code> parameter.</p>
 <p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/platforms-ios.html#fmod_audioqueue_codecpolicy">FMOD_AUDIOQUEUE_CODECPOLICY</a></p>
 </blockquote>
 <p><br /></p>
-<p>This enum controls whether an <code>FmodSoundType.AudioQueue</code> sound uses the dedicated hardware decoder or a software codec. iOS only; set through <code>FmodCreateSoundExInfo.audio_queue_policy</code>.</p>
+<p>This enum controls whether an <code>FmodStudioSoundType.AudioQueue</code> sound uses the dedicated hardware decoder or a software codec. iOS only; set through <code>FmodStudioCreateSoundExInfo.audio_queue_policy</code>.</p>
 <p>These constants are referenced by the following structs:</p>
 <ul>
 <li><a href="structs.html#fmodstudiocreatesoundexinfo">FmodStudioCreateSoundExInfo</a></li>

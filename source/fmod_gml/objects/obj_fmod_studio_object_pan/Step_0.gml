@@ -29,7 +29,7 @@ _position.y = isOnGround ? 0.0 : 5.0
 _position.z = cos(t) * 3.0
 
 fmod_studio_event_instance_set_3d_attributes(ins_index, _position, _zero, _forward, _up)
-show_debug_message("fmod_studio_event_instance_set_3d_attributes: " + string(fmod_last_result()))
+show_debug_message("fmod_studio_event_instance_set_3d_attributes: " + string(fmod_studio_last_result()))
 
 // The listener stays at the origin. With useListenerAttenuationPosition set, the
 // panning is still computed from the origin but the volume is attenuated as if

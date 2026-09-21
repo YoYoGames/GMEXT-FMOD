@@ -27,16 +27,16 @@ if(num_drivers == 0)
 }
 
 master_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("master: " + string(fmod_last_result()))
+show_debug_message("master: " + string(fmod_studio_last_result()))
 master_strings_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Master.strings.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("masterstrings: " + string(fmod_last_result()))
+show_debug_message("masterstrings: " + string(fmod_studio_last_result()))
 music_bank_index = fmod_studio_system_load_bank_file(fmod_path_bundle("Music.bank"),FmodStudioLoadBankFlags.Normal)
-show_debug_message("music: " + string(fmod_last_result()))
+show_debug_message("music: " + string(fmod_studio_last_result()))
 
 event_guid = fmod_studio_system_get_event("event:/Music/Radio Station")
-show_debug_message(string(fmod_last_result()))
+show_debug_message(string(fmod_studio_last_result()))
 ins_index = fmod_studio_event_description_create_instance(event_guid)
-show_debug_message(string(fmod_last_result()))
+show_debug_message(string(fmod_studio_last_result()))
 
 fmod_studio_event_instance_start(ins_index)
 

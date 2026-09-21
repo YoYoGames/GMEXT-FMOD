@@ -59,7 +59,7 @@
  * @member RightHanded3D 3D calculations will be performed in right-handed coordinates.
  * @member ClipOutput Enables hard clipping of output values greater than `1.0` or less than `-1.0`.
  * @member ChannelLowpass Enables usage of ${function.fmod_channel_control_set_low_pass_gain}, ${function.fmod_channel_control_set_3d_occlusion}, or automatic usage by the [Geometry](https://www.fmod.com/docs/2.03/api/core-api-geometry.html) API. All voices will add a software lowpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which is idle unless one of the previous functions/features are used.
- * @member ChannelDistanceFilter All `FmodStudioMode._3D` based voices will add a software lowpass and highpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which will act as a distance-automated bandpass filter. Use ${function.fmod_system_set_advanced_settings} to adjust the center frequency.
+ * @member ChannelDistanceFilter All `FmodMode._3D` based voices will add a software lowpass and highpass filter effect into the [DSP chain](https://www.fmod.com/docs/2.03/api/glossary.html#dsp-chain) which will act as a distance-automated bandpass filter. Use ${function.fmod_system_set_advanced_settings} to adjust the center frequency.
  * @member ProfileEnable Enable TCP/IP based host which allows FMOD Studio or FMOD Profiler to connect to it, and view memory, CPU and the DSP network graph in real-time.
  * @member Vol0BecomesVirtual Any sounds that are 0 volume will go virtual and not be processed except for having their positions updated virtually. Use ${function.fmod_system_set_advanced_settings} to adjust what volume besides zero to switch to virtual at.
  * @member GeometryUseClosest With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects.
@@ -109,21 +109,21 @@
  * <br />
  *
  * This enum specifies sound description bitfields. You can bitwise OR them together for loading and describing sounds.
- * @member Default Default for all modes listed below. `FmodStudioMode.LoopOff`, `FmodStudioMode._2D`, `FmodStudioMode._3DWorldRelative`, `FmodStudioMode._3DInverseRollOff`
- * @member LoopOff For non looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html). (DEFAULT). Overrides `FmodStudioMode.LoopOn` / `FmodStudioMode.LoopBidi`.
+ * @member Default Default for all modes listed below. `FmodMode.LoopOff`, `FmodMode._2D`, `FmodMode._3DWorldRelative`, `FmodMode._3DInverseRollOff`
+ * @member LoopOff For non looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html). (DEFAULT). Overrides `FmodMode.LoopOn` / `FmodMode.LoopBidi`.
  * @member LoopOn For forward looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
  * @member LoopBidi For bidirectional looping [Sounds](https://www.fmod.com/docs/2.03/api/core-api-sound.html). (only works on non-streaming, real voices).
  * @member _2D Ignores any 3D processing. (DEFAULT).
- * @member _3D Makes the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) positionable in 3D. Overrides `FmodStudioMode._2D`.
- * @member CreateStream Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides `FmodStudioMode.CreateSample` and `FmodStudioMode.CreateCompressedSample`. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.
+ * @member _3D Makes the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html) positionable in 3D. Overrides `FmodMode._2D`.
+ * @member CreateStream Decompress at runtime, streaming from the source provided (i.e. from disk). Overrides `FmodMode.CreateSample` and `FmodMode.CreateCompressedSample`. Note a stream can only be played once at a time due to a stream only having 1 stream buffer and file handle. Open multiple streams to have them play concurrently.
  * @member CreateSample Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format (i.e. PCM). Fastest for playback and most flexible.
- * @member CreateCompressedSample Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides `FmodStudioMode.CreateSample`. If the sound data is not one of the supported formats, it will behave as if it was created with `FmodStudioMode.CreateSample` and decode the sound into PCM.
+ * @member CreateCompressedSample Load MP2/MP3/FADPCM/IMAADPCM/Vorbis/AT9 or XMA into memory and leave it compressed. Vorbis/AT9/FADPCM encoding only supported in the .FSB container format. During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'. Overrides `FmodMode.CreateSample`. If the sound data is not one of the supported formats, it will behave as if it was created with `FmodMode.CreateSample` and decode the sound into PCM.
  * @member OpenUser Opens a user-created static sample or stream. When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, name_or_data, is ignored, so recommended practice is to pass null or equivalent. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, length, numchannels, defaultfrequency, format, and optionally read callback. If a user-created 'sample' is created with no read callback, the sample will be empty. If this is the case, use ${function.fmod_sound_lock} and ${function.fmod_sound_unlock} to place sound data into the [Sound](https://www.fmod.com/docs/2.03/api/core-api-sound.html).
- * @member OpenMemory When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, and length. If used with `FmodStudioMode.CreateSample` or `FmodStudioMode.CreateCompressedSample`, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using `FmodStudioMode.NonBlocking` then wait until the Sound is in the `FmodOpenState.Ready` state. If used with `FmodStudioMode.CreateStream`, FMOD will stream out of the ${type.buffer} that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.
- * @member OpenMemoryPoint When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, and length. This differs to `FmodStudioMode.OpenMemory` in that it uses the ${type.buffer} memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FmodStudioMode.CreateCompressedSample` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
+ * @member OpenMemory When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, and length. If used with `FmodMode.CreateSample` or `FmodMode.CreateCompressedSample`, FMOD duplicates the memory into its own buffers. Your own buffer can be freed after open, unless you are using `FmodMode.NonBlocking` then wait until the Sound is in the `FmodOpenState.Ready` state. If used with `FmodMode.CreateStream`, FMOD will stream out of the ${type.buffer} that you passed in. In this case, your own buffer should not be freed until you have finished with and released the stream.
+ * @member OpenMemoryPoint When used, the first argument of ${function.fmod_system_create_sound} and ${function.fmod_system_create_stream}, `name_or_buff`, is interpreted as a pointer to memory instead of filename for creating sounds. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, and length. This differs to `FmodMode.OpenMemory` in that it uses the ${type.buffer} memory as is, without duplicating the memory into its own buffers. Cannot be freed after open, only after ${function.fmod_sound_release}. Will not work if the data is compressed and `FmodMode.CreateCompressedSample` is not used. Cannot be used in conjunction with `FmodSystemCreateSoundExInfo.encryptionkey`.
  * @member OpenRaw Will ignore file format and treat as raw pcm. The following data must be provided using ${struct.FmodCreateSoundExInfo}: cbsize, numchannels, defaultfrequency, and format. Must be little endian data.
  * @member OpenOnly Just open the file, don't prebuffer or read. Good for fast opens for info, or when ${function.fmod_sound_read_data} is to be used.
- * @member AccurateTime For ${function.fmod_system_create_sound} - for accurate ${function.fmod_sound_get_length} / ${function.fmod_channel_set_position} on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. `FmodStudioMode.OpenOnly` does not affect this.
+ * @member AccurateTime For ${function.fmod_system_create_sound} - for accurate ${function.fmod_sound_get_length} / ${function.fmod_channel_set_position} on VBR MP3, and MOD/S3M/XM/IT/MIDI files. Scans file first, so takes longer to open. `FmodMode.OpenOnly` does not affect this.
  * @member MpegSearch For corrupted / bad MP3 files. This will search all the way through the file until it hits a valid MPEG header. Normally only searches for 4k.
  * @member NonBlocking For opening Sounds and getting streamed subsounds (seeking) asynchronously. Use ${function.fmod_sound_get_open_state} to poll the state of the Sound as it opens or retrieves the subsound in the background.
  * @member Unique Unique Sound, can only be played one at a time.
@@ -248,7 +248,7 @@
  * @member InvalidVector The vectors passed in are not unit length, or perpendicular.
  * @member MaxAudible Reached maximum audible playback count for this Sound's SoundGroup.
  * @member Memory Not enough memory or resources.
- * @member MemoryCantPoint Can't use `FmodStudioMode.OpenMemoryPoint` on non PCM source data, or non mp3/xma/adpcm data if `FmodStudioMode.CreateCompressedSample` was used.
+ * @member MemoryCantPoint Can't use `FmodMode.OpenMemoryPoint` on non PCM source data, or non mp3/xma/adpcm data if `FmodMode.CreateCompressedSample` was used.
  * @member Needs3D Tried to call a command on a 2D Sound when the command was meant for 3D Sound.
  * @member NeedsHardware Tried to use a feature that requires hardware support.
  * @member NetConnect Couldn't connect to the specified host.
@@ -515,7 +515,7 @@
  * @member Pcm24 24bit integer PCM data.
  * @member Pcm32 32bit integer PCM data.
  * @member PcmFloat 32bit floating point PCM data.
- * @member BitStream Sound data is in its native compressed format. See `FmodStudioMode.CreateCompressedSample`
+ * @member BitStream Sound data is in its native compressed format. See `FmodMode.CreateCompressedSample`
  * @const_end
  * *//**
  * @const FmodStudioSoundFormat
@@ -540,7 +540,7 @@
  *
  * <br />
  *
- * This enum specifies values describing what state a sound is in after `FmodStudioMode.NonBlocking` has been used to open it.
+ * This enum specifies values describing what state a sound is in after `FmodMode.NonBlocking` has been used to open it.
  * @member Ready Opened and ready to play.
  * @member Loading Initial load in progress.
  * @member Error Failed to open - file not found, out of memory, etc. See return value of ${function.fmod_sound_get_open_state} for what happened.
@@ -1226,7 +1226,7 @@
  * @member SynchronousUpdate Disable asynchronous processing and perform all processing on the calling thread instead.
  * @member DeferredCallbacks Defer timeline callbacks until the main update. See ${function.fmod_studio_event_instance_set_callback} for more information.
  * @member LoadFromUpdate No additional threads are created for bank and resource loading. Loading is driven from ${function.fmod_studio_system_update}.
- * @member MemoryTracking Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See ${function.fmod_studio_bus_get_memory_usage} and ${function.fmod_studio_event_instance_get_memory_usage} for more information. Implies `FmodInitFlags.MemoryTracking`.
+ * @member MemoryTracking Enables detailed memory usage statistics. Increases memory footprint and impacts performance. See ${function.fmod_studio_bus_get_memory_usage} and ${function.fmod_studio_event_instance_get_memory_usage} for more information. Implies `FmodStudioCoreInitFlags.MemoryTracking`.
  * @const_end
  * */
 
@@ -2070,7 +2070,7 @@
  * @member GeometryUseClosest With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects.
  * @member PreferDolbyDownmix When using `FmodSpeakerMode._5Point1` with a stereo output device, use the Dolby Pro Logic II downmix algorithm instead of the default stereo downmix algorithm.
  * @member ThreadUnsafe Disables thread safety for API calls. Only use this if FMOD is being called from a single thread, and if Studio API is not being used!
- * @member ProfileMeterAll Slower, but adds level metering for every single DSP unit in the graph. Use ${function.fmod_dsp_set_metering_enabled} to turn meters off individually. Setting this flag implies `FmodInitFlags.ProfileEnable`.
+ * @member ProfileMeterAll Slower, but adds level metering for every single DSP unit in the graph. Use ${function.fmod_dsp_set_metering_enabled} to turn meters off individually. Setting this flag implies `FmodStudioCoreInitFlags.ProfileEnable`.
  * @member MemoryTracking Enables memory allocation tracking. Currently this is only useful when using the Studio API. Increases memory footprint and reduces performance. This flag is implied by `FmodStudioInitFlags.MemoryTracking`.
  * @const_end
  * */
@@ -2150,7 +2150,7 @@
  *
  * <br />
  *
- * This enum controls whether an `FmodSoundType.AudioQueue` sound uses the dedicated hardware decoder or a software codec. iOS only; set through `FmodCreateSoundExInfo.audio_queue_policy`.
+ * This enum controls whether an `FmodStudioSoundType.AudioQueue` sound uses the dedicated hardware decoder or a software codec. iOS only; set through `FmodStudioCreateSoundExInfo.audio_queue_policy`.
  * @member Default Try hardware first; if it is in use or prohibited by the audio session, try software.
  * @member SoftwareOnly Try software; if it is not available, fail.
  * @member HardwareOnly Try hardware; if it is not available, fail.

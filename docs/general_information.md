@@ -34,7 +34,7 @@ result = fmod_last_result();
 show_debug_message("Result of fmod_system_create: {0}", result);
 ``
 
-[[Note: ${function.fmod_last_result} returns `FmodStudioResult.Ok` in case there were no errors.]]
+[[Note: ${function.fmod_last_result} returns `FmodResult.Ok` in case there were no errors.]]
 
 # Bug Reports
 
