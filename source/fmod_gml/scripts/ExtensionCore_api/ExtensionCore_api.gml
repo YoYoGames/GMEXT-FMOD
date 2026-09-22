@@ -60,6 +60,13 @@ function __ext_core_buffer_unmarshal_value(_buff, _decoders)
 					_array[_i] = buffer_read(_buff, buffer_string);
 				}
 			}
+			else if (_elem_type == buffer_bool)
+			{
+				// buffer_read(buffer_bool) answers an int32, not a GML bool.
+				for (var _i = 0 ; _i < _size ; _i++) {
+					_array[_i] = bool(buffer_read(_buff, buffer_bool));
+				}
+			}
 			else 
 			{
 				for (var _i = 0 ; _i < _size ; _i++) {
@@ -89,6 +96,10 @@ function __ext_core_buffer_unmarshal_value(_buff, _decoders)
 		{
 			return undefined;
 		}
+		case buffer_bool:
+			// buffer_read(buffer_bool) answers an int32, not a GML bool; the typed wrappers
+			// gate bool parameters with is_bool, so a callback argument has to be one.
+			return bool(buffer_read(_buff, buffer_bool));
 		case buffer_string:
 			buffer_read(_buff, buffer_u32); // Fall to the default (this is the string size)
 		default:

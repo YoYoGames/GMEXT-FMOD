@@ -28,6 +28,10 @@ uint64_t fmod_system_create()
 	if (g_fmod_last_result == FMOD_OK && system != nullptr)
 	{
 		result = fmod_system_ref(system);
+		// The new system is the selected one, as the docs say and as adopt()
+		// does; without this a second create() leaves init()/set_driver() on
+		// whichever system was selected before.
+		setCurrentSystem(system);
 	}
 	return result;
 }

@@ -2710,10 +2710,10 @@ function __FmodDSPMeteringEnabled_decode(_buffer, _offset)
     with (_inst)
     {
         // field: input_enabled, type: Bool
-        self.input_enabled = buffer_read(_buffer, buffer_bool);
+        self.input_enabled = bool(buffer_read(_buffer, buffer_bool));
 
         // field: output_enabled, type: Bool
-        self.output_enabled = buffer_read(_buffer, buffer_bool);
+        self.output_enabled = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -3741,7 +3741,7 @@ function __FmodDelay_decode(_buffer, _offset)
         self.dspclock_end = buffer_read(_buffer, buffer_f64);
 
         // field: stop_channels, type: Bool
-        self.stop_channels = buffer_read(_buffer, buffer_bool);
+        self.stop_channels = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -3851,10 +3851,10 @@ function __FmodSoundOpenState_decode(_buffer, _offset)
         self.percent_buffered = buffer_read(_buffer, buffer_f64);
 
         // field: starving, type: Bool
-        self.starving = buffer_read(_buffer, buffer_bool);
+        self.starving = bool(buffer_read(_buffer, buffer_bool));
 
         // field: disk_busy, type: Bool
-        self.disk_busy = buffer_read(_buffer, buffer_bool);
+        self.disk_busy = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -3937,7 +3937,7 @@ function __FmodSoundTag_decode(_buffer, _offset)
         self.datalen = buffer_read(_buffer, buffer_f64);
 
         // field: updated, type: Bool
-        self.updated = buffer_read(_buffer, buffer_bool);
+        self.updated = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -4150,7 +4150,7 @@ function __FmodDistanceFilter_decode(_buffer, _offset)
     with (_inst)
     {
         // field: custom, type: Bool
-        self.custom = buffer_read(_buffer, buffer_bool);
+        self.custom = bool(buffer_read(_buffer, buffer_bool));
 
         // field: custom_level, type: Float64
         self.custom_level = buffer_read(_buffer, buffer_f64);
@@ -4310,7 +4310,7 @@ function __FmodPolygonAttributes_decode(_buffer, _offset)
         self.reverb_occlusion = buffer_read(_buffer, buffer_f64);
 
         // field: double_sided, type: Bool
-        self.double_sided = buffer_read(_buffer, buffer_bool);
+        self.double_sided = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -4752,7 +4752,7 @@ function __FmodSpeakerPosition_decode(_buffer, _offset)
         self.y = buffer_read(_buffer, buffer_f64);
 
         // field: active, type: Bool
-        self.active = buffer_read(_buffer, buffer_bool);
+        self.active = bool(buffer_read(_buffer, buffer_bool));
 
     }
 
@@ -5124,7 +5124,7 @@ function __FmodCreateSoundExInfo_decode(_buffer, _offset)
         self.initial_seek_pos_type = buffer_read(_buffer, buffer_u64);
 
         // field: ignore_set_filesystem, type: Bool
-        self.ignore_set_filesystem = buffer_read(_buffer, buffer_bool);
+        self.ignore_set_filesystem = bool(buffer_read(_buffer, buffer_bool));
 
         // field: audio_queue_policy, type: enum FmodAudioQueueCodecPolicy
         self.audio_queue_policy = buffer_read(_buffer, buffer_u64);
@@ -5820,7 +5820,7 @@ function fmod_channel_is_virtual(_channel_ref)
 
     var __return_value__ = __fmod_channel_is_virtual(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -9098,7 +9098,7 @@ function fmod_reverb_3d_get_active(_reverb_3d_ref)
 
     var __return_value__ = __fmod_reverb_3d_get_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -9489,7 +9489,7 @@ function fmod_channel_control_is_playing(_channel_control_ref)
 
     var __return_value__ = __fmod_channel_control_is_playing(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -9554,7 +9554,7 @@ function fmod_channel_control_get_paused(_channel_control_ref)
 
     var __return_value__ = __fmod_channel_control_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -9759,7 +9759,7 @@ function fmod_channel_control_get_volume_ramp(_channel_control_ref)
 
     var __return_value__ = __fmod_channel_control_get_volume_ramp(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -9804,7 +9804,7 @@ function fmod_channel_control_get_mute(_channel_control_ref)
 
     var __return_value__ = __fmod_channel_control_get_mute(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -11299,7 +11299,7 @@ function fmod_dsp_get_parameter_bool(_dsp_ref, _index)
 
     var __return_value__ = __fmod_dsp_get_parameter_bool(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -11747,7 +11747,7 @@ function fmod_dsp_get_active(_dsp_ref)
 
     var __return_value__ = __fmod_dsp_get_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -11791,7 +11791,7 @@ function fmod_dsp_get_bypass(_dsp_ref)
 
     var __return_value__ = __fmod_dsp_get_bypass(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -11869,7 +11869,7 @@ function fmod_dsp_get_idle(_dsp_ref)
 
     var __return_value__ = __fmod_dsp_get_idle(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -12798,7 +12798,7 @@ function fmod_geometry_get_active(_geometry_ref)
 
     var __return_value__ = __fmod_geometry_get_active(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**

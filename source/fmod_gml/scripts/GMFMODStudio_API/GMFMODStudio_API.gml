@@ -1267,7 +1267,7 @@ function __FmodStudioUserProperty_decode(_buffer, _offset)
         self.int_value = buffer_read(_buffer, buffer_f64);
 
         // field: bool_value, type: Bool
-        self.bool_value = buffer_read(_buffer, buffer_bool);
+        self.bool_value = bool(buffer_read(_buffer, buffer_bool));
 
         // field: float_value, type: Float64
         self.float_value = buffer_read(_buffer, buffer_f64);
@@ -1641,7 +1641,7 @@ function __FmodStudioCreateSoundExInfo_decode(_buffer, _offset)
         self.initial_seek_pos_type = buffer_read(_buffer, buffer_u64);
 
         // field: ignore_set_filesystem, type: Bool
-        self.ignore_set_filesystem = buffer_read(_buffer, buffer_bool);
+        self.ignore_set_filesystem = bool(buffer_read(_buffer, buffer_bool));
 
         // field: audio_queue_policy, type: enum FmodStudioAudioQueueCodecPolicy
         self.audio_queue_policy = buffer_read(_buffer, buffer_u64);
@@ -3822,7 +3822,7 @@ function fmod_studio_bank_is_valid(_bank_ref)
 
     var __return_value__ = __fmod_studio_bank_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4060,7 +4060,7 @@ function fmod_studio_event_description_is_snapshot(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_snapshot(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4080,7 +4080,7 @@ function fmod_studio_event_description_is_oneshot(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_oneshot(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4100,7 +4100,7 @@ function fmod_studio_event_description_has_sustain_point(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_has_sustain_point(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4230,7 +4230,7 @@ function fmod_studio_event_description_is_valid(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4250,7 +4250,7 @@ function fmod_studio_event_description_is_3d(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_3d(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4270,7 +4270,7 @@ function fmod_studio_event_description_is_stream(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_stream(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4290,7 +4290,7 @@ function fmod_studio_event_description_is_doppler_enabled(_event_desc_ref)
 
     var __return_value__ = __fmod_studio_event_description_is_doppler_enabled(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -4807,7 +4807,7 @@ function fmod_studio_event_instance_get_paused(_instance_ref)
 
     var __return_value__ = __fmod_studio_event_instance_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -5651,7 +5651,7 @@ function fmod_studio_event_instance_is_valid(_instance_ref)
 
     var __return_value__ = __fmod_studio_event_instance_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -5671,7 +5671,7 @@ function fmod_studio_event_instance_is_virtual(_instance_ref)
 
     var __return_value__ = __fmod_studio_event_instance_is_virtual(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -5879,7 +5879,7 @@ function fmod_studio_bus_get_paused(_bus_ref)
 
     var __return_value__ = __fmod_studio_bus_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -5970,7 +5970,7 @@ function fmod_studio_bus_is_valid(_bus_ref)
 
     var __return_value__ = __fmod_studio_bus_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -6102,7 +6102,7 @@ function fmod_studio_bus_get_mute(_bus_ref)
 
     var __return_value__ = __fmod_studio_bus_get_mute(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -6281,7 +6281,7 @@ function fmod_studio_vca_is_valid(_vca_ref)
 
     var __return_value__ = __fmod_studio_vca_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -6429,7 +6429,7 @@ function fmod_studio_command_replay_is_valid(_replay_ref)
 
     var __return_value__ = __fmod_studio_command_replay_is_valid(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
@@ -6604,7 +6604,7 @@ function fmod_studio_command_replay_get_paused(_replay_ref)
 
     var __return_value__ = __fmod_studio_command_replay_get_paused(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
-    return __return_value__;
+    return bool(__return_value__);
 }
 
 /**
