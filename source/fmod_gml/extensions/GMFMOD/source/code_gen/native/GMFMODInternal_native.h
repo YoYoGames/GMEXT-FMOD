@@ -3342,5 +3342,5 @@ double fmod_geometry_set_user_data(std::uint64_t geometry_ref, std::int64_t user
 std::int64_t fmod_geometry_get_user_data(std::uint64_t geometry_ref);
 bool fmod_geometry_get_active(std::uint64_t geometry_ref);
 double fmod_geometry_set_active(std::uint64_t geometry_ref, bool active);
-double fmod_geometry_save(std::uint64_t geometry_ref, std::string_view filename);
+double fmod_geometry_save(std::uint64_t geometry_ref, gm::wire::GMBuffer buffer);
 double fmod_geometry_release(std::uint64_t geometry_ref);

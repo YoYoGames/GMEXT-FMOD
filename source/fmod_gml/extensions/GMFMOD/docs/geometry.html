@@ -2567,7 +2567,8 @@
 </blockquote>
 <p><br /></p>
 <p>This function saves the geometry object as a serialized binary block to a <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a>.</p>
-<p>The function returns the size of the data written to the buffer, in bytes.</p>
+<p>The function returns the size of the data written to the buffer, in bytes. If the buffer is smaller than the serialized geometry, nothing is written and the size required is returned instead; resize the buffer to that value with <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_resize.htm">buffer_resize</a> and call the function again.</p>
+<p>The data is written to the start of the buffer (at an offset of 0 bytes).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The data can be saved to a file if required and loaded later with <a href="system.html#fmod_system_load_geometry">fmod_system_load_geometry</a>.</p>
@@ -2575,7 +2576,7 @@
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<pre class="highlight"><code class="language-gml">fmod_geometry_save(geometry_ref, filename)</code></pre>
+<pre class="highlight"><code class="language-gml">fmod_geometry_save(geometry_ref, buffer)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -2592,9 +2593,9 @@
 <td>A reference to a geometry.</td>
 </tr>
 <tr>
-<td>filename</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm">String</a></td>
-<td>The address of the <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> to write the data to.</td>
+<td>buffer</td>
+<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a></td>
+<td>The <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm">Buffer</a> to write the data to.</td>
 </tr>
 </tbody>
 </table>

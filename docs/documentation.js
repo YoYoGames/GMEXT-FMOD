@@ -3120,17 +3120,19 @@ function fmod_geometry_release(geometry_ref) {}
  * <br />
  *
  * This function saves the geometry object as a serialized binary block to a ${type.buffer}.
- * 
- * The function returns the size of the data written to the buffer, in bytes.
- * 
+ *
+ * The function returns the size of the data written to the buffer, in bytes. If the buffer is smaller than the serialized geometry, nothing is written and the size required is returned instead; resize the buffer to that value with ${function.buffer_resize} and call the function again.
+ *
+ * The data is written to the start of the buffer (at an offset of 0 bytes).
+ *
  * [[Note: The data can be saved to a file if required and loaded later with ${function.fmod_system_load_geometry}.]]
- * 
+ *
  * @param {Real} geometry_ref A reference to a geometry.
- * @param {String} filename The address of the ${type.buffer} to write the data to.
+ * @param {Buffer} buffer The ${type.buffer} to write the data to.
  * @returns {Real}
  * @function_end
  */
-function fmod_geometry_save(geometry_ref, buff) {}
+function fmod_geometry_save(geometry_ref, buffer) {}
 
 // Reverb3D
 

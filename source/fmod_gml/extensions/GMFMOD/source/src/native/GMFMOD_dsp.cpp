@@ -1,4 +1,5 @@
 #include "GMFMOD_dsp.h"
+#include <cstring>
 #include <map>
 #include <mutex>
 
@@ -343,8 +344,9 @@ FmodDSPParameterInfo fmod_dsp_get_parameter_info(uint64_t dsp_ref, double index)
 
 	if (g_fmod_last_result == FMOD_OK && param_desc != nullptr)
 	{
-		result.name = param_desc->name ? param_desc->name : "";
-		result.label = param_desc->label ? param_desc->label : "";
+		// name and label are fixed char[16] with no terminator guaranteed.
+		result.name = std::string(param_desc->name, strnlen(param_desc->name, sizeof(param_desc->name)));
+		result.label = std::string(param_desc->label, strnlen(param_desc->label, sizeof(param_desc->label)));
 		result.description = param_desc->description ? param_desc->description : "";
 	}
 	return result;

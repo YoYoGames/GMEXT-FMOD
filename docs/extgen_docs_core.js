@@ -2417,7 +2417,7 @@
 /**
  * @function_partial fmod_geometry_save
  * @param {Real} geometry_ref
- * @param {String} filename
+ * @param {Buffer} buffer
  * @returns {Real}
  * @function_end
  */

@@ -117,11 +117,13 @@ static void gmfmod_register_observers()
 	// session the runner deactivates a moment later; Android's onStop does
 	// the same.
 	g_observers[1] = [center addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil queue:main usingBlock:^(NSNotification* notification) {
+		(void)notification;
 		++g_generation;
 		gmfmod_suspend();
 	}];
 
 	g_observers[2] = [center addObserverForName:UIApplicationDidBecomeActiveNotification object:nil queue:main usingBlock:^(NSNotification* notification) {
+		(void)notification;
 		if (g_needs_reset)
 		{
 			// A media-services reset arrived in the background; the pair that
@@ -133,6 +135,7 @@ static void gmfmod_register_observers()
 	}];
 
 	g_observers[3] = [center addObserverForName:AVAudioSessionMediaServicesWereResetNotification object:nil queue:main usingBlock:^(NSNotification* notification) {
+		(void)notification;
 		if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground || g_is_suspended)
 		{
 			g_needs_reset = true;

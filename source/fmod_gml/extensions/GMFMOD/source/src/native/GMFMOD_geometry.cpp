@@ -1,5 +1,4 @@
 #include "GMFMOD_geometry.h"
-#include <string_view>
 
 using namespace gm_structs;
 
@@ -233,13 +232,25 @@ int64_t fmod_geometry_get_user_data(uint64_t geometry_ref)
 // General
 // ============================================================
 
-double fmod_geometry_save(uint64_t geometry_ref, std::string_view filename)
+double fmod_geometry_save(uint64_t geometry_ref, gm::wire::GMBuffer buffer)
 {
 	FMOD::Geometry* geometry = resolve_fmod_geometry(geometry_ref);
 	if (geometry == nullptr) return 0;
-	// Geometry::save requires buffer pointer, not filename - skip for now
-	g_fmod_last_result = FMOD_OK;
-	return 0;
+
+	// A null data pointer asks FMOD for the size; the save itself takes no
+	// capacity, so the buffer is checked here first.
+	int required = 0;
+	g_fmod_last_result = geometry->save(nullptr, &required);
+	if (g_fmod_last_result != FMOD_OK) return 0;
+
+	uint64_t capacity = buffer.data() != nullptr ? buffer.length() : 0;
+	if ((uint64_t)required > capacity)
+		return (double)required;
+
+	int written = required;
+	g_fmod_last_result = geometry->save(buffer.data(), &written);
+	if (g_fmod_last_result != FMOD_OK) return 0;
+	return (double)written;
 }
 
 double fmod_geometry_release(uint64_t geometry_ref)

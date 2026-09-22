@@ -916,6 +916,10 @@ static FMOD_RESULT F_CALL CALLBACK_fmod_studio_system(
 	void* commanddata,
 	void* userdata)
 {
+	// One Studio system per extension, so the callback is delivered without it.
+	(void)system;
+	(void)userdata;
+
 	std::optional<gm::wire::GMFunction> callback;
 	{
 		std::lock_guard<std::mutex> lock(g_studio_system_callback_mutex);

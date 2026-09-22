@@ -4199,7 +4199,7 @@ function fmod_geometry_set_active(
 [global, bind = typed_gml]
 function fmod_geometry_save(
     [type_hint=`uint64`] geometry_ref: gmval,
-    filename: string
+    [type_hint=`buffer`] buffer: gmval
 ): real;
 
 [global, bind = typed_gml]

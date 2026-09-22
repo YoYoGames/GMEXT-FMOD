@@ -4480,10 +4480,11 @@ GMEXPORT double __EXT_NATIVE__fmod_geometry_save(char* __arg_buffer, double __ar
     // field: geometry_ref, type: UInt64
     std::uint64_t geometry_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: filename, type: String
-    std::string_view filename = gm::wire::codec::readValue<std::string_view>(__br);
+    // field: buffer, type: Buffer
+    gm::wire::GMBuffer buffer = __buffer_queue.front();
+    __buffer_queue.pop();
 
-    auto&& __result = fmod_geometry_save(geometry_ref, filename);
+    auto&& __result = fmod_geometry_save(geometry_ref, buffer);
     return static_cast<double>(__result);
 }
 

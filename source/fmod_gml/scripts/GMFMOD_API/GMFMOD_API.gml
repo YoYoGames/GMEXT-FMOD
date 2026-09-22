@@ -12858,10 +12858,10 @@ function fmod_geometry_set_active(_geometry_ref, _active)
 
 /**
  * @param {Real} _geometry_ref
- * @param {String} _filename
+ * @param {Id.Buffer} _buffer
  * @returns {Real}
  */
-function fmod_geometry_save(_geometry_ref, _filename)
+function fmod_geometry_save(_geometry_ref, _buffer)
 {
     var __available__ = __GMFMOD_is_available();
     if (!__available__) return;
@@ -12872,10 +12872,9 @@ function fmod_geometry_save(_geometry_ref, _filename)
     if (!is_numeric(_geometry_ref)) show_error($"{_GMFUNCTION_} :: _geometry_ref expected number", true);
     buffer_write(__args_buffer__, buffer_u64, _geometry_ref);
 
-    // param: _filename, type: String
-    if (!is_string(_filename)) show_error($"{_GMFUNCTION_} :: _filename expected string", true);
-    buffer_write(__args_buffer__, buffer_u32, string_byte_length(_filename));
-    buffer_write(__args_buffer__, buffer_string, _filename);
+    // param: _buffer, type: Buffer
+    if (!buffer_exists(_buffer)) show_error($"{_GMFUNCTION_} :: _buffer expected Id.Buffer", true);
+    __GMFMOD_queue_buffer(buffer_get_address(_buffer), buffer_get_size(_buffer));
 
     var __return_value__ = __fmod_geometry_save(buffer_get_address(__args_buffer__), buffer_tell(__args_buffer__));
 
