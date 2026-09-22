@@ -48,7 +48,15 @@
  * @param {Enum.FmodThreadType} thread_type
  * @param {Real} affinity
  * @param {Enum.FmodThreadPriority} priority
+ * @param {Enum.FmodThreadStackSize} stack_size
  * @returns {Real}
+ * @function_end
+ */
+
+/**
+ * @function_partial fmod_reverb_preset_properties
+ * @param {Enum.FmodReverbPreset} preset
+ * @returns {Struct.FmodReverbProperties}
  * @function_end
  */
 
@@ -1312,18 +1320,7 @@
 /**
  * @function_partial fmod_reverb_3d_set_properties
  * @param {Real} reverb_3d_ref
- * @param {Real} decay_time
- * @param {Real} early_delay
- * @param {Real} late_delay
- * @param {Real} hf_reference
- * @param {Real} hf_decay_ratio
- * @param {Real} diffusion
- * @param {Real} density
- * @param {Real} low_shelf_frequency
- * @param {Real} low_shelf_gain
- * @param {Real} high_cut
- * @param {Real} early_late_mix
- * @param {Real} wet_level
+ * @param {Struct.FmodReverbProperties} props
  * @returns {Real}
  * @function_end
  */
@@ -4030,5 +4027,62 @@
  * @member Mixer
  * @member Feeder
  * @enum_end
+ */
+
+/**
+ * @enum_partial FmodThreadStackSize
+ * @member Default
+ * @member Mixer
+ * @member Feeder
+ * @member Stream
+ * @member File
+ * @member NonBlocking
+ * @member Record
+ * @member Geometry
+ * @member Profiler
+ * @member StudioUpdate
+ * @member StudioLoadBank
+ * @member StudioLoadSample
+ * @member Convolution1
+ * @member Convolution2
+ * @enum_end
+ */
+
+/**
+ * @enum_partial FmodReverbPreset
+ * @member Off
+ * @member Generic
+ * @member PaddedCell
+ * @member Room
+ * @member Bathroom
+ * @member LivingRoom
+ * @member StoneRoom
+ * @member Auditorium
+ * @member ConcertHall
+ * @member Cave
+ * @member Arena
+ * @member Hangar
+ * @member CarpettedHallway
+ * @member Hallway
+ * @member StoneCorridor
+ * @member Alley
+ * @member Forest
+ * @member City
+ * @member Mountains
+ * @member Quarry
+ * @member Plain
+ * @member ParkingLot
+ * @member SewerPipe
+ * @member Underwater
+ * @enum_end
+ */
+
+/**
+ * @const_partial macros
+ * @member FMOD_MAX_CHANNEL_WIDTH (value: '32')
+ * @member FMOD_MAX_SYSTEMS (value: '8')
+ * @member FMOD_MAX_LISTENERS (value: '8')
+ * @member FMOD_REVERB_MAXINSTANCES (value: '4')
+ * @const_end
  */
 

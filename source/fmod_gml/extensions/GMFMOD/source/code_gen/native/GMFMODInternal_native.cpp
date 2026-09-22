@@ -103,8 +103,26 @@ GMEXPORT double __EXT_NATIVE__fmod_thread_set_attributes(char* __arg_buffer, dou
     // field: priority, type: enum FmodThreadPriority
     gm_enums::FmodThreadPriority priority = gm::wire::codec::readValue<gm_enums::FmodThreadPriority>(__br);
 
-    auto&& __result = fmod_thread_set_attributes(thread_type, affinity, priority);
+    // field: stack_size, type: enum FmodThreadStackSize
+    gm_enums::FmodThreadStackSize stack_size = gm::wire::codec::readValue<gm_enums::FmodThreadStackSize>(__br);
+
+    auto&& __result = fmod_thread_set_attributes(thread_type, affinity, priority, stack_size);
     return static_cast<double>(__result);
+}
+
+GMEXPORT double __EXT_NATIVE__fmod_reverb_preset_properties(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length)
+{
+    gm::byteio::BufferReader __br{__arg_buffer, static_cast<size_t>(__arg_buffer_length)};
+
+    // field: preset, type: enum FmodReverbPreset
+    gm_enums::FmodReverbPreset preset = gm::wire::codec::readValue<gm_enums::FmodReverbPreset>(__br);
+
+    auto&& __result = fmod_reverb_preset_properties(preset);
+    gm::byteio::BufferWriter __bw{__ret_buffer, static_cast<size_t>(__ret_buffer_length)};
+
+    // return: __result, type: struct FmodReverbProperties
+    gm::wire::codec::writeValue(__bw, __result);
+    return 0;
 }
 
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, double __arg_buffer_length)
@@ -2321,43 +2339,10 @@ GMEXPORT double __EXT_NATIVE__fmod_reverb_3d_set_properties(char* __arg_buffer, 
     // field: reverb_3d_ref, type: UInt64
     std::uint64_t reverb_3d_ref = gm::wire::codec::readValue<std::uint64_t>(__br);
 
-    // field: decay_time, type: Float64
-    double decay_time = gm::wire::codec::readValue<double>(__br);
+    // field: props, type: struct FmodReverbProperties
+    gm_structs::FmodReverbProperties props = gm::wire::codec::readValue<gm_structs::FmodReverbProperties>(__br);
 
-    // field: early_delay, type: Float64
-    double early_delay = gm::wire::codec::readValue<double>(__br);
-
-    // field: late_delay, type: Float64
-    double late_delay = gm::wire::codec::readValue<double>(__br);
-
-    // field: hf_reference, type: Float64
-    double hf_reference = gm::wire::codec::readValue<double>(__br);
-
-    // field: hf_decay_ratio, type: Float64
-    double hf_decay_ratio = gm::wire::codec::readValue<double>(__br);
-
-    // field: diffusion, type: Float64
-    double diffusion = gm::wire::codec::readValue<double>(__br);
-
-    // field: density, type: Float64
-    double density = gm::wire::codec::readValue<double>(__br);
-
-    // field: low_shelf_frequency, type: Float64
-    double low_shelf_frequency = gm::wire::codec::readValue<double>(__br);
-
-    // field: low_shelf_gain, type: Float64
-    double low_shelf_gain = gm::wire::codec::readValue<double>(__br);
-
-    // field: high_cut, type: Float64
-    double high_cut = gm::wire::codec::readValue<double>(__br);
-
-    // field: early_late_mix, type: Float64
-    double early_late_mix = gm::wire::codec::readValue<double>(__br);
-
-    // field: wet_level, type: Float64
-    double wet_level = gm::wire::codec::readValue<double>(__br);
-
-    auto&& __result = fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level);
+    auto&& __result = fmod_reverb_3d_set_properties(reverb_3d_ref, props);
     return static_cast<double>(__result);
 }
 

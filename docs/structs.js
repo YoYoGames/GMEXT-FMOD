@@ -73,9 +73,9 @@
  * 
  * This struct defines a reverb environment.
  * 
- * [[Note: Several presets for these properties are defined as [macros](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#macros) in GameMaker, which you can find under `FMOD_REVERB_PRESETS`.]]
- * 
- * [[Note: the default reverb properties are the same as the `FMOD_PRESET_GENERIC` preset.]]
+ * [[Note: FMOD's presets for these properties are the members of ${constant.FmodReverbPreset}; ${function.fmod_reverb_preset_properties} returns the struct for one.]]
+ *
+ * [[Note: the default reverb properties are the same as the `FmodReverbPreset.Generic` preset.]]
  * 
  * @member {Real} decay_time The reverberation decay time, in milliseconds. A value in the range [0, 20000].
  * @member {Real} early_delay The initial reflection delay time, in milliseconds. A value in the range [0, 300].

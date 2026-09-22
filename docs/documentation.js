@@ -1833,15 +1833,34 @@ function fmod_debug_initialize(flags, mode=FmodDebugMode.Tty, filename=pointer_n
  * 
  * Priority can be specified using one of the `FMOD_THREAD_PRIORITY` constants or by providing the value explicitly, i.e. (-2) for the lowest thread priority on Windows. See platform documentation for details on the available priority values for a given operating system.
  * 
- * The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.
- * 
+ * The stack size can be specified using one of the ${constant.FmodThreadStackSize} constants or explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.
+ *
  * @param {Enum.FmodThreadType} thread_type The identifier for an FMOD thread.
  * @param {Real} affinity A bitfield of desired CPU cores to assign the given thread to.
  * @param {Enum.FmodThreadPriority} priority The scheduling priority to assign the given thread to.
+ * @param {Enum.FmodThreadStackSize} stack_size The stack size, in bytes, to give the thread; `FmodThreadStackSize.Default` for the platform's default.
  * @returns {Real}
  * @function_end
  */
-function fmod_thread_set_attributes(type, affinity, priority, stacksize) {}
+function fmod_thread_set_attributes(thread_type, affinity, priority, stack_size) {}
+
+/**
+ * @function fmod_reverb_preset_properties
+ * @desc > **FMOD Function:** N/A
+ *
+ * <br />
+ *
+ * This function returns the ${struct.FmodReverbProperties} of one of FMOD's reverb presets, the `FMOD_PRESET_*` values from `fmod_common.h`, so it can be passed to ${function.fmod_system_set_reverb_properties} or ${function.fmod_reverb_3d_set_properties}.
+ *
+ * The values are read from the FMOD headers this extension was built against, so they track the SDK.
+ *
+ * [[Note: FMOD has no function behind this - in C the presets are struct initialisers. It exists because a GameMaker macro cannot carry a struct through the extension, and returns `FmodResult.InvalidParam` in ${function.fmod_last_result} for a value outside ${constant.FmodReverbPreset}.]]
+ *
+ * @param {Enum.FmodReverbPreset} preset The preset to read.
+ * @returns {Struct.FmodReverbProperties}
+ * @function_end
+ */
+function fmod_reverb_preset_properties(preset) {}
 
 // DSP
 
@@ -3161,26 +3180,15 @@ function fmod_reverb_3d_get_3d_attributes(reverb_3d_ref) {}
  * <br />
  *
  * This function sets the environmental properties of a reverb sphere.
- * 
- * [[Note: the default reverb properties are the same as the `FMOD_PRESET_GENERIC` preset under `FMOD_REVERB_PRESETS`.]]
- * 
+ *
+ * [[Note: the default reverb properties are the same as the `FmodReverbPreset.Generic` preset; ${function.fmod_reverb_preset_properties} returns any preset's struct.]]
+ *
  * @param {Real} reverb_3d_ref A reference to a Reverb3D.
- * @param {Real} decay_time The reverberation decay time, expressed in milliseconds. A value in the range [0, 20000].
- * @param {Real} early_delay The initial reflection delay time, expressed in milliseconds. A value in the range [0, 300].
- * @param {Real} late_delay The late reverberation delay time relative to initial reflection, expressed in milliseconds. A value in the range [0, 100].
- * @param {Real} hf_reference The reference high frequency, in Hertz. A value in the range [20, 20000].
- * @param {Real} hf_decay_ratio The high-frequency to mid-frequency decay time ratio, as a percentage. A value in the range [10, 100].
- * @param {Real} diffusion A value that controls the echo density in the late reverberation decay, as a percentage. A value in the range [10, 100].
- * @param {Real} density A value that controls the modal density in the late reverberation decay, as a percentage. A value in the range [0, 100].
- * @param {Real} low_shelf_frequency The reference low frequency, in Hertz. A value in the range [20, 1000].
- * @param {Real} low_shelf_gain The relative room effect level at low frequencies, expressed in decibels (dB). A value in the range [-36, 12].
- * @param {Real} high_cut The relative room effect level at high frequencies, in Hertz. A value in the range [0, 20000].
- * @param {Real} early_late_mix The early reflections level relative to room effect, as a percentage.
- * @param {Real} wet_level The room effect level at mid frequencies, expressed in decibels (dB). A value in the range [-80, 20].
+ * @param {Struct.FmodReverbProperties} props The reverb environment description.
  * @returns {Real}
  * @function_end
  */
-function fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level) {}
+function fmod_reverb_3d_set_properties(reverb_3d_ref, props) {}
 
 
 /**
@@ -10473,6 +10481,7 @@ function fmod_studio_event_description_get_parameter_label_by_index(event_desc_r
  * @ref fmod_memory_get_stats
  * @ref fmod_debug_initialize
  * @ref fmod_thread_set_attributes
+ * @ref fmod_reverb_preset_properties
  * @ref fmod_error_string
  * @ref fmod_file_get_disk_busy
  * @ref fmod_file_set_disk_busy

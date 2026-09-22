@@ -825,6 +825,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_reverb_preset_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_reverb_preset_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_last_result" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1339,6 +1350,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmod_reverb_preset_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fmod_reverb_preset_properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmod_last_result" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1405,6 +1427,7 @@
 <li><a href="misc.html#fmod_memory_get_stats">fmod_memory_get_stats</a></li>
 <li><a href="misc.html#fmod_debug_initialize">fmod_debug_initialize</a></li>
 <li><a href="misc.html#fmod_thread_set_attributes">fmod_thread_set_attributes</a></li>
+<li><a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a></li>
 <li><a href="misc.html#fmod_error_string">fmod_error_string</a></li>
 <li><a href="misc.html#fmod_file_get_disk_busy">fmod_file_get_disk_busy</a></li>
 <li><a href="misc.html#fmod_file_set_disk_busy">fmod_file_set_disk_busy</a></li>
@@ -1580,11 +1603,11 @@
 <p>You must call this function for the chosen thread before that thread is created for the settings to take effect.</p>
 <p>Affinity can be specified using one (or more) of the <code>FMOD_THREAD_AFFINITY</code> constants or by providing the bits explicitly, i.e. (1&lt;&lt;3) for logical core three (core affinity is zero based). See platform documentation for details on the available cores for a given device.</p>
 <p>Priority can be specified using one of the <code>FMOD_THREAD_PRIORITY</code> constants or by providing the value explicitly, i.e. (-2) for the lowest thread priority on Windows. See platform documentation for details on the available priority values for a given operating system.</p>
-<p>The stack size can be specified explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.</p>
+<p>The stack size can be specified using one of the <a href="constants.html#fmodthreadstacksize">FmodThreadStackSize</a> constants or explicitly, however for each thread you should provide a size equal to or larger than the expected default or risk causing a stack overflow at runtime.</p>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<pre class="highlight"><code class="language-gml">fmod_thread_set_attributes(thread_type, affinity, priority)</code></pre>
+<pre class="highlight"><code class="language-gml">fmod_thread_set_attributes(thread_type, affinity, priority, stack_size)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1610,12 +1633,58 @@
 <td><a href="constants.html#fmodthreadpriority">FmodThreadPriority</a></td>
 <td>The scheduling priority to assign the given thread to.</td>
 </tr>
+<tr>
+<td>stack_size</td>
+<td><a href="constants.html#fmodthreadstacksize">FmodThreadStackSize</a></td>
+<td>The stack size, in bytes, to give the thread; <code>FmodThreadStackSize.Default</code> for the platform's default.</td>
+</tr>
 </tbody>
 </table>
 <p><br></p>
 <p><strong>Returns:</strong></p>
 <blockquote>
 <p><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></p>
+</blockquote>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmod_reverb_preset_properties">fmod_reverb_preset_properties<a class="headerlink" href="#fmod_reverb_preset_properties" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Function:</strong> N/A</p>
+</blockquote>
+<p><br /></p>
+<p>This function returns the <a href="structs.html#fmodreverbproperties">FmodReverbProperties</a> of one of FMOD's reverb presets, the <code>FMOD_PRESET_*</code> values from <code>fmod_common.h</code>, so it can be passed to <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> or <a href="reverb_3d.html#fmod_reverb_3d_set_properties">fmod_reverb_3d_set_properties</a>.</p>
+<p>The values are read from the FMOD headers this extension was built against, so they track the SDK.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>FMOD has no function behind this - in C the presets are struct initialisers. It exists because a GameMaker macro cannot carry a struct through the extension, and returns <code>FmodResult.InvalidParam</code> in <a href="misc.html#fmod_last_result">fmod_last_result</a> for a value outside <a href="constants.html#fmodreverbpreset">FmodReverbPreset</a>.</p>
+</div>
+<p><br></p>
+<p><strong>Syntax:</strong></p>
+<blockquote>
+<pre class="highlight"><code class="language-gml">fmod_reverb_preset_properties(preset)</code></pre>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preset</td>
+<td><a href="constants.html#fmodreverbpreset">FmodReverbPreset</a></td>
+<td>The preset to read.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Returns:</strong></p>
+<blockquote>
+<p><a href="structs.html#fmodreverbproperties">FmodReverbProperties</a></p>
 </blockquote>
 <p><br></p>
 <hr />

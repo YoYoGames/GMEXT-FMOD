@@ -29,28 +29,28 @@ bool fmod_reverb_3d_get_active(uint64_t reverb_3d_ref)
 	return active;
 }
 
-double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level)
+double fmod_reverb_3d_set_properties(uint64_t reverb_3d_ref, const FmodReverbProperties& props)
 {
 	FMOD::Reverb3D* reverb_3d = resolve_fmod_reverb_3d(reverb_3d_ref);
 
 	if (reverb_3d == nullptr)
 		return 0;
 
-	FMOD_REVERB_PROPERTIES props = {};
-	props.DecayTime = (float)decay_time;
-	props.EarlyDelay = (float)early_delay;
-	props.LateDelay = (float)late_delay;
-	props.HFReference = (float)hf_reference;
-	props.HFDecayRatio = (float)hf_decay_ratio;
-	props.Diffusion = (float)diffusion;
-	props.Density = (float)density;
-	props.LowShelfFrequency = (float)low_shelf_frequency;
-	props.LowShelfGain = (float)low_shelf_gain;
-	props.HighCut = (float)high_cut;
-	props.EarlyLateMix = (float)early_late_mix;
-	props.WetLevel = (float)wet_level;
+	FMOD_REVERB_PROPERTIES native_props = {};
+	native_props.DecayTime = (float)props.decay_time;
+	native_props.EarlyDelay = (float)props.early_delay;
+	native_props.LateDelay = (float)props.late_delay;
+	native_props.HFReference = (float)props.hf_reference;
+	native_props.HFDecayRatio = (float)props.hf_decay_ratio;
+	native_props.Diffusion = (float)props.diffusion;
+	native_props.Density = (float)props.density;
+	native_props.LowShelfFrequency = (float)props.low_shelf_frequency;
+	native_props.LowShelfGain = (float)props.low_shelf_gain;
+	native_props.HighCut = (float)props.high_cut;
+	native_props.EarlyLateMix = (float)props.early_late_mix;
+	native_props.WetLevel = (float)props.wet_level;
 
-	g_fmod_last_result = reverb_3d->setProperties(&props);
+	g_fmod_last_result = reverb_3d->setProperties(&native_props);
 	return 0;
 }
 

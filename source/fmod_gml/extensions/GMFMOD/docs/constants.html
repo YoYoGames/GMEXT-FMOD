@@ -1179,6 +1179,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodreverbpreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodReverbPreset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodthreadstacksize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodThreadStackSize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmodresult" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2384,6 +2417,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fmodreverbpreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodReverbPreset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fmodthreadstacksize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FmodThreadStackSize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fmodresult" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3539,6 +3605,9 @@
 <li><a href="constants.html#fmodporttype">FmodPortType</a></li>
 <li><a href="constants.html#fmodthreadtype">FmodThreadType</a></li>
 <li><a href="constants.html#fmodthreadpriority">FmodThreadPriority</a></li>
+<li><a href="constants.html#fmodthreadstacksize">FmodThreadStackSize</a></li>
+<li><a href="constants.html#fmodreverbpreset">FmodReverbPreset</a></li>
+<li><a href="constants.html#macros">macros</a></li>
 <li><a href="constants.html#fmodsoundgroupbehavior">FmodSoundGroupBehavior</a></li>
 <li><a href="constants.html#fmoddspresampler">FmodDspResampler</a></li>
 <li><a href="constants.html#fmodaudioqueuecodecpolicy">FmodAudioQueueCodecPolicy</a></li>
@@ -4155,6 +4224,249 @@
 <tr>
 <td><code>VirtualPlayFromStart</code></td>
 <td>For Channels that start virtual (due to being quiet or low importance), instead of swapping back to audible, and playing at the correct offset according to time, this flag makes the Channel play from the start.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodreverbpreset">FmodReverbPreset<a class="headerlink" href="#fmodreverbpreset" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_reverb_presets">FMOD_REVERB_PRESETS</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum names the reverb presets FMOD ships as <code>FMOD_PRESET_*</code>. Each is a full set of <a href="structs.html#fmodreverbproperties">FmodReverbProperties</a> values modelling an environment; pass a member to <a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a> to get the properties, then to <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> or <a href="reverb_3d.html#fmod_reverb_3d_set_properties">fmod_reverb_3d_set_properties</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>Generic</code> is the default reverb, and <code>Off</code> is what <a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a> applies when the reverb instance is disabled.</p>
+</div>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Off</code></td>
+<td>No reverb.</td>
+</tr>
+<tr>
+<td><code>Generic</code></td>
+<td>A generic room, FMOD's default.</td>
+</tr>
+<tr>
+<td><code>PaddedCell</code></td>
+<td>A padded cell.</td>
+</tr>
+<tr>
+<td><code>Room</code></td>
+<td>A room.</td>
+</tr>
+<tr>
+<td><code>Bathroom</code></td>
+<td>A bathroom.</td>
+</tr>
+<tr>
+<td><code>LivingRoom</code></td>
+<td>A living room.</td>
+</tr>
+<tr>
+<td><code>StoneRoom</code></td>
+<td>A stone room.</td>
+</tr>
+<tr>
+<td><code>Auditorium</code></td>
+<td>An auditorium.</td>
+</tr>
+<tr>
+<td><code>ConcertHall</code></td>
+<td>A concert hall.</td>
+</tr>
+<tr>
+<td><code>Cave</code></td>
+<td>A cave.</td>
+</tr>
+<tr>
+<td><code>Arena</code></td>
+<td>An arena.</td>
+</tr>
+<tr>
+<td><code>Hangar</code></td>
+<td>A hangar.</td>
+</tr>
+<tr>
+<td><code>CarpettedHallway</code></td>
+<td>A carpeted hallway.</td>
+</tr>
+<tr>
+<td><code>Hallway</code></td>
+<td>A hallway.</td>
+</tr>
+<tr>
+<td><code>StoneCorridor</code></td>
+<td>A stone corridor.</td>
+</tr>
+<tr>
+<td><code>Alley</code></td>
+<td>An alley.</td>
+</tr>
+<tr>
+<td><code>Forest</code></td>
+<td>A forest.</td>
+</tr>
+<tr>
+<td><code>City</code></td>
+<td>A city.</td>
+</tr>
+<tr>
+<td><code>Mountains</code></td>
+<td>Mountains.</td>
+</tr>
+<tr>
+<td><code>Quarry</code></td>
+<td>A quarry.</td>
+</tr>
+<tr>
+<td><code>Plain</code></td>
+<td>A plain.</td>
+</tr>
+<tr>
+<td><code>ParkingLot</code></td>
+<td>A parking lot.</td>
+</tr>
+<tr>
+<td><code>SewerPipe</code></td>
+<td>A sewer pipe.</td>
+</tr>
+<tr>
+<td><code>Underwater</code></td>
+<td>Underwater.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="fmodthreadstacksize">FmodThreadStackSize<a class="headerlink" href="#fmodthreadstacksize" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>FMOD Constant:</strong> <a href="https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_stack_size">FMOD_THREAD_STACK_SIZE</a></p>
+</blockquote>
+<p><br /></p>
+<p>This enum names the default stack size, in bytes, of each FMOD thread type, for the <code>stack_size</code> argument of <a href="misc.html#fmod_thread_set_attributes">fmod_thread_set_attributes</a>. Any byte count can be passed instead, but it should be equal to or larger than the thread's default or the thread risks a stack overflow at runtime.</p>
+<p>These constants are referenced by the following functions:</p>
+<ul>
+<li><a href="misc.html#fmod_thread_set_attributes">fmod_thread_set_attributes</a></li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td>The platform's default stack size (0).</td>
+</tr>
+<tr>
+<td><code>Mixer</code></td>
+<td>The mixer thread's default, 80 KiB.</td>
+</tr>
+<tr>
+<td><code>Feeder</code></td>
+<td>The feeder thread's default, 16 KiB.</td>
+</tr>
+<tr>
+<td><code>Stream</code></td>
+<td>The stream thread's default, 96 KiB.</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td>The file thread's default, 64 KiB.</td>
+</tr>
+<tr>
+<td><code>NonBlocking</code></td>
+<td>The non-blocking thread's default, 112 KiB.</td>
+</tr>
+<tr>
+<td><code>Record</code></td>
+<td>The record thread's default, 16 KiB.</td>
+</tr>
+<tr>
+<td><code>Geometry</code></td>
+<td>The geometry thread's default, 48 KiB.</td>
+</tr>
+<tr>
+<td><code>Profiler</code></td>
+<td>The profiler thread's default, 128 KiB.</td>
+</tr>
+<tr>
+<td><code>StudioUpdate</code></td>
+<td>The Studio update thread's default, 96 KiB.</td>
+</tr>
+<tr>
+<td><code>StudioLoadBank</code></td>
+<td>The Studio bank-loading thread's default, 96 KiB.</td>
+</tr>
+<tr>
+<td><code>StudioLoadSample</code></td>
+<td>The Studio sample-loading thread's default, 96 KiB.</td>
+</tr>
+<tr>
+<td><code>Convolution1</code></td>
+<td>The first convolution thread's default, 16 KiB.</td>
+</tr>
+<tr>
+<td><code>Convolution2</code></td>
+<td>The second convolution thread's default, 16 KiB.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr />
+<p align="right"><a href="#top">Back To Top</a></p>
+
+<h1 id="macros">macros<a class="headerlink" href="#macros" title="Permanent link">&para;</a></h1>
+<p>The limits FMOD defines in <code>fmod_common.h</code>, under their SDK names.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FMOD_VERSION</code> is deliberately not a macro here. The vendored SDKs are not one version - 2.03.06 on desktop and mobile, 2.03.12 on the consoles, 2.02.19 on Switch - and a macro would be one value on every platform; <a href="system.html#fmod_system_get_version">fmod_system_get_version</a> answers the version the running game actually linked.</p>
+</div>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FMOD_MAX_CHANNEL_WIDTH</code></td>
+<td>(value: '32')</td>
+</tr>
+<tr>
+<td><code>FMOD_MAX_SYSTEMS</code></td>
+<td>(value: '8')</td>
+</tr>
+<tr>
+<td><code>FMOD_MAX_LISTENERS</code></td>
+<td>(value: '8')</td>
+</tr>
+<tr>
+<td><code>FMOD_REVERB_MAXINSTANCES</code></td>
+<td>(value: '4')</td>
 </tr>
 </tbody>
 </table>

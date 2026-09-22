@@ -44,6 +44,10 @@ public class GMFMODInternal extends RunnerSocial {
     {
         return __EXT_JNI__fmod_thread_set_attributes(__arg_buffer, __arg_buffer_length);
     }
+    public double __EXT_NATIVE__fmod_reverb_preset_properties(ByteBuffer __arg_buffer, double __arg_buffer_length, ByteBuffer __ret_buffer, double __ret_buffer_length)
+    {
+        return __EXT_JNI__fmod_reverb_preset_properties(__arg_buffer, __arg_buffer_length, __ret_buffer, __ret_buffer_length);
+    }
     public double __EXT_NATIVE__fmod_channel_set_frequency(ByteBuffer __arg_buffer, double __arg_buffer_length)
     {
         return __EXT_JNI__fmod_channel_set_frequency(__arg_buffer, __arg_buffer_length);

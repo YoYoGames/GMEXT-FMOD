@@ -1535,12 +1535,12 @@
 <p>This function sets the environmental properties of a reverb sphere.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>the default reverb properties are the same as the <code>FMOD_PRESET_GENERIC</code> preset under <code>FMOD_REVERB_PRESETS</code>.</p>
+<p>the default reverb properties are the same as the <code>FmodReverbPreset.Generic</code> preset; <a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a> returns any preset's struct.</p>
 </div>
 <p><br></p>
 <p><strong>Syntax:</strong></p>
 <blockquote>
-<pre class="highlight"><code class="language-gml">fmod_reverb_3d_set_properties(reverb_3d_ref, decay_time, early_delay, late_delay, hf_reference, hf_decay_ratio, diffusion, density, low_shelf_frequency, low_shelf_gain, high_cut, early_late_mix, wet_level)</code></pre>
+<pre class="highlight"><code class="language-gml">fmod_reverb_3d_set_properties(reverb_3d_ref, props)</code></pre>
 </blockquote>
 <table>
 <thead>
@@ -1557,64 +1557,9 @@
 <td>A reference to a Reverb3D.</td>
 </tr>
 <tr>
-<td>decay_time</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The reverberation decay time, expressed in milliseconds. A value in the range [0, 20000].</td>
-</tr>
-<tr>
-<td>early_delay</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The initial reflection delay time, expressed in milliseconds. A value in the range [0, 300].</td>
-</tr>
-<tr>
-<td>late_delay</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The late reverberation delay time relative to initial reflection, expressed in milliseconds. A value in the range [0, 100].</td>
-</tr>
-<tr>
-<td>hf_reference</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The reference high frequency, in Hertz. A value in the range [20, 20000].</td>
-</tr>
-<tr>
-<td>hf_decay_ratio</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The high-frequency to mid-frequency decay time ratio, as a percentage. A value in the range [10, 100].</td>
-</tr>
-<tr>
-<td>diffusion</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A value that controls the echo density in the late reverberation decay, as a percentage. A value in the range [10, 100].</td>
-</tr>
-<tr>
-<td>density</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>A value that controls the modal density in the late reverberation decay, as a percentage. A value in the range [0, 100].</td>
-</tr>
-<tr>
-<td>low_shelf_frequency</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The reference low frequency, in Hertz. A value in the range [20, 1000].</td>
-</tr>
-<tr>
-<td>low_shelf_gain</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The relative room effect level at low frequencies, expressed in decibels (dB). A value in the range [-36, 12].</td>
-</tr>
-<tr>
-<td>high_cut</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The relative room effect level at high frequencies, in Hertz. A value in the range [0, 20000].</td>
-</tr>
-<tr>
-<td>early_late_mix</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The early reflections level relative to room effect, as a percentage.</td>
-</tr>
-<tr>
-<td>wet_level</td>
-<td><a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm">Real</a></td>
-<td>The room effect level at mid frequencies, expressed in decibels (dB). A value in the range [-80, 20].</td>
+<td>props</td>
+<td><a href="structs.html#fmodreverbproperties">FmodReverbProperties</a></td>
+<td>The reverb environment description.</td>
 </tr>
 </tbody>
 </table>

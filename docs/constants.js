@@ -192,19 +192,80 @@
 
 
 
-/* Preset for struct.FmodReverbProperties */
+/**
+ * @const FmodReverbPreset
+ * @desc > **FMOD Constant:** [FMOD_REVERB_PRESETS](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_reverb_presets)
+ *
+ * <br />
+ *
+ * This enum names the reverb presets FMOD ships as `FMOD_PRESET_*`. Each is a full set of ${struct.FmodReverbProperties} values modelling an environment; pass a member to ${function.fmod_reverb_preset_properties} to get the properties, then to ${function.fmod_system_set_reverb_properties} or ${function.fmod_reverb_3d_set_properties}.
+ *
+ * [[Note: `Generic` is the default reverb, and `Off` is what ${function.fmod_system_set_reverb_properties} applies when the reverb instance is disabled.]]
+ *
+ * @member Off No reverb.
+ * @member Generic A generic room, FMOD's default.
+ * @member PaddedCell A padded cell.
+ * @member Room A room.
+ * @member Bathroom A bathroom.
+ * @member LivingRoom A living room.
+ * @member StoneRoom A stone room.
+ * @member Auditorium An auditorium.
+ * @member ConcertHall A concert hall.
+ * @member Cave A cave.
+ * @member Arena An arena.
+ * @member Hangar A hangar.
+ * @member CarpettedHallway A carpeted hallway.
+ * @member Hallway A hallway.
+ * @member StoneCorridor A stone corridor.
+ * @member Alley An alley.
+ * @member Forest A forest.
+ * @member City A city.
+ * @member Mountains Mountains.
+ * @member Quarry A quarry.
+ * @member Plain A plain.
+ * @member ParkingLot A parking lot.
+ * @member SewerPipe A sewer pipe.
+ * @member Underwater Underwater.
+ * @const_end
+ */
 
+/**
+ * @const FmodThreadStackSize
+ * @desc > **FMOD Constant:** [FMOD_THREAD_STACK_SIZE](https://www.fmod.com/docs/2.03/api/core-api-common.html#fmod_thread_stack_size)
+ *
+ * <br />
+ *
+ * This enum names the default stack size, in bytes, of each FMOD thread type, for the `stack_size` argument of ${function.fmod_thread_set_attributes}. Any byte count can be passed instead, but it should be equal to or larger than the thread's default or the thread risks a stack overflow at runtime.
+ *
+ * @member Default The platform's default stack size (0).
+ * @member Mixer The mixer thread's default, 80 KiB.
+ * @member Feeder The feeder thread's default, 16 KiB.
+ * @member Stream The stream thread's default, 96 KiB.
+ * @member File The file thread's default, 64 KiB.
+ * @member NonBlocking The non-blocking thread's default, 112 KiB.
+ * @member Record The record thread's default, 16 KiB.
+ * @member Geometry The geometry thread's default, 48 KiB.
+ * @member Profiler The profiler thread's default, 128 KiB.
+ * @member StudioUpdate The Studio update thread's default, 96 KiB.
+ * @member StudioLoadBank The Studio bank-loading thread's default, 96 KiB.
+ * @member StudioLoadSample The Studio sample-loading thread's default, 96 KiB.
+ * @member Convolution1 The first convolution thread's default, 16 KiB.
+ * @member Convolution2 The second convolution thread's default, 16 KiB.
+ * @const_end
+ */
 
-
-
-
-
-
-
-
-
-
-
+/**
+ * @const macros
+ * @desc The limits FMOD defines in `fmod_common.h`, under their SDK names.
+ *
+ * [[Note: `FMOD_VERSION` is deliberately not a macro here. The vendored SDKs are not one version - 2.03.06 on desktop and mobile, 2.03.12 on the consoles, 2.02.19 on Switch - and a macro would be one value on every platform; ${function.fmod_system_get_version} answers the version the running game actually linked.]]
+ *
+ * @member FMOD_MAX_CHANNEL_WIDTH The maximum number of channels per frame of audio supported by audio files, buffers, DSP units and the mixer. Value: `32`.
+ * @member FMOD_MAX_SYSTEMS The maximum number of ${function.fmod_system_create} calls that can be made, and so of FMOD systems that can exist at once. Value: `8`.
+ * @member FMOD_MAX_LISTENERS The maximum number of listeners ${function.fmod_system_set_3d_num_listeners} accepts. Value: `8`.
+ * @member FMOD_REVERB_MAXINSTANCES The maximum number of reverb instances ${function.fmod_system_set_reverb_properties} can address. Value: `4`.
+ * @const_end
+ */
 
 /**
  * @const FmodResult
@@ -2386,6 +2447,9 @@
  * @ref FmodPortType
  * @ref FmodThreadType
  * @ref FmodThreadPriority
+ * @ref FmodThreadStackSize
+ * @ref FmodReverbPreset
+ * @ref macros
  * @ref FmodSoundGroupBehavior
  * @ref FmodDspResampler
  * @ref FmodAudioQueueCodecPolicy

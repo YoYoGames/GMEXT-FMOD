@@ -1,9 +1,13 @@
 #pragma once
 
+// The generated header declares gm_consts::FMOD_MAX_CHANNEL_WIDTH and the
+// other limits under the SDK's own names, and fmod_common.h #defines those
+// names - so the declarations have to be seen before the macros exist, or
+// they expand to "inline constexpr std::int32_t 32 = 32;". Keep it first.
+#include <native/GMFMODInternal_native.h>
 #include "fmod.hpp"
 #include <cstdint>
 #include <atomic>
-#include <native/GMFMODInternal_native.h>
 #include "gmfmod_ref.h"
 #include "gmfmod_registry.h"
 #include "gmfmod_user_data.h"

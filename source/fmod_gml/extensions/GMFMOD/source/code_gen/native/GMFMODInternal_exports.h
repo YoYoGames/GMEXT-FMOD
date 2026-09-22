@@ -17,6 +17,7 @@ GMEXPORT double __EXT_NATIVE__fmod_file_get_disk_busy();
 GMEXPORT double __EXT_NATIVE__fmod_file_set_disk_busy(double busy);
 GMEXPORT double __EXT_NATIVE__fmod_memory_get_stats(double blocking, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_thread_set_attributes(char* __arg_buffer, double __arg_buffer_length);
+GMEXPORT double __EXT_NATIVE__fmod_reverb_preset_properties(char* __arg_buffer, double __arg_buffer_length, char* __ret_buffer, double __ret_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_frequency(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_get_frequency(char* __arg_buffer, double __arg_buffer_length);
 GMEXPORT double __EXT_NATIVE__fmod_channel_set_priority(char* __arg_buffer, double __arg_buffer_length);

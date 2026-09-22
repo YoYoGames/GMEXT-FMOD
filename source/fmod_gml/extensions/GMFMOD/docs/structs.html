@@ -4599,14 +4599,16 @@ This happens in two situations:</p>
 <p>This struct defines a reverb environment.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Several presets for these properties are defined as <a href="https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#macros">macros</a> in GameMaker, which you can find under <code>FMOD_REVERB_PRESETS</code>.</p>
+<p>FMOD's presets for these properties are the members of <a href="constants.html#fmodreverbpreset">FmodReverbPreset</a>; <a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a> returns the struct for one.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>the default reverb properties are the same as the <code>FMOD_PRESET_GENERIC</code> preset.</p>
+<p>the default reverb properties are the same as the <code>FmodReverbPreset.Generic</code> preset.</p>
 </div>
 <p>This struct is referenced by the following functions:</p>
 <ul>
+<li><a href="misc.html#fmod_reverb_preset_properties">fmod_reverb_preset_properties</a></li>
+<li><a href="reverb_3d.html#fmod_reverb_3d_set_properties">fmod_reverb_3d_set_properties</a></li>
 <li><a href="reverb_3d.html#fmod_reverb_3d_get_properties">fmod_reverb_3d_get_properties</a></li>
 <li><a href="system.html#fmod_system_set_reverb_properties">fmod_system_set_reverb_properties</a></li>
 <li><a href="system.html#fmod_system_get_reverb_properties">fmod_system_get_reverb_properties</a></li>

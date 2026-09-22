@@ -10,6 +10,10 @@
 
 namespace gm_consts
 {
+    inline constexpr std::int32_t FMOD_MAX_CHANNEL_WIDTH = 32;
+    inline constexpr std::int32_t FMOD_MAX_SYSTEMS = 8;
+    inline constexpr std::int32_t FMOD_MAX_LISTENERS = 8;
+    inline constexpr std::int32_t FMOD_REVERB_MAXINSTANCES = 4;
 }
 
 
@@ -1068,6 +1072,52 @@ namespace gm_enums
         Critical = -32775,
         Mixer = -32774,
         Feeder = -32775
+    };
+
+    enum class FmodThreadStackSize : std::int64_t
+    {
+        Default = 0,
+        Mixer = 81920,
+        Feeder = 16384,
+        Stream = 98304,
+        File = 65536,
+        NonBlocking = 114688,
+        Record = 16384,
+        Geometry = 49152,
+        Profiler = 131072,
+        StudioUpdate = 98304,
+        StudioLoadBank = 98304,
+        StudioLoadSample = 98304,
+        Convolution1 = 16384,
+        Convolution2 = 16384
+    };
+
+    enum class FmodReverbPreset : std::int64_t
+    {
+        Off = 0,
+        Generic = 1,
+        PaddedCell = 2,
+        Room = 3,
+        Bathroom = 4,
+        LivingRoom = 5,
+        StoneRoom = 6,
+        Auditorium = 7,
+        ConcertHall = 8,
+        Cave = 9,
+        Arena = 10,
+        Hangar = 11,
+        CarpettedHallway = 12,
+        Hallway = 13,
+        StoneCorridor = 14,
+        Alley = 15,
+        Forest = 16,
+        City = 17,
+        Mountains = 18,
+        Quarry = 19,
+        Plain = 20,
+        ParkingLot = 21,
+        SewerPipe = 22,
+        Underwater = 23
     };
 
 }
@@ -2983,7 +3033,8 @@ void fmod_shutdown();
 double fmod_file_get_disk_busy();
 double fmod_file_set_disk_busy(double busy);
 gm_structs::FmodMemoryStats fmod_memory_get_stats(bool blocking);
-double fmod_thread_set_attributes(gm_enums::FmodThreadType thread_type, double affinity, gm_enums::FmodThreadPriority priority);
+double fmod_thread_set_attributes(gm_enums::FmodThreadType thread_type, double affinity, gm_enums::FmodThreadPriority priority, gm_enums::FmodThreadStackSize stack_size);
+gm_structs::FmodReverbProperties fmod_reverb_preset_properties(gm_enums::FmodReverbPreset preset);
 double fmod_channel_set_frequency(std::uint64_t channel_ref, double frequency);
 double fmod_channel_get_frequency(std::uint64_t channel_ref);
 double fmod_channel_set_priority(std::uint64_t channel_ref, double priority);
@@ -3153,7 +3204,7 @@ double fmod_sound_group_release(std::uint64_t sound_group_ref);
 std::uint64_t fmod_sound_group_get_system_object(std::uint64_t sound_group_ref);
 double fmod_reverb_3d_set_active(std::uint64_t reverb_3d_ref, bool active);
 bool fmod_reverb_3d_get_active(std::uint64_t reverb_3d_ref);
-double fmod_reverb_3d_set_properties(std::uint64_t reverb_3d_ref, double decay_time, double early_delay, double late_delay, double hf_reference, double hf_decay_ratio, double diffusion, double density, double low_shelf_frequency, double low_shelf_gain, double high_cut, double early_late_mix, double wet_level);
+double fmod_reverb_3d_set_properties(std::uint64_t reverb_3d_ref, const gm_structs::FmodReverbProperties& props);
 gm_structs::FmodReverbProperties fmod_reverb_3d_get_properties(std::uint64_t reverb_3d_ref);
 double fmod_reverb_3d_set_3d_attributes(std::uint64_t reverb_3d_ref, const gm_structs::FmodVec3& position, double min_distance, double max_distance);
 gm_structs::FmodReverb3DAttributes fmod_reverb_3d_get_3d_attributes(std::uint64_t reverb_3d_ref);

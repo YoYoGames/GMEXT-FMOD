@@ -1150,7 +1150,76 @@ enum FmodThreadPriority
 	Feeder = -32775,
 }
 
+// FMOD_THREAD_STACK_SIZE is an unsigned int with named defaults, one per
+// thread type (fmod_common.h). Any byte count is accepted where this is
+// hinted; the members are the SDK's (N * 1024) products.
+[global, bind = typed_gml]
+enum FmodThreadStackSize
+{
+	Default = 0,
+	Mixer = 81920,
+	Feeder = 16384,
+	Stream = 98304,
+	File = 65536,
+	NonBlocking = 114688,
+	Record = 16384,
+	Geometry = 49152,
+	Profiler = 131072,
+	StudioUpdate = 98304,
+	StudioLoadBank = 98304,
+	StudioLoadSample = 98304,
+	Convolution1 = 16384,
+	Convolution2 = 16384,
+}
 
+// The FMOD_PRESET_* reverb presets, in the header's order. Each is a
+// FMOD_REVERB_PROPERTIES initialiser in the SDK, which a GMIDL constant
+// cannot carry, so fmod_reverb_preset_properties() reads them from the
+// header at compile time.
+[global, bind = typed_gml]
+enum FmodReverbPreset
+{
+	Off = 0,
+	Generic = 1,
+	PaddedCell = 2,
+	Room = 3,
+	Bathroom = 4,
+	LivingRoom = 5,
+	StoneRoom = 6,
+	Auditorium = 7,
+	ConcertHall = 8,
+	Cave = 9,
+	Arena = 10,
+	Hangar = 11,
+	CarpettedHallway = 12,
+	Hallway = 13,
+	StoneCorridor = 14,
+	Alley = 15,
+	Forest = 16,
+	City = 17,
+	Mountains = 18,
+	Quarry = 19,
+	Plain = 20,
+	ParkingLot = 21,
+	SewerPipe = 22,
+	Underwater = 23,
+}
+
+// ============================================================
+// Limits
+// ============================================================
+
+// The SDK's own names (fmod_common.h). They reach the native header as
+// gm_consts::FMOD_MAX_* too, so GMFMOD_common.h includes that header before
+// fmod.hpp, whose #defines would otherwise expand inside the declarations.
+// FMOD_VERSION is deliberately not here: it differs per vendored platform
+// SDK (2.03.06, 2.03.12 on the consoles, 2.02.19 on Switch) and a GML macro
+// is one value on every target; fmod_system_get_version() answers the
+// runtime.
+const FMOD_MAX_CHANNEL_WIDTH : int32 = 32;
+const FMOD_MAX_SYSTEMS : int32 = 8;
+const FMOD_MAX_LISTENERS : int32 = 8;
+const FMOD_REVERB_MAXINSTANCES : int32 = 4;
 
 // ============================================================
 // Data Return Types
@@ -2061,8 +2130,25 @@ group
 function fmod_thread_set_attributes(
     [type_hint=`FmodThreadType`] thread_type: gmval,
     affinity: real,
-    [type_hint=`FmodThreadPriority`] priority: gmval
+    [type_hint=`FmodThreadPriority`] priority: gmval,
+    [type_hint=`FmodThreadStackSize`] stack_size: gmval
 ): real;
+
+}
+
+group
+{
+
+// ============================================================
+// Reverb presets
+// ============================================================
+
+// No SDK method behind this: the FMOD_PRESET_* macros are struct
+// initialisers, and this is how GML reaches them.
+[global, bind = typed_gml, type_hint=`FmodReverbProperties`]
+function fmod_reverb_preset_properties(
+    [type_hint=`FmodReverbPreset`] preset: gmval
+): gmval;
 
 }
 
@@ -3150,18 +3236,7 @@ function fmod_reverb_3d_get_active(
 [global, bind = typed_gml]
 function fmod_reverb_3d_set_properties(
     [type_hint=`uint64`] reverb_3d_ref: gmval,
-    decay_time: real,
-    early_delay: real,
-    late_delay: real,
-    hf_reference: real,
-    hf_decay_ratio: real,
-    diffusion: real,
-    density: real,
-    low_shelf_frequency: real,
-    low_shelf_gain: real,
-    high_cut: real,
-    early_late_mix: real,
-    wet_level: real
+    [type_hint=`FmodReverbProperties`] props: gmval
 ): real;
 
 [global, bind = typed_gml, type_hint=`FmodReverbProperties`]
