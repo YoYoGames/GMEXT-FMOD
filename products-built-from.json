@@ -1,0 +1,5 @@
+{
+  "_": "Written by `kb dev products REPO --stamp` after a full rebuild: the last source commit each extension's tracked products were rebuilt from. A rebuild that changes no bytes cannot be committed, so this is how the check knows it happened.",
+  "GMFMOD": "52ed88a8b13db20a2b8dccd51244b80b4502483e",
+  "GMFMODStudio": "52ed88a8b13db20a2b8dccd51244b80b4502483e"
+}
